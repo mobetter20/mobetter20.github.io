@@ -4,8 +4,8 @@ email: contact@ajin.im
 url: https://www.ajin.im
 description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
 keywords: "your keywords, separated by commas"
-skills: "<b>Transcreator - Copywriter - Localization</b> Manager<br />
-From 민망한 콩글리쉬 To 한류 Superstar <br />Go Global with Ajin Im"
+skills: "<b>Transcreator - Copywriter - Localization Manager<br />
+From 민망한 콩글리쉬 To 한류 Superstar <br />Go Global with Ajin Im</b>"
 meta_author: LastName FirstName
 
 # Google webmaster tools
@@ -36,7 +36,7 @@ footer:
   copyright: Ajin Im
   location: Location
   social: Around the Web
-# credits:
+credits:
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
   - title: twitter
@@ -52,7 +52,8 @@ address:
   - line: based in Seoul, South Korea
   - line: but matered the art of remote communication
 
-# Credits content credits: I'll like to thank my mom and my imaginary pet and my housemate whom I'm engaged to for this website and my blog <a href="http://propagandaformyself.com">propagandaformyself</a>
+# Credits content
+credits: I'll like to thank my mom and the housemate whom I'm engaged to for this website and my <a href="http://blog.propagandaformyself.com">blog</a>
 
 # Build settings
 markdown: kramdown

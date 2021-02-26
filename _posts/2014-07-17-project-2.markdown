@@ -1,11 +1,12 @@
 ---
 layout: default
+title : game localization
 modal-id: 2
 date: 2014-07-17
-img: amusingheroes.png
+img: amusingheroes.jpg
 alt: image-alt
 project-date: April 2014
 link2: SNAPTHINKING
 category: game writing-copywriting
-description: 게임 텍스트 (튜토리얼, UX, 게임 소개 페이지) 영어, 스페인어, 중국어 번역과 검수 게임 해외 출시 관련 각종 조사. 마케팅 텍스트 카피라이팅
+description: 게임 텍스트 (튜토리얼, UX, 게임 소개 페이지) 영어, 스페인어, 중국어 번역, transcreating. 마케팅 텍스트 카피라이팅, 영문 오디오 제작 관he
 ---
