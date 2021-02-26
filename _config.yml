@@ -1,11 +1,10 @@
 # Site settings
-title: Imagine you and me!
+title: Imagine you and me
 email: contact@ajin.im
 url: https://www.ajin.im
 description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
 keywords: "your keywords, separated by commas"
-skills: "독보적인 제품의 세계시장 진출을 어색한 번역이 막고있진 않나요? <br />
-영문 로컬라이제이션 전문 카피라이터 Ajin과 함께<br /> 민망한 콩글리쉬 웹사이트를 한류 Superstar로 메이크오버하세요."
+skills: "Imagine you and me <br />Going Global (for real)<br /> From 민망한 콩글리쉬 To 한류 Superstar."
 meta_author: LastName FirstName
 
 # Google webmaster tools
@@ -55,7 +54,7 @@ address:
   - line: but matered the art of remote communication
 
 # Credits content
-credits: 'I'll like to thank my mom and my imaginary pet and my housemate whom I'm engaged to for this website and my blog <a href="http://propagandaformyself.com">propagandaformyself</a>..'
+credits: I'll like to thank my mom and my imaginary pet and my housemate whom I'm engaged to for this website and my blog <a href="http://propagandaformyself.com">propagandaformyself</a>
 
 # Build settings
 markdown: kramdown
