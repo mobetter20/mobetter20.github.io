@@ -2,10 +2,11 @@
 layout: default
 modal-id: 3
 date: 2014-07-16
-img: 3.png
+img: arte.jpg
 alt: image-alt
-project-date: April 2014
-client: Start Bootstrap
-category: Web Development
-description: Use this area of the page to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
+project-date: 2019
+link3: ARTE365
+category: translation-research-reporting
+description: 한영문서 (보고서, 카탈로그, 홍보물, 프리젠테이션 등) 검수. 문서 번역 및 통역(한영/ 영한). 해외문화예술동향 조사, 보고서 작성, 사내 게시판/ 웹진 기고. 국제 행사 지원, 해외인사 교류
+
 ---

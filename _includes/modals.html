@@ -19,12 +19,25 @@
                                 <p>{{ post.description }}</p>
                             {% endif %}
                             <ul class="list-inline item-details">
-                                {% if post.client1 %}
-                                    <li>Client:
-                                        <strong><a href="https://www.smartmaker.com/ups/en_smweb8/index.html">{{ post.client1 }}</a>
+                                {% if post.link1 %}
+                                    <li>Link:
+                                        <strong><a href="https://www.smartmaker.com/ups/en_smweb8/index.html">{{ post.link1 }}</a>
                                         </strong>
                                     </li>
                                 {% endif %}
+                                {% if post.link2 %}
+                                    <li>Link:
+                                        <strong><a href="http://www.amusingheroes.com">{{ post.link2 }}</a>
+                                        </strong>
+                                    </li>
+                                {% endif %}
+                                {% if post.link3 %}
+                                    <li>Link:
+                                        <strong><a href="https://arte365.kr/?p=61368">{{ post.link3 }}</a>
+                                        </strong>
+                                    </li>
+                                {% endif %}
+
                                 {% if post.project-date %}
                                     <li>Date:
                                         <strong><a href="http://startbootstrap.com">{{ post.project-date }}</a>
