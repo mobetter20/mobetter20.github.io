@@ -5,8 +5,8 @@ modal-id: 1
 date: 2014-07-18
 img: smart.png
 alt: image-alt
-project-date: April 2014
-link1: SOFTPOWER
-category: Copywriting-Transcreating-UI writing
-description: 소프트웨어 글로벌 버전 제작 및 출시 담당. 프로그램 영문화 및 영문 전용 기능(영어 자연언어 활용 프로그램 개발 에디터) 기획. 영문 매뉴얼 제작. 해외 런칭 기획. 영문 홈페이지 제작 (카피라이팅). 영문 비디오 튜토리얼 제작. 영문 소셜미디어 관리
+project-date: June 2019 - 2020
+link1: SMARTMAKER
+
+description: 소프트웨어 글로벌 버전 기획 및 출시 관리. 프로그램 UI 영문화 및 영문 전용 기능 UX(영어 자연언어 활용 프로그램 개발 에디터) 기획. 영문 기술 문서(매뉴얼) 번역. 해외 출시 관련 시장 조사 및 협력사 관리. 영문 홈페이지 제작 (카피라이팅). 영문 비디오 튜토리얼 제작.
 ---
