@@ -36,7 +36,7 @@ footer:
   copyright: Ajin Im
   location: Location
   social: Around the Web
-  credits:
+  credits: More
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
   - title: twitter
@@ -44,16 +44,17 @@ social:
 #- title: blog url: https://propagandaformyself.com
   - title: reddit
     url: https://reddit.com/u/propagandaformyself
-  - title: github
-    url: http://github.com/mobetter20
+  - title: rss
+    url: https://blackballoons.github.io
 
 # Postal address (add as many lines as necessary)
 address:
   - line: based in Seoul, South Korea
   - line: but matered the art of remote communication
 
-# Credits content
-credits: I'll like to thank the housemate whom I'm engaged to for this website and my <a href="https://blackballoons.github.io/">blog</a>
+# More content
+credits: You can find me lurking in reddit or my blog. Or just drop me a line at <a href="mailto:contact@ajin.im">hi@ajin.im</a>
+
 
 # Build settings
 markdown: kramdown
