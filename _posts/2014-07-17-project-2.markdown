@@ -1,12 +1,12 @@
 ---
 layout: default
-title : game localization
+title : Localization
 modal-id: 2
 date: 2014-07-17
 img: amusingheroes.jpg
 alt: image-alt
 project-date: 2019
-link2: SNAPTHINKING
+link2: AMUSINGHEROES
 
 description: 게임 텍스트 (튜토리얼, UX) 영어, 스페인어, 중국어 번역, 트랜스크리에이팅. 카피라이팅, 캐릭터 영어 보이스 오버 관리
 ---

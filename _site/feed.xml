@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator>
   <link href="https://www.ajin.im/feed.xml" rel="self" type="application/atom+xml" />
   <link href="https://www.ajin.im/" rel="alternate" type="text/html" />
-  <updated>2021-02-28T11:56:50+00:00</updated>
+  <updated>2021-02-28T12:11:19+00:00</updated>
   <id>https://www.ajin.im/</id>
 
   
@@ -20,8 +20,8 @@
   
   
     <entry>
-      <title type="html">Localization</title>
-      <link href="https://www.ajin.im/" rel="alternate" type="text/html" title="Localization" />
+      <title type="html">Transcreation</title>
+      <link href="https://www.ajin.im/" rel="alternate" type="text/html" title="Transcreation" />
       <published>2014-07-18T00:00:00+01:00</published>
       <updated>2014-07-18T00:00:00+01:00</updated>
       <id>https://www.ajin.im/project-1</id>
@@ -52,8 +52,8 @@
     </entry>
   
     <entry>
-      <title type="html">game localization</title>
-      <link href="https://www.ajin.im/" rel="alternate" type="text/html" title="game localization" />
+      <title type="html">Localization</title>
+      <link href="https://www.ajin.im/" rel="alternate" type="text/html" title="Localization" />
       <published>2014-07-17T00:00:00+01:00</published>
       <updated>2014-07-17T00:00:00+01:00</updated>
       <id>https://www.ajin.im/project-2</id>
@@ -84,8 +84,8 @@
     </entry>
   
     <entry>
-      <title type="html">translation &amp;amp; research</title>
-      <link href="https://www.ajin.im/" rel="alternate" type="text/html" title="translation &amp; research" />
+      <title type="html">Translation &amp;amp; Research</title>
+      <link href="https://www.ajin.im/" rel="alternate" type="text/html" title="Translation &amp; Research" />
       <published>2014-07-16T00:00:00+01:00</published>
       <updated>2014-07-16T00:00:00+01:00</updated>
       <id>https://www.ajin.im/project-3</id>
