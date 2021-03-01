@@ -1,12 +1,12 @@
 # Site settings
 title: Hi! I'm Ajin
 email: contact@ajin.im
-url: https://www.ajin.im
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
-keywords: "your keywords, separated by commas"
+url: https://www.propagandaformyself.com
+description: "CV and portfolio website for Im Ajin, a localization manager, tanslator specilizing in tanscreation and English copywriting for Korean business targeting global market."
+keywords: "transcreation, localization, copywriter, translator, Korea, Startup"
 skills: "<b>Transcreator - Copywriter - Localization Manager<br />
 From 민망한 콩글리쉬 To 한류 Superstar <br />Go Global with Ajin Im</b>"
-meta_author: LastName FirstName
+meta_author: Im Ajin
 
 # Google webmaster tools
 google_verify:
