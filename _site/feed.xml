@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator>
   <link href="https://www.propagandaformyself.com/feed.xml" rel="self" type="application/atom+xml" />
   <link href="https://www.propagandaformyself.com/" rel="alternate" type="text/html" />
-  <updated>2021-03-01T10:58:42+00:00</updated>
+  <updated>2021-03-01T14:33:48+00:00</updated>
   <id>https://www.propagandaformyself.com/</id>
 
   
@@ -12,7 +12,7 @@
   
 
   
-    <subtitle>CV and portfolio website for Im Ajin, a localization manager, tanslator specilizing in tanscreation and English copywriting for Korean business targeting global market.</subtitle>
+    <subtitle>CV and portfolio website for Im Ajin. localization manager, consultunt, copywriter, and tanslator specilizing in localization and tanscreation from Korean to English for Korean business targeting global market.</subtitle>
   
 
   
@@ -20,8 +20,8 @@
   
   
     <entry>
-      <title type="html">Transcreation</title>
-      <link href="https://www.propagandaformyself.com/" rel="alternate" type="text/html" title="Transcreation" />
+      <title type="html">Localization</title>
+      <link href="https://www.propagandaformyself.com/" rel="alternate" type="text/html" title="Localization" />
       <published>2014-07-18T00:00:00+01:00</published>
       <updated>2014-07-18T00:00:00+01:00</updated>
       <id>https://www.propagandaformyself.com/project-1</id>
@@ -52,8 +52,8 @@
     </entry>
   
     <entry>
-      <title type="html">Localization</title>
-      <link href="https://www.propagandaformyself.com/" rel="alternate" type="text/html" title="Localization" />
+      <title type="html">Transcreation</title>
+      <link href="https://www.propagandaformyself.com/" rel="alternate" type="text/html" title="Transcreation" />
       <published>2014-07-17T00:00:00+01:00</published>
       <updated>2014-07-17T00:00:00+01:00</updated>
       <id>https://www.propagandaformyself.com/project-2</id>
