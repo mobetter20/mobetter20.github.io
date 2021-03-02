@@ -50,10 +50,10 @@ social:
 # Postal address (add as many lines as necessary)
 address:
   - line: based in Seoul, South Korea
-  - line: but matered the art of remote communication
+  - line: but mastered the art of remote communication
 
 # More content
-credits: You can find me lurking in reddit or my blog. Or just drop me a line at <a href="mailto:contact@ajin.im">hi@ajin.im</a>
+credits: You can find me rambling in reddit or my blog. Or just drop me a line at <a href="mailto:contact@ajin.im">hi@ajin.im</a>
 
 
 # Build settings
