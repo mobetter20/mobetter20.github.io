@@ -39,8 +39,7 @@ footer:
   credits: More
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
-  - title: twitter
-    url: http://twitter.com/propagandaformyself
+# -title: twitter
 #- title: blog url: https://propagandaformyself.com
   - title: reddit
     url: https://reddit.com/u/propagandaformyself
