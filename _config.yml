@@ -4,8 +4,8 @@ email: contact@ajin.im
 url: https://www.propagandaformyself.com
 description: "CV and portfolio website for Im Ajin. localization manager, consultunt, copywriter, and tanslator specilizing in localization and tanscreation from Korean to English for Korean business targeting global market."
 keywords: "transcreation, localization, copywriter, translator, Korea, English, Startup"
-skills: "<b>Transcreator - Copywriter - Localization Manager<br />
-From 민망한 콩글리쉬 To 한류 Superstar <br />Go Global with Ajin Im</b>"
+skills: "<b>English Copywriter - Localization Manager<br />
+From 🤦 콩글리쉬 To 한류 🧨 <br />Go Global with Ajin Im</b>"
 meta_author: Im Ajin
 
 # Google webmaster tools
@@ -48,11 +48,11 @@ social:
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: based in Seoul, South Korea
-  - line: but mastered the art of remote communication
+  - line: based in Seoul, but mastered
+  - line: the art of remote communication
 
 # More content
-credits: You can find me rambling in reddit or my blog. Or just drop me a line at <a href="mailto:contact@ajin.im">hi@ajin.im</a>
+credits: Find me lurking in reddit or rambling in my blog. Or get in touch with me via <a href="mailto:contact@ajin.im">contact@ajin.im</a>
 
 
 # Build settings
@@ -66,4 +66,6 @@ defaults:
       type: "posts"
     values:
       permalink: ""
-#for plugin:
+
+plugins:
+  - jemoji
