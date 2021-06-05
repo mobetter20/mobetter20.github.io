@@ -37,7 +37,12 @@
                                         </strong>
                                     </li>
                                 {% endif %}
-
+                                {% if post.link4 %}
+                                    <li>Link:
+                                        <strong><a href="https://www.reddit.com/user/propagandaformyself">{{ post.link4 }}</a>
+                                        </strong>
+                                        </li>
+                                {% endif %}
                             </ul>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>

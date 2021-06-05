@@ -1,0 +1,12 @@
+---
+layout: default
+title : Blogging & Writing
+modal-id: 4
+date: 2014-07-16
+img: blogging.jpg
+alt: image-alt
+project-date: 2021
+link4: Reddit posts
+description: 코미디 카피라이팅 위주 Reddit 포스팅
+
+---
