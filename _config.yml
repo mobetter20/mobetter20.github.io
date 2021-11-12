@@ -43,8 +43,8 @@ social:
 #- title: blog url: https://propagandaformyself.com
   - title: reddit
     url: https://reddit.com/u/propagandaformyself
-  - title: rss
-    url: https://blackballoons.github.io
+#- title: rss
+    #url: https://blackballoons.github.io
 
 # Postal address (add as many lines as necessary)
 address:
