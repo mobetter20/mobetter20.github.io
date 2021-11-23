@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    {% if jekyll.environment == 'production' %}
+    {% include analytics.html %}
+    {% endif %}
     {% include head.html %}
     <body id="page-top" class="index">
     {% include nav.html %}
