@@ -3,7 +3,7 @@ layout: default
 title : Blogging & Writing
 modal-id: 4
 date: 2014-07-16
-img: blogging.jpg
+img: blogging1.jpg
 alt: image-alt
 project-date: 2021
 link4: Reddit posts
