@@ -7,6 +7,6 @@ img: arte.png
 alt: image-alt
 project-date: 2019
 link3: ARTE365
-description: 행사 자료 통번역 및 검수 (보고서, 카탈로그, 홍보물, 프리젠테이션). 해외문화예술동향 조사 보고. 웹진 기사 기고. 국제 행사 지원 및 초청 해외인사 관리
+description: 해외문화예술동향 조사 보고. 국제 행사 지원 및 초청 해외인사 관리
 
 ---

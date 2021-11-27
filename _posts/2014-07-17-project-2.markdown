@@ -8,5 +8,5 @@ alt: image-alt
 project-date: 2019
 link2: AMUSINGHEROES
 
-description: 모바일 게임 글로벌 출시 위한 번역, 트랜스크리에이팅, 카피라이팅. 게임 텍스트 영어, 스페인어, 중국어 번역. 보이스 오버 관리. 해외 런칭 기획. 영문 웹사이트, 소셜미디어 카피라이팅
+description: 모바일 게임 로컬라이제이션 (튜토리얼, UI,카피라이팅)
 ---
