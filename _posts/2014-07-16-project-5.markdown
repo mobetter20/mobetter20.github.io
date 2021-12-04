@@ -1,12 +1,12 @@
 ---
 layout: default
 title : Blogging & Writing
-modal-id: 4
+modal-id: 5
 date: 2014-07-16
-img: blogging1.jpg
+img: blogging2.jpg
 alt: image-alt
 project-date: 2021
 link4: Reddit posts
-description: SNS(Reddit) 코미디 포스팅
+description: 소셜미디어 포스팅(코믹 카피라이팅) (Reddit Posting)
 
 ---

@@ -1,0 +1,12 @@
+---
+layout: default
+title : Writing & Fun 
+modal-id: 6
+date: 2014-07-15
+img: runstory1.png
+alt: image-alt
+project-date: 2021
+link7: itch.io short story
+description: 기타 개인 writing 프로젝트_Short story (HTML5 story, posted on indie game website)
+
+---
