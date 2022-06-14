@@ -3,7 +3,7 @@ layout: default
 title : Content Writing : Blog
 modal-id: 6
 date: 2022-06-15
-img: runstory1.png
+img: looppost.png
 alt: image-alt
 project-date: 2022
 link7: =https://www.loop.markets/user/166066/
