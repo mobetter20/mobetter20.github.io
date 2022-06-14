@@ -1,12 +1,12 @@
 ---
 layout: default
-title : Going Global
+title : Event material copywriting
 modal-id: 5
 date: 2021-11-18
 img: conference.png
 alt: image-alt
 project-date: July 2021 - Nov 2021
-link5: THE CONNECT 2021 English Brochure
-description: 신한스퀘어브릿지 인천 글로벌 스타트업 콘퍼런스 The Connect 2021 기획 운영
+link5: THE CONNECT 2021 English Reference
+description: Incheon Global Startup Conference (The Connect 2021) planning & copywriting
 
 ---
