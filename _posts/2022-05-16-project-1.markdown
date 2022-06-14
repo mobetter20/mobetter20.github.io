@@ -7,6 +7,6 @@ img: blogging2.jpg
 alt: image-alt
 project-date: 2021
 link4: Reddit posts
-description: 소셜미디어 블로깅(코믹 카피라이팅) (Reddit Posting)
+description: Comedic writing (Reddit Posting)
 
 ---

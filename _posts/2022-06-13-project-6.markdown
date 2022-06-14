@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Blog Writing
+title: Content Writing
 modal-id: 6
-date: 2022-06-15
+date: 2022-06-13
 img: blog.png
 alt: image-alt
 project-date: 2022
 link6: blog posting profile
-description: NFT project weekly blog writing (SEO)
+description: NFT project weekly blog writing (SEO). <br />Website, SNS copywriting, Youtube script writing, podcast interview etc.
 
 ---

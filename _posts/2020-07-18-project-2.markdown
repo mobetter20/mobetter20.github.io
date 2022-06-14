@@ -7,5 +7,5 @@ img: smart.png
 alt: image-alt
 project-date: June 2019 - 2020
 link1: SMARTMAKER
-description: SW 로컬라이제이션. 영문웹사이트 카피라이팅(SEO), 기술문서 번역.
+description: SaaS localization, English website copy writing (SEO). <br />Content writing, Youtube script, turotial writing. Technical document translation.
 ---

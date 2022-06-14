@@ -6,7 +6,7 @@ date: 2014-07-17
 img: amusingheroes.jpg
 alt: image-alt
 project-date: 2019
-link2: AMUSINGHEROES
+link2: AMUSINGHEROES (Archived)
 
-description: 모바일 게임 로컬라이제이션 (튜토리얼, UI,카피라이팅)
+description: Mobile game localization (game dialogue, script, copywriting)
 ---

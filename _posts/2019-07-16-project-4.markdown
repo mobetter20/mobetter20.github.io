@@ -7,6 +7,6 @@ img: article.png
 alt: image-alt
 project-date: 2019
 link3: ARTE365
-description: 해외문화예술동향 조사 보고. 국제 행사 지원 및 초청 해외인사 관리
+description: Oversea Arts and culture education trend research. <br />International Arts Education Week support. <br />Translation, and international arts education program operational support
 
 ---
