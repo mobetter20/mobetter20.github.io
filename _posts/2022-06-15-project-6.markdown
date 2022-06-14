@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Blog Content Writing
+title: Blog Writing
 modal-id: 6
 date: 2022-06-15
-img: loop.png
+img: blog.png
 alt: image-alt
 project-date: 2022
 link6: blog posting profile
