@@ -41,8 +41,8 @@ footer:
 social:
 # -title: twitter
 #- title: blog url: https://propagandaformyself.com
-#- title: blog
-# url: https://medium.com/@hi_64275
+  - title: pen
+    url: https://imajin.medium.com/
   - title: reddit
     url: https://reddit.com/u/propagandaformyself
   - title: linkedin
@@ -50,7 +50,7 @@ social:
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: Based in Seoul, but mastered
+  - line: Based in Seoul, fluent in
   - line: the art of remote communication
 
 # More content
