@@ -6,7 +6,7 @@ date: 2022-06-13
 img: blog.jpg
 alt: image-alt
 project-date: 2022
-link6: Blog posting profile
-description: Blockchain project content marketing. <br/>Website, SNS copywriting, multimedia content writing.
+link6: Blog Posts
+description: Blockchain project content marketing <br/>website, SNS copywriting, multimedia content writing.
 
 ---

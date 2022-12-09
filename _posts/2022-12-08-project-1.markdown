@@ -6,7 +6,7 @@ date: 2022-12-8
 img: top writer.jpg
 alt: image-alt
 project-date: 2022
-link4: Medium writer profile
+link4: Medium Profile
 description: Top writer in satire & humor on Medium
 
 ---

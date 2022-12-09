@@ -8,5 +8,5 @@ alt: image-alt
 project-date: 2019
 link2: AMUSINGHEROES (Archived)
 
-description: Mobile game localization (game dialogue, script, copywriting)
+description: Mobile game localization (script, tutorial,copywriting)
 ---
