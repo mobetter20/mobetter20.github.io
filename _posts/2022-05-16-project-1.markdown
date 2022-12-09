@@ -1,12 +1,12 @@
 ---
 layout: default
-title : Blogging & Writing
+title : Publications
 modal-id: 1
-date: 2022-05-16
-img: blogging2.jpg
+date: 2022-12-8
+img: top writer.jpg
 alt: image-alt
-project-date: 2021
-link4: Reddit posts
-description: Comedic writing (Reddit Posting)
+project-date: 2022
+link4: Medium writer profile
+description: Top writer in satire & humor on Medium
 
 ---

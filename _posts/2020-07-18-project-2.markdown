@@ -1,11 +1,11 @@
 ---
 layout: default
-title : Localization
+title : Localization-Software
 modal-id: 2
 date: 2014-07-18
 img: smart.png
 alt: image-alt
 project-date: June 2019 - 2020
-link1: SMARTMAKER
-description: SaaS localization, English website copy writing (SEO). <br />Content writing, Youtube script, turotial writing. Technical document translation.
+link1: SMARTMAKER (Archived)
+description: SaaS localization, Website copy writing (SEO). <br />Content writing, technical document, Youtube script, turotial writing. .
 ---

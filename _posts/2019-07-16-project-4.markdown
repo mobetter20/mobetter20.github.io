@@ -3,10 +3,10 @@ layout: default
 title : Translation & Research
 modal-id: 4
 date: 2014-07-17
-img: article.png
+img: article.jpg
 alt: image-alt
 project-date: 2019
-link3: ARTE365
-description: Oversea Arts and culture education trend research. <br />International Arts Education Week support. <br />Translation, and international arts education program operational support
+link3: ARTE365 article
+description: Translation, oversea Arts and culture education trend research. <br />UNESCO International Arts Education Week programs operational support
 
 ---

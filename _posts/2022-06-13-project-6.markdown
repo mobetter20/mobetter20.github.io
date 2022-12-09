@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Content Writing
+title: Content Marketing
 modal-id: 6
 date: 2022-06-13
-img: blog.png
+img: blog.jpg
 alt: image-alt
 project-date: 2022
-link6: blog posting profile
-description: NFT project weekly blog writing (SEO). <br />Website, SNS copywriting, Youtube script writing, podcast interview etc.
+link6: Blog posting profile
+description: Blockchain project content marketing. <br/>Website, SNS copywriting, multimedia content writing.
 
 ---

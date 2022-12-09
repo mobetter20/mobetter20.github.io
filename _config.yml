@@ -50,11 +50,12 @@ social:
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: Based in Seoul, fluent in
+  - line: Based in Seoul, but fluent in
   - line: the art of remote communication
 
 # More content
-credits: Find me lurking in reddit or rambling in my blog. Or get in touch with me via <a href="mailto:contact@ajin.im">contact@ajin.im</a>
+credits: Find my latest writing <a href="https://www.pointsincase.com/author/ajin-im">here</a>. <br/>Or get in touch with me via <a href="mailto:contact@ajin.im">contact@ajin.im</a></p>
+
 
 
 # Build settings
