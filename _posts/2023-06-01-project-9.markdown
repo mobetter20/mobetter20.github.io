@@ -1,0 +1,13 @@
+---
+layout: default
+title : English copywriting
+modal-id: 9
+date: 2023-8-1
+img: video_caption.png
+alt: image-alt
+project-date: 2023
+description: English copywriting for Korean business
+links:
+  - url: "https://www.youtube.com/watch?v=laDFXC7mBuM"
+    text: "The Amundi Evian Championship X LG SIGNATURE promotional video copywriting"
+---
