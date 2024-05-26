@@ -3,7 +3,7 @@ layout: default
 title : English copywriting
 modal-id: 8
 date: 2023-7-1
-img: lg_copywriting.png
+img: copywriting.png
 alt: image-alt
 project-date: 2023
 links:
