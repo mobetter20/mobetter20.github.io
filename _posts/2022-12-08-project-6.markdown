@@ -1,11 +1,11 @@
 ---
 layout: default
-title : Publications
+title : SNS Engagement
 modal-id: 1
 date: 2022-12-8
 img: blogging2.jpg
 alt: image-alt
-project-date: 2023
+project-date: 2022
 description: Social media engagement(viral caption writing)
 links:
   - url: "https://reddit.com/u/propagandaformyself"
