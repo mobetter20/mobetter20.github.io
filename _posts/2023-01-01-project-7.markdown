@@ -1,7 +1,7 @@
 ---
 layout: default
 title : Publications
-modal-id: 1
+modal-id: 7
 date: 2023-01-01
 img: top writer.jpg
 alt: image-alt
