@@ -9,5 +9,5 @@ project-date: 2023
 description: English copywriting for Korean business
 links:
   - url: "https://www.youtube.com/watch?v=laDFXC7mBuM"
-    text: "The Amundi Evian Championship X LG SIGNATURE promotional video copywriting"
+    text: "Brand event video copywriting"
 ---
