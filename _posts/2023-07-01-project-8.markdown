@@ -3,10 +3,10 @@ layout: default
 title : English copywriting
 modal-id: 8
 date: 2023-7-1
-img: copywriting.jpg
+img: copywriting.png
 alt: image-alt
 project-date: 2023
 links:
   - url: "https://www.lg.com/sa_en/better-choice/"
-    text: "nglish copywriting for Korean business"
+    text: "English copywriting for Korean business"
 ---
