@@ -9,5 +9,5 @@ project-date: 2023
 description: Top writer in satire & humor on Medium
 links:
   - url: "https://imajin.medium.com/"
-    text: "Medium Profile"
+    text: "Medium profile"
 ---
