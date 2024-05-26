@@ -1,0 +1,13 @@
+---
+layout: default
+title: Content Marketing
+modal-id: 5
+date: 2022-06-13
+img: blog.jpg
+alt: image-alt
+project-date: 2022
+description: Blockchain project content marketing <br/>website, SNS copywriting, multimedia content writing.\
+links:
+  - url: "https://screena.medium.com/lunatoon-and-thoughts-on-content-industry-526a01bdf20b"
+    text: "Blockcahin project Medium blog post"
+---

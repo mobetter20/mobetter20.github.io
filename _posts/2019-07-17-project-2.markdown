@@ -1,0 +1,13 @@
+---
+layout: default
+title : Localization-Game
+modal-id: 2
+date: 2019-07-17
+img: amusingheroes.jpg
+alt: image-alt
+project-date: 2019
+description: Mobile game localization (script, tutorial,copywriting)
+links:
+  - url: "https://web.archive.org/web/20190513190539/http://www.amusingheroes.com/"
+    text: "AMUSINGHEROES (Archived)"
+---
