@@ -1,0 +1,13 @@
+---
+layout: default
+title : Translation & Research
+modal-id: 1
+date: 2014-07-17
+img: article.jpg
+alt: image-alt
+project-date: 2019
+description: Translation, oversea Arts and culture education trend research <br />UNESCO International Arts Education Week programs operational support
+links:
+  - url: "https://arte365.kr/?p=61368"
+    text: "ARTE365 Article"
+---
