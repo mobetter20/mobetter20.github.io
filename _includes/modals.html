@@ -1,5 +1,5 @@
- <!-- Portfolio Modals -->
- {% for post in site.posts %}
+<!-- Portfolio Modals -->
+{% for post in site.posts %}
     <div class="portfolio-modal modal fade" id="portfolioModal-{{ post.modal-id }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -19,42 +19,11 @@
                                 <p>{{ post.description }}</p>
                             {% endif %}
                             <ul class="list-inline item-details">
-                                {% if post.link1 %}
+                                {% for link in post.links %}
                                     <li>Link:
-                                        <strong><a href="https://web.archive.org/web/20210616162956/https://www.smartmaker.com/ups/en_smweb8/index.html">{{ post.link1 }}</a>
-                                        </strong>
+                                        <strong><a href="{{ link.url }}" target="_blank">{{ link.text }}</a></strong>
                                     </li>
-                                {% endif %}
-                                {% if post.link2 %}
-                                    <li>Link:
-                                        <strong><a href="https://web.archive.org/web/20190513190539/http://www.amusingheroes.com/">{{ post.link2 }}</a>
-                                        </strong>
-                                    </li>
-                                {% endif %}
-                                {% if post.link3 %}
-                                    <li>Link:
-                                        <strong><a href="https://arte365.kr/?p=61368">{{ post.link3 }}</a>
-                                        </strong>
-                                    </li>
-                                {% endif %}
-                                {% if post.link4 %}
-                                    <li>Link:
-                                        <strong><a href="https://imajin.medium.com/">{{ post.link4 }}</a>
-                                        </strong>
-                                        </li>
-                                {% endif %}
-                                {% if post.link5 %}
-                                    <li>Link:
-                                        <strong><a href="https://cities-today.com/event/the-connect-2021-collective-innovation-for-smart-city/">{{ post.link5 }}</a>
-                                        </strong>
-                                        </li>
-                                {% endif %}
-                                {% if post.link6 %}
-                                    <li>Link:
-                                        <strong><a href="https://screena.medium.com/lunatoon-and-thoughts-on-content-industry-526a01bdf20b">{{ post.link6 }}</a>
-                                        </strong>
-                                        </li>
-                                {% endif %}
+                                {% endfor %}
                             </ul>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
