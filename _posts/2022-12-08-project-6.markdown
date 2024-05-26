@@ -3,10 +3,12 @@ layout: default
 title : Publications
 modal-id: 1
 date: 2022-12-8
-img: top writer.jpg
+img: reddit.png
 alt: image-alt
-project-date: 2022
-link4: Medium Profile
-description: Top writer in satire & humor on Medium
-
+project-date: 2023
+description: Social media engagement(viral caption writing)
+links:
+  - url: "https://reddit.com/u/propagandaformyself"
+    text: "Reddit comedy captions"
 ---
+
