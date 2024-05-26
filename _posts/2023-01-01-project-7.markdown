@@ -2,10 +2,10 @@
 layout: default
 title : Publications
 modal-id: 1
-date: 2022-12-8
+date: 2023-01-01
 img: top writer.jpg
 alt: image-alt
-project-date: 2022
+project-date: 2023
 description: Top writer in satire & humor on Medium
 links:
   - url: "https://imajin.medium.com/"
