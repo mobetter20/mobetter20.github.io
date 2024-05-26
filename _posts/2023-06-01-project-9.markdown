@@ -3,7 +3,7 @@ layout: default
 title : English copywriting
 modal-id: 9
 date: 2023-8-1
-img: video_caption.png
+img: lg_videocaption.png
 alt: image-alt
 project-date: 2023
 description: English copywriting for Korean business
