@@ -1,0 +1,14 @@
+---
+layout: default
+title : SNS engagement
+modal-id: 6
+date: 2022-12-08
+img: blogging2.png
+alt: image-alt
+project-date: 2022
+description: Social media engagement(viral caption writing)
+links:
+  - url: "https://reddit.com/u/propagandaformyself"
+    text: "Reddit comedy captions"
+---
+
