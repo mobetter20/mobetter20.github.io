@@ -3,7 +3,7 @@ layout: default
 title: B2B SaaS Content Marketing
 modal-id: 5
 date: 2022-06-27
-img: blog.jpg
+img: tradlinx_blog.png
 alt: Logistics SaaS content marketing
 project-date: 2024–2025
 description: Company blog for a fast-growing logistics SaaS platform.<br/>Turned complex freight topics into SEO wins — 4X organic traffic, 5X branded keyword reach, 15K+ subscribers.<br/>Cited by mainstream media and widely surfaced in AI tools and chatbot answers thanks to clarity and authority.
