@@ -1,0 +1,17 @@
+---
+layout: default
+title: Landing Page UX Copy
+modal-id: 12
+date: 2024-12-01
+img: landing_page.png
+alt: Logistics SaaS landing page UX copy
+project-date: 2024
+description: >
+  Copy for global-facing product and pricing pages.<br/>
+  - Rewrote core landing flows for conversion clarity<br/>
+  - Matched global tone while preserving Korean intent<br/>
+  - Helped define page-level messaging hierarchy
+links:
+  - url: "https://www.tradlinx.com/pricing"
+    text: "Visit live landing page"
+---
