@@ -3,7 +3,7 @@ layout: default
 title : Product copywriting
 modal-id: 8
 date: 2023-7-1
-img: copywriting.png
+img: product_copy.png
 alt: image-alt
 project-date: 2023
 description: >
