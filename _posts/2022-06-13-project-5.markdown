@@ -1,13 +1,15 @@
 ---
 layout: default
-title: Content Marketing
+title: B2B SaaS Content Marketing
 modal-id: 5
-date: 2022-06-13
+date: 2022-06-27
 img: blog.jpg
-alt: image-alt
-project-date: 2022
-description: Blockchain project content marketing <br/>website, SNS copywriting, multimedia content writing.
+alt: Logistics SaaS content marketing
+project-date: 2024–2025
+description: Company blog for a fast-growing logistics SaaS platform.<br/>
+Turned complex freight topics into SEO wins — 4X organic traffic, 5X branded keyword reach, 15K+ subscribers.<br/>
+Cited by mainstream media and widely surfaced in AI tools and chatbot answers thanks to clarity and authority.
 links:
-  - url: "https://screena.medium.com/lunatoon-and-thoughts-on-content-industry-526a01bdf20b"
-    text: "Blockcahin project Medium blog post"
+  - url: "https://blog.tradlinx.com"
+    text: "Read featured articles"
 ---
