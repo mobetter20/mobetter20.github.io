@@ -12,6 +12,6 @@ description: >
   - Built modular copy blocks for product teams and sales<br/>
   - Helped reposition brand around outcomes, not features
 links:
-  - url: "https://blog.tradlinx.com/tagged/strategy"
+  - url: "https://tradlinx.com"
     text: "See messaging insights"
 ---
