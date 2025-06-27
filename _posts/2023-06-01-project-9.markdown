@@ -6,8 +6,12 @@ date: 2023-8-1
 img: lg_copywritingvideo.png
 alt: image-alt
 project-date: 2023
-description: English copywriting for Korean business
+description: >
+  English script & messaging for brand campaign video copy.<br/>
+  - Collaborated with agency and brand team for tone & flow<br/>
+  - Refined voice to match international brand positioning<br/>
+  - Delivered emotionally resonant copy under tight turnarounds
 links:
   - url: "https://www.youtube.com/watch?v=laDFXC7mBuM"
-    text: "Brand event video copywriting"
+    text: "Watch brand event video"
 ---
