@@ -1,12 +1,17 @@
 ---
 layout: default
-title : English copywriting
+title : Product copywriting
 modal-id: 8
 date: 2023-7-1
 img: copywriting.png
 alt: image-alt
 project-date: 2023
+description: >
+  Microcopy for region-specific product pages.<br/>
+  - Adapted brand tone across multiple countries<br/>
+  - Localized key UX flows for cultural clarity<br/>
+  - Delivered short-form English that felt native, not translated
 links:
   - url: "https://www.lg.com/sa_en/better-choice/"
-    text: "English copywriting for Korean business"
+    text: "View regional site"
 ---
