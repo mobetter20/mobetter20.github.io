@@ -3,7 +3,7 @@ layout: default
 title: Landing Page UX Copy
 modal-id: 12
 date: 2024-12-01
-img: landing_page.png
+img: pricing.png
 alt: Logistics SaaS landing page UX copy
 project-date: 2024
 description: >
@@ -12,6 +12,6 @@ description: >
   - Matched global tone while preserving Korean intent<br/>
   - Helped define page-level messaging hierarchy
 links:
-  - url: "https://www.tradlinx.com/pricing"
+  - url: "https://www.tradlinx.com/products/ocean-visibility/pricing"
     text: "Visit live landing page"
 ---
