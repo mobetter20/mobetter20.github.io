@@ -1,9 +1,9 @@
 ---
 layout: default
 title: Comedy & Viral Writing
-modal-id: 10
+modal-id: 11
 date: 2024-01-15
-img: muddyum.png
+img: comedy.png
 alt: Comedy writing portfolio
 project-date: 2022–2024
 description: >
