@@ -1,1 +1,18 @@
-
+---
+layout: default
+title: Comedy & Viral Writing
+modal-id: 10
+date: 2024-01-15
+img: muddyum.png
+alt: Comedy writing portfolio
+project-date: 2022–2024
+description: >
+  Published in top online comedy outlets.<br/>
+  - Viral essays on culture, tech, and absurdity<br/>
+  - Top writer on Medium in Humor, Culture, and Satire<br/>
+  - Featured on front pages of Reddit and comedy zines<br/>
+  - Punchy shortform with deadpan delivery and long shelf life
+links:
+  - url: "https://muddyum.net/8-things-my-husband-doesnt-know-about-me-fc48a861e10c"
+    text: "Read my viral post"
+---
