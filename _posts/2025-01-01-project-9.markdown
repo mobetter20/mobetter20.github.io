@@ -1,7 +1,7 @@
 ---
 layout: default
 title: B2B Messaging Strategy
-modal-id: 7
+modal-id: 9
 date: 2024-03-01
 img: messaging_uvp.png
 alt: B2B messaging strategy copy
