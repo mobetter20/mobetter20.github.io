@@ -2,7 +2,7 @@
 layout: default
 title: B2B Messaging Strategy
 modal-id: 9
-date: 2024-03-01
+date: 2023-09-01
 img: messaging_uvp.png
 alt: B2B messaging strategy copy
 project-date: 2024
