@@ -11,7 +11,5 @@ description: >
   - Distilled technical concepts into clear UVPs<br/>
   - Built modular copy blocks for product teams and sales<br/>
   - Helped reposition brand around outcomes, not features
-links:
-  - url: "https://tradlinx.com"
-    text: "See messaging insights"
+
 ---
