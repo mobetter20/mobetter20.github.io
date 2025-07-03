@@ -11,7 +11,5 @@ description: >
   - Rewrote core landing flows for conversion clarity<br/>
   - Matched global tone while preserving Korean intent<br/>
   - Helped define page-level messaging hierarchy
-links:
-  - url: "https://www.tradlinx.com/products/ocean-visibility/pricing"
-    text: "Visit live landing page"
+
 ---
