@@ -7,10 +7,7 @@ img: brand_video.png
 alt: image-alt
 project-date: 2023
 description: >
-  English script & messaging for brand campaign video copy.<br/>
-  - Collaborated with agency and brand team for tone & flow<br/>
-  - Refined voice to match international brand positioning<br/>
-  - Delivered emotionally resonant copy under tight turnarounds
+  Brand video copy with global tone and emotional clarity.
 links:
   - url: "https://www.youtube.com/watch?v=laDFXC7mBuM"
     text: "Watch brand event video"
