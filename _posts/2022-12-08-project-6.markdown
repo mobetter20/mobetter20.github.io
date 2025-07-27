@@ -6,7 +6,7 @@ date: 2022-12-08
 img: blogging2.jpg
 alt: image-alt
 project-date: 2022
-description: Social media engagement(viral caption writing)
+description: Compact, scroll-stopping captions crafted for virality and tone.
 links:
   - url: "https://reddit.com/u/propagandaformyself"
     text: "Reddit comedy captions"
