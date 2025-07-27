@@ -7,9 +7,6 @@ img: messaging_uvp.png
 alt: B2B messaging strategy copy
 project-date: 2024
 description: >
-  Messaging frameworks for complex logistics SaaS features.<br/>
-  - Distilled technical concepts into clear UVPs<br/>
-  - Built modular copy blocks for product teams and sales<br/>
-  - Helped reposition brand around outcomes, not features
+  Distilled technical features into sharp UVPs and strategic messaging blocks.
 
 ---
