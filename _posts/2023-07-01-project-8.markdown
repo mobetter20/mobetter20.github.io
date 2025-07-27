@@ -7,10 +7,7 @@ img: product_copy.png
 alt: image-alt
 project-date: 2023
 description: >
-  Microcopy for region-specific product pages.<br/>
-  - Adapted brand tone across multiple countries<br/>
-  - Localized key UX flows for cultural clarity<br/>
-  - Delivered short-form English that felt native, not translated
+  Culturally fluent microcopy for region-specific UX and product flows.
 links:
   - url: "https://www.lg.com/sa_en/better-choice/"
     text: "View regional site"
