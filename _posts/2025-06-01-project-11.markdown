@@ -7,7 +7,7 @@ img: comedy.png
 alt: Comedy writing portfolio
 project-date: 2022–2024
 description: >
-Shortform comedy with reach: Medium Top Writer, Reddit front page, viral zines.
+  Shortform comedy with reach: Medium Top Writer, Reddit front page, viral zines.
 links:
   - url: "https://muddyum.net/8-things-my-husband-doesnt-know-about-me-fc48a861e10c"
     text: "Read my viral post"
