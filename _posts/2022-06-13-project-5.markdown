@@ -7,11 +7,7 @@ img: tradlinx_blog.png
 alt: Logistics SaaS content marketing
 project-date: 2024–2025
 description: >
-  Global SaaS blog content revamp.<br/>
-  - Quadrupled organic traffic in under a year<br/>
-  - 15K+ subscribers and 5× branded keyword reach<br/>
-  - Cited by media and AI tools for relevance<br/>
-  - Turned niche logistics topics into compelling reads
+ From zero to 15K+ subs: content that made logistics readable (and rankable).
 links:
   - url: "https://blog.tradlinx.com"
     text: "Read featured articles"
