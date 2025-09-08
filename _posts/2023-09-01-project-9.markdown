@@ -8,5 +8,7 @@ alt: B2B messaging strategy copy
 project-date: 2024
 description: >
   Distilled technical features into sharp UVPs and strategic messaging blocks.
-
+links:
+  - url: "https://www.tradlinx.com/"
+    text: "View landing page copy"
 ---
