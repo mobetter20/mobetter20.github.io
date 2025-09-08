@@ -8,5 +8,7 @@ alt: Logistics SaaS landing page UX copy
 project-date: 2024
 description: >
  SaaS landing and pricing copy tuned for clarity and conversion.
-
+links:
+  - url: "https://www.tradlinx.com/products/ocean-visibility/pricing"
+    text: "View landing page"
 ---
