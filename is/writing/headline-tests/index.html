@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ajin.im/is/writing/headline-tests</title>
+    <meta
+      name="description"
+      content="Visual headline tests for the ajin.im writing house."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../../creative-house.css" />
+    <script src="../../../analytics.js" defer></script>
+    <style>
+      .headline-lab {
+        width: min(1180px, calc(100vw - 2rem));
+        margin: 0 auto;
+        padding: 2.2rem 0 4rem;
+      }
+
+      .headline-lab-head {
+        display: grid;
+        gap: 0.75rem;
+        padding: 0.4rem 0 2.2rem;
+      }
+
+      .headline-lab-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .headline-swatch {
+        position: relative;
+        min-height: 13.5rem;
+        overflow: hidden;
+        border-radius: 1.55rem;
+        border: 1px solid rgba(242, 232, 218, 0.08);
+        background:
+          radial-gradient(circle at 22% 20%, rgba(255, 255, 255, 0.07), transparent 18%),
+          radial-gradient(circle at 80% 16%, rgba(217, 126, 82, 0.12), transparent 18%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 45%),
+          rgba(18, 13, 11, 0.92);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.03),
+          0 16px 32px rgba(0, 0, 0, 0.22);
+        padding: 1.4rem;
+      }
+
+      .headline-swatch::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.34)),
+          repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 78px,
+            rgba(242, 232, 218, 0.018) 78px,
+            rgba(242, 232, 218, 0.018) 79px
+          );
+        pointer-events: none;
+      }
+
+      .headline-swatch > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .headline-label {
+        margin: 0 0 1.2rem;
+        color: var(--text-faint);
+      }
+
+      .headline-mark {
+        display: block;
+        margin-top: 1rem;
+        color: rgba(242, 232, 218, 0.46);
+      }
+
+      .headline-hero {
+        margin: 0;
+        max-width: 11ch;
+        font-family: var(--serif);
+        font-size: clamp(2.5rem, 4.7vw, 4.2rem);
+        line-height: 0.92;
+        font-style: italic;
+        font-weight: 500;
+        color: var(--text);
+      }
+
+      .headline-sub {
+        margin: 0.9rem 0 0;
+        max-width: 24rem;
+        color: var(--text-soft);
+      }
+
+      .headline-hero.mono {
+        font-family: var(--mono);
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+        line-height: 1.14;
+        font-style: normal;
+        letter-spacing: 0.04em;
+        max-width: 18ch;
+      }
+
+      .blink-soft {
+        animation: gentle-blink 2.8s steps(1, end) infinite;
+      }
+
+      .pulse-five {
+        display: inline-block;
+        color: rgba(255, 234, 205, 0.96);
+        text-shadow: 0 0 0 transparent;
+        animation: ember-pulse 2.4s ease-in-out infinite;
+      }
+
+      .ghost-line {
+        display: block;
+        margin-top: 0.55rem;
+        color: rgba(242, 232, 218, 0.34);
+        font-size: clamp(1rem, 1.45vw, 1.15rem);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        animation: ghost-fade 4.2s ease-in-out infinite;
+      }
+
+      .swap-stack {
+        display: grid;
+        gap: 0.15rem;
+      }
+
+      .swap-stack .headline-hero:last-child {
+        color: rgba(242, 232, 218, 0.48);
+        font-size: clamp(1.45rem, 2vw, 2rem);
+        line-height: 1.08;
+        animation: phrase-float 5.4s ease-in-out infinite;
+      }
+
+      .cursor-tail::after {
+        content: "_";
+        margin-left: 0.12em;
+        color: rgba(217, 126, 82, 0.9);
+        animation: cursor-blink 1s steps(1, end) infinite;
+      }
+
+      .tight-five {
+        letter-spacing: -0.03em;
+      }
+
+      @keyframes gentle-blink {
+        0%, 78%, 100% { opacity: 1; }
+        79%, 82% { opacity: 0.45; }
+        83%, 86% { opacity: 1; }
+        87%, 89% { opacity: 0.6; }
+        90%, 100% { opacity: 1; }
+      }
+
+      @keyframes ember-pulse {
+        0%, 100% {
+          opacity: 1;
+          text-shadow: 0 0 0 rgba(217, 126, 82, 0);
+        }
+        50% {
+          opacity: 0.82;
+          text-shadow: 0 0 14px rgba(217, 126, 82, 0.35);
+        }
+      }
+
+      @keyframes ghost-fade {
+        0%, 26%, 100% { opacity: 0.22; transform: translateY(0); }
+        40%, 66% { opacity: 0.56; transform: translateY(-0.08rem); }
+      }
+
+      @keyframes phrase-float {
+        0%, 100% { opacity: 0.34; transform: translateY(0); }
+        50% { opacity: 0.72; transform: translateY(-0.12rem); }
+      }
+
+      @keyframes cursor-blink {
+        0%, 49%, 100% { opacity: 1; }
+        50%, 99% { opacity: 0; }
+      }
+
+      @media (max-width: 860px) {
+        .headline-lab-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .headline-swatch {
+          min-height: 12.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="archive-page">
+    <main class="headline-lab">
+      <header class="headline-lab-head">
+        <a class="back-link" href="../index.html">Back to the house</a>
+        <p class="path-mark">ajin.im/is/writing/headline-tests</p>
+        <h1 class="sentence">Headline studies for the house.</h1>
+        <p class="archive-intro">
+          Same atmosphere, different treatments. Most keep the line simple; a few test the
+          two-phrase version.
+        </p>
+      </header>
+
+      <section class="headline-lab-grid" aria-label="Headline variations">
+        <article class="headline-swatch">
+          <p class="headline-label">01 / Plain serif</p>
+          <h2 class="headline-hero">Five rooms lit tonight.</h2>
+          <span class="headline-mark">Baseline, no motion.</span>
+        </article>
+
+        <article class="headline-swatch">
+          <p class="headline-label">02 / Blink on the number</p>
+          <h2 class="headline-hero"><span class="pulse-five">Five</span> rooms lit tonight.</h2>
+          <span class="headline-mark">Only the number carries the pulse.</span>
+        </article>
+
+        <article class="headline-swatch">
+          <p class="headline-label">03 / Whole-line flicker</p>
+          <h2 class="headline-hero blink-soft">Five rooms lit tonight.</h2>
+          <span class="headline-mark">Softer than neon, more like current fluctuation.</span>
+        </article>
+
+        <article class="headline-swatch">
+          <p class="headline-label">04 / Monospace terminal</p>
+          <h2 class="headline-hero mono cursor-tail">FIVE ROOMS LIT TONIGHT.</h2>
+          <span class="headline-mark">Drier, more operational.</span>
+        </article>
+
+        <article class="headline-swatch">
+          <p class="headline-label">05 / Ghost second line</p>
+          <h2 class="headline-hero tight-five">Five rooms lit tonight.</h2>
+          <span class="ghost-line">The wiring keeps reaching outward.</span>
+        </article>
+
+        <article class="headline-swatch">
+          <p class="headline-label">06 / Stacked phrases</p>
+          <div class="swap-stack">
+            <h2 class="headline-hero">Five rooms lit tonight.</h2>
+            <h2 class="headline-hero">The wiring keeps reaching outward.</h2>
+          </div>
+          <span class="headline-mark">Both lines present, second one quieter.</span>
+        </article>
+
+        <article class="headline-swatch">
+          <p class="headline-label">07 / Shorter ambient variant</p>
+          <h2 class="headline-hero">Five rooms lit tonight.</h2>
+          <p class="headline-sub">The house stays awake a little longer than it should.</p>
+        </article>
+
+        <article class="headline-swatch">
+          <p class="headline-label">08 / Current thought, broken apart</p>
+          <div class="swap-stack">
+            <h2 class="headline-hero">Five rooms lit tonight.</h2>
+            <h2 class="headline-hero">Wiring, still reaching outward.</h2>
+          </div>
+          <span class="headline-mark">A pared-down version of the current two-phrase mood.</span>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
