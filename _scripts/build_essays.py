@@ -305,6 +305,7 @@ def build_post_page(post: EssayPost) -> str:
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../../../creative-house.css" />
+    <script src="../../../../analytics.js" defer></script>
   </head>
   <body class="post-page">
     <main class="post-shell">
@@ -369,6 +370,7 @@ def render_index(posts: list[EssayPost]) -> str:
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../../creative-house.css" />
+    <script src="../../../analytics.js" defer></script>
   </head>
   <body class="archive-page">
     <main class="archive-shell">

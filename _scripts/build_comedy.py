@@ -252,6 +252,7 @@ def build_page(post: ComedyPost) -> str:
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../../../creative-house.css" />
+    <script src="../../../../analytics.js" defer></script>
   </head>
   <body class="post-page">
     <main class="post-shell">
@@ -292,6 +293,7 @@ def build_standalone_page(post: StandaloneComedyPost) -> str:
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../../../creative-house.css" />
+    <script src="../../../../analytics.js" defer></script>
   </head>
   <body class="post-page">
     <main class="post-shell">
@@ -350,6 +352,7 @@ def render_index(medium_posts: list[ComedyPost], standalone_posts: list[Standalo
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../../creative-house.css" />
+    <script src="../../../analytics.js" defer></script>
   </head>
   <body class="archive-page">
     <main class="archive-shell">
