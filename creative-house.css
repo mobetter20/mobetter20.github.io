@@ -352,6 +352,78 @@ footer {
   color: var(--text);
 }
 
+.writing-house .house-stage {
+  position: relative;
+}
+
+.writing-house .room-copy {
+  opacity: 1;
+  transform: none;
+}
+
+.writing-house .room.is-writing-focus {
+  border-color: rgba(242, 232, 218, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 0 0 1px rgba(217, 126, 82, 0.12),
+    0 18px 42px rgba(0, 0, 0, 0.3),
+    0 0 34px rgba(217, 126, 82, 0.14);
+}
+
+.writing-house .room:hover .room-kicker,
+.writing-house .room:hover .room-meta,
+.writing-house .room:focus-visible .room-kicker,
+.writing-house .room:focus-visible .room-meta {
+  color: rgba(242, 232, 218, 0.9);
+}
+
+.writing-house .typed-target {
+  display: inline-block;
+  min-height: 1.2em;
+  vertical-align: baseline;
+}
+
+.writing-house .typed-target:empty::before {
+  content: "";
+  display: block;
+  width: var(--ghost-width, 10ch);
+  height: 0.72em;
+  margin-top: 0.28em;
+  border-radius: 999px;
+  background: rgba(242, 232, 218, 0.08);
+}
+
+.writing-house .room-meta .typed-target {
+  min-height: 1em;
+}
+
+.writing-house .room-meta .typed-target:empty::before,
+.writing-house .house-footer-line .typed-target:empty::before {
+  height: 0.62em;
+  background: rgba(242, 232, 218, 0.06);
+}
+
+.writing-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 10px;
+  height: 24px;
+  margin-left: -1px;
+  margin-top: -2px;
+  background: rgba(242, 232, 218, 0.9);
+  box-shadow: 0 0 12px rgba(242, 232, 218, 0.16);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 280ms ease;
+  animation: blink 1s steps(1, end) infinite;
+}
+
+.writing-cursor.is-visible {
+  opacity: 1;
+}
+
 @keyframes ember-pulse {
   0%,
   100% {
@@ -1222,6 +1294,10 @@ footer {
 
   .house-footer {
     padding-top: 1.2rem;
+  }
+
+  .writing-cursor {
+    display: none;
   }
 
   .post-page .post-shell {
