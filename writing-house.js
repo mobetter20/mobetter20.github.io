@@ -119,12 +119,6 @@ if (writingHouse) {
     typeStep();
   };
 
-  window.addEventListener("resize", () => {
-    if (!state.isSettled && !reduceMotion) {
-      startWriting();
-    }
-  });
-
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(startWriting);
   } else {
