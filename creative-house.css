@@ -361,6 +361,16 @@ footer {
   transform: none;
 }
 
+@media (min-width: 1101px) {
+  .writing-house .room-debug .room-copy {
+    transform: translateY(1.05rem);
+  }
+
+  .writing-house .room-essays .room-copy {
+    transform: translateY(-0.75rem);
+  }
+}
+
 .writing-house .room.is-writing-focus {
   border-color: rgba(242, 232, 218, 0.18);
   box-shadow:
