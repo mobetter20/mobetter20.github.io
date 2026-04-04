@@ -362,12 +362,12 @@ footer {
 }
 
 @media (min-width: 1101px) {
-  .writing-house .room-debug .room-copy {
-    transform: translateY(1.05rem);
+  .writing-house .room-bic .room-copy {
+    transform: translateY(-5.6rem);
   }
 
   .writing-house .room-essays .room-copy {
-    transform: translateY(-0.75rem);
+    transform: translateY(-5.6rem);
   }
 }
 
