@@ -1,0 +1,3525 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dove v. Dove — Chamber Proceedings</title>
+    <meta
+      name="description"
+      content="Proceedings display for Dove v. Dove, case AMNC-2026-007B, before the Avian Municipal Nest Court."
+    >
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Dove v. Dove — Chamber Proceedings">
+    <meta
+      property="og:description"
+      content="Proceedings display for Dove v. Dove, case AMNC-2026-007B, before the Avian Municipal Nest Court."
+    >
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://ajin.im/is/writing/bird-docket-proceedings/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;800&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    >
+    <script src="../../../analytics.js" defer></script>
+    <style>
+      :root {
+        color-scheme: light;
+        --page-bg: #111318;
+        --page-glow: rgba(210, 182, 113, 0.12);
+        --surface: rgba(246, 239, 224, 0.94);
+        --surface-alt: rgba(255, 251, 241, 0.72);
+        --surface-soft: rgba(255, 255, 255, 0.42);
+        --panel-border: rgba(30, 36, 44, 0.92);
+        --panel-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+        --ink: #171b22;
+        --muted: rgba(23, 27, 34, 0.7);
+        --accent: #c6a15a;
+        --accent-strong: #7f2b2b;
+        --accent-soft: rgba(198, 161, 90, 0.16);
+        --button-bg: rgba(19, 20, 25, 0.94);
+        --button-ink: #f9f3e6;
+        --body-font: "Libre Baskerville", serif;
+        --ui-font: "DM Sans", sans-serif;
+        --mono-font: "DM Mono", monospace;
+        --radius: 18px;
+        --radius-tight: 12px;
+        --gap: 1.15rem;
+        --line-weight: 1px;
+        --dialogue-scale: clamp(1.85rem, 2.8vw, 2.75rem);
+        --ornament: #eadbb7;
+        --portrait-ink: #202636;
+        --portrait-base: #2f3748;
+        --portrait-robe: #26202d;
+        --portrait-accent: #c5a05c;
+        --portrait-accessory-fill: #49566c;
+        --portrait-paper: #f1eadb;
+        --portrait-alert: #8a2626;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        background:
+          radial-gradient(circle at top, var(--page-glow), transparent 38%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.16)),
+          var(--page-bg);
+        color: var(--ink);
+        font-family: var(--body-font);
+        overflow-x: hidden;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .app-shell {
+        position: relative;
+        width: min(1440px, calc(100vw - 2rem));
+        margin: 1rem auto;
+        padding: 1.25rem;
+        display: grid;
+        gap: var(--gap);
+      }
+
+      .backdrop-ornament {
+        position: absolute;
+        inset: 0 0 auto 0;
+        width: 100%;
+        height: 250px;
+        color: var(--ornament);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .panel {
+        position: relative;
+        z-index: 1;
+        background: var(--surface);
+        border: var(--line-weight) solid var(--panel-border);
+        border-radius: var(--radius);
+        box-shadow: var(--panel-shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .topbar {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.95fr) minmax(0, 1fr);
+        gap: var(--gap);
+        padding: 1.35rem;
+        align-items: center;
+      }
+
+      .topbar-block {
+        min-width: 0;
+      }
+
+      .eyebrow,
+      .panel-topline,
+      .portrait-banner,
+      .meta-line span,
+      .session-pill span,
+      .mini-reaction-label,
+      .docket-label,
+      .status-chip span,
+      .registry-address-label,
+      .registry-subhead,
+      .log-item strong,
+      .evidence-code {
+        font-family: var(--ui-font);
+        font-size: 0.73rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .case-title {
+        margin: 0.3rem 0 0.45rem;
+        font-size: clamp(2rem, 3.6vw, 3.7rem);
+        line-height: 0.96;
+        letter-spacing: 0.015em;
+        text-wrap: balance;
+      }
+
+      .case-subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.4;
+        text-wrap: balance;
+      }
+
+      .case-number {
+        font-family: var(--mono-font);
+        font-size: 0.95em;
+      }
+
+      .seal-block {
+        display: grid;
+        justify-items: center;
+        gap: 0.8rem;
+      }
+
+      .seal-frame {
+        width: 132px;
+        height: 132px;
+        padding: 12px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.22);
+        border: 1px solid rgba(0, 0, 0, 0.22);
+      }
+
+      .court-seal {
+        width: 100%;
+        height: 100%;
+      }
+
+      .seal-ring,
+      .stamp-ring {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 6;
+      }
+
+      .seal-core {
+        fill: rgba(255, 255, 255, 0.12);
+        stroke: rgba(0, 0, 0, 0.16);
+        stroke-width: 2;
+      }
+
+      .seal-star,
+      .seal-nest,
+      .stamp-top {
+        fill: var(--accent);
+      }
+
+      .seal-reed,
+      .seal-feather-left,
+      .seal-feather-right,
+      .seal-crown,
+      .stamp-line {
+        fill: none;
+        stroke: var(--ink);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 4;
+      }
+
+      .topbar-block--case {
+        display: grid;
+        gap: 0.95rem;
+      }
+
+      .top-tabs-wrap {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.8rem;
+        padding-top: 0.1rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+        max-width: 100%;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .top-tabs-wrap::-webkit-scrollbar {
+        display: none;
+      }
+
+      .top-tabs {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+      }
+
+      .tab-note {
+        padding-bottom: 0.72rem;
+        color: var(--muted);
+        font-family: var(--ui-font);
+        font-size: 0.73rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .tab-button {
+        border: 1px solid rgba(0, 0, 0, 0.18);
+        border-bottom: none;
+        border-radius: 16px 16px 0 0;
+        padding: 0.82rem 1.08rem 0.78rem;
+        background: rgba(255, 255, 255, 0.58);
+        color: var(--muted);
+        font-family: var(--ui-font);
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          color 180ms ease,
+          border-color 180ms ease;
+      }
+
+      #registryTab {
+        padding: 0.7rem 0.95rem 0.62rem;
+        font-size: 0.77rem;
+        transform: translateY(6px);
+        opacity: 0.92;
+      }
+
+      .tab-button.is-active {
+        background: var(--surface);
+        color: var(--ink);
+        transform: translateY(1px);
+        position: relative;
+        z-index: 1;
+      }
+
+      #registryTab.is-active {
+        transform: translateY(1px);
+      }
+
+      .seal-block {
+        align-content: start;
+      }
+
+      .seal-caption {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.35;
+        text-align: center;
+      }
+
+      .control-button,
+      .registry-party-button,
+      .lab-button {
+        border: 1px solid rgba(0, 0, 0, 0.18);
+        border-radius: 999px;
+        padding: 0.82rem 1rem;
+        background: rgba(255, 255, 255, 0.66);
+        color: var(--ink);
+        font-family: var(--ui-font);
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          color 180ms ease,
+          border-color 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .tab-button:hover,
+      .tab-button:focus-visible,
+      .control-button:hover,
+      .control-button:focus-visible,
+      .registry-party-button:hover,
+      .registry-party-button:focus-visible,
+      .transcript-pip:hover,
+      .transcript-pip:focus-visible,
+      .lab-button:hover,
+      .lab-button:focus-visible,
+      .evidence-toggle:hover,
+      .evidence-toggle:focus-visible {
+        transform: translateY(-2px);
+      }
+
+      .tab-button.is-active,
+      .control-button.strong,
+      .lab-button.strong {
+        background: var(--button-bg);
+        color: var(--button-ink);
+      }
+
+      .control-button.accent {
+        background: rgba(126, 35, 35, 0.92);
+        color: #fff2eb;
+      }
+
+      .meter-card {
+        padding: 1rem 1rem 0.9rem;
+        border: 1px solid rgba(0, 0, 0, 0.14);
+        border-radius: var(--radius-tight);
+        background: var(--surface-alt);
+      }
+
+      .meter-head,
+      .docket-heading,
+      .registry-actions,
+      .log-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.85rem;
+      }
+
+      .meter-head {
+        margin-bottom: 0.55rem;
+        font-family: var(--ui-font);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .meter-track {
+        position: relative;
+        overflow: hidden;
+        height: 14px;
+        border-radius: 999px;
+        background: rgba(19, 22, 28, 0.12);
+        border: 1px solid rgba(19, 22, 28, 0.14);
+      }
+
+      .meter-fill {
+        height: 100%;
+        width: 92%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent-strong), var(--accent));
+        transition: width 220ms ease, filter 220ms ease;
+      }
+
+      .meter-status {
+        margin: 0.6rem 0 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .session-pill {
+        margin-top: 0.8rem;
+        padding: 0.8rem 0.9rem;
+        border-radius: var(--radius-tight);
+        border: 1px solid rgba(0, 0, 0, 0.14);
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      .session-pill strong {
+        display: block;
+        font-family: var(--ui-font);
+        font-size: 1rem;
+        letter-spacing: 0.04em;
+      }
+
+      .proceedings-view,
+      .registry-view {
+        display: block;
+      }
+
+      .main-grid {
+        display: grid;
+        grid-template-columns: 300px minmax(0, 1.45fr) 320px;
+        gap: var(--gap);
+        align-items: start;
+      }
+
+      .speaker-panel,
+      .dialogue-panel,
+      .side-panel,
+      .registry-shell {
+        padding: 1.2rem;
+      }
+
+      .speaker-panel,
+      .dialogue-panel,
+      .side-panel {
+        display: grid;
+        gap: 0.9rem;
+        align-content: start;
+      }
+
+      .panel-topline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--muted);
+      }
+
+      .portrait-card,
+      .dialogue-card,
+      .evidence-card,
+      .evidence-panel-card,
+      .log-card,
+      .status-card,
+      .registry-sheet,
+      .docket-note {
+        border-radius: var(--radius-tight);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        background: rgba(255, 255, 255, 0.45);
+      }
+
+      .stamped-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stamped-card::after {
+        content: "Filed Chamber B";
+        position: absolute;
+        top: 1rem;
+        right: -2rem;
+        padding: 0.2rem 2.4rem;
+        border: 1px solid var(--accent-strong);
+        color: var(--accent-strong);
+        font-family: var(--ui-font);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        transform: rotate(18deg);
+        opacity: 0.7;
+      }
+
+      .portrait-card {
+        padding: 0.95rem;
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .portrait-banner,
+      .nameplate,
+      .registry-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+
+      .portrait-banner {
+        color: var(--muted);
+      }
+
+      .portrait-stage,
+      .registry-preview-stage,
+      .registry-mini-stage,
+      .registry-compare-stage {
+        position: relative;
+        border-radius: 16px;
+        background:
+          linear-gradient(180deg, rgba(9, 11, 16, 0.06), rgba(9, 11, 16, 0.18)),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0)),
+          var(--portrait-paper);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+      }
+
+      .portrait-stage {
+        min-height: 320px;
+      }
+
+      .portrait-mount {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: end center;
+        padding: 1rem;
+      }
+
+      .portrait-svg {
+        width: min(100%, 290px);
+        height: auto;
+        display: block;
+      }
+
+      .portrait-svg--registry {
+        width: min(100%, 320px);
+      }
+
+      .portrait-svg--mini {
+        width: min(100%, 150px);
+      }
+
+      .portrait-surface {
+        fill: var(--portrait-paper);
+      }
+
+      .portrait-shadow {
+        fill: rgba(0, 0, 0, 0.12);
+      }
+
+      .portrait-head,
+      .portrait-crest {
+        fill: var(--portrait-base);
+      }
+
+      .portrait-robe {
+        fill: var(--portrait-robe, var(--portrait-base));
+      }
+
+      .portrait-accessory {
+        fill: var(--portrait-accessory-fill, var(--portrait-base));
+      }
+
+      .portrait-outline,
+      .portrait-feather-lines,
+      .portrait-eye-line,
+      .portrait-accessory-line,
+      .portrait-beak-line {
+        fill: none;
+        stroke: var(--portrait-ink);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 6;
+      }
+
+      .portrait-beak {
+        fill: var(--portrait-accent);
+      }
+
+      .portrait-eye-fill {
+        fill: var(--portrait-ink);
+      }
+
+      .portrait-expression {
+        fill: var(--portrait-alert);
+        stroke: none;
+      }
+
+      .portrait-expression-line {
+        fill: none;
+        stroke: var(--portrait-alert);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 6;
+      }
+
+      .nameplate {
+        padding: 0.9rem 1rem;
+        border-radius: 14px;
+        background: rgba(22, 27, 34, 0.92);
+        color: #f8f1e1;
+        font-family: var(--ui-font);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .nameplate strong {
+        font-size: 1.06rem;
+      }
+
+      .portrait-note {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.5;
+      }
+
+      .speaker-directory {
+        display: grid;
+        gap: 0.65rem;
+        padding-top: 0.2rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .registry-subhead {
+        color: var(--muted);
+      }
+
+      .registry-party-button {
+        border-radius: 14px;
+        padding: 0.75rem 0.85rem;
+        display: grid;
+        gap: 0.2rem;
+        text-align: left;
+      }
+
+      .registry-party-button strong {
+        font-family: var(--ui-font);
+        font-size: 0.96rem;
+        letter-spacing: 0.03em;
+        text-transform: none;
+      }
+
+      .registry-party-button span {
+        color: var(--muted);
+        font-size: 0.83rem;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+
+      .registry-party-button.is-selected {
+        background: rgba(19, 20, 25, 0.94);
+        color: #f8f1e1;
+      }
+
+      .registry-party-button.is-selected span {
+        color: rgba(248, 241, 225, 0.74);
+      }
+
+      .registry-party-button.is-current {
+        box-shadow: inset 0 0 0 1px rgba(198, 161, 90, 0.75);
+      }
+
+      .dialogue-card {
+        padding: 1.3rem 1.35rem 1.15rem;
+        display: grid;
+        gap: 1.05rem;
+        align-content: start;
+      }
+
+      .dialogue-speaker-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .speaker-tag,
+      .dialogue-stage-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.45rem 0.72rem;
+        border-radius: 999px;
+        font-family: var(--ui-font);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .speaker-tag {
+        background: rgba(22, 27, 34, 0.92);
+        color: #f7efdd;
+      }
+
+      .dialogue-stage-tag {
+        background: rgba(198, 161, 90, 0.1);
+        color: var(--muted);
+        font-size: 0.74rem;
+        letter-spacing: 0.12em;
+      }
+
+      .dialogue-text {
+        margin: 0;
+        max-width: 20ch;
+        font-size: clamp(1.62rem, 2.25vw, 2.42rem);
+        line-height: 1.08;
+        letter-spacing: -0.01em;
+      }
+
+      .dialogue-text.is-refreshing {
+        animation: lineRise 240ms ease;
+      }
+
+      .docket-note {
+        padding: 0.95rem 1rem;
+        border-color: rgba(198, 161, 90, 0.65);
+        background: rgba(198, 161, 90, 0.08);
+      }
+
+      .docket-label {
+        color: var(--accent-strong);
+      }
+
+      .docket-note p {
+        margin: 0.45rem 0 0;
+        color: var(--ink);
+        font-size: 0.98rem;
+        font-style: italic;
+        line-height: 1.5;
+      }
+
+      .transcript-rail {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.38rem;
+        align-items: center;
+        padding-top: 0.25rem;
+        border-top: 1px dashed rgba(0, 0, 0, 0.12);
+      }
+
+      .transcript-pip {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 0, 0, 0.14);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.5);
+        color: var(--muted);
+        font-family: var(--mono-font);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0;
+        text-transform: none;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          color 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .transcript-pip.is-visited {
+        border-color: rgba(198, 161, 90, 0.45);
+      }
+
+      .transcript-pip.is-active {
+        background: rgba(19, 20, 25, 0.92);
+        border-color: rgba(198, 161, 90, 0.74);
+        color: #f9f3e6;
+      }
+
+      .control-button:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .side-panel {
+        grid-template-rows: auto auto auto;
+      }
+
+      .status-strip {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .status-chip {
+        padding: 0.72rem 0.78rem 0.76rem;
+        display: grid;
+        gap: 0.28rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.38);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .status-chip strong {
+        display: block;
+        margin-top: 0;
+        font-family: var(--ui-font);
+        font-size: 0.98rem;
+        line-height: 1.3;
+        text-align: left;
+      }
+
+      .evidence-list {
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      .evidence-panel-card {
+        padding: 0.95rem;
+      }
+
+      .evidence-panel-card .evidence-list {
+        margin-top: 0.75rem;
+      }
+
+      .evidence-card.stamped-card::after {
+        top: 0.6rem;
+        right: -4.15rem;
+        font-size: 0.55rem;
+        opacity: 0.45;
+      }
+
+      .evidence-card {
+        overflow: hidden;
+      }
+
+      .evidence-card.is-referenced {
+        border-color: rgba(198, 161, 90, 0.74);
+        box-shadow: inset 0 0 0 1px rgba(198, 161, 90, 0.42);
+      }
+
+      .evidence-toggle {
+        width: 100%;
+        padding: 0.8rem;
+        display: grid;
+        gap: 0.6rem;
+        border: none;
+        background: transparent;
+        text-align: left;
+      }
+
+      .evidence-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+      }
+
+      .evidence-head svg {
+        width: 50px;
+        height: 50px;
+        flex: 0 0 auto;
+      }
+
+      .evidence-head strong {
+        display: block;
+        font-family: var(--ui-font);
+        font-size: 0.84rem;
+        line-height: 1.2;
+        letter-spacing: 0.03em;
+        text-transform: none;
+      }
+
+      .evidence-code {
+        display: block;
+        margin-top: 0.2rem;
+        font-family: var(--mono-font);
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+
+      .evidence-summary {
+        color: var(--muted);
+        font-size: 0.83rem;
+        line-height: 1.38;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .evidence-body {
+        max-height: 10.5rem;
+        overflow: auto;
+        padding: 0 0.8rem 0.85rem;
+        color: var(--muted);
+        font-size: 0.84rem;
+        line-height: 1.5;
+      }
+
+      .evidence-icon-frame,
+      .evidence-icon-detail,
+      .evidence-icon-line {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .evidence-icon-frame {
+        stroke: var(--ink);
+        stroke-width: 3;
+      }
+
+      .evidence-icon-detail {
+        stroke: var(--accent);
+        stroke-width: 5;
+      }
+
+      .evidence-icon-line {
+        stroke: var(--ink);
+        stroke-width: 4;
+      }
+
+      .log-card,
+      .status-card {
+        padding: 0.95rem;
+      }
+
+      .gallery-log {
+        margin-top: 0.75rem;
+        max-height: 240px;
+        overflow: auto;
+        display: grid;
+        gap: 0.55rem;
+        padding-right: 0.35rem;
+      }
+
+      .log-item {
+        align-items: flex-start;
+        padding: 0.66rem 0.72rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.38);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .log-item strong {
+        color: var(--accent-strong);
+      }
+
+      .log-item span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.83rem;
+        line-height: 1.42;
+      }
+
+      .registry-shell {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .registry-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .registry-title {
+        margin: 0.25rem 0 0.35rem;
+        font-size: clamp(1.55rem, 2.1vw, 2rem);
+        line-height: 1;
+      }
+
+      .registry-copy {
+        margin: 0;
+        max-width: 62ch;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .registry-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+        gap: var(--gap);
+        align-items: start;
+      }
+
+      .registry-column {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .registry-sheet {
+        padding: 1rem;
+      }
+
+      .registry-preview-stage {
+        min-height: 390px;
+        margin-top: 0.85rem;
+      }
+
+      .registry-preview-mount {
+        position: static;
+        min-height: 390px;
+        place-items: center;
+      }
+
+      .registry-recipe-output {
+        margin: 0.85rem 0 0;
+        padding: 0.95rem 1rem;
+        border-radius: 14px;
+        background: rgba(18, 23, 30, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        color: var(--ink);
+        font-family: var(--mono-font);
+        font-size: 0.88rem;
+        line-height: 1.55;
+        white-space: pre-wrap;
+      }
+
+      .registry-expression-grid {
+        margin-top: 0.85rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.8rem;
+      }
+
+      .registry-mini-card,
+      .registry-compare-card {
+        border-radius: 14px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        background: rgba(255, 255, 255, 0.34);
+        overflow: hidden;
+      }
+
+      .registry-mini-card.is-active {
+        border-color: rgba(198, 161, 90, 0.72);
+        box-shadow: inset 0 0 0 1px rgba(198, 161, 90, 0.42);
+      }
+
+      .registry-mini-stage,
+      .registry-compare-stage {
+        min-height: 180px;
+        display: grid;
+        place-items: center;
+        padding: 0.65rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .registry-mini-meta,
+      .registry-compare-meta {
+        padding: 0.8rem 0.85rem 0.9rem;
+      }
+
+      .registry-mini-meta strong,
+      .registry-compare-meta strong {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-family: var(--ui-font);
+        font-size: 0.94rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .registry-mini-meta span,
+      .registry-compare-meta span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.38;
+      }
+
+      .registry-control-grid,
+      .registry-palette-grid {
+        margin-top: 0.85rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.85rem;
+      }
+
+      .registry-palette-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .registry-field {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .registry-field span {
+        font-family: var(--ui-font);
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .registry-field select,
+      .registry-field input[type="color"] {
+        width: 100%;
+        padding: 0.78rem 0.85rem;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.16);
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--ink);
+      }
+
+      .registry-field input[type="color"] {
+        min-height: 3rem;
+        padding: 0.3rem;
+      }
+
+      .registry-note-stack {
+        margin-top: 0.85rem;
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .registry-note-stack p {
+        margin: 0;
+        padding: 0.8rem 0.85rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.38);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .registry-compare-grid {
+        margin-top: 0.85rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+        gap: 0.8rem;
+      }
+
+      .registry-swatch-row {
+        margin-top: 0.65rem;
+        display: flex;
+        gap: 0.35rem;
+      }
+
+      .registry-swatch {
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.16);
+        background: var(--swatch);
+      }
+
+      /* Redesign pass: wireframe rebuild */
+
+      .topbar {
+        grid-template-columns: minmax(0, 1.85fr) auto minmax(230px, 0.82fr);
+        padding: 1.15rem 1.3rem 1.2rem;
+        align-items: end;
+      }
+
+      .topbar-block--case {
+        gap: 0.68rem;
+      }
+
+      .topbar-block--meter {
+        display: grid;
+        gap: 0.7rem;
+        align-content: start;
+      }
+
+      .top-tabs-wrap {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.42rem;
+        padding-top: 0.2rem;
+      }
+
+      .tab-button {
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-bottom: none;
+        border-radius: 14px 14px 0 0;
+        padding: 0.8rem 1.05rem 0.72rem;
+        background: rgba(255, 255, 255, 0.5);
+        color: rgba(23, 27, 34, 0.7);
+        font-family: var(--ui-font);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .tab-button::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+        background: transparent;
+      }
+
+      #registryTab {
+        padding: 0.68rem 0.92rem 0.62rem;
+        font-size: 0.74rem;
+        transform: translateY(6px);
+      }
+
+      .tab-button.is-active {
+        background: var(--surface);
+        color: var(--ink);
+        transform: translateY(1px);
+      }
+
+      .tab-button.is-active::after {
+        background: var(--surface);
+      }
+
+      #registryTab.is-active {
+        transform: translateY(1px);
+      }
+
+      .session-pill {
+        margin-top: 0;
+        padding: 0.72rem 0.86rem;
+        display: grid;
+        gap: 0.12rem;
+      }
+
+      .session-pill strong {
+        font-size: 1rem;
+      }
+
+      .main-grid {
+        grid-template-columns: minmax(240px, 0.95fr) minmax(0, 2.02fr) minmax(280px, 1.15fr);
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      .speaker-panel,
+      .side-panel {
+        gap: 0.82rem;
+        padding: 1rem;
+        background: rgba(244, 236, 220, 0.9);
+      }
+
+      .dialogue-panel {
+        gap: 0.85rem;
+        padding: 1rem;
+        background: rgba(249, 243, 230, 0.97);
+      }
+
+      .portrait-card {
+        padding: 0.9rem;
+        gap: 0.78rem;
+        background:
+          linear-gradient(180deg, rgba(13, 18, 26, 0.05), rgba(13, 18, 26, 0.01)),
+          rgba(255, 255, 255, 0.34);
+      }
+
+      .portrait-stage {
+        min-height: 262px;
+      }
+
+      .portrait-note {
+        font-size: 0.88rem;
+        line-height: 1.48;
+      }
+
+      .speaker-record-card {
+        padding: 0.95rem 1rem 1rem;
+        display: grid;
+        gap: 0.82rem;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      .record-row {
+        display: grid;
+        gap: 0.28rem;
+      }
+
+      .record-row strong {
+        font-family: var(--ui-font);
+        font-size: 0.98rem;
+        letter-spacing: 0.02em;
+        line-height: 1.32;
+      }
+
+      .record-row--address p {
+        margin: 0;
+        font-size: 0.92rem;
+        line-height: 1.45;
+      }
+
+      .identity-divider {
+        height: 1px;
+        background: rgba(0, 0, 0, 0.08);
+      }
+
+      .parties-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+
+      .party-roster {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .ghost-button {
+        border: 1px solid rgba(0, 0, 0, 0.14);
+        border-radius: 999px;
+        padding: 0.5rem 0.74rem;
+        background: rgba(255, 255, 255, 0.5);
+        color: var(--muted);
+        font-family: var(--ui-font);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .registry-actions {
+        gap: 0.6rem;
+      }
+
+      .registry-party-button {
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 0.64rem 0.76rem 0.68rem;
+        background: rgba(255, 255, 255, 0.44);
+        display: grid;
+        gap: 0.12rem;
+        text-align: left;
+      }
+
+      .registry-party-button strong {
+        font-size: 0.89rem;
+        letter-spacing: 0.015em;
+      }
+
+      .registry-party-button span {
+        font-size: 0.77rem;
+        line-height: 1.32;
+      }
+
+      .registry-party-button.is-current {
+        box-shadow: inset 3px 0 0 rgba(198, 161, 90, 0.8);
+      }
+
+      .dialogue-card {
+        min-height: 100%;
+        padding: 1.35rem 1.55rem 1.2rem;
+        gap: 0.92rem;
+        background: rgba(255, 252, 246, 0.56);
+      }
+
+      .dialogue-context-stack {
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      .proceedings-context-card,
+      .previous-trace-card {
+        display: grid;
+        gap: 0.28rem;
+        padding: 0.72rem 0.82rem 0.76rem;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background: rgba(255, 255, 255, 0.38);
+      }
+
+      .previous-trace-card {
+        background: rgba(22, 27, 34, 0.04);
+      }
+
+      .proceedings-context-text,
+      .previous-trace-text {
+        margin: 0;
+        font-family: var(--ui-font);
+        font-size: 0.92rem;
+        line-height: 1.45;
+        color: var(--ink);
+      }
+
+      .previous-trace-text {
+        color: var(--muted);
+      }
+
+      .dialogue-speaker-row {
+        align-items: baseline;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .dialogue-speaker-block {
+        display: grid;
+        gap: 0.18rem;
+      }
+
+      .dialogue-speaker-role {
+        color: var(--muted);
+        font-family: var(--ui-font);
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        text-transform: none;
+      }
+
+      .dialogue-stage-tag {
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        color: var(--muted);
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+      }
+
+      .dialogue-text {
+        max-width: 34ch;
+        font-size: clamp(1.42rem, 1.86vw, 1.98rem);
+        line-height: 1.22;
+        letter-spacing: -0.01em;
+        text-wrap: balance;
+      }
+
+      .dialogue-reaction-line {
+        display: grid;
+        gap: 0.22rem;
+        padding-top: 0.32rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .dialogue-reaction-line strong {
+        font-family: var(--ui-font);
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: var(--muted);
+        line-height: 1.46;
+      }
+
+      .docket-note {
+        padding: 0.92rem 1rem;
+        border-left: 4px solid rgba(198, 161, 90, 0.78);
+        border-color: rgba(198, 161, 90, 0.42);
+        background: rgba(198, 161, 90, 0.08);
+      }
+
+      .docket-note p {
+        font-size: 0.9rem;
+        line-height: 1.52;
+      }
+
+      .transcript-rail {
+        gap: 0.4rem;
+        padding-top: 0.74rem;
+      }
+
+      .transcript-pip {
+        width: 26px;
+        height: 26px;
+        font-size: 0.66rem;
+        background: rgba(255, 255, 255, 0.38);
+      }
+
+      .side-panel {
+        grid-template-rows: auto auto auto;
+      }
+
+      .evidence-panel-card,
+      .log-card,
+      .status-card {
+        padding: 0.9rem;
+      }
+
+      .evidence-panel-card {
+        background: rgba(255, 252, 245, 0.42);
+      }
+
+      .evidence-list {
+        gap: 0.58rem;
+      }
+
+      .evidence-head strong {
+        font-size: 0.93rem;
+        line-height: 1.16;
+      }
+
+      .evidence-summary {
+        font-size: 0.82rem;
+        line-height: 1.4;
+        -webkit-line-clamp: 2;
+      }
+
+      .evidence-body {
+        max-height: 9rem;
+        font-size: 0.83rem;
+        line-height: 1.46;
+      }
+
+      .gallery-log {
+        max-height: 190px;
+        gap: 0.5rem;
+      }
+
+      .log-item {
+        padding: 0.62rem 0.72rem;
+      }
+
+      .log-item span {
+        font-size: 0.8rem;
+      }
+
+      .status-card {
+        padding-top: 0.82rem;
+      }
+
+      .status-strip {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.46rem;
+      }
+
+      .status-chip {
+        padding: 0.68rem 0.74rem 0.72rem;
+        display: grid;
+        gap: 0.24rem;
+        align-items: stretch;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.36);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .status-chip span {
+        line-height: 1.22;
+        letter-spacing: 0.11em;
+      }
+
+      .status-chip strong {
+        margin: 0;
+        font-family: var(--ui-font);
+        font-size: 0.96rem;
+        line-height: 1.3;
+        text-align: left;
+      }
+
+      .registry-head {
+        gap: 1.2rem;
+      }
+
+      .registry-copy {
+        max-width: 48ch;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      @keyframes lineRise {
+        0% {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 1180px) {
+        .topbar {
+          grid-template-columns: 1fr;
+        }
+
+        .main-grid,
+        .registry-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .status-strip {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .app-shell {
+          width: 100%;
+          max-width: 100%;
+          margin: 0;
+          padding: 0.45rem;
+          overflow-x: clip;
+        }
+
+        .topbar,
+        .speaker-panel,
+        .dialogue-panel,
+        .side-panel,
+        .registry-shell {
+          padding: 1rem;
+        }
+
+        .topbar {
+          gap: 0.8rem;
+        }
+
+        .topbar-block--case {
+          gap: 0.55rem;
+        }
+
+        .eyebrow {
+          font-size: 0.67rem;
+          letter-spacing: 0.12em;
+        }
+
+        .case-title {
+          margin-bottom: 0.3rem;
+          font-size: clamp(1.5rem, 8vw, 2.1rem);
+          line-height: 1;
+        }
+
+        .case-subtitle {
+          font-size: 0.9rem;
+        }
+
+        .top-tabs-wrap {
+          gap: 0.35rem;
+          padding-top: 0;
+          flex-wrap: nowrap;
+        }
+
+        .tab-button {
+          flex: 0 0 auto;
+          white-space: nowrap;
+          padding: 0.72rem 0.88rem 0.68rem;
+          font-size: 0.74rem;
+          letter-spacing: 0.1em;
+        }
+
+        #registryTab {
+          padding: 0.62rem 0.82rem 0.56rem;
+          font-size: 0.68rem;
+          transform: translateY(4px);
+        }
+
+        .seal-block {
+          justify-items: start;
+        }
+
+        .seal-frame {
+          width: 98px;
+          height: 98px;
+        }
+
+        .dialogue-text {
+          max-width: none;
+          font-size: clamp(1.24rem, 5.3vw, 1.55rem);
+          line-height: 1.28;
+        }
+
+        .portrait-stage {
+          min-height: 260px;
+        }
+
+        .portrait-svg {
+          width: min(100%, 220px);
+        }
+
+        .registry-expression-grid,
+        .registry-control-grid,
+        .registry-palette-grid,
+        .registry-compare-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .registry-head {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <svg class="backdrop-ornament" viewBox="0 0 1600 260" aria-hidden="true" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="ornamentFade" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="currentColor" stop-opacity="0.06"></stop>
+            <stop offset="50%" stop-color="currentColor" stop-opacity="0.18"></stop>
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0.06"></stop>
+          </linearGradient>
+        </defs>
+        <path d="M0 70C180 100 250 150 400 150C560 150 620 80 800 80C980 80 1030 155 1190 155C1340 155 1430 110 1600 78V0H0Z" fill="url(#ornamentFade)"></path>
+        <path d="M180 205C210 155 250 125 298 118C278 157 261 192 242 232C226 221 204 214 180 205Z" fill="currentColor" fill-opacity="0.18"></path>
+        <path d="M1320 205C1350 155 1390 125 1438 118C1418 157 1401 192 1382 232C1366 221 1344 214 1320 205Z" fill="currentColor" fill-opacity="0.18"></path>
+        <circle cx="800" cy="140" r="86" fill="none" stroke="currentColor" stroke-opacity="0.14" stroke-width="2"></circle>
+        <circle cx="800" cy="140" r="122" fill="none" stroke="currentColor" stroke-opacity="0.08" stroke-width="2"></circle>
+      </svg>
+
+      <header class="topbar panel">
+        <div class="topbar-block topbar-block--case">
+          <p class="eyebrow">Avian Municipal Nest Court · Chamber B</p>
+          <h1 class="case-title">Dove v. Dove</h1>
+          <p class="case-subtitle">
+            <span class="case-number">AMNC-2026-007B</span> · Nest abandonment
+          </p>
+
+          <div class="top-tabs-wrap" role="tablist" aria-label="Chamber display views">
+            <button id="proceedingsTab" class="tab-button is-active" type="button" data-view="proceedings">Proceedings</button>
+            <button id="registryTab" class="tab-button" type="button" data-view="registry">Species Registry</button>
+          </div>
+        </div>
+
+        <div class="topbar-block seal-block">
+          <div class="seal-frame" aria-hidden="true">
+            <svg class="court-seal" viewBox="0 0 140 140" role="img">
+              <title>Avian Municipal Nest Court seal</title>
+              <circle cx="70" cy="70" r="61" class="seal-ring"></circle>
+              <circle cx="70" cy="70" r="47" class="seal-core"></circle>
+              <path d="M70 36L76 49L90 51L80 60L82 75L70 68L58 75L60 60L50 51L64 49Z" class="seal-star"></path>
+              <path d="M42 88C49 78 58 74 70 74C82 74 91 78 98 88C89 102 81 107 70 107C59 107 51 102 42 88Z" class="seal-nest"></path>
+              <path d="M55 84C60 80 65 79 70 79C75 79 80 80 85 84" class="seal-reed"></path>
+              <path d="M46 48C40 62 40 77 46 92" class="seal-feather-left"></path>
+              <path d="M94 48C100 62 100 77 94 92" class="seal-feather-right"></path>
+              <path d="M52 28L70 17L88 28" class="seal-crown"></path>
+            </svg>
+          </div>
+        </div>
+
+        <div class="topbar-block topbar-block--meter">
+          <div class="meter-card">
+            <div class="meter-head">
+              <span>Court Dignity</span>
+              <strong id="dignityValue">92%</strong>
+            </div>
+            <div class="meter-track" aria-label="Court Dignity Meter">
+              <div id="dignityFill" class="meter-fill"></div>
+            </div>
+            <p id="meterStatus" class="meter-status">Decorum holding.</p>
+          </div>
+
+          <div class="session-pill">
+            <span>Session</span>
+            <strong>Chamber B</strong>
+          </div>
+        </div>
+      </header>
+
+      <section id="proceedingsView" class="proceedings-view">
+        <div class="main-grid">
+          <aside class="panel speaker-panel">
+            <div class="panel-topline">
+              <span>Current Speaker</span>
+              <span id="speakerPanelMode">Current</span>
+            </div>
+
+            <article class="portrait-card">
+              <div class="portrait-banner">
+                <span id="speakerRole">Presiding Judge</span>
+                <span id="speakerState">Speaking now</span>
+              </div>
+
+              <div class="portrait-stage">
+                <div id="portraitMount" class="portrait-mount" aria-live="polite"></div>
+              </div>
+
+              <div class="nameplate">
+                <strong id="speakerName">Hon. Miriam Owl</strong>
+                <span id="speakerSpecies">Great Horned Owl</span>
+              </div>
+
+              <p id="portraitNote" class="portrait-note"></p>
+            </article>
+
+            <article class="speaker-record-card">
+              <div class="record-row">
+                <span class="registry-address-label">Role on Record</span>
+                <strong id="speakerRoleMeta">Presiding Judge</strong>
+              </div>
+
+              <div class="record-row record-row--address">
+                <span class="registry-address-label">Address on File</span>
+                <p id="speakerAddress">Chambers, 14 Municipal Oak, Third Fork</p>
+              </div>
+
+              <div class="identity-divider" aria-hidden="true"></div>
+
+              <div class="parties-head">
+                <span class="registry-subhead">Parties on File</span>
+                <button id="followRecordBtn" class="ghost-button" type="button">Return to Proceedings</button>
+              </div>
+              <div id="partyRegistryList" class="party-roster"></div>
+            </article>
+          </aside>
+
+          <section class="panel dialogue-panel">
+            <div class="panel-topline">
+              <span>Proceedings</span>
+              <span id="lineCount">01 / 12</span>
+            </div>
+
+            <article class="dialogue-card">
+              <div class="dialogue-context-stack">
+                <article class="proceedings-context-card">
+                  <span class="mini-reaction-label">Matter Under Examination</span>
+                  <p id="matterText" class="proceedings-context-text"></p>
+                </article>
+
+                <article id="previousTraceCard" class="previous-trace-card" hidden>
+                  <span class="mini-reaction-label">Previously</span>
+                  <p id="previousTraceText" class="previous-trace-text"></p>
+                </article>
+              </div>
+
+              <div class="dialogue-speaker-row">
+                <div class="dialogue-speaker-block">
+                  <span id="dialogueSpeaker" class="speaker-tag">MIRIAM</span>
+                  <span id="dialogueSpeakerRole" class="dialogue-speaker-role">Presiding Judge</span>
+                </div>
+                <span id="dialogueRhythm" class="dialogue-stage-tag">Opening the record</span>
+              </div>
+
+              <blockquote id="dialogueText" class="dialogue-text">
+                “This Court is now in session. The matter before us is Dove v. Dove, case number AMNC-2026-007B. Nest abandonment, contested.”
+              </blockquote>
+
+              <div class="dialogue-reaction-line">
+                <span class="mini-reaction-label">Gallery</span>
+                <strong id="dialogueReaction">Attentive silence.</strong>
+              </div>
+
+              <article id="docketNote" class="docket-note" hidden>
+                <span class="docket-label">Docket Annotation</span>
+                <p id="docketText"></p>
+              </article>
+
+              <div id="transcriptRail" class="transcript-rail" aria-label="Transcript navigation"></div>
+            </article>
+          </section>
+
+          <aside class="panel side-panel">
+            <article class="evidence-panel-card">
+              <div class="panel-topline">
+                <span>Filed Exhibits</span>
+                <span>4 items</span>
+              </div>
+              <div id="evidenceList" class="evidence-list"></div>
+            </article>
+
+            <article class="log-card">
+              <div class="panel-topline">
+                <span>Gallery Observation Log</span>
+                <span id="galleryLogCount">1 entry</span>
+              </div>
+              <div id="galleryLog" class="gallery-log"></div>
+            </article>
+
+            <article class="status-card">
+              <div class="panel-topline">
+                <span>Chamber State</span>
+                <span>Current</span>
+              </div>
+              <div id="statusStrip" class="status-strip"></div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section id="registryView" class="registry-view panel" hidden>
+        <div class="registry-shell">
+          <div class="registry-head">
+            <div>
+              <p class="eyebrow">Species Registry</p>
+              <h2 class="registry-title">Classification Record</h2>
+              <p class="registry-copy">Comparative portrait records maintained for parties appearing before Chamber B.</p>
+            </div>
+
+            <div class="registry-actions">
+              <button id="registryLoadCurrentBtn" class="lab-button strong" type="button">Load From Record</button>
+            </div>
+          </div>
+
+          <div class="registry-grid">
+            <div class="registry-column">
+              <article class="registry-sheet">
+                <div class="panel-topline">
+                  <span>Portrait Record</span>
+                  <span id="registryRecipeName">Current filing</span>
+                </div>
+
+                <div class="registry-preview-stage">
+                  <div id="registryPortraitMount" class="portrait-mount registry-preview-mount" aria-live="polite"></div>
+                </div>
+
+                <pre id="registryRecipeOutput" class="registry-recipe-output"></pre>
+              </article>
+
+              <article class="registry-sheet">
+                <div class="panel-topline">
+                  <span>Expression Audit</span>
+                  <span>Neutral / Smug / Panicked</span>
+                </div>
+
+                <div id="registryExpressionGrid" class="registry-expression-grid"></div>
+              </article>
+            </div>
+
+            <div class="registry-column">
+              <article class="registry-sheet">
+                <div class="panel-topline">
+                  <span>Classification Record</span>
+                  <span>Filed attributes</span>
+                </div>
+
+                <div class="registry-control-grid">
+                  <label class="registry-field">
+                    <span>Base Subject</span>
+                    <select id="registryBaseSelect">
+                      <option value="custom">Custom Record</option>
+                      <option value="current">Current Filing</option>
+                      <option value="MIRIAM">Hon. Miriam Owl</option>
+                      <option value="DENISE">Denise Dove</option>
+                      <option value="GREG">Greg Dove</option>
+                      <option value="CHERYL">Cheryl Sparrow</option>
+                    </select>
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Expression</span>
+                    <select id="registryExpressionSelect">
+                      <option value="neutral">Neutral</option>
+                      <option value="smug">Smug</option>
+                      <option value="panicked">Panicked</option>
+                    </select>
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Head Shape</span>
+                    <select id="registryHeadSelect">
+                      <option value="owl">Bench Owl</option>
+                      <option value="dove">Dove</option>
+                      <option value="pigeon">Pigeon Bust</option>
+                      <option value="goose">Goose Bust</option>
+                      <option value="heron">Heron Profile</option>
+                    </select>
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Beak Type</span>
+                    <select id="registryBeakSelect">
+                      <option value="hooked">Hooked Beak</option>
+                      <option value="short">Short Beak</option>
+                      <option value="wide">Wide Beak</option>
+                      <option value="needle">Needle Beak</option>
+                    </select>
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Eye Type</span>
+                    <select id="registryEyesSelect">
+                      <option value="stern">Stern Eyes</option>
+                      <option value="round">Round Eyes</option>
+                      <option value="hooded">Hooded Eyes</option>
+                      <option value="squint">Squint Eyes</option>
+                    </select>
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Crest / Tuft</span>
+                    <select id="registryCrestSelect">
+                      <option value="judgeTuft">Judge Tuft</option>
+                      <option value="curl">Curl Tuft</option>
+                      <option value="none">None</option>
+                      <option value="fan">Fan Crest</option>
+                    </select>
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Accessory</span>
+                    <select id="registryAccessorySelect">
+                      <option value="chain">Chain Medallion</option>
+                      <option value="badge">Clerk Badge</option>
+                      <option value="tie">Tie</option>
+                      <option value="spectacles">Spectacles</option>
+                    </select>
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Palette Preset</span>
+                    <select id="registryPaletteSelect">
+                      <option value="custom">Custom Palette</option>
+                      <option value="municipalOwl">Municipal Owl</option>
+                      <option value="clerkPigeon">Clerk Pigeon</option>
+                      <option value="gooseIvory">Goose Ivory</option>
+                      <option value="crowMidnight">Crow Midnight</option>
+                      <option value="heronSlate">Heron Slate</option>
+                      <option value="brassCanary">Brass Canary</option>
+                    </select>
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Compare Axis</span>
+                    <select id="registryCompareSelect">
+                      <option value="palette">Palette</option>
+                      <option value="headShape">Head Shape</option>
+                      <option value="beakType">Beak Type</option>
+                      <option value="eyeType">Eye Type</option>
+                      <option value="crestType">Crest / Tuft</option>
+                      <option value="accessory">Accessory</option>
+                      <option value="expression">Expression</option>
+                    </select>
+                  </label>
+                </div>
+
+                <div class="registry-palette-grid">
+                  <label class="registry-field">
+                    <span>Plumage</span>
+                    <input id="registryPlumageColor" type="color" value="#707b84">
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Robe / Body Mass</span>
+                    <input id="registryRobeColor" type="color" value="#57545d">
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Beak</span>
+                    <input id="registryBeakColor" type="color" value="#c28d55">
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Accessory</span>
+                    <input id="registryAccessoryColor" type="color" value="#8f5d48">
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Outline / Eyes</span>
+                    <input id="registryInkColor" type="color" value="#23262c">
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Portrait Ground</span>
+                    <input id="registryPaperColor" type="color" value="#efe6d7">
+                  </label>
+
+                  <label class="registry-field">
+                    <span>Emphasis / Panic</span>
+                    <input id="registryAlertColor" type="color" value="#9d3030">
+                  </label>
+                </div>
+              </article>
+
+              <article class="registry-sheet">
+                <div class="panel-topline">
+                  <span>Registry Notes</span>
+                  <span>Filed guidance</span>
+                </div>
+
+                <div class="registry-note-stack">
+                  <p>Silhouette before ornament. Head and beak must read first.</p>
+                  <p>Palette establishes role quickly: plumage, beak, and trim should not argue with one another.</p>
+                  <p>Expression may alter temperature, but identity must remain intact under pressure.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <article class="registry-sheet">
+            <div class="panel-topline">
+              <span id="registryCompareTitle">Comparative Review</span>
+              <span>Single-variable sweep</span>
+            </div>
+
+            <div id="registryCompareGrid" class="registry-compare-grid"></div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const expressions = ["neutral", "smug", "panicked"];
+      const characterOrder = ["MIRIAM", "DENISE", "GREG", "CHERYL"];
+      const portraitPartOptions = {
+        headShape: ["owl", "dove", "pigeon", "goose", "heron"],
+        beakType: ["hooked", "short", "wide", "needle"],
+        eyeType: ["stern", "round", "hooded", "squint"],
+        crestType: ["judgeTuft", "curl", "none", "fan"],
+        accessory: ["chain", "badge", "tie", "spectacles"],
+      };
+      const portraitPartLabels = {
+        headShape: {
+          owl: "Bench Owl",
+          dove: "Dove",
+          pigeon: "Pigeon Bust",
+          goose: "Goose Bust",
+          heron: "Heron Profile",
+        },
+        beakType: {
+          hooked: "Hooked Beak",
+          short: "Short Beak",
+          wide: "Wide Beak",
+          needle: "Needle Beak",
+        },
+        eyeType: {
+          stern: "Stern Eyes",
+          round: "Round Eyes",
+          hooded: "Hooded Eyes",
+          squint: "Squint Eyes",
+        },
+        crestType: {
+          judgeTuft: "Judge Tuft",
+          curl: "Curl Tuft",
+          none: "No Crest",
+          fan: "Fan Crest",
+        },
+        accessory: {
+          chain: "Chain Medallion",
+          badge: "Clerk Badge",
+          tie: "Tie",
+          spectacles: "Spectacles",
+        },
+      };
+      const compareAxisLabels = {
+        palette: "Palette",
+        headShape: "Head Shape",
+        beakType: "Beak Type",
+        eyeType: "Eye Type",
+        crestType: "Crest / Tuft",
+        accessory: "Accessory",
+        expression: "Expression",
+      };
+      const portraitPalettes = {
+        municipalOwl: {
+          label: "Municipal Owl",
+          plumage: "#2f3748",
+          robe: "#26202d",
+          beak: "#c5a05c",
+          accessory: "#49566c",
+          ink: "#12171f",
+          paper: "#f1eadb",
+          alert: "#8a2626",
+        },
+        clerkPigeon: {
+          label: "Clerk Pigeon",
+          plumage: "#707b84",
+          robe: "#57545d",
+          beak: "#c28d55",
+          accessory: "#8f5d48",
+          ink: "#23262c",
+          paper: "#efe6d7",
+          alert: "#9d3030",
+        },
+        gooseIvory: {
+          label: "Goose Ivory",
+          plumage: "#d6cfc1",
+          robe: "#5e463e",
+          beak: "#cf7439",
+          accessory: "#806354",
+          ink: "#2f2924",
+          paper: "#fbf4e6",
+          alert: "#8a241f",
+        },
+        crowMidnight: {
+          label: "Crow Midnight",
+          plumage: "#151b22",
+          robe: "#242c35",
+          beak: "#d1a048",
+          accessory: "#4e5d70",
+          ink: "#090d11",
+          paper: "#f3ecde",
+          alert: "#af2e2e",
+        },
+        heronSlate: {
+          label: "Heron Slate",
+          plumage: "#7d90a0",
+          robe: "#556675",
+          beak: "#c78658",
+          accessory: "#6f877d",
+          ink: "#1c252c",
+          paper: "#eef1ea",
+          alert: "#8d3840",
+        },
+        brassCanary: {
+          label: "Brass Canary",
+          plumage: "#b6983d",
+          robe: "#6c5832",
+          beak: "#d57d33",
+          accessory: "#7e3428",
+          ink: "#251e18",
+          paper: "#f7eed6",
+          alert: "#9b2222",
+        },
+      };
+
+      const characters = {
+        MIRIAM: {
+          key: "MIRIAM",
+          shortName: "Miriam",
+          displayName: "Hon. Miriam Owl",
+          species: "Great Horned Owl",
+          role: "Presiding Judge",
+          note: "Appointed 2019. Has presided over forty-seven nest disputes, eleven territorial claims, and one matter involving a parking lot that she does not wish to discuss.",
+          address: "Chambers, 14 Municipal Oak, Third Fork",
+          headShape: "owl",
+          beakType: "hooked",
+          eyeType: "stern",
+          crestType: "judgeTuft",
+          accessory: "chain",
+          palettePreset: "municipalOwl",
+        },
+        DENISE: {
+          key: "DENISE",
+          shortName: "Denise",
+          displayName: "Denise Dove",
+          species: "Mourning Dove (f.)",
+          role: "Petitioner",
+          note: "Filed pro se. Brought a timeline, an itemized nest inventory, and a witness she had already briefed. Arrived early.",
+          address: "14 Sycamore Ln., Lot 7, Meter Box (Upper Ledge)",
+          headShape: "dove",
+          beakType: "short",
+          eyeType: "round",
+          crestType: "none",
+          accessory: "badge",
+          palettePreset: "clerkPigeon",
+        },
+        GREG: {
+          key: "GREG",
+          shortName: "Greg",
+          displayName: "Greg Dove",
+          species: "Mourning Dove (m.)",
+          role: "Respondent",
+          note: "Filed pro se. Current address listed as 'various branches, east side.' The Court has accepted this. Technically.",
+          address: "Various branches, east side",
+          headShape: "dove",
+          beakType: "wide",
+          eyeType: "hooded",
+          crestType: "none",
+          accessory: "tie",
+          palettePreset: "gooseIvory",
+        },
+        CHERYL: {
+          key: "CHERYL",
+          shortName: "Cheryl",
+          displayName: "Cheryl Sparrow",
+          species: "House Sparrow (f.)",
+          role: "Witness for Petitioner",
+          note: "Appeared voluntarily. Was advised her statement would become public record. Asked if she could start from the beginning, because context matters.",
+          address: "16 Sycamore Ln.",
+          headShape: "pigeon",
+          beakType: "short",
+          eyeType: "round",
+          crestType: "curl",
+          accessory: "badge",
+          palettePreset: "clerkPigeon",
+        },
+      };
+
+      const evidenceOrder = ["petition", "timeline", "obs-log", "nest-photo"];
+      const evidenceCatalog = {
+        petition: {
+          title: "Petition for Nest Abandonment",
+          code: "Doc. 001",
+          description: "Nest contents listed as two twigs, receipt paper (CVS, undated), one zip tie (provenance disputed), dryer lint, and the shared warmth of what the Petitioner believed to be a functioning partnership.",
+          summary: "Eight numbered paragraphs and a request for a fifty-wingspan No-Perch Order.",
+          icon: renderPetitionIcon,
+        },
+        timeline: {
+          title: "Timeline of Absence",
+          code: "Exhibit B",
+          description: "Day 1: 'Departed 6:14 AM. Did not circle tree.' Day 4: 'No sign. Eggs cold on left side. Rotated.' Day 11: 'Filed petition.'",
+          summary: "Eleven documented days between departure and filing.",
+          icon: renderTimelineIcon,
+        },
+        "obs-log": {
+          title: "Observation Log — 22 Birch Court",
+          code: "Exhibit C",
+          description: "Jan 31: low branch near #22. Feb 2: same location, 3 min. Feb 5: the branch that dips. Feb 7: facing window, did not move for duration of observation.",
+          summary: "Four sightings on the low branch near 22 Birch Court.",
+          icon: renderObservationIcon,
+        },
+        "nest-photo": {
+          title: "Nest Photograph",
+          code: "Exhibit D",
+          description: "3″ × 2″, slightly bent. Two eggs visible. Receipt paper is, at this point, structural. The Clerk's office does not have a scanner of adequate resolution for nest documentation.",
+          summary: "Physical nest photograph with two eggs visible; inspection available during business hours.",
+          icon: renderNestPhotoIcon,
+        },
+      };
+
+      const dialogueBeats = [
+        {
+          speaker: "MIRIAM",
+          text: "“This Court is now in session. The matter before us is Dove v. Dove, case number AMNC-2026-007B. Nest abandonment, contested.”",
+          rhythm: "Opening the record",
+          matter: "Dove v. Dove enters the record as a contested nest-abandonment matter.",
+          previousTrace: null,
+          reaction: "Attentive silence.",
+          bench: "Composed",
+          gallery: "Attentive",
+          dignity: 92,
+          dignityNote: "Decorum holding.",
+          evidence: null,
+          docket: "Both parties are representing themselves. The Court has been doing this for eleven years and has never once been surprised by this.",
+          expression: "neutral",
+        },
+        {
+          speaker: "MIRIAM",
+          text: "“Denise, your petition alleges that the Respondent abandoned the marital nest on January 27th. Is that correct?”",
+          rhythm: "Bench inquiry",
+          matter: "Petition alleges that Greg abandoned the marital nest on January 27th.",
+          previousTrace: "Miriam opens the record and identifies the dispute as contested nest abandonment.",
+          reaction: "Gallery leans forward.",
+          bench: "Procedural",
+          gallery: "Leaning",
+          dignity: 92,
+          dignityNote: "Decorum holding.",
+          evidence: "petition",
+          docket: null,
+          expression: "neutral",
+        },
+        {
+          speaker: "DENISE",
+          text: "“Yes, Your Honor. He said he was going to fly around for a bit. That was eleven days ago. I have a timeline.”",
+          rhythm: "Controlled statement",
+          matter: "Length of absence and petitioner's documentary timeline.",
+          previousTrace: "Miriam asks Denise to confirm the January 27 abandonment allegation.",
+          reaction: "A clerk writes something down.",
+          bench: "Attentive",
+          gallery: "Sympathetic",
+          dignity: 90,
+          dignityNote: "Steady.",
+          evidence: "timeline",
+          docket: null,
+          expression: "neutral",
+        },
+        {
+          speaker: "GREG",
+          text: "“I said I was going to fly around. I did not say ‘for a bit.’ The word ‘just’ implies triviality. I needed air.”",
+          rhythm: "Respondent’s correction",
+          matter: "Respondent disputes the characterization of his departure.",
+          previousTrace: "Denise states Greg left eleven days earlier and offers a timeline.",
+          reaction: "A second clerk underlines the first clerk’s note.",
+          bench: "Unimpressed",
+          gallery: "Skeptical",
+          dignity: 82,
+          dignityNote: "Dipping.",
+          evidence: null,
+          docket: "The Respondent’s current address is listed as ‘various branches, east side.’ The Court has accepted this, technically.",
+          expression: "smug",
+        },
+        {
+          speaker: "MIRIAM",
+          text: "“Greg, you were observed on four occasions near 22 Birch Court. Can you explain?”",
+          rhythm: "Judicial inquiry",
+          matter: "Observation of Greg near 22 Birch Court enters examination.",
+          previousTrace: "Greg objects to Denise's phrasing and reframes his departure as a need for air.",
+          reaction: "Feathers tighten across the gallery.",
+          bench: "Pressing",
+          gallery: "Very still",
+          dignity: 82,
+          dignityNote: "Steady.",
+          evidence: "obs-log",
+          docket: null,
+          expression: "neutral",
+        },
+        {
+          speaker: "GREG",
+          text: "“I was on a branch. The branch is public. I am permitted to be on branches.”",
+          rhythm: "Defendant insists",
+          matter: "Respondent explains his conduct near 22 Birch Court as lawful branch use.",
+          previousTrace: "Miriam asks Greg to account for four sightings near Birch Court.",
+          reaction: "Someone in the gallery closes their eyes slowly.",
+          bench: "Patience thinning",
+          gallery: "Exhausted",
+          dignity: 71,
+          dignityNote: "Under pressure.",
+          evidence: null,
+          docket: null,
+          expression: "smug",
+        },
+        {
+          speaker: "DENISE",
+          text: "“It was the low branch. The one that dips toward her window.”",
+          rhythm: "Petitioner clarifies",
+          matter: "Specific location of the branch becomes part of the record.",
+          previousTrace: "Greg maintains he was merely present on a public branch.",
+          reaction: "Three birds look at Greg simultaneously.",
+          bench: "Noting",
+          gallery: "Pointed",
+          dignity: 68,
+          dignityNote: "Strained.",
+          evidence: "obs-log",
+          docket: null,
+          expression: "neutral",
+        },
+        {
+          speaker: "GREG",
+          text: "“I was thinking.”",
+          rhythm: "Two words",
+          matter: "Respondent states his purpose for occupying the low branch.",
+          previousTrace: "Denise identifies the branch that dips toward the window.",
+          reaction: "A long pause. Someone rearranges their feathers.",
+          bench: "Incredulous",
+          gallery: "Silent",
+          dignity: 64,
+          dignityNote: "Critical.",
+          evidence: null,
+          docket: "The Court does not find that thinking, as a defense, has been adequately defined.",
+          expression: "neutral",
+        },
+        {
+          speaker: "CHERYL",
+          text: "“Your Honor, if I may. I saw him on that branch four times. He has a way of holding his left wing forward when he’s trying to appear casual. He was doing that.”",
+          rhythm: "Witness delivers",
+          matter: "Witness testimony addresses Greg's behavior on the branch.",
+          previousTrace: "Greg states, under minimal elaboration, that he was thinking.",
+          reaction: "Side benches whisper without filing it.",
+          bench: "Notes thoroughness",
+          gallery: "Riveted",
+          dignity: 62,
+          dignityNote: "Fragile.",
+          evidence: "obs-log",
+          docket: null,
+          expression: "neutral",
+        },
+        {
+          speaker: "CHERYL",
+          text: "“You don’t sit on that branch to think. I know because I’ve been on that branch. But only to survey the ivy situation, which is a separate matter.”",
+          rhythm: "Witness editorializes",
+          matter: "Witness disputes whether the branch is credibly used for thought.",
+          previousTrace: "Cheryl states she observed Greg there four times, left wing forward, attempting casualness.",
+          reaction: "A clerk looks up to see if this is still testimony.",
+          bench: "Tolerating",
+          gallery: "Absorbed",
+          dignity: 60,
+          dignityNote: "Holding.",
+          evidence: null,
+          docket: "The witness provided six additional pages of context. The Court did not ask for them. The Court has them now.",
+          expression: "neutral",
+        },
+        {
+          speaker: "MIRIAM",
+          text: "“Thank you, Cheryl. The Court notes your thoroughness.”",
+          rhythm: "Bench acknowledgment",
+          matter: "Witness statement is received and weighed by the bench.",
+          previousTrace: "Cheryl explains that the low branch is for observation, not thinking, and says the ivy issue is separate.",
+          reaction: "Cheryl nods as though receiving a commendation.",
+          bench: "Measured",
+          gallery: "Settled",
+          dignity: 68,
+          dignityNote: "Recovering.",
+          evidence: null,
+          docket: null,
+          expression: "neutral",
+        },
+        {
+          speaker: "MIRIAM",
+          text: "“The Court will take a brief recess. Both parties are reminded that the Court’s patience, while considerable, is a finite municipal resource.”",
+          rhythm: "Bench adjourns",
+          matter: "Bench calls a brief recess and reasserts procedural authority.",
+          previousTrace: "Miriam thanks Cheryl and formally notes the witness's thoroughness.",
+          reaction: "The room exhales. A feather drifts to the floor.",
+          bench: "Order restored",
+          gallery: "Relieved",
+          dignity: 78,
+          dignityNote: "Recovered.",
+          evidence: null,
+          docket: "Next session: April 14, 2026, 9:30 AM, Chamber B. The branch outside the window is not the courtroom.",
+          expression: "neutral",
+        },
+      ];
+
+      const state = {
+        currentBeatIndex: 0,
+        activeView: "proceedings",
+        manualRegistrySubject: null,
+        visitedBeats: new Set(),
+        galleryLog: [],
+        expandedEvidence: new Set(),
+        revealedEvidence: new Set(),
+        shouldScrollLog: false,
+        registry: {
+          source: "current",
+          expression: "neutral",
+          compareAxis: "palette",
+          config: createPortraitConfig(characters.MIRIAM),
+          paletteSource: "municipalOwl",
+          palette: clonePalette(portraitPalettes.municipalOwl),
+        },
+      };
+
+      const elements = {};
+
+      document.addEventListener("DOMContentLoaded", () => {
+        cacheElements();
+        bindEvents();
+        visitBeat(0);
+        syncRegistryToCurrentSpeaker();
+        renderAll();
+      });
+
+      function cacheElements() {
+        elements.proceedingsView = document.getElementById("proceedingsView");
+        elements.registryView = document.getElementById("registryView");
+        elements.proceedingsTab = document.getElementById("proceedingsTab");
+        elements.registryTab = document.getElementById("registryTab");
+        elements.dignityFill = document.getElementById("dignityFill");
+        elements.dignityValue = document.getElementById("dignityValue");
+        elements.meterStatus = document.getElementById("meterStatus");
+        elements.portraitMount = document.getElementById("portraitMount");
+        elements.speakerPanelMode = document.getElementById("speakerPanelMode");
+        elements.speakerRole = document.getElementById("speakerRole");
+        elements.speakerState = document.getElementById("speakerState");
+        elements.speakerName = document.getElementById("speakerName");
+        elements.speakerSpecies = document.getElementById("speakerSpecies");
+        elements.portraitNote = document.getElementById("portraitNote");
+        elements.speakerAddress = document.getElementById("speakerAddress");
+        elements.speakerRoleMeta = document.getElementById("speakerRoleMeta");
+        elements.partyRegistryList = document.getElementById("partyRegistryList");
+        elements.followRecordBtn = document.getElementById("followRecordBtn");
+        elements.lineCount = document.getElementById("lineCount");
+        elements.matterText = document.getElementById("matterText");
+        elements.previousTraceCard = document.getElementById("previousTraceCard");
+        elements.previousTraceText = document.getElementById("previousTraceText");
+        elements.dialogueSpeaker = document.getElementById("dialogueSpeaker");
+        elements.dialogueSpeakerRole = document.getElementById("dialogueSpeakerRole");
+        elements.dialogueRhythm = document.getElementById("dialogueRhythm");
+        elements.dialogueText = document.getElementById("dialogueText");
+        elements.dialogueReaction = document.getElementById("dialogueReaction");
+        elements.docketNote = document.getElementById("docketNote");
+        elements.docketText = document.getElementById("docketText");
+        elements.transcriptRail = document.getElementById("transcriptRail");
+        elements.evidenceList = document.getElementById("evidenceList");
+        elements.galleryLog = document.getElementById("galleryLog");
+        elements.galleryLogCount = document.getElementById("galleryLogCount");
+        elements.statusStrip = document.getElementById("statusStrip");
+
+        elements.registryLoadCurrentBtn = document.getElementById("registryLoadCurrentBtn");
+        elements.registryBaseSelect = document.getElementById("registryBaseSelect");
+        elements.registryExpressionSelect = document.getElementById("registryExpressionSelect");
+        elements.registryHeadSelect = document.getElementById("registryHeadSelect");
+        elements.registryBeakSelect = document.getElementById("registryBeakSelect");
+        elements.registryEyesSelect = document.getElementById("registryEyesSelect");
+        elements.registryCrestSelect = document.getElementById("registryCrestSelect");
+        elements.registryAccessorySelect = document.getElementById("registryAccessorySelect");
+        elements.registryPaletteSelect = document.getElementById("registryPaletteSelect");
+        elements.registryCompareSelect = document.getElementById("registryCompareSelect");
+        elements.registryPlumageColor = document.getElementById("registryPlumageColor");
+        elements.registryRobeColor = document.getElementById("registryRobeColor");
+        elements.registryBeakColor = document.getElementById("registryBeakColor");
+        elements.registryAccessoryColor = document.getElementById("registryAccessoryColor");
+        elements.registryInkColor = document.getElementById("registryInkColor");
+        elements.registryPaperColor = document.getElementById("registryPaperColor");
+        elements.registryAlertColor = document.getElementById("registryAlertColor");
+        elements.registryPortraitMount = document.getElementById("registryPortraitMount");
+        elements.registryRecipeName = document.getElementById("registryRecipeName");
+        elements.registryRecipeOutput = document.getElementById("registryRecipeOutput");
+        elements.registryExpressionGrid = document.getElementById("registryExpressionGrid");
+        elements.registryCompareGrid = document.getElementById("registryCompareGrid");
+        elements.registryCompareTitle = document.getElementById("registryCompareTitle");
+      }
+
+      function bindEvents() {
+        [elements.proceedingsTab, elements.registryTab].forEach((button) => {
+          button.addEventListener("click", () => setActiveView(button.dataset.view));
+        });
+
+        elements.followRecordBtn.addEventListener("click", () => {
+          state.manualRegistrySubject = null;
+          renderSpeakerPanel();
+        });
+
+        elements.transcriptRail.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-beat-index]");
+          if (!button) {
+            return;
+          }
+
+          setBeat(Number(button.dataset.beatIndex));
+        });
+
+        elements.evidenceList.addEventListener("click", (event) => {
+          const toggle = event.target.closest("[data-evidence-id]");
+          if (!toggle) {
+            return;
+          }
+
+          const evidenceId = toggle.dataset.evidenceId;
+          if (state.expandedEvidence.has(evidenceId)) {
+            state.expandedEvidence.clear();
+          } else {
+            state.expandedEvidence.clear();
+            state.expandedEvidence.add(evidenceId);
+          }
+
+          renderEvidenceList();
+        });
+
+        elements.partyRegistryList.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-character-key]");
+          if (!button) {
+            return;
+          }
+
+          state.manualRegistrySubject = button.dataset.characterKey;
+          renderSpeakerPanel();
+        });
+
+        elements.registryLoadCurrentBtn.addEventListener("click", () => loadRegistryPreset("current"));
+
+        elements.registryBaseSelect.addEventListener("change", (event) => {
+          if (event.target.value === "custom") {
+            state.registry.source = "custom";
+            renderRegistryView();
+            return;
+          }
+
+          loadRegistryPreset(event.target.value, false);
+        });
+
+        elements.registryExpressionSelect.addEventListener("change", (event) => {
+          state.registry.expression = event.target.value;
+          markRegistrySubjectCustom();
+          renderRegistryView();
+        });
+
+        elements.registryCompareSelect.addEventListener("change", (event) => {
+          state.registry.compareAxis = event.target.value;
+          renderRegistryView();
+        });
+
+        elements.registryPaletteSelect.addEventListener("change", (event) => {
+          if (event.target.value === "custom") {
+            state.registry.paletteSource = "custom";
+            renderRegistryView();
+            return;
+          }
+
+          loadRegistryPalette(event.target.value);
+        });
+
+        [
+          ["registryHeadSelect", "headShape"],
+          ["registryBeakSelect", "beakType"],
+          ["registryEyesSelect", "eyeType"],
+          ["registryCrestSelect", "crestType"],
+          ["registryAccessorySelect", "accessory"],
+        ].forEach(([elementKey, configKey]) => {
+          elements[elementKey].addEventListener("change", (event) => {
+            state.registry.config[configKey] = event.target.value;
+            markRegistrySubjectCustom();
+            renderRegistryView();
+          });
+        });
+
+        [
+          ["registryPlumageColor", "plumage"],
+          ["registryRobeColor", "robe"],
+          ["registryBeakColor", "beak"],
+          ["registryAccessoryColor", "accessory"],
+          ["registryInkColor", "ink"],
+          ["registryPaperColor", "paper"],
+          ["registryAlertColor", "alert"],
+        ].forEach(([elementKey, colorKey]) => {
+          elements[elementKey].addEventListener("input", (event) => {
+            state.registry.palette[colorKey] = event.target.value;
+            markRegistryPaletteCustom();
+            renderRegistryView();
+          });
+        });
+
+        document.addEventListener("keydown", (event) => {
+          const key = event.key.toLowerCase();
+          const tagName = document.activeElement ? document.activeElement.tagName : "";
+          const isFormField = ["INPUT", "SELECT", "TEXTAREA"].includes(tagName);
+
+          if (key === "p" && !isFormField) {
+            event.preventDefault();
+            setActiveView(state.activeView === "proceedings" ? "registry" : "proceedings");
+            return;
+          }
+
+          if (isFormField) {
+            return;
+          }
+
+          if (key === "arrowright") {
+            event.preventDefault();
+            stepBeat(1);
+            return;
+          }
+
+          if (key === "arrowleft") {
+            event.preventDefault();
+            stepBeat(-1);
+          }
+        });
+      }
+
+      function setActiveView(view) {
+        state.activeView = view;
+        renderTabs();
+        elements.proceedingsView.hidden = view !== "proceedings";
+        elements.registryView.hidden = view !== "registry";
+
+        if (view === "registry") {
+          renderRegistryView();
+        }
+      }
+
+      function renderTabs() {
+        const isProceedings = state.activeView === "proceedings";
+        elements.proceedingsTab.classList.toggle("is-active", isProceedings);
+        elements.registryTab.classList.toggle("is-active", !isProceedings);
+        elements.proceedingsTab.setAttribute("aria-selected", String(isProceedings));
+        elements.registryTab.setAttribute("aria-selected", String(!isProceedings));
+      }
+
+      function clampBeat(index) {
+        return Math.min(Math.max(index, 0), dialogueBeats.length - 1);
+      }
+
+      function stepBeat(direction) {
+        setBeat(clampBeat(state.currentBeatIndex + direction));
+      }
+
+      function setBeat(index) {
+        const nextIndex = clampBeat(index);
+        state.currentBeatIndex = nextIndex;
+        visitBeat(nextIndex);
+
+        if (state.registry.source === "current") {
+          syncRegistryToCurrentSpeaker();
+        }
+
+        renderAll();
+      }
+
+      function visitBeat(index) {
+        if (state.visitedBeats.has(index)) {
+          return;
+        }
+
+        const beat = dialogueBeats[index];
+        state.visitedBeats.add(index);
+        state.galleryLog.push({
+          index,
+          reaction: beat.reaction,
+        });
+
+        if (beat.evidence) {
+          state.revealedEvidence.add(beat.evidence);
+          state.expandedEvidence.clear();
+          state.expandedEvidence.add(beat.evidence);
+        }
+
+        state.shouldScrollLog = true;
+      }
+
+      function renderAll() {
+        renderTabs();
+        renderTopbar();
+        renderSpeakerPanel();
+        renderDialoguePanel();
+        renderEvidenceList();
+        renderGalleryLog();
+        renderStatusStrip();
+        renderTranscriptRail();
+        renderRegistryView();
+      }
+
+      function getCurrentBeat() {
+        return dialogueBeats[state.currentBeatIndex];
+      }
+
+      function getCurrentSpeakerKey() {
+        return getCurrentBeat().speaker;
+      }
+
+      function getDisplayedCharacterKey() {
+        return state.manualRegistrySubject || getCurrentSpeakerKey();
+      }
+
+      function getDisplayedCharacter() {
+        return characters[getDisplayedCharacterKey()];
+      }
+
+      function getDisplayedExpression() {
+        const currentBeat = getCurrentBeat();
+        const displayedKey = getDisplayedCharacterKey();
+        return displayedKey === currentBeat.speaker ? currentBeat.expression : "neutral";
+      }
+
+      function renderTopbar() {
+        const beat = getCurrentBeat();
+        const dignityValue = beat.dignity;
+
+        elements.dignityFill.style.width = `${dignityValue}%`;
+        elements.dignityValue.textContent = `${dignityValue}%`;
+        elements.meterStatus.textContent = beat.dignityNote;
+      }
+
+      function renderSpeakerPanel() {
+        const displayedCharacter = getDisplayedCharacter();
+        const currentSpeaker = characters[getCurrentSpeakerKey()];
+        const expression = getDisplayedExpression();
+        const isFollowingRecord = !state.manualRegistrySubject;
+        const isCurrentSpeaker = displayedCharacter.key === currentSpeaker.key;
+        const palette = clonePalette(portraitPalettes[displayedCharacter.palettePreset]);
+
+        elements.speakerPanelMode.textContent = isFollowingRecord ? "Current" : "Party File";
+        elements.speakerRole.textContent = displayedCharacter.role;
+        elements.speakerState.textContent = isCurrentSpeaker ? "Speaking now" : "Filed record";
+        elements.speakerName.textContent = displayedCharacter.displayName;
+        elements.speakerSpecies.textContent = displayedCharacter.species;
+        elements.portraitNote.textContent = displayedCharacter.note;
+        elements.speakerAddress.textContent = displayedCharacter.address;
+        elements.speakerRoleMeta.textContent = displayedCharacter.role;
+        elements.followRecordBtn.hidden = isFollowingRecord;
+
+        elements.portraitMount.innerHTML = buildPortraitSvg(
+          displayedCharacter,
+          expression,
+          `${displayedCharacter.displayName} portrait`,
+          "portrait-svg",
+          palette
+        );
+
+        elements.partyRegistryList.innerHTML = characterOrder
+          .map((key) => {
+            const character = characters[key];
+            const isSelected = key === displayedCharacter.key;
+            const isCurrent = key === currentSpeaker.key;
+
+            return `
+              <button
+                class="registry-party-button${isSelected ? " is-selected" : ""}${isCurrent ? " is-current" : ""}"
+                type="button"
+                data-character-key="${key}"
+              >
+                <strong>${character.displayName}</strong>
+                <span>${character.role}</span>
+              </button>
+            `;
+          })
+          .join("");
+      }
+
+      function renderDialoguePanel() {
+        const beat = getCurrentBeat();
+        const speaker = characters[beat.speaker];
+        elements.lineCount.textContent = `${String(state.currentBeatIndex + 1).padStart(2, "0")} / ${String(dialogueBeats.length).padStart(2, "0")}`;
+        elements.matterText.textContent = beat.matter;
+        elements.previousTraceCard.hidden = !beat.previousTrace;
+        elements.previousTraceText.textContent = beat.previousTrace || "";
+        elements.dialogueSpeaker.textContent = beat.speaker;
+        elements.dialogueSpeakerRole.textContent = speaker.role;
+        elements.dialogueRhythm.textContent = beat.rhythm;
+        elements.dialogueReaction.textContent = beat.reaction;
+
+        elements.dialogueText.classList.remove("is-refreshing");
+        void elements.dialogueText.offsetWidth;
+        elements.dialogueText.textContent = beat.text;
+        elements.dialogueText.classList.add("is-refreshing");
+
+        elements.docketNote.hidden = !beat.docket;
+        elements.docketText.textContent = beat.docket || "";
+      }
+
+      function renderTranscriptRail() {
+        elements.transcriptRail.innerHTML = dialogueBeats
+          .map((beat, index) => {
+            const isActive = index === state.currentBeatIndex;
+            const isVisited = state.visitedBeats.has(index);
+
+            return `
+              <button
+                class="transcript-pip${isVisited ? " is-visited" : ""}${isActive ? " is-active" : ""}"
+                type="button"
+                data-beat-index="${index}"
+                aria-label="Jump to entry ${index + 1}: ${beat.speaker}"
+              >
+                ${index + 1}
+              </button>
+            `;
+          })
+          .join("");
+      }
+
+      function renderEvidenceList() {
+        const currentEvidence = getCurrentBeat().evidence;
+
+        elements.evidenceList.innerHTML = evidenceOrder
+          .map((evidenceId) => {
+            const item = evidenceCatalog[evidenceId];
+            const isReferenced = currentEvidence === evidenceId;
+            const isExpanded = state.expandedEvidence.has(evidenceId);
+
+            return `
+              <article class="evidence-card stamped-card${isReferenced ? " is-referenced" : ""}">
+                <button
+                  class="evidence-toggle"
+                  type="button"
+                  data-evidence-id="${evidenceId}"
+                  aria-expanded="${String(isExpanded)}"
+                >
+                  <div class="evidence-head">
+                    ${item.icon()}
+                    <div>
+                      <strong>${item.title}</strong>
+                      <span class="evidence-code">${item.code}</span>
+                    </div>
+                  </div>
+                  <div class="evidence-summary">${item.summary}</div>
+                </button>
+                ${isExpanded ? `<div class="evidence-body">${item.description}</div>` : ""}
+              </article>
+            `;
+          })
+          .join("");
+      }
+
+      function renderGalleryLog() {
+        elements.galleryLog.innerHTML = state.galleryLog
+          .map((entry) => {
+            return `
+              <article class="log-item">
+                <div>
+                  <strong>Entry ${String(entry.index + 1).padStart(2, "0")}</strong>
+                  <span>${entry.reaction}</span>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+
+        elements.galleryLogCount.textContent = `${state.galleryLog.length} ${state.galleryLog.length === 1 ? "entry" : "entries"}`;
+
+        if (state.shouldScrollLog) {
+          elements.galleryLog.scrollTop = elements.galleryLog.scrollHeight;
+          state.shouldScrollLog = false;
+        }
+      }
+
+      function renderStatusStrip() {
+        const beat = getCurrentBeat();
+        elements.statusStrip.innerHTML = `
+          <article class="status-chip">
+            <span>Bench Mood</span>
+            <strong>${beat.bench}</strong>
+          </article>
+          <article class="status-chip">
+            <span>Gallery Mood</span>
+            <strong>${beat.gallery}</strong>
+          </article>
+          <article class="status-chip">
+            <span>Eggs on Record</span>
+            <strong>2</strong>
+          </article>
+        `;
+      }
+
+      function syncRegistryToCurrentSpeaker() {
+        const currentSpeaker = characters[getCurrentSpeakerKey()];
+        state.registry.source = "current";
+        state.registry.expression = getCurrentBeat().expression;
+        state.registry.config = createPortraitConfig(currentSpeaker);
+        state.registry.paletteSource = currentSpeaker.palettePreset;
+        state.registry.palette = clonePalette(portraitPalettes[currentSpeaker.palettePreset]);
+      }
+
+      function loadRegistryPreset(source, openView = true) {
+        const character = source === "current" ? characters[getCurrentSpeakerKey()] : characters[source];
+        state.registry.source = source;
+        state.registry.expression = source === "current" ? getCurrentBeat().expression : "neutral";
+        state.registry.config = createPortraitConfig(character);
+        state.registry.paletteSource = character.palettePreset;
+        state.registry.palette = clonePalette(portraitPalettes[character.palettePreset]);
+
+        if (openView) {
+          setActiveView("registry");
+        } else {
+          renderRegistryView();
+        }
+      }
+
+      function markRegistrySubjectCustom() {
+        if (state.registry.source !== "custom") {
+          state.registry.source = "custom";
+        }
+      }
+
+      function markRegistryPaletteCustom() {
+        if (state.registry.paletteSource !== "custom") {
+          state.registry.paletteSource = "custom";
+        }
+      }
+
+      function loadRegistryPalette(paletteKey) {
+        state.registry.paletteSource = paletteKey;
+        state.registry.palette = clonePalette(portraitPalettes[paletteKey]);
+        renderRegistryView();
+      }
+
+      function renderRegistryView() {
+        const sourceCharacter = getRegistrySourceCharacter();
+        const sourceName = state.registry.source === "current"
+          ? `Current Filing: ${sourceCharacter.displayName}`
+          : state.registry.source === "custom"
+            ? "Custom Record"
+            : `Filed Preset: ${sourceCharacter.displayName}`;
+
+        elements.registryBaseSelect.value = state.registry.source;
+        elements.registryExpressionSelect.value = state.registry.expression;
+        elements.registryHeadSelect.value = state.registry.config.headShape;
+        elements.registryBeakSelect.value = state.registry.config.beakType;
+        elements.registryEyesSelect.value = state.registry.config.eyeType;
+        elements.registryCrestSelect.value = state.registry.config.crestType;
+        elements.registryAccessorySelect.value = state.registry.config.accessory;
+        elements.registryPaletteSelect.value = state.registry.paletteSource;
+        elements.registryCompareSelect.value = state.registry.compareAxis;
+        elements.registryPlumageColor.value = state.registry.palette.plumage;
+        elements.registryRobeColor.value = state.registry.palette.robe;
+        elements.registryBeakColor.value = state.registry.palette.beak;
+        elements.registryAccessoryColor.value = state.registry.palette.accessory;
+        elements.registryInkColor.value = state.registry.palette.ink;
+        elements.registryPaperColor.value = state.registry.palette.paper;
+        elements.registryAlertColor.value = state.registry.palette.alert;
+
+        elements.registryRecipeName.textContent = sourceName;
+        elements.registryRecipeOutput.textContent = buildRegistryRecipeOutput(sourceName);
+        elements.registryPortraitMount.innerHTML = buildPortraitSvg(
+          state.registry.config,
+          state.registry.expression,
+          "Registry portrait record",
+          "portrait-svg portrait-svg--registry",
+          state.registry.palette
+        );
+
+        elements.registryExpressionGrid.innerHTML = expressions
+          .map((expression) => {
+            const isActive = expression === state.registry.expression;
+
+            return `
+              <article class="registry-mini-card${isActive ? " is-active" : ""}">
+                <div class="registry-mini-stage">
+                  ${buildPortraitSvg(
+                    state.registry.config,
+                    expression,
+                    `${expressionLabel(expression)} registry preview`,
+                    "portrait-svg portrait-svg--mini",
+                    state.registry.palette
+                  )}
+                </div>
+                <div class="registry-mini-meta">
+                  <strong>${expressionLabel(expression)}</strong>
+                  <span>${isActive ? "Current state on file." : "Alternate pressure state."}</span>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+
+        renderRegistryCompareGrid();
+      }
+
+      function renderRegistryCompareGrid() {
+        const axis = state.registry.compareAxis;
+        const options = axis === "expression"
+          ? expressions
+          : axis === "palette"
+            ? Object.keys(portraitPalettes)
+            : portraitPartOptions[axis];
+
+        elements.registryCompareTitle.textContent = `${compareAxisLabels[axis]} Review`;
+        elements.registryCompareGrid.innerHTML = options
+          .map((optionValue) => {
+            const config = { ...state.registry.config };
+            const expression = axis === "expression" ? optionValue : state.registry.expression;
+            const palette = axis === "palette" ? clonePalette(portraitPalettes[optionValue]) : state.registry.palette;
+
+            if (axis !== "expression" && axis !== "palette") {
+              config[axis] = optionValue;
+            }
+
+            return `
+              <article class="registry-compare-card">
+                <div class="registry-compare-stage">
+                  ${buildPortraitSvg(
+                    config,
+                    expression,
+                    `${compareAxisLabels[axis]} ${registryOptionLabel(axis, optionValue)}`,
+                    "portrait-svg portrait-svg--mini",
+                    palette
+                  )}
+                </div>
+                <div class="registry-compare-meta">
+                  <strong>${registryOptionLabel(axis, optionValue)}</strong>
+                  <span>${compareAxisSummary(axis)}</span>
+                  ${renderPaletteSwatches(palette)}
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+      }
+
+      function buildRegistryRecipeOutput(sourceName) {
+        return [
+          sourceName,
+          `expression: ${expressionLabel(state.registry.expression)}`,
+          `palette: ${registryOptionLabel("palette", state.registry.paletteSource)}`,
+          `headShape: ${portraitPartLabels.headShape[state.registry.config.headShape]}`,
+          `beakType: ${portraitPartLabels.beakType[state.registry.config.beakType]}`,
+          `eyeType: ${portraitPartLabels.eyeType[state.registry.config.eyeType]}`,
+          `crestType: ${portraitPartLabels.crestType[state.registry.config.crestType]}`,
+          `accessory: ${portraitPartLabels.accessory[state.registry.config.accessory]}`,
+          `plumage: ${state.registry.palette.plumage}`,
+          `robe: ${state.registry.palette.robe}`,
+          `beakColor: ${state.registry.palette.beak}`,
+          `accessoryColor: ${state.registry.palette.accessory}`,
+          `ink: ${state.registry.palette.ink}`,
+          `ground: ${state.registry.palette.paper}`,
+          `alert: ${state.registry.palette.alert}`,
+        ].join("\n");
+      }
+
+      function getRegistrySourceCharacter() {
+        if (state.registry.source === "custom") {
+          return characters[getCurrentSpeakerKey()];
+        }
+
+        return state.registry.source === "current"
+          ? characters[getCurrentSpeakerKey()]
+          : characters[state.registry.source];
+      }
+
+      function createPortraitConfig(character) {
+        return {
+          headShape: character.headShape,
+          beakType: character.beakType,
+          eyeType: character.eyeType,
+          crestType: character.crestType,
+          accessory: character.accessory,
+        };
+      }
+
+      function expressionLabel(expression) {
+        return expression.charAt(0).toUpperCase() + expression.slice(1);
+      }
+
+      function registryOptionLabel(axis, value) {
+        if (axis === "expression") {
+          return expressionLabel(value);
+        }
+
+        if (axis === "palette") {
+          return value === "custom" ? "Custom Palette" : portraitPalettes[value].label;
+        }
+
+        return portraitPartLabels[axis][value];
+      }
+
+      function compareAxisSummary(axis) {
+        if (axis === "expression") {
+          return "Same build, different pressure.";
+        }
+
+        if (axis === "palette") {
+          return "Same build, revised palette.";
+        }
+
+        return `Only ${compareAxisLabels[axis].toLowerCase()} changes.`;
+      }
+
+      function clonePalette(palette) {
+        return { ...palette };
+      }
+
+      function renderPaletteSwatches(palette) {
+        return `
+          <div class="registry-swatch-row" aria-hidden="true">
+            <span class="registry-swatch" style="--swatch:${palette.plumage}"></span>
+            <span class="registry-swatch" style="--swatch:${palette.robe}"></span>
+            <span class="registry-swatch" style="--swatch:${palette.beak}"></span>
+            <span class="registry-swatch" style="--swatch:${palette.accessory}"></span>
+            <span class="registry-swatch" style="--swatch:${palette.paper}"></span>
+          </div>
+        `;
+      }
+
+      function buildPortraitSvg(character, expression, ariaLabel, className = "portrait-svg", palette = null) {
+        return `
+          <svg
+            class="${className}"
+            viewBox="0 0 320 320"
+            role="img"
+            aria-label="${ariaLabel}"
+            ${palette ? `style="${buildPortraitPaletteStyle(palette)}"` : ""}
+          >
+            <rect x="0" y="0" width="320" height="320" rx="28" class="portrait-surface"></rect>
+            <ellipse cx="160" cy="288" rx="110" ry="18" class="portrait-shadow"></ellipse>
+            <path d="M70 298C84 242 110 216 160 216C210 216 236 242 250 298Z" class="portrait-robe"></path>
+            ${renderHead(character.headShape, expression)}
+            ${renderBeak(character.beakType)}
+            ${renderEyes(character.eyeType, expression)}
+            ${renderCrest(character.crestType, expression)}
+            ${renderAccessory(character.accessory)}
+            ${renderExpressionOverlay(expression)}
+          </svg>
+        `;
+      }
+
+      function buildPortraitPaletteStyle(palette) {
+        return [
+          `--portrait-base:${palette.plumage}`,
+          `--portrait-robe:${palette.robe}`,
+          `--portrait-accent:${palette.beak}`,
+          `--portrait-accessory-fill:${palette.accessory}`,
+          `--portrait-ink:${palette.ink}`,
+          `--portrait-paper:${palette.paper}`,
+          `--portrait-alert:${palette.alert}`,
+        ].join(";");
+      }
+
+      function renderHead(headShape, expression) {
+        const puffed = expression === "panicked";
+
+        if (headShape === "owl") {
+          return `
+            <path d="M94 188C92 128 120 78 160 78C200 78 228 128 226 188C226 220 198 242 160 242C122 242 94 220 94 188Z" class="portrait-head"></path>
+            <path d="M122 106C130 90 143 82 160 82C177 82 190 90 198 106" class="portrait-feather-lines"></path>
+            <path d="M107 153C118 144 131 139 145 139" class="portrait-outline"></path>
+            <path d="M175 139C189 139 202 144 213 153" class="portrait-outline"></path>
+            ${puffed ? `<path d="M88 160L70 145L81 170L60 171L80 183L71 202L92 194" class="portrait-expression-line"></path>
+            <path d="M232 160L250 145L239 170L260 171L240 183L249 202L228 194" class="portrait-expression-line"></path>` : ""}
+          `;
+        }
+
+        if (headShape === "dove") {
+          return `
+            <path d="M114 194C106 138 127 92 160 88C194 88 215 129 209 191C205 223 185 242 158 242C130 242 116 225 114 194Z" class="portrait-head"></path>
+            <path d="M122 150C131 138 143 132 154 131" class="portrait-outline"></path>
+            <path d="M172 131C184 132 194 138 202 149" class="portrait-outline"></path>
+            <path d="M145 104C149 95 155 89 163 87" class="portrait-feather-lines"></path>
+            ${puffed ? `<path d="M110 153L90 141L98 162L80 168L99 176" class="portrait-expression-line"></path>
+            <path d="M214 153L234 141L226 162L244 168L225 176" class="portrait-expression-line"></path>` : ""}
+          `;
+        }
+
+        if (headShape === "pigeon") {
+          return `
+            <path d="M106 193C97 132 121 82 162 82C203 82 226 129 214 191C208 222 186 242 158 242C128 242 110 224 106 193Z" class="portrait-head"></path>
+            <path d="M115 150C124 138 138 132 151 131" class="portrait-outline"></path>
+            <path d="M171 131C185 132 198 138 206 150" class="portrait-outline"></path>
+            ${puffed ? `<path d="M104 152L82 140L91 162L72 168L92 175" class="portrait-expression-line"></path>
+            <path d="M216 152L238 140L229 162L248 168L228 175" class="portrait-expression-line"></path>` : ""}
+          `;
+        }
+
+        if (headShape === "heron") {
+          return `
+            <path d="M118 199C118 135 138 86 176 86C208 86 225 124 222 190C220 223 200 242 165 242C133 242 118 225 118 199Z" class="portrait-head"></path>
+            <path d="M138 117C147 101 160 91 177 88" class="portrait-feather-lines"></path>
+            <path d="M198 112C192 101 184 94 176 90" class="portrait-feather-lines"></path>
+            <path d="M131 149C139 139 149 134 159 133" class="portrait-outline"></path>
+            <path d="M180 133C191 134 200 140 207 150" class="portrait-outline"></path>
+            ${puffed ? `<path d="M116 154L96 140L103 162L86 167L104 177" class="portrait-expression-line"></path>
+            <path d="M220 154L240 140L233 162L250 167L232 177" class="portrait-expression-line"></path>` : ""}
+          `;
+        }
+
+        return `
+          <path d="M96 197C96 130 120 88 166 88C204 88 230 120 232 194C232 223 205 242 161 242C118 242 96 223 96 197Z" class="portrait-head"></path>
+          <path d="M118 112C130 96 145 88 164 88" class="portrait-feather-lines"></path>
+          <path d="M198 113C187 98 176 91 163 89" class="portrait-feather-lines"></path>
+          ${puffed ? `<path d="M98 152L76 140L87 162L69 170L90 177" class="portrait-expression-line"></path>
+          <path d="M224 152L246 140L235 162L253 170L232 177" class="portrait-expression-line"></path>` : ""}
+        `;
+      }
+
+      function renderBeak(beakType) {
+        if (beakType === "hooked") {
+          return `
+            <path d="M146 170C156 160 167 159 178 163C172 176 171 184 173 194C160 197 148 194 141 184C141 176 143 173 146 170Z" class="portrait-beak"></path>
+            <path d="M145 173C157 169 168 169 177 173C171 180 171 187 172 193" class="portrait-beak-line"></path>
+          `;
+        }
+
+        if (beakType === "short") {
+          return `
+            <path d="M146 169C157 162 168 162 178 168C174 182 174 188 177 195C162 197 150 195 142 186C142 178 143 174 146 169Z" class="portrait-beak"></path>
+            <path d="M145 172C156 172 167 171 178 173" class="portrait-beak-line"></path>
+          `;
+        }
+
+        if (beakType === "needle") {
+          return `
+            <path d="M148 171C160 164 171 164 184 168L237 173L183 188C171 192 159 192 148 187C144 181 144 176 148 171Z" class="portrait-beak"></path>
+            <path d="M148 173C161 173 173 173 184 175L232 175" class="portrait-beak-line"></path>
+          `;
+        }
+
+        return `
+          <path d="M137 170C154 161 171 161 188 169C182 183 182 189 186 197C165 199 146 198 132 188C132 179 133 174 137 170Z" class="portrait-beak"></path>
+          <path d="M138 173C153 172 168 172 185 174" class="portrait-beak-line"></path>
+        `;
+      }
+
+      function renderEyes(eyeType, expression) {
+        const wide = expression === "panicked";
+        const smug = expression === "smug";
+
+        if (wide) {
+          return `
+            <circle cx="132" cy="154" r="12" class="portrait-eye-fill"></circle>
+            <circle cx="190" cy="154" r="12" class="portrait-eye-fill"></circle>
+            <circle cx="132" cy="154" r="20" class="portrait-outline"></circle>
+            <circle cx="190" cy="154" r="20" class="portrait-outline"></circle>
+          `;
+        }
+
+        if (eyeType === "stern") {
+          return `
+            <path d="M118 150C126 141 136 138 148 141" class="portrait-eye-line"></path>
+            <path d="M174 141C186 138 196 141 204 150" class="portrait-eye-line"></path>
+            <circle cx="135" cy="153" r="8" class="portrait-eye-fill"></circle>
+            <circle cx="187" cy="153" r="8" class="portrait-eye-fill"></circle>
+            ${smug ? `<path d="M118 143C128 136 139 133 149 135" class="portrait-expression-line"></path>
+            <path d="M174 135C184 133 195 136 204 143" class="portrait-expression-line"></path>` : ""}
+          `;
+        }
+
+        if (eyeType === "round") {
+          return `
+            <circle cx="133" cy="154" r="10" class="portrait-eye-fill"></circle>
+            <circle cx="187" cy="154" r="10" class="portrait-eye-fill"></circle>
+            ${smug ? `<path d="M117 145C126 142 138 142 148 146" class="portrait-expression-line"></path>
+            <path d="M172 146C182 142 194 142 203 145" class="portrait-expression-line"></path>` : ""}
+          `;
+        }
+
+        if (eyeType === "squint") {
+          return `
+            <path d="M118 158C127 150 138 147 150 149" class="portrait-eye-line"></path>
+            <path d="M172 149C184 147 195 150 204 158" class="portrait-eye-line"></path>
+            <circle cx="137" cy="156" r="5" class="portrait-eye-fill"></circle>
+            <circle cx="186" cy="156" r="5" class="portrait-eye-fill"></circle>
+            ${smug ? `<path d="M117 151C127 143 138 139 149 141" class="portrait-expression-line"></path>
+            <path d="M173 141C184 139 195 143 204 151" class="portrait-expression-line"></path>` : ""}
+          `;
+        }
+
+        return `
+          <path d="M118 154C129 147 140 146 149 149" class="portrait-eye-line"></path>
+          <path d="M173 149C182 146 193 147 204 154" class="portrait-eye-line"></path>
+          <circle cx="136" cy="157" r="8" class="portrait-eye-fill"></circle>
+          <circle cx="187" cy="157" r="8" class="portrait-eye-fill"></circle>
+          ${smug ? `<path d="M118 148C127 140 138 136 149 138" class="portrait-expression-line"></path>
+          <path d="M173 138C184 136 195 140 204 148" class="portrait-expression-line"></path>` : ""}
+        `;
+      }
+
+      function renderCrest(crestType, expression) {
+        const alert = expression === "panicked";
+
+        if (crestType === "judgeTuft") {
+          return `
+            <path d="M135 92C132 76 138 62 148 54C151 69 154 82 160 92" class="portrait-crest"></path>
+            <path d="M160 92C165 73 172 60 182 52C185 66 184 80 180 94" class="portrait-crest"></path>
+            <path d="M146 63C151 72 155 82 160 92" class="portrait-accessory-line"></path>
+            <path d="M179 61C174 71 170 82 165 92" class="portrait-accessory-line"></path>
+            ${alert ? `<path d="M128 88L119 56" class="portrait-expression-line"></path>
+            <path d="M192 88L201 56" class="portrait-expression-line"></path>` : ""}
+          `;
+        }
+
+        if (crestType === "curl") {
+          return `
+            <path d="M150 84C143 70 143 58 150 49C160 58 163 72 161 87" class="portrait-crest"></path>
+            <path d="M153 52C159 58 162 66 161 74" class="portrait-accessory-line"></path>
+            ${alert ? `<path d="M140 90L131 64" class="portrait-expression-line"></path>` : ""}
+          `;
+        }
+
+        if (crestType === "fan") {
+          return `
+            <path d="M139 92C136 73 138 58 145 46C151 59 154 75 154 92" class="portrait-crest"></path>
+            <path d="M154 92C154 70 160 55 170 44C174 59 173 75 168 92" class="portrait-crest"></path>
+            <path d="M169 92C173 71 181 58 193 49C195 63 192 79 183 95" class="portrait-crest"></path>
+            <path d="M146 57C149 68 151 79 151 90" class="portrait-accessory-line"></path>
+            <path d="M169 55C168 67 167 78 166 89" class="portrait-accessory-line"></path>
+            ${alert ? `<path d="M130 90L122 62" class="portrait-expression-line"></path>
+            <path d="M194 92L202 62" class="portrait-expression-line"></path>` : ""}
+          `;
+        }
+
+        return alert
+          ? `<path d="M148 92L137 66" class="portrait-expression-line"></path>
+             <path d="M172 92L183 66" class="portrait-expression-line"></path>`
+          : "";
+      }
+
+      function renderAccessory(accessory) {
+        if (accessory === "chain") {
+          return `
+            <path d="M112 236C127 249 142 255 160 255C178 255 193 249 208 236" class="portrait-accessory-line"></path>
+            <circle cx="160" cy="254" r="11" class="portrait-accessory"></circle>
+            <circle cx="160" cy="254" r="4" class="portrait-surface"></circle>
+          `;
+        }
+
+        if (accessory === "badge") {
+          return `
+            <path d="M195 227L214 242L205 264L183 264L174 242Z" class="portrait-accessory"></path>
+            <path d="M184 246L193 254L204 238" class="portrait-accessory-line"></path>
+          `;
+        }
+
+        if (accessory === "spectacles") {
+          return `
+            <circle cx="136" cy="156" r="16" class="portrait-accessory-line"></circle>
+            <circle cx="188" cy="156" r="16" class="portrait-accessory-line"></circle>
+            <path d="M152 156L172 156" class="portrait-accessory-line"></path>
+            <path d="M119 154L107 149" class="portrait-accessory-line"></path>
+            <path d="M205 154L217 149" class="portrait-accessory-line"></path>
+          `;
+        }
+
+        return `
+          <path d="M150 225L170 225L178 290L142 290Z" class="portrait-accessory"></path>
+          <path d="M150 225L161 246L170 225" class="portrait-accessory-line"></path>
+        `;
+      }
+
+      function renderExpressionOverlay(expression) {
+        if (expression === "smug") {
+          return `
+            <path d="M183 189C192 190 198 193 204 199" class="portrait-expression-line"></path>
+            <path d="M202 126C211 124 218 126 224 133" class="portrait-expression-line"></path>
+          `;
+        }
+
+        if (expression === "panicked") {
+          return `
+            <path d="M116 118C112 105 116 95 124 88" class="portrait-expression-line"></path>
+            <path d="M208 118C212 105 208 95 200 88" class="portrait-expression-line"></path>
+            <path d="M224 118C233 118 239 124 242 135C235 142 228 146 219 144C217 134 218 125 224 118Z" class="portrait-expression"></path>
+          `;
+        }
+
+        return "";
+      }
+
+      function renderPetitionIcon() {
+        return `
+          <svg viewBox="0 0 80 80" aria-hidden="true">
+            <path d="M23 14H50L60 24V65H23Z" class="evidence-icon-frame"></path>
+            <path d="M50 14V24H60" class="evidence-icon-line"></path>
+            <path d="M30 34H52" class="evidence-icon-line"></path>
+            <path d="M30 44H52" class="evidence-icon-line"></path>
+            <path d="M30 54H46" class="evidence-icon-line"></path>
+            <path d="M27 24C34 21 40 20 46 21" class="evidence-icon-detail"></path>
+          </svg>
+        `;
+      }
+
+      function renderTimelineIcon() {
+        return `
+          <svg viewBox="0 0 80 80" aria-hidden="true">
+            <rect x="16" y="20" width="48" height="44" rx="7" class="evidence-icon-frame"></rect>
+            <path d="M16 32H64" class="evidence-icon-line"></path>
+            <path d="M28 14V25" class="evidence-icon-line"></path>
+            <path d="M52 14V25" class="evidence-icon-line"></path>
+            <path d="M27 42H39" class="evidence-icon-detail"></path>
+            <path d="M27 52H53" class="evidence-icon-line"></path>
+          </svg>
+        `;
+      }
+
+      function renderObservationIcon() {
+        return `
+          <svg viewBox="0 0 80 80" aria-hidden="true">
+            <circle cx="28" cy="42" r="12" class="evidence-icon-frame"></circle>
+            <circle cx="52" cy="42" r="12" class="evidence-icon-frame"></circle>
+            <path d="M40 42H40" class="evidence-icon-detail"></path>
+            <path d="M18 62H62" class="evidence-icon-line"></path>
+            <path d="M24 25C30 20 36 18 43 19" class="evidence-icon-line"></path>
+            <path d="M31 42H49" class="evidence-icon-line"></path>
+          </svg>
+        `;
+      }
+
+      function renderNestPhotoIcon() {
+        return `
+          <svg viewBox="0 0 80 80" aria-hidden="true">
+            <rect x="13" y="14" width="54" height="50" rx="6" class="evidence-icon-frame"></rect>
+            <path d="M21 52L34 40L42 47L52 34L60 52" class="evidence-icon-line"></path>
+            <ellipse cx="32" cy="47" rx="7" ry="5" class="evidence-icon-detail"></ellipse>
+            <ellipse cx="46" cy="46" rx="7" ry="5" class="evidence-icon-detail"></ellipse>
+          </svg>
+        `;
+      }
+    </script>
+  </body>
+</html>
