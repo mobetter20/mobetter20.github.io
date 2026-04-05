@@ -241,14 +241,6 @@ footer {
   --room-row-span: 3;
 }
 
-.house-grid > .room:not(.room-featured):not(.room-wide):not(.room-tall):nth-child(7n) {
-  --room-col-span: 2;
-}
-
-.house-grid > .room:not(.room-featured):not(.room-wide):not(.room-tall):nth-child(5n) {
-  --room-row-span: 3;
-}
-
 .room::before {
   content: "";
   position: absolute;
@@ -377,10 +369,6 @@ footer {
 @media (min-width: 1101px) {
   .writing-house .room-featured,
   .writing-house .room-tall {
-    --room-copy-offset: calc(-1 * (var(--house-row-step) + var(--house-gap)));
-  }
-
-  .writing-house .house-grid > .room:not(.room-featured):not(.room-wide):not(.room-tall):nth-child(5n) {
     --room-copy-offset: calc(-1 * (var(--house-row-step) + var(--house-gap)));
   }
 }
