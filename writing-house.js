@@ -1,10 +1,54 @@
 const writingHouse = document.querySelector(".writing-house");
 
 if (writingHouse) {
+  const roomCards = Array.from(writingHouse.querySelectorAll(".house-grid > .room"));
   const stage = writingHouse.querySelector(".house-stage");
   const frame = writingHouse.querySelector(".house-frame");
   const cursor = writingHouse.querySelector(".writing-cursor");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const countLabel = writingHouse.querySelector("[data-room-count-label]");
+
+  const countToWords = (count) => {
+    const ones = [
+      "Zero",
+      "One",
+      "Two",
+      "Three",
+      "Four",
+      "Five",
+      "Six",
+      "Seven",
+      "Eight",
+      "Nine",
+      "Ten",
+      "Eleven",
+      "Twelve",
+      "Thirteen",
+      "Fourteen",
+      "Fifteen",
+      "Sixteen",
+      "Seventeen",
+      "Eighteen",
+      "Nineteen"
+    ];
+    const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty"];
+
+    if (count < 20) {
+      return ones[count] || String(count);
+    }
+
+    if (count < 60) {
+      const tenValue = Math.floor(count / 10);
+      const oneValue = count % 10;
+      return oneValue ? `${tens[tenValue]}-${ones[oneValue].toLowerCase()}` : tens[tenValue];
+    }
+
+    return String(count);
+  };
+
+  if (countLabel) {
+    countLabel.textContent = countToWords(roomCards.length);
+  }
 
   const entries = Array.from(writingHouse.querySelectorAll("[data-type-text]")).map((element) => ({
     element,
