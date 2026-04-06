@@ -1,0 +1,1365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avian Municipal Nest Court — eCourt Public Portal</title>
+  <meta name="description" content="Public case information and eCourt access portal for the Nest Court of the Avian Municipal District.">
+  <meta property="og:title" content="Avian Municipal Nest Court — eCourt Public Portal">
+  <meta property="og:description" content="Public case information and eCourt access for the Nest Court of the Avian Municipal District. Case Docket, Court Calendar, Filing Information.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ajin.im/is/writing/nest-court/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%231B2A3D' stroke-width='4'/><circle cx='50' cy='50' r='38' fill='none' stroke='%23B8963E' stroke-width='2'/><path d='M30 62C36 52 42 48 50 48C58 48 64 52 70 62C64 72 58 76 50 76C42 76 36 72 30 62Z' fill='none' stroke='%231B2A3D' stroke-width='3'/><ellipse cx='44' cy='58' rx='4' ry='5' fill='none' stroke='%231B2A3D' stroke-width='2'/><ellipse cx='56' cy='58' rx='4' ry='5' fill='none' stroke='%231B2A3D' stroke-width='2'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <script src="../../../analytics.js" defer></script>
+  <style>
+    /* ── reset & base ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F3EE;
+      --bg-alt: #EBE8E1;
+      --bg-white: #FFFFFF;
+      --nav-bg: #1B2A3D;
+      --nav-hover: #253A52;
+      --nav-text: #CBD5E1;
+      --nav-active: #FFFFFF;
+      --seal-blue: #1B2A3D;
+      --seal-gold: #B8963E;
+      --text-primary: #1A1A1A;
+      --text-secondary: #4A4A4A;
+      --text-tertiary: #7A7A7A;
+      --text-muted: #9A9A9A;
+      --border: #D4D0C8;
+      --border-light: #E4E1DA;
+      --link: #2A5A8C;
+      --link-hover: #1A3A5C;
+      --status-active: #B8860B;
+      --status-active-bg: #FFF8E7;
+      --status-closed: #6B7280;
+      --status-closed-bg: #F3F4F6;
+      --status-settled: #2D6A4F;
+      --status-settled-bg: #ECFDF5;
+      --status-dismissed: #9CA3AF;
+      --accent-red: #8B2020;
+      --accent-red-bg: #FEF2F2;
+      --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Source Sans 3', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --font-mono: 'Source Code Pro', 'Courier New', Courier, monospace;
+    }
+
+    html { font-size: 15px; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      background: var(--bg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { color: var(--link-hover); text-decoration: underline; }
+
+    /* ── utility banner ────────────────────────── */
+    .util-banner {
+      background: var(--seal-blue);
+      color: var(--nav-text);
+      font-size: 0.72rem;
+      padding: 5px 0;
+      letter-spacing: 0.02em;
+    }
+    .util-banner .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .util-banner a { color: var(--nav-text); }
+    .util-banner a:hover { color: #fff; text-decoration: underline; }
+    .util-banner .util-right { display: flex; gap: 16px; align-items: center; }
+    .util-banner .util-right span { opacity: 0.5; }
+
+    /* ── header ─────────────────────────────────── */
+    .site-header {
+      background: var(--bg-white);
+      border-bottom: 3px solid var(--seal-gold);
+      padding: 16px 0;
+    }
+    .site-header .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .seal-container { flex-shrink: 0; }
+    .court-seal {
+      width: 72px;
+      height: 72px;
+    }
+
+    .header-text { flex: 1; }
+    .header-text .court-district {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 2px;
+    }
+    .header-text h1 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--seal-blue);
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .header-text .court-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-tertiary);
+    }
+
+    .header-right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .header-right .portal-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .header-right .portal-version {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── navigation ─────────────────────────────── */
+    .site-nav {
+      background: var(--nav-bg);
+    }
+    .site-nav .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+    }
+    .site-nav a {
+      display: block;
+      padding: 10px 18px;
+      color: var(--nav-text);
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .site-nav a:hover {
+      background: var(--nav-hover);
+      color: #fff;
+      text-decoration: none;
+    }
+    .site-nav a.active {
+      color: var(--nav-active);
+      border-bottom-color: var(--seal-gold);
+    }
+
+    /* ── main layout ───────────────────────────── */
+    .page-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 24px 48px;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 28px;
+    }
+
+    /* ── main content ──────────────────────────── */
+    .main-content { min-width: 0; }
+
+    .breadcrumb {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .breadcrumb a { color: var(--text-tertiary); }
+    .breadcrumb span { margin: 0 4px; }
+
+    /* ── disclaimer box ────────────────────────── */
+    .disclaimer {
+      background: var(--status-active-bg);
+      border: 1px solid #E8D5A0;
+      padding: 12px 16px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .disclaimer strong { color: var(--text-primary); }
+
+    /* ── section headings ──────────────────────── */
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--seal-blue);
+      border-bottom: 2px solid var(--seal-blue);
+      padding-bottom: 6px;
+      margin-bottom: 16px;
+      margin-top: 28px;
+    }
+    .section-heading:first-child { margin-top: 0; }
+
+    /* ── docket table ──────────────────────────── */
+    .docket-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+    .docket-table thead th {
+      background: var(--nav-bg);
+      color: #fff;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .docket-table tbody td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: top;
+    }
+    .docket-table tbody tr:hover { background: var(--bg-alt); }
+    .docket-table tbody tr.active-case { background: #FFFDF5; }
+    .docket-table tbody tr.active-case:hover { background: #FFF8E7; }
+
+    .case-link { font-weight: 600; font-family: var(--font-mono); font-size: 0.8rem; }
+
+    .status-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 2px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    a.status-badge {
+      text-decoration: none;
+    }
+    a.status-badge:hover {
+      text-decoration: none;
+      filter: brightness(0.96);
+    }
+    .status-active { background: var(--status-active-bg); color: var(--status-active); border: 1px solid #E8D5A0; }
+    .status-closed { background: var(--status-closed-bg); color: var(--status-closed); border: 1px solid #D1D5DB; }
+    .status-settled { background: var(--status-settled-bg); color: var(--status-settled); border: 1px solid #A7F3D0; }
+    .status-dismissed { background: var(--status-closed-bg); color: var(--status-dismissed); border: 1px solid #D1D5DB; }
+
+    .docket-note {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+
+    /* ── case detail ────────────────────────────── */
+    .case-detail {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .case-detail-header {
+      background: var(--nav-bg);
+      color: #fff;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .case-detail-header h3 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .case-detail-header .case-no {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      opacity: 0.7;
+    }
+    .case-detail-body { padding: 20px; }
+
+    .case-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .case-field {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      gap: 8px;
+    }
+    .case-field:nth-child(odd) { padding-right: 20px; }
+    .case-field:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--border-light); }
+    .field-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      min-width: 120px;
+      flex-shrink: 0;
+    }
+    .field-value {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    /* ── filings list ──────────────────────────── */
+    .filings-list { margin-bottom: 24px; }
+
+    .filing-item {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .filing-item:hover { border-color: var(--link); }
+
+    .filing-header {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .filing-header-left { flex: 1; }
+    .filing-title {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    .filing-meta {
+      font-size: 0.72rem;
+      color: var(--text-tertiary);
+    }
+    .filing-meta span { margin-right: 12px; }
+    .filing-toggle {
+      font-size: 0.72rem;
+      color: var(--link);
+      font-weight: 500;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .filing-body {
+      display: none;
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border-light);
+      margin-top: 0;
+    }
+    .filing-item.open .filing-body { display: block; padding-top: 16px; }
+    .filing-item.open .filing-toggle::after { content: '▲'; }
+    .filing-item:not(.open) .filing-toggle::after { content: '▼'; }
+
+    .filing-content {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+    .filing-content p { margin-bottom: 12px; }
+    .filing-content p:last-child { margin-bottom: 0; }
+    .filing-content .legal-heading {
+      font-weight: 600;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--text-primary);
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+    .filing-content .indent { padding-left: 20px; }
+    .filing-content .numbered-item { margin-bottom: 8px; }
+    .filing-content .exhibit-ref {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      background: var(--bg-alt);
+      padding: 1px 5px;
+    }
+    .filing-content .legal-cite {
+      font-style: italic;
+      color: var(--text-tertiary);
+      font-size: 0.8rem;
+    }
+    .filing-content .sig-block {
+      margin-top: 20px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.82rem;
+    }
+    .filing-content .sig-line {
+      display: inline-block;
+      border-bottom: 1px solid var(--text-primary);
+      min-width: 200px;
+      margin-bottom: 4px;
+    }
+    .filing-content .witness-q {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .filing-content .witness-a {
+      margin-bottom: 12px;
+      padding-left: 20px;
+    }
+    .filing-content .court-note {
+      background: var(--status-active-bg);
+      border-left: 3px solid var(--seal-gold);
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin: 12px 0;
+    }
+    .filing-content .struck {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+    .filing-content table.evidence-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 0.82rem;
+    }
+    .filing-content table.evidence-table th {
+      text-align: left;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-tertiary);
+      padding: 6px 10px;
+      border-bottom: 2px solid var(--border);
+      font-weight: 600;
+    }
+    .filing-content table.evidence-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: top;
+    }
+
+    /* ── sidebar ────────────────────────────────── */
+    .sidebar {}
+
+    .sidebar-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .sidebar-card-header {
+      background: var(--bg-alt);
+      padding: 10px 14px;
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-card-body { padding: 14px; }
+    .sidebar-card-body p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .sidebar-card-body p:last-child { margin-bottom: 0; }
+
+    .sidebar-field {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 0.8rem;
+    }
+    .sidebar-field:last-child { border-bottom: none; }
+    .sidebar-field .sf-label { color: var(--text-tertiary); }
+    .sidebar-field .sf-value { color: var(--text-primary); font-weight: 500; text-align: right; }
+
+    .judge-block {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .judge-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--bg-alt);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+    .judge-icon svg { width: 24px; height: 24px; }
+    .judge-info .judge-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+    }
+    .judge-info .judge-title {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      padding: 4px 0;
+      color: var(--text-secondary);
+    }
+    .hours-row .day { color: var(--text-tertiary); }
+
+    .sidebar-notice {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding: 10px 14px;
+      background: var(--accent-red-bg);
+      border: 1px solid #FECACA;
+    }
+    .sidebar-notice strong { color: var(--accent-red); }
+
+    /* ── footer ─────────────────────────────────── */
+    .site-footer {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      padding: 24px 0;
+      margin-top: 20px;
+    }
+    .site-footer .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 20px;
+    }
+    .footer-col h4 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--seal-gold);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .footer-col p, .footer-col a {
+      font-size: 0.78rem;
+      color: var(--nav-text);
+      line-height: 1.6;
+      display: block;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.4); }
+
+    /* ── search box (decorative) ───────────────── */
+    .case-search-box {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+    .search-row {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+    .search-field { flex: 1; }
+    .search-field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .search-field input, .search-field select {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      background: #fff;
+      color: var(--text-primary);
+    }
+    .search-field input:focus, .search-field select:focus {
+      outline: 2px solid var(--link);
+      outline-offset: -1px;
+    }
+    .search-btn {
+      padding: 7px 20px;
+      background: var(--nav-bg);
+      color: #fff;
+      border: 1px solid var(--nav-bg);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .search-btn:hover { background: var(--nav-hover); }
+    .search-help {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ── responsive ─────────────────────────────── */
+    .unavailable-notice {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--nav-bg);
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 0.82rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      max-width: 480px;
+      text-align: center;
+      line-height: 1.45;
+    }
+    .unavailable-notice.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    @media (max-width: 768px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .site-header .wrap { flex-wrap: wrap; }
+      .header-right { display: none; }
+      .case-info-grid { grid-template-columns: 1fr; }
+      .case-field:nth-child(even) { padding-left: 0; border-left: none; }
+      .case-field:nth-child(odd) { padding-right: 0; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .site-nav .wrap { flex-wrap: wrap; }
+      .site-nav a { padding: 8px 12px; font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Utility banner -->
+  <div class="util-banner">
+    <div class="wrap">
+      <span>Avian Municipal District — Official Government Portal</span>
+      <div class="util-right">
+        <a href="javascript:void(0)">Accessibility</a>
+        <span>|</span>
+        <a href="javascript:void(0)">Translate</a>
+        <span>|</span>
+        <span>Font size: <a href="javascript:void(0)">A</a> <a href="javascript:void(0)"><strong>A</strong></a> <a href="javascript:void(0)"><strong style="font-size:1.1em">A</strong></a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="wrap">
+      <div class="seal-container">
+        <svg class="court-seal" viewBox="0 0 140 140" role="img" aria-label="Avian Municipal Nest Court seal">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#1B2A3D" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="58" fill="none" stroke="#B8963E" stroke-width="1.5"/>
+          <circle cx="70" cy="70" r="54" fill="none" stroke="#B8963E" stroke-width="0.5"/>
+          <!-- nest -->
+          <path d="M38 82C44 72 55 67 70 67C85 67 96 72 102 82C96 96 85 102 70 102C55 102 44 96 38 82Z" fill="none" stroke="#1B2A3D" stroke-width="1.8"/>
+          <!-- twigs in nest -->
+          <line x1="42" y1="80" x2="98" y2="80" stroke="#1B2A3D" stroke-width="0.8" stroke-dasharray="3,2"/>
+          <line x1="45" y1="85" x2="95" y2="85" stroke="#1B2A3D" stroke-width="0.8" stroke-dasharray="2,3"/>
+          <!-- eggs -->
+          <ellipse cx="60" cy="76" rx="5" ry="6" fill="none" stroke="#1B2A3D" stroke-width="1.2"/>
+          <ellipse cx="74" cy="75" rx="5" ry="6" fill="none" stroke="#1B2A3D" stroke-width="1.2"/>
+          <!-- scales of justice above -->
+          <line x1="70" y1="28" x2="70" y2="52" stroke="#1B2A3D" stroke-width="1.5"/>
+          <line x1="52" y1="40" x2="88" y2="40" stroke="#1B2A3D" stroke-width="1.5"/>
+          <path d="M48 40L44 52L56 52Z" fill="none" stroke="#1B2A3D" stroke-width="1.2"/>
+          <path d="M92 40L88 52L96 52Z" fill="none" stroke="#1B2A3D" stroke-width="1.2" transform="translate(-4,0)"/>
+          <!-- feathers -->
+          <path d="M30 45C26 58 26 72 30 85" fill="none" stroke="#B8963E" stroke-width="1" opacity="0.6"/>
+          <path d="M110 45C114 58 114 72 110 85" fill="none" stroke="#B8963E" stroke-width="1" opacity="0.6"/>
+          <!-- text arc top -->
+          <defs>
+            <path id="topArc" d="M25 70 A45,45 0 0,1 115,70"/>
+            <path id="bottomArc" d="M28 75 A44,44 0 0,0 112,75"/>
+          </defs>
+          <text font-family="'Source Serif 4', Georgia, serif" font-size="7.5" fill="#1B2A3D" letter-spacing="1.5">
+            <textPath href="#topArc" startOffset="50%" text-anchor="middle">AVIAN MUNICIPAL</textPath>
+          </text>
+          <text font-family="'Source Serif 4', Georgia, serif" font-size="7.5" fill="#1B2A3D" letter-spacing="1.5">
+            <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">NEST COURT</textPath>
+          </text>
+        </svg>
+      </div>
+      <div class="header-text">
+        <p class="court-district">Avian Municipal District — Branch Division</p>
+        <h1>Nest Court of the Avian Municipal District</h1>
+        <p class="court-subtitle">Public Case Information &amp; eCourt Access Portal</p>
+      </div>
+      <div class="header-right">
+        <p class="portal-label">eCourt Public Portal</p>
+        <p class="portal-version">NestLaw&trade; Portal v2.3.1</p>
+        <p class="portal-version">Last updated: Mar 28, 2026</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="site-nav">
+    <div class="wrap">
+      <a href="javascript:void(0)" class="active">Case Docket</a>
+      <a href="javascript:void(0)">Court Calendar</a>
+      <a href="javascript:void(0)">File a Petition</a>
+      <a href="javascript:void(0)">Forms &amp; Resources</a>
+      <a href="javascript:void(0)">Court Rules</a>
+      <a href="javascript:void(0)">Contact the Clerk</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="page-wrap">
+    <div class="main-content">
+
+      <div class="breadcrumb">
+        <a href="javascript:void(0)">Home</a> <span>›</span> <a href="javascript:void(0)">Case Docket</a> <span>›</span> Active Cases
+      </div>
+
+      <div class="disclaimer">
+        <strong>Notice:</strong> This site provides public access to Nest Court case information per Avian Municipal Ordinance 14.7(b). Records are updated as filings are processed by the Clerk's office. This data does not constitute the official record of the Court. The Court provides no warranties regarding the accuracy of information retrieved through this portal. For certified copies, contact the Clerk's office during business hours.
+      </div>
+
+      <!-- Case search -->
+      <div class="case-search-box">
+        <div class="search-row">
+          <div class="search-field">
+            <label for="caseNo">Case / Docket Number</label>
+            <input type="text" id="caseNo" placeholder="e.g. AMNC-2026-007B">
+          </div>
+          <div class="search-field">
+            <label for="partyName">Party Name</label>
+            <input type="text" id="partyName" placeholder="Last name or species">
+          </div>
+          <div class="search-field" style="max-width: 160px;">
+            <label for="caseType">Case Type</label>
+            <select id="caseType">
+              <option>All Types</option>
+              <option>Nest Abandonment</option>
+              <option>Territorial Dispute</option>
+              <option>Egg Custody</option>
+              <option>Noise / Nuisance</option>
+              <option>Nesting Permit</option>
+            </select>
+          </div>
+          <button class="search-btn" type="button">Search</button>
+        </div>
+        <p class="search-help">Search by case number, citation number, party name, or species. Only cases within the last 5 years are available through this portal.</p>
+      </div>
+
+      <!-- Docket table -->
+      <h2 class="section-heading">Current Docket</h2>
+
+      <table class="docket-table">
+        <thead>
+          <tr>
+            <th>Case No.</th>
+            <th>Caption</th>
+            <th>Type</th>
+            <th>Filed</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="active-case">
+            <td><a href="#case-detail" class="case-link">AMNC-2026-007B</a></td>
+            <td><strong>Dove v. Dove</strong></td>
+            <td>Nest Abandonment</td>
+            <td>Feb 12, 2026</td>
+            <td>
+              <a
+                class="status-badge status-active"
+                href="https://ajin.im/is/writing/nest-court-proceedings/"
+                title="Temporary test implementation: open proceedings view"
+              >Active</a>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="case-link" style="color: var(--text-tertiary);">AMNC-2025-041A</span></td>
+            <td>Finch v. Finch</td>
+            <td>Territorial Dispute</td>
+            <td>Nov 03, 2025</td>
+            <td><span class="status-badge status-settled">Settled</span></td>
+          </tr>
+          <tr>
+            <td><span class="case-link" style="color: var(--text-tertiary);">AMNC-2025-038A</span></td>
+            <td>In re: Wren — Nest Inspection Appeal</td>
+            <td>Nesting Permit</td>
+            <td>Sep 17, 2025</td>
+            <td><span class="status-badge status-dismissed">Dismissed</span></td>
+          </tr>
+          <tr>
+            <td><span class="case-link" style="color: var(--text-tertiary);">AMNC-2025-022C</span></td>
+            <td>Starling v. Starling</td>
+            <td>Egg Custody</td>
+            <td>Jun 02, 2025</td>
+            <td><span class="status-badge status-closed">Closed</span></td>
+          </tr>
+          <tr>
+            <td><span class="case-link" style="color: var(--text-tertiary);">AMNC-2024-119A</span></td>
+            <td>Avian Mun. Dist. v. Pigeon (J.)</td>
+            <td>Noise / Nuisance</td>
+            <td>Dec 14, 2024</td>
+            <td><span class="status-badge status-closed">Closed</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="docket-note">Displaying 5 of 5 results. Gaps in case numbering indicate sealed, expunged, or administratively transferred matters.</p>
+
+      <!-- Case detail -->
+      <h2 class="section-heading" id="case-detail">Case Detail — AMNC-2026-007B</h2>
+
+      <div class="case-detail">
+        <div class="case-detail-header">
+          <h3>Denise Dove v. Greg Dove</h3>
+          <span class="case-no">AMNC-2026-007B</span>
+        </div>
+        <div class="case-detail-body">
+          <div class="case-info-grid">
+            <div class="case-field">
+              <span class="field-label">Case Type</span>
+              <span class="field-value">Nest Abandonment (Contested)</span>
+            </div>
+            <!-- Temporary test implementation: active status links to proceedings view. -->
+            <div class="case-field">
+              <span class="field-label">Status</span>
+              <span class="field-value">
+                <a
+                  class="status-badge status-active"
+                  href="https://ajin.im/is/writing/nest-court-proceedings/"
+                  title="Temporary test implementation: open proceedings view"
+                >Active</a>
+              </span>
+            </div>
+            <div class="case-field">
+              <span class="field-label">Petitioner</span>
+              <span class="field-value">Denise Dove (Mourning Dove, f.)</span>
+            </div>
+            <div class="case-field">
+              <span class="field-label">Respondent</span>
+              <span class="field-value">Greg Dove (Mourning Dove, m.)</span>
+            </div>
+            <div class="case-field">
+              <span class="field-label">Filed</span>
+              <span class="field-value">February 12, 2026</span>
+            </div>
+            <div class="case-field">
+              <span class="field-label">Next Hearing</span>
+              <span class="field-value">April 14, 2026 — 9:30 AM, Chamber B</span>
+            </div>
+            <div class="case-field">
+              <span class="field-label">Presiding</span>
+              <span class="field-value">Hon. M. Owl</span>
+            </div>
+            <div class="case-field">
+              <span class="field-label">Clerk Assigned</span>
+              <span class="field-value">T. Nuthatch</span>
+            </div>
+            <div class="case-field">
+              <span class="field-label">Nest Location</span>
+              <span class="field-value">Meter box, 14 Sycamore Ln., Lot 7</span>
+            </div>
+            <div class="case-field">
+              <span class="field-label">Dependents</span>
+              <span class="field-value">Two (2) eggs, unhatched, status monitored</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filed documents -->
+      <h2 class="section-heading">Filed Documents — AMNC-2026-007B</h2>
+
+      <div class="filings-list">
+
+        <!-- Filing 1: Petition -->
+        <div class="filing-item">
+          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="filing-header-left">
+              <div class="filing-title">Petition for Determination of Nest Abandonment</div>
+              <div class="filing-meta">
+                <span>Doc. 001</span>
+                <span>Filed: Feb 12, 2026</span>
+                <span>By: Denise Dove (Petitioner, pro se)</span>
+              </div>
+            </div>
+            <div class="filing-toggle"></div>
+          </div>
+          <div class="filing-body">
+            <div class="filing-content">
+              <p class="legal-heading">In the Nest Court of the Avian Municipal District</p>
+              <p><strong>Denise Dove, Petitioner</strong><br>v.<br><strong>Greg Dove, Respondent</strong></p>
+              <p class="legal-heading">Petition for Determination of Nest Abandonment and Division of Marital Nest Assets</p>
+
+              <p>COMES NOW the Petitioner, Denise Dove, a Mourning Dove residing at 14 Sycamore Lane, Lot 7, Meter Box (Upper Ledge), and states as follows:</p>
+
+              <p class="numbered-item"><strong>1.</strong> The Petitioner and Respondent are lawfully mated and have jointly maintained a nest at the above address since approximately March of the prior year.</p>
+
+              <p class="numbered-item"><strong>2.</strong> The nest consists of two (2) twigs, one (1) piece of receipt paper (CVS, undated), one (1) zip tie (provenance disputed), a quantity of dryer lint, and the shared warmth of what the Petitioner believed to be a functioning partnership.</p>
+
+              <p class="numbered-item"><strong>3.</strong> On or about January 27, 2026, the Respondent departed the nest at approximately 6:14 AM, stating he was "just going to fly around for a bit." The Respondent did not return that day, the following day, or for a period of eleven (11) days thereafter.</p>
+
+              <p class="numbered-item"><strong>4.</strong> The Petitioner made reasonable efforts to locate the Respondent, including calling from the branch, calling from the higher branch, and sitting very still and waiting.</p>
+
+              <p class="numbered-item"><strong>5.</strong> The Respondent was subsequently observed at or near the residence of one Linda Sparrow, 22 Birch Court, approximately 0.3 miles east of the marital nest, on at least four (4) separate occasions, as documented in Exhibit C.</p>
+
+              <p class="numbered-item"><strong>6.</strong> Two (2) eggs are currently present in the nest. They remain unhatched. The Petitioner has been maintaining incubation temperature without assistance for the duration of the Respondent's absence. This is noted not for sympathy but for the record.</p>
+
+              <p class="numbered-item"><strong>7.</strong> The Petitioner requests the Court to determine that the Respondent has abandoned the marital nest within the meaning of Avian Municipal Code § 4.12(a), and to issue an order granting the Petitioner sole custody of the nest site, all nest materials, and the two (2) eggs described above.</p>
+
+              <p class="numbered-item"><strong>8.</strong> The Petitioner further requests the Court to issue a No-Perch Order prohibiting the Respondent from landing on, hovering near, or making eye contact with the nest from any branch within a radius of fifty (50) wingspans.</p>
+
+              <p class="legal-cite">Respectfully submitted this 12th day of February, 2026.</p>
+
+              <div class="sig-block">
+                <p><span class="sig-line">&nbsp; Denise Dove &nbsp;</span><br>
+                Denise Dove, Petitioner (Pro Se)<br>
+                14 Sycamore Ln., Lot 7, Meter Box (Upper Ledge)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filing 2: Response -->
+        <div class="filing-item">
+          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="filing-header-left">
+              <div class="filing-title">Respondent's Answer and Affirmative Defenses</div>
+              <div class="filing-meta">
+                <span>Doc. 002</span>
+                <span>Filed: Feb 26, 2026</span>
+                <span>By: Greg Dove (Respondent, pro se)</span>
+              </div>
+            </div>
+            <div class="filing-toggle"></div>
+          </div>
+          <div class="filing-body">
+            <div class="filing-content">
+              <p class="legal-heading">Respondent's Answer</p>
+
+              <p>COMES NOW the Respondent, Greg Dove, and answers the Petition as follows:</p>
+
+              <p class="numbered-item"><strong>1.</strong> Admitted.</p>
+
+              <p class="numbered-item"><strong>2.</strong> Admitted in part. The Respondent disputes the characterization of the zip tie as "provenance disputed." The Respondent found the zip tie. The Respondent brought it to the nest. The zip tie is the Respondent's. This has been explained.</p>
+
+              <p class="numbered-item"><strong>3.</strong> Admitted that the Respondent departed the nest on January 27, 2026. Denied that the Respondent stated he was "just going to fly around for a bit." The Respondent stated he was "going to fly around." The word "just" implies triviality, which misrepresents the Respondent's state of mind. The Respondent needed air. The Respondent is entitled to air.</p>
+
+              <p class="numbered-item"><strong>4.</strong> The Respondent has no knowledge of the Petitioner's efforts to locate him and therefore neither admits nor denies. The Respondent notes that "sitting very still and waiting" is not, by any recognized standard, a search effort.</p>
+
+              <p class="numbered-item"><strong>5.</strong> Denied. The Respondent was in the <em>vicinity</em> of 22 Birch Court on the dates alleged but was not "at" the residence. The Respondent was on a branch. The branch is public. The Respondent is permitted to be on branches.</p>
+
+              <p class="numbered-item"><strong>6.</strong> The Respondent acknowledges the existence of the eggs. The Respondent cares about the eggs. The Respondent has always cared about the eggs. The Respondent objects to the Petitioner's closing editorial.</p>
+
+              <p class="numbered-item"><strong>7.</strong> Denied. The Respondent has not abandoned the nest. The Respondent was thinking.</p>
+
+              <p class="numbered-item"><strong>8.</strong> The Respondent opposes the issuance of a No-Perch Order, which the Respondent characterizes as punitive and disproportionate. Fifty wingspans would exclude the Respondent from his preferred afternoon branch, the telephone wire, and the entire south side of the parking lot. The Respondent has used that parking lot for years.</p>
+
+              <p class="legal-heading">Affirmative Defenses</p>
+
+              <p class="numbered-item"><strong>First Defense:</strong> The nest was structurally inadequate and the Petitioner refused to discuss it. The Respondent raised concerns about the receipt paper on no fewer than three occasions. The receipt paper is from CVS. It is four feet long. It is not load-bearing.</p>
+
+              <p class="numbered-item"><strong>Second Defense:</strong> The Petitioner's communication style created a hostile nesting environment. The Respondent refers the Court to the Petitioner's habit of turning her back mid-conversation and tucking her beak, which the Respondent interprets as a unilateral termination of dialogue.</p>
+
+              <p class="legal-cite">Respectfully submitted this 26th day of February, 2026.</p>
+
+              <div class="sig-block">
+                <p><span class="sig-line">&nbsp; Greg Dove &nbsp;</span><br>
+                Greg Dove, Respondent (Pro Se)<br>
+                Current address: various branches, east side</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filing 3: Exhibit list / evidence -->
+        <div class="filing-item">
+          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="filing-header-left">
+              <div class="filing-title">Petitioner's Exhibit List and Evidence Summary</div>
+              <div class="filing-meta">
+                <span>Doc. 003</span>
+                <span>Filed: Mar 4, 2026</span>
+                <span>By: Denise Dove (Petitioner)</span>
+              </div>
+            </div>
+            <div class="filing-toggle"></div>
+          </div>
+          <div class="filing-body">
+            <div class="filing-content">
+              <p>The Petitioner submits the following exhibits for consideration by the Court in the above-captioned matter:</p>
+
+              <table class="evidence-table">
+                <thead>
+                  <tr>
+                    <th>Exhibit</th>
+                    <th>Description</th>
+                    <th>Relevance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="exhibit-ref">Ex. A</span></td>
+                    <td>Nest inventory, itemized, with annotations</td>
+                    <td>Establishes the full scope of marital assets subject to division. Includes notation of which party contributed each item. The Respondent will note that the zip tie is listed as "contributed by: disputed." It is not disputed. He found it.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="exhibit-ref">Ex. B</span></td>
+                    <td>Timeline of Respondent's absence (Jan 27–Feb 7, 2026)</td>
+                    <td>Documents the eleven-day period during which the Respondent was not present at the nest. Includes timestamps where available. Entry for Day 4 reads: "No sign. Eggs cold on left side. Rotated."</td>
+                  </tr>
+                  <tr>
+                    <td><span class="exhibit-ref">Ex. C</span></td>
+                    <td>Observation log — Respondent sighted near 22 Birch Court</td>
+                    <td>Four (4) sightings documented by a third-party witness (see Doc. 004, Witness Statement — C. Sparrow). Includes dates, approximate times, and branch positions. Third sighting noted: "He was on the low branch. The one that dips toward her window. You don't sit on that branch to think."</td>
+                  </tr>
+                  <tr>
+                    <td><span class="exhibit-ref">Ex. D</span></td>
+                    <td>Photograph — Nest, current condition</td>
+                    <td>Shows the nest as maintained by the Petitioner during the Respondent's absence. Two eggs visible. Structure intact. The receipt paper has been repositioned but not removed, as the Petitioner acknowledges it is, at this point, structural.</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="court-note">
+                <strong>Clerk's Note:</strong> Exhibit D was submitted as a physical photograph (3" × 2", slightly bent). The Clerk's office does not have a scanner of adequate resolution for nest documentation. The exhibit has been filed in the physical record and is available for inspection during business hours. We apologize for the inconvenience.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filing 4: Witness statement -->
+        <div class="filing-item">
+          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="filing-header-left">
+              <div class="filing-title">Witness Statement — Cheryl Sparrow</div>
+              <div class="filing-meta">
+                <span>Doc. 004</span>
+                <span>Filed: Mar 4, 2026</span>
+                <span>Witness for Petitioner</span>
+              </div>
+            </div>
+            <div class="filing-toggle"></div>
+          </div>
+          <div class="filing-body">
+            <div class="filing-content">
+              <p class="legal-heading">Sworn Statement of Cheryl Sparrow</p>
+              <p><em>Taken by the Clerk's office, March 3, 2026. Witness appeared voluntarily and was advised that her statement would become part of the public record. Witness stated she understood and then asked if she could "start from the beginning, because context matters."</em></p>
+
+              <p class="legal-heading">Statement</p>
+
+              <p>My name is Cheryl Sparrow. I live at 16 Sycamore Lane, which is two lots east of Denise and Greg's meter box. I have lived there for three seasons. I know both parties. I would describe my relationship with the Petitioner as neighborly. I would describe my relationship with the Respondent as civil, although he has never once acknowledged my flower arrangement on the south-facing ledge, which I change monthly.</p>
+
+              <p>I am providing this statement because I was asked to, but also because I saw what I saw and I believe the Court should know.</p>
+
+              <p>On January 27, I observed Greg depart the nest at what I estimate was shortly after six in the morning. I know this because I had just finished my dawn perch, which I perform every day at 5:50 AM facing east. Greg flew east. I noticed because he did not circle the tree first, which is what he normally does. He just left. That is not how you leave a nest. That is how you leave a situation.</p>
+
+              <p>I did not see Greg return that day. Or the next day. On the third day, I visited Denise. She was sitting on the eggs. She told me Greg was "flying around." I did not press the matter, but I did note the time — 2:14 PM — because I thought someone should be keeping track, even if nobody had asked me to.</p>
+
+              <p>On January 31, I was foraging near Birch Court — I forage on a rotating schedule and Birch Court falls on Fridays — and I observed Greg on a low branch near number 22. I recognized him by his posture. Greg has a very particular way of holding his left wing slightly forward when he is trying to appear casual. He was doing that. He was facing the window of 22 Birch Court. I stayed for approximately four minutes. He did not move.</p>
+
+              <p>I observed Greg at or near the same location on three additional occasions: February 2, February 5, and February 7. The February 5 sighting was the one where he was on the low branch. The branch that dips. You can see directly into the front perch from that branch. I know because I have also been on that branch, but only to survey the ivy situation, which is a separate matter.</p>
+
+              <p>I want to be clear that I am not drawing conclusions. I am reporting what I observed. I was not asked to time anything, but I timed it anyway, because precision matters, especially in situations where someone is going to pretend nothing happened.</p>
+
+              <div class="court-note">
+                <strong>Clerk's Note:</strong> The witness provided an additional six (6) pages of context regarding the history of the sycamore lane neighborhood, her foraging schedule, and her views on general nest construction standards. These pages have been filed but are not reproduced here. They are available upon request. The Clerk's office respectfully notes that the witness was asked to confine her statement to the facts of the case. The witness stated that "all of this is facts."
+              </div>
+
+              <div class="sig-block">
+                <p><span class="sig-line">&nbsp; Cheryl Sparrow &nbsp;</span><br>
+                Cheryl Sparrow, Witness<br>
+                16 Sycamore Ln.</p>
+                <p style="font-size:0.78rem; color: var(--text-tertiary); margin-top: 6px;">Sworn and subscribed before T. Nuthatch, Deputy Clerk, March 3, 2026.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filing 5: Court order -->
+        <div class="filing-item">
+          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+            <div class="filing-header-left">
+              <div class="filing-title">Procedural Order — Scheduling and Interim Provisions</div>
+              <div class="filing-meta">
+                <span>Doc. 005</span>
+                <span>Filed: Mar 11, 2026</span>
+                <span>By: Hon. M. Owl, Presiding</span>
+              </div>
+            </div>
+            <div class="filing-toggle"></div>
+          </div>
+          <div class="filing-body">
+            <div class="filing-content">
+              <p class="legal-heading">Order</p>
+
+              <p>This matter having come before the Court on the Petitioner's filing of February 12, 2026, and the Respondent having filed an Answer on February 26, 2026, and the Court having reviewed the submissions of both parties, the following is ORDERED:</p>
+
+              <p class="numbered-item"><strong>1.</strong> A hearing on the merits is scheduled for <strong>April 14, 2026 at 9:30 AM</strong> in Chamber B. Both parties shall appear in person. "In person" means on a perch inside the courtroom. The branch outside the window is not the courtroom.</p>
+
+              <p class="numbered-item"><strong>2.</strong> Pending resolution, the Petitioner shall maintain primary occupancy of the nest at 14 Sycamore Ln., Lot 7. The Respondent shall not approach the nest without prior written notice filed with the Clerk's office at least twenty-four (24) hours in advance. "Written" means written. Cooing from the adjacent branch does not constitute notice.</p>
+
+              <p class="numbered-item"><strong>3.</strong> The eggs shall remain in the custody of the Petitioner for the interim period. The Respondent may request supervised visitation through the Clerk's office. Visitation shall take place during business hours and in the presence of a court-appointed monitor. The Respondent is reminded that staring at the eggs from a distance is neither visitation nor parenting.</p>
+
+              <p class="numbered-item"><strong>4.</strong> The Court notes the Respondent's characterization of his eleven-day absence as "thinking." The Court does not find that thinking, as a defense, has been adequately defined, and reserves judgment on this matter for the hearing.</p>
+
+              <p class="numbered-item"><strong>5.</strong> The Court has received and reviewed the witness statement of Cheryl Sparrow (Doc. 004). The Court notes the witness's thoroughness. The Court also notes the six additional pages filed by the witness, which the Court has read in full. The Court did not ask for them. The Court has them now.</p>
+
+              <p class="numbered-item"><strong>6.</strong> Both parties are advised that the Court takes nest abandonment proceedings seriously and expects full cooperation with discovery, testimony, and procedural requirements. The Court has a docket. The Court has other cases. The Court's patience, while considerable, is a finite municipal resource.</p>
+
+              <div class="sig-block">
+                <p>SO ORDERED this 11th day of March, 2026.</p>
+                <p style="margin-top: 12px;"><span class="sig-line">&nbsp; M. Owl &nbsp;</span><br>
+                Hon. Miriam Owl<br>
+                Presiding Judge, Nest Court<br>
+                Avian Municipal District, Chamber B</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /filings-list -->
+
+    </div><!-- /main-content -->
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">Presiding Judge</div>
+        <div class="sidebar-card-body">
+          <div class="judge-block">
+            <div class="judge-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1B2A3D" stroke-width="1.5">
+                <circle cx="12" cy="9" r="5"/>
+                <path d="M7 7L4 4M17 7L20 4"/>
+                <path d="M5 20c0-4 3-6 7-6s7 2 7 6"/>
+              </svg>
+            </div>
+            <div class="judge-info">
+              <p class="judge-name">Hon. Miriam Owl</p>
+              <p class="judge-title">Presiding Judge, Chamber B<br>Appointed 2019</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">Court Hours</div>
+        <div class="sidebar-card-body">
+          <div class="hours-row"><span class="day">Monday–Friday</span><span>Dawn+2 to Dusk-1</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span>Emergency filings only</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span>Closed</span></div>
+          <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 8px;">Hours are approximate and subject to seasonal daylight variation. The Clerk's office closes when the Clerk leaves.</p>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">Clerk's Office</div>
+        <div class="sidebar-card-body">
+          <div class="sidebar-field">
+            <span class="sf-label">Clerk</span>
+            <span class="sf-value">T. Nuthatch</span>
+          </div>
+          <div class="sidebar-field">
+            <span class="sf-label">Deputy Clerk</span>
+            <span class="sf-value">R. Wren</span>
+          </div>
+          <div class="sidebar-field">
+            <span class="sf-label">Phone</span>
+            <span class="sf-value">—</span>
+          </div>
+          <div class="sidebar-field">
+            <span class="sf-label">Fax</span>
+            <span class="sf-value">Not operational</span>
+          </div>
+          <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 8px;">For general inquiries, approach the window. For filing assistance, take a branch and wait.</p>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">Next Scheduled Hearing</div>
+        <div class="sidebar-card-body">
+          <div class="sidebar-field">
+            <span class="sf-label">Case</span>
+            <span class="sf-value">AMNC-2026-007B</span>
+          </div>
+          <div class="sidebar-field">
+            <span class="sf-label">Date</span>
+            <span class="sf-value">Apr 14, 2026</span>
+          </div>
+          <div class="sidebar-field">
+            <span class="sf-label">Time</span>
+            <span class="sf-value">9:30 AM</span>
+          </div>
+          <div class="sidebar-field">
+            <span class="sf-label">Chamber</span>
+            <span class="sf-value">B</span>
+          </div>
+          <div class="sidebar-field">
+            <span class="sf-label">Type</span>
+            <span class="sf-value">Hearing on the merits</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-notice">
+        <strong>Public Records Notice:</strong> Court records are available for public inspection per Avian Municipal Ordinance 14.7(b). Certified copies require a request form (Form NC-12) and a processing period of 3–5 business days. The Clerk's office does not accept requests by cooing, tapping on glass, or "just stopping by to check."
+      </div>
+
+    </aside>
+
+  </div><!-- /page-wrap -->
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Court Information</h4>
+          <p>Nest Court of the Avian Municipal District</p>
+          <p>Branch Division, Chamber B</p>
+          <p>14 Municipal Oak, Third Fork</p>
+          <p>Sycamore District</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="javascript:void(0)">Case Docket</a>
+          <a href="javascript:void(0)">Court Calendar</a>
+          <a href="javascript:void(0)">Forms &amp; Resources</a>
+          <a href="javascript:void(0)">Filing Guidelines</a>
+          <a href="javascript:void(0)">Accessibility Statement</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="javascript:void(0)">Terms of Use</a>
+          <a href="javascript:void(0)">Privacy Policy</a>
+          <a href="javascript:void(0)">Public Records Policy</a>
+          <p style="margin-top: 8px; font-size: 0.72rem; opacity: 0.5;">This portal is maintained by Avian Municipal District IT Services. For technical issues, file a support request. Do not peck the equipment.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Avian Municipal District. All rights reserved.</span>
+        <span>NestLaw&trade; eCourt Portal v2.3.1 &middot; Powered by NestLaw Systems Inc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="unavailable-notice" id="unavailableNotice"></div>
+
+  <script>
+    // Unavailable page messages — one per nav item
+    const unavailableMessages = {
+      'Court Calendar': 'Court Calendar is updated seasonally. The current season has not been determined.',
+      'File a Petition': 'Online filing is not available. Please visit the Clerk\u2019s window during business hours. Bring your own twig.',
+      'Forms & Resources': 'Forms are available in person at the Clerk\u2019s office. Form NC-12 (Request for Forms) is required to request forms.',
+      'Court Rules': 'Court Rules are currently under revision. The previous rules were considered too lenient on loitering.',
+      'Contact the Clerk': 'The Clerk\u2019s office does not accept electronic communication. For inquiries, approach the window and wait. You will be seen in the order in which you were noticed.',
+      'Accessibility': 'This portal complies with Avian Municipal Ordinance 22.1(c). If you are unable to access this site, you are presumably not reading this.',
+      'Translate': 'Translation services are provided by the Clerk\u2019s office on a best-effort basis. The Clerk speaks English and, under duress, Pigeon.',
+      'Home': 'You are home.',
+      'Case Docket': 'You are already viewing the Case Docket.',
+      'Terms of Use': 'By using this portal you agree to the terms. The terms are that you use this portal.',
+      'Privacy Policy': 'The Court does not collect personal data. The Court does, however, notice things.',
+      'Public Records Policy': 'All records are public unless they are not. See Ordinance 14.7(b) for the distinction, which is not as clear as the Ordinance suggests.',
+      'Filing Guidelines': 'Filing guidelines: file early, file clearly, and do not file while emotional. The Court can tell.',
+      'Accessibility Statement': 'All branches are ADA compliant. The Clerk\u2019s window is at standard perch height.',
+    };
+
+    // Show unavailable message
+    let hideTimer = null;
+    function showUnavailable(text) {
+      const el = document.getElementById('unavailableNotice');
+      el.textContent = text;
+      el.classList.add('show');
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => el.classList.remove('show'), 3500);
+    }
+
+    // Bind nav + footer + util links
+    document.querySelectorAll('a[href="javascript:void(0)"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const text = this.textContent.trim();
+        const msg = unavailableMessages[text] || 'This section is not currently available. The Clerk\u2019s office has been notified. The Clerk\u2019s office will do nothing.';
+        showUnavailable(msg);
+      });
+    });
+
+    // Search button
+    document.querySelector('.search-btn').addEventListener('click', function() {
+      const input = document.getElementById('caseNo').value.trim();
+      const nameInput = document.getElementById('partyName').value.trim();
+      const existing = document.querySelector('.search-result-msg');
+      if (existing) existing.remove();
+      const msg = document.createElement('p');
+      msg.className = 'search-result-msg';
+      msg.style.cssText = 'font-size:0.78rem;color:#7A7A7A;margin-top:8px;font-style:italic;';
+
+      if (input || nameInput) {
+        msg.textContent = 'No additional cases match your search. The docket shown below represents the complete public record. If you believe a case is missing, it may be sealed, expunged, or simply none of your business.';
+      } else {
+        msg.textContent = 'Please enter a case number, party name, or species. Alternatively, you may review the full docket below. It is not long.';
+      }
+
+      document.querySelector('.case-search-box').appendChild(msg);
+    });
+
+    // Smooth scroll for case link in docket
+    document.querySelector('a[href="#case-detail"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('case-detail').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+
+</body>
+</html>
