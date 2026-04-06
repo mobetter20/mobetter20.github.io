@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Municipal Coo</title>
+  <meta
+    name="description"
+    content="Online edition of The Municipal Coo, the local newspaper of the Avian Municipal District."
+  >
+  <meta property="og:title" content="The Municipal Coo">
+  <meta
+    property="og:description"
+    content="Court notices, neighborhood reports, personal listings, and domestic affairs from the Avian Municipal District."
+  >
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ajin.im/is/writing/bird-coo/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='14' y='14' width='72' height='72' rx='4' fill='%23efe4d1' stroke='%23171210' stroke-width='4'/><path d='M24 30H76' stroke='%23171210' stroke-width='5' stroke-linecap='round'/><path d='M24 42H76' stroke='%23912d1f' stroke-width='2.5' stroke-linecap='round'/><path d='M24 53H76' stroke='%23171210' stroke-width='3' stroke-linecap='round'/><path d='M24 63H64' stroke='%23171210' stroke-width='3' stroke-linecap='round'/><path d='M24 73H58' stroke='%23171210' stroke-width='3' stroke-linecap='round'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;family=Libre+Caslon+Display&amp;family=Newsreader:opsz,wght@6..72,400;500;600;700&amp;display=swap"
+    rel="stylesheet"
+  >
+  <script src="../../../analytics.js" defer></script>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #181311;
+      --glow: rgba(152, 110, 75, 0.16);
+      --paper: #efe4d1;
+      --paper-deep: #e3d0b2;
+      --paper-line: rgba(89, 66, 48, 0.04);
+      --ink: #1b1613;
+      --ink-soft: #64574c;
+      --ink-faint: #867768;
+      --rule: #bda482;
+      --rule-dark: #806a4e;
+      --banner: #151210;
+      --banner-blue: #2f3940;
+      --accent: #7a2b1c;
+      --accent-soft: rgba(122, 43, 28, 0.08);
+      --font-masthead: "Libre Caslon Display", "Times New Roman", serif;
+      --font-serif: "Newsreader", Georgia, serif;
+      --font-sans: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
+      --shadow: 0 26px 60px rgba(0, 0, 0, 0.34);
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--font-serif);
+      line-height: 1.52;
+      background:
+        radial-gradient(circle at top, var(--glow), transparent 32%),
+        linear-gradient(180deg, #221815 0%, var(--bg) 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -3rem;
+      z-index: 30;
+      padding: 0.75rem 0.95rem;
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      font-family: var(--font-sans);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .frame {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 1.6rem auto 2.25rem;
+      padding: 1.1rem;
+      border-radius: 1.1rem;
+      border: 1px solid rgba(255, 236, 208, 0.08);
+      background: rgba(11, 8, 7, 0.25);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .paper {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 10%),
+        repeating-linear-gradient(
+          0deg,
+          var(--paper-line),
+          var(--paper-line) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
+        linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .utility-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.52rem 1rem;
+      background: var(--banner-blue);
+      color: rgba(246, 239, 229, 0.95);
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .masthead {
+      padding: 1.3rem 1.4rem 0.9rem;
+      text-align: center;
+      border-top: 6px solid var(--banner);
+      border-bottom: 2px solid var(--rule-dark);
+    }
+
+    .district-line,
+    .subdeck {
+      margin: 0;
+    }
+
+    .district-line {
+      color: var(--ink-faint);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0.2rem 0 0.35rem;
+      font-family: var(--font-masthead);
+      font-size: clamp(3.1rem, 6vw, 5rem);
+      line-height: 0.92;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .subdeck {
+      color: var(--ink-soft);
+      font-size: 1rem;
+    }
+
+    .edition-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.62rem 1.4rem;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-soft);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .edition-box {
+      display: flex;
+      gap: 1rem;
+      min-width: 0;
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 1rem;
+      padding: 0.55rem 1.4rem;
+      background: var(--banner);
+      color: rgba(240, 231, 219, 0.88);
+      border-bottom: 2px solid var(--rule-dark);
+      overflow-x: auto;
+      scrollbar-width: none;
+      white-space: nowrap;
+    }
+
+    .site-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .site-nav a {
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      color: #fff;
+    }
+
+    .content {
+      padding: 0 1.4rem 1.4rem;
+    }
+
+    .front-page {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(290px, 0.95fr);
+      gap: 0;
+      padding-top: 1rem;
+    }
+
+    .lead-story,
+    .court-notice,
+    .market-main,
+    .display-ad,
+    .letters {
+      position: relative;
+    }
+
+    .lead-story,
+    .market-main {
+      padding-right: 1.05rem;
+      border-right: 2px solid rgba(189, 164, 130, 0.42);
+    }
+
+    .court-notice,
+    .display-ad {
+      padding-left: 1.1rem;
+    }
+
+    .story-label {
+      display: inline-block;
+      margin-bottom: 0.65rem;
+      padding: 0.17rem 0.45rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .story-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 0.55rem;
+      color: var(--ink-faint);
+      font-family: var(--font-sans);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h2,
+    h3 {
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .lead-story h2 {
+      margin-bottom: 0.55rem;
+      font-family: var(--font-masthead);
+      font-size: clamp(2.9rem, 4.8vw, 4.25rem);
+      line-height: 0.95;
+    }
+
+    .lead-story .standfirst {
+      margin: 0 0 1rem;
+      color: var(--ink-soft);
+      font-size: 1.12rem;
+    }
+
+    .lead-story p,
+    .court-notice p,
+    .classified-card p,
+    .display-ad p,
+    .display-ad blockquote,
+    .letters p {
+      margin: 0;
+      font-size: 0.98rem;
+    }
+
+    .lead-story p + p,
+    .court-notice p + p,
+    .classified-card p + p,
+    .display-ad p + p,
+    .letters p + p {
+      margin-top: 0.9rem;
+    }
+
+    .court-notice {
+      padding-top: 0.1rem;
+    }
+
+    .court-notice .notice-shell {
+      border: 1px solid rgba(93, 73, 56, 0.18);
+      border-top: 3px solid var(--rule-dark);
+      background: rgba(255, 252, 246, 0.36);
+      padding: 0.9rem 0.95rem 1rem;
+    }
+
+    .court-notice h2 {
+      margin-bottom: 0.75rem;
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      line-height: 0.98;
+      font-weight: 600;
+    }
+
+    .notice-venue {
+      padding-top: 0.85rem;
+      margin-top: 0.85rem;
+      border-top: 1px solid rgba(189, 164, 130, 0.55);
+      color: var(--ink-soft);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .market-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 305px;
+      gap: 0;
+      padding-top: 1.1rem;
+    }
+
+    .market-main {
+      border-top: 3px solid var(--banner);
+      padding-top: 0.95rem;
+      padding-bottom: 1rem;
+    }
+
+    .market-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid rgba(189, 164, 130, 0.8);
+    }
+
+    .market-head h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .market-note {
+      max-width: 19rem;
+      color: var(--ink-faint);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .classified-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .classified-card {
+      border: 1px solid rgba(93, 73, 56, 0.18);
+      background: rgba(255, 252, 246, 0.28);
+      padding: 0.85rem 0.85rem 1rem;
+    }
+
+    .classified-card.personal {
+      border-top: 2px solid var(--accent);
+    }
+
+    .classified-card.general {
+      border-top: 2px solid var(--rule-dark);
+    }
+
+    .classified-card h3 {
+      margin-bottom: 0.65rem;
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    .display-ad {
+      border-top: 3px solid var(--accent);
+      padding-top: 0.95rem;
+      padding-bottom: 1rem;
+    }
+
+    .display-ad .ad-shell {
+      border: 1px solid rgba(122, 43, 28, 0.18);
+      background: rgba(143, 53, 33, 0.08);
+      padding: 0.95rem 0.95rem 1rem;
+    }
+
+    .display-ad h3 {
+      margin-bottom: 0.25rem;
+      font-family: var(--font-serif);
+      font-size: 2.15rem;
+      line-height: 0.96;
+      font-weight: 600;
+    }
+
+    .ad-kicker {
+      margin-bottom: 0.85rem;
+      color: var(--accent);
+      font-style: italic;
+      font-size: 1.02rem;
+    }
+
+    .display-ad blockquote {
+      margin: 0.95rem 0;
+      padding-left: 0.8rem;
+      border-left: 2px solid rgba(122, 43, 28, 0.26);
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+
+    .ad-footer {
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(122, 43, 28, 0.18);
+      color: var(--ink-soft);
+      font-family: var(--font-sans);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .letters {
+      margin-top: 1.05rem;
+      padding-top: 0.95rem;
+      border-top: 3px double rgba(128, 106, 78, 0.9);
+    }
+
+    .letters h2 {
+      margin-bottom: 0.75rem;
+      font-family: var(--font-serif);
+      font-size: 1.95rem;
+      line-height: 1.02;
+      font-weight: 500;
+    }
+
+    .letters-note {
+      margin-bottom: 0.75rem;
+      color: var(--ink-faint);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .letters .signoff {
+      margin-top: 1rem;
+      color: var(--ink-soft);
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.4rem 1.2rem;
+      border-top: 1px solid rgba(189, 164, 130, 0.8);
+      color: var(--ink-soft);
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 980px) {
+      .frame {
+        width: min(100% - 1rem, 100%);
+        margin-top: 0.75rem;
+        padding: 0.55rem;
+      }
+
+      .front-page,
+      .market-row {
+        grid-template-columns: 1fr;
+      }
+
+      .lead-story,
+      .market-main {
+        padding-right: 0;
+        border-right: 0;
+      }
+
+      .court-notice,
+      .display-ad {
+        padding-left: 0;
+      }
+
+      .court-notice {
+        margin-top: 1rem;
+      }
+
+      .display-ad {
+        margin-top: 1rem;
+      }
+
+      .market-head,
+      .edition-row,
+      .footer,
+      .utility-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      html {
+        font-size: 15px;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+
+      .frame {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .paper {
+        box-shadow: none;
+      }
+
+      .utility-bar,
+      .masthead,
+      .edition-row,
+      .site-nav,
+      .content,
+      .footer {
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+      }
+
+      .masthead {
+        padding-top: 1rem;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .subdeck {
+        font-size: 0.92rem;
+      }
+
+      .site-nav {
+        gap: 0.8rem;
+      }
+
+      .content {
+        padding-bottom: 1rem;
+      }
+
+      .lead-story h2 {
+        font-size: 2.35rem;
+      }
+
+      .market-head h2,
+      .letters h2 {
+        font-size: 1.6rem;
+      }
+
+      .court-notice h2 {
+        font-size: 1.7rem;
+      }
+
+      .display-ad h3 {
+        font-size: 1.78rem;
+      }
+
+      .classified-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        gap: 0.55rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="frame">
+    <div class="paper">
+      <div class="utility-bar">
+        <span>Serving the Avian Municipal District</span>
+        <span>Monday, April 6, 2026</span>
+      </div>
+
+      <header class="masthead">
+        <p class="district-line">Avian Municipal District</p>
+        <h1>The Municipal Coo</h1>
+        <p class="subdeck">Court notices, neighborhood reports, personal listings, and domestic affairs.</p>
+      </header>
+
+      <div class="edition-row">
+        <div class="edition-box">
+          <span>Online Edition</span>
+          <span>Local circulation</span>
+        </div>
+        <span>Issue 01</span>
+      </div>
+
+      <nav class="site-nav" aria-label="Sections">
+        <a href="#district">District</a>
+        <a href="#court">Court Notice</a>
+        <a href="#classifieds">Classifieds</a>
+        <a href="#personals">Personals</a>
+        <a href="#services">Professional Services</a>
+        <a href="#letters">Letters</a>
+      </nav>
+
+      <main id="main" class="content">
+        <section class="front-page" aria-label="Front page package">
+          <article class="lead-story" id="district">
+            <span class="story-label">Neighborhood Brief</span>
+            <div class="story-meta">
+              <span>Around the District</span>
+              <span>Birch Court</span>
+              <span>District Desk</span>
+            </div>
+            <h2>Around the District</h2>
+            <p class="standfirst">
+              Residents on the west end of Birch Court have reported a male dove visiting the same balcony four evenings in a row.
+            </p>
+            <p>
+              The visits last between forty minutes and two hours. The male has been described as "well-groomed for someone who doesn't live here." The balcony's occupant has not filed a complaint. Two neighbors have.
+            </p>
+          </article>
+
+          <aside class="court-notice" id="court">
+            <div class="notice-shell">
+              <span class="story-label">Court Notice</span>
+              <h2>Hearing Notice — AMNC-2026-007B</h2>
+              <p>AVIAN MUNICIPAL NEST COURT — BRANCH DIVISION</p>
+              <p>
+                Dove v. Dove. Hearing on the merits scheduled April 14, 2026, 9:30 AM, Chamber B. Both parties ordered to appear in person. The Court reminds the Respondent that "in person" refers to a perch inside the courtroom. The branch visible through the east window is not the courtroom and has never been the courtroom.
+              </p>
+              <p>
+                Presiding: Hon. M. Owl. Clerk: T. Nuthatch. Public seating limited. Spectators who have already formed opinions are asked to keep them at foraging volume.
+              </p>
+              <p class="notice-venue">
+                Nest Court of the Avian Municipal District, Branch Division<br>
+                14 Municipal Oak, Third Fork, Sycamore District
+              </p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="market-row" aria-labelledby="notices-heading">
+          <div class="market-main">
+            <div class="market-head">
+              <h2 id="notices-heading">Notices &amp; Advertisements</h2>
+              <p class="market-note">Classifieds, personal replies, and professional services currently before the district.</p>
+            </div>
+
+            <div class="classified-grid">
+              <article class="classified-card general" id="classifieds">
+                <span class="story-label">Classified Ad</span>
+                <h3>Nest Materials — Assorted</h3>
+                <p>
+                  Two (2) twigs, lightly used. One (1) zip tie, provenance confirmed. Receipt paper (CVS, undated, structural). Quantity of dryer lint. All items currently load-bearing. Seller prefers not to discuss why availability has changed.
+                </p>
+                <p>
+                  Collection from meter box, rear of Building C. Bring your own bag. No questions after 6 PM.
+                </p>
+              </article>
+
+              <article class="classified-card personal" id="personals">
+                <span class="story-label">Personal Ad</span>
+                <h3>Recently Available — Male, Dove</h3>
+                <p>
+                  47. Quiet. Previously committed. Good with structural concepts but better at describing them than executing them. Looking for a patient female who values intention. I have been told I am "not unpleasant to be around when I am actually around." South-facing branches preferred.
+                </p>
+                <p>
+                  No rush. I have time. I have had time for a while.
+                </p>
+                <p>
+                  Reply to: Box 7B-R, c/o this publication. References available on request. Character references preferred over recent ones.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <aside class="display-ad" id="services">
+            <div class="ad-shell">
+              <span class="story-label">Display Advertisement</span>
+              <h3>Karen Hawk, Attorney at Law</h3>
+              <p class="ad-kicker">Rapid Descents. Clean Separations.</p>
+              <p>
+                Specializing in contested nest divisions, emergency no-perch orders, and situations where he says it was "just drinks." Eighteen years of family law experience. Exposed to every version of "it's not what it looks like." Still not impressed.
+              </p>
+              <blockquote>
+                "She got me the branch, the eggs, and an apology I could use in future proceedings." — former client
+              </blockquote>
+              <p>
+                Free consultation. Evening and weekend appointments. I do not do couples counseling. That ship has sailed, sunk, and been entered into evidence.
+              </p>
+              <p class="ad-footer">Family law · Last version · Emergency filings</p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="letters" id="letters">
+          <span class="story-label">Letter to the Editor</span>
+          <p class="letters-note">Letters may be edited for length and clarity.</p>
+          <h2>Perch Usage After Separation</h2>
+          <p>Dear Editor,</p>
+          <p>
+            My ex-husband has begun using the same perch I use every afternoon at the south end of the park. He claims it was always his perch. It was not always his perch. I introduced him to that perch in 2023 during what he now calls "a transitional period" but which I call "our marriage."
+          </p>
+          <p>
+            I am not asking The Municipal Coo to arbitrate. I am asking whether the district has a policy on post-separation perch usage, and if not, why not.
+          </p>
+          <p class="signoff">— Margaret H., Birch Court</p>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>The Municipal Coo is the local online edition for the Avian Municipal District.</p>
+        <p>Court notices are published as scheduled. Box replies remain with this publication unless otherwise noted.</p>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
