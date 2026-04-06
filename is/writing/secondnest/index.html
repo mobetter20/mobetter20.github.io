@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecondNest</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:#e8e4d0;
+font-family:'IBM Plex Sans',sans-serif;
+color:#2a2820;
+-webkit-font-smoothing:antialiased;
+}
+
+.page{
+max-width:660px;
+margin:1.5rem auto;
+background:#f8f5e8;
+border:1px solid #d8d0a8;
+}
+
+/* HEADER */
+.header{
+padding:1.2rem 1.5rem .8rem;
+border-bottom:2px solid #a09878;
+}
+.logo{
+font-family:'Courier Prime','IBM Plex Mono',monospace;
+font-size:28px;
+font-weight:700;
+color:#2a2820;
+letter-spacing:-.5px;
+margin-bottom:2px;
+}
+.tagline{
+font-size:12.5px;
+color:#908868;
+letter-spacing:.02em;
+}
+
+/* NAV */
+.nav{
+display:flex;
+gap:0;
+padding:0 1.5rem;
+border-bottom:1px solid #d8d0a8;
+background:#f4f0e0;
+}
+.nav a{
+font-size:11.5px;
+color:#706848;
+text-decoration:none;
+padding:8px 14px;
+letter-spacing:.03em;
+border-bottom:2px solid transparent;
+transition:all .15s;
+cursor:pointer;
+}
+.nav a:hover{color:#2a2820;background:#eee8d0}
+.nav a.active{color:#2a2820;border-bottom-color:#706848;font-weight:500}
+
+/* BAR */
+.bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:10px 1.5rem;
+border-bottom:1px solid #d8d0a8;
+background:#f6f2e2;
+}
+.bar-left{
+font-size:11px;
+color:#a09878;
+font-family:'IBM Plex Mono',monospace;
+}
+.join-btn{
+font-family:'IBM Plex Sans',sans-serif;
+font-size:11.5px;
+font-weight:500;
+color:#706848;
+background:none;
+border:1px solid #c0b890;
+padding:5px 14px;
+cursor:pointer;
+transition:all .15s;
+letter-spacing:.02em;
+}
+.join-btn:hover{background:#eee8d0;border-color:#a09878;color:#2a2820}
+
+/* PROFILES */
+.profiles{padding:0}
+.profile{
+padding:1.2rem 1.5rem;
+border-bottom:1px solid #d8d0a8;
+transition:background .1s;
+}
+.profile:hover{background:#f4f0e0}
+.profile:last-child{border-bottom:none}
+.profile-top{
+display:flex;
+justify-content:space-between;
+align-items:baseline;
+margin-bottom:6px;
+flex-wrap:wrap;
+gap:4px;
+}
+.species{
+font-family:'IBM Plex Mono',monospace;
+font-size:12px;
+font-weight:500;
+color:#2a2820;
+letter-spacing:.02em;
+}
+.posted{
+font-family:'IBM Plex Mono',monospace;
+font-size:10px;
+color:#b8b098;
+}
+.status{
+font-family:'IBM Plex Mono',monospace;
+font-size:10.5px;
+color:#908868;
+margin-bottom:8px;
+padding:3px 0;
+}
+.status-sep{color:#b8b098;margin:0 4px}
+.about-text{
+font-size:13.5px;
+line-height:1.65;
+color:#3a3830;
+margin-bottom:10px;
+}
+.looking{
+font-size:12.5px;
+line-height:1.6;
+color:#5a5540;
+padding-top:8px;
+border-top:1px solid #e0d8b8;
+}
+.looking-label{
+font-style:normal;
+color:#a09878;
+font-size:11px;
+font-family:'IBM Plex Mono',monospace;
+text-transform:uppercase;
+letter-spacing:.05em;
+margin-right:6px;
+}
+.dealbreaker{
+font-family:'IBM Plex Mono',monospace;
+font-size:11px;
+color:#908068;
+margin-top:6px;
+font-style:italic;
+}
+.feather-row{
+display:flex;
+justify-content:flex-end;
+align-items:center;
+margin-top:10px;
+padding-top:8px;
+}
+.feather-btn{
+font-family:'IBM Plex Mono',monospace;
+font-size:11px;
+color:#807858;
+background:none;
+border:1px solid #c8c0a0;
+padding:4px 12px;
+cursor:pointer;
+transition:all .15s;
+letter-spacing:.02em;
+display:flex;
+align-items:center;
+gap:6px;
+}
+.feather-btn:hover{background:#eee8d0;border-color:#a09878;color:#2a2820}
+.feather-btn svg{width:13px;height:13px}
+.feather-btn.done{color:#7a8a6a;border-color:#a8b898;cursor:default}
+
+/* SECTIONS */
+.section{display:none;padding:1.2rem 1.5rem}
+.section.active{display:block}
+.section h3{
+font-family:'Courier Prime',monospace;
+font-size:18px;
+font-weight:700;
+color:#2a2820;
+margin-bottom:.3rem;
+}
+.section-sub{
+font-size:12px;
+color:#908868;
+margin-bottom:1.2rem;
+line-height:1.6;
+}
+
+/* MISSED CONNECTIONS */
+.mc{padding:1rem 0;border-bottom:1px solid #e0d8b8}
+.mc:last-child{border-bottom:none}
+.mc-where{
+font-family:'IBM Plex Mono',monospace;
+font-size:10.5px;
+color:#a09878;
+margin-bottom:6px;
+letter-spacing:.02em;
+}
+.mc-text{
+font-size:13.5px;
+line-height:1.65;
+color:#3a3830;
+font-style:italic;
+}
+.mc-when{
+font-family:'IBM Plex Mono',monospace;
+font-size:10px;
+color:#b8b098;
+margin-top:6px;
+}
+
+/* ABOUT */
+.about-block{margin-bottom:1.2rem}
+.about-block h4{
+font-family:'IBM Plex Mono',monospace;
+font-size:11.5px;
+font-weight:500;
+color:#706848;
+text-transform:uppercase;
+letter-spacing:.04em;
+margin-bottom:6px;
+}
+.about-block p{font-size:13px;line-height:1.65;color:#4a4838}
+.about-block p+p{margin-top:6px}
+
+/* FAQ */
+.faq-item{padding:1rem 0;border-bottom:1px solid #e0d8b8}
+.faq-item:last-child{border-bottom:none}
+.faq-q{
+font-family:'IBM Plex Mono',monospace;
+font-size:12px;
+font-weight:500;
+color:#2a2820;
+margin-bottom:6px;
+}
+.faq-a{font-size:13px;line-height:1.65;color:#4a4838}
+
+/* FOOTER */
+.footer{
+padding:1rem 1.5rem;
+border-top:2px solid #a09878;
+text-align:center;
+}
+.footer p{
+font-family:'IBM Plex Mono',monospace;
+font-size:10px;
+color:#b0a888;
+line-height:1.8;
+}
+
+/* JOIN OVERLAY */
+.join-overlay{
+display:none;
+position:fixed;
+top:0;left:0;right:0;bottom:0;
+background:rgba(248,245,232,.97);
+z-index:100;
+padding:2rem 1.5rem;
+overflow-y:auto;
+}
+.join-form{max-width:420px;margin:2rem auto}
+.join-form h3{
+font-family:'Courier Prime',monospace;
+font-size:20px;
+font-weight:700;
+margin-bottom:4px;
+color:#2a2820;
+}
+.join-sub{font-size:12px;color:#908868;margin-bottom:1.2rem}
+.field{margin-bottom:1rem}
+.field label{
+display:block;
+font-family:'IBM Plex Mono',monospace;
+font-size:11px;
+color:#605840;
+margin-bottom:4px;
+letter-spacing:.03em;
+text-transform:uppercase;
+}
+.field input,.field select,.field textarea{
+width:100%;
+font-family:'IBM Plex Sans',sans-serif;
+font-size:13px;
+padding:8px 10px;
+border:1px solid #c8c0a0;
+background:#fffef8;
+color:#2a2820;
+outline:none;
+transition:border-color .15s;
+border-radius:0;
+-webkit-appearance:none;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#908868}
+.field textarea{height:70px;resize:vertical}
+.submit-btn{
+font-family:'IBM Plex Sans',sans-serif;
+font-size:13px;
+font-weight:500;
+color:#2a2820;
+background:#eee8d0;
+border:1px solid #c0b890;
+padding:8px 24px;
+cursor:pointer;
+margin-top:.5rem;
+transition:all .15s;
+border-radius:0;
+}
+.submit-btn:hover{background:#e4dcc0}
+.cancel-btn{
+font-family:'IBM Plex Sans',sans-serif;
+font-size:12px;
+color:#908868;
+background:none;
+border:none;
+cursor:pointer;
+margin-left:12px;
+text-decoration:underline;
+}
+.rejection{
+display:none;
+margin-top:1.2rem;
+padding:1rem;
+border:1px solid #c8c0a0;
+background:#f0ecda;
+}
+.rejection h4{
+font-family:'IBM Plex Mono',monospace;
+font-size:12px;
+font-weight:500;
+color:#605840;
+margin-bottom:8px;
+letter-spacing:.04em;
+text-transform:uppercase;
+}
+.rejection p{font-size:12.5px;line-height:1.65;color:#4a4838}
+.rejection p+p{margin-top:6px}
+.rejection .ref{
+font-family:'IBM Plex Mono',monospace;
+font-size:10px;
+color:#b0a888;
+margin-top:10px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .page{margin:.5rem}
+  .header,.section{padding-left:1.2rem;padding-right:1.2rem}
+  .profile{padding-left:1.2rem;padding-right:1.2rem}
+  .bar{padding-left:1.2rem;padding-right:1.2rem}
+  .nav{padding:0 1rem;flex-wrap:wrap}
+  .nav a{padding:8px 10px;font-size:11px}
+  .logo{font-size:24px}
+  .footer{padding-left:1.2rem;padding-right:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<div class="header">
+  <div class="logo">SecondNest</div>
+  <div class="tagline">For birds who know better now.</div>
+</div>
+
+<nav class="nav" id="nav">
+  <a class="active" data-page="browse">Browse</a>
+  <a data-page="missed">Missed connections</a>
+  <a data-page="about">About</a>
+  <a data-page="faq">FAQ</a>
+</nav>
+
+<div class="bar">
+  <div class="bar-left" id="barText"></div>
+  <button class="join-btn" onclick="showJoin()">+ Create profile</button>
+</div>
+
+<!-- BROWSE -->
+<div class="section active" id="page-browse">
+  <div class="profiles" id="profileList"></div>
+</div>
+
+<!-- MISSED CONNECTIONS -->
+<div class="section" id="page-missed">
+  <h3>Missed connections</h3>
+  <div class="section-sub">You saw someone. You didn't say anything. This is where that goes.</div>
+  <div id="mcList"></div>
+</div>
+
+<!-- ABOUT -->
+<div class="section" id="page-about">
+  <h3>About SecondNest</h3>
+  <div class="section-sub">Companionship for the next season.</div>
+
+  <div class="about-block">
+    <h4>What this is</h4>
+    <p>SecondNest is a free, text-based personals site for avian residents of the Avian Municipal District. It exists because the alternatives are limited and most of them involve making eye contact at the foraging grounds, which is fine for some birds and unbearable for the rest of us.</p>
+  </div>
+  <div class="about-block">
+    <h4>How it works</h4>
+    <p>Post a profile. Browse other profiles. If someone interests you, leave a feather. They'll be notified through the branch correspondence system. What happens after that is between you and your capacity for hope.</p>
+    <p>There is no matching algorithm. There is no compatibility score. You read someone's words and you decide if those words sound like a bird you'd want to share a branch with. That's the whole technology.</p>
+  </div>
+  <div class="about-block">
+    <h4>Who this is for</h4>
+    <p>Birds who've been through something. Divorce, separation, the slow realization that the branch you shared wasn't big enough for two birds who had stopped trying to make room. Not all of our users are divorced. Some are widowed. Some never nested. All of them are here because they're willing to try again, or at least willing to read about birds who are.</p>
+  </div>
+  <div class="about-block">
+    <h4>Who runs this</h4>
+    <p>One bird, part-time. The site has looked like this since it launched and it will continue to look like this. Feature requests are noted and not acted upon. The server is in a box under a shrub. It has not gone down yet.</p>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section" id="page-faq">
+  <h3>Frequently asked questions</h3>
+  <div class="section-sub">Asked more than once, which qualifies them.</div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can my ex see my profile?</div>
+    <div class="faq-a">Yes. This is a public site. If your ex is browsing SecondNest, they will see your profile, and you will have to live with the knowledge that they are also looking.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What does "leave a feather" mean?</div>
+    <div class="faq-a">It means you're interested. The bird will be notified. They may or may not respond. A feather is not a promise. It is a gesture. Think of it as nodding at someone from across a branch and hoping they nod back.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">I accidentally left a feather on my ex-husband's profile. Can I take it back?</div>
+    <div class="faq-a">No. Feathers, once left, are left. We recommend reading the full profile before engaging. We also recognize that not every accident is an accident.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Someone left me a feather but I don't know who.</div>
+    <div class="faq-a">That is how it works. Feathers are anonymous until the other bird chooses to follow up. If you'd like to know sooner, you could try being approachable at the foraging grounds, but we understand that's a big ask.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What does "formally dissolved" mean?</div>
+    <div class="faq-a">It means the Court has issued a ruling and the nest is no longer shared. If you are unsure whether your situation qualifies, you may not be as dissolved as you think.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I post a profile for someone else?</div>
+    <div class="faq-a">No. We have received this request primarily from mothers. The answer is still no.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is SecondNest affiliated with the Nest Court or the Municipal Coo?</div>
+    <div class="faq-a">No. SecondNest is independently operated. We have no relationship with the Court, the newspaper, or any law firm. If you see someone from your case on here, that is coincidence. Or the district is small. Both are true.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">The site looks like it was made in 2003.</div>
+    <div class="faq-a">That is not a question. But yes.</div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>SecondNest · For birds who still read the bio.</p>
+</div>
+
+</div>
+
+<!-- JOIN OVERLAY -->
+<div class="join-overlay" id="joinOverlay">
+  <div class="join-form">
+    <h3>Create a profile</h3>
+    <p class="join-sub">Tell us about yourself. All fields are optional except the ones that aren't.</p>
+    <div class="field"><label>Species</label><input type="text" placeholder="e.g. Dove, Finch, Sparrow" id="f-species"></div>
+    <div class="field"><label>Age</label><input type="text" placeholder="Approximate is fine" id="f-age"></div>
+    <div class="field"><label>Current status</label>
+      <select id="f-status">
+        <option value="">Select one</option>
+        <option>Formally dissolved</option>
+        <option>Recently restructured</option>
+        <option>It's complicated but legally it isn't</option>
+        <option>Widowed</option>
+        <option>Never nested (no judgment)</option>
+      </select>
+    </div>
+    <div class="field"><label>About you</label><textarea placeholder="Be honest. You're among birds who've heard it all." id="f-about"></textarea></div>
+    <div>
+      <button class="submit-btn" id="submitBtn" onclick="submitProfile()">Submit profile</button>
+      <button class="cancel-btn" id="cancelBtn" onclick="hideJoin()">cancel</button>
+    </div>
+    <div class="rejection" id="rejection">
+      <h4>Profile not created</h4>
+      <p>Your input has been reviewed. Keystroke pattern, response cadence, and general energy are inconsistent with avian use. You type like someone with thumbs. This has been noted.</p>
+      <p>SecondNest is for birds. You seem like a perfectly fine mammal, but this is not your site. We wish you well in your own species' romantic endeavors, which by all accounts are also difficult.</p>
+      <p>If you believe this determination was made in error, you are welcome to try again with your feet.</p>
+      <div class="ref">Ref: SN-VERIFY-2026-NR · Flagged: non-avian input detected</div>
+    </div>
+  </div>
+</div>
+
+<script>
+var FEATHER_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>';
+
+var PROFILES = [
+  {
+    species:"Female",type:"Dove",age:"41",location:"Sycamore Ln",
+    status:"Formally dissolved",extras:["2 dependents","not negotiable"],
+    about:"I have recently concluded a legal matter and I am told the healthy thing to do is \"put myself out there.\" I am out here. I am not sure what comes next. I am organized. I keep records. I know what I contributed and I have the paperwork to prove it, though I have been told that bringing paperwork to a first date is \"not the energy.\" I am working on the energy.",
+    looking:"Someone who shows up. Not eventually. Not after thinking about it. Just shows up, with no speech about what they were doing instead.",
+    dealbreaker:"Dealbreaker: zip ties of disputed provenance.",
+    days:3
+  },
+  {
+    species:"Male",type:"Owl",age:"61",location:"Municipal Oak",
+    status:"Widowed",extras:["no dependents","evenings only"],
+    about:"Judicial temperament. Patient within reason. Reason is a finite municipal resource. Looking for companionship that does not require me to explain what I meant by what I said. I said what I said. Interested parties should be comfortable with silence, low lighting, and the occasional professional frustration brought home in the form of a stare.",
+    looking:"Quiet company. Not doves. I cannot do another dove.",
+    days:8
+  },
+  {
+    species:"Male",type:"Heron",age:"52",location:"East district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"Tall. Patient. Comfortable with silence, possibly too comfortable. My last partner said I \"made every room feel like a waiting room.\" I have considered this and I think she was describing a quality. I enjoy standing in one place for long periods of time. I am told this is \"a lot\" but I believe it demonstrates commitment.",
+    looking:"Someone who does not require constant motion to feel accompanied. No sparrows. Nothing personal. I just can't keep up.",
+    days:14
+  },
+  {
+    species:"Female",type:"Finch",age:"34",location:"South district",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"Recently out of a thing. Not looking for another thing. Looking for someone who can sit on a branch without narrating what they see. Strong opinions are fine if they stay inside. Must not describe previous relationships as \"learning experiences\" in the first conversation. I have been learned from enough.",
+    looking:"Evenings only. No owls.",
+    days:5
+  },
+  {
+    species:"Male",type:"Mockingbird",age:"age undisclosed",location:"Municipal Oak",
+    status:"It's complicated but legally it isn't",extras:["no dependents"],
+    about:"Recently the subject of legal proceedings. Not bitter. Not entirely over it. Currently exploring what it means to express yourself within court-mandated hours. I have been told my singing is \"about someone.\" It is about everyone. That is what singing is.",
+    looking:"Someone who appreciates music, or at least does not describe it as \"emotionally specific.\" Mornings preferred. After 6:30 AM. This is not a preference. It is a legal requirement.",
+    days:9
+  },
+  {
+    species:"Male",type:"Crow",age:"44",location:"West district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"Intelligent. Resourceful. Remembers faces, which my ex-wife has described in legal documents as \"unsettling.\" I prefer \"attentive.\" I collect things. Small things. Bright things. I have been told this is \"a lot.\" I have also been told the collection cannot live in the shared space, which is why it now lives in a storage unit I visit on Wednesdays, which is also when I feel most like myself.",
+    looking:"Someone who understands that devotion and inconvenience are often the same bird.",
+    days:12
+  },
+  {
+    species:"Female",type:"Starling",age:"45",location:"Municipal Park",
+    status:"It's complicated but legally it isn't",extras:["no dependents"],
+    about:"I sit on a bench some evenings. There is a pigeon on the other end. We do not speak. This is not a relationship. This is a bench. I am listing myself here because a neighbor described the bench situation as \"a thing\" and if it is going to be described as a thing then I would like to be the one who defines what kind of thing it is. It is not a thing. But if it were, I would like the other party to know that the bench would feel different without him on it. That is not what this profile is about.",
+    looking:"Unclear.",
+    days:6
+  },
+  {
+    species:"Male",type:"Pelican",age:"55",location:"Visiting",
+    status:"Formally dissolved",extras:["2 dependents (grown)"],
+    about:"I am not from the district. I am here because my daughter is here and because my therapist said I should \"try somewhere smaller.\" I am large. This has been commented on. I am aware of my size and I do not need it described to me on a first date. Previously married for twenty-two years. I will not say it was all bad because that would be dishonest. I will say the last four years felt like carrying something heavy up a hill that turned out to be a different hill than the one I agreed to climb.",
+    looking:"Someone local who can show me where things are. I do not know where anything is. I have been eating from the same puddle for a week because I am embarrassed to ask.",
+    days:4
+  },
+  {
+    species:"Male",type:"Finch",age:"33",location:"South district",
+    status:"Never nested (no judgment)",extras:["no dependents"],
+    about:"I know this site is mostly divorced birds and I want to be upfront that I have never been married. I have also never been engaged, co-nested, or \"in a situation,\" which is what my mother calls it when she's trying not to say \"alone.\" I am here because the regular ways of meeting someone have not worked. By \"regular\" I mean standing near someone attractive and hoping they speak first. I have been doing this for eleven years. It has not worked. I am told I am nice. I am told this in a tone that suggests it is not enough.",
+    looking:"Someone who thinks nice is enough. Or at least a start.",
+    days:11
+  },
+  {
+    species:"Female",type:"Hawk",age:"50",location:"West district",
+    status:"Widowed",extras:["no dependents"],
+    about:"My husband died two years ago. I am told I should not lead with that but I don't know how else to explain why I'm here, and I don't want someone to find out on the third date and feel like they've been tricked into having feelings near grief. He was a good bird. I am not looking for a replacement. I am looking for someone new, which is different, and the difference matters to me even if I can't always explain it. I am direct. I have been told this is intimidating. I have also been told, by the same birds, that I should \"put myself out there.\" I am out here. I am direct. Pick one.",
+    looking:"Evenings. Conversation. Someone who is not afraid of a bird who has already survived the worst thing.",
+    days:7
+  },
+  {
+    species:"Male",type:"Sparrow",age:"40",location:"Sycamore Ln",
+    status:"Formally dissolved",extras:["2 dependents (alternating weekends)"],
+    about:"My kids are seven and five. They are the best part of my week every other week. The other week I eat cereal on the branch and watch the parking lot and think about whether I was a good husband. I was not a good husband. I was a decent bird who thought that was the same thing. I am not looking for someone to fix that. I am looking for someone who doesn't need me to have already fixed it.",
+    looking:"Tuesdays and alternating weekends. Someone who understands that \"I can't tonight, I have the kids\" is not an excuse. It is the best reason I have for anything.",
+    days:10
+  },
+  {
+    species:"Male",type:"Cardinal",age:"43",location:"West district",
+    status:"Formally dissolved",extras:["1 dependent"],
+    about:"I am told I am handsome. This has not helped. Being handsome and divorced is like being tall and lost \u2014 everyone can see you but no one is offering directions. My ex-wife said I was \"all display, no substance.\" I have thought about this every day for a year. I have concluded she was forty percent right, which is higher than I would have guessed and lower than she would have claimed.",
+    looking:"Someone who wants substance. I am working on it. The display is free while you wait.",
+    days:15
+  },
+  {
+    species:"Female",type:"Dove",age:"52",location:"East district",
+    status:"Widowed",extras:["no dependents"],
+    about:"Married for twenty-six years. He passed in the autumn. The nest is the same nest. I have not changed anything. I am told this is \"a stage\" and I am sure it is. I am also sure I am not done with it yet. I am not looking for love. I think I had it. I am looking for someone to eat lunch with so the middle of the day stops feeling like a room with no furniture.",
+    looking:"Lunch. Tuesdays or Thursdays. I will bring enough for two because I still make enough for two.",
+    days:18
+  },
+  {
+    species:"Male",type:"Blue Jay",age:"37",location:"South district",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"I will be honest. I was the problem. She was not perfect but I was the problem and I know that now. I knew it then too but I was not ready to say it out loud and by the time I was she had already changed the lock, which in our case was a twig arrangement I could have easily undone but understood I was not supposed to. I am in therapy. I am on the bench outside therapy waiting for therapy. I am also on this site, which my therapist does not know about and would probably describe as \"premature.\" It probably is. But I am tired of being alone with the version of me that I am trying to fix.",
+    looking:"Someone who believes birds can change. Not because I've finished changing. Because I've started.",
+    days:6
+  },
+  {
+    species:"Female",type:"Magpie",age:"41",location:"West district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I took everything. The nest, the collection, the good branch, and the mirror he said was \"for both of us\" but which I was the only one who ever used it. I am not sorry. The Court agreed. I like bright things. I am told this is \"a lot.\" I have been told a lot of things are \"a lot.\" My jewelry is a lot. My opinions are a lot. My expectations are a lot. I have decided that \"a lot\" is just a small bird's way of saying \"I can't keep up.\"",
+    looking:"Someone who can keep up. Must appreciate aesthetics. Must not describe a shiny wrapper as \"just trash.\" Nothing is just anything.",
+    days:13
+  },
+  {
+    species:"Male",type:"Mourning Dove",age:"62",location:"Sycamore Ln",
+    status:"Widowed",extras:["3 dependents (grown, scattered)"],
+    about:"I did not expect to be here. My wife and I had a plan for this part \u2014 the empty nest part, the quiet evening part. The plan did not include her being gone. I am not good at describing myself. She was good at describing me. She would have said I am steady, which I think was a compliment, and that I take too long to answer questions, which I think was not. I do not want to do everything alone. I also do not want to do everything together. I want someone in the next room. Not talking. Just there.",
+    looking:"Proximity. Not performance.",
+    days:20
+  },
+  {
+    species:"Female",type:"Chickadee",age:"29",location:"South district",
+    status:"Never nested (no judgment)",extras:["no dependents"],
+    about:"I know I'm young for this site. I know most of you have been through a divorce and I have been through nothing except a series of birds who said \"I'm not ready\" like it was a personality trait. I am here because the birds my age are on other platforms doing things with photos that I do not want to participate in. I want text. I want someone who writes in complete sentences. I want to know what a bird thinks before I know what a bird looks like. If that makes me old-fashioned then fine. I would rather be old-fashioned than swiping through beaks at 11 PM wondering if sincerity died or just moved somewhere I haven't found yet.",
+    looking:"A grownup. Age flexible but maturity required.",
+    days:2
+  },
+  {
+    species:"Male",type:"Starling",age:"45",location:"Municipal Park",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I have been described in a newspaper. I have been described in a letter to the editor. I have been described by a neighbor as \"part of a situation.\" I did not ask for any of this. I sat on a bench. I am not looking for a relationship. I am looking for someone who understands that \"not looking\" is not the same as \"not open.\" It is closer to \"not performing.\"",
+    looking:"Not necessary. The bench is the reply.",
+    days:8
+  },
+  {
+    species:"Female",type:"Robin",age:"44",location:"Birch Court",
+    status:"Formally dissolved",extras:["2 dependents"],
+    about:"Let me save us both some time. I have two kids, a full-time job, a nest I rebuilt by myself in March, and approximately forty-five minutes of free time per week, most of which I currently spend staring at a wall and calling it \"recovery.\" I am not looking for a co-parent. I am not looking for someone who \"loves kids.\" I am looking for a bird who is available on the second and fourth Saturday of each month between 2 and 6 PM, who does not require emotional processing before noon, and who understands that \"I'm tired\" is a complete sentence.",
+    looking:"Low maintenance. High reliability. If you have a calendar, that's already more organized than my ex.",
+    days:4
+  },
+  {
+    species:"Male",type:"Woodpecker",age:"39",location:"West district",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"She said the tapping was unbearable. I said it was my job. She said it was also my hobby and also the way I expressed stress, boredom, affection, and uncertainty, and that she could not tell which one she was hearing at any given time and that this was \"the fundamental problem.\" I have considered this. She was right that I tap when I feel things. She was wrong that it was a problem. It was information. She just did not want to learn the language.",
+    looking:"Someone who doesn't mind the tapping. Or someone who wants to learn what each one means. There's a slow double-tap I do when I'm content. Nobody has heard it in a while.",
+    days:9
+  },
+  {
+    species:"Female",type:"Owl",age:"44",location:"Municipal Oak",
+    status:"Formally dissolved",extras:["1 dependent"],
+    about:"I work nights. This is not a metaphor. I literally work at night and sleep during the day, which my ex-husband described as \"like living with a ghost who leaves dishes in the sink.\" The marriage failed for several reasons, most of which were scheduling. It is hard to maintain intimacy with someone you see for forty minutes at dusk. It is harder when those forty minutes are spent discussing who forgot to buy seed. My daughter is nine. She is diurnal. I am not. We make it work with notes on the branch and a shared understanding that love does not require simultaneous consciousness.",
+    looking:"Another night bird. Or a very patient day bird who is comfortable waking up alone and going to bed alone and having the best conversation of the day at 4 AM.",
+    days:11
+  },
+  {
+    species:"Male",type:"Hummingbird",age:"35",location:"South district",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"I move fast. I have been told this is the problem. I moved fast into the relationship, fast into the nest, fast into commitment, and fast into the realization that she was not moving at the same speed and that my version of \"let's figure this out\" was her version of \"I need to lie down.\" I am trying to be slower. I am on this site reading profiles carefully. I read yours twice. If you're reading this, I have already imagined our first date, our third date, and the argument we'll have in month four about my inability to sit still. I am working on it.",
+    looking:"Someone who is not alarmed by enthusiasm. Someone who can say \"slow down\" without it sounding like \"go away.\"",
+    days:3
+  },
+  {
+    species:"Female",type:"Crow",age:"40",location:"West district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"Smart. Organized. Remembers everything. This was an asset in my career and a liability in my marriage. It turns out that remembering exactly what someone said on March 14th, 2024, and being able to quote it back during an argument, is not the relationship skill I believed it to be. I collect grudges the way some birds collect shiny things. I am aware of this. I am working on putting some of them down. Not all of them. Some of them are load-bearing.",
+    looking:"Someone with a short memory or a thick skin. Preferably both.",
+    days:16
+  },
+  {
+    species:"Male",type:"Goose",age:"50",location:"Visiting",
+    status:"Formally dissolved",extras:["4 dependents (grown)"],
+    about:"I am passing through. I pass through every spring. I have been passing through this district for three years and every year I stay a little longer and I am starting to wonder if passing through is what I'm actually doing or if this is just how I move to a place without admitting I'm moving to a place. I am large, loud, and territorial about food. I have been told these are not attractive qualities. I have also been told that honesty is attractive. So there it is.",
+    looking:"Someone local. Someone who doesn't mind that I might leave in the fall. Someone who understands that \"might\" is the most commitment I've offered in years and it costs me more than it looks.",
+    days:7
+  },
+  {
+    species:"Female",type:"Dove",age:"38",location:"Sycamore Ln",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"I left. I want that on the record. He didn't leave. I did. I packed the twig I brought from my mother's garden and I left on a Tuesday while he was foraging. I did not leave a note because I had been leaving notes for three years and none of them changed anything. I am not proud of the way I left. I am proud that I left. These two things live in the same nest and I am learning to let them.",
+    looking:"Someone who asks what happened without needing me to be the good one in the story.",
+    days:5
+  },
+  {
+    species:"Male",type:"Nuthatch",age:"39",location:"Municipal Oak",
+    status:"Never nested (no judgment)",extras:["no dependents"],
+    about:"No relation to the Clerk. People ask. Every time. No relation. I work in municipal services. I am not going to say which department because the district is small and I have a professional reputation that I would like to keep separate from whatever this is. I will say that I understand paperwork, processes, and waiting. These are useful qualities in a partner and undervalued ones. I have never been married because I have never been asked and I have never asked. Both of these feel like failures of different kinds. I am here to attempt a different kind of failure.",
+    looking:"Someone who appreciates structure. Someone who does not describe \"reliable\" as \"boring.\" Weekday evenings. I am in bed by 9.",
+    days:14
+  },
+  {
+    species:"Female",type:"Pheasant",age:"47",location:"East district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I am beautiful. This is not vanity. It is a fact that has shaped my life in ways I did not ask for and do not entirely benefit from. My ex-husband married me because I was beautiful. He left me because I was also other things, and some of those things required his attention, and his attention was finite and mostly visual. I would like to be seen by someone who is not primarily looking. I understand this is a text-based site with no photos. I chose it on purpose.",
+    looking:"A reader.",
+    days:10
+  },
+  {
+    species:"Male",type:"Pigeon",age:"44",location:"Sycamore Ln",
+    status:"Formally dissolved",extras:["3 dependents (shared custody)"],
+    about:"I coach the nestlings' flight team on Saturdays. This is my whole personality now and I am not sorry about it. Before the divorce I had other interests. After the divorce I have the flight team and a deep familiarity with the parking lot behind the community center where practice happens. My ex-wife says I \"replaced the marriage with a whistle and a clipboard.\" She is correct. The clipboard has never disappointed me.",
+    looking:"Someone who is free on Saturdays. Or not. I have the flight team on Saturdays. I am looking for the other six days.",
+    days:17
+  },
+  {
+    species:"Female",type:"Swallow",age:"31",location:"South district",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"He said I'd come back. It has been five months. I have not come back. Every morning I wake up in my own nest and I think: he is still on that branch waiting for me to come back. And then I think: that is his problem now. I was too young when we nested. Everyone said so. I said they were wrong. They were not wrong. I was twenty-six and I thought love was a decision you make once. It is not. It is a decision you have to keep making, and I stopped making it, and he stopped deserving it, and I am not sure which came first but I know which one I'm responsible for.",
+    looking:"Someone my own age or older who has already made the mistakes I'm still cataloguing. No birds under 30. I have been under 30. It is not a qualification.",
+    days:8
+  },
+  {
+    species:"Male",type:"Robin",age:"51",location:"Birch Court",
+    status:"Formally dissolved",extras:["1 dependent (grown)"],
+    about:"My son is twenty-three and does not return my calls promptly. This is normal. My ex-wife says he \"takes after me,\" which is the cruelest true thing she has ever said. I am a morning bird. I am awake before the sun and I consider this a virtue even though no one I have ever lived with has agreed. I sing. Not well. Not for an audience. Just because the morning feels like it should have a sound and I have one. I am simple. I know this word is used as an insult sometimes but I mean it the way I mean it. I want simple things. A shared branch. A quiet evening. Someone who asks how my day was and listens to the answer even though the answer is usually \"fine.\"",
+    looking:"Fine, together.",
+    days:19
+  },
+  {
+    species:"Female",type:"Heron",age:"48",location:"East district",
+    status:"Widowed",extras:["no dependents"],
+    about:"My husband stood in the same spot in the shallow end of the pond every morning for nineteen years. I stood next to him. We did not speak much. We did not need to. When you stand next to someone for nineteen years you develop a vocabulary that is not made of words. A shift in weight. A turn of the head. The way he would move one step closer when it rained. He is gone. I still stand in the same spot. I have been told I should \"move on,\" which I assume means to a different spot. I am not ready to move to a different spot. But I might be ready for someone to stand in the spot next to me, which has been empty for two years and does not get easier to look at.",
+    looking:"Someone who can stand still. That is all.",
+    days:22
+  },
+  {
+    species:"Male",type:"Canary",age:"36",location:"South district",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"She said I was too cheerful. I did not know that was a thing you could be too much of. Apparently it is. Apparently when your partner is crying and you say \"but look at the light today\" that is not helpful. I have learned this. I am still cheerful. I am just quieter about it now. I wake up and the day is good and I keep that information to myself until someone asks. Nobody has asked in a while.",
+    looking:"Someone who wants to hear that the light is good today. Or at least someone who doesn't mind me thinking it.",
+    days:6
+  },
+  {
+    species:"Female",type:"Sparrow",age:"55",location:"Sycamore Ln",
+    status:"Formally dissolved",extras:["4 dependents (grown, one still visits)"],
+    about:"I raised four. One of them still comes by on Sundays. The other three call on holidays and when they need something, which I have decided to interpret as love. My ex-husband left eight years ago. I did not put myself on this site for eight years because I was busy and then I was tired and then I was used to being alone and then one Sunday my youngest said \"Mom, you should meet someone\" and I said \"I meet people every day\" and she said \"you know what I mean\" and I did know what she meant and I have been sitting on this profile for three weeks trying to figure out what to write. This is what I wrote.",
+    looking:"Someone who doesn't mind that I'm not sure what I'm looking for. Someone who has patience with a bird who's been her own company for eight years and might need a minute.",
+    days:3
+  },
+  {
+    species:"Male",type:"Owl",age:"38",location:"West district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"Not the judge. People assume. Different owl. I work in logistics. I count things and make sure they arrive where they are supposed to arrive. This is also how I approached my marriage, which may have been the issue. I am nocturnal by nature and by preference. My ex was diurnal and optimistic. We met at dusk, which should have told us everything. The forty-five minutes of overlap per day seemed romantic at first. By year three it was a scheduling conflict.",
+    looking:"Nocturnal or at minimum crepuscular. I am not going through the dusk thing again.",
+    days:12
+  },
+  {
+    species:"Female",type:"Finch",age:"42",location:"South district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I built a nest by myself this spring. South-facing. Two forks. No receipt paper. No zip ties. No materials contributed by a male who would later describe them as \"his.\" I am not listing this as a real estate posting. I am listing it as proof. Proof that I can do it alone. Proof that alone is not the same as incomplete. I am on this site not because I need someone but because I finished the nest and looked at it and realized the first thing I wanted to do was show someone. And there was no one to show. That is a different kind of alone than the kind I was trying to prove I could handle.",
+    looking:"Someone to show things to.",
+    days:4
+  },
+  {
+    species:"Male",type:"Duck",age:"46",location:"East district",
+    status:"Formally dissolved",extras:["2 dependents (alternating weeks)"],
+    about:"I am going to be straightforward. I am not interesting. I am not complicated. I do not have a dark past or a poetic wound. My marriage ended because we grew apart, which I know sounds like a thing people say when they do not want to say the real thing, but in our case it is the real thing. We grew apart. Slowly. Like two branches on the same tree that just went in different directions. I swim. I eat. I have the kids every other week and we go to the pond and I watch them and I am happy. The weeks without them I am less happy. I would like someone to be less happy with.",
+    looking:"Uncomplicated company. I have no list of requirements. I just don't want to eat alone on the weeks they're with their mother.",
+    days:15
+  },
+  {
+    species:"Female",type:"Mockingbird",age:"34",location:"Municipal Oak",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"I want to be clear that I am not the mockingbird who was in the noise case. That was Conrad. I do not sing at 4 AM. I do not sing at anyone's window. I am a different mockingbird entirely and the fact that I have to specify this is exactly the kind of thing that happens when you live in a small district with one famous mockingbird who made the paper. I am a mimic by nature, which my ex said was \"charming at parties and unsettling at home.\" He did not like hearing his own voice played back to him. Most birds don't. This is something I have learned about love: people want to be understood, but not repeated.",
+    looking:"Someone who finds imitation flattering. Or at least tolerable.",
+    days:7
+  },
+  {
+    species:"Male",type:"Sparrow",age:"29",location:"Birch Court",
+    status:"Never nested (no judgment)",extras:["no dependents"],
+    about:"My parents are divorced. My mother is on this site. I know this because she told me \"in case you see me on there, I want you to hear it from me first.\" I have not looked for her profile. I am choosing not to look for her profile. I am here because I watched my parents' marriage end and I thought I would learn something from it that would protect me. What I learned is that two good birds can make each other miserable for a long time before one of them is brave enough to stop. I don't know what to do with that yet. But I'd like to figure it out with someone instead of alone.",
+    looking:"Someone who isn't scared of the word \"careful.\" I am careful. I know it looks like hesitation. It isn't. It's the opposite.",
+    days:11
+  },
+  {
+    species:"Female",type:"Pigeon",age:"43",location:"Sycamore Ln",
+    status:"Formally dissolved",extras:["1 dependent"],
+    about:"I filed. I want that known. He was on the bench and I was in the nest and I filed because someone had to and it was not going to be the bird on the bench. People have opinions about this. I have heard them. I have heard \"but he seemed so sad\" from three neighbors who did not seem concerned about whether I was sad, which I was, but I was sad and doing things, which apparently looks less sad than sitting on a bench looking at water. I am not bitter. I am accurate. There is a difference and I wish more birds understood it.",
+    looking:"A bird who does things. Not a bird who sits and thinks about doing things. Not a bird who describes the things he is going to do. A bird who does them. The bar is on the ground and I am still not confident it will be cleared.",
+    days:9
+  },
+  {
+    species:"Male",type:"Wren",age:"41",location:"Municipal Oak",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I hum. I know this about myself now. Apparently I have been humming during meals for the duration of my marriage without being aware of it. The Court described the humming as \"patterned in a way that suggests awareness.\" I dispute this. I was not aware. I am now aware. I cannot stop. I have tried eating in silence. The silence lasts approximately ninety seconds and then the humming begins again, quietly, from somewhere I do not control. My therapist says it is self-soothing. My ex-wife says it is \"the four notes from our wedding played as psychological warfare.\" It is neither. It is just what happens when I eat.",
+    looking:"Someone who does not mind background music. The music is me. I cannot turn it off. I have tried.",
+    days:13
+  },
+  {
+    species:"Female",type:"Egret",age:"49",location:"East district",
+    status:"Widowed",extras:["1 dependent (grown)"],
+    about:"Elegant. Or so I have been told, usually by birds who are about to say something less kind afterward. \"You're so elegant, but\u2014\" There is always a but. But you're distant. But you're cold. But you stand like you're posing. I am not posing. I am standing. This is how I stand. My husband understood this. He stood next to me for eighteen years and never once suggested I \"relax\" or \"loosen up\" or \"try smiling more.\" He was the only bird who saw stillness as presence and not absence. I would like to find that again. I am not optimistic. But I am here.",
+    looking:"Someone who does not mistake composure for coldness. Someone who can be in a room with silence and not try to fill it.",
+    days:17
+  },
+  {
+    species:"Male",type:"Goldfinch",age:"34",location:"South district",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"I changed color after the breakup. Not emotionally. Literally. Seasonal plumage shift. Went from bright yellow to olive brown. My ex texted \u2014 we still text, which my friends say is \"not healthy\" \u2014 she texted and said \"you look like how I feel.\" I think she meant it as a joke. It was the most honest thing she'd said in months. I am currently olive. I will be yellow again by June. I am told this is a metaphor. It is not a metaphor. It is feathers. But I understand why people want it to be a metaphor.",
+    looking:"Someone who likes me in both colors. Or at least isn't waiting for the better one.",
+    days:5
+  },
+  {
+    species:"Female",type:"Bluebird",age:"36",location:"West district",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"Happy. Aggressively, pathologically happy. This was the complaint. \"You can't just be happy all the time,\" he said, like happiness was a flaw I was refusing to fix. I tried being less happy. It did not work. It made me unhappy, which he also did not enjoy, which I think proves my point. I am told I am \"a lot.\" I have read other profiles on this site that say the same thing. I would like to meet all the \"a lot\" birds and form a flock. We could be a lot together. That sounds better than being a lot alone.",
+    looking:"Another \"a lot.\" Two \"a lots\" make a \"just right.\" I believe this. I have no evidence but I believe it.",
+    days:8
+  },
+  {
+    species:"Male",type:"Raven",age:"53",location:"West district",
+    status:"Formally dissolved",extras:["1 dependent (teenager)"],
+    about:"I have a teenage son who is embarrassed by me. This is appropriate. I am embarrassing. I read poetry at the dinner table. I have opinions about moss. I once spent forty minutes explaining the structural properties of a bridge to a bird who was trying to end the conversation after three. My wife left because I am, in her words, \"relentless about things that do not matter and silent about things that do.\" She is correct. I knew what she needed. I talked about the bridge instead. I am still not sure why. I think I thought that if I could make the bridge interesting enough she would stop needing the other thing. She could not. Nobody can. I know this now.",
+    looking:"Someone who will listen to the bridge thing and then say, \"Now tell me the other thing.\" I need the prompt. I am not good at volunteering the real material.",
+    days:20
+  },
+  {
+    species:"Female",type:"Quail",age:"44",location:"East district",
+    status:"Formally dissolved",extras:["5 dependents (3 grown, 2 at home)"],
+    about:"Five kids. Yes, five. No, I do not want to discuss it. Yes, it was intentional. No, not all of them were planned. Yes, I am tired. No, not too tired. I have been tired since 2014 and I have not stopped doing things so the tired is beside the point. My ex-husband left when the youngest was two. He said five was \"more than he signed up for.\" I would like to note that he signed up for each one individually and at no point did anyone force him to do anything except, arguably, the laundry, which he also stopped doing.",
+    looking:"I don't need a hero. I need a Tuesday. Someone who shows up on a Tuesday and does a thing. A regular, unsexy, reliable thing. That is the romance now. That is what I want.",
+    days:14
+  },
+  {
+    species:"Male",type:"Oriole",age:"40",location:"South district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I built beautiful nests. I want that on the record. Elaborate, colorful, architecturally ambitious nests that won two community awards and were featured in a neighborhood newsletter that no longer exists. My wife said the nests were \"for other people to admire\" and that living in one was \"like sleeping in a museum.\" She moved to a simpler nest. A plain nest. Two forks, basic weave, no ornamentation. She says she has never slept better. I do not know what to do with this information. I still build. The current nest has a cantilevered entrance and a drainage system. Nobody sees it. I would like someone to see it.",
+    looking:"Someone who appreciates craft. Or at the very least someone who can sleep in a museum.",
+    days:11
+  },
+  {
+    species:"Male",type:"Pigeon",age:"48",location:"Municipal Park",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I sit on a bench most evenings. I have been told this is not a personality. I disagree but I understand why it reads that way. I am not sad. I am between things. The bench is not a metaphor. It is where I sit.",
+    looking:"Someone who doesn't need me to explain why the bench.",
+    days:25
+  },
+  {
+    species:"Female",type:"Robin",age:"39",location:"Sycamore Ln",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"I was going to write something clever here but I've been on four dates this spring and all of them described themselves as \"not like other birds\" and all of them were exactly like other birds. I like mornings. I like worms. I like knowing where someone is without having to ask. If you are the kind of male who disappears for eleven days and calls it \"thinking,\" I have already dated you and I did not enjoy it. Employed. Stable. My branch is my own and I am not sharing it until I'm sure.",
+    looking:"Be normal.",
+    days:6
+  },
+  {
+    species:"Female",type:"Sparrow",age:"36",location:"Birch Court",
+    status:"Recently restructured",extras:["1 dependent"],
+    about:"I planned to wait a full year before doing this. It has been four months. I am told this is fine and also told this is too soon, often by the same bird in the same conversation. My son asks if I'm \"looking for a new dad\" and I have said no every time and meant it every time except possibly once at the grocery store.",
+    looking:"Someone patient. Someone who understands that \"come over\" means \"come over after 8 because bedtime is a process and I will not explain the process.\" No birds who describe themselves as \"great with kids\" unprompted.",
+    days:10
+  },
+  {
+    species:"Male",type:"Dove",age:"47",location:"East district",
+    status:"Formally dissolved",extras:["0 dependents (contested)"],
+    about:"Quiet. Previously committed. Good with structural concepts but better at describing them than executing them. I have been told I am \"not unpleasant to be around when I am actually around.\" I am working on the actually around part. South-facing branches preferred. I have time. I have had time for a while.",
+    looking:"A patient female who values intention. Character references preferred over recent ones.",
+    dealbreaker:"Dealbreaker: questions about Birch Court.",
+    days:18
+  },
+  {
+    species:"Female",type:"Wren",age:"38",location:"Municipal Oak",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"Quiet. Prefers quiet. Has recently emerged from a domestic noise dispute and would like to state for the record that she did not hum, she has never hummed, and the four notes the Court referenced bore no resemblance to any wedding song because she chose the song and she remembers what it sounds like and it was nothing like that.",
+    looking:"Someone who chews with his beak closed. This is the entire list.",
+    days:12
+  }
+];
+
+var MISSED = [
+  {where:"Third bench, Municipal Park \u00b7 evening",text:"You were on the far end of the bench. I was on the path. You were facing the water. I was facing the water too but I was looking at you. I think you knew. I think you didn't mind. I walked past three more times than I needed to. The fourth time you were gone and the bench looked wrong without you on it.",when:"about 2 weeks ago"},
+  {where:"Birch Court foraging grounds \u00b7 Friday morning",text:"You were sorting seed by size, which I have never seen anyone do in public. I wanted to say something but you had a system and I did not want to be the bird who interrupted a system. I have been thinking about it since. Specifically the way you set aside the small ones like they deserved their own pile.",when:"last Friday"},
+  {where:"Telephone wire, south parking lot \u00b7 late afternoon",text:"We were on the same wire. You moved two spaces closer. I did not move away. This continued for twenty minutes. Then you left. I stayed for another ten because the wire still felt warm. That is not literally true but I don't know how else to describe it.",when:"4 days ago"},
+  {where:"Elm near the south ridge \u00b7 morning",text:"You were at the contractor's office asking about solo nest consultations. I was in line behind you. You apologized for taking too long. You were not taking too long. I wanted to say that but I also did not want to be the bird who comments on a stranger's nesting timeline. If you read this: it was not too long.",when:"last week"},
+  {where:"Municipal Oak, outside the Clerk's office \u00b7 midday",text:"You were leaving. I was arriving. You held the branch for me, which no one does at the Clerk's office because everyone there is in a hurry or a mood. You said \"good luck in there.\" I have been thinking about \"in there\" for five days. It was kind. I did not need luck. I needed someone to say that.",when:"5 days ago"},
+  {where:"Parking lot, south side \u00b7 afternoon",text:"You were carrying something too heavy for one bird. I almost offered to help. I did not offer to help because the last time I offered to help a stranger carry something it turned into a relationship and then a mortgage and then a mediated settlement, and I am not ready for that sequence again. But you looked like you needed help. I hope someone helped.",when:"3 days ago"},
+  {where:"Sycamore Lane, near the meter box \u00b7 morning",text:"You were looking at the meter box like it meant something to you. I don't know if you used to live there. I don't know if you were remembering or just looking. You stood for a long time. Then you flew east. I thought about following you but that seemed like a different kind of website.",when:"last week"},
+  {where:"Municipal Park, jogging path \u00b7 early morning",text:"You passed me twice on the loop. The first time you looked straight ahead. The second time you looked at me. The third time \u2014 and I know there was a third time because I counted \u2014 you almost slowed down. You did not slow down. I understand. Slowing down is a commitment and the path is narrow and it is hard to slow down without stopping entirely.",when:"about 1 week ago"},
+  {where:"Community meeting, Municipal Oak Hall \u00b7 Tuesday evening",text:"You were in the third row. The meeting was about perch usage. You laughed at the wrong moment, which was the right moment. Everyone else was arguing about buffer zones and you laughed and it was the most honest sound in the room. I wanted to tell you but the meeting dissolved into something about a spice rack and then everyone left.",when:"2 weeks ago"},
+  {where:"Foraging grounds, west end \u00b7 afternoon",text:"You apologized for taking the last seed. You did not need to apologize. There were other seeds. But you apologized and then you offered me half of the seed you had taken, which was too small to split but you offered anyway, and I think about that sometimes. The offering. Not the seed.",when:"10 days ago"},
+  {where:"Outside Karen Hawk's office \u00b7 late afternoon",text:"We were both leaving. Neither of us said anything. We did not need to. Two birds leaving a divorce lawyer's office at the same time do not need to explain what they have in common. You turned left. I turned right. I wonder sometimes if turning the same direction would have meant something or if I am reading too much into the geometry of a sidewalk.",when:"about 3 weeks ago"},
+  {where:"Pond, east end \u00b7 dusk",text:"You were standing in the shallows. Alone. Very still. I could not tell if you were fishing or thinking. I did not want to interrupt either one. The light was behind you and you looked like something I would remember, and I was right, because I am writing this.",when:"6 days ago"},
+  {where:"Sycamore Lane, utility pole \u00b7 evening",text:"You were singing. Quietly. Not like the mockingbird \u2014 not for an audience. Just for yourself. Or maybe for no one. I stopped underneath and listened for longer than was appropriate for a stranger. You did not notice me. Or you noticed and did not mind. I prefer to believe the second one.",when:"last Thursday"},
+  {where:"Municipal Oak, staircase to Suite 2 \u00b7 morning",text:"We passed on the narrow staircase. You pressed against the wall to let me by. You smelled like cedar. Not the wood. The tree. I don't know why that matters but I have not stopped thinking about it. The staircase is narrow and emotions are wide. Someone wrote that somewhere. I think they were talking about the law firm but they were also talking about this.",when:"9 days ago"},
+  {where:"Third bench, Municipal Park \u00b7 evening",text:"This is not about the pigeon or the starling. This is about the bench itself. I sat there once, last Tuesday, while they were both absent. The bench was empty and warm from the day and I understood, briefly, why someone would come back to it every evening. It was not about the company. It was about the returning. I have not had a place to return to in a while. I sat there for forty minutes. Then I left before they arrived because it was not my bench. But for forty minutes it was.",when:"last Tuesday"}
+];
+
+var PROFILES_PER_PAGE = 15;
+var MC_PER_PAGE = 7;
+
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+function daysAgo(d) {
+  if (d === 1) return '1 day ago';
+  if (d < 7) return d + ' days ago';
+  if (d < 14) return '1 week ago';
+  if (d < 21) return '2 weeks ago';
+  return Math.floor(d / 7) + ' weeks ago';
+}
+
+function renderProfiles() {
+  var selected = shuffle(PROFILES).slice(0, PROFILES_PER_PAGE);
+  var html = '';
+  for (var i = 0; i < selected.length; i++) {
+    var p = selected[i];
+    var speciesLine = p.species + ' \u00b7 ' + p.type;
+    if (p.age) speciesLine += ' \u00b7 ' + p.age;
+    if (p.location) speciesLine += ' \u00b7 ' + p.location;
+    var statusLine = p.status;
+    if (p.extras) {
+      for (var j = 0; j < p.extras.length; j++) {
+        statusLine += '<span class="status-sep">\u00b7</span>' + p.extras[j];
+      }
+    }
+    html += '<div class="profile">';
+    html += '<div class="profile-top"><span class="species">' + speciesLine + '</span><span class="posted">' + daysAgo(p.days) + '</span></div>';
+    html += '<div class="status">' + statusLine + '</div>';
+    html += '<div class="about-text">' + p.about + '</div>';
+    html += '<div class="looking"><span class="looking-label">Looking for</span>' + p.looking + '</div>';
+    if (p.dealbreaker) html += '<div class="dealbreaker">' + p.dealbreaker + '</div>';
+    html += '<div class="feather-row"><button class="feather-btn" onclick="leaveFeather(this)">' + FEATHER_SVG + 'Leave a feather</button></div>';
+    html += '</div>';
+  }
+  document.getElementById('profileList').innerHTML = html;
+  document.getElementById('barText').textContent = PROFILES.length + ' active profiles';
+}
+
+function renderMC() {
+  var selected = shuffle(MISSED).slice(0, MC_PER_PAGE);
+  var html = '';
+  for (var i = 0; i < selected.length; i++) {
+    var m = selected[i];
+    html += '<div class="mc">';
+    html += '<div class="mc-where">' + m.where + '</div>';
+    html += '<div class="mc-text">' + m.text + '</div>';
+    html += '<div class="mc-when">' + m.when + '</div>';
+    html += '</div>';
+  }
+  document.getElementById('mcList').innerHTML = html;
+}
+
+function leaveFeather(btn) {
+  btn.innerHTML = FEATHER_SVG + "Feather noted. They'll be informed.";
+  btn.className = 'feather-btn done';
+  btn.onclick = null;
+}
+
+var barLabels = {browse:null, missed:'Missed connections are anonymous', about:'', faq:''};
+
+document.querySelectorAll('.nav a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    document.querySelectorAll('.nav a').forEach(function(x){x.classList.remove('active')});
+    a.classList.add('active');
+    var pg = a.getAttribute('data-page');
+    document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active')});
+    document.getElementById('page-' + pg).classList.add('active');
+    var bt = document.getElementById('barText');
+    if (pg === 'browse') {
+      bt.textContent = PROFILES.length + ' active profiles';
+    } else {
+      bt.textContent = barLabels[pg] || '';
+    }
+  });
+});
+
+function showJoin() {
+  document.getElementById('joinOverlay').style.display = 'block';
+  document.getElementById('rejection').style.display = 'none';
+  document.querySelectorAll('.join-form .field input,.join-form .field select,.join-form .field textarea').forEach(function(el) {
+    el.value = ''; el.disabled = false; el.style.opacity = '1';
+  });
+  document.getElementById('submitBtn').style.display = '';
+  document.getElementById('cancelBtn').textContent = 'cancel';
+}
+
+function hideJoin() {
+  document.getElementById('joinOverlay').style.display = 'none';
+}
+
+function submitProfile() {
+  document.getElementById('rejection').style.display = 'block';
+  document.querySelectorAll('.join-form .field input,.join-form .field select,.join-form .field textarea').forEach(function(el) {
+    el.disabled = true; el.style.opacity = '.5';
+  });
+  document.getElementById('submitBtn').style.display = 'none';
+  document.getElementById('cancelBtn').textContent = 'close';
+}
+
+renderProfiles();
+renderMC();
+</script>
+
+</body>
+</html>
