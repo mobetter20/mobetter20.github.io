@@ -2,6 +2,7 @@ const writingHouse = document.querySelector(".writing-house");
 
 if (writingHouse) {
   const roomCards = Array.from(writingHouse.querySelectorAll(".house-grid > .room"));
+  const houseGrid = writingHouse.querySelector(".house-grid");
   const stage = writingHouse.querySelector(".house-stage");
   const frame = writingHouse.querySelector(".house-frame");
   const cursor = writingHouse.querySelector(".writing-cursor");
@@ -48,6 +49,10 @@ if (writingHouse) {
 
   if (countLabel) {
     countLabel.textContent = countToWords(roomCards.length);
+  }
+
+  if (houseGrid) {
+    houseGrid.dataset.roomCount = String(roomCards.length);
   }
 
   const entries = Array.from(writingHouse.querySelectorAll("[data-type-text]")).map((element) => ({
