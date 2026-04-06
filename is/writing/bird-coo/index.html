@@ -30,10 +30,10 @@
 
     :root {
       --bg: #181311;
-      --glow: rgba(152, 110, 75, 0.16);
-      --paper: #efe4d1;
-      --paper-deep: #e3d0b2;
-      --paper-line: rgba(89, 66, 48, 0.04);
+      --glow: rgba(152, 110, 75, 0.12);
+      --paper: #f3ead9;
+      --paper-deep: #eadcc3;
+      --paper-line: rgba(89, 66, 48, 0.035);
       --ink: #1b1613;
       --ink-soft: #64574c;
       --ink-faint: #867768;
@@ -59,7 +59,7 @@
       min-height: 100vh;
       color: var(--ink);
       font-family: var(--font-serif);
-      line-height: 1.52;
+      line-height: 1.64;
       background:
         radial-gradient(circle at top, var(--glow), transparent 32%),
         linear-gradient(180deg, #221815 0%, var(--bg) 100%);
@@ -90,12 +90,12 @@
     }
 
     .frame {
-      width: min(1180px, calc(100% - 2rem));
-      margin: 1.6rem auto 2.25rem;
-      padding: 1.1rem;
-      border-radius: 1.1rem;
-      border: 1px solid rgba(255, 236, 208, 0.08);
-      background: rgba(11, 8, 7, 0.25);
+      width: min(1360px, calc(100% - 0.6rem));
+      margin: 0.7rem auto 1.4rem;
+      padding: 0.6rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 236, 208, 0.06);
+      background: rgba(11, 8, 7, 0.2);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
     }
 
@@ -103,13 +103,13 @@
       position: relative;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 10%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 8%),
         repeating-linear-gradient(
           0deg,
           var(--paper-line),
           var(--paper-line) 1px,
           transparent 1px,
-          transparent 4px
+          transparent 5px
         ),
         linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
       box-shadow: var(--shadow);
@@ -129,7 +129,7 @@
     }
 
     .masthead {
-      padding: 1.3rem 1.4rem 0.9rem;
+      padding: 1.6rem 1.9rem 1.15rem;
       text-align: center;
       border-top: 6px solid var(--banner);
       border-bottom: 2px solid var(--rule-dark);
@@ -151,22 +151,26 @@
     h1 {
       margin: 0.2rem 0 0.35rem;
       font-family: var(--font-masthead);
-      font-size: clamp(3.1rem, 6vw, 5rem);
+      font-size: clamp(3.35rem, 5.8vw, 5.2rem);
       line-height: 0.92;
       font-weight: 400;
       letter-spacing: 0.02em;
+      text-wrap: balance;
     }
 
     .subdeck {
       color: var(--ink-soft);
-      font-size: 1rem;
+      max-width: 46rem;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.08rem;
     }
 
     .edition-row {
       display: flex;
       justify-content: space-between;
       gap: 1rem;
-      padding: 0.62rem 1.4rem;
+      padding: 0.8rem 1.9rem;
       border-bottom: 1px solid var(--rule);
       color: var(--ink-soft);
       font-family: var(--font-sans);
@@ -184,13 +188,15 @@
     .site-nav {
       display: flex;
       gap: 1rem;
-      padding: 0.55rem 1.4rem;
+      padding: 0.68rem 1.9rem;
       background: var(--banner);
       color: rgba(240, 231, 219, 0.88);
       border-bottom: 2px solid var(--rule-dark);
       overflow-x: auto;
       scrollbar-width: none;
       white-space: nowrap;
+      flex-wrap: wrap;
+      row-gap: 0.28rem;
     }
 
     .site-nav::-webkit-scrollbar {
@@ -211,14 +217,12 @@
     }
 
     .content {
-      padding: 0 1.4rem 1.4rem;
+      padding: 0 1.9rem 1.9rem;
     }
 
     .front-page {
-      display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(290px, 0.95fr);
-      gap: 0;
-      padding-top: 1rem;
+      display: block;
+      padding-top: 1.15rem;
     }
 
     .lead-story,
@@ -229,15 +233,10 @@
       position: relative;
     }
 
-    .lead-story,
-    .market-main {
-      padding-right: 1.05rem;
-      border-right: 2px solid rgba(189, 164, 130, 0.42);
-    }
-
-    .court-notice,
-    .display-ad {
-      padding-left: 1.1rem;
+    .lead-story {
+      padding-bottom: 1.3rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid rgba(128, 106, 78, 0.68);
     }
 
     .story-label {
@@ -274,14 +273,16 @@
     .lead-story h2 {
       margin-bottom: 0.55rem;
       font-family: var(--font-masthead);
-      font-size: clamp(2.9rem, 4.8vw, 4.25rem);
+      font-size: clamp(3.2rem, 4.5vw, 4.35rem);
       line-height: 0.95;
+      text-wrap: balance;
     }
 
     .lead-story .standfirst {
-      margin: 0 0 1rem;
+      max-width: 48rem;
+      margin: 0 0 1.15rem;
       color: var(--ink-soft);
-      font-size: 1.12rem;
+      font-size: 1.28rem;
     }
 
     .lead-story p,
@@ -291,7 +292,7 @@
     .display-ad blockquote,
     .letters p {
       margin: 0;
-      font-size: 0.98rem;
+      font-size: 1.06rem;
     }
 
     .lead-story p + p,
@@ -303,22 +304,25 @@
     }
 
     .court-notice {
+      max-width: 44rem;
+      margin-bottom: 1.2rem;
       padding-top: 0.1rem;
     }
 
     .court-notice .notice-shell {
-      border: 1px solid rgba(93, 73, 56, 0.18);
-      border-top: 3px solid var(--rule-dark);
-      background: rgba(255, 252, 246, 0.36);
-      padding: 0.9rem 0.95rem 1rem;
+      border: 1px solid rgba(93, 73, 56, 0.16);
+      border-top: 2px solid var(--rule-dark);
+      background: rgba(255, 252, 246, 0.42);
+      padding: 1.1rem 1.1rem 1.15rem;
     }
 
     .court-notice h2 {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.8rem;
       font-family: var(--font-serif);
-      font-size: 2rem;
+      font-size: 2.18rem;
       line-height: 0.98;
       font-weight: 600;
+      text-wrap: balance;
     }
 
     .notice-venue {
@@ -334,39 +338,42 @@
 
     .market-row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 305px;
-      gap: 0;
-      padding-top: 1.1rem;
+      grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
+      gap: 1.2rem;
+      padding-top: 1.25rem;
     }
 
     .market-main {
       border-top: 3px solid var(--banner);
-      padding-top: 0.95rem;
-      padding-bottom: 1rem;
+      padding-top: 1rem;
+      padding-bottom: 1.05rem;
+      padding-right: 0;
+      border-right: 0;
     }
 
     .market-head {
       display: flex;
       justify-content: space-between;
-      gap: 1rem;
-      align-items: end;
-      margin-bottom: 0.85rem;
-      padding-bottom: 0.7rem;
-      border-bottom: 1px solid rgba(189, 164, 130, 0.8);
+      gap: 1.2rem;
+      align-items: start;
+      margin-bottom: 0.95rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(189, 164, 130, 0.7);
     }
 
     .market-head h2 {
       font-family: var(--font-serif);
-      font-size: 2rem;
+      font-size: 2.15rem;
       font-weight: 500;
       line-height: 1;
+      text-wrap: balance;
     }
 
     .market-note {
-      max-width: 19rem;
+      max-width: 21rem;
       color: var(--ink-faint);
       font-family: var(--font-sans);
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -374,13 +381,13 @@
     .classified-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.9rem;
+      gap: 1.2rem;
     }
 
     .classified-card {
-      border: 1px solid rgba(93, 73, 56, 0.18);
-      background: rgba(255, 252, 246, 0.28);
-      padding: 0.85rem 0.85rem 1rem;
+      border: 1px solid rgba(93, 73, 56, 0.14);
+      background: rgba(255, 252, 246, 0.34);
+      padding: 0.98rem 0.98rem 1.08rem;
     }
 
     .classified-card.personal {
@@ -392,38 +399,40 @@
     }
 
     .classified-card h3 {
-      margin-bottom: 0.65rem;
+      margin-bottom: 0.7rem;
       font-family: var(--font-serif);
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       line-height: 1.05;
       font-weight: 600;
+      text-wrap: balance;
     }
 
     .display-ad {
       border-top: 3px solid var(--accent);
-      padding-top: 0.95rem;
-      padding-bottom: 1rem;
+      padding-top: 1rem;
+      padding-bottom: 1.05rem;
     }
 
     .display-ad .ad-shell {
-      border: 1px solid rgba(122, 43, 28, 0.18);
-      background: rgba(143, 53, 33, 0.08);
-      padding: 0.95rem 0.95rem 1rem;
+      border: 1px solid rgba(122, 43, 28, 0.16);
+      background: rgba(143, 53, 33, 0.07);
+      padding: 1.15rem 1.15rem 1.2rem;
     }
 
     .display-ad h3 {
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.3rem;
       font-family: var(--font-serif);
-      font-size: 2.15rem;
+      font-size: 2.12rem;
       line-height: 0.96;
       font-weight: 600;
+      text-wrap: balance;
     }
 
     .ad-kicker {
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.9rem;
       color: var(--accent);
       font-style: italic;
-      font-size: 1.02rem;
+      font-size: 1.05rem;
     }
 
     .display-ad blockquote {
@@ -445,21 +454,23 @@
     }
 
     .letters {
-      margin-top: 1.05rem;
-      padding-top: 0.95rem;
+      margin-top: 1.2rem;
+      padding-top: 1.1rem;
       border-top: 3px double rgba(128, 106, 78, 0.9);
+      max-width: 66rem;
     }
 
     .letters h2 {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.8rem;
       font-family: var(--font-serif);
-      font-size: 1.95rem;
+      font-size: 2.02rem;
       line-height: 1.02;
       font-weight: 500;
+      text-wrap: balance;
     }
 
     .letters-note {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.8rem;
       color: var(--ink-faint);
       font-family: var(--font-sans);
       font-size: 0.72rem;
@@ -480,7 +491,7 @@
       display: flex;
       justify-content: space-between;
       gap: 1rem;
-      padding: 1rem 1.4rem 1.2rem;
+      padding: 1.1rem 1.45rem 1.3rem;
       border-top: 1px solid rgba(189, 164, 130, 0.8);
       color: var(--ink-soft);
       font-family: var(--font-sans);
@@ -494,29 +505,20 @@
 
     @media (max-width: 980px) {
       .frame {
-        width: min(100% - 1rem, 100%);
-        margin-top: 0.75rem;
-        padding: 0.55rem;
+      width: min(100% - 0.5rem, 100%);
+      margin-top: 0.35rem;
+      padding: 0.45rem;
       }
 
       .front-page,
       .market-row {
         grid-template-columns: 1fr;
-      }
-
-      .lead-story,
-      .market-main {
-        padding-right: 0;
-        border-right: 0;
-      }
-
-      .court-notice,
-      .display-ad {
-        padding-left: 0;
+        gap: 0.9rem;
       }
 
       .court-notice {
         margin-top: 1rem;
+        max-width: none;
       }
 
       .display-ad {
@@ -530,11 +532,13 @@
         flex-direction: column;
         align-items: flex-start;
       }
+
+      .site-nav { row-gap: 0.45rem; }
     }
 
     @media (max-width: 640px) {
       html {
-        font-size: 15px;
+        font-size: 17px;
       }
 
       body {
@@ -561,20 +565,20 @@
       .site-nav,
       .content,
       .footer {
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
+        padding-left: 0.95rem;
+        padding-right: 0.95rem;
       }
 
       .masthead {
-        padding-top: 1rem;
+        padding-top: 1.05rem;
       }
 
       h1 {
-        font-size: 2.8rem;
+        font-size: 2.4rem;
       }
 
       .subdeck {
-        font-size: 0.92rem;
+        font-size: 0.98rem;
       }
 
       .site-nav {
@@ -586,20 +590,28 @@
       }
 
       .lead-story h2 {
-        font-size: 2.35rem;
+        font-size: 2.24rem;
       }
 
       .market-head h2,
       .letters h2 {
-        font-size: 1.6rem;
+        font-size: 1.72rem;
       }
 
       .court-notice h2 {
-        font-size: 1.7rem;
+        font-size: 1.78rem;
       }
 
       .display-ad h3 {
-        font-size: 1.78rem;
+        font-size: 1.84rem;
+      }
+
+      .story-meta,
+      .letters-note,
+      .market-note,
+      .notice-venue,
+      .ad-footer {
+        font-size: 0.7rem;
       }
 
       .classified-grid {
