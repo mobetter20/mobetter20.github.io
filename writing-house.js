@@ -7,6 +7,7 @@ if (writingHouse) {
   const frame = writingHouse.querySelector(".house-frame");
   const cursor = writingHouse.querySelector(".writing-cursor");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const narrowLayout = window.matchMedia("(max-width: 720px)").matches;
   const countLabel = writingHouse.querySelector("[data-room-count-label]");
 
   const countToWords = (count) => {
@@ -156,7 +157,7 @@ if (writingHouse) {
     state.isSettled = false;
     frame.classList.remove("is-settled");
 
-    if (reduceMotion) {
+    if (reduceMotion || narrowLayout) {
       entries.forEach((entry) => {
         entry.element.textContent = entry.text;
       });
