@@ -127,7 +127,7 @@
         font-family: var(--ui-font);
         font-size: 0.78rem;
         font-weight: 500;
-        color: var(--muted);
+        color: rgba(255, 255, 255, 0.45);
         text-decoration: none;
         letter-spacing: 0.02em;
       }
@@ -185,6 +185,14 @@
       .case-number {
         font-family: var(--mono-font);
         font-size: 0.95em;
+      }
+      a.case-number {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid var(--accent);
+      }
+      a.case-number:hover {
+        color: var(--accent);
       }
 
       .seal-block {
@@ -1740,7 +1748,7 @@
           <p class="eyebrow">Avian Municipal Nest Court · Chamber B</p>
           <h1 class="case-title">Dove v. Dove</h1>
           <p class="case-subtitle">
-            <span class="case-number">AMNC-2026-007B</span> · Nest abandonment
+            <a href="../nest-court/#case-detail" class="case-number">AMNC-2026-007B</a> · Nest abandonment
           </p>
 
           <div class="top-tabs-wrap" role="tablist" aria-label="Chamber display views">
