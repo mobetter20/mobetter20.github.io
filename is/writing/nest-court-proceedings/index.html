@@ -118,6 +118,23 @@
         backdrop-filter: blur(10px);
       }
 
+      .back-nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.75rem 1.35rem 0;
+      }
+      .back-nav a {
+        font-family: var(--ui-font);
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--muted);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+      }
+      .back-nav a:hover {
+        color: var(--accent);
+      }
+
       .topbar {
         display: grid;
         grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.95fr) minmax(0, 1fr);
@@ -1715,6 +1732,8 @@
         <circle cx="800" cy="140" r="86" fill="none" stroke="currentColor" stroke-opacity="0.14" stroke-width="2"></circle>
         <circle cx="800" cy="140" r="122" fill="none" stroke="currentColor" stroke-opacity="0.08" stroke-width="2"></circle>
       </svg>
+
+      <nav class="back-nav"><a href="../nest-court/">← Case Docket</a></nav>
 
       <header class="topbar panel">
         <div class="topbar-block topbar-block--case">
