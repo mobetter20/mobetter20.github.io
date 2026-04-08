@@ -248,6 +248,8 @@
     .docket-table tbody tr.active-case:hover { background: #FFF8E7; }
 
     .case-link { font-weight: 600; font-family: var(--font-mono); font-size: 0.8rem; }
+    .case-caption-link { color: var(--link); text-decoration: none; }
+    .case-caption-link:hover { color: var(--link-hover); text-decoration: underline; }
 
     .status-badge {
       display: inline-block;
@@ -832,14 +834,14 @@
         <tbody>
           <tr class="active-case">
             <td><a href="#case-detail" class="case-link">AMNC-2026-007B</a></td>
-            <td><strong>Dove v. Dove</strong></td>
+            <td><a href="../nest-court-proceedings/" class="case-caption-link"><strong>Dove v. Dove</strong></a></td>
             <td>Nest Abandonment</td>
             <td>Feb 12, 2026</td>
             <td>
               <a
                 class="status-badge status-active"
-                href="https://ajin.im/is/writing/nest-court-proceedings/"
-                title="Temporary test implementation: open proceedings view"
+                href="../nest-court-proceedings/"
+                title="View gallery proceedings"
               >Active</a>
             </td>
           </tr>
@@ -895,8 +897,8 @@
               <span class="field-value">
                 <a
                   class="status-badge status-active"
-                  href="https://ajin.im/is/writing/nest-court-proceedings/"
-                  title="Temporary test implementation: open proceedings view"
+                  href="../nest-court-proceedings/"
+                  title="View gallery proceedings"
                 >Active</a>
               </span>
             </div>
