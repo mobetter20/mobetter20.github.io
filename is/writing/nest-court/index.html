@@ -589,6 +589,12 @@
       color: var(--nav-text);
       line-height: 1.7;
     }
+    .district-resources-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.95fr);
+      gap: 24px;
+      align-items: start;
+    }
     .district-resources h4 {
       font-size: 0.72rem;
       text-transform: uppercase;
@@ -602,16 +608,9 @@
     }
     .district-resources a:hover { color: #fff; }
     .practitioner-listing {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255,255,255,0.08);
       color: rgba(255,255,255,0.76);
       font-size: 0.78rem;
       line-height: 1.7;
-    }
-    .practitioner-listing strong {
-      color: #fff;
-      font-weight: 600;
     }
     .practitioner-listing a {
       color: rgba(255,255,255,0.9);
@@ -786,6 +785,7 @@
       .case-field:nth-child(even) { padding-left: 0; border-left: none; }
       .case-field:nth-child(odd) { padding-right: 0; }
       .footer-grid { grid-template-columns: 1fr; }
+      .district-resources-grid { grid-template-columns: 1fr; }
       .site-nav .wrap { flex-wrap: wrap; }
       .site-nav a { padding: 8px 12px; font-size: 0.78rem; }
       .docket-row td:first-child { padding-left: 20px; }
@@ -2223,16 +2223,18 @@
         </div>
       </div>
       <div class="district-resources">
-        <h4>District Resources</h4>
-        <a href="../bird-coo/">The Municipal Coo</a> — Local notices and court coverage
-        <br>
-        <a href="../secondnest/">SecondNest</a> — Community personals board
-        <div class="practitioner-listing">
-          <strong>Licensed Practitioners</strong><br>
-          <a href="../karen-hawk/">Karen Hawk, Attorney at Law</a> — Family law, nest abandonment, no-perch orders
-          <br>
-          Perch &amp; Perch Family Law — Family law practitioners
-          <span class="listing-note">Listings are informational only and do not constitute endorsement by the Court.</span>
+        <div class="district-resources-grid">
+          <div>
+            <h4>District Resources</h4>
+            <a href="../bird-coo/">The Municipal Coo</a> — Local notices and court coverage
+            <br>
+            <a href="../secondnest/">SecondNest</a> — Community personals board
+          </div>
+          <div class="practitioner-listing">
+            <h4>Licensed Practitioners</h4>
+            <a href="../karen-hawk/">Karen Hawk, Attorney at Law</a> — Family law, nest abandonment, no-perch orders
+            <span class="listing-note">Listings are informational only and do not constitute endorsement by the Court.</span>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
