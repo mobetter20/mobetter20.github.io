@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karen Hawk, Attorney at Law</title>
+  <meta
+    name="description"
+    content="Karen Hawk, Attorney at Law. Family law representation for the Avian Municipal District, including nest abandonment, contested nest division, and emergency no-perch orders."
+  >
+  <link rel="canonical" href="https://ajin.im/is/writing/karen-hawk/">
+  <meta property="og:title" content="Karen Hawk, Attorney at Law">
+  <meta
+    property="og:description"
+    content="Solo family-law practitioner serving the Avian Municipal District. Free consultations. Evening and weekend appointments."
+  >
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;800&family=Libre+Baskerville:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
+  <script src="../../../analytics.js" defer></script>
+  <style>
+    :root {
+      --bg: #111318;
+      --bg-deep: #0c0e12;
+      --surface: #161b22;
+      --surface-strong: #1d242d;
+      --surface-soft: #f3eadf;
+      --surface-soft-alt: #efe4d6;
+      --ink: #111318;
+      --ink-soft: #4e4b44;
+      --ink-faint: #7a7469;
+      --text: #f5ecde;
+      --text-soft: #d7cbb9;
+      --text-faint: #9c9287;
+      --line: rgba(255, 241, 222, 0.12);
+      --line-strong: rgba(255, 241, 222, 0.18);
+      --copper: #d46d3d;
+      --copper-deep: #b55529;
+      --copper-pale: #f2c4ab;
+      --mist: #a7c2c8;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
+      --radius-xl: 32px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+      --font-ui: "DM Sans", sans-serif;
+      --font-serif: "Libre Baskerville", Georgia, serif;
+      --font-mono: "DM Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top right, rgba(212, 109, 61, 0.16), transparent 28%),
+        radial-gradient(circle at 10% 20%, rgba(167, 194, 200, 0.08), transparent 24%),
+        linear-gradient(180deg, #161920 0%, #101217 100%);
+      color: var(--text);
+      font-family: var(--font-ui);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .site-shell {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 28px auto 120px;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: 26px;
+      align-items: stretch;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(30, 35, 43, 0.94), rgba(19, 22, 28, 0.96)),
+        linear-gradient(180deg, rgba(212, 109, 61, 0.08), rgba(212, 109, 61, 0));
+      box-shadow: var(--shadow);
+      overflow: clip;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -120px -160px auto;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 109, 61, 0.22), rgba(212, 109, 61, 0));
+      pointer-events: none;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .mini-label {
+      color: var(--copper-pale);
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: rgba(242, 196, 171, 0.55);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 7vw, 5.25rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      max-width: 9ch;
+    }
+
+    .hero-tagline-wrap {
+      min-height: 3.2rem;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-tagline {
+      margin: 0;
+      color: var(--copper-pale);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      transition: opacity 0.24s ease, transform 0.24s ease;
+    }
+
+    .hero-tagline.fade {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    .hero-deck {
+      margin: 0;
+      max-width: 34rem;
+      color: var(--text-soft);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #e47e4d, var(--copper));
+      color: #fff7ef;
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(180, 85, 41, 0.28);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .cta:hover,
+    .cta:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(180, 85, 41, 0.34);
+    }
+
+    .cta:focus-visible {
+      outline: 2px solid rgba(242, 196, 171, 0.8);
+      outline-offset: 3px;
+    }
+
+    .hero-note {
+      margin: 0;
+      color: var(--text-faint);
+      font-size: 0.84rem;
+      line-height: 1.6;
+      max-width: 33rem;
+    }
+
+    .hero-note strong {
+      color: var(--text-soft);
+      font-weight: 700;
+    }
+
+    .hero-panel {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 18px;
+      padding: 22px;
+      border: 1px solid rgba(242, 196, 171, 0.16);
+      border-radius: 26px;
+      background:
+        linear-gradient(180deg, rgba(255, 246, 236, 0.96), rgba(240, 228, 214, 0.96));
+      color: var(--ink);
+    }
+
+    .seal-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .seal-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .seal-mark svg {
+      width: 56px;
+      height: 56px;
+      flex: 0 0 auto;
+    }
+
+    .seal-title {
+      font-family: var(--font-serif);
+      font-size: 1.02rem;
+      line-height: 1.35;
+    }
+
+    .seal-subtitle {
+      color: var(--ink-faint);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .availability-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(212, 109, 61, 0.12);
+      color: var(--copper-deep);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .availability-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--copper);
+      box-shadow: 0 0 0 4px rgba(212, 109, 61, 0.12);
+    }
+
+    .consult-card {
+      display: grid;
+      gap: 10px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.54);
+      border: 1px solid rgba(17, 19, 24, 0.08);
+    }
+
+    .consult-card p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .consult-points {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .consult-points li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--ink);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .consult-points li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      margin-top: 0.45rem;
+      border-radius: 50%;
+      background: var(--copper);
+      flex: 0 0 auto;
+    }
+
+    .section-card {
+      margin-top: 26px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(21, 25, 31, 0.96), rgba(18, 21, 27, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 38rem;
+      color: var(--text-faint);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .practice-card {
+      display: grid;
+      gap: 12px;
+      min-height: 100%;
+      padding: 20px;
+      border: 1px solid var(--line-strong);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02));
+    }
+
+    .practice-card h3 {
+      margin: 0;
+      font-size: 1.06rem;
+      line-height: 1.35;
+    }
+
+    .practice-card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .testimonial {
+      padding: 20px 22px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, var(--surface-soft), var(--surface-soft-alt));
+      color: var(--ink);
+      border: 1px solid rgba(17, 19, 24, 0.08);
+      display: grid;
+      gap: 14px;
+    }
+
+    .testimonial blockquote {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-style: italic;
+      line-height: 1.8;
+      color: #2d2a25;
+    }
+
+    .testimonial figcaption {
+      color: var(--ink-faint);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .why-body {
+      padding: 22px;
+      border: 1px solid var(--line-strong);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .why-body p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+
+    .why-body p + p {
+      margin-top: 0.7rem;
+    }
+
+    .why-quote {
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(212, 109, 61, 0.16), rgba(212, 109, 61, 0.05));
+      border: 1px solid rgba(212, 109, 61, 0.22);
+    }
+
+    .why-quote p {
+      margin: 0;
+      color: #fff2e6;
+      font-family: var(--font-serif);
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .awards-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid rgba(212, 109, 61, 0.22);
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(212, 109, 61, 0.14), rgba(212, 109, 61, 0.06));
+    }
+
+    .award {
+      padding: 18px 20px;
+      text-align: center;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: var(--text-soft);
+      border-left: 1px solid rgba(212, 109, 61, 0.18);
+    }
+
+    .award:first-child {
+      border-left: 0;
+    }
+
+    .site-footer {
+      margin-top: 26px;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(21, 25, 31, 0.96), rgba(17, 20, 25, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .footer-block {
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-block h3 {
+      margin: 0;
+      color: var(--copper-pale);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .footer-block p,
+    .footer-block a {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .footer-block a:hover,
+    .footer-block a:focus-visible {
+      color: #fff5ea;
+      text-decoration: underline;
+    }
+
+    .footer-disclaimer {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--text-faint);
+      font-size: 0.84rem;
+      line-height: 1.65;
+    }
+
+    .chat-status {
+      position: fixed;
+      right: 24px;
+      bottom: 98px;
+      max-width: min(320px, calc(100vw - 40px));
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(12, 14, 18, 0.92);
+      color: var(--text-soft);
+      font-size: 0.8rem;
+      line-height: 1.5;
+      border: 1px solid rgba(212, 109, 61, 0.28);
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.34);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 49;
+    }
+
+    .chat-status.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .intake-widget {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .chat-toggle {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      border: 0;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, #e07c4d, var(--copper));
+      color: #fff7ef;
+      box-shadow: 0 18px 28px rgba(180, 85, 41, 0.35);
+      cursor: pointer;
+    }
+
+    .chat-toggle svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .chat-toggle.prompting {
+      animation: bouncePrompt 0.9s ease-in-out 2;
+    }
+
+    @keyframes bouncePrompt {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-8px); }
+      50% { transform: translateY(0); }
+      75% { transform: translateY(-4px); }
+    }
+
+    .chat-window {
+      width: min(360px, calc(100vw - 32px));
+      height: min(560px, calc(100vh - 148px));
+      display: none;
+      flex-direction: column;
+      border-radius: 24px;
+      border: 1px solid rgba(212, 109, 61, 0.26);
+      background: rgba(15, 18, 24, 0.98);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.42);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+    }
+
+    .intake-widget.open .chat-window {
+      display: flex;
+    }
+
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(212, 109, 61, 0.08), rgba(212, 109, 61, 0.02));
+    }
+
+    .chat-header h3 {
+      margin: 0 0 4px;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+    }
+
+    .chat-header p {
+      margin: 0;
+      color: var(--text-faint);
+      font-size: 0.73rem;
+      line-height: 1.5;
+    }
+
+    .chat-close {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--text-soft);
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .chat-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 25%),
+        rgba(10, 13, 18, 0.78);
+    }
+
+    .bubble {
+      max-width: 88%;
+      padding: 12px 14px;
+      border-radius: 18px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+    }
+
+    .bubble.bot {
+      border-top-left-radius: 6px;
+      background: rgba(255, 247, 239, 0.96);
+      color: var(--ink);
+    }
+
+    .bubble.visitor {
+      justify-self: end;
+      border-top-right-radius: 6px;
+      background: rgba(212, 109, 61, 0.92);
+      color: #fff8f1;
+    }
+
+    .bubble a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .option-tray {
+      padding: 14px 18px 18px;
+      display: grid;
+      gap: 10px;
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .option-btn,
+    .intake-submit {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(242, 196, 171, 0.18);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      cursor: pointer;
+      transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+    }
+
+    .option-btn:hover,
+    .option-btn:focus-visible,
+    .intake-submit:hover,
+    .intake-submit:focus-visible {
+      border-color: rgba(212, 109, 61, 0.46);
+      background: rgba(212, 109, 61, 0.08);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .intake-form {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(242, 196, 171, 0.12);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .intake-form label {
+      display: grid;
+      gap: 6px;
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+
+    .intake-form span {
+      color: var(--copper-pale);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .intake-form select,
+    .intake-form textarea,
+    .intake-form input {
+      width: 100%;
+      border: 1px solid rgba(242, 196, 171, 0.16);
+      border-radius: 12px;
+      background: rgba(11, 14, 18, 0.66);
+      color: var(--text);
+      padding: 11px 12px;
+    }
+
+    .intake-form textarea {
+      min-height: 98px;
+      resize: vertical;
+    }
+
+    .field-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--text-faint);
+      font-size: 0.72rem;
+    }
+
+    .chat-footer-note {
+      padding: 0 18px 16px;
+      color: var(--text-faint);
+      font-size: 0.7rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .practice-grid,
+      .testimonials-grid,
+      .footer-grid,
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .awards-bar {
+        grid-template-columns: 1fr;
+        border-radius: 24px;
+      }
+
+      .award {
+        border-left: 0;
+        border-top: 1px solid rgba(212, 109, 61, 0.18);
+      }
+
+      .award:first-child {
+        border-top: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-shell {
+        width: min(calc(100% - 22px), var(--max));
+        margin: 12px auto 124px;
+      }
+
+      .hero,
+      .section-card,
+      .site-footer {
+        padding: 22px;
+      }
+
+      .hero h1 {
+        max-width: none;
+        font-size: clamp(2.5rem, 15vw, 3.6rem);
+      }
+
+      .hero-deck {
+        font-size: 0.96rem;
+        line-height: 1.72;
+      }
+
+      .chat-status {
+        right: 12px;
+        bottom: 88px;
+        max-width: calc(100vw - 24px);
+      }
+
+      .intake-widget {
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .chat-window {
+        width: calc(100vw - 24px);
+        height: min(46vh, 420px);
+      }
+
+      .chat-header {
+        padding: 14px 16px;
+      }
+
+      .chat-body {
+        padding: 14px;
+      }
+
+      .option-tray {
+        padding: 12px 14px 14px;
+      }
+
+      .bubble {
+        max-width: 94%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Attorney at Law · Avian Municipal District</p>
+        <h1>Karen Hawk</h1>
+        <div class="hero-tagline-wrap" aria-live="polite">
+          <p class="hero-tagline" id="heroTagline">Rapid Descents · Clean Separations</p>
+        </div>
+        <p class="hero-deck">
+          Contested nest divisions. Emergency no-perch orders. Nest abandonment.
+          Free consultations for birds who are tired of being told to give it time.
+        </p>
+        <div class="hero-actions">
+          <button class="cta" type="button" data-open-intake>Free Consultation</button>
+        </div>
+        <p class="hero-note">
+          <strong>Karen Hawk does not provide couples counseling, reconciliation services, or reassurance.</strong>
+          She provides representation, receipts, and a clear retainer agreement.
+        </p>
+      </div>
+
+      <aside class="hero-panel" aria-label="Karen Hawk office information">
+        <div class="seal-row">
+          <div class="seal-mark">
+            <svg viewBox="0 0 80 80" aria-hidden="true">
+              <circle cx="40" cy="40" r="36" fill="none" stroke="#d46d3d" stroke-width="2"></circle>
+              <path d="M19 50c8-19 16-28 21-28 7 0 15 12 21 28-9 5-15 7-21 7-6 0-12-2-21-7z" fill="#d46d3d" opacity="0.14"></path>
+              <path d="M20 50c7-17 15-26 20-26 7 0 15 11 20 26" fill="none" stroke="#191b20" stroke-width="3" stroke-linecap="round"></path>
+              <circle cx="31" cy="40" r="4" fill="#191b20"></circle>
+              <circle cx="49" cy="40" r="4" fill="#191b20"></circle>
+              <path d="M35 51l5-7 5 7-5 3-5-3z" fill="#d46d3d"></path>
+              <path d="M26 26l6 6M54 26l-6 6" stroke="#191b20" stroke-width="3" stroke-linecap="round"></path>
+            </svg>
+            <div>
+              <div class="seal-title">Consultations free.<br>Appointments available.</div>
+              <div class="seal-subtitle">Solo practitioner</div>
+            </div>
+          </div>
+          <div class="availability-badge">Available now</div>
+        </div>
+
+        <div class="consult-card">
+          <p class="mini-label">Office</p>
+          <p>11 Municipal Oak, Suite 4<br>Sycamore District</p>
+        </div>
+
+        <ul class="consult-points">
+          <li>Eighteen years in family law, including nest abandonment and emergency filings.</li>
+          <li>Evening and weekend appointments for birds who only become honest after dusk.</li>
+          <li>Consultations are confidential and do not obligate you to file.</li>
+        </ul>
+      </aside>
+    </header>
+
+    <main>
+      <section class="section-card" aria-labelledby="practice-title">
+        <div class="section-head">
+          <p class="section-kicker">Practice Areas</p>
+          <h2 id="practice-title">Cases Karen already knows how to name.</h2>
+          <p>Family law in the district does not arrive in broad categories. It arrives in details, objects, timings, and one bird insisting that none of it means what it obviously means.</p>
+        </div>
+        <div class="practice-grid">
+          <article class="practice-card">
+            <h3>Nest Abandonment</h3>
+            <p>When your partner leaves, the law has a name for it. Karen has a strategy for it.</p>
+          </article>
+          <article class="practice-card">
+            <h3>Contested Nest Division</h3>
+            <p>Who gets the twigs? Who gets the lint? Karen has divided nests containing materials neither party could identify under oath.</p>
+          </article>
+          <article class="practice-card">
+            <h3>Emergency No-Perch Orders</h3>
+            <p>If you need distance, Karen can get it by dusk.</p>
+          </article>
+          <article class="practice-card">
+            <h3>Post-Separation Disputes</h3>
+            <p>Perch usage. Foraging territory. The wire above the parking lot. Karen has seen all of it.</p>
+          </article>
+          <article class="practice-card">
+            <h3>Egg Custody</h3>
+            <p>Alternating weekends. Shared Wednesdays. One floating holiday. Karen wrote that arrangement and she will write yours.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="testimonials-title">
+        <div class="section-head">
+          <p class="section-kicker">Selected Testimonials</p>
+          <h2 id="testimonials-title">Birds who would have preferred not to need her.</h2>
+          <p>Presented with the reverence customary to this kind of website and the specificity customary to this district.</p>
+        </div>
+        <div class="testimonials-grid">
+          <figure class="testimonial">
+            <blockquote>“She got me the branch, the eggs, and an apology I could use in future proceedings.”</blockquote>
+            <figcaption>Former client · Published in The Municipal Coo</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>“She didn't sugarcoat it. She said, ‘He left, you locked it, the Court will decide who was faster.’ Then she won.”</blockquote>
+            <figcaption>D.D. · Sycamore Lane</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>“I came in with a list of complaints. Karen said, ‘Pick three.’ I said, ‘There are forty.’ She said, ‘Pick the three that will hold up.’ That changed everything.”</blockquote>
+            <figcaption>Former client · Published in The Municipal Coo</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>“I brought her forty-seven messages and three months of notes. Karen circled two lines and said, ‘These are the only parts the Court can use.’ She was right.”</blockquote>
+            <figcaption>M.R. · Third Fork</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>“She asked what outcome I actually wanted. I said, ‘Peace.’ She said, ‘Pick something enforceable.’ It was the most useful thing anyone said to me all year.”</blockquote>
+            <figcaption>L.P. · Sycamore District</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="why-title">
+        <div class="section-head">
+          <p class="section-kicker">Why Karen Hawk</p>
+          <h2 id="why-title">Clarity, not comfort.</h2>
+        </div>
+        <div class="why-grid">
+          <div class="why-body">
+            <p>Eighteen years. Hundreds of cases. Karen Hawk does not offer hope. She offers clarity.</p>
+            <p>Hope is what kept you in the meeting, on the branch, or by the window while someone explained that nothing was wrong. Clarity is what gets you through the filing.</p>
+            <p>If your partner has described the relationship as “evolving,” Karen can tell you what it is evolving into. She has seen it too many times to confuse it with surprise.</p>
+          </div>
+          <aside class="why-quote">
+            <p>“I do not do couples counseling. That ship has sailed, sunk, and been entered into evidence.”</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="distinctions-title">
+        <div class="section-head">
+          <p class="section-kicker">Distinctions</p>
+          <h2 id="distinctions-title">Recognitions Karen did not invent and cannot currently source.</h2>
+        </div>
+        <div class="awards-bar" role="list" aria-label="Karen Hawk credentials">
+          <div class="award" role="listitem">District’s Most Consulted Family Law Practitioner — 3 Consecutive Years</div>
+          <div class="award" role="listitem">Exposed to every version of “it’s not what it looks like”</div>
+          <div class="award" role="listitem">Zero reconciliations facilitated</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-block">
+          <h3>Office</h3>
+          <p>11 Municipal Oak, Suite 4</p>
+          <p>Sycamore District</p>
+          <p>Avian Municipal District</p>
+        </div>
+        <div class="footer-block">
+          <h3>Hours</h3>
+          <p>Dawn + 2 to Dusk - 1</p>
+          <p>Evenings by appointment</p>
+          <p>Weekend consultations available</p>
+        </div>
+        <div class="footer-block">
+          <h3>District Links</h3>
+          <a href="../nest-court/">Nest Court</a>
+          <a href="../bird-coo/">The Municipal Coo</a>
+          <a href="../secondnest/">SecondNest</a>
+        </div>
+      </div>
+      <p class="footer-disclaimer">
+        Karen Hawk does not provide couples counseling, reconciliation services, or reassurance.
+        She provides representation. Consultations are free, confidential, and do not constitute a commitment to filing.
+      </p>
+    </footer>
+  </div>
+
+  <div class="chat-status" id="chatStatus" aria-live="polite"></div>
+
+  <div class="intake-widget" id="intakeWidget">
+    <div class="chat-window" id="chatWindow" aria-label="Karen Hawk intake assistant">
+      <div class="chat-header">
+        <div>
+          <h3>Karen’s automated intake assistant</h3>
+          <p>Session only. No data stored. This is not a conversation.</p>
+        </div>
+        <button class="chat-close" type="button" aria-label="Close intake assistant" id="chatClose">×</button>
+      </div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="option-tray" id="optionTray"></div>
+      <div class="chat-footer-note">Karen reviews submitted intake forms between clients. The site does not remember you after refresh.</div>
+    </div>
+
+    <button class="chat-toggle" type="button" id="chatToggle" aria-label="Open intake assistant">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M6 8.5c0-2.5 2-4.5 4.5-4.5h11C24.99 4 27 6.01 27 8.5v7c0 2.49-2.01 4.5-4.5 4.5h-6.1L11 25.5v-5.5h-.5C8 20 6 17.99 6 15.5v-7z" fill="currentColor"></path>
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    const heroTaglines = [
+      "Rapid Descents · Clean Separations",
+      "If he calls it “thinking,” I call it billing.",
+      "You don't need a reason to call. You already have one.",
+      "He said he needed to “find himself.” I found him in twelve minutes.",
+      "You brought your ex-wife to the meeting? Call me."
+    ];
+
+    const chatTree = {
+      beat0: {
+        messages: [
+          "Hi. I'm Karen's automated intake assistant. This is not a conversation. It is a preliminary assessment.",
+          "Are you currently experiencing a nest-related legal matter?"
+        ],
+        options: [
+          { label: "Yes", next: "beat1A" },
+          { label: "No", next: "beat1B" },
+          { label: "I'm just looking around", next: "beat1C" }
+        ]
+      },
+      beat1A: {
+        messages: ["Noted. What best describes your situation?"],
+        options: [
+          { label: "My partner left the nest", next: "beat2A" },
+          { label: "My partner won't leave the nest", next: "beat2B" },
+          { label: "I'd rather not say", next: "beat2C" }
+        ]
+      },
+      beat1B: {
+        messages: [
+          "That's fine. Most of Karen's current clients also said no at this stage. Some of them said it quite firmly. One of them said it in all capitals. She is now in her third month of proceedings.",
+          "Just to rule it out — has your partner done anything recently that you had to explain to someone else?"
+        ],
+        options: [
+          { label: "...maybe", next: "beat2A" },
+          { label: "No, genuinely no", next: "beat2D" }
+        ]
+      },
+      beat1C: {
+        messages: [
+          "Of course. People look around Karen Hawk's website for all sorts of reasons. Curiosity. Research. The specific kind of insomnia that follows an argument about whose mother is visiting too often.",
+          "While you're here — would you say your current nest arrangement is stable?"
+        ],
+        options: [
+          { label: "Yes", next: "beat2D" },
+          { label: "Define stable", next: "beat2B" },
+          { label: "I don't have a nest", next: "beat2E" }
+        ]
+      },
+      beat2A: {
+        messages: [
+          "When did you first notice something was wrong? And I don't mean when it became wrong. I mean when you first allowed yourself to use that word."
+        ],
+        options: [
+          { label: "Recently", next: "beat3Main" },
+          { label: "It's been a while", next: "beat3Main" },
+          { label: "I don't want to answer that", next: "beat3Deflect" }
+        ]
+      },
+      beat2B: {
+        messages: [
+          "Are they aware that you consider the arrangement unsatisfactory? Or is this one of those situations where you've said it clearly multiple times and they've responded by adjusting nothing except possibly their facial expression?"
+        ],
+        options: [
+          { label: "I've tried talking about it", next: "beat3Main" },
+          { label: "They don't know yet", next: "beat3Secret" }
+        ]
+      },
+      beat2C: {
+        messages: [
+          "Understood. Karen has noted that clients who prefer not to describe their situation in a chat widget are statistically more likely to need representation than those who do.",
+          "This is not a published statistic. It is Karen's statistic. She tracks these."
+        ],
+        options: [
+          { label: "That's... oddly specific", next: "beat3Main" },
+          { label: "I think I'll go", next: "beat3Exit" }
+        ]
+      },
+      beat2D: {
+        messages: [
+          "Good. Karen is glad to hear that. Genuinely. She does not wish divorce upon anyone. She simply observes that it wishes itself upon a significant number of birds who were also, at one point, fine.",
+          "One last question. Purely for our records. Does your partner know you're on this website right now?"
+        ],
+        options: [
+          { label: "Why would that matter?", next: "beat3Main" },
+          { label: "This has been weird. Goodbye.", next: "beat3Exit" }
+        ]
+      },
+      beat2E: {
+        messages: ["No nest. Noted. Was there previously a nest, or is this a pre-nest inquiry?"],
+        options: [
+          { label: "There was a nest", next: "beat3Main" },
+          { label: "Never had one", next: "beat3Solo" }
+        ]
+      },
+      beat3Main: {
+        messages: [
+          "Based on your responses, here is what I can tell you: something is either wrong, recently became wrong, or has been wrong for long enough that you've started browsing legal websites at [current time of day].",
+          "Karen does not judge this. Karen did not become the district's most consulted family law practitioner by judging the hour at which people seek help. She became it by answering the phone.",
+          "Would you like to request a consultation?"
+        ],
+        options: [
+          { label: "Yes", next: "beat4Form" },
+          { label: "I'm not ready", next: "beat4NotReady" }
+        ]
+      },
+      beat3Deflect: {
+        messages: [
+          "That's completely fine. You are under no obligation to share anything with an automated widget on a law firm's website at [current time of day]. The fact that you are still reading is between you and your browser history."
+        ],
+        options: [
+          { label: "Fine. Ask your questions.", next: "beat3Main" },
+          { label: "I'm leaving", next: "beat3Exit" }
+        ]
+      },
+      beat3Secret: {
+        messages: [
+          "Karen has handled a significant number of cases that began with the sentence “they don't know yet.” She has handled them with discretion.",
+          "She has also handled them quickly, because in her experience, the window between “they don't know” and “they found out” is smaller than most birds think."
+        ],
+        options: [
+          { label: "How quickly?", next: "beat3Main" },
+          { label: "I need to think about this", next: "beat4NotReady" }
+        ]
+      },
+      beat3Solo: {
+        messages: [
+          "Interesting. You are on a bird family law website without a bird family law matter. Karen respects this. She once had a client who came in to ask about tree ordinances and left with a restraining order against a woodpecker. The law is full of surprises.",
+          "Is there anything else I can help you with?"
+        ],
+        options: [
+          { label: "No, I think I wandered into the wrong website", next: "beat4EndSolo" },
+          { label: "Actually, there is something", next: "beat3Main" }
+        ]
+      },
+      beat3Exit: {
+        messages: [
+          "Understood. Karen's office hours are dawn plus two to dusk minus one. Evening appointments available. She does not require an appointment. She does not require a reason. She has been doing this long enough to know that the birds who say “I think I'll go” are rarely going far."
+        ],
+        status: "This intake assessment has been terminated at the visitor's request. File status: Unresolved.",
+        terminal: true
+      },
+      beat4Form: {
+        messages: [
+          "Excellent. Karen will need the following:"
+        ],
+        form: true
+      },
+      beat4FormConfirm: {
+        messages: [
+          "Your intake form has been received. Karen will review it between clients.",
+          "If your situation worsens before she calls — and it may, because the period between filing an intake form and hearing back from a lawyer is, in Karen's experience, when birds make their most creative decisions — do not do anything that would require a second form."
+        ],
+        status: "File opened. Status: Pending review. Estimated response: Before he does something else.",
+        terminal: true
+      },
+      beat4NotReady: {
+        messages: [
+          "That's fine. Karen did not build eighteen years of practice by rushing birds who aren't ready. She built it by being available when they were.",
+          "This chat will not remember you. But the next time something happens — and in Karen's professional opinion, something will happen — this website will still be here. So will Karen. She is always here. She is not going anywhere. Unlike some birds."
+        ],
+        status: "Session closed. No file opened. Karen Hawk's office remains open.",
+        terminal: true
+      },
+      beat4EndSolo: {
+        messages: [
+          "No problem. For future reference, the <a href=\"../bird-coo/\" target=\"_blank\" rel=\"noreferrer noopener\">Municipal Coo</a> is two doors down. <a href=\"../secondnest/\" target=\"_blank\" rel=\"noreferrer noopener\">SecondNest</a> is around the corner. The <a href=\"../nest-court/\" target=\"_blank\" rel=\"noreferrer noopener\">Nest Court</a> is where you go when the other two stop working. And Karen Hawk is where you go after that.",
+          "Have a good evening. Or morning. Or whatever hour a bird with no nest and no legal matter finds themselves on a divorce lawyer's website."
+        ],
+        status: "Visitor classification: Tourist. File status: None. Estimated return: Karen gives it six weeks.",
+        terminal: true
+      }
+    };
+
+    const widget = document.getElementById("intakeWidget");
+    const chatWindow = document.getElementById("chatWindow");
+    const chatBody = document.getElementById("chatBody");
+    const optionTray = document.getElementById("optionTray");
+    const chatToggle = document.getElementById("chatToggle");
+    const chatClose = document.getElementById("chatClose");
+    const chatStatus = document.getElementById("chatStatus");
+    const taglineEl = document.getElementById("heroTagline");
+
+    const state = {
+      started: false,
+      open: false,
+      activeNode: null,
+      transcript: [],
+      status: "",
+      terminal: false
+    };
+
+    const autoBounceTimer = setTimeout(() => {
+      if (!state.open && !state.started) {
+        chatToggle.classList.add("prompting");
+      }
+    }, 3500);
+
+    const autoOpenTimer = setTimeout(() => {
+      if (!state.open && !state.started) {
+        openChat();
+        startConversation();
+      }
+    }, 5000);
+
+    function dayPartLabel() {
+      const hour = new Date().getHours();
+      if (hour < 5) return "this hour of the night";
+      if (hour < 12) return "this hour of the morning";
+      if (hour < 18) return "this hour of the afternoon";
+      return "this hour of the evening";
+    }
+
+    function fillDynamicText(text) {
+      return text.replace(/\[current time of day\]/g, dayPartLabel());
+    }
+
+    function addBubble(role, html) {
+      const bubble = document.createElement("div");
+      bubble.className = `bubble ${role}`;
+      bubble.innerHTML = fillDynamicText(html);
+      chatBody.appendChild(bubble);
+      chatBody.scrollTop = chatBody.scrollHeight;
+      state.transcript.push({ role, html });
+    }
+
+    function clearOptions() {
+      optionTray.innerHTML = "";
+    }
+
+    function setStatus(text) {
+      state.status = text || "";
+      chatStatus.textContent = state.status;
+      chatStatus.classList.toggle("visible", Boolean(state.status) && !state.open);
+    }
+
+    function openChat() {
+      clearTimeout(autoBounceTimer);
+      clearTimeout(autoOpenTimer);
+      chatToggle.classList.remove("prompting");
+      state.open = true;
+      widget.classList.add("open");
+      chatStatus.classList.remove("visible");
+    }
+
+    function closeChat() {
+      state.open = false;
+      widget.classList.remove("open");
+      if (state.status) {
+        chatStatus.classList.add("visible");
+      }
+    }
+
+    function startConversation() {
+      if (state.started) return;
+      state.started = true;
+      renderNode("beat0");
+    }
+
+    function renderOptions(options) {
+      clearOptions();
+      options.forEach((option) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "option-btn";
+        button.textContent = option.label;
+        button.addEventListener("click", () => {
+          addBubble("visitor", option.label);
+          renderNode(option.next);
+        });
+        optionTray.appendChild(button);
+      });
+    }
+
+    function renderForm() {
+      clearOptions();
+      const form = document.createElement("form");
+      form.className = "intake-form";
+      form.innerHTML = `
+        <label>
+          <span>Species</span>
+          <select name="species" required>
+            <option value="">Select species</option>
+            <option>Dove</option>
+            <option>Sparrow</option>
+            <option>Pigeon</option>
+            <option>Starling</option>
+            <option>Finch</option>
+            <option>Canary</option>
+            <option>Wren</option>
+            <option>Owl</option>
+            <option>Goose</option>
+            <option>Woodpecker</option>
+            <option>Heron</option>
+            <option>Jay</option>
+            <option>Warbler</option>
+            <option>Prefer not to disclose</option>
+            <option>It's complicated</option>
+          </select>
+        </label>
+        <label>
+          <span>Duration of pair bond</span>
+          <input type="text" name="duration" placeholder="In migration cycles" required>
+        </label>
+        <label>
+          <span>Who left?</span>
+          <select name="whoLeft" required>
+            <option value="">Select one</option>
+            <option>Me</option>
+            <option>Them</option>
+            <option>It's unclear</option>
+            <option>We are both still there, which is the problem</option>
+          </select>
+        </label>
+        <label>
+          <span>Briefly describe the twig situation</span>
+          <textarea name="twig" maxlength="280" placeholder="280 characters"></textarea>
+          <div class="field-foot">
+            <span>Be specific. Karen prefers nouns.</span>
+            <span data-count>0 / 280</span>
+          </div>
+        </label>
+        <button class="intake-submit" type="submit">Submit intake form</button>
+      `;
+
+      const textarea = form.querySelector("textarea");
+      const counter = form.querySelector("[data-count]");
+      textarea.addEventListener("input", () => {
+        counter.textContent = `${textarea.value.length} / 280`;
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        addBubble("visitor", "Submit intake form");
+        renderNode("beat4FormConfirm");
+      });
+
+      optionTray.appendChild(form);
+    }
+
+    function renderNode(nodeId) {
+      const node = chatTree[nodeId];
+      state.activeNode = nodeId;
+      clearOptions();
+      node.messages.forEach((message) => addBubble("bot", message));
+      if (node.form) {
+        renderForm();
+        return;
+      }
+      if (node.options) {
+        renderOptions(node.options);
+        return;
+      }
+      if (node.terminal) {
+        state.terminal = true;
+        setStatus(node.status);
+        window.setTimeout(() => {
+          closeChat();
+        }, 900);
+      }
+    }
+
+    function rotateTaglines() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      let index = 0;
+      window.setInterval(() => {
+        index = (index + 1) % heroTaglines.length;
+        taglineEl.classList.add("fade");
+        window.setTimeout(() => {
+          taglineEl.textContent = heroTaglines[index];
+          taglineEl.classList.remove("fade");
+        }, 220);
+      }, 3400);
+    }
+
+    document.querySelectorAll("[data-open-intake]").forEach((button) => {
+      button.addEventListener("click", () => {
+        openChat();
+        startConversation();
+      });
+    });
+
+    chatToggle.addEventListener("click", () => {
+      if (state.open) {
+        closeChat();
+        return;
+      }
+      openChat();
+      startConversation();
+    });
+
+    chatClose.addEventListener("click", closeChat);
+
+    rotateTaglines();
+  </script>
+</body>
+</html>

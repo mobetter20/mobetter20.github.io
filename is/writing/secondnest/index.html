@@ -91,6 +91,44 @@ letter-spacing:.02em;
 }
 .join-btn:hover{background:#eee8d0;border-color:#a09878;color:#2a2820}
 
+.sponsor-banner{
+margin:1rem 1.5rem 0;
+padding:.75rem .9rem;
+border:1px solid #d8d0a8;
+background:#f3edd8;
+display:flex;
+gap:.8rem;
+align-items:flex-start;
+}
+.sponsor-label{
+font-family:'IBM Plex Mono',monospace;
+font-size:10px;
+color:#9a9070;
+text-transform:uppercase;
+letter-spacing:.08em;
+flex-shrink:0;
+padding-top:2px;
+}
+.sponsor-copy{
+display:block;
+font-size:12.5px;
+line-height:1.6;
+color:#4a4838;
+text-decoration:none;
+}
+.sponsor-copy strong{
+display:block;
+font-family:'IBM Plex Mono',monospace;
+font-size:11px;
+font-weight:500;
+color:#6c4a32;
+letter-spacing:.04em;
+text-transform:uppercase;
+margin-bottom:4px;
+}
+.sponsor-copy:hover{color:#2a2820}
+.sponsor-copy:hover strong{color:#4c2e1e}
+
 /* PROFILES */
 .profiles{padding:0}
 .profile{
@@ -395,6 +433,8 @@ margin-top:10px;
   .bar{padding-left:1.2rem;padding-right:1.2rem}
   .nav{padding:0 1rem;flex-wrap:wrap}
   .nav a{padding:8px 10px;font-size:11px}
+  .sponsor-banner{margin:1rem 1rem 0;display:block}
+  .sponsor-label{display:block;margin-bottom:6px}
   .logo{font-size:24px}
   .footer{padding-left:1.2rem;padding-right:1.2rem}
 }
@@ -419,6 +459,14 @@ margin-top:10px;
 <div class="bar">
   <div class="bar-left" id="barText"></div>
   <button class="join-btn" onclick="showJoin()">+ Create profile</button>
+</div>
+
+<div class="sponsor-banner">
+  <div class="sponsor-label">Sponsored</div>
+  <a class="sponsor-copy" href="../karen-hawk/">
+    <strong>Karen Hawk, Attorney at Law</strong>
+    Back on the market? Karen Hawk can make sure you left the last one cleanly.
+  </a>
 </div>
 
 <!-- BROWSE -->
@@ -489,7 +537,7 @@ margin-top:10px;
   </div>
   <div class="faq-item">
     <div class="faq-q">Is SecondNest affiliated with the Nest Court or the Municipal Coo?</div>
-    <div class="faq-a">No. SecondNest is independently operated. We have no relationship with <a href="../nest-court/">the Court</a>, <a href="../bird-coo/">the newspaper</a>, or any law firm. If you see someone from your case on here, that is coincidence. Or the district is small. Both are true.</div>
+    <div class="faq-a">No. SecondNest is independently operated. We have no relationship with <a href="../nest-court/">the Court</a> or <a href="../bird-coo/">the newspaper</a>. We do occasionally sell ad space, which is not the same thing as endorsement, affiliation, or advice. If you see someone from your case on here, that is coincidence. Or the district is small. Both are true.</div>
   </div>
   <div class="faq-item">
     <div class="faq-q">The site looks like it was made in 2003.</div>
