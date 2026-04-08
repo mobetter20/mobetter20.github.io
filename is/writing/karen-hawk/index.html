@@ -71,6 +71,7 @@
       font-family: var(--font-ui);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x: clip;
     }
 
     a {
@@ -243,6 +244,7 @@
       display: grid;
       grid-template-rows: auto auto 1fr;
       gap: 18px;
+      min-width: 0;
       padding: 22px;
       border: 1px solid rgba(242, 196, 171, 0.16);
       border-radius: 26px;
@@ -262,6 +264,7 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
     }
 
     .seal-mark svg {
@@ -836,24 +839,83 @@
 
     @media (max-width: 640px) {
       .site-shell {
-        width: min(calc(100% - 22px), var(--max));
+        width: min(calc(100% - 16px), var(--max));
         margin: 12px auto 124px;
       }
 
       .hero,
       .section-card,
       .site-footer {
-        padding: 22px;
+        padding: 18px;
+      }
+
+      .hero {
+        gap: 18px;
+      }
+
+      .eyebrow {
+        font-size: 0.64rem;
+        letter-spacing: 0.14em;
+      }
+
+      .eyebrow::before {
+        width: 24px;
       }
 
       .hero h1 {
         max-width: none;
-        font-size: clamp(2.5rem, 15vw, 3.6rem);
+        font-size: clamp(2.15rem, 13vw, 3.1rem);
+        line-height: 1.02;
+      }
+
+      .hero-tagline-wrap {
+        min-height: 0;
+      }
+
+      .hero-tagline {
+        font-size: 0.96rem;
       }
 
       .hero-deck {
-        font-size: 0.96rem;
-        line-height: 1.72;
+        font-size: 0.92rem;
+        line-height: 1.68;
+      }
+
+      .hero-note {
+        font-size: 0.78rem;
+      }
+
+      .hero-panel {
+        padding: 18px;
+        gap: 14px;
+      }
+
+      .seal-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .availability-badge {
+        margin-left: 0;
+        justify-self: start;
+        white-space: normal;
+      }
+
+      .seal-title {
+        font-size: 0.94rem;
+        overflow-wrap: anywhere;
+      }
+
+      .hero-note strong {
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+
+      .consult-card p,
+      .consult-points li {
+        font-size: 0.88rem;
       }
 
       .chat-status {
@@ -1270,6 +1332,7 @@
     const chatClose = document.getElementById("chatClose");
     const chatStatus = document.getElementById("chatStatus");
     const taglineEl = document.getElementById("heroTagline");
+    const compactViewport = window.matchMedia("(max-width: 640px)");
 
     const state = {
       started: false,
@@ -1287,7 +1350,7 @@
     }, 3500);
 
     const autoOpenTimer = setTimeout(() => {
-      if (!state.open && !state.started) {
+      if (!compactViewport.matches && !state.open && !state.started) {
         openChat();
         startConversation();
       }
