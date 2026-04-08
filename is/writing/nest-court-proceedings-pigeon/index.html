@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>District v. Pigeon — Gallery Assessment</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:#d8d4c6;
+font-family:'IBM Plex Sans',sans-serif;
+color:#2a2620;
+-webkit-font-smoothing:antialiased;
+}
+
+.shell{max-width:520px;margin:1.2rem auto;background:#f0ebe0;border-radius:16px;overflow:hidden}
+.hd{background:#3a3428;padding:1rem 1.3rem;border-radius:16px 16px 0 0}
+.hd-back{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#a09888;text-decoration:none;display:block;margin-bottom:10px;transition:color .15s}
+.hd-back:hover{color:#d0c8b4}
+.hd-case{font-family:'Source Serif 4',Georgia,serif;font-size:24px;color:#f0e8d4;font-style:italic;margin-bottom:2px}
+.hd-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8070;letter-spacing:.04em}
+.prog{display:flex;gap:6px;padding:1rem 1.3rem .6rem;align-items:center}
+.pip{flex:1;height:4px;background:#ddd8cc;border-radius:3px;transition:background .3s}
+.pip.done{background:#8a7e6a}
+.pip.now{background:#c47a5a}
+.card{background:#faf7f0;margin:.5rem 1rem;border-radius:14px;padding:1.4rem 1.3rem}
+.card-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#c47a5a;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
+.card-text{font-family:'Source Serif 4',Georgia,serif;font-size:17px;line-height:1.75;color:#3a3630}
+.card-text p{margin:0}
+.card-text p+p{margin-top:1rem}
+.qt{margin:1rem 0;padding:1rem 1.1rem;background:#f4efe4;border-radius:10px;border-left:3px solid #c47a5a}
+.qt-t{font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.65;color:#4a4438;font-style:italic}
+.qt-a{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a09880;margin-top:6px}
+.cl{margin:1rem 0;padding:.8rem 1rem;background:#eee9de;border-radius:10px}
+.cl-t{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.6;color:#7a7264;font-style:italic}
+.q{font-family:'Source Serif 4',Georgia,serif;font-size:19px;color:#2a2620;line-height:1.5;margin:1.5rem 0 1rem}
+.opt{background:#fff;border:1.5px solid #e0dbd0;border-radius:12px;padding:1rem 1.1rem;margin-bottom:8px;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.opt:hover{border-color:#c47a5a;background:#fdf9f4}
+.opt.sel{background:#3a3428;border-color:#3a3428}
+.opt.sel .opt-t{color:#f0e8d4}
+.opt.sel .opt-d{color:#a09880}
+.opt-t{font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:500;color:#2a2620;margin-bottom:3px;transition:color .15s}
+.opt-d{font-family:'Source Serif 4',Georgia,serif;font-size:14px;color:#7a7468;line-height:1.55;transition:color .15s}
+.btn-row{padding:.6rem 1rem 1.2rem;display:flex;justify-content:flex-end}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#faf7f0;background:#c47a5a;border:none;padding:10px 22px;border-radius:10px;cursor:pointer;transition:all .15s;letter-spacing:.02em;-webkit-tap-highlight-color:transparent}
+.btn:hover{background:#b06a4a}
+.btn.dim{opacity:.3;pointer-events:none}
+.ft{background:#3a3428;padding:.7rem 1.3rem;border-radius:0 0 16px 16px}
+.ft-row{display:flex;justify-content:space-between;align-items:center}
+.ft span{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6a6258}
+.ft-links{padding-top:.5rem;border-top:1px solid #4a4438;margin-top:.5rem}
+.ft-links a{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6a6258;text-decoration:none;margin-right:12px;transition:color .15s}
+.ft-links a:hover{color:#a09888}
+.assess-owl{margin:1.2rem 0;padding:1rem 1.1rem;background:#f4efe4;border-radius:10px;border-left:3px solid #8a7e6a}
+.assess-owl-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#908870;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.assess-owl-t{font-family:'Source Serif 4',Georgia,serif;font-size:15px;line-height:1.7;color:#4a4438}
+@media(max-width:540px){
+  .shell{margin:.5rem;border-radius:12px}
+  .hd{border-radius:12px 12px 0 0;padding:1rem 1.1rem}
+  .ft{border-radius:0 0 12px 12px}
+  .card{margin:.5rem .7rem;padding:1.2rem 1.1rem}
+  .hd-case{font-size:22px}
+  .q{font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+<div class="hd">
+  <a class="hd-back" href="../nest-court/">← Case Docket</a>
+  <div class="hd-case">District v. Pigeon</div>
+  <div class="hd-meta">AMNC-2024-119A · Noise / nuisance · Gallery seat assigned</div>
+</div>
+<div class="prog" id="pips"></div>
+<div id="content"></div>
+<div class="btn-row">
+  <button class="btn dim" id="goBtn" onclick="advance()">Next matter →</button>
+</div>
+<div class="ft">
+  <div class="ft-row">
+    <span>Clerk's Record · AMNC-2024-119A</span>
+    <span>Avian Municipal Nest Court</span>
+  </div>
+  <div class="ft-links">
+    <a href="../bird-coo/">The Municipal Coo</a>
+    <a href="../secondnest/">SecondNest</a>
+  </div>
+</div>
+</div>
+
+<script>
+var choices = [];
+var step = 0;
+var totalSteps = 5;
+
+var STEPS = [
+  {
+    cards: [
+      {type:'info', label:'Case summary', text:'<p>The Avian Municipal District has filed a noise complaint against J. Pigeon of 11 Sycamore Lane for chronic disturbance in violation of Municipal Ordinance 7.3(a). Three residents have filed formal complaints citing cooing that begins before dawn and continues, intermittently, until dusk.</p><p>The Respondent does not deny the cooing. He states that cooing is what pigeons do and that the district cannot prosecute a bird for the sound it was born making.</p><p>The Respondent\u2019s wife left approximately eighteen months ago. The cooing has been at its current volume since. Neither party has raised this in the hearing.</p>'},
+      {type:'quotes', quotes:[
+        {t:'"I coo. That is what I do. I have always cooed. My father cooed. You are asking me to stop being a pigeon."', a:'J. Pigeon, Respondent'},
+        {t:'"The ordinance does not regulate species. It regulates volume. A pigeon is entitled to coo. He is not entitled to coo at a volume that vibrates the meter box at 14 Sycamore Lane."', a:'District Warden'}
+      ], clerk:'The Respondent arrived twenty minutes early and was heard cooing in the corridor. The Clerk did not log this as a violation but did note the volume.'},
+      {type:'decision', q:'The Respondent argues cooing is innate species behavior and cannot be regulated. The District argues volume can be regulated regardless. How would you rule on the threshold question?', opts:[
+        {t:'Cooing is protected species behavior', d:'You cannot fine a bird for the sound it makes. The ordinance was written for deliberate disturbances, not biology.'},
+        {t:'Protected, but volume can be regulated', d:'The right to coo is not the right to coo at any volume at any hour. Species behavior is accommodated within limits.'},
+        {t:'The ordinance applies fully', d:'The ordinance regulates noise. Noise is noise. The source is irrelevant.'}
+      ]}
+    ]
+  },
+  {
+    cards: [
+      {type:'info', label:'Volume evidence', text:'<p>The District has submitted noise measurements taken on three dates. Readings from the nearest property line ranged from 62 to 71 decibels. The municipal threshold for residential noise is 55 decibels between dawn and dusk.</p><p>The Respondent has not disputed the measurements but has questioned the equipment, which he described as looking "old."</p>'},
+      {type:'quotes', quotes:[
+        {t:'"Sixty-two decibels is louder than a conversation. Seventy-one is louder than a vacuum cleaner. This is not a bird cooing. This is a bird broadcasting."', a:'District Warden'},
+        {t:'"I do not own a decibel meter. I do not know what a decibel is. I know what it sounds like to miss someone, and I know it is not quiet."', a:'J. Pigeon, Respondent'}
+      ], clerk:'The Clerk wishes to observe that the Respondent\u2019s last statement was not responsive to the question of volume but was, in the Clerk\u2019s assessment, the most honest thing said in this courtroom today.'},
+      {type:'decision', q:'The readings exceed the municipal threshold. The Respondent does not dispute the sound but questions the equipment. Was the volume excessive?', opts:[
+        {t:'Yes, the volume was excessive', d:'The readings are clear. 62 to 71 decibels exceeds the 55-decibel threshold.'},
+        {t:'Excessive but mitigated by circumstances', d:'The readings exceed the threshold, but the Respondent lives alone and may not be aware of his own volume.'},
+        {t:'Not proven', d:'One measurement was taken during wind. The equipment was not certified. The evidence is not airtight.'}
+      ]}
+    ]
+  },
+  {
+    cards: [
+      {type:'info', label:'Quiet hours', text:'<p>The complainants have requested quiet hours: no cooing before 7:00 AM or after 9:00 PM. The existing municipal quiet hours are 10:00 PM to 6:00 AM, which the complainants consider insufficient.</p><p>The Respondent argues that dawn is when he coos most and that restricting his morning is restricting his nature.</p>'},
+      {type:'quotes', quotes:[
+        {t:'"Seven AM is not unreasonable. It is the time most birds wake up. He does not need to wake up before them."', a:'Complainant statement, read into record'},
+        {t:'"I wake up when I wake up. The first thing I do is coo. I have done this every morning of my life. It is how I know I am still here."', a:'J. Pigeon, Respondent'}
+      ], clerk:'The Clerk observes that the phrase "it is how I know I am still here" will be difficult for the Court to set aside, regardless of its relevance to the noise ordinance.'},
+      {type:'decision', q:'Should the Court impose specific quiet hours on the Respondent?', opts:[
+        {t:'Impose 9 PM to 7 AM', d:'The neighbors have a right to peace. 7 AM is a reasonable start.'},
+        {t:'Apply existing municipal hours: 10 PM to 6 AM', d:'The existing standard applies to everyone. The Respondent should not face stricter hours than any other resident.'},
+        {t:'No quiet hours', d:'If cooing is species behavior, scheduling it is not meaningfully different from prohibiting it.'}
+      ]}
+    ]
+  },
+  {
+    cards: [
+      {type:'info', label:'Penalty', text:'<p>The District has requested a fine of 200 seeds and a formal warning. The Respondent has no prior violations. The cooing began at its current volume approximately eighteen months ago, which the Clerk\u2019s office notes coincides with the departure of the Respondent\u2019s wife \u2014 a fact in the public record but not raised by either party.</p>'},
+      {type:'quotes', quotes:[
+        {t:'"The District does not seek to punish the Respondent. The District seeks compliance. A fine communicates that the community\u2019s standards apply to everyone."', a:'District Warden'},
+        {t:'"I cannot pay 200 seeds. I can barely forage for myself. If the Court fines me I will pay it, but I want the Court to know that the money is not the part of this that will hurt."', a:'J. Pigeon, Respondent'}
+      ], clerk:'The Clerk\u2019s office has reviewed the Respondent\u2019s record. No prior violations. No prior complaints. The cooing was not a problem until it became one, and the Clerk suspects the Respondent could say the same about several things.'},
+      {type:'decision', q:'No prior record. The volume exceeds threshold. The cooing intensified after his wife\u2019s departure. What penalty, if any?', opts:[
+        {t:'Fine of 200 seeds + formal warning', d:'The District\u2019s request is standard. The ordinance was violated. Consistent enforcement matters.'},
+        {t:'Reduced fine of 50 seeds + warning', d:'First offense. No prior record. A reduced fine acknowledges the violation without ignoring the circumstances.'},
+        {t:'No fine. Referral to community services.', d:'The cooing is a symptom. Fining a symptom does not address what is producing it.'}
+      ]}
+    ]
+  }
+];
+
+var OWL = [1, 0, 1, 2];
+
+function buildAssessment() {
+  var c = choices;
+  var out = {};
+  var sp = ['ruled that cooing is fully protected species behavior','ruled that cooing is protected but volume can be regulated','ruled that the noise ordinance applies without species exception'][c[0]];
+  var vol = ['found the volume excessive','found the volume excessive but mitigated by circumstances','found the volume evidence insufficient'][c[1]];
+  var hrs = ['imposed the complainants\u2019 requested quiet hours','applied standard municipal quiet hours','declined to impose quiet hours'][c[2]];
+  var pen = ['levied the full fine of 200 seeds','imposed a reduced fine of 50 seeds','waived the fine and referred the Respondent to community services'][c[3]];
+  out.summary = 'The observer ' + sp + ', ' + vol + ', ' + hrs + ', and ' + pen + '.';
+
+  var strict = 0; var mid = 0; var lenient = 0;
+  c.forEach(function(v) { if (v === 0) strict++; else if (v === 2) lenient++; else mid++; });
+
+  if (strict >= 3) {
+    out.pattern = 'The observer applied the ordinance without exception, found the volume excessive, imposed strict hours, and levied the full fine. The Clerk\u2019s office notes that the law was followed precisely and the pigeon was not seen.';
+  } else if (lenient >= 3) {
+    out.pattern = 'The observer protected the species behavior, questioned the evidence, rejected quiet hours, and waived the fine. The Clerk\u2019s office observes that this is either judicial mercy or a belief that loneliness should not be prosecuted, which in this district amounts to the same thing.';
+  } else if (mid >= 3) {
+    out.pattern = 'The observer found a middle path on every question. The Clerk\u2019s office notes that moderation applied to a pigeon who is cooing because he is alone is still, ultimately, a ruling about a pigeon who is cooing because he is alone.';
+  } else if (c[0] === 0 && c[3] === 0) {
+    out.pattern = 'The observer ruled that cooing is protected but still imposed the full fine, which the Clerk\u2019s office finds logically contradictory and emotionally coherent.';
+  } else if (c[1] === 2 && c[3] !== 2) {
+    out.pattern = 'The observer questioned the District\u2019s evidence but imposed a penalty regardless. The Clerk\u2019s office finds this unusual and wonders whether the observer believed the volume was excessive regardless of what the meter said.';
+  } else if (c[0] !== 0 && c[3] === 2) {
+    out.pattern = 'The observer acknowledged the violation but waived the fine. The Clerk\u2019s office interprets this as a ruling that the Respondent has been punished enough by circumstances that predate this case.';
+  } else {
+    out.pattern = 'The observer\u2019s rulings do not follow an obvious pattern. The Clerk\u2019s office notes that cases involving involuntary behavior tend to produce inconsistent rulings, because the question of how much a bird should be held responsible for the sound it makes is not, in the end, a legal question.';
+  }
+
+  if (strict >= 3) {
+    out.temperament = 'Temperament: Believes an ordinance is an ordinance. Would enforce consistently and sleep well. The pigeons of the district would learn to be quieter. Whether they would be happier is outside this observer\u2019s jurisdiction, which is itself a ruling.';
+  } else if (lenient >= 3) {
+    out.temperament = 'Temperament: Heard something in the Respondent\u2019s testimony that the District did not intend to put in evidence. Would make a good judge in a district that values paying attention. This one occasionally does.';
+  } else if (c[3] === 2) {
+    out.temperament = 'Temperament: Believes the court should see the bird, not just the noise. Would be popular with respondents and exhausting for the Warden\u2019s office.';
+  } else if (c[3] === 0) {
+    out.temperament = 'Temperament: Firm. Believes that sympathy and enforcement are separate functions and should remain so. The Clerk\u2019s office does not disagree but has noticed that the Respondent is still cooing outside.';
+  } else {
+    out.temperament = 'Temperament: Cautious. Inclined to acknowledge what is happening without being certain what to do about it. This is more common in judges than judges admit.';
+  }
+  out.temperament += ' Not recommended for appointment at this time, though the Clerk acknowledges the bar in this district is not high.';
+
+  var agree = 0;
+  for (var i = 0; i < 4; i++) { if (c[i] === OWL[i]) agree++; }
+  out.agree = 'The observer agreed with Judge Owl on ' + agree + ' of 4 rulings.';
+  if (agree === 4) out.agree += ' The Clerk\u2019s office notes this alignment without comment, which is itself a comment.';
+  else if (agree === 0) out.agree += ' The Clerk\u2019s office notes this without judgment but with both eyebrows raised.';
+  else if (agree === 1) out.agree += ' The Clerk\u2019s office finds this level of disagreement notable but not unprecedented.';
+
+  return out;
+}
+
+function renderPips() {
+  var h = '';
+  for (var i = 0; i < totalSteps; i++) {
+    var cls = 'pip';
+    if (i < step) cls += ' done';
+    else if (i === step) cls += ' now';
+    h += '<div class="' + cls + '"></div>';
+  }
+  document.getElementById('pips').innerHTML = h;
+}
+
+function renderStep(s) {
+  var data = STEPS[s];
+  var h = '';
+  data.cards.forEach(function(c) {
+    if (c.type === 'info') {
+      h += '<div class="card"><div class="card-label">' + c.label + '</div><div class="card-text">' + c.text + '</div></div>';
+    } else if (c.type === 'quotes') {
+      h += '<div class="card">';
+      c.quotes.forEach(function(q) {
+        h += '<div class="qt"><div class="qt-t">' + q.t + '</div><div class="qt-a">' + q.a + '</div></div>';
+      });
+      if (c.clerk) h += '<div class="cl"><div class="cl-t">' + c.clerk + '</div></div>';
+      h += '</div>';
+    } else if (c.type === 'decision') {
+      h += '<div class="card"><div class="q">' + c.q + '</div>';
+      c.opts.forEach(function(o, i) {
+        h += '<div class="opt" onclick="pick(this,' + i + ')"><div class="opt-t">' + o.t + '</div><div class="opt-d">' + o.d + '</div></div>';
+      });
+      h += '</div>';
+    }
+  });
+  document.getElementById('content').innerHTML = h;
+  renderPips();
+  var btn = document.getElementById('goBtn');
+  btn.classList.add('dim');
+  btn.style.display = '';
+  btn.textContent = s === STEPS.length - 1 ? 'Submit assessment \u2192' : 'Next matter \u2192';
+}
+
+function renderAssessment() {
+  var a = buildAssessment();
+  var h = '<div class="card"><div class="card-label">Judicial assessment \u2014 Gallery observer</div>';
+  h += '<div class="card-text"><p>' + a.summary + '</p><p>' + a.pattern + '</p><p>' + a.agree + '</p></div></div>';
+  h += '<div class="card"><div class="cl"><div class="cl-t">' + a.temperament + '</div></div>';
+  h += '<div class="cl" style="margin-top:.8rem"><div class="cl-t">This assessment has been filed with the Clerk\u2019s office and cannot be appealed. The Respondent was heard cooing softly in the corridor after the ruling. The volume was within threshold. The sound was not.</div></div></div>';
+  h += '<div class="card"><div class="assess-owl"><div class="assess-owl-label">Judge Owl\u2019s actual ruling</div>';
+  h += '<div class="assess-owl-t">"Cooing is species-typical behavior and is accommodated under the ordinance. However, volume and duration are subject to regulation. The readings submitted by the District are accepted."</div>';
+  h += '<div class="assess-owl-t" style="margin-top:.6rem">"Standard municipal quiet hours apply. The Court declines to impose stricter hours than those that govern every other resident of this district. A pigeon is a resident."</div>';
+  h += '<div class="assess-owl-t" style="margin-top:.6rem">"No fine is imposed. The Respondent is referred to the district\u2019s community services office for a voluntary check-in. The Court does not compel attendance but notes that the Respondent has been cooing alone for eighteen months and that the volume, in the Court\u2019s experience, is unlikely to decrease on its own."</div>';
+  h += '</div></div>';
+  document.getElementById('content').innerHTML = h;
+  renderPips();
+  document.getElementById('goBtn').style.display = 'none';
+}
+
+function pick(el, idx) {
+  el.closest('.card').querySelectorAll('.opt').forEach(function(o) { o.classList.remove('sel'); });
+  el.classList.add('sel');
+  choices[step] = idx;
+  document.getElementById('goBtn').classList.remove('dim');
+}
+
+function advance() {
+  if (typeof choices[step] === 'undefined') return;
+  step++;
+  if (step >= STEPS.length) { renderAssessment(); } else { renderStep(step); }
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+renderStep(0);
+</script>
+</body>
+</html>

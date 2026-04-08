@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Starling v. Starling — Gallery Assessment</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:#d8d4c6;
+font-family:'IBM Plex Sans',sans-serif;
+color:#2a2620;
+-webkit-font-smoothing:antialiased;
+}
+
+.shell{max-width:520px;margin:1.2rem auto;background:#f0ebe0;border-radius:16px;overflow:hidden}
+.hd{background:#3a3428;padding:1rem 1.3rem;border-radius:16px 16px 0 0}
+.hd-back{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#a09888;text-decoration:none;display:block;margin-bottom:10px;transition:color .15s}
+.hd-back:hover{color:#d0c8b4}
+.hd-case{font-family:'Source Serif 4',Georgia,serif;font-size:24px;color:#f0e8d4;font-style:italic;margin-bottom:2px}
+.hd-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8070;letter-spacing:.04em}
+.prog{display:flex;gap:6px;padding:1rem 1.3rem .6rem;align-items:center}
+.pip{flex:1;height:4px;background:#ddd8cc;border-radius:3px;transition:background .3s}
+.pip.done{background:#8a7e6a}
+.pip.now{background:#c47a5a}
+.card{background:#faf7f0;margin:.5rem 1rem;border-radius:14px;padding:1.4rem 1.3rem}
+.card-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#c47a5a;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
+.card-text{font-family:'Source Serif 4',Georgia,serif;font-size:17px;line-height:1.75;color:#3a3630}
+.card-text p{margin:0}
+.card-text p+p{margin-top:1rem}
+.qt{margin:1rem 0;padding:1rem 1.1rem;background:#f4efe4;border-radius:10px;border-left:3px solid #c47a5a}
+.qt-t{font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.65;color:#4a4438;font-style:italic}
+.qt-a{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a09880;margin-top:6px}
+.cl{margin:1rem 0;padding:.8rem 1rem;background:#eee9de;border-radius:10px}
+.cl-t{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.6;color:#7a7264;font-style:italic}
+.q{font-family:'Source Serif 4',Georgia,serif;font-size:19px;color:#2a2620;line-height:1.5;margin:1.5rem 0 1rem}
+.opt{background:#fff;border:1.5px solid #e0dbd0;border-radius:12px;padding:1rem 1.1rem;margin-bottom:8px;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.opt:hover{border-color:#c47a5a;background:#fdf9f4}
+.opt.sel{background:#3a3428;border-color:#3a3428}
+.opt.sel .opt-t{color:#f0e8d4}
+.opt.sel .opt-d{color:#a09880}
+.opt-t{font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:500;color:#2a2620;margin-bottom:3px;transition:color .15s}
+.opt-d{font-family:'Source Serif 4',Georgia,serif;font-size:14px;color:#7a7468;line-height:1.55;transition:color .15s}
+.btn-row{padding:.6rem 1rem 1.2rem;display:flex;justify-content:flex-end}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#faf7f0;background:#c47a5a;border:none;padding:10px 22px;border-radius:10px;cursor:pointer;transition:all .15s;letter-spacing:.02em;-webkit-tap-highlight-color:transparent}
+.btn:hover{background:#b06a4a}
+.btn.dim{opacity:.3;pointer-events:none}
+.ft{background:#3a3428;padding:.7rem 1.3rem;border-radius:0 0 16px 16px}
+.ft-row{display:flex;justify-content:space-between;align-items:center}
+.ft span{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6a6258}
+.ft-links{padding-top:.5rem;border-top:1px solid #4a4438;margin-top:.5rem}
+.ft-links a{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6a6258;text-decoration:none;margin-right:12px;transition:color .15s}
+.ft-links a:hover{color:#a09888}
+.assess-owl{margin:1.2rem 0;padding:1rem 1.1rem;background:#f4efe4;border-radius:10px;border-left:3px solid #8a7e6a}
+.assess-owl-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#908870;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.assess-owl-t{font-family:'Source Serif 4',Georgia,serif;font-size:15px;line-height:1.7;color:#4a4438}
+@media(max-width:540px){
+  .shell{margin:.5rem;border-radius:12px}
+  .hd{border-radius:12px 12px 0 0;padding:1rem 1.1rem}
+  .ft{border-radius:0 0 12px 12px}
+  .card{margin:.5rem .7rem;padding:1.2rem 1.1rem}
+  .hd-case{font-size:22px}
+  .q{font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+<div class="hd">
+  <a class="hd-back" href="../nest-court/">← Case Docket</a>
+  <div class="hd-case">Starling v. Starling</div>
+  <div class="hd-meta">AMNC-2025-022C · Egg custody · Gallery seat assigned</div>
+</div>
+<div class="prog" id="pips"></div>
+<div id="content"></div>
+<div class="btn-row">
+  <button class="btn dim" id="goBtn" onclick="advance()">Next matter →</button>
+</div>
+<div class="ft">
+  <div class="ft-row">
+    <span>Clerk's Record · AMNC-2025-022C</span>
+    <span>Avian Municipal Nest Court</span>
+  </div>
+  <div class="ft-links">
+    <a href="../bird-coo/">The Municipal Coo</a>
+    <a href="../secondnest/">SecondNest</a>
+  </div>
+</div>
+</div>
+
+<script>
+var choices = [];
+var step = 0;
+var totalSteps = 5;
+
+var STEPS = [
+  {
+    cards: [
+      {type:'info', label:'Case summary', text:'<p>The Petitioner and Respondent are the parents of three eggs. The marriage has ended by mutual agreement. Neither party contests the dissolution. Both parties are seeking primary custody.</p><p>The Petitioner maintains a nest at 8 Birch Court, east-facing, upper canopy. The Respondent has relocated to a branch near the south ridge, approximately 0.4 miles away. Both nests have been inspected and found adequate.</p><p>The eggs are currently with the Petitioner, where they have been since the separation. The Respondent visits on an informal schedule that both parties describe as "not working."</p>'},
+      {type:'quotes', quotes:[
+        {t:'"I have been with those eggs every night since they were laid. I have not missed a rotation. I know which one sits higher and which one needs to be turned twice before dawn. He knows where they are. I know what they need."', a:'Petitioner'},
+        {t:'"She is a good mother. I am not contesting that. I am contesting the idea that being a good mother means I should only see my own eggs on a schedule someone else wrote."', a:'Respondent'}
+      ], clerk:'Both parties have submitted proposed custody schedules. The Petitioner\u2019s is color-coded. The Respondent\u2019s is on the back of a receipt.'},
+      {type:'decision', q:'The eggs are currently with the Petitioner. The Respondent wants equal custody. Both parents are capable. Where should the eggs primarily reside?', opts:[
+        {t:'With the Petitioner', d:'She has maintained continuous care since the separation. The eggs have not been moved. Stability matters.'},
+        {t:'With the Respondent', d:'He has relocated to accommodate them. Continuous care is not the same as exclusive right.'},
+        {t:'Shared equally \u2014 alternating weeks', d:'Neither parent gets primary. The eggs move between nests weekly. Both parents get equal time.'}
+      ]}
+    ]
+  },
+  {
+    cards: [
+      {type:'info', label:'Visitation schedule', text:'<p>The Court must establish a formal schedule. The Petitioner proposes the Respondent visits twice weekly for two hours, supervised. The Respondent proposes alternating full weekends plus Wednesday evenings.</p>'},
+      {type:'quotes', quotes:[
+        {t:'"Two hours twice a week is not parenting. It is visiting. I did not become a father to visit my own eggs."', a:'Respondent'},
+        {t:'"Alternating weekends means they are away from the nest for two consecutive nights. They have never been away for two consecutive nights. He is asking me to explain to three eggs why Saturday is different now."', a:'Petitioner'}
+      ], clerk:'The Clerk\u2019s office has processed custody schedules for fourteen cases this year. None of the schedules have survived first contact with reality. The Clerk includes this not as legal advice but as statistical observation.'},
+      {type:'decision', q:'How should the visitation schedule be structured?', opts:[
+        {t:'Twice-weekly supervised visits', d:'Two hours, twice a week, at the Petitioner\u2019s nest. Structure and consistency for the eggs.'},
+        {t:'Alternating weekends + Wednesday evenings', d:'Substantial time with both parents. The eggs experience both nests.'},
+        {t:'Every Saturday + Wednesday evenings', d:'More than twice-weekly visits, less than full alternating weekends. A compromise neither parent proposed.'}
+      ]}
+    ]
+  },
+  {
+    cards: [
+      {type:'info', label:'The floating holiday', text:'<p>The proposed arrangement includes one floating holiday per year, to be agreed upon annually. Both parents want the spring equinox \u2014 the day the eggs were laid.</p>'},
+      {type:'quotes', quotes:[
+        {t:'"I want the equinox. It is when they were laid. It means something. He can have any other day."', a:'Petitioner'},
+        {t:'"She wants the equinox because it is the day they were laid, which is also the day I was there. I was there for the laying. I would like to be there for the anniversary of it."', a:'Respondent'}
+      ], clerk:'The Clerk\u2019s office has seen more post-ruling motions filed over holiday scheduling than over any other custody provision. The floating holiday is where compliance goes to die.'},
+      {type:'decision', q:'One floating holiday per year. Both parents want the spring equinox. How should it be allocated?', opts:[
+        {t:'Assign to the Petitioner', d:'She asked first. The eggs are in her nest. The equinox has been hers since the separation.'},
+        {t:'Assign to the Respondent', d:'He was present at the laying. The equinox is his memory too.'},
+        {t:'Parents decide jointly each year', d:'No permanent assignment. Both negotiate annually. If they cannot agree, the Clerk\u2019s office assigns by method the Clerk declines to specify.'}
+      ]}
+    ]
+  },
+  {
+    cards: [
+      {type:'info', label:'Relocation restriction', text:'<p>The Respondent has mentioned possibly relocating further south in the autumn. The Petitioner has asked the Court to restrict relocation beyond 0.5 miles without prior approval, arguing that distance would make the schedule unworkable.</p><p>The Respondent says the relocation is not definite and objects to having his movement restricted based on something he might do.</p>'},
+      {type:'quotes', quotes:[
+        {t:'"I might move. I might not. I should not have to ask a court for permission to live somewhere based on a thing I said once in a conversation I did not know was being noted."', a:'Respondent'},
+        {t:'"He said \u2018further south\u2019 in front of the eggs. The eggs cannot hear, but I can, and further south means further from them."', a:'Petitioner'}
+      ], clerk:'The Clerk observes that the Respondent\u2019s objection to restriction is technically reasonable and the Petitioner\u2019s concern about distance is practically justified. The Clerk does not envy the Court.'},
+      {type:'decision', q:'Should the Court restrict either parent from relocating beyond 0.5 miles without approval?', opts:[
+        {t:'Grant the restriction', d:'The schedule depends on proximity. If one parent moves, the schedule collapses.'},
+        {t:'Deny the restriction', d:'He mentioned a possibility. Restricting movement based on a hypothetical is overreach.'},
+        {t:'Restrict both parents equally', d:'If proximity matters, it matters for both. Neither parent relocates beyond 0.5 miles without approval.'}
+      ]}
+    ]
+  }
+];
+
+var OWL = [0, 1, 2, 0];
+
+function buildAssessment() {
+  var c = choices;
+  var out = {};
+  var nest = ['ruled that the eggs remain with the Petitioner','ruled that the eggs go to the Respondent','ordered shared custody with alternating weeks'][c[0]];
+  var sched = ['approved twice-weekly supervised visits','approved alternating weekends plus Wednesday evenings','imposed a modified Saturday-plus-Wednesday schedule'][c[1]];
+  var hol = ['assigned the floating holiday to the Petitioner','assigned the floating holiday to the Respondent','left the floating holiday to annual negotiation'][c[2]];
+  var reloc = ['granted the relocation restriction','denied the relocation restriction','applied the restriction to both parents'][c[3]];
+  out.summary = 'The observer ' + nest + ', ' + sched + ', ' + hol + ', and ' + reloc + '.';
+
+  var pet = 0; var resp = 0; var mid = 0;
+  if (c[0]===0) pet++; else if (c[0]===1) resp++; else mid++;
+  if (c[1]===0) pet++; else if (c[1]===1) resp++; else mid++;
+  if (c[2]===0) pet++; else if (c[2]===1) resp++; else mid++;
+  if (c[3]===0) pet++; else if (c[3]===1) resp++; else mid++;
+
+  if (pet >= 3) {
+    out.pattern = 'The observer favored the Petitioner on nearly every question. The Clerk\u2019s office does not use the term \u201cmaternal presumption\u201d but has written it in the margin and then crossed it out.';
+  } else if (resp >= 3) {
+    out.pattern = 'The observer ruled for the Respondent at every opportunity. The Clerk\u2019s office notes that this father has an advocate in the gallery and hopes it provides some comfort during the Wednesday evenings he may or may not receive.';
+  } else if (mid >= 3) {
+    out.pattern = 'The observer compromised on every available question. The Clerk\u2019s office observes that in custody matters, a compromise means both parents leave equally dissatisfied, which some would call fairness.';
+  } else if (c[0]===0 && c[1]===1) {
+    out.pattern = 'The observer kept the eggs with the mother but gave the father substantial visitation, which the Clerk\u2019s office interprets as wanting stability and access simultaneously. This is what most parents want. It is also what most schedules fail to deliver.';
+  } else if (c[0]===2 && c[3]===0) {
+    out.pattern = 'The observer ordered shared custody but restricted relocation. The Clerk\u2019s office notes that equal custody within a confined radius is either co-parenting or a very small territory, depending on the autumn.';
+  } else {
+    out.pattern = 'The observer\u2019s rulings do not follow an obvious alignment. The Clerk\u2019s office has seen this before. In custody cases, it usually means the observer was listening to both parents, which is more than some judges manage.';
+  }
+
+  if (pet >= 3) {
+    out.temperament = 'Temperament: Protective of routine. Believes consistency is kindness. Would run an orderly courtroom and a predictable calendar. The eggs, if they could express a preference, would probably agree.';
+  } else if (resp >= 3) {
+    out.temperament = 'Temperament: Believes in equal access. Uncomfortable restricting a parent who hasn\u2019t done anything wrong. Would struggle with cases where fairness and stability point in different directions, which is most cases.';
+  } else if (mid >= 3) {
+    out.temperament = 'Temperament: Diplomatic to a fault. Split every difference. The Clerk\u2019s office notes that custody is the one area of family law where splitting the difference means splitting the family, and there is no way to do that neatly.';
+  } else {
+    out.temperament = 'Temperament: Case-by-case. No consistent lean. Would likely take longer than average to issue rulings, which the Clerk\u2019s office considers a sign of either thoughtfulness or indecision, both of which look the same from the filing window.';
+  }
+  out.temperament += ' Not recommended for appointment at this time, though the Clerk acknowledges the bar in this district is not high.';
+
+  var agree = 0;
+  for (var i = 0; i < 4; i++) { if (c[i] === OWL[i]) agree++; }
+  out.agree = 'The observer agreed with Judge Owl on ' + agree + ' of 4 rulings.';
+  if (agree === 4) out.agree += ' The Clerk\u2019s office notes this alignment without comment, which is itself a comment.';
+  else if (agree === 0) out.agree += ' The Clerk\u2019s office notes this without judgment but with both eyebrows raised.';
+  else if (agree === 1) out.agree += ' The Clerk\u2019s office finds this level of disagreement notable but not unprecedented.';
+
+  return out;
+}
+
+function renderPips() {
+  var h = '';
+  for (var i = 0; i < totalSteps; i++) {
+    var cls = 'pip';
+    if (i < step) cls += ' done';
+    else if (i === step) cls += ' now';
+    h += '<div class="' + cls + '"></div>';
+  }
+  document.getElementById('pips').innerHTML = h;
+}
+
+function renderStep(s) {
+  var data = STEPS[s];
+  var h = '';
+  data.cards.forEach(function(c) {
+    if (c.type === 'info') {
+      h += '<div class="card"><div class="card-label">' + c.label + '</div><div class="card-text">' + c.text + '</div></div>';
+    } else if (c.type === 'quotes') {
+      h += '<div class="card">';
+      c.quotes.forEach(function(q) {
+        h += '<div class="qt"><div class="qt-t">' + q.t + '</div><div class="qt-a">' + q.a + '</div></div>';
+      });
+      if (c.clerk) h += '<div class="cl"><div class="cl-t">' + c.clerk + '</div></div>';
+      h += '</div>';
+    } else if (c.type === 'decision') {
+      h += '<div class="card"><div class="q">' + c.q + '</div>';
+      c.opts.forEach(function(o, i) {
+        h += '<div class="opt" onclick="pick(this,' + i + ')"><div class="opt-t">' + o.t + '</div><div class="opt-d">' + o.d + '</div></div>';
+      });
+      h += '</div>';
+    }
+  });
+  document.getElementById('content').innerHTML = h;
+  renderPips();
+  var btn = document.getElementById('goBtn');
+  btn.classList.add('dim');
+  btn.style.display = '';
+  btn.textContent = s === STEPS.length - 1 ? 'Submit assessment \u2192' : 'Next matter \u2192';
+}
+
+function renderAssessment() {
+  var a = buildAssessment();
+  var h = '<div class="card"><div class="card-label">Judicial assessment \u2014 Gallery observer</div>';
+  h += '<div class="card-text"><p>' + a.summary + '</p><p>' + a.pattern + '</p><p>' + a.agree + '</p></div></div>';
+  h += '<div class="card"><div class="cl"><div class="cl-t">' + a.temperament + '</div></div>';
+  h += '<div class="cl" style="margin-top:.8rem"><div class="cl-t">This assessment has been filed with the Clerk\u2019s office and cannot be appealed. Three eggs are waiting for a schedule, and no schedule will feel like enough for either parent. This is not a flaw in the ruling. It is the ruling.</div></div></div>';
+  h += '<div class="card"><div class="assess-owl"><div class="assess-owl-label">Judge Owl\u2019s actual ruling</div>';
+  h += '<div class="assess-owl-t">"Custody arrangement approved: primary residence with the Petitioner. Alternating weekends and shared Wednesday evenings with the Respondent. One floating holiday to be agreed upon annually by both parties. The Court reminds both parties that \u2018floating\u2019 refers to the schedule, not the method of transport."</div>';
+  h += '<div class="assess-owl-t" style="margin-top:.6rem">"Relocation beyond 0.5 miles by either party requires prior Court approval. The eggs are not to be used as evidence in future proceedings. They are eggs."</div>';
+  h += '</div></div>';
+  document.getElementById('content').innerHTML = h;
+  renderPips();
+  document.getElementById('goBtn').style.display = 'none';
+}
+
+function pick(el, idx) {
+  el.closest('.card').querySelectorAll('.opt').forEach(function(o) { o.classList.remove('sel'); });
+  el.classList.add('sel');
+  choices[step] = idx;
+  document.getElementById('goBtn').classList.remove('dim');
+}
+
+function advance() {
+  if (typeof choices[step] === 'undefined') return;
+  step++;
+  if (step >= STEPS.length) { renderAssessment(); } else { renderStep(step); }
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+renderStep(0);
+</script>
+</body>
+</html>
