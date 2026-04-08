@@ -664,6 +664,75 @@
       margin-top: 6px;
     }
 
+    /* ── collapsible case panels ───────────────── */
+    .case-panel {
+      display: none;
+      margin-bottom: 8px;
+    }
+    .case-panel.open {
+      display: block;
+      animation: panelIn 0.2s ease-out;
+    }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── docket row interactivity ──────────────── */
+    .docket-row {
+      cursor: pointer;
+    }
+    .docket-row td:first-child {
+      position: relative;
+      padding-left: 22px;
+    }
+    .docket-row td:first-child::before {
+      content: '▸';
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      transition: color 0.15s;
+    }
+    .docket-row:hover td:first-child::before {
+      color: var(--link);
+    }
+    .docket-row.expanded td:first-child::before {
+      content: '▾';
+      color: var(--seal-gold);
+    }
+    .docket-row.expanded {
+      background: var(--bg-alt) !important;
+    }
+
+    /* ── gallery assessment link ───────────────── */
+    .panel-actions {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-light);
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-top: none;
+      margin-bottom: 8px;
+    }
+    .btn-gallery {
+      display: inline-block;
+      padding: 8px 20px;
+      background: var(--nav-bg);
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-gallery:hover {
+      background: var(--nav-hover);
+      color: #fff;
+      text-decoration: none;
+    }
+
     /* ── responsive ─────────────────────────────── */
     .unavailable-notice {
       position: fixed;
@@ -698,6 +767,10 @@
       .footer-grid { grid-template-columns: 1fr; }
       .site-nav .wrap { flex-wrap: wrap; }
       .site-nav a { padding: 8px 12px; font-size: 0.78rem; }
+      .docket-row td:first-child { padding-left: 20px; }
+      .docket-row td:first-child::before { left: 5px; }
+      .panel-actions { text-align: center; }
+      .btn-gallery { width: 100%; text-align: center; }
     }
   </style>
 </head>
@@ -832,646 +905,1183 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="active-case">
-            <td><a href="#case-detail" class="case-link">AMNC-2026-007B</a></td>
+          <tr class="docket-row" data-case="AMNC-2026-014B">
+            <td><span class="case-link">AMNC-2026-014B</span></td>
+            <td>Pigeon v. Pigeon</td>
+            <td>Nest Abandonment</td>
+            <td>May 05, 2026</td>
+            <td><span class="status-badge status-closed">Closed</span></td>
+          </tr>
+          <tr class="docket-row" data-case="AMNC-2026-011A">
+            <td><span class="case-link">AMNC-2026-011A</span></td>
+            <td>Avian Mun. Dist. v. Conrad</td>
+            <td>Noise / Nuisance</td>
+            <td>Apr 02, 2026</td>
+            <td><span class="status-badge status-closed">Closed</span></td>
+          </tr>
+          <tr class="docket-row" data-case="AMNC-2026-009A">
+            <td><span class="case-link">AMNC-2026-009A</span></td>
+            <td>Wren v. Wren</td>
+            <td>Noise / Nuisance</td>
+            <td>Mar 15, 2026</td>
+            <td><span class="status-badge status-closed">Closed</span></td>
+          </tr>
+          <tr class="docket-row active-case" data-case="AMNC-2026-007B">
+            <td><span class="case-link">AMNC-2026-007B</span></td>
             <td><a href="../nest-court-proceedings/" class="case-caption-link"><strong>Dove v. Dove</strong></a></td>
             <td>Nest Abandonment</td>
             <td>Feb 12, 2026</td>
-            <td>
-              <a
-                class="status-badge status-active"
-                href="../nest-court-proceedings/"
-                title="View gallery proceedings"
-              >Active</a>
-            </td>
+            <td><span class="status-badge status-active">Active</span></td>
           </tr>
-          <tr>
-            <td><span class="case-link" style="color: var(--text-tertiary);">AMNC-2025-041A</span></td>
+          <tr class="docket-row" data-case="AMNC-2025-041A">
+            <td><span class="case-link">AMNC-2025-041A</span></td>
             <td>Finch v. Finch</td>
             <td>Territorial Dispute</td>
             <td>Nov 03, 2025</td>
             <td><span class="status-badge status-settled">Settled</span></td>
           </tr>
-          <tr>
-            <td><span class="case-link" style="color: var(--text-tertiary);">AMNC-2025-038A</span></td>
+          <tr class="docket-row" data-case="AMNC-2025-038A">
+            <td><span class="case-link">AMNC-2025-038A</span></td>
             <td>In re: Wren — Nest Inspection Appeal</td>
             <td>Nesting Permit</td>
             <td>Sep 17, 2025</td>
             <td><span class="status-badge status-dismissed">Dismissed</span></td>
           </tr>
-          <tr>
-            <td><a href="#case-detail-starling" class="case-link">AMNC-2025-022C</a></td>
+          <tr class="docket-row" data-case="AMNC-2025-022C">
+            <td><span class="case-link">AMNC-2025-022C</span></td>
             <td><a href="../nest-court-proceedings-starling/" class="case-caption-link">Starling v. Starling</a></td>
             <td>Egg Custody</td>
             <td>Jun 02, 2025</td>
-            <td><a class="status-badge status-closed" href="../nest-court-proceedings-starling/" title="View gallery proceedings">Closed</a></td>
+            <td><span class="status-badge status-closed">Closed</span></td>
           </tr>
-          <tr>
-            <td><a href="#case-detail-pigeon" class="case-link">AMNC-2024-119A</a></td>
+          <tr class="docket-row" data-case="AMNC-2024-119A">
+            <td><span class="case-link">AMNC-2024-119A</span></td>
             <td><a href="../nest-court-proceedings-pigeon/" class="case-caption-link">Avian Mun. Dist. v. Pigeon (J.)</a></td>
             <td>Noise / Nuisance</td>
             <td>Dec 14, 2024</td>
-            <td><a class="status-badge status-closed" href="../nest-court-proceedings-pigeon/" title="View gallery proceedings">Closed</a></td>
+            <td><span class="status-badge status-closed">Closed</span></td>
           </tr>
         </tbody>
       </table>
-      <p class="docket-note">Displaying 5 of 5 results. Gaps in case numbering indicate sealed, expunged, or administratively transferred matters.</p>
+      <p class="docket-note">Displaying 8 of 8 results. Gaps in case numbering indicate sealed, expunged, or administratively transferred matters.</p>
 
-      <!-- Case detail -->
-      <h2 class="section-heading" id="case-detail">Case Detail — AMNC-2026-007B</h2>
+      <!-- ── Case Panels (collapsible, one per docket row) ── -->
 
-      <div class="case-detail">
-        <div class="case-detail-header">
-          <h3>Denise Dove v. Greg Dove</h3>
-          <span class="case-no">AMNC-2026-007B</span>
+      <!-- Panel: Pigeon v. Pigeon -->
+      <div class="case-panel" id="panel-AMNC-2026-014B">
+        <div class="case-detail">
+          <div class="case-detail-header">
+            <h3>Pigeon v. Pigeon</h3>
+            <span class="case-no">AMNC-2026-014B</span>
+          </div>
+          <div class="case-detail-body">
+            <div class="case-info-grid">
+              <div class="case-field">
+                <span class="field-label">Case Type</span>
+                <span class="field-value">Nest Abandonment (Uncontested)</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Status</span>
+                <span class="field-value"><span class="status-badge status-closed">Closed — Default Ruling</span></span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Petitioner</span>
+                <span class="field-value">Female Pigeon (Mrs. Pigeon)</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Respondent</span>
+                <span class="field-value">Dennis Pigeon</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Filed</span>
+                <span class="field-value">May 5, 2026</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Default Ruling</span>
+                <span class="field-value">May 20, 2026</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Presiding</span>
+                <span class="field-value">Hon. M. Owl</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Clerk Assigned</span>
+                <span class="field-value">T. Nuthatch</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Issue</span>
+                <span class="field-value">Respondent "has been on a bench"</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="case-detail-body">
-          <div class="case-info-grid">
-            <div class="case-field">
-              <span class="field-label">Case Type</span>
-              <span class="field-value">Nest Abandonment (Contested)</span>
+        <h3 class="section-heading" style="font-size:1.05rem; margin-top:20px;">Filed Documents — AMNC-2026-014B</h3>
+        <div class="filings-list">
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Petition for Determination of Nest Abandonment (Uncontested)</div>
+                <div class="filing-meta">
+                  <span>Doc. 001</span>
+                  <span>Filed: May 5, 2026</span>
+                  <span>By: Petitioner</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
             </div>
-            <!-- Temporary test implementation: active status links to proceedings view. -->
-            <div class="case-field">
-              <span class="field-label">Status</span>
-              <span class="field-value">
-                <a
-                  class="status-badge status-active"
-                  href="../nest-court-proceedings/"
-                  title="View gallery proceedings"
-                >Active</a>
-              </span>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p>The Petitioner states that the Respondent has not been present at the marital nest for a period exceeding three months. The Respondent's current location is, to the Petitioner's knowledge, a bench in Municipal Park. The Respondent has been on the bench since approximately February 2026.</p>
+                <p>The Petitioner has made no effort to retrieve the Respondent from the bench. The Petitioner states: 'He knows where the nest is. He knows where I am. The bench is his decision.'</p>
+                <p>The Petitioner requests a default ruling on the grounds of abandonment. The Respondent was served notice and did not file a response.</p>
+              </div>
             </div>
-            <div class="case-field">
-              <span class="field-label">Petitioner</span>
-              <span class="field-value">Denise Dove (Mourning Dove, f.)</span>
+          </div>
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Default Ruling</div>
+                <div class="filing-meta">
+                  <span>Doc. 002</span>
+                  <span>Filed: May 20, 2026</span>
+                  <span>By: Hon. M. Owl, Presiding</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
             </div>
-            <div class="case-field">
-              <span class="field-label">Respondent</span>
-              <span class="field-value">Greg Dove (Mourning Dove, m.)</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Filed</span>
-              <span class="field-value">February 12, 2026</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Next Hearing</span>
-              <span class="field-value">April 14, 2026 — 9:30 AM, Chamber B</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Presiding</span>
-              <span class="field-value">Hon. M. Owl</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Clerk Assigned</span>
-              <span class="field-value">T. Nuthatch</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Nest Location</span>
-              <span class="field-value">Meter box, 14 Sycamore Ln., Lot 7</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Dependents</span>
-              <span class="field-value">Two (2) eggs, unhatched, status monitored</span>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p>The Respondent was served notice on May 7, 2026, at the third bench, Municipal Park (south end). Service was confirmed by the Deputy Clerk, who noted that the Respondent accepted the papers without comment and then resumed facing the water.</p>
+                <p>No answer was filed within the required fourteen-day period.</p>
+                <p>Default ruling entered: Nest abandonment determined. The marital nest is awarded to the Petitioner. The bench, the Court notes, was never marital property, but appears to have been awarded by default to the Respondent by virtue of continuous occupation.</p>
+                <p>The Clerk's office has no further notes on this matter except to observe that the Respondent was still on the bench at the time of filing this order, which was 4:47 PM on a Tuesday, and that the deputy who served the papers said the bench looked different with someone on it, though she could not say how.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Filed documents -->
-      <h2 class="section-heading">Filed Documents — AMNC-2026-007B</h2>
-
-      <div class="filings-list">
-
-        <!-- Filing 1: Petition -->
-        <div class="filing-item">
-          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="filing-header-left">
-              <div class="filing-title">Petition for Determination of Nest Abandonment</div>
-              <div class="filing-meta">
-                <span>Doc. 001</span>
-                <span>Filed: Feb 12, 2026</span>
-                <span>By: Denise Dove (Petitioner, pro se)</span>
-              </div>
-            </div>
-            <div class="filing-toggle"></div>
+      <!-- Panel: Dist. v. Conrad -->
+      <div class="case-panel" id="panel-AMNC-2026-011A">
+        <div class="case-detail">
+          <div class="case-detail-header">
+            <h3>Avian Mun. Dist. v. Conrad</h3>
+            <span class="case-no">AMNC-2026-011A</span>
           </div>
-          <div class="filing-body">
-            <div class="filing-content">
-              <p class="legal-heading">In the Nest Court of the Avian Municipal District</p>
-              <p><strong>Denise Dove, Petitioner</strong><br>v.<br><strong>Greg Dove, Respondent</strong></p>
-              <p class="legal-heading">Petition for Determination of Nest Abandonment and Division of Marital Nest Assets</p>
-
-              <p>COMES NOW the Petitioner, Denise Dove, a Mourning Dove residing at 14 Sycamore Lane, Lot 7, Meter Box (Upper Ledge), and states as follows:</p>
-
-              <p class="numbered-item"><strong>1.</strong> The Petitioner and Respondent are lawfully mated and have jointly maintained a nest at the above address since approximately March of the prior year.</p>
-
-              <p class="numbered-item"><strong>2.</strong> The nest consists of two (2) twigs, one (1) piece of receipt paper (CVS, undated), one (1) zip tie (provenance disputed), a quantity of dryer lint, and the shared warmth of what the Petitioner believed to be a functioning partnership.</p>
-
-              <p class="numbered-item"><strong>3.</strong> On or about January 27, 2026, the Respondent departed the nest at approximately 6:14 AM, stating he was "just going to fly around for a bit." The Respondent did not return that day, the following day, or for a period of eleven (11) days thereafter.</p>
-
-              <p class="numbered-item"><strong>4.</strong> The Petitioner made reasonable efforts to locate the Respondent, including calling from the branch, calling from the higher branch, and sitting very still and waiting.</p>
-
-              <p class="numbered-item"><strong>5.</strong> The Respondent was subsequently observed at or near the residence of one Linda Sparrow, 22 Birch Court, approximately 0.3 miles east of the marital nest, on at least four (4) separate occasions, as documented in Exhibit C.</p>
-
-              <p class="numbered-item"><strong>6.</strong> Two (2) eggs are currently present in the nest. They remain unhatched. The Petitioner has been maintaining incubation temperature without assistance for the duration of the Respondent's absence. This is noted not for sympathy but for the record.</p>
-
-              <p class="numbered-item"><strong>7.</strong> The Petitioner requests the Court to determine that the Respondent has abandoned the marital nest within the meaning of Avian Municipal Code § 4.12(a), and to issue an order granting the Petitioner sole custody of the nest site, all nest materials, and the two (2) eggs described above.</p>
-
-              <p class="numbered-item"><strong>8.</strong> The Petitioner further requests the Court to issue a No-Perch Order prohibiting the Respondent from landing on, hovering near, or making eye contact with the nest from any branch within a radius of fifty (50) wingspans.</p>
-
-              <p class="legal-cite">Respectfully submitted this 12th day of February, 2026.</p>
-
-              <div class="sig-block">
-                <p><span class="sig-line">&nbsp; Denise Dove &nbsp;</span><br>
-                Denise Dove, Petitioner (Pro Se)<br>
-                14 Sycamore Ln., Lot 7, Meter Box (Upper Ledge)</p>
+          <div class="case-detail-body">
+            <div class="case-info-grid">
+              <div class="case-field">
+                <span class="field-label">Case Type</span>
+                <span class="field-value">Noise / Nuisance</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Status</span>
+                <span class="field-value"><span class="status-badge status-closed">Closed</span></span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Plaintiff</span>
+                <span class="field-value">Avian Municipal District</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Respondent</span>
+                <span class="field-value">Conrad (Mockingbird)</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Filed</span>
+                <span class="field-value">April 2, 2026</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Ruling Date</span>
+                <span class="field-value">May 19, 2026</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Presiding</span>
+                <span class="field-value">Hon. M. Owl</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Clerk Assigned</span>
+                <span class="field-value">T. Nuthatch</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Issue</span>
+                <span class="field-value">Unauthorized dawn performances, singing before quiet hours end</span>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Filing 2: Response -->
-        <div class="filing-item">
-          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="filing-header-left">
-              <div class="filing-title">Respondent's Answer and Affirmative Defenses</div>
-              <div class="filing-meta">
-                <span>Doc. 002</span>
-                <span>Filed: Feb 26, 2026</span>
-                <span>By: Greg Dove (Respondent, pro se)</span>
+        <h3 class="section-heading" style="font-size:1.05rem; margin-top:20px;">Filed Documents — AMNC-2026-011A</h3>
+        <div class="filings-list">
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">District Complaint — Noise Violation</div>
+                <div class="filing-meta">
+                  <span>Doc. 001</span>
+                  <span>Filed: Apr 2, 2026</span>
+                  <span>By: District Warden</span>
+                </div>
               </div>
+              <div class="filing-toggle"></div>
             </div>
-            <div class="filing-toggle"></div>
-          </div>
-          <div class="filing-body">
-            <div class="filing-content">
-              <p class="legal-heading">Respondent's Answer</p>
-
-              <p>COMES NOW the Respondent, Greg Dove, and answers the Petition as follows:</p>
-
-              <p class="numbered-item"><strong>1.</strong> Admitted.</p>
-
-              <p class="numbered-item"><strong>2.</strong> Admitted in part. The Respondent disputes the characterization of the zip tie as "provenance disputed." The Respondent found the zip tie. The Respondent brought it to the nest. The zip tie is the Respondent's. This has been explained.</p>
-
-              <p class="numbered-item"><strong>3.</strong> Admitted that the Respondent departed the nest on January 27, 2026. Denied that the Respondent stated he was "just going to fly around for a bit." The Respondent stated he was "going to fly around." The word "just" implies triviality, which misrepresents the Respondent's state of mind. The Respondent needed air. The Respondent is entitled to air.</p>
-
-              <p class="numbered-item"><strong>4.</strong> The Respondent has no knowledge of the Petitioner's efforts to locate him and therefore neither admits nor denies. The Respondent notes that "sitting very still and waiting" is not, by any recognized standard, a search effort.</p>
-
-              <p class="numbered-item"><strong>5.</strong> Denied. The Respondent was in the <em>vicinity</em> of 22 Birch Court on the dates alleged but was not "at" the residence. The Respondent was on a branch. The branch is public. The Respondent is permitted to be on branches.</p>
-
-              <p class="numbered-item"><strong>6.</strong> The Respondent acknowledges the existence of the eggs. The Respondent cares about the eggs. The Respondent has always cared about the eggs. The Respondent objects to the Petitioner's closing editorial.</p>
-
-              <p class="numbered-item"><strong>7.</strong> Denied. The Respondent has not abandoned the nest. The Respondent was thinking.</p>
-
-              <p class="numbered-item"><strong>8.</strong> The Respondent opposes the issuance of a No-Perch Order, which the Respondent characterizes as punitive and disproportionate. Fifty wingspans would exclude the Respondent from his preferred afternoon branch, the telephone wire, and the entire south side of the parking lot. The Respondent has used that parking lot for years.</p>
-
-              <p class="legal-heading">Affirmative Defenses</p>
-
-              <p class="numbered-item"><strong>First Defense:</strong> The nest was structurally inadequate and the Petitioner refused to discuss it. The Respondent raised concerns about the receipt paper on no fewer than three occasions. The receipt paper is from CVS. It is four feet long. It is not load-bearing.</p>
-
-              <p class="numbered-item"><strong>Second Defense:</strong> The Petitioner's communication style created a hostile nesting environment. The Respondent refers the Court to the Petitioner's habit of turning her back mid-conversation and tucking her beak, which the Respondent interprets as a unilateral termination of dialogue.</p>
-
-              <p class="legal-cite">Respectfully submitted this 26th day of February, 2026.</p>
-
-              <div class="sig-block">
-                <p><span class="sig-line">&nbsp; Greg Dove &nbsp;</span><br>
-                Greg Dove, Respondent (Pro Se)<br>
-                Current address: various branches, east side</p>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p>The Avian Municipal District files this noise complaint against Conrad, a Mockingbird of Municipal Oak, for repeated violations of Municipal Ordinance 7.3(a) (Quiet Hours — Residential).</p>
+                <p>The Respondent has been the subject of five formal complaints and one unsigned note that read simply, 'We know it's you.' Complaints cite singing beginning as early as 4:32 AM, continuing for periods of up to forty-five minutes, and including what witnesses describe as 'original material as well as impressions.'</p>
+                <p>The Respondent has not denied the singing. The Respondent has stated, through prior correspondence, that singing is protected expression and that the district cannot regulate art.</p>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Filing 3: Exhibit list / evidence -->
-        <div class="filing-item">
-          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="filing-header-left">
-              <div class="filing-title">Petitioner's Exhibit List and Evidence Summary</div>
-              <div class="filing-meta">
-                <span>Doc. 003</span>
-                <span>Filed: Mar 4, 2026</span>
-                <span>By: Denise Dove (Petitioner)</span>
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Ruling Summary</div>
+                <div class="filing-meta">
+                  <span>Doc. 002</span>
+                  <span>Filed: May 19, 2026</span>
+                  <span>By: Hon. M. Owl, Presiding</span>
+                </div>
               </div>
+              <div class="filing-toggle"></div>
             </div>
-            <div class="filing-toggle"></div>
-          </div>
-          <div class="filing-body">
-            <div class="filing-content">
-              <p>The Petitioner submits the following exhibits for consideration by the Court in the above-captioned matter:</p>
-
-              <table class="evidence-table">
-                <thead>
-                  <tr>
-                    <th>Exhibit</th>
-                    <th>Description</th>
-                    <th>Relevance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="exhibit-ref">Ex. A</span></td>
-                    <td>Nest inventory, itemized, with annotations</td>
-                    <td>Establishes the full scope of marital assets subject to division. Includes notation of which party contributed each item. The Respondent will note that the zip tie is listed as "contributed by: disputed." It is not disputed. He found it.</td>
-                  </tr>
-                  <tr>
-                    <td><span class="exhibit-ref">Ex. B</span></td>
-                    <td>Timeline of Respondent's absence (Jan 27–Feb 7, 2026)</td>
-                    <td>Documents the eleven-day period during which the Respondent was not present at the nest. Includes timestamps where available. Entry for Day 4 reads: "No sign. Eggs cold on left side. Rotated."</td>
-                  </tr>
-                  <tr>
-                    <td><span class="exhibit-ref">Ex. C</span></td>
-                    <td>Observation log — Respondent sighted near 22 Birch Court</td>
-                    <td>Four (4) sightings documented by a third-party witness (see Doc. 004, Witness Statement — C. Sparrow). Includes dates, approximate times, and branch positions. Third sighting noted: "He was on the low branch. The one that dips toward her window. You don't sit on that branch to think."</td>
-                  </tr>
-                  <tr>
-                    <td><span class="exhibit-ref">Ex. D</span></td>
-                    <td>Photograph — Nest, current condition</td>
-                    <td>Shows the nest as maintained by the Petitioner during the Respondent's absence. Two eggs visible. Structure intact. The receipt paper has been repositioned but not removed, as the Petitioner acknowledges it is, at this point, structural.</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class="court-note">
-                <strong>Clerk's Note:</strong> Exhibit D was submitted as a physical photograph (3" × 2", slightly bent). The Clerk's office does not have a scanner of adequate resolution for nest documentation. The exhibit has been filed in the physical record and is available for inspection during business hours. We apologize for the inconvenience.
+            <div class="filing-body">
+              <div class="filing-content">
+                <p>The Court finds that the Respondent's singing, while expressive, exceeds the volume and timing thresholds established by Municipal Ordinance 7.3(a). The Respondent is ordered to observe quiet hours (no singing before 6:30 AM) and to limit performances to reasonable duration.</p>
+                <p>The Court notes that the Respondent's claim of protected expression has some merit and that the Court does not wish to regulate art. The Court does, however, wish to regulate the hours during which art occurs, particularly when art occurs at 4:32 AM and includes impressions of an argument between two doves that several residents found 'upsettingly accurate.'</p>
+                <p>Compliance begins immediately.</p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Filing 4: Witness statement -->
-        <div class="filing-item">
-          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="filing-header-left">
-              <div class="filing-title">Witness Statement — Cheryl Sparrow</div>
-              <div class="filing-meta">
-                <span>Doc. 004</span>
-                <span>Filed: Mar 4, 2026</span>
-                <span>Witness for Petitioner</span>
-              </div>
-            </div>
-            <div class="filing-toggle"></div>
-          </div>
-          <div class="filing-body">
-            <div class="filing-content">
-              <p class="legal-heading">Sworn Statement of Cheryl Sparrow</p>
-              <p><em>Taken by the Clerk's office, March 3, 2026. Witness appeared voluntarily and was advised that her statement would become part of the public record. Witness stated she understood and then asked if she could "start from the beginning, because context matters."</em></p>
-
-              <p class="legal-heading">Statement</p>
-
-              <p>My name is Cheryl Sparrow. I live at 16 Sycamore Lane, which is two lots east of Denise and Greg's meter box. I have lived there for three seasons. I know both parties. I would describe my relationship with the Petitioner as neighborly. I would describe my relationship with the Respondent as civil, although he has never once acknowledged my flower arrangement on the south-facing ledge, which I change monthly.</p>
-
-              <p>I am providing this statement because I was asked to, but also because I saw what I saw and I believe the Court should know.</p>
-
-              <p>On January 27, I observed Greg depart the nest at what I estimate was shortly after six in the morning. I know this because I had just finished my dawn perch, which I perform every day at 5:50 AM facing east. Greg flew east. I noticed because he did not circle the tree first, which is what he normally does. He just left. That is not how you leave a nest. That is how you leave a situation.</p>
-
-              <p>I did not see Greg return that day. Or the next day. On the third day, I visited Denise. She was sitting on the eggs. She told me Greg was "flying around." I did not press the matter, but I did note the time — 2:14 PM — because I thought someone should be keeping track, even if nobody had asked me to.</p>
-
-              <p>On January 31, I was foraging near Birch Court — I forage on a rotating schedule and Birch Court falls on Fridays — and I observed Greg on a low branch near number 22. I recognized him by his posture. Greg has a very particular way of holding his left wing slightly forward when he is trying to appear casual. He was doing that. He was facing the window of 22 Birch Court. I stayed for approximately four minutes. He did not move.</p>
-
-              <p>I observed Greg at or near the same location on three additional occasions: February 2, February 5, and February 7. The February 5 sighting was the one where he was on the low branch. The branch that dips. You can see directly into the front perch from that branch. I know because I have also been on that branch, but only to survey the ivy situation, which is a separate matter.</p>
-
-              <p>I want to be clear that I am not drawing conclusions. I am reporting what I observed. I was not asked to time anything, but I timed it anyway, because precision matters, especially in situations where someone is going to pretend nothing happened.</p>
-
-              <div class="court-note">
-                <strong>Clerk's Note:</strong> The witness provided an additional six (6) pages of context regarding the history of the sycamore lane neighborhood, her foraging schedule, and her views on general nest construction standards. These pages have been filed but are not reproduced here. They are available upon request. The Clerk's office respectfully notes that the witness was asked to confine her statement to the facts of the case. The witness stated that "all of this is facts."
-              </div>
-
-              <div class="sig-block">
-                <p><span class="sig-line">&nbsp; Cheryl Sparrow &nbsp;</span><br>
-                Cheryl Sparrow, Witness<br>
-                16 Sycamore Ln.</p>
-                <p style="font-size:0.78rem; color: var(--text-tertiary); margin-top: 6px;">Sworn and subscribed before T. Nuthatch, Deputy Clerk, March 3, 2026.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Filing 5: Court order -->
-        <div class="filing-item">
-          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="filing-header-left">
-              <div class="filing-title">Procedural Order — Scheduling and Interim Provisions</div>
-              <div class="filing-meta">
-                <span>Doc. 005</span>
-                <span>Filed: Mar 11, 2026</span>
-                <span>By: Hon. M. Owl, Presiding</span>
-              </div>
-            </div>
-            <div class="filing-toggle"></div>
-          </div>
-          <div class="filing-body">
-            <div class="filing-content">
-              <p class="legal-heading">Order</p>
-
-              <p>This matter having come before the Court on the Petitioner's filing of February 12, 2026, and the Respondent having filed an Answer on February 26, 2026, and the Court having reviewed the submissions of both parties, the following is ORDERED:</p>
-
-              <p class="numbered-item"><strong>1.</strong> A hearing on the merits is scheduled for <strong>April 14, 2026 at 9:30 AM</strong> in Chamber B. Both parties shall appear in person. "In person" means on a perch inside the courtroom. The branch outside the window is not the courtroom.</p>
-
-              <p class="numbered-item"><strong>2.</strong> Pending resolution, the Petitioner shall maintain primary occupancy of the nest at 14 Sycamore Ln., Lot 7. The Respondent shall not approach the nest without prior written notice filed with the Clerk's office at least twenty-four (24) hours in advance. "Written" means written. Cooing from the adjacent branch does not constitute notice.</p>
-
-              <p class="numbered-item"><strong>3.</strong> The eggs shall remain in the custody of the Petitioner for the interim period. The Respondent may request supervised visitation through the Clerk's office. Visitation shall take place during business hours and in the presence of a court-appointed monitor. The Respondent is reminded that staring at the eggs from a distance is neither visitation nor parenting.</p>
-
-              <p class="numbered-item"><strong>4.</strong> The Court notes the Respondent's characterization of his eleven-day absence as "thinking." The Court does not find that thinking, as a defense, has been adequately defined, and reserves judgment on this matter for the hearing.</p>
-
-              <p class="numbered-item"><strong>5.</strong> The Court has received and reviewed the witness statement of Cheryl Sparrow (Doc. 004). The Court notes the witness's thoroughness. The Court also notes the six additional pages filed by the witness, which the Court has read in full. The Court did not ask for them. The Court has them now.</p>
-
-              <p class="numbered-item"><strong>6.</strong> Both parties are advised that the Court takes nest abandonment proceedings seriously and expects full cooperation with discovery, testimony, and procedural requirements. The Court has a docket. The Court has other cases. The Court's patience, while considerable, is a finite municipal resource.</p>
-
-              <div class="sig-block">
-                <p>SO ORDERED this 11th day of March, 2026.</p>
-                <p style="margin-top: 12px;"><span class="sig-line">&nbsp; M. Owl &nbsp;</span><br>
-                Hon. Miriam Owl<br>
-                Presiding Judge, Nest Court<br>
-                Avian Municipal District, Chamber B</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /filings-list -->
-
-      <!-- Case detail — Starling -->
-      <h2 class="section-heading" id="case-detail-starling">Case Detail — AMNC-2025-022C</h2>
-
-      <div class="case-detail">
-        <div class="case-detail-header">
-          <h3>Starling v. Starling</h3>
-          <span class="case-no">AMNC-2025-022C</span>
-        </div>
-        <div class="case-detail-body">
-          <div class="case-info-grid">
-            <div class="case-field">
-              <span class="field-label">Case Type</span>
-              <span class="field-value">Egg Custody</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Status</span>
-              <span class="field-value">
-                <a class="status-badge status-closed" href="../nest-court-proceedings-starling/" title="View gallery proceedings">Closed</a>
-              </span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Petitioner</span>
-              <span class="field-value">Female Starling</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Respondent</span>
-              <span class="field-value">Male Starling</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Filed</span>
-              <span class="field-value">June 2, 2025</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Ruling Date</span>
-              <span class="field-value">August 18, 2025</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Presiding</span>
-              <span class="field-value">Hon. M. Owl</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Clerk Assigned</span>
-              <span class="field-value">T. Nuthatch</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Nest Location</span>
-              <span class="field-value">8 Birch Court, upper canopy</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Dependents</span>
-              <span class="field-value">Three (3) eggs</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Filed documents — Starling -->
-      <h2 class="section-heading">Filed Documents — AMNC-2025-022C</h2>
-
-      <div class="filings-list">
-
-        <div class="filing-item">
-          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="filing-header-left">
-              <div class="filing-title">Petition for Custody Determination</div>
-              <div class="filing-meta">
-                <span>Doc. 001</span>
-                <span>Filed: Jun 2, 2025</span>
-                <span>By: Petitioner</span>
+      <!-- Panel: Wren v. Wren -->
+      <div class="case-panel" id="panel-AMNC-2026-009A">
+        <div class="case-detail">
+          <div class="case-detail-header">
+            <h3>Wren v. Wren</h3>
+            <span class="case-no">AMNC-2026-009A</span>
+          </div>
+          <div class="case-detail-body">
+            <div class="case-info-grid">
+              <div class="case-field">
+                <span class="field-label">Case Type</span>
+                <span class="field-value">Noise / Nuisance (Domestic)</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Status</span>
+                <span class="field-value"><span class="status-badge status-closed">Closed</span></span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Petitioner</span>
+                <span class="field-value">Female Wren</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Respondent</span>
+                <span class="field-value">Male Wren</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Filed</span>
+                <span class="field-value">March 15, 2026</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Ruling Date</span>
+                <span class="field-value">May 12, 2026</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Presiding</span>
+                <span class="field-value">Hon. M. Owl</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Clerk Assigned</span>
+                <span class="field-value">T. Nuthatch</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Issue</span>
+                <span class="field-value">Respondent allegedly humming during shared meals</span>
               </div>
             </div>
-            <div class="filing-toggle"></div>
-          </div>
-          <div class="filing-body">
-            <div class="filing-content">
-              <p class="legal-heading">In the Nest Court of the Avian Municipal District</p>
-              <p><strong>Petitioner</strong><br>v.<br><strong>Respondent</strong></p>
-              <p class="legal-heading">Petition for Determination of Egg Custody and Establishment of Visitation Schedule</p>
-
-              <p>COMES NOW the Petitioner, a Starling residing at 8 Birch Court, upper canopy, east-facing, and states as follows:</p>
-
-              <p class="numbered-item"><strong>1.</strong> The Petitioner and Respondent are the biological parents of three (3) eggs currently present in the marital nest at the above address.</p>
-
-              <p class="numbered-item"><strong>2.</strong> The parties have agreed to dissolve the partnership. The dissolution is not contested. What is contested is the custody arrangement for the three eggs described above.</p>
-
-              <p class="numbered-item"><strong>3.</strong> The eggs have been in the continuous care of the Petitioner since the Respondent's relocation to a branch near the south ridge, approximately 0.4 miles from the marital nest, on or about May 15, 2025.</p>
-
-              <p class="numbered-item"><strong>4.</strong> The Petitioner has maintained a stable incubation schedule without interruption. The Respondent visits on an informal basis that both parties agree is insufficient and unpredictable.</p>
-
-              <p class="numbered-item"><strong>5.</strong> The Petitioner requests the Court to designate 8 Birch Court as the primary nest for the eggs and to establish a formal visitation schedule that prioritizes the eggs' stability while preserving the Respondent's parental access.</p>
-
-              <p class="numbered-item"><strong>6.</strong> The Petitioner further requests the Court to restrict either party from relocating beyond 0.5 miles of the primary nest without prior Court approval, as the Respondent has expressed interest in relocating further south.</p>
-
-              <p class="legal-cite">Respectfully submitted.</p>
-            </div>
           </div>
         </div>
-
-        <div class="filing-item">
-          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="filing-header-left">
-              <div class="filing-title">Respondent's Counter-Petition for Equal Custody</div>
-              <div class="filing-meta">
-                <span>Doc. 002</span>
-                <span>Filed: Jun 16, 2025</span>
-                <span>By: Respondent</span>
+        <h3 class="section-heading" style="font-size:1.05rem; margin-top:20px;">Filed Documents — AMNC-2026-009A</h3>
+        <div class="filings-list">
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Noise Complaint — Domestic</div>
+                <div class="filing-meta">
+                  <span>Doc. 001</span>
+                  <span>Filed: Mar 15, 2026</span>
+                  <span>By: Petitioner</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p>The Petitioner alleges that the Respondent has been humming during shared meal times for the duration of their marriage in a pattern that the Petitioner describes as deliberate. The Respondent characterizes the sound as involuntary and digestive in origin.</p>
+                <p>The Petitioner requests the Court to order the Respondent to cease the humming or, at minimum, to vary the pattern so that it no longer resembles what the Petitioner identifies as 'the same four notes from our wedding song, played on a loop, at breakfast, every morning, for three years.'</p>
+                <p>The Respondent denies awareness of the humming and states: 'I don't even know I'm doing it.'</p>
               </div>
             </div>
-            <div class="filing-toggle"></div>
           </div>
-          <div class="filing-body">
-            <div class="filing-content">
-              <p class="legal-heading">Respondent's Counter-Petition for Equal Custody</p>
-
-              <p>The Respondent does not contest the dissolution and does not contest that the eggs are currently in the Petitioner's care. The Respondent contests the assumption that current arrangement should become permanent arrangement.</p>
-
-              <p class="numbered-item"><strong>1.</strong> The Respondent relocated voluntarily to reduce conflict in the nest. The relocation was not an abandonment. It was a decision made for the benefit of all parties, including the eggs.</p>
-
-              <p class="numbered-item"><strong>2.</strong> The Respondent has prepared adequate nesting at the south ridge location. The nest has been inspected and found adequate by the Clerk's office.</p>
-
-              <p class="numbered-item"><strong>3.</strong> The Respondent requests equal custody — alternating weeks — with shared responsibility for scheduling and decision-making.</p>
-
-              <p class="numbered-item"><strong>4.</strong> The Respondent objects to the proposed relocation restriction. The Respondent has mentioned the possibility of moving further south. Mentioning a possibility should not result in a restriction of movement.</p>
-
-              <p class="numbered-item"><strong>5.</strong> The Respondent proposes that both parents share the spring equinox — the day the eggs were laid — rather than assigning it to one parent. Both parents were present. Both parents should be present for the anniversary.</p>
-
-              <p class="legal-cite">Respectfully submitted.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="filing-item">
-          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="filing-header-left">
-              <div class="filing-title">Clerk's Note — Nest Inspection Report</div>
-              <div class="filing-meta">
-                <span>Doc. 003</span>
-                <span>Filed: Jun 23, 2025</span>
-                <span>By: T. Nuthatch, Clerk</span>
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Ruling Summary</div>
+                <div class="filing-meta">
+                  <span>Doc. 002</span>
+                  <span>Filed: May 12, 2026</span>
+                  <span>By: Hon. M. Owl, Presiding</span>
+                </div>
               </div>
+              <div class="filing-toggle"></div>
             </div>
-            <div class="filing-toggle"></div>
-          </div>
-          <div class="filing-body">
-            <div class="filing-content">
-              <p>The Clerk's office has inspected both nest locations and found them adequate for egg custody. The Petitioner's nest at 8 Birch Court is east-facing with morning sun and wind protection. The Respondent's nest near the south ridge is smaller but structurally sound, with afternoon sun and proximity to foraging grounds.</p>
-
-              <p>The Clerk observes that both nests are adequate and that the question before the Court is not where the eggs can survive but where the eggs should live, which is a different question and, in the Clerk's experience, a harder one.</p>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /filings-list starling -->
-
-      <!-- Case detail — Pigeon -->
-      <h2 class="section-heading" id="case-detail-pigeon">Case Detail — AMNC-2024-119A</h2>
-
-      <div class="case-detail">
-        <div class="case-detail-header">
-          <h3>Avian Mun. Dist. v. Pigeon (J.)</h3>
-          <span class="case-no">AMNC-2024-119A</span>
-        </div>
-        <div class="case-detail-body">
-          <div class="case-info-grid">
-            <div class="case-field">
-              <span class="field-label">Case Type</span>
-              <span class="field-value">Noise / Nuisance</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Status</span>
-              <span class="field-value">
-                <a class="status-badge status-closed" href="../nest-court-proceedings-pigeon/" title="View gallery proceedings">Closed</a>
-              </span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Plaintiff</span>
-              <span class="field-value">Avian Municipal District (District Warden)</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Respondent</span>
-              <span class="field-value">J. Pigeon</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Filed</span>
-              <span class="field-value">December 14, 2024</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Ruling Date</span>
-              <span class="field-value">February 8, 2025</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Presiding</span>
-              <span class="field-value">Hon. M. Owl</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Clerk Assigned</span>
-              <span class="field-value">T. Nuthatch</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Respondent Address</span>
-              <span class="field-value">11 Sycamore Lane</span>
-            </div>
-            <div class="case-field">
-              <span class="field-label">Complainants</span>
-              <span class="field-value">Three (3) residents of Sycamore Lane</span>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p>The Court finds that the Respondent's humming during meals, while not conclusively deliberate, is 'patterned in a way that suggests awareness.' The Respondent is ordered to make reasonable efforts to eat in silence, or at minimum to vary the rhythm so that it no longer resembles the couple's wedding song.</p>
+                <p>The Court notes that the question of whether humming is voluntary or involuntary is, in the Clerk's phrase, 'above the Court's diagnostic capabilities.' The Court rules on the sound, not the intent.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Filed documents — Pigeon -->
-      <h2 class="section-heading">Filed Documents — AMNC-2024-119A</h2>
-
-      <div class="filings-list">
-
-        <div class="filing-item">
-          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="filing-header-left">
-              <div class="filing-title">District Complaint — Noise Violation</div>
-              <div class="filing-meta">
-                <span>Doc. 001</span>
-                <span>Filed: Dec 14, 2024</span>
-                <span>By: District Warden</span>
-              </div>
-            </div>
-            <div class="filing-toggle"></div>
+      <!-- Panel: Dove v. Dove -->
+      <div class="case-panel" id="panel-AMNC-2026-007B">
+        <div class="case-detail">
+          <div class="case-detail-header">
+            <h3>Denise Dove v. Greg Dove</h3>
+            <span class="case-no">AMNC-2026-007B</span>
           </div>
-          <div class="filing-body">
-            <div class="filing-content">
-              <p class="legal-heading">Avian Municipal District, Plaintiff<br>v.<br>J. Pigeon, Respondent</p>
-              <p class="legal-heading">Complaint for Noise Violation — Municipal Ordinance 7.3(a)</p>
-
-              <p>The Avian Municipal District, through the Office of the District Warden, files this complaint against J. Pigeon of 11 Sycamore Lane and states:</p>
-
-              <p class="numbered-item"><strong>1.</strong> The Respondent has been the subject of three (3) formal noise complaints from residents of Sycamore Lane over the past six months, each citing sustained cooing at volume levels exceeding the municipal threshold.</p>
-
-              <p class="numbered-item"><strong>2.</strong> Noise measurements taken by the Warden's office on three separate dates recorded levels between 62 and 71 decibels at the nearest property line. The municipal threshold for residential noise is 55 decibels during daytime hours (dawn to dusk) and 40 decibels during quiet hours (10:00 PM to 6:00 AM).</p>
-
-              <p class="numbered-item"><strong>3.</strong> The cooing begins before dawn, continues intermittently throughout the day, and has been described by complainants as "constant," "escalating," and "the sound of someone who will not stop talking to a room that is empty."</p>
-
-              <p class="numbered-item"><strong>4.</strong> The District requests a formal order requiring the Respondent to reduce cooing to within the municipal threshold, the imposition of quiet hours, and a fine of 200 seeds.</p>
-
-              <p class="legal-cite">Filed on behalf of the Avian Municipal District.</p>
+          <div class="case-detail-body">
+            <div class="case-info-grid">
+              <div class="case-field">
+                <span class="field-label">Case Type</span>
+                <span class="field-value">Nest Abandonment (Contested)</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Status</span>
+                <span class="field-value">
+                  <span class="status-badge status-active">Active</span>
+                </span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Petitioner</span>
+                <span class="field-value">Denise Dove (Mourning Dove, f.)</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Respondent</span>
+                <span class="field-value">Greg Dove (Mourning Dove, m.)</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Filed</span>
+                <span class="field-value">February 12, 2026</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Next Hearing</span>
+                <span class="field-value">April 14, 2026 — 9:30 AM, Chamber B</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Presiding</span>
+                <span class="field-value">Hon. M. Owl</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Clerk Assigned</span>
+                <span class="field-value">T. Nuthatch</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Nest Location</span>
+                <span class="field-value">Meter box, 14 Sycamore Ln., Lot 7</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Dependents</span>
+                <span class="field-value">Two (2) eggs, unhatched, status monitored</span>
+              </div>
             </div>
           </div>
         </div>
+        <h3 class="section-heading" style="font-size:1.05rem; margin-top:20px;">Filed Documents — AMNC-2026-007B</h3>
+        <div class="filings-list">
 
-        <div class="filing-item">
-          <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
-            <div class="filing-header-left">
-              <div class="filing-title">Respondent's Answer</div>
-              <div class="filing-meta">
-                <span>Doc. 002</span>
-                <span>Filed: Jan 4, 2025</span>
-                <span>By: J. Pigeon (Respondent, pro se)</span>
+          <!-- Filing 1: Petition -->
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Petition for Determination of Nest Abandonment</div>
+                <div class="filing-meta">
+                  <span>Doc. 001</span>
+                  <span>Filed: Feb 12, 2026</span>
+                  <span>By: Denise Dove (Petitioner, pro se)</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="legal-heading">In the Nest Court of the Avian Municipal District</p>
+                <p><strong>Denise Dove, Petitioner</strong><br>v.<br><strong>Greg Dove, Respondent</strong></p>
+                <p class="legal-heading">Petition for Determination of Nest Abandonment and Division of Marital Nest Assets</p>
+
+                <p>COMES NOW the Petitioner, Denise Dove, a Mourning Dove residing at 14 Sycamore Lane, Lot 7, Meter Box (Upper Ledge), and states as follows:</p>
+
+                <p class="numbered-item"><strong>1.</strong> The Petitioner and Respondent are lawfully mated and have jointly maintained a nest at the above address since approximately March of the prior year.</p>
+
+                <p class="numbered-item"><strong>2.</strong> The nest consists of two (2) twigs, one (1) piece of receipt paper (CVS, undated), one (1) zip tie (provenance disputed), a quantity of dryer lint, and the shared warmth of what the Petitioner believed to be a functioning partnership.</p>
+
+                <p class="numbered-item"><strong>3.</strong> On or about January 27, 2026, the Respondent departed the nest at approximately 6:14 AM, stating he was "just going to fly around for a bit." The Respondent did not return that day, the following day, or for a period of eleven (11) days thereafter.</p>
+
+                <p class="numbered-item"><strong>4.</strong> The Petitioner made reasonable efforts to locate the Respondent, including calling from the branch, calling from the higher branch, and sitting very still and waiting.</p>
+
+                <p class="numbered-item"><strong>5.</strong> The Respondent was subsequently observed at or near the residence of one Linda Sparrow, 22 Birch Court, approximately 0.3 miles east of the marital nest, on at least four (4) separate occasions, as documented in Exhibit C.</p>
+
+                <p class="numbered-item"><strong>6.</strong> Two (2) eggs are currently present in the nest. They remain unhatched. The Petitioner has been maintaining incubation temperature without assistance for the duration of the Respondent's absence. This is noted not for sympathy but for the record.</p>
+
+                <p class="numbered-item"><strong>7.</strong> The Petitioner requests the Court to determine that the Respondent has abandoned the marital nest within the meaning of Avian Municipal Code § 4.12(a), and to issue an order granting the Petitioner sole custody of the nest site, all nest materials, and the two (2) eggs described above.</p>
+
+                <p class="numbered-item"><strong>8.</strong> The Petitioner further requests the Court to issue a No-Perch Order prohibiting the Respondent from landing on, hovering near, or making eye contact with the nest from any branch within a radius of fifty (50) wingspans.</p>
+
+                <p class="legal-cite">Respectfully submitted this 12th day of February, 2026.</p>
+
+                <div class="sig-block">
+                  <p><span class="sig-line">&nbsp; Denise Dove &nbsp;</span><br>
+                  Denise Dove, Petitioner (Pro Se)<br>
+                  14 Sycamore Ln., Lot 7, Meter Box (Upper Ledge)</p>
+                </div>
               </div>
             </div>
-            <div class="filing-toggle"></div>
           </div>
-          <div class="filing-body">
-            <div class="filing-content">
-              <p class="legal-heading">Answer of J. Pigeon</p>
 
-              <p>The Respondent answers as follows:</p>
+          <!-- Filing 2: Response -->
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Respondent's Answer and Affirmative Defenses</div>
+                <div class="filing-meta">
+                  <span>Doc. 002</span>
+                  <span>Filed: Feb 26, 2026</span>
+                  <span>By: Greg Dove (Respondent, pro se)</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="legal-heading">Respondent's Answer</p>
 
-              <p class="numbered-item"><strong>1.</strong> The Respondent admits that he coos. He has cooed for his entire life. His father cooed. Cooing is what pigeons do.</p>
+                <p>COMES NOW the Respondent, Greg Dove, and answers the Petition as follows:</p>
 
-              <p class="numbered-item"><strong>2.</strong> The Respondent denies that the cooing is "excessive" within the meaning of the ordinance. Cooing is species-typical behavior. The ordinance was written to address deliberate disturbances — construction, disputes, that woodpecker on Cedar Lane — not biological functions.</p>
+                <p class="numbered-item"><strong>1.</strong> Admitted.</p>
 
-              <p class="numbered-item"><strong>3.</strong> The Respondent questions the accuracy of the noise measurements. The equipment appeared old. One measurement was taken during a wind event. The Respondent does not own a decibel meter and cannot verify the readings independently.</p>
+                <p class="numbered-item"><strong>2.</strong> Admitted in part. The Respondent disputes the characterization of the zip tie as "provenance disputed." The Respondent found the zip tie. The Respondent brought it to the nest. The zip tie is the Respondent's. This has been explained.</p>
 
-              <p class="numbered-item"><strong>4.</strong> The Respondent is willing to make "reasonable efforts" to reduce volume but notes that he does not know how to coo more quietly. He has tried. It is not a volume with a dial.</p>
+                <p class="numbered-item"><strong>3.</strong> Admitted that the Respondent departed the nest on January 27, 2026. Denied that the Respondent stated he was "just going to fly around for a bit." The Respondent stated he was "going to fly around." The word "just" implies triviality, which misrepresents the Respondent's state of mind. The Respondent needed air. The Respondent is entitled to air.</p>
 
-              <p class="numbered-item"><strong>5.</strong> The Respondent respectfully declines to discuss the circumstances of his personal life as they relate to the volume of his cooing. He notes only that the past eighteen months have been difficult and that this proceeding is not making them less so.</p>
+                <p class="numbered-item"><strong>4.</strong> The Respondent has no knowledge of the Petitioner's efforts to locate him and therefore neither admits nor denies. The Respondent notes that "sitting very still and waiting" is not, by any recognized standard, a search effort.</p>
 
-              <p class="legal-cite">Respectfully submitted.</p>
+                <p class="numbered-item"><strong>5.</strong> Denied. The Respondent was in the <em>vicinity</em> of 22 Birch Court on the dates alleged but was not "at" the residence. The Respondent was on a branch. The branch is public. The Respondent is permitted to be on branches.</p>
+
+                <p class="numbered-item"><strong>6.</strong> The Respondent acknowledges the existence of the eggs. The Respondent cares about the eggs. The Respondent has always cared about the eggs. The Respondent objects to the Petitioner's closing editorial.</p>
+
+                <p class="numbered-item"><strong>7.</strong> Denied. The Respondent has not abandoned the nest. The Respondent was thinking.</p>
+
+                <p class="numbered-item"><strong>8.</strong> The Respondent opposes the issuance of a No-Perch Order, which the Respondent characterizes as punitive and disproportionate. Fifty wingspans would exclude the Respondent from his preferred afternoon branch, the telephone wire, and the entire south side of the parking lot. The Respondent has used that parking lot for years.</p>
+
+                <p class="legal-heading">Affirmative Defenses</p>
+
+                <p class="numbered-item"><strong>First Defense:</strong> The nest was structurally inadequate and the Petitioner refused to discuss it. The Respondent raised concerns about the receipt paper on no fewer than three occasions. The receipt paper is from CVS. It is four feet long. It is not load-bearing.</p>
+
+                <p class="numbered-item"><strong>Second Defense:</strong> The Petitioner's communication style created a hostile nesting environment. The Respondent refers the Court to the Petitioner's habit of turning her back mid-conversation and tucking her beak, which the Respondent interprets as a unilateral termination of dialogue.</p>
+
+                <p class="legal-cite">Respectfully submitted this 26th day of February, 2026.</p>
+
+                <div class="sig-block">
+                  <p><span class="sig-line">&nbsp; Greg Dove &nbsp;</span><br>
+                  Greg Dove, Respondent (Pro Se)<br>
+                  Current address: various branches, east side</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filing 3: Exhibit list / evidence -->
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Petitioner's Exhibit List and Evidence Summary</div>
+                <div class="filing-meta">
+                  <span>Doc. 003</span>
+                  <span>Filed: Mar 4, 2026</span>
+                  <span>By: Denise Dove (Petitioner)</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p>The Petitioner submits the following exhibits for consideration by the Court in the above-captioned matter:</p>
+
+                <table class="evidence-table">
+                  <thead>
+                    <tr>
+                      <th>Exhibit</th>
+                      <th>Description</th>
+                      <th>Relevance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="exhibit-ref">Ex. A</span></td>
+                      <td>Nest inventory, itemized, with annotations</td>
+                      <td>Establishes the full scope of marital assets subject to division. Includes notation of which party contributed each item. The Respondent will note that the zip tie is listed as "contributed by: disputed." It is not disputed. He found it.</td>
+                    </tr>
+                    <tr>
+                      <td><span class="exhibit-ref">Ex. B</span></td>
+                      <td>Timeline of Respondent's absence (Jan 27–Feb 7, 2026)</td>
+                      <td>Documents the eleven-day period during which the Respondent was not present at the nest. Includes timestamps where available. Entry for Day 4 reads: "No sign. Eggs cold on left side. Rotated."</td>
+                    </tr>
+                    <tr>
+                      <td><span class="exhibit-ref">Ex. C</span></td>
+                      <td>Observation log — Respondent sighted near 22 Birch Court</td>
+                      <td>Four (4) sightings documented by a third-party witness (see Doc. 004, Witness Statement — C. Sparrow). Includes dates, approximate times, and branch positions. Third sighting noted: "He was on the low branch. The one that dips toward her window. You don't sit on that branch to think."</td>
+                    </tr>
+                    <tr>
+                      <td><span class="exhibit-ref">Ex. D</span></td>
+                      <td>Photograph — Nest, current condition</td>
+                      <td>Shows the nest as maintained by the Petitioner during the Respondent's absence. Two eggs visible. Structure intact. The receipt paper has been repositioned but not removed, as the Petitioner acknowledges it is, at this point, structural.</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="court-note">
+                  <strong>Clerk's Note:</strong> Exhibit D was submitted as a physical photograph (3" × 2", slightly bent). The Clerk's office does not have a scanner of adequate resolution for nest documentation. The exhibit has been filed in the physical record and is available for inspection during business hours. We apologize for the inconvenience.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filing 4: Witness statement -->
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Witness Statement — Cheryl Sparrow</div>
+                <div class="filing-meta">
+                  <span>Doc. 004</span>
+                  <span>Filed: Mar 4, 2026</span>
+                  <span>Witness for Petitioner</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="legal-heading">Sworn Statement of Cheryl Sparrow</p>
+                <p><em>Taken by the Clerk's office, March 3, 2026. Witness appeared voluntarily and was advised that her statement would become part of the public record. Witness stated she understood and then asked if she could "start from the beginning, because context matters."</em></p>
+
+                <p class="legal-heading">Statement</p>
+
+                <p>My name is Cheryl Sparrow. I live at 16 Sycamore Lane, which is two lots east of Denise and Greg's meter box. I have lived there for three seasons. I know both parties. I would describe my relationship with the Petitioner as neighborly. I would describe my relationship with the Respondent as civil, although he has never once acknowledged my flower arrangement on the south-facing ledge, which I change monthly.</p>
+
+                <p>I am providing this statement because I was asked to, but also because I saw what I saw and I believe the Court should know.</p>
+
+                <p>On January 27, I observed Greg depart the nest at what I estimate was shortly after six in the morning. I know this because I had just finished my dawn perch, which I perform every day at 5:50 AM facing east. Greg flew east. I noticed because he did not circle the tree first, which is what he normally does. He just left. That is not how you leave a nest. That is how you leave a situation.</p>
+
+                <p>I did not see Greg return that day. Or the next day. On the third day, I visited Denise. She was sitting on the eggs. She told me Greg was "flying around." I did not press the matter, but I did note the time — 2:14 PM — because I thought someone should be keeping track, even if nobody had asked me to.</p>
+
+                <p>On January 31, I was foraging near Birch Court — I forage on a rotating schedule and Birch Court falls on Fridays — and I observed Greg on a low branch near number 22. I recognized him by his posture. Greg has a very particular way of holding his left wing slightly forward when he is trying to appear casual. He was doing that. He was facing the window of 22 Birch Court. I stayed for approximately four minutes. He did not move.</p>
+
+                <p>I observed Greg at or near the same location on three additional occasions: February 2, February 5, and February 7. The February 5 sighting was the one where he was on the low branch. The branch that dips. You can see directly into the front perch from that branch. I know because I have also been on that branch, but only to survey the ivy situation, which is a separate matter.</p>
+
+                <p>I want to be clear that I am not drawing conclusions. I am reporting what I observed. I was not asked to time anything, but I timed it anyway, because precision matters, especially in situations where someone is going to pretend nothing happened.</p>
+
+                <div class="court-note">
+                  <strong>Clerk's Note:</strong> The witness provided an additional six (6) pages of context regarding the history of the sycamore lane neighborhood, her foraging schedule, and her views on general nest construction standards. These pages have been filed but are not reproduced here. They are available upon request. The Clerk's office respectfully notes that the witness was asked to confine her statement to the facts of the case. The witness stated that "all of this is facts."
+                </div>
+
+                <div class="sig-block">
+                  <p><span class="sig-line">&nbsp; Cheryl Sparrow &nbsp;</span><br>
+                  Cheryl Sparrow, Witness<br>
+                  16 Sycamore Ln.</p>
+                  <p style="font-size:0.78rem; color: var(--text-tertiary); margin-top: 6px;">Sworn and subscribed before T. Nuthatch, Deputy Clerk, March 3, 2026.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filing 5: Court order -->
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Procedural Order — Scheduling and Interim Provisions</div>
+                <div class="filing-meta">
+                  <span>Doc. 005</span>
+                  <span>Filed: Mar 11, 2026</span>
+                  <span>By: Hon. M. Owl, Presiding</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="legal-heading">Order</p>
+
+                <p>This matter having come before the Court on the Petitioner's filing of February 12, 2026, and the Respondent having filed an Answer on February 26, 2026, and the Court having reviewed the submissions of both parties, the following is ORDERED:</p>
+
+                <p class="numbered-item"><strong>1.</strong> A hearing on the merits is scheduled for <strong>April 14, 2026 at 9:30 AM</strong> in Chamber B. Both parties shall appear in person. "In person" means on a perch inside the courtroom. The branch outside the window is not the courtroom.</p>
+
+                <p class="numbered-item"><strong>2.</strong> Pending resolution, the Petitioner shall maintain primary occupancy of the nest at 14 Sycamore Ln., Lot 7. The Respondent shall not approach the nest without prior written notice filed with the Clerk's office at least twenty-four (24) hours in advance. "Written" means written. Cooing from the adjacent branch does not constitute notice.</p>
+
+                <p class="numbered-item"><strong>3.</strong> The eggs shall remain in the custody of the Petitioner for the interim period. The Respondent may request supervised visitation through the Clerk's office. Visitation shall take place during business hours and in the presence of a court-appointed monitor. The Respondent is reminded that staring at the eggs from a distance is neither visitation nor parenting.</p>
+
+                <p class="numbered-item"><strong>4.</strong> The Court notes the Respondent's characterization of his eleven-day absence as "thinking." The Court does not find that thinking, as a defense, has been adequately defined, and reserves judgment on this matter for the hearing.</p>
+
+                <p class="numbered-item"><strong>5.</strong> The Court has received and reviewed the witness statement of Cheryl Sparrow (Doc. 004). The Court notes the witness's thoroughness. The Court also notes the six additional pages filed by the witness, which the Court has read in full. The Court did not ask for them. The Court has them now.</p>
+
+                <p class="numbered-item"><strong>6.</strong> Both parties are advised that the Court takes nest abandonment proceedings seriously and expects full cooperation with discovery, testimony, and procedural requirements. The Court has a docket. The Court has other cases. The Court's patience, while considerable, is a finite municipal resource.</p>
+
+                <div class="sig-block">
+                  <p>SO ORDERED this 11th day of March, 2026.</p>
+                  <p style="margin-top: 12px;"><span class="sig-line">&nbsp; M. Owl &nbsp;</span><br>
+                  Hon. Miriam Owl<br>
+                  Presiding Judge, Nest Court<br>
+                  Avian Municipal District, Chamber B</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /filings-list dove -->
+        <div class="panel-actions">
+          <a href="../nest-court-proceedings/" class="btn-gallery">View Gallery Assessment &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Panel: Finch v. Finch -->
+      <div class="case-panel" id="panel-AMNC-2025-041A">
+        <div class="case-detail">
+          <div class="case-detail-header">
+            <h3>Finch v. Finch</h3>
+            <span class="case-no">AMNC-2025-041A</span>
+          </div>
+          <div class="case-detail-body">
+            <div class="case-info-grid">
+              <div class="case-field">
+                <span class="field-label">Case Type</span>
+                <span class="field-value">Territorial Dispute</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Status</span>
+                <span class="field-value"><span class="status-badge status-settled">Settled</span></span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Petitioner</span>
+                <span class="field-value">Female Finch</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Respondent</span>
+                <span class="field-value">Male Finch (ex-husband)</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Filed</span>
+                <span class="field-value">November 3, 2025</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Settlement Date</span>
+                <span class="field-value">January 12, 2026</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Presiding</span>
+                <span class="field-value">Hon. M. Owl</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Clerk Assigned</span>
+                <span class="field-value">T. Nuthatch</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Disputed Location</span>
+                <span class="field-value">East-facing branch, third fork, Municipal Oak (south side)</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Dependents</span>
+                <span class="field-value">None</span>
+              </div>
             </div>
           </div>
         </div>
+        <h3 class="section-heading" style="font-size:1.05rem; margin-top:20px;">Filed Documents — AMNC-2025-041A</h3>
+        <div class="filings-list">
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Petition for Territorial Determination</div>
+                <div class="filing-meta">
+                  <span>Doc. 001</span>
+                  <span>Filed: Nov 3, 2025</span>
+                  <span>By: Petitioner</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="numbered-item"><strong>1.</strong> The Petitioner and Respondent were formerly mated and shared the above-described branch during the duration of their partnership, which ended by mutual agreement in September 2025.</p>
+                <p class="numbered-item"><strong>2.</strong> Following the dissolution, both parties continued to use the branch on an informal alternating basis. This arrangement was not discussed. It was assumed. Assumptions, as the Petitioner has learned, are not enforceable.</p>
+                <p class="numbered-item"><strong>3.</strong> On or about October 18, 2025, the Respondent began arriving at the branch before dawn and remaining until mid-morning, which the Petitioner characterizes as a deliberate occupation of the prime foraging hours.</p>
+                <p class="numbered-item"><strong>4.</strong> The branch in question offers east-facing morning sun, wind protection from the north, and an unobstructed sightline to the foraging grounds. These features are not incidental. They are the reason both parties want the branch and the reason neither party has suggested using a different one.</p>
+                <p class="numbered-item"><strong>5.</strong> The Petitioner requests the Court to determine exclusive territorial rights to the branch, noting that she identified the branch prior to the partnership (Spring 2024), that the Respondent was introduced to it by her, and that his current use represents not an independent claim but a refusal to find his own branch.</p>
+              </div>
+            </div>
+          </div>
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Respondent's Answer</div>
+                <div class="filing-meta">
+                  <span>Doc. 002</span>
+                  <span>Filed: Nov 17, 2025</span>
+                  <span>By: Respondent</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="numbered-item"><strong>1.</strong> The Respondent admits the partnership has ended and does not contest the dissolution.</p>
+                <p class="numbered-item"><strong>2.</strong> The Respondent disputes the characterization of his branch use as "deliberate occupation." He wakes early. He has always woken early. The Petitioner is aware of this. His arrival time has not changed. Her awareness of it has.</p>
+                <p class="numbered-item"><strong>3.</strong> The Respondent further disputes the claim that the Petitioner "identified" the branch. The branch was not hidden. It was not discovered. It is a branch on a tree in a public space. The Petitioner sat on it one morning and decided it was hers. This is not how territorial rights work, or if it is, the Respondent would like to claim the parking lot, which he has been sitting in since July.</p>
+                <p class="numbered-item"><strong>4.</strong> The Respondent proposes shared use on a formal schedule — mornings for one party, afternoons for the other, alternating weekly. If the Court finds this unworkable, the Respondent requests the right to make a counter-claim for exclusive use based on his own history with the branch, which he describes as "longer than she thinks."</p>
+                <p class="numbered-item"><strong>5.</strong> The Respondent notes that this dispute is not really about the branch. The Respondent does not elaborate on what the dispute is really about, and respectfully submits that the Court is not the appropriate venue for that conversation.</p>
+              </div>
+            </div>
+          </div>
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Settlement Agreement</div>
+                <div class="filing-meta">
+                  <span>Doc. 003</span>
+                  <span>Filed: Jan 12, 2026</span>
+                  <span>By: Court</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="numbered-item"><strong>1.</strong> The east-facing branch, third fork, Municipal Oak (south side), shall be designated as shared territory with a formal schedule: the Petitioner shall have exclusive use from dawn to 10:00 AM daily; the Respondent shall have exclusive use from 10:00 AM to dusk.</p>
+                <p class="numbered-item"><strong>2.</strong> Neither party shall modify, decorate, or mark the branch in a way that suggests exclusive ownership. This includes, but is not limited to, the placement of personal items, territorial displays, or the specific arrangement of twigs that the Respondent described as "just how I like to sit" but which the Petitioner characterized as "a flag."</p>
+                <p class="numbered-item"><strong>3.</strong> In the event of a scheduling conflict (e.g., both parties present at 10:00 AM during the transition), the party whose scheduled time is ending shall depart within five minutes. Lingering is not a right. It is a choice, and both parties have agreed to stop making it.</p>
+                <p class="numbered-item"><strong>4.</strong> This agreement shall be reviewed in six months. Either party may petition for modification if circumstances change. The Court hopes circumstances change. The Court always hopes circumstances change.</p>
+                <p class="legal-cite">Approved and entered by the Court. Hon. M. Owl, Presiding</p>
+                <div class="court-note">
+                  <strong>Clerk's Note:</strong> The parties signed the agreement at opposite ends of the Clerk's desk. The Respondent's last remark before leaving was 'See you at 10.' The Petitioner did not respond. The Clerk filed this observation under 'Things That Are Technically Compliance.'
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      </div><!-- /filings-list pigeon -->
+      <!-- Panel: In re: Wren -->
+      <div class="case-panel" id="panel-AMNC-2025-038A">
+        <div class="case-detail">
+          <div class="case-detail-header">
+            <h3>In re: Wren — Nest Inspection Appeal</h3>
+            <span class="case-no">AMNC-2025-038A</span>
+          </div>
+          <div class="case-detail-body">
+            <div class="case-info-grid">
+              <div class="case-field">
+                <span class="field-label">Case Type</span>
+                <span class="field-value">Nesting Permit</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Status</span>
+                <span class="field-value"><span class="status-badge status-dismissed">Dismissed</span></span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Appellant</span>
+                <span class="field-value">Female Wren</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Filed</span>
+                <span class="field-value">September 17, 2025</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Dismissed</span>
+                <span class="field-value">October 29, 2025</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Presiding</span>
+                <span class="field-value">Hon. M. Owl</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Clerk Assigned</span>
+                <span class="field-value">T. Nuthatch</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Nest Location</span>
+                <span class="field-value">Lower hedge, south side of Municipal Park</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Inspector</span>
+                <span class="field-value">District Building Standards Office</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="section-heading" style="font-size:1.05rem; margin-top:20px;">Filed Documents — AMNC-2025-038A</h3>
+        <div class="filings-list">
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Notice of Appeal — Nest Inspection Determination</div>
+                <div class="filing-meta">
+                  <span>Doc. 001</span>
+                  <span>Filed: Sep 17, 2025</span>
+                  <span>By: Appellant</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="numbered-item"><strong>1.</strong> The inspection criteria referenced in the determination were developed for medium-to-large species nests (minimum 6-inch diameter, minimum 3-inch depth). The Appellant's nest measures 3.2 inches in diameter and 1.8 inches in depth, which is appropriate for a Wren and adequate for the Appellant's needs.</p>
+                <p class="numbered-item"><strong>2.</strong> The Appellant contends that the District's nesting standards are biased toward larger species and do not account for the structural requirements of small passerines. A nest that fails inspection for an Owl would be a mansion for a Wren. The standards do not distinguish.</p>
+                <p class="numbered-item"><strong>3.</strong> The Appellant has lived in the nest for two seasons without structural incident. The nest has weathered three storms, one significant wind event, and an incident involving a squirrel that the Appellant does not wish to discuss. It is still standing. The Appellant considers this evidence.</p>
+                <p class="numbered-item"><strong>4.</strong> The Appellant further notes that she built the nest alone, without assistance, using materials she sourced and carried herself. Being told it is "substandard" by an inspector who could not physically fit inside it to examine it properly is, in the Appellant's view, not an inspection. It is an opinion delivered from the outside.</p>
+              </div>
+            </div>
+          </div>
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Response of the District Building Standards Office</div>
+                <div class="filing-meta">
+                  <span>Doc. 002</span>
+                  <span>Filed: Oct 8, 2025</span>
+                  <span>By: District Building Standards Office</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="numbered-item"><strong>1.</strong> The nesting standards established in District Nesting Code § 2.4 apply uniformly to all nests within the district. Uniform standards ensure consistent safety and habitability across all species. The standards were not written for large species. They were written for nests.</p>
+                <p class="numbered-item"><strong>2.</strong> The Appellant's nest measures below the minimum threshold on two of seven inspection criteria. The District acknowledges that the nest is within acceptable range on the remaining five criteria and that no immediate safety concern was identified.</p>
+                <p class="numbered-item"><strong>3.</strong> The District's inspector conducted the inspection according to established protocol. The inability to physically enter the nest does not invalidate the inspection. External measurements and structural assessment are standard practice for nests below accessible size. The inspector's notes describe the nest as "tidy, compact, and structurally cohesive but dimensionally non-compliant."</p>
+                <p class="numbered-item"><strong>4.</strong> The District is not unsympathetic to the Appellant's position but notes that variance requests must be filed through the Building Standards Office, not through the Court. The Appellant has not filed a variance request. She has filed an appeal of the inspection itself, which the District maintains was conducted properly.</p>
+              </div>
+            </div>
+          </div>
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Order of Dismissal</div>
+                <div class="filing-meta">
+                  <span>Doc. 003</span>
+                  <span>Filed: Oct 29, 2025</span>
+                  <span>By: Hon. M. Owl, Presiding</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p>The Court has reviewed the appeal and the District's response and orders as follows:</p>
+                <p>The appeal is dismissed without prejudice.</p>
+                <p>The Court notes that the Appellant's grievance is legitimate — the District's nesting standards do not adequately account for species-specific dimensions, and the inspection of a Wren's nest using criteria developed for larger structures is, at minimum, imprecise.</p>
+                <p>However, the appropriate remedy is a variance request to the Building Standards Office, not a Court appeal of the inspection methodology. The Appellant is directed to file Form NV-7 (Variance Request — Species-Specific Accommodation) with the Building Standards Office.</p>
+                <p>The Court further notes, informally and without legal force, that the Appellant's nest has survived two seasons and a squirrel. The Court has reviewed buildings that cannot say the same.</p>
+                <div class="court-note">
+                  <strong>Clerk's Note:</strong> The Appellant departed the courtroom and was observed flying directly to the Building Standards Office. The Clerk has been informed that Form NV-7 was requested, completed, and submitted within the hour. The Appellant's efficiency is noted with respect.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: Starling v. Starling -->
+      <div class="case-panel" id="panel-AMNC-2025-022C">
+        <div class="case-detail">
+          <div class="case-detail-header">
+            <h3>Starling v. Starling</h3>
+            <span class="case-no">AMNC-2025-022C</span>
+          </div>
+          <div class="case-detail-body">
+            <div class="case-info-grid">
+              <div class="case-field">
+                <span class="field-label">Case Type</span>
+                <span class="field-value">Egg Custody</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Status</span>
+                <span class="field-value">
+                  <span class="status-badge status-closed">Closed</span>
+                </span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Petitioner</span>
+                <span class="field-value">Female Starling</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Respondent</span>
+                <span class="field-value">Male Starling</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Filed</span>
+                <span class="field-value">June 2, 2025</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Ruling Date</span>
+                <span class="field-value">August 18, 2025</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Presiding</span>
+                <span class="field-value">Hon. M. Owl</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Clerk Assigned</span>
+                <span class="field-value">T. Nuthatch</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Nest Location</span>
+                <span class="field-value">8 Birch Court, upper canopy</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Dependents</span>
+                <span class="field-value">Three (3) eggs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="section-heading" style="font-size:1.05rem; margin-top:20px;">Filed Documents — AMNC-2025-022C</h3>
+        <div class="filings-list">
+
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Petition for Custody Determination</div>
+                <div class="filing-meta">
+                  <span>Doc. 001</span>
+                  <span>Filed: Jun 2, 2025</span>
+                  <span>By: Petitioner</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="legal-heading">In the Nest Court of the Avian Municipal District</p>
+                <p><strong>Petitioner</strong><br>v.<br><strong>Respondent</strong></p>
+                <p class="legal-heading">Petition for Determination of Egg Custody and Establishment of Visitation Schedule</p>
+
+                <p>COMES NOW the Petitioner, a Starling residing at 8 Birch Court, upper canopy, east-facing, and states as follows:</p>
+
+                <p class="numbered-item"><strong>1.</strong> The Petitioner and Respondent are the biological parents of three (3) eggs currently present in the marital nest at the above address.</p>
+
+                <p class="numbered-item"><strong>2.</strong> The parties have agreed to dissolve the partnership. The dissolution is not contested. What is contested is the custody arrangement for the three eggs described above.</p>
+
+                <p class="numbered-item"><strong>3.</strong> The eggs have been in the continuous care of the Petitioner since the Respondent's relocation to a branch near the south ridge, approximately 0.4 miles from the marital nest, on or about May 15, 2025.</p>
+
+                <p class="numbered-item"><strong>4.</strong> The Petitioner has maintained a stable incubation schedule without interruption. The Respondent visits on an informal basis that both parties agree is insufficient and unpredictable.</p>
+
+                <p class="numbered-item"><strong>5.</strong> The Petitioner requests the Court to designate 8 Birch Court as the primary nest for the eggs and to establish a formal visitation schedule that prioritizes the eggs' stability while preserving the Respondent's parental access.</p>
+
+                <p class="numbered-item"><strong>6.</strong> The Petitioner further requests the Court to restrict either party from relocating beyond 0.5 miles of the primary nest without prior Court approval, as the Respondent has expressed interest in relocating further south.</p>
+
+                <p class="legal-cite">Respectfully submitted.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Respondent's Counter-Petition for Equal Custody</div>
+                <div class="filing-meta">
+                  <span>Doc. 002</span>
+                  <span>Filed: Jun 16, 2025</span>
+                  <span>By: Respondent</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="legal-heading">Respondent's Counter-Petition for Equal Custody</p>
+
+                <p>The Respondent does not contest the dissolution and does not contest that the eggs are currently in the Petitioner's care. The Respondent contests the assumption that current arrangement should become permanent arrangement.</p>
+
+                <p class="numbered-item"><strong>1.</strong> The Respondent relocated voluntarily to reduce conflict in the nest. The relocation was not an abandonment. It was a decision made for the benefit of all parties, including the eggs.</p>
+
+                <p class="numbered-item"><strong>2.</strong> The Respondent has prepared adequate nesting at the south ridge location. The nest has been inspected and found adequate by the Clerk's office.</p>
+
+                <p class="numbered-item"><strong>3.</strong> The Respondent requests equal custody — alternating weeks — with shared responsibility for scheduling and decision-making.</p>
+
+                <p class="numbered-item"><strong>4.</strong> The Respondent objects to the proposed relocation restriction. The Respondent has mentioned the possibility of moving further south. Mentioning a possibility should not result in a restriction of movement.</p>
+
+                <p class="numbered-item"><strong>5.</strong> The Respondent proposes that both parents share the spring equinox — the day the eggs were laid — rather than assigning it to one parent. Both parents were present. Both parents should be present for the anniversary.</p>
+
+                <p class="legal-cite">Respectfully submitted.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Clerk's Note — Nest Inspection Report</div>
+                <div class="filing-meta">
+                  <span>Doc. 003</span>
+                  <span>Filed: Jun 23, 2025</span>
+                  <span>By: T. Nuthatch, Clerk</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p>The Clerk's office has inspected both nest locations and found them adequate for egg custody. The Petitioner's nest at 8 Birch Court is east-facing with morning sun and wind protection. The Respondent's nest near the south ridge is smaller but structurally sound, with afternoon sun and proximity to foraging grounds.</p>
+
+                <p>The Clerk observes that both nests are adequate and that the question before the Court is not where the eggs can survive but where the eggs should live, which is a different question and, in the Clerk's experience, a harder one.</p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /filings-list starling -->
+        <div class="panel-actions">
+          <a href="../nest-court-proceedings-starling/" class="btn-gallery">View Gallery Assessment &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Panel: Dist. v. Pigeon (J.) -->
+      <div class="case-panel" id="panel-AMNC-2024-119A">
+        <div class="case-detail">
+          <div class="case-detail-header">
+            <h3>Avian Mun. Dist. v. Pigeon (J.)</h3>
+            <span class="case-no">AMNC-2024-119A</span>
+          </div>
+          <div class="case-detail-body">
+            <div class="case-info-grid">
+              <div class="case-field">
+                <span class="field-label">Case Type</span>
+                <span class="field-value">Noise / Nuisance</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Status</span>
+                <span class="field-value">
+                  <span class="status-badge status-closed">Closed</span>
+                </span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Plaintiff</span>
+                <span class="field-value">Avian Municipal District (District Warden)</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Respondent</span>
+                <span class="field-value">J. Pigeon</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Filed</span>
+                <span class="field-value">December 14, 2024</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Ruling Date</span>
+                <span class="field-value">February 8, 2025</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Presiding</span>
+                <span class="field-value">Hon. M. Owl</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Clerk Assigned</span>
+                <span class="field-value">T. Nuthatch</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Respondent Address</span>
+                <span class="field-value">11 Sycamore Lane</span>
+              </div>
+              <div class="case-field">
+                <span class="field-label">Complainants</span>
+                <span class="field-value">Three (3) residents of Sycamore Lane</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="section-heading" style="font-size:1.05rem; margin-top:20px;">Filed Documents — AMNC-2024-119A</h3>
+        <div class="filings-list">
+
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">District Complaint — Noise Violation</div>
+                <div class="filing-meta">
+                  <span>Doc. 001</span>
+                  <span>Filed: Dec 14, 2024</span>
+                  <span>By: District Warden</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="legal-heading">Avian Municipal District, Plaintiff<br>v.<br>J. Pigeon, Respondent</p>
+                <p class="legal-heading">Complaint for Noise Violation — Municipal Ordinance 7.3(a)</p>
+
+                <p>The Avian Municipal District, through the Office of the District Warden, files this complaint against J. Pigeon of 11 Sycamore Lane and states:</p>
+
+                <p class="numbered-item"><strong>1.</strong> The Respondent has been the subject of three (3) formal noise complaints from residents of Sycamore Lane over the past six months, each citing sustained cooing at volume levels exceeding the municipal threshold.</p>
+
+                <p class="numbered-item"><strong>2.</strong> Noise measurements taken by the Warden's office on three separate dates recorded levels between 62 and 71 decibels at the nearest property line. The municipal threshold for residential noise is 55 decibels during daytime hours (dawn to dusk) and 40 decibels during quiet hours (10:00 PM to 6:00 AM).</p>
+
+                <p class="numbered-item"><strong>3.</strong> The cooing begins before dawn, continues intermittently throughout the day, and has been described by complainants as "constant," "escalating," and "the sound of someone who will not stop talking to a room that is empty."</p>
+
+                <p class="numbered-item"><strong>4.</strong> The District requests a formal order requiring the Respondent to reduce cooing to within the municipal threshold, the imposition of quiet hours, and a fine of 200 seeds.</p>
+
+                <p class="legal-cite">Filed on behalf of the Avian Municipal District.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="filing-item">
+            <div class="filing-header" onclick="this.parentElement.classList.toggle('open')">
+              <div class="filing-header-left">
+                <div class="filing-title">Respondent's Answer</div>
+                <div class="filing-meta">
+                  <span>Doc. 002</span>
+                  <span>Filed: Jan 4, 2025</span>
+                  <span>By: J. Pigeon (Respondent, pro se)</span>
+                </div>
+              </div>
+              <div class="filing-toggle"></div>
+            </div>
+            <div class="filing-body">
+              <div class="filing-content">
+                <p class="legal-heading">Answer of J. Pigeon</p>
+
+                <p>The Respondent answers as follows:</p>
+
+                <p class="numbered-item"><strong>1.</strong> The Respondent admits that he coos. He has cooed for his entire life. His father cooed. Cooing is what pigeons do.</p>
+
+                <p class="numbered-item"><strong>2.</strong> The Respondent denies that the cooing is "excessive" within the meaning of the ordinance. Cooing is species-typical behavior. The ordinance was written to address deliberate disturbances — construction, disputes, that woodpecker on Cedar Lane — not biological functions.</p>
+
+                <p class="numbered-item"><strong>3.</strong> The Respondent questions the accuracy of the noise measurements. The equipment appeared old. One measurement was taken during a wind event. The Respondent does not own a decibel meter and cannot verify the readings independently.</p>
+
+                <p class="numbered-item"><strong>4.</strong> The Respondent is willing to make "reasonable efforts" to reduce volume but notes that he does not know how to coo more quietly. He has tried. It is not a volume with a dial.</p>
+
+                <p class="numbered-item"><strong>5.</strong> The Respondent respectfully declines to discuss the circumstances of his personal life as they relate to the volume of his cooing. He notes only that the past eighteen months have been difficult and that this proceeding is not making them less so.</p>
+
+                <p class="legal-cite">Respectfully submitted.</p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /filings-list pigeon -->
+        <div class="panel-actions">
+          <a href="../nest-court-proceedings-pigeon/" class="btn-gallery">View Gallery Assessment &rarr;</a>
+        </div>
+      </div>
 
     </div><!-- /main-content -->
 
@@ -1664,11 +2274,35 @@
       document.querySelector('.case-search-box').appendChild(msg);
     });
 
-    // Smooth scroll for case link in docket
-    document.querySelector('a[href="#case-detail"]').addEventListener('click', function(e) {
-      e.preventDefault();
-      document.getElementById('case-detail').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+    // ── Docket row → toggle case panel ──────────
+    (function() {
+      var table = document.querySelector('.docket-table');
+      if (!table) return;
+      table.addEventListener('click', function(e) {
+        var anchor = e.target.closest('a');
+        if (anchor && !anchor.classList.contains('case-link')) return;
+        if (anchor) e.preventDefault();
+        var row = e.target.closest('.docket-row');
+        if (!row) return;
+        var caseId = row.dataset.case;
+        if (!caseId) return;
+        var panel = document.getElementById('panel-' + caseId);
+        if (!panel) return;
+        var isOpen = row.classList.contains('expanded');
+        var openRow = table.querySelector('.docket-row.expanded');
+        if (openRow) {
+          openRow.classList.remove('expanded');
+          var openPanel = document.getElementById('panel-' + openRow.dataset.case);
+          if (openPanel) openPanel.classList.remove('open');
+        }
+        if (isOpen) return;
+        row.classList.add('expanded');
+        panel.classList.add('open');
+        setTimeout(function() {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      });
+    })();
   </script>
 
 </body>
