@@ -2308,6 +2308,41 @@
     (function() {
       var table = document.querySelector('.docket-table');
       if (!table) return;
+      function setPanelState(row, isOpen) {
+        if (!row) return;
+        var caseId = row.dataset.case;
+        if (!caseId) return;
+        var panel = document.getElementById('panel-' + caseId);
+        row.classList.toggle('expanded', isOpen);
+        if (panel) panel.classList.toggle('open', isOpen);
+      }
+      function openCasePanel(caseId, options) {
+        if (!caseId) return false;
+        var row = table.querySelector('.docket-row[data-case="' + caseId + '"]');
+        var panel = document.getElementById('panel-' + caseId);
+        if (!row || !panel) return false;
+        var openRow = table.querySelector('.docket-row.expanded');
+        if (openRow && openRow !== row) setPanelState(openRow, false);
+        if (!row.classList.contains('expanded')) setPanelState(row, true);
+        if (!options || options.scroll !== false) {
+          setTimeout(function() {
+            panel.scrollIntoView({ behavior: options && options.instant ? 'auto' : 'smooth', block: 'start' });
+          }, 50);
+        }
+        return true;
+      }
+      function caseIdFromHash(hash) {
+        if (!hash) return null;
+        var value = decodeURIComponent(hash.replace(/^#/, ''));
+        if (!value) return null;
+        if (value.indexOf('panel-') === 0) value = value.slice(6);
+        return /^AMNC-\d{4}-\d{3}[A-Z]$/.test(value) ? value : null;
+      }
+      function openCaseFromHash() {
+        var caseId = caseIdFromHash(window.location.hash);
+        if (!caseId) return;
+        openCasePanel(caseId, { instant: true });
+      }
       table.addEventListener('click', function(e) {
         var anchor = e.target.closest('a');
         if (anchor && !anchor.classList.contains('case-link')) return;
@@ -2316,22 +2351,12 @@
         if (!row) return;
         var caseId = row.dataset.case;
         if (!caseId) return;
-        var panel = document.getElementById('panel-' + caseId);
-        if (!panel) return;
         var isOpen = row.classList.contains('expanded');
-        var openRow = table.querySelector('.docket-row.expanded');
-        if (openRow) {
-          openRow.classList.remove('expanded');
-          var openPanel = document.getElementById('panel-' + openRow.dataset.case);
-          if (openPanel) openPanel.classList.remove('open');
-        }
         if (isOpen) return;
-        row.classList.add('expanded');
-        panel.classList.add('open');
-        setTimeout(function() {
-          panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50);
+        openCasePanel(caseId);
       });
+      openCaseFromHash();
+      window.addEventListener('hashchange', openCaseFromHash);
     })();
   </script>
 
