@@ -774,15 +774,14 @@ def issue_page_html(
 </head>
 <body>
 
-<div class="page">
+<div class="page issue-page">
 
 <header class="masthead">
 <div class="mast-district">{text(SITE_DISTRICT)}</div>
 <h1 class="mast-title">{text(SITE_TITLE)}</h1>
-<div class="mast-subtitle">{text(SITE_SUBTITLE)}</div>
 <div class="mast-meta">
 <span>{text(issue.date_label)}</span>
-<span>Online Edition</span>
+<span>Online Edition · Published Mondays</span>
 <span>Est. unrecorded</span>
 </div>
 </header>
