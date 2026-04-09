@@ -204,7 +204,10 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+      min-height: 100vh;
       height: 100vh;
+      min-height: 100dvh;
+      height: 100dvh;
       background: var(--bg);
       color: var(--text);
       overflow: hidden;
@@ -488,6 +491,9 @@
       flex: 1;
       min-height: 0;
       overflow-y: auto;
+      overscroll-behavior: contain;
+      overflow-anchor: none;
+      scrollbar-gutter: stable;
       padding: 0.8rem 1.1rem;
     }
 
@@ -610,8 +616,13 @@
       color: var(--border-ui);
       font-family: "IBM Plex Mono", monospace;
       font-size: 0.7rem;
-      font-style: italic;
-      cursor: not-allowed;
+      line-height: 1.5;
+      cursor: default;
+    }
+
+    .chat-input a {
+      color: var(--text-soft);
+      text-decoration: underline;
     }
 
     @media (max-width: 700px) {
@@ -1177,7 +1188,7 @@
                 '<div id="chat-end"></div>' +
               '</div>' +
               '<div class="chat-input-shell">' +
-                '<div class="chat-input">Observer mode — posting requires resident verification</div>' +
+                '<div class="chat-input">Observer mode. Request posting access: <a href="mailto:access@ajin.im">access@ajin.im</a></div>' +
               '</div>' +
             '</main>' +
           '</div>' +
@@ -1221,9 +1232,9 @@
     }
 
     function scrollMessages() {
-      const chatEnd = document.getElementById("chat-end");
-      if (chatEnd) {
-        chatEnd.scrollIntoView({ behavior: "smooth", block: "end" });
+      const messages = document.getElementById("messages");
+      if (messages) {
+        messages.scrollTop = messages.scrollHeight;
       }
     }
 
