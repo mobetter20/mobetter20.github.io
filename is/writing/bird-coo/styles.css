@@ -524,6 +524,11 @@ a {
   text-underline-offset: 2px;
 }
 
+.page-footer .licensed-notice {
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+
 /* ── ARCHIVE ── */
 
 .archive-shell {
