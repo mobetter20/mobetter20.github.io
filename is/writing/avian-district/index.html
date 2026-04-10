@@ -278,12 +278,12 @@ a:hover { color: var(--link-hover); }
 
 .faq-a a { text-decoration: underline; text-underline-offset: 2px; }
 
-.page-footer {
+.site-footer {
   margin-top: 1.5rem;
   padding: 1rem 0;
   border-top: 2px solid var(--rule-heavy);
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1.2rem;
   font-size: 0.72rem;
   color: var(--ink-faded);
@@ -305,6 +305,15 @@ a:hover { color: var(--link-hover); }
 
 .footer-col p + p { margin-top: 0.15rem; }
 
+.footer-links a {
+  color: var(--ink-faded);
+  text-decoration: none;
+}
+.footer-links a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
 .footer-bottom {
   margin-top: 1rem;
   padding-top: 0.6rem;
@@ -320,7 +329,7 @@ a:hover { color: var(--link-hover); }
   .main { padding-left: 1rem; padding-right: 1rem; }
   .services-grid { grid-template-columns: 1fr; }
   .service-card.full-width { grid-column: auto; }
-  .page-footer { grid-template-columns: 1fr; gap: 0.8rem; }
+  .site-footer { grid-template-columns: 1fr; gap: 0.8rem; }
   .title-section h1 { font-size: 1.4rem; }
   .header-util { display: none; }
 }
@@ -447,7 +456,7 @@ a:hover { color: var(--link-hover); }
     <div class="faq-a">Quiet hours prohibit sustained vocal performance between 9:00 PM and 6:30 AM under Ordinance 9.3(a). The Court has encouraged the respondent to acquire a timepiece.</div>
   </div>
 
-  <footer class="page-footer">
+  <footer class="site-footer">
     <div class="footer-col">
       <h4>Clerk's Office</h4>
       <p>14 Municipal Oak</p>
@@ -464,6 +473,14 @@ a:hover { color: var(--link-hover); }
       <p>Sat: Emergency filings only</p>
       <p>Sun: Closed</p>
       <p>Fax: Not operational</p>
+    </div>
+    <div class="footer-col footer-links">
+      <h4>District Services</h4>
+      <p><a href="/is/writing/nest-court/">Nest Court</a></p>
+      <p><a href="/is/writing/bird-coo/">The Municipal Coo</a></p>
+      <p><a href="/is/writing/secondnest/">SecondNest</a></p>
+      <p><a href="/is/writing/perch-chat/">The Perch</a></p>
+      <p><a href="/is/writing/karen-hawk/">Karen Hawk, Attorney at Law</a></p>
     </div>
   </footer>
 

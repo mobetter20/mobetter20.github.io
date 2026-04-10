@@ -483,13 +483,13 @@ a {
 
 /* ── FOOTER ── */
 
-.page-footer {
+.site-footer {
   padding: 0.7rem 1.8rem;
   border-top: 2px solid var(--rule-heavy);
   text-align: center;
 }
 
-.page-footer p {
+.site-footer p {
   margin: 0;
   color: var(--ink-ghost);
   font-family: "IBM Plex Sans", sans-serif;
@@ -498,28 +498,28 @@ a {
   line-height: 1.6;
 }
 
-.page-footer p + p {
+.site-footer p + p {
   margin-top: 0.25rem;
 }
 
-.page-footer a {
+.site-footer a {
   color: var(--ink-faded);
   text-decoration: none;
 }
 
-.page-footer a:hover,
-.page-footer a:focus-visible {
+.site-footer a:hover,
+.site-footer a:focus-visible {
   color: var(--ink);
   text-decoration: underline;
 }
 
-.page-footer .district-links {
+.site-footer .district-links {
   margin-top: 0.4rem;
   padding-top: 0.3rem;
   border-top: 1px solid var(--rule);
 }
 
-.page-footer .district-links a {
+.site-footer .district-links a {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -613,7 +613,7 @@ a {
   .masthead,
   .content,
   .archive-shell,
-  .page-footer {
+  .site-footer {
     padding-left: 1rem;
     padding-right: 1rem;
   }
