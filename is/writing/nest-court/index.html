@@ -608,7 +608,7 @@
     }
     .footer-bottom a { color: rgba(255,255,255,0.4); }
 
-    /* ── search box (decorative) ───────────────── */
+    /* ── search box ───────────────── */
     .case-search-box {
       background: var(--bg-white);
       border: 1px solid var(--border);
@@ -701,6 +701,11 @@
     }
     .docket-row.expanded {
       background: var(--bg-alt) !important;
+    }
+    .docket-row.search-highlight {
+      background: rgba(139, 115, 66, 0.08);
+      outline: 1px solid var(--seal-gold);
+      outline-offset: -1px;
     }
 
     /* ── gallery assessment link ───────────────── */
@@ -927,7 +932,7 @@
           </tr>
           <tr class="docket-row active-case" data-case="AMNC-2026-007B">
             <td><span class="case-link">AMNC-2026-007B</span></td>
-            <td><a href="../nest-court-proceedings/" class="case-caption-link"><strong>Dove v. Dove</strong></a></td>
+            <td><a href="../nest-court-proceedings/" class="case-caption-link" target="_blank"><strong>Dove v. Dove</strong></a></td>
             <td>Nest Abandonment</td>
             <td>Feb 12, 2026</td>
             <td><span class="status-badge status-active">Active</span></td>
@@ -948,14 +953,14 @@
           </tr>
           <tr class="docket-row" data-case="AMNC-2025-022C">
             <td><span class="case-link">AMNC-2025-022C</span></td>
-            <td><a href="../nest-court-proceedings-starling/" class="case-caption-link">Starling v. Starling</a></td>
+            <td><a href="../nest-court-proceedings-starling/" class="case-caption-link" target="_blank">Starling v. Starling</a></td>
             <td>Egg Custody</td>
             <td>Jun 02, 2025</td>
             <td><span class="status-badge status-closed">Closed</span></td>
           </tr>
           <tr class="docket-row" data-case="AMNC-2024-119A">
             <td><span class="case-link">AMNC-2024-119A</span></td>
-            <td><a href="../nest-court-proceedings-pigeon/" class="case-caption-link">Avian Mun. Dist. v. Pigeon (J.)</a></td>
+            <td><a href="../nest-court-proceedings-pigeon/" class="case-caption-link" target="_blank">Avian Mun. Dist. v. Pigeon (J.)</a></td>
             <td>Noise / Nuisance</td>
             <td>Dec 14, 2024</td>
             <td><span class="status-badge status-closed">Closed</span></td>
@@ -1550,7 +1555,7 @@
 
         </div><!-- /filings-list dove -->
         <div class="panel-actions">
-          <a href="../nest-court-proceedings/" class="btn-gallery">View Gallery Assessment &rarr;</a>
+          <a href="../nest-court-proceedings/" class="btn-gallery" target="_blank">View Gallery Assessment &rarr;</a>
         </div>
       </div>
 
@@ -1950,7 +1955,7 @@
 
         </div><!-- /filings-list starling -->
         <div class="panel-actions">
-          <a href="../nest-court-proceedings-starling/" class="btn-gallery">View Gallery Assessment &rarr;</a>
+          <a href="../nest-court-proceedings-starling/" class="btn-gallery" target="_blank">View Gallery Assessment &rarr;</a>
         </div>
       </div>
 
@@ -2078,7 +2083,7 @@
 
         </div><!-- /filings-list pigeon -->
         <div class="panel-actions">
-          <a href="../nest-court-proceedings-pigeon/" class="btn-gallery">View Gallery Assessment &rarr;</a>
+          <a href="../nest-court-proceedings-pigeon/" class="btn-gallery" target="_blank">View Gallery Assessment &rarr;</a>
         </div>
       </div>
 
@@ -2199,7 +2204,7 @@
         </div>
       </div>
       <div class="district-resources">
-        <a href="/is/writing/avian-district/">Avian Municipal District</a> · <a href="/is/writing/bird-coo/">The Municipal Coo</a> · <a href="/is/writing/secondnest/">SecondNest</a> · <a href="/is/writing/perch-chat/">The Perch</a> · <a href="/is/writing/karen-hawk/">Karen Hawk, Attorney at Law</a>
+        <a href="/is/writing/avian-district/" target="_blank">Avian Municipal District</a> · <a href="/is/writing/bird-coo/" target="_blank">The Municipal Coo</a> · <a href="/is/writing/secondnest/" target="_blank">SecondNest</a> · <a href="/is/writing/perch-chat/" target="_blank">The Perch</a> · <a href="/is/writing/karen-hawk/" target="_blank">Karen Hawk, Attorney at Law</a>
       </div>
       <div class="footer-bottom">
         <span>NestLaw&trade; eCourt Portal v2.3.1 · Maintained by Avian Municipal District IT Services. Do not peck the equipment.</span>
@@ -2249,22 +2254,52 @@
       });
     });
 
-    // Search button
+    // Search button — functional docket search
     document.querySelector('.search-btn').addEventListener('click', function() {
-      const input = document.getElementById('caseNo').value.trim();
-      const nameInput = document.getElementById('partyName').value.trim();
-      const existing = document.querySelector('.search-result-msg');
+      var caseInput = document.getElementById('caseNo').value.trim().toUpperCase();
+      var nameInput = document.getElementById('partyName').value.trim().toLowerCase();
+      var typeInput = document.getElementById('caseType').value;
+      var existing = document.querySelector('.search-result-msg');
       if (existing) existing.remove();
-      const msg = document.createElement('p');
+
+      // Remove previous highlights
+      document.querySelectorAll('.docket-row.search-highlight').forEach(function(r) {
+        r.classList.remove('search-highlight');
+      });
+
+      if (!caseInput && !nameInput && typeInput === 'All Types') {
+        var msg = document.createElement('p');
+        msg.className = 'search-result-msg';
+        msg.style.cssText = 'font-size:0.78rem;color:#7A7A7A;margin-top:8px;font-style:italic;';
+        msg.textContent = 'Please enter a case number, party name, or species. Alternatively, you may review the full docket below. It is not long.';
+        document.querySelector('.case-search-box').appendChild(msg);
+        return;
+      }
+
+      var rows = document.querySelectorAll('.docket-row');
+      var matches = [];
+      rows.forEach(function(row) {
+        var cells = row.querySelectorAll('td');
+        var rowCase = (cells[0] ? cells[0].textContent.trim().toUpperCase() : '');
+        var rowName = (cells[1] ? cells[1].textContent.trim().toLowerCase() : '');
+        var rowType = (cells[2] ? cells[2].textContent.trim() : '');
+        var caseMatch = !caseInput || rowCase.indexOf(caseInput) !== -1;
+        var nameMatch = !nameInput || rowName.indexOf(nameInput) !== -1;
+        var typeMatch = typeInput === 'All Types' || rowType === typeInput;
+        if (caseMatch && nameMatch && typeMatch) matches.push(row);
+      });
+
+      var msg = document.createElement('p');
       msg.className = 'search-result-msg';
       msg.style.cssText = 'font-size:0.78rem;color:#7A7A7A;margin-top:8px;font-style:italic;';
 
-      if (input || nameInput) {
-        msg.textContent = 'No additional cases match your search. The docket shown below represents the complete public record. If you believe a case is missing, it may be sealed, expunged, or simply none of your business.';
+      if (matches.length > 0) {
+        matches.forEach(function(row) { row.classList.add('search-highlight'); });
+        msg.textContent = matches.length + (matches.length === 1 ? ' case found.' : ' cases found.') + ' Highlighted below.';
+        matches[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
-        msg.textContent = 'Please enter a case number, party name, or species. Alternatively, you may review the full docket below. It is not long.';
+        msg.textContent = 'No cases match your search. The docket shown below represents the complete public record. If you believe a case is missing, it may be sealed, expunged, or simply none of your business.';
       }
-
       document.querySelector('.case-search-box').appendChild(msg);
     });
 
