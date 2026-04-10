@@ -37,6 +37,8 @@ color:#2a2620;
 .qt-a{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a09880;margin-top:6px}
 .cl{margin:1rem 0;padding:.8rem 1rem;background:#eee9de;border-radius:10px}
 .cl-t{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.6;color:#7a7264;font-style:italic}
+.cl-t a{color:#7a7264;transition:color .15s}
+.cl-t a:hover{color:#4a4438}
 .q{font-family:'Source Serif 4',Georgia,serif;font-size:19px;color:#2a2620;line-height:1.5;margin:1.5rem 0 1rem}
 .opt{background:#fff;border:1.5px solid #e0dbd0;border-radius:12px;padding:1rem 1.1rem;margin-bottom:8px;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
 .opt:hover{border-color:#c47a5a;background:#fdf9f4}
@@ -263,6 +265,9 @@ function renderAssessment() {
   h += '<div class="assess-owl-t" style="margin-top:.6rem">"Standard municipal quiet hours apply. The Court declines to impose stricter hours than those that govern every other resident of this district. A pigeon is a resident."</div>';
   h += '<div class="assess-owl-t" style="margin-top:.6rem">"No fine is imposed. The Respondent is referred to the district\u2019s community services office for a voluntary check-in. The Court does not compel attendance but notes that the Respondent has been cooing alone for eighteen months and that the volume, in the Court\u2019s experience, is unlikely to decrease on its own."</div>';
   h += '</div></div>';
+
+  h += '<div class="card"><div class="cl"><div class="cl-t">Other cases open for gallery observation: <a href="/is/writing/nest-court-proceedings/">Dove v. Dove</a> \u00b7 <a href="/is/writing/nest-court-proceedings-starling/">Starling v. Starling</a></div></div></div>';
+
   document.getElementById('content').innerHTML = h;
   renderPips();
   document.getElementById('goBtn').style.display = 'none';

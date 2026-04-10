@@ -55,6 +55,8 @@ overflow:hidden;
 /* CLERK NOTES */
 .cl{margin:1rem 0;padding:.8rem 1rem;background:#eee9de;border-radius:10px}
 .cl-t{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.6;color:#7a7264;font-style:italic}
+.cl-t a{color:#7a7264;transition:color .15s}
+.cl-t a:hover{color:#4a4438}
 
 /* QUESTION */
 .q{font-family:'Source Serif 4',Georgia,serif;font-size:19px;color:#2a2620;line-height:1.5;margin:1.5rem 0 1rem}
@@ -319,6 +321,8 @@ function renderAssessment() {
   h += '<div class="assess-owl-t">"The petition is granted. The nest at 14 Sycamore Lane is awarded to the Petitioner, including all materials. The zip tie is designated a structural fixture of the nest and is not awarded to either party individually. It is the nest\u2019s."</div>';
   h += '<div class="assess-owl-t" style="margin-top:.6rem">"A No-Perch Order is granted at a modified radius of thirty wingspans. Custody of the two eggs is awarded to the Petitioner, with supervised visitation through the Clerk\u2019s office. The Respondent is reminded that \u2018supervised\u2019 means someone is watching. It will not be Ms. Sparrow."</div>';
   h += '</div></div>';
+
+  h += '<div class="card"><div class="cl"><div class="cl-t">Other cases open for gallery observation: <a href="/is/writing/nest-court-proceedings-starling/">Starling v. Starling</a> \u00b7 <a href="/is/writing/nest-court-proceedings-pigeon/">District v. Pigeon</a></div></div></div>';
 
   document.getElementById('content').innerHTML = h;
   renderPips();
