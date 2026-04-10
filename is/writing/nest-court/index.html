@@ -324,7 +324,7 @@
       color: var(--text-tertiary);
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      min-width: 120px;
+      min-width: 90px;
       flex-shrink: 0;
     }
     .field-value {
@@ -777,13 +777,15 @@
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
+    @media (max-width: 960px) {
+      .case-info-grid { grid-template-columns: 1fr; }
+      .case-field:nth-child(even) { padding-left: 0; border-left: none; }
+      .case-field:nth-child(odd) { padding-right: 0; }
+    }
     @media (max-width: 768px) {
       .page-wrap { grid-template-columns: 1fr; }
       .site-header .wrap { flex-wrap: wrap; }
       .header-right { display: none; }
-      .case-info-grid { grid-template-columns: 1fr; }
-      .case-field:nth-child(even) { padding-left: 0; border-left: none; }
-      .case-field:nth-child(odd) { padding-right: 0; }
       .footer-grid { grid-template-columns: 1fr; }
       .district-resources-grid { grid-template-columns: 1fr; }
       .site-nav .wrap { flex-wrap: wrap; }
