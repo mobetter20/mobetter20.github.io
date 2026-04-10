@@ -70,7 +70,7 @@ class Issue:
 ISSUES = [
     Issue(
         issue_number="01",
-        issue_date=date(2026, 4, 6),
+        issue_date=date(2026, 3, 10),
         lead_headline="Birch Court Residents Report Recurring Visitor",
         lead_dateline="Birch Court · District Desk",
         lead_paragraphs=[
@@ -112,7 +112,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="02",
-        issue_date=date(2026, 4, 13),
+        issue_date=date(2026, 3, 17),
         lead_headline="Sycamore Lane Flower Arrangement Sparks Speculation",
         lead_dateline="Sycamore Lane · District Desk",
         lead_paragraphs=[
@@ -157,7 +157,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="03",
-        issue_date=date(2026, 4, 20),
+        issue_date=date(2026, 3, 24),
         lead_headline="Disturbance Reported at Birch Court Intersection",
         lead_dateline="Birch Court / Sycamore Lane · District Desk",
         lead_paragraphs=[
@@ -207,7 +207,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="04",
-        issue_date=date(2026, 4, 27),
+        issue_date=date(2026, 3, 31),
         lead_headline="Municipal Park Bench Increasingly Occupied by Single Male, Evenings",
         lead_dateline="Municipal Park · District Desk",
         lead_paragraphs=[
@@ -254,7 +254,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="05",
-        issue_date=date(2026, 5, 4),
+        issue_date=date(2026, 4, 7),
         lead_headline="Noise Complaint Filed Against Morning Singer; Singer Files Counter-Complaint",
         lead_dateline="Municipal Oak · District Desk",
         lead_paragraphs=[
@@ -305,7 +305,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="06",
-        issue_date=date(2026, 5, 11),
+        issue_date=date(2026, 4, 14),
         lead_headline="Dove v. Dove Hearing Concludes; Ruling Expected",
         lead_dateline="Nest Court, Chamber B · Court Desk",
         lead_paragraphs=[
@@ -354,7 +354,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="07",
-        issue_date=date(2026, 5, 18),
+        issue_date=date(2026, 4, 21),
         lead_headline='Third Bench Occupant Identified; Says He Is "Between Situations"',
         lead_dateline="Municipal Park · District Desk",
         lead_paragraphs=[
@@ -404,7 +404,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="08",
-        issue_date=date(2026, 5, 25),
+        issue_date=date(2026, 4, 28),
         lead_headline="Conrad Performs Unauthorized Dawn Concert; Three Residents File Joint Complaint",
         lead_dateline="Municipal Oak · District Desk",
         lead_paragraphs=[
@@ -453,7 +453,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="09",
-        issue_date=date(2026, 6, 1),
+        issue_date=date(2026, 5, 5),
         lead_headline="Conrad Noise Hearing Draws Unexpected Attendance",
         lead_dateline="Nest Court, Chamber B · Court Desk",
         lead_paragraphs=[
@@ -506,7 +506,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="10",
-        issue_date=date(2026, 6, 8),
+        issue_date=date(2026, 5, 12),
         lead_headline="Conrad Noise Ruling: Restricted Hours, No Restrictions on Feeling",
         lead_dateline="Nest Court, Chamber B · Court Desk",
         lead_paragraphs=[
@@ -556,7 +556,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="11",
-        issue_date=date(2026, 6, 15),
+        issue_date=date(2026, 5, 19),
         lead_headline="Community Meeting Proposed on Shared Perch Usage; Attendance Already Contentious",
         lead_dateline="Municipal Oak · District Desk",
         lead_paragraphs=[
@@ -606,7 +606,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="12",
-        issue_date=date(2026, 6, 22),
+        issue_date=date(2026, 5, 26),
         lead_headline="Perch Usage Meeting Disrupted by Attendee Who Arrived With Ex-Wife",
         lead_dateline="Municipal Oak Community Hall · District Desk",
         lead_paragraphs=[
@@ -656,7 +656,7 @@ ISSUES = [
     ),
     Issue(
         issue_number="13",
-        issue_date=date(2026, 6, 29),
+        issue_date=date(2026, 6, 2),
         lead_headline="Spring Nesting Season Begins; Contractors Report Surge in Solo Consultations",
         lead_dateline="District-wide · District Desk",
         lead_paragraphs=[
@@ -781,7 +781,7 @@ def issue_page_html(
 <h1 class="mast-title">{text(SITE_TITLE)}</h1>
 <div class="mast-meta">
 <span>{text(issue.date_label)}</span>
-<span>Online Edition · Published Mondays</span>
+<span>Online Edition · Published Tuesdays</span>
 <span>Est. unrecorded</span>
 </div>
 </header>
