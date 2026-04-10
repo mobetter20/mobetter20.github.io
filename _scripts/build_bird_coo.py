@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import html
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -65,6 +65,20 @@ class Issue:
     @property
     def archive_label(self) -> str:
         return f"{self.issue_date.strftime('%B')} {self.issue_date.day}, {self.issue_date.year}"
+
+
+KAREN_HAWK_AD = AdBlock(
+    title="Karen Hawk",
+    tagline="Attorney at Law · Rapid Descents · Clean Separations",
+    body_paragraphs=[
+        'Specializing in contested nest divisions, emergency no-perch orders, and situations where he says it was "just drinks." Eighteen years of family law experience. Exposed to every version of "it\'s not what it looks like." Still not impressed.',
+    ],
+    testimonial='"She got me the branch, the eggs, and an apology I could use in future proceedings." — former client',
+    contact_lines=[
+        "Free consultation · Evening and weekend appointments",
+        "I do not do couples counseling. That ship has sailed, sunk, and been entered into evidence.",
+    ],
+)
 
 
 ISSUES = [
@@ -712,6 +726,8 @@ ISSUES = [
         letter_editor_note="Editor's note: Printed with permission.",
     ),
 ]
+
+ISSUES = [replace(issue, display_ad=KAREN_HAWK_AD) for issue in ISSUES]
 
 
 def today_in_seoul() -> date:
