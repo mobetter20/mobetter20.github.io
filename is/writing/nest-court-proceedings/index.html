@@ -75,12 +75,12 @@ overflow:hidden;
 .btn.dim{opacity:.3;pointer-events:none}
 
 /* FOOTER */
-.ft{background:#3a3428;padding:.7rem 1.3rem;border-radius:0 0 16px 16px}
-.ft-row{display:flex;justify-content:space-between;align-items:center}
-.ft span{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6a6258}
-.ft-links{padding-top:.5rem;border-top:1px solid #4a4438;margin-top:.5rem}
-.ft-links a{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6a6258;text-decoration:none;margin-right:12px;transition:color .15s}
-.ft-links a:hover{color:#a09888}
+.site-footer{background:#3a3428;padding:.7rem 1.3rem;border-radius:0 0 16px 16px}
+.site-footer .ft-row{display:flex;justify-content:space-between;align-items:center}
+.site-footer span{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6a6258}
+.site-footer .ft-links{padding-top:.5rem;border-top:1px solid #4a4438;margin-top:.5rem}
+.site-footer .ft-links a{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6a6258;text-decoration:none;margin-right:12px;transition:color .15s}
+.site-footer .ft-links a:hover{color:#a09888}
 
 /* ASSESSMENT SPECIFIC */
 .assess-title{font-family:'Source Serif 4',Georgia,serif;font-size:20px;color:#2a2620;font-style:italic;margin-bottom:1rem}
@@ -92,7 +92,7 @@ overflow:hidden;
 @media(max-width:540px){
   .shell{margin:.5rem;border-radius:12px}
   .hd{border-radius:12px 12px 0 0;padding:1rem 1.1rem}
-  .ft{border-radius:0 0 12px 12px}
+  .site-footer{border-radius:0 0 12px 12px}
   .card{margin:.5rem .7rem;padding:1.2rem 1.1rem}
   .hd-case{font-size:22px}
   .q{font-size:18px}
@@ -104,7 +104,7 @@ overflow:hidden;
 <div class="shell">
 
 <div class="hd">
-  <a class="hd-back" href="../nest-court/">← Case Docket</a>
+  <a class="hd-back" href="/is/writing/nest-court/">← Case Docket</a>
   <div class="hd-case">Dove v. Dove</div>
   <div class="hd-meta">AMNC-2026-007B · Nest abandonment · Gallery seat assigned</div>
 </div>
@@ -117,18 +117,18 @@ overflow:hidden;
   <button class="btn dim" id="goBtn" onclick="advance()">Next matter →</button>
 </div>
 
-<div class="ft">
+<footer class="site-footer">
   <div class="ft-row">
     <span>Clerk's Record · AMNC-2026-007B</span>
     <span>Avian Municipal Nest Court</span>
   </div>
   <div class="ft-links">
-    <a href="../bird-coo/">The Municipal Coo</a>
-    <a href="../secondnest/">SecondNest</a>
-    <a href="../perch-chat/">The Perch</a>
-    <a href="../avian-district/">Avian Municipal District</a>
+    <a href="/is/writing/bird-coo/">The Municipal Coo</a>
+    <a href="/is/writing/secondnest/">SecondNest</a>
+    <a href="/is/writing/perch-chat/">The Perch</a>
+    <a href="/is/writing/avian-district/">Avian Municipal District</a>
   </div>
-</div>
+</footer>
 
 </div>
 
