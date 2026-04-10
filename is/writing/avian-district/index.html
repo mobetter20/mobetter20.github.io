@@ -11,750 +11,466 @@
 <link rel="canonical" href="https://ajin.im/is/writing/avian-district/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap">
 <script src="../../../analytics.js" defer></script>
 <style>
-  :root {
-    --bg: #F0EDE6;
-    --bg-white: #FAF9F6;
-    --bg-card: #FFFFFF;
-    --text: #1A1A1A;
-    --text-secondary: #4A4840;
-    --text-tertiary: #7A776E;
-    --accent: #2A6B4A;
-    --accent-light: #E6F0EB;
-    --accent-hover: #1E5438;
-    --border: #D8D4CA;
-    --border-light: #E4E0D8;
-    --link: #1D5C3E;
-    --link-hover: #14432D;
-    --alert-bg: #2A6B4A;
-    --alert-text: #FFFFFF;
-    --error-bg: #FDF6F0;
-    --error-border: #D4A888;
-    --error-text: #8A4A2A;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'IBM Plex Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .alert-banner {
-    background: var(--alert-bg);
-    color: var(--alert-text);
-    padding: 12px 24px;
-    font-size: 13px;
-    line-height: 1.5;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .alert-banner .wrap { max-width: 780px; margin: 0 auto; }
-
-  .alert-label {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 10px;
-    display: block;
-    margin-bottom: 3px;
-    opacity: 0.8;
-  }
-
-  .site-header {
-    background: var(--bg-white);
-    border-bottom: 1px solid var(--border);
-    padding: 32px 24px 26px;
-  }
-
-  .site-header .wrap { max-width: 780px; margin: 0 auto; }
-
-  .site-header h1 {
-    font-size: 26px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-
-  .site-header .subtitle {
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-
-  .main {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .section {
-    padding: 32px 0;
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .section:last-child { border-bottom: none; }
-
-  .section-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-tertiary);
-    margin-bottom: 18px;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .clerk-message {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: 24px 28px;
-    line-height: 1.75;
-  }
-
-  .clerk-message .cm-header {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-tertiary);
-    font-family: 'IBM Plex Mono', monospace;
-    margin-bottom: 14px;
-  }
-
-  .clerk-message p {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-bottom: 12px;
-  }
-
-  .clerk-message p:last-of-type { margin-bottom: 0; }
-
-  .clerk-message .cm-sig {
-    margin-top: 18px;
-    font-size: 13px;
-    color: var(--text-tertiary);
-    font-style: italic;
-  }
-
-  .service-list,
-  .notice-list,
-  .faq-list {
-    list-style: none;
-  }
-
-  .service-item,
-  .notice-item,
-  .faq-item {
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .service-item:first-child,
-  .notice-item:first-child,
-  .faq-item:first-child {
-    padding-top: 0;
-  }
-
-  .service-item:last-child,
-  .notice-item:last-child,
-  .faq-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .service-type,
-  .notice-date {
-    font-size: 11px;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--text-tertiary);
-    margin-bottom: 2px;
-  }
-
-  .service-link {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--link);
-    text-decoration: none;
-    display: inline-block;
-    margin-bottom: 3px;
-  }
-
-  .service-link:hover {
-    color: var(--link-hover);
-    text-decoration: underline;
-  }
-
-  .service-link-static {
-    color: var(--text);
-    cursor: default;
-  }
-
-  .service-link-static:hover {
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .service-desc,
-  .notice-text,
-  .faq-a {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-  }
-
-  .faq-q {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .faq-a a {
-    color: var(--link);
-    text-decoration: none;
-  }
-
-  .faq-a a:hover { text-decoration: underline; }
-
-  .form-trigger {
-    color: var(--link);
-    text-decoration: none;
-    cursor: pointer;
-    border-bottom: 1px solid var(--border-light);
-  }
-
-  .form-trigger:hover { color: var(--link-hover); }
-
-  .noise-form-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-
-  .noise-form-overlay.open { display: flex; }
-
-  .noise-form {
-    background: var(--bg-white);
-    border: 1px solid var(--border);
-    max-width: 520px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 28px;
-    position: relative;
-  }
-
-  .nf-close {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    background: none;
-    border: none;
-    font-size: 22px;
-    color: var(--text-tertiary);
-    cursor: pointer;
-    line-height: 1;
-    padding: 4px;
-  }
-
-  .nf-close:hover { color: var(--text); }
-
-  .nf-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-
-  .nf-subtitle {
-    font-size: 12px;
-    color: var(--text-tertiary);
-    margin-bottom: 20px;
-  }
-
-  .nf-field { margin-bottom: 16px; }
-
-  .nf-label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .nf-hint {
-    font-size: 11px;
-    color: var(--text-tertiary);
-    font-family: 'IBM Plex Mono', monospace;
-    margin-bottom: 5px;
-  }
-
-  .nf-input,
-  .nf-select,
-  .nf-textarea {
-    width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 16px;
-    padding: 9px 11px;
-    border-radius: 2px;
-    outline: none;
-  }
-
-  .nf-input:focus,
-  .nf-select:focus,
-  .nf-textarea:focus {
-    border-color: var(--accent);
-  }
-
-  .nf-select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A776E' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 11px center;
-    padding-right: 30px;
-    cursor: pointer;
-  }
-
-  .nf-textarea {
-    resize: vertical;
-    min-height: 70px;
-  }
-
-  .nf-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-
-  .nf-submit {
-    margin-top: 20px;
-    width: 100%;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 11px 18px;
-    border-radius: 2px;
-    cursor: pointer;
-  }
-
-  .nf-submit:hover { background: var(--accent-hover); }
-
-  .nf-footer {
-    margin-top: 12px;
-    font-size: 11px;
-    color: var(--text-tertiary);
-    font-family: 'IBM Plex Mono', monospace;
-    line-height: 1.5;
-  }
-
-  .nf-rejection {
-    display: none;
-    margin-top: 20px;
-    background: var(--error-bg);
-    border: 1px solid var(--error-border);
-    padding: 20px 22px;
-    line-height: 1.7;
-  }
-
-  .nf-rejection.visible { display: block; }
-
-  .nf-rejection .rej-header {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--error-text);
-    font-family: 'IBM Plex Mono', monospace;
-    margin-bottom: 10px;
-  }
-
-  .nf-rejection p {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
-  }
-
-  .nf-rejection p:last-child { margin-bottom: 0; }
-
-  .nf-rejection .rej-sig {
-    margin-top: 12px;
-    font-size: 12px;
-    color: var(--text-tertiary);
-    font-style: italic;
-  }
-
-  .nf-body.rejected .nf-field,
-  .nf-body.rejected .nf-row-wrap,
-  .nf-body.rejected .nf-submit,
-  .nf-body.rejected .nf-footer {
-    opacity: 0.25;
-    pointer-events: none;
-  }
-
-  .clerk-info {
-    background: var(--bg-white);
-    border-top: 1px solid var(--border);
-    padding: 24px;
-    margin-top: 12px;
-  }
-
-  .clerk-info .wrap {
-    max-width: 780px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
-  }
-
-  .clerk-info h3 {
-    font-size: 11px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-tertiary);
-  }
-
-  .clerk-info p,
-  .clerk-info li {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  .clerk-info ul { list-style: none; }
-
-  .site-footer {
-    border-top: 1px solid var(--border-light);
-    padding: 18px 24px;
-    text-align: center;
-    font-size: 11px;
-    color: var(--text-tertiary);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  @media (max-width: 640px) {
-    .alert-banner,
-    .site-header,
-    .clerk-info,
-    .site-footer {
-      padding-left: 18px;
-      padding-right: 18px;
-    }
-
-    .main {
-      padding-left: 18px;
-      padding-right: 18px;
-    }
-
-    .site-header h1 { font-size: 22px; }
-    .service-link { font-size: 16px; }
-    .clerk-message { padding: 20px 18px; }
-    .clerk-info .wrap { grid-template-columns: 1fr; gap: 18px; }
-    .nf-row { grid-template-columns: 1fr; }
-    .noise-form { padding: 22px 18px; }
-  }
+*,*::before,*::after{box-sizing:border-box}
+
+:root {
+  --header-bg: #1d2b3a;
+  --header-text: #e8e6e1;
+  --notice-bg: #e2e0da;
+  --notice-border: #b8b4a8;
+  --notice-accent: #7a776e;
+  --page-bg: #e8e6e1;
+  --surface: #f4f2ed;
+  --surface-alt: #eceae4;
+  --ink: #1a1a18;
+  --ink-light: #33332e;
+  --ink-faded: #5a5a52;
+  --ink-ghost: #88887e;
+  --rule: #c8c4b8;
+  --rule-heavy: #8a877e;
+  --link: #1d4a6a;
+  --link-hover: #0f3048;
+  --card-border: #b8b4a8;
+}
+
+html { font-size: 16px; }
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", -apple-system, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--link); }
+a:hover { color: var(--link-hover); }
+
+.header-band {
+  background: var(--header-bg);
+  color: var(--header-text);
+  padding: 0.6rem 2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.header-band-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-org {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+}
+
+.header-util {
+  font-size: 0.65rem;
+  color: rgba(232,230,225,0.6);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.notice-box {
+  background: var(--notice-bg);
+  border: 1px solid var(--notice-border);
+  border-left: 3px solid var(--notice-accent);
+  padding: 0.55rem 0.8rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-light);
+  margin-top: 0.8rem;
+}
+
+.notice-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.6rem;
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--ink-ghost);
+}
+
+.title-section {
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.6rem 2rem 1.2rem;
+}
+
+.title-section-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.title-section h1 {
+  margin: 0 0 0.15rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.title-sub {
+  margin: 0;
+  color: var(--ink-faded);
+  font-size: 0.85rem;
+}
+
+.main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
+}
+
+.clerk-letter {
+  margin: 1.4rem 0;
+  padding: 1rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule-heavy);
+}
+
+.clerk-letter-head {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-ghost);
+  margin-bottom: 0.6rem;
+}
+
+.clerk-letter p {
+  margin: 0;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--ink-light);
+}
+
+.clerk-letter p + p { margin-top: 0.45rem; }
+
+.clerk-letter .sig {
+  margin-top: 0.6rem;
+  font-style: italic;
+  color: var(--ink-faded);
+  font-size: 0.82rem;
+}
+
+.section-heading {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-ghost);
+  margin: 1.8rem 0 0.8rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--rule-heavy);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.service-card {
+  border: 1px solid var(--card-border);
+  background: var(--surface);
+  padding: 0.9rem 1rem;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.service-card:hover {
+  border-color: var(--rule-heavy);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.service-card .card-category {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-ghost);
+  margin-bottom: 0.2rem;
+}
+
+.service-card .card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--link);
+  margin-bottom: 0.3rem;
+}
+
+.service-card:hover .card-title {
+  color: var(--link-hover);
+}
+
+.service-card .card-desc {
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  line-height: 1.5;
+}
+
+.service-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.notices-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notices-list li {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.notices-list li:last-child {
+  border-bottom: none;
+}
+
+.notice-date {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  color: var(--ink-ghost);
+  margin-bottom: 0.15rem;
+}
+
+.notice-text {
+  font-size: 0.82rem;
+  color: var(--ink-light);
+  line-height: 1.5;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.7rem 0;
+}
+
+.faq-item:last-child { border-bottom: none; }
+
+.faq-q {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+
+.faq-a {
+  font-size: 0.82rem;
+  color: var(--ink-light);
+  line-height: 1.55;
+}
+
+.faq-a a { text-decoration: underline; text-underline-offset: 2px; }
+
+.page-footer {
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+  border-top: 2px solid var(--rule-heavy);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.2rem;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+}
+
+.footer-col h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-ghost);
+}
+
+.footer-col p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.footer-col p + p { margin-top: 0.15rem; }
+
+.footer-bottom {
+  margin-top: 1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  font-size: 0.6rem;
+  color: var(--ink-ghost);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+@media (max-width: 640px) {
+  .header-band, .title-section { padding-left: 1rem; padding-right: 1rem; }
+  .main { padding-left: 1rem; padding-right: 1rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card.full-width { grid-column: auto; }
+  .page-footer { grid-template-columns: 1fr; gap: 0.8rem; }
+  .title-section h1 { font-size: 1.4rem; }
+  .header-util { display: none; }
+}
 </style>
 </head>
 <body>
 
-<div class="alert-banner">
-  <div class="wrap">
-    <span class="alert-label">District Notice</span>
-    Quiet hours compliance review in progress (AMNC-2026-011A). Residents of Municipal Oak are reminded that 6:29 AM is before 6:30 AM.
+<div class="header-band">
+  <div class="header-band-inner">
+    <div class="header-org">Avian Municipal District</div>
+    <div class="header-util">Clerk's Office · 14 Municipal Oak</div>
   </div>
 </div>
 
-<header class="site-header">
-  <div class="wrap">
+<div class="title-section">
+  <div class="title-section-inner">
     <h1>Avian Municipal District</h1>
-    <p class="subtitle">Official portal · Services, notices, and public records</p>
-  </div>
-</header>
-
-<main class="main">
-
-  <section class="section">
-    <div class="clerk-message">
-      <div class="cm-header">From the Clerk's Office — Spring 2026</div>
-      <p>The Avian Municipal District serves the residents of Sycamore Lane, Birch Court, Municipal Oak, and surrounding branches. The Clerk's Office maintains public records, processes filings, and provides access to district services. It does not provide opinions on who was right. It has opinions. It does not provide them.</p>
-      <p>This spring has been active. The Court has processed four cases this term, including two nest abandonments, a noise matter under compliance review, and a domestic dispute about humming. Solo nesting consultations with approved contractors are up. The third bench at Municipal Park now has three regular occupants, none of whom have filed paperwork.</p>
-      <p>Residents seeking legal representation will find a licensed practitioner listed on this portal. The Clerk's Office does not recommend her.</p>
-      <p>The fax line remains not operational. Please do not ask again until autumn.</p>
-      <p class="cm-sig">— T. Nuthatch, Clerk of Court</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-label">District Services</div>
-    <ul class="service-list">
-      <li class="service-item">
-        <div class="service-type">Judicial</div>
-        <a class="service-link" href="/is/writing/nest-court/">Nest Court — eCourt Public Portal</a>
-        <p class="service-desc">Case filings, hearing schedules, rulings, and docket records. Public access under Ordinance 14.7(b). Spectators reviewing active cases are asked to refrain from editorial commentary in the queue.</p>
-      </li>
-      <li class="service-item">
-        <div class="service-type">Media</div>
-        <a class="service-link" href="/is/writing/bird-coo/">The Municipal Coo</a>
-        <p class="service-desc">The district's newspaper of record. Published weekly. Court coverage, community letters, classifieds, and licensed practitioner advertising. The Coo operates independently of the Clerk's Office and has been reminded of this whenever it publishes something the Clerk's Office would have preferred it didn't.</p>
-      </li>
-      <li class="service-item">
-        <div class="service-type">Community</div>
-        <a class="service-link" href="/is/writing/secondnest/">SecondNest</a>
-        <p class="service-desc">Community personals platform. The Clerk's Office does not operate, endorse, or moderate SecondNest. Residents who recognise someone on the platform are encouraged to mind their business.</p>
-      </li>
-      <li class="service-item">
-        <div class="service-type">Community</div>
-        <a class="service-link" href="/is/writing/perch-chat/">The Perch — Community Chat</a>
-        <p class="service-desc">District messaging platform maintained by the Clerk's Office for municipal coordination. Used by residents for municipal coordination approximately 15% of the time.</p>
-      </li>
-      <li class="service-item">
-        <div class="service-type">Licensed Practitioner</div>
-        <a class="service-link" href="/is/writing/karen-hawk/">Karen Hawk, Attorney at Law</a>
-        <p class="service-desc">Family law. Eighteen years. The Clerk's Office processes her filings more frequently than any other practitioner's. This is not an endorsement. It is a volume observation.</p>
-      </li>
-    </ul>
-  </section>
-
-  <section class="section">
-    <div class="section-label">Recent Notices</div>
-    <ul class="notice-list">
-      <li class="notice-item">
-        <div class="notice-date">April 7, 2026</div>
-        <p class="notice-text">Spring nesting season is underway. Solo building permits are not required and have never been required. The Clerk's Office has received eleven enquiries this month anyway.</p>
-      </li>
-      <li class="notice-item">
-        <div class="notice-date">April 3, 2026</div>
-        <p class="notice-text">The third bench at Municipal Park is public property. It does not have assigned seating or a reservation system. It is a bench. The Clerk's Office should not have had to write this notice.</p>
-      </li>
-      <li class="notice-item">
-        <div class="notice-date">March 28, 2026</div>
-        <p class="notice-text">Unclaimed nest materials at public intersections become district property after 30 days. One (1) vine has been in the Clerk's drawer since March. It is beginning to affect the filing.</p>
-      </li>
-      <li class="notice-item">
-        <div class="notice-date">March 21, 2026</div>
-        <p class="notice-text">The community meeting on post-separation perch usage has been postponed. The organizer will reconvene when the community "demonstrates readiness." The Clerk's Office attended the previous meeting and would describe readiness as early-stage.</p>
-      </li>
-      <li class="notice-item">
-        <div class="notice-date">March 14, 2026</div>
-        <p class="notice-text">Finch &amp; Sons Nest Repair has been added to the approved contractor registry. The Clerk's Office does not typically announce contractor approvals but processed the request because the applicant returned to the window three times.</p>
-      </li>
-      <li class="notice-item">
-        <div class="notice-date">March 7, 2026</div>
-        <p class="notice-text">The fax line remains not operational. The Clerk's Office has been asked whether "not operational" means broken or disconnected. The answer is yes.</p>
-      </li>
-      <li class="notice-item">
-        <div class="notice-date">February 28, 2026</div>
-        <p class="notice-text">The Clerk's Office is not a mediation service, a counselling resource, or a venue for continuing arguments that began at home. The front window is for filings. Visiting hours ended in 2024.</p>
-      </li>
-    </ul>
-  </section>
-
-  <section class="section">
-    <div class="section-label">Frequently Requested Information</div>
-    <ul class="faq-list">
-      <li class="faq-item">
-        <div class="faq-q">How do I file a nest abandonment claim?</div>
-        <p class="faq-a">Petitions may be submitted through the <a href="/is/writing/nest-court/">eCourt Public Portal</a> or in person during business hours. Documentation should include a description of the nest, the date of departure, and evidence of where the respondent went. "He knows what he did" is not evidence.</p>
-      </li>
-      <li class="faq-item">
-        <div class="faq-q">How do I file a noise complaint?</div>
-        <p class="faq-a"><span class="form-trigger" onclick="openNoiseForm()">File with the Clerk's Office.</span> Include dates, times, description of the noise, and its apparent purpose. Residents describing the noise as "you'd have to hear it" are advised that the Clerk has heard it. The Clerk lives on Municipal Oak.</p>
-      </li>
-      <li class="faq-item">
-        <div class="faq-q">Is the third bench a designated residence?</div>
-        <p class="faq-a">No. The third bench is a bench. A recent ruling awarded it to the respondent. This was a custodial outcome, not a reclassification of furniture.</p>
-      </li>
-      <li class="faq-item">
-        <div class="faq-q">Is SecondNest affiliated with the district?</div>
-        <p class="faq-a">No. The Clerk's Office lists it because not listing it resulted in more questions than listing it.</p>
-      </li>
-      <li class="faq-item">
-        <div class="faq-q">Can I attend a court hearing?</div>
-        <p class="faq-a">Hearings are open to the public. Seating is limited. Spectators who have already formed opinions are asked to keep them at foraging volume.</p>
-      </li>
-      <li class="faq-item">
-        <div class="faq-q">What are quiet hours?</div>
-        <p class="faq-a">Quiet hours prohibit sustained vocal performance between 9:00 PM and 6:30 AM under Ordinance 9.3(a). The Court has encouraged the respondent to acquire a timepiece.</p>
-      </li>
-    </ul>
-  </section>
-
-</main>
-
-<div class="noise-form-overlay" id="noiseOverlay" onclick="if(event.target===this)closeNoiseForm()">
-  <div class="noise-form">
-    <button class="nf-close" type="button" aria-label="Close form" onclick="closeNoiseForm()">&times;</button>
-    <div class="nf-title">File a Noise Complaint</div>
-    <div class="nf-subtitle">Clerk's Office · Avian Municipal District</div>
-
-    <div class="nf-body" id="noiseFormBody">
-      <div class="nf-field">
-        <label class="nf-label">Complainant species</label>
-        <div class="nf-hint">As registered with the district</div>
-        <input class="nf-input" type="text" placeholder="e.g. Nuthatch, Sparrow, Wren">
-      </div>
-
-      <div class="nf-row-wrap">
-        <div class="nf-row">
-          <div class="nf-field">
-            <label class="nf-label">Wing type</label>
-            <select class="nf-select">
-              <option value="">Select</option>
-              <option>Broad / soaring</option>
-              <option>Narrow / rapid</option>
-              <option>Rounded / short-burst</option>
-              <option>Other / prefer not to say</option>
-            </select>
-          </div>
-          <div class="nf-field">
-            <label class="nf-label">Approximate wingspan</label>
-            <div class="nf-hint">In centimetres</div>
-            <input class="nf-input" type="text" placeholder="e.g. 22">
-          </div>
-        </div>
-      </div>
-
-      <div class="nf-field">
-        <label class="nf-label">Address (perch, nest, or branch)</label>
-        <input class="nf-input" type="text" placeholder="e.g. 14 Municipal Oak">
-      </div>
-
-      <div class="nf-row-wrap">
-        <div class="nf-row">
-          <div class="nf-field">
-            <label class="nf-label">Time of disturbance</label>
-            <div class="nf-hint">Dawn-relative preferred</div>
-            <input class="nf-input" type="text" placeholder="e.g. Dawn-2, or 4:45 AM">
-          </div>
-          <div class="nf-field">
-            <label class="nf-label">Distance from source</label>
-            <div class="nf-hint">In wingspans</div>
-            <input class="nf-input" type="text" placeholder="e.g. 12 wingspans">
-          </div>
-        </div>
-      </div>
-
-      <div class="nf-field">
-        <label class="nf-label">Nature of noise</label>
-        <select class="nf-select">
-          <option value="">Select category</option>
-          <option>Vocal (singing, calling, humming)</option>
-          <option>Structural (nest construction, tapping)</option>
-          <option>Domestic (argument, deliberate silence)</option>
-          <option>Unclear but persistent</option>
-        </select>
-      </div>
-
-      <div class="nf-field">
-        <label class="nf-label">Description of disturbance</label>
-        <div class="nf-hint">Include apparent emotional intent if known</div>
-        <textarea class="nf-textarea" placeholder="Describe the noise, its frequency, and any pattern the Clerk's Office should be aware of."></textarea>
-      </div>
-
-      <div class="nf-field">
-        <label class="nf-label">Have you attempted to resolve this directly?</label>
-        <select class="nf-select">
-          <option value="">Select</option>
-          <option>Yes, without result</option>
-          <option>Yes, it made it worse</option>
-          <option>No</option>
-          <option>No — direct contact inadvisable</option>
-        </select>
-      </div>
-
-      <button class="nf-submit" id="noiseSubmit" type="button" onclick="handleNoiseSubmit()">Submit to Clerk's Office</button>
-
-      <div class="nf-footer">
-        Filings are processed during business hours (Dawn+2 to Dusk-1). The Clerk's Office does not guarantee a response time and does not appreciate being asked for one.
-      </div>
-
-      <div class="nf-rejection" id="noiseRejection">
-        <div class="rej-header">Filing Rejected</div>
-        <p>The Clerk's Office has reviewed your submission. Your reported wingspan is inconsistent with any registered resident species, your typing pattern suggests the use of fingers rather than a beak, and your description includes vocabulary not typically produced by birds.</p>
-        <p>This form is for residents of the Avian Municipal District. Humans are not residents. Humans are, in the Clerk's experience, a significant source of noise themselves.</p>
-        <p>This filing has not been processed. The Clerk's Office wishes you a quiet evening.</p>
-        <p class="rej-sig">— Clerk's Office, Avian Municipal District</p>
-      </div>
+    <p class="title-sub">Official portal · Services, notices, and public records</p>
+    <div class="notice-box">
+      <span class="notice-label">District Notice</span>
+      Quiet hours compliance review in progress (AMNC-2026-011A). Residents of Municipal Oak are reminded that 6:29 AM is before 6:30 AM.
     </div>
   </div>
 </div>
 
-<div class="clerk-info">
-  <div class="wrap">
-    <div>
-      <h3>Clerk's Office</h3>
-      <p>14 Municipal Oak<br>Sycamore District</p>
-    </div>
-    <div>
-      <h3>Staff</h3>
-      <p>Clerk: T. Nuthatch<br>Deputy Clerk: R. Wren</p>
-    </div>
-    <div>
-      <h3>Hours</h3>
-      <ul>
-        <li>Mon–Fri: Dawn+2 to Dusk-1</li>
-        <li>Sat: Emergency filings only</li>
-        <li>Sun: Closed</li>
-        <li>Fax: Not operational</li>
-      </ul>
-    </div>
+<div class="main">
+
+  <div class="clerk-letter">
+    <div class="clerk-letter-head">From the Clerk's Office — Spring 2026</div>
+    <p>The Avian Municipal District serves the residents of Sycamore Lane, Birch Court, Municipal Oak, and surrounding branches. The Clerk's Office maintains public records, processes filings, and provides access to district services. It does not provide opinions on who was right. It has opinions. It does not provide them.</p>
+    <p>This spring has been active. The Court has processed four cases this term, including two nest abandonments, a noise matter under compliance review, and a domestic dispute about humming. Solo nesting consultations with approved contractors are up. The third bench at Municipal Park now has three regular occupants, none of whom have filed paperwork.</p>
+    <p>Residents seeking legal representation will find a licensed practitioner listed on this portal. The Clerk's Office does not recommend her.</p>
+    <p>The fax line remains not operational. Please do not ask again until autumn.</p>
+    <div class="sig">— T. Nuthatch, Clerk of Court</div>
   </div>
+
+  <div class="section-heading">District Services</div>
+
+  <div class="services-grid">
+    <a class="service-card" href="/is/writing/nest-court/">
+      <div class="card-category">Judicial</div>
+      <div class="card-title">Nest Court — eCourt Public Portal</div>
+      <div class="card-desc">Case filings, hearing schedules, rulings, and docket records. Public access under Ordinance 14.7(b). Spectators reviewing active cases are asked to refrain from editorial commentary in the queue.</div>
+    </a>
+    <a class="service-card" href="/is/writing/bird-coo/">
+      <div class="card-category">Media</div>
+      <div class="card-title">The Municipal Coo</div>
+      <div class="card-desc">The district's newspaper of record. Published weekly. Court coverage, community letters, classifieds, and licensed practitioner advertising. The Coo operates independently of the Clerk's Office and has been reminded of this whenever it publishes something the Clerk's Office would have preferred it didn't.</div>
+    </a>
+    <a class="service-card" href="/is/writing/secondnest/">
+      <div class="card-category">Community</div>
+      <div class="card-title">SecondNest</div>
+      <div class="card-desc">Community personals platform. The Clerk's Office does not operate, endorse, or moderate SecondNest. Residents who recognise someone on the platform are encouraged to mind their business.</div>
+    </a>
+    <a class="service-card" href="/is/writing/perch-chat/">
+      <div class="card-category">Community</div>
+      <div class="card-title">The Perch — Community Chat</div>
+      <div class="card-desc">District messaging platform maintained by the Clerk's Office for municipal coordination. Used by residents for municipal coordination approximately 15% of the time.</div>
+    </a>
+    <a class="service-card full-width" href="/is/writing/karen-hawk/">
+      <div class="card-category">Licensed Practitioner</div>
+      <div class="card-title">Karen Hawk, Attorney at Law</div>
+      <div class="card-desc">Family law. Eighteen years. The Clerk's Office processes her filings more frequently than any other practitioner's. This is not an endorsement. It is a volume observation.</div>
+    </a>
+  </div>
+
+  <div class="section-heading">Recent Notices</div>
+
+  <ul class="notices-list">
+    <li>
+      <div class="notice-date">April 7, 2026</div>
+      <div class="notice-text">Spring nesting season is underway. Solo building permits are not required and have never been required. The Clerk's Office has received eleven enquiries this month anyway.</div>
+    </li>
+    <li>
+      <div class="notice-date">April 3, 2026</div>
+      <div class="notice-text">The third bench at Municipal Park is public property. It does not have assigned seating or a reservation system. It is a bench. The Clerk's Office should not have had to write this notice.</div>
+    </li>
+    <li>
+      <div class="notice-date">March 28, 2026</div>
+      <div class="notice-text">Unclaimed nest materials at public intersections become district property after 30 days. One (1) vine has been in the Clerk's drawer since March. It is beginning to affect the filing.</div>
+    </li>
+    <li>
+      <div class="notice-date">March 21, 2026</div>
+      <div class="notice-text">The community meeting on post-separation perch usage has been postponed. The organizer will reconvene when the community "demonstrates readiness." The Clerk's Office attended the previous meeting and would describe readiness as early-stage.</div>
+    </li>
+    <li>
+      <div class="notice-date">March 14, 2026</div>
+      <div class="notice-text">Finch & Sons Nest Repair has been added to the approved contractor registry. The Clerk's Office does not typically announce contractor approvals but processed the request because the applicant returned to the window three times.</div>
+    </li>
+    <li>
+      <div class="notice-date">March 7, 2026</div>
+      <div class="notice-text">The fax line remains not operational. The Clerk's Office has been asked whether "not operational" means broken or disconnected. The answer is yes.</div>
+    </li>
+    <li>
+      <div class="notice-date">February 28, 2026</div>
+      <div class="notice-text">The Clerk's Office is not a mediation service, a counselling resource, or a venue for continuing arguments that began at home. The front window is for filings. Visiting hours ended in 2024.</div>
+    </li>
+  </ul>
+
+  <div class="section-heading">Frequently Requested Information</div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I file a nest abandonment claim?</div>
+    <div class="faq-a">Petitions may be submitted through the <a href="/is/writing/nest-court/">eCourt Public Portal</a> or in person during business hours. Documentation should include a description of the nest, the date of departure, and evidence of where the respondent went. "He knows what he did" is not evidence.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I file a noise complaint?</div>
+    <div class="faq-a">File with the Clerk's Office. Include dates, times, description of the noise, and its apparent purpose. Residents describing the noise as "you'd have to hear it" are advised that the Clerk has heard it. The Clerk lives on Municipal Oak.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is the third bench a designated residence?</div>
+    <div class="faq-a">No. The third bench is a bench. A recent ruling awarded it to the respondent. This was a custodial outcome, not a reclassification of furniture.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is SecondNest affiliated with the district?</div>
+    <div class="faq-a">No. The Clerk's Office lists it because not listing it resulted in more questions than listing it.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I attend a court hearing?</div>
+    <div class="faq-a">Hearings are open to the public. Seating is limited. Spectators who have already formed opinions are asked to keep them at foraging volume.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What are quiet hours?</div>
+    <div class="faq-a">Quiet hours prohibit sustained vocal performance between 9:00 PM and 6:30 AM under Ordinance 9.3(a). The Court has encouraged the respondent to acquire a timepiece.</div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="footer-col">
+      <h4>Clerk's Office</h4>
+      <p>14 Municipal Oak</p>
+      <p>Sycamore District</p>
+    </div>
+    <div class="footer-col">
+      <h4>Staff</h4>
+      <p>Clerk: T. Nuthatch</p>
+      <p>Deputy Clerk: R. Wren</p>
+    </div>
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <p>Mon–Fri: Dawn+2 to Dusk-1</p>
+      <p>Sat: Emergency filings only</p>
+      <p>Sun: Closed</p>
+      <p>Fax: Not operational</p>
+    </div>
+  </footer>
+
+  <div class="footer-bottom">
+    Avian Municipal District · Clerk's Office · Est. public record
+  </div>
+
 </div>
-
-<footer class="site-footer">
-  Avian Municipal District · Clerk's Office · Est. public record
-</footer>
-
-<script>
-function openNoiseForm() {
-  document.getElementById('noiseOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeNoiseForm() {
-  document.getElementById('noiseOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-  document.getElementById('noiseFormBody').classList.remove('rejected');
-  document.getElementById('noiseRejection').classList.remove('visible');
-  const btn = document.getElementById('noiseSubmit');
-  btn.textContent = "Submit to Clerk's Office";
-  btn.style.pointerEvents = '';
-  btn.style.opacity = '';
-}
-
-function handleNoiseSubmit() {
-  const btn = document.getElementById('noiseSubmit');
-  btn.textContent = 'Processing...';
-  btn.style.pointerEvents = 'none';
-  btn.style.opacity = '0.5';
-  setTimeout(() => {
-    document.getElementById('noiseFormBody').classList.add('rejected');
-    document.getElementById('noiseRejection').classList.add('visible');
-    document.getElementById('noiseRejection').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 1200);
-}
-
-if (window.location.hash === '#noise-form') {
-  openNoiseForm();
-}
-</script>
 
 </body>
 </html>
