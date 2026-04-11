@@ -156,7 +156,7 @@
 
     .screening-sub {
       margin-top: 0.75rem;
-      color: var(--text-soft);
+      color: #8A877C;
       font-size: 0.7rem;
       line-height: 1.6;
       white-space: pre-line;
@@ -622,6 +622,16 @@
       cursor: default;
     }
 
+    .chat-input a,
+    .chat-input a:visited,
+    .chat-input a:hover,
+    .chat-input a:active {
+      color: var(--text-dim);
+      font-weight: 400;
+      text-decoration: underline;
+      text-decoration-color: var(--text-ghost);
+      text-underline-offset: 0.12em;
+    }
     @media (max-width: 700px) {
       .mobile-header {
         display: flex;
@@ -886,7 +896,7 @@
       },
       {
         text: "Access granted.",
-        sub: "You have been admitted as a Silent Observer.\nYou may read. You may not post.\n\nTo request posting privileges, contact the channel\u00A0administrator: access@ajin.im",
+        sub: "You have been admitted as a Silent Observer.\nYou may read. You may not post.\n\nTo request posting privileges, contact the channel administrator:\u00A0access@ajin.im",
         button: "Enter",
         final: true
       }
