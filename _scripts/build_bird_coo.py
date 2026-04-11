@@ -882,6 +882,7 @@ def issue_page_html(
 <footer class="site-footer">
 <p>{text(FOOTER_COPY)}</p>
 <p>{footer_link_html(archive_href, "Past Issues")}</p>
+<p class="district-links">Court records: <a href="/is/writing/nest-court/" target="_blank">Avian Municipal Nest Court &mdash; eCourt Portal</a><br>Personals: <a href="/is/writing/secondnest/" target="_blank">SecondNest &mdash; text-based, free, no photos</a></p>
 </footer>
 
 </div>
