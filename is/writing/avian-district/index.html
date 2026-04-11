@@ -333,6 +333,143 @@ a:hover { color: var(--link-hover); }
   .title-section h1 { font-size: 1.4rem; }
   .header-util { display: none; }
 }
+
+.form-trigger {
+  color: var(--link);
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid var(--rule);
+}
+.form-trigger:hover { color: var(--link-hover); }
+
+.noise-form-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.noise-form-overlay.open { display: flex; }
+
+.noise-form {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  position: relative;
+}
+
+.nf-close {
+  position: absolute; top: 12px; right: 16px;
+  background: none; border: none; font-size: 22px;
+  color: var(--ink-ghost); cursor: pointer;
+  line-height: 1; padding: 4px;
+}
+.nf-close:hover { color: var(--ink); }
+
+.nf-title {
+  font-size: 18px; font-weight: 600;
+  color: var(--ink); margin-bottom: 2px;
+}
+.nf-subtitle {
+  font-size: 12px; color: var(--ink-ghost);
+  font-family: "IBM Plex Mono", monospace;
+  margin-bottom: 20px;
+}
+
+.nf-field { margin-bottom: 16px; }
+
+.nf-label {
+  display: block; font-size: 13px; font-weight: 600;
+  color: var(--ink); margin-bottom: 4px;
+}
+.nf-hint {
+  font-size: 12px; color: var(--ink-ghost);
+  margin-bottom: 6px;
+}
+
+.nf-input, .nf-select, .nf-textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--rule);
+  background: #fff;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+}
+.nf-input:focus, .nf-select:focus, .nf-textarea:focus {
+  outline: none;
+  border-color: var(--rule-heavy);
+}
+.nf-textarea { min-height: 80px; resize: vertical; }
+
+.nf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.nf-submit {
+  display: block; width: 100%;
+  padding: 10px;
+  background: var(--header-bg, #1d2b3a);
+  color: #fff; border: none;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px; font-weight: 500;
+  cursor: pointer;
+  margin-top: 8px;
+}
+.nf-submit:hover { opacity: 0.9; }
+
+.nf-footer {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--ink-ghost);
+  font-family: "IBM Plex Mono", monospace;
+  line-height: 1.5;
+}
+
+.nf-rejection {
+  display: none;
+  background: #f5e8e8;
+  border: 1px solid #d4b0b0;
+  padding: 24px 28px;
+  margin-top: 24px;
+  line-height: 1.7;
+}
+.nf-rejection.visible { display: block; }
+
+.nf-rejection .rej-header {
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: #8a3a3a;
+  font-family: "IBM Plex Mono", monospace;
+  margin-bottom: 12px;
+}
+.nf-rejection p {
+  font-size: 14px; color: var(--ink-light);
+  margin: 0 0 10px;
+}
+.nf-rejection p:last-child { margin-bottom: 0; }
+.nf-rejection .rej-sig {
+  margin-top: 14px;
+  font-size: 12px; color: var(--ink-ghost);
+  font-style: italic;
+}
+
+.nf-body.rejected .nf-field,
+.nf-body.rejected .nf-submit,
+.nf-body.rejected .nf-footer,
+.nf-body.rejected .nf-row-wrap {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+@media (max-width: 500px) {
+  .nf-row { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -437,7 +574,7 @@ a:hover { color: var(--link-hover); }
   </div>
   <div class="faq-item">
     <div class="faq-q">How do I file a noise complaint?</div>
-    <div class="faq-a">File with the Clerk's Office. Include dates, times, description of the noise, and its apparent purpose. Residents describing the noise as "you'd have to hear it" are advised that the Clerk has heard it. The Clerk lives on Municipal Oak.</div>
+    <div class="faq-a"><a class="form-trigger" onclick="openNoiseForm()">File with the Clerk's Office</a>. Include dates, times, description of the noise, and its apparent purpose. Residents describing the noise as "you'd have to hear it" are advised that the Clerk has heard it. The Clerk lives on Municipal Oak.</div>
   </div>
   <div class="faq-item">
     <div class="faq-q">Is the third bench a designated residence?</div>
@@ -489,6 +626,134 @@ a:hover { color: var(--link-hover); }
   </div>
 
 </div>
+
+<div class="noise-form-overlay" id="noiseOverlay" onclick="if(event.target===this)closeNoiseForm()">
+  <div class="noise-form">
+    <button class="nf-close" onclick="closeNoiseForm()">&times;</button>
+    <div class="nf-title">File a Noise Complaint</div>
+    <div class="nf-subtitle">Clerk's Office · Avian Municipal District</div>
+
+    <div class="nf-body" id="noiseFormBody">
+      <div class="nf-field">
+        <label class="nf-label">Complainant species</label>
+        <div class="nf-hint">As registered with the district</div>
+        <input class="nf-input" type="text" placeholder="e.g. Nuthatch, Sparrow, Wren">
+      </div>
+
+      <div class="nf-row-wrap">
+        <div class="nf-row">
+          <div class="nf-field">
+            <label class="nf-label">Wing type</label>
+            <select class="nf-select">
+              <option value="">Select</option>
+              <option>Broad / soaring</option>
+              <option>Narrow / rapid</option>
+              <option>Rounded / short-burst</option>
+              <option>Other / prefer not to say</option>
+            </select>
+          </div>
+          <div class="nf-field">
+            <label class="nf-label">Approximate wingspan</label>
+            <div class="nf-hint">In centimetres</div>
+            <input class="nf-input" type="text" placeholder="e.g. 22">
+          </div>
+        </div>
+      </div>
+
+      <div class="nf-field">
+        <label class="nf-label">Address (perch, nest, or branch)</label>
+        <input class="nf-input" type="text" placeholder="e.g. 14 Municipal Oak">
+      </div>
+
+      <div class="nf-row-wrap">
+        <div class="nf-row">
+          <div class="nf-field">
+            <label class="nf-label">Time of disturbance</label>
+            <div class="nf-hint">Dawn-relative preferred</div>
+            <input class="nf-input" type="text" placeholder="e.g. Dawn-2, or 4:45 AM">
+          </div>
+          <div class="nf-field">
+            <label class="nf-label">Distance from source</label>
+            <div class="nf-hint">In wingspans</div>
+            <input class="nf-input" type="text" placeholder="e.g. 12 wingspans">
+          </div>
+        </div>
+      </div>
+
+      <div class="nf-field">
+        <label class="nf-label">Nature of noise</label>
+        <select class="nf-select">
+          <option value="">Select category</option>
+          <option>Vocal (singing, calling, humming)</option>
+          <option>Structural (nest construction, tapping)</option>
+          <option>Domestic (argument, deliberate silence)</option>
+          <option>Unclear but persistent</option>
+        </select>
+      </div>
+
+      <div class="nf-field">
+        <label class="nf-label">Description of disturbance</label>
+        <div class="nf-hint">Include apparent emotional intent if known</div>
+        <textarea class="nf-textarea" placeholder="Describe the noise, its frequency, and any pattern the Clerk's Office should be aware of."></textarea>
+      </div>
+
+      <div class="nf-field">
+        <label class="nf-label">Have you attempted to resolve this directly?</label>
+        <select class="nf-select">
+          <option value="">Select</option>
+          <option>Yes, without result</option>
+          <option>Yes, it made it worse</option>
+          <option>No</option>
+          <option>No — direct contact inadvisable</option>
+        </select>
+      </div>
+
+      <button class="nf-submit" id="noiseSubmit" onclick="handleNoiseSubmit()">Submit to Clerk's Office</button>
+
+      <div class="nf-footer">
+        Filings are processed during business hours (Dawn+2 to Dusk-1). The Clerk's Office does not guarantee a response time and does not appreciate being asked for one.
+      </div>
+
+      <div class="nf-rejection" id="noiseRejection">
+        <div class="rej-header">Filing Rejected</div>
+        <p>The Clerk's Office has reviewed your submission. Your reported wingspan is inconsistent with any registered resident species, your typing pattern suggests the use of fingers rather than a beak, and your description includes vocabulary not typically produced by birds.</p>
+        <p>This form is for residents of the Avian Municipal District. Humans are not residents. Humans are, in the Clerk's experience, a significant source of noise themselves.</p>
+        <p>This filing has not been processed. The Clerk's Office wishes you a quiet evening.</p>
+        <p class="rej-sig">— Clerk's Office, Avian Municipal District</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openNoiseForm() {
+  document.getElementById('noiseOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeNoiseForm() {
+  document.getElementById('noiseOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('noiseFormBody').classList.remove('rejected');
+  document.getElementById('noiseRejection').classList.remove('visible');
+  var btn = document.getElementById('noiseSubmit');
+  btn.textContent = 'Submit to Clerk\'s Office';
+  btn.style.pointerEvents = '';
+  btn.style.opacity = '';
+}
+
+function handleNoiseSubmit() {
+  var btn = document.getElementById('noiseSubmit');
+  btn.textContent = 'Processing...';
+  btn.style.pointerEvents = 'none';
+  btn.style.opacity = '0.5';
+  setTimeout(function() {
+    document.getElementById('noiseFormBody').classList.add('rejected');
+    document.getElementById('noiseRejection').classList.add('visible');
+    document.getElementById('noiseRejection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 1200);
+}
+</script>
 
 </body>
 </html>
