@@ -882,7 +882,7 @@ def issue_page_html(
 <footer class="site-footer">
 <p>{text(FOOTER_COPY)}</p>
 <p>{footer_link_html(archive_href, "Past Issues")}</p>
-<p class="district-links">Court records: <a href="/is/writing/nest-court/" target="_blank">Avian Municipal Nest Court &mdash; eCourt Portal</a><br>Personals: <a href="/is/writing/secondnest/" target="_blank">SecondNest &mdash; text-based, free, no photos</a></p>
+<p class="district-links">Court records: <a href="/is/writing/nest-court/" target="_blank">Avian Municipal Nest Court &mdash; eCourt Portal</a><br>Personals: <a href="/is/writing/secondnest/" target="_blank">SecondNest &mdash; text-based, free, no photos</a><br><a href="/is/writing/avian-district/" target="_blank">Avian Municipal District</a> · <a href="/is/writing/perch-chat/" target="_blank">The Perch</a> · <a href="/is/writing/karen-hawk/" target="_blank">Karen Hawk, Attorney at Law</a></p>
 </footer>
 
 </div>
