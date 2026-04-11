@@ -627,8 +627,8 @@
     }
 
     .chat-toggle svg {
-      width: 28px;
-      height: 28px;
+      width: 38px;
+      height: 38px;
     }
 
     .chat-toggle.prompting {
@@ -1148,8 +1148,15 @@
     </div>
 
     <button class="chat-toggle" type="button" id="chatToggle" aria-label="Open intake assistant">
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <path d="M6 8.5c0-2.5 2-4.5 4.5-4.5h11C24.99 4 27 6.01 27 8.5v7c0 2.49-2.01 4.5-4.5 4.5h-6.1L11 25.5v-5.5h-.5C8 20 6 17.99 6 15.5v-7z" fill="currentColor"></path>
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <line x1="12" y1="42" x2="52" y2="42" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="34" cy="33" rx="11" ry="12" fill="currentColor"/>
+        <ellipse cx="34" cy="25" rx="8" ry="8" fill="currentColor"/>
+        <circle cx="37" cy="24" r="1.8" fill="#e07c4d"/>
+        <polygon points="42,22 48,19 47,24" fill="currentColor"/>
+        <line x1="46" y1="17" x2="49" y2="14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="48" y1="19" x2="52" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <polygon points="24,38 22,46 28,42" fill="currentColor"/>
       </svg>
     </button>
   </div>
@@ -1353,12 +1360,7 @@
       }
     }, 3500);
 
-    const autoOpenTimer = setTimeout(() => {
-      if (!compactViewport.matches && !state.open && !state.started) {
-        openChat();
-        startConversation();
-      }
-    }, 5000);
+    const autoOpenTimer = null;
 
     function dayPartLabel() {
       const hour = new Date().getHours();
