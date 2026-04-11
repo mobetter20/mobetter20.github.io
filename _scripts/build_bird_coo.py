@@ -749,6 +749,23 @@ def footer_link_html(href: str, label: str) -> str:
     return f'<a href="{html.escape(href, quote=True)}">{text(label)}</a>'
 
 
+CASE_LINKS = {
+    "AMNC-2026-007B": "/is/writing/nest-court-proceedings/",
+    "AMNC-2025-022C": "/is/writing/nest-court-proceedings-starling/",
+    "AMNC-2024-119A": "/is/writing/nest-court-proceedings-pigeon/",
+}
+
+
+def link_case_numbers(html_str: str, *, relative_prefix: str = "") -> str:
+    """Replace first occurrence of each case number with a link to its proceedings page."""
+    import re
+    for case_no, href in CASE_LINKS.items():
+        target = relative_prefix + href if relative_prefix else href
+        linked = f'<a href="{target}" target="_blank">{case_no}</a>'
+        html_str = re.sub(re.escape(case_no), linked, html_str, count=1)
+    return html_str
+
+
 def issue_page_html(
     issue: Issue,
     *,
@@ -976,13 +993,13 @@ def main() -> None:
     for issue in ISSUES:
         write_text(
             ISSUES_ROOT / f"{issue.slug}.html",
-            issue_page_html(
+            link_case_numbers(issue_page_html(
                 issue,
                 styles_href="../styles.css",
                 analytics_href="../../../../analytics.js",
                 archive_href="./index.html",
                 canonical_href=f"https://ajin.im/is/writing/bird-coo/issues/{issue.slug}.html",
-            ),
+            )),
         )
 
     write_text(
@@ -998,13 +1015,13 @@ def main() -> None:
 
     write_text(
         BIRD_COO_ROOT / "index.html",
-        issue_page_html(
+        link_case_numbers(issue_page_html(
             current_issue,
             styles_href="./styles.css",
             analytics_href="../../../analytics.js",
             archive_href="./issues/index.html",
             canonical_href="https://ajin.im/is/writing/bird-coo/",
-        ),
+        )),
     )
 
     print(
