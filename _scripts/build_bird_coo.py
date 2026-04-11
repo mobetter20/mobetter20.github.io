@@ -879,7 +879,7 @@ def issue_page_html(
 
 </main>
 
-<footer class="page-footer">
+<footer class="site-footer">
 <p>{text(FOOTER_COPY)}</p>
 <p>{footer_link_html(archive_href, "Past Issues")}</p>
 </footer>
@@ -952,7 +952,7 @@ def archive_page_html(
 </section>
 </div>
 
-<footer class="page-footer">
+<footer class="site-footer">
 <p>{footer_link_html('../index.html', 'Return to current issue')}</p>
 </footer>
 </div>
