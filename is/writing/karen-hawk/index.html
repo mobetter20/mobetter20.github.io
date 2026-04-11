@@ -242,10 +242,12 @@
     .hero-panel {
       position: relative;
       z-index: 1;
+      container-type: inline-size;
       display: grid;
       grid-template-rows: auto auto 1fr;
       gap: 18px;
       min-width: 0;
+      overflow: hidden;
       padding: 22px;
       border: 1px solid rgba(242, 196, 171, 0.16);
       border-radius: 26px;
@@ -272,6 +274,14 @@
       width: 56px;
       height: 56px;
       flex: 0 0 auto;
+    }
+
+    @container (max-width: 340px) {
+      .seal-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
     }
 
     .seal-title {
