@@ -20,6 +20,18 @@ Modular files:
 
 `_scripts/build_bird_coo.py` generates all Municipal Coo HTML (index, issues, archive). Manual edits to generated files will be overwritten on next build. Make template changes in the build script.
 
+## CSS / Layout Changes
+
+Any change to padding, margin, width, max-width, grid, or flexbox layout requires verification at three widths before committing:
+
+1. **Mobile** (375px) — check nothing overflows or misaligns
+2. **Tablet** (~768px) — check breakpoint transitions
+3. **Desktop** (1280px+) — check content is properly constrained
+
+Before adding padding or margin to any element, check if that selector appears in a `@media` block — mobile overrides will stack with your change and cause double-padding or misalignment.
+
+When changing a container's width or padding, inspect the computed width of the changed element AND the elements visually adjacent to it (above/below) to confirm they still align.
+
 ## Cross-Site Links
 
 - Use root-relative paths (`/is/writing/nest-court/`) not relative (`../nest-court/`)
