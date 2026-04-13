@@ -4,17 +4,20 @@ Static site hosted on GitHub Pages. Contains the creative house at `ajin.im/is/w
 
 ## World Bible
 
-The world-building reference for the Avian Municipal District lives in a private repo:
-**github.com/mobetter20/ajin-universe-bible** (private)
+The world-building reference for the Avian Municipal District lives in two locations that must stay in sync:
 
-Modular files:
-- `INDEX.md` — what to load and when
+- **Local (primary working copy):** the `bird-universe/` folder in the local writing directory
+- **GitHub (backup):** `github.com/mobetter20/ajin-universe-bible` (private)
+
+Read `INDEX.md` for what to load and when. Modular files:
 - `00-foundation.md` — philosophy, tone hierarchy, house principles
 - `01-strategy.md` — current state, priorities, interconnections
 - `02-registry.md` — characters, cases, locations, objects, workflow
 - `03-coo-taxonomy.md` — 12 story categories for The Municipal Coo
 
-**Before writing content** for any bird-universe site, check `02-registry.md` for entity facts. After publishing, update the registry with new facts established.
+**Before writing content** for any bird-universe site, check `02-registry.md` for entity facts.
+
+**After publishing**, update the registry with new facts established (characters, locations, channel changes, etc.) in BOTH the local copy and the GitHub repo. Do not leave them out of sync.
 
 ## Build Scripts
 
