@@ -362,6 +362,51 @@
       color: var(--text);
     }
 
+    .channel-group {
+      padding: 0.3rem 0.4rem;
+    }
+
+    .group-header {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      width: 100%;
+      min-height: 2.75rem;
+      padding: 0.6rem 0.45rem;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .group-header:hover {
+      background: var(--bg-system);
+    }
+
+    .group-chevron {
+      color: var(--text-ghost);
+      font-size: 0.55rem;
+      flex-shrink: 0;
+      width: 0.6rem;
+    }
+
+    .group-label {
+      color: var(--text-dim);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .group-channels {
+      padding-left: 0.3rem;
+    }
+
+    .group-channels.collapsed {
+      display: none;
+    }
+
     .user-row {
       display: flex;
       align-items: center;
@@ -682,27 +727,18 @@
       "Robin": "#9B7E7E"
     };
 
+    const CHANNEL_GROUPS = [
+      { id: "sycamore-lane", label: "Sycamore Lane" },
+      { id: "park-grounds", label: "Park Grounds" },
+      { id: "open-grounds", label: "Open Grounds" }
+    ];
+
     const CHANNELS = [
-      {
-        id: "municipal",
-        name: "municipal-notices",
-        desc: "General district updates & coordination",
-        pinned_channel: true,
-        pinned: "This channel is designated for municipal notices and community coordination. The Clerk's Office requests that personal disputes be directed to the appropriate filing window. — T. Nuthatch",
-        users: [
-          { name: "T. Nuthatch", role: "Clerk", status: "online" },
-          { name: "Cheryl Sparrow", status: "online" },
-          { name: "R. Nuthatch", status: "online" },
-          { name: "Conrad", status: "online" },
-          { name: "Dennis", status: "idle" },
-          { name: "E. Starling", status: "idle" }
-        ]
-      },
       {
         id: "sycamore",
         name: "sycamore-lane",
         desc: "Neighborhood coordination — Sycamore Lane residents",
-        pinned_channel: true,
+        group: "sycamore-lane",
         pinned: "This channel is for Sycamore Lane residents and coordination. Meter-box schedules, lane maintenance, and seasonal notices will be posted here. Please keep observations relevant. — T. Nuthatch",
         users: [
           { name: "T. Nuthatch", role: "Clerk", status: "online" },
@@ -713,23 +749,10 @@
         ]
       },
       {
-        id: "southpath",
-        name: "south-path-and-park",
-        desc: "Park maintenance & south path coordination",
-        pinned: "Channel for south path, Municipal Park, and adjacent grounds. Maintenance schedules posted by the Clerk's Office. Please keep discussion relevant to park use. — T. Nuthatch",
-        users: [
-          { name: "T. Nuthatch", role: "Clerk", status: "online" },
-          { name: "F. Lark", status: "online" },
-          { name: "Robin", status: "online" },
-          { name: "Conrad", status: "idle" },
-          { name: "Dennis", status: "idle" },
-          { name: "E. Starling", status: "idle" }
-        ]
-      },
-      {
         id: "sycamore-east",
         name: "sycamore-east",
         desc: "East end coordination — Sycamore Lane & adjacent lots",
+        group: "sycamore-lane",
         pinned: "This channel covers the east section of Sycamore Lane including the turning circle and adjacent parking. Report obstructions or access issues to the Clerk\u2019s Office. \u2014 T. Nuthatch",
         users: [
           { name: "T. Nuthatch", role: "Clerk", status: "online" },
@@ -742,51 +765,10 @@
         ]
       },
       {
-        id: "bench-row",
-        name: "bench-row",
-        desc: "Bench row & south lot coordination",
-        pinned: "Channel for the bench row, south lot, and adjacent walkway. Maintenance and scheduling queries only. The third bench is not a municipal service. \u2014 T. Nuthatch",
-        users: [
-          { name: "T. Nuthatch", role: "Clerk", status: "online" },
-          { name: "F. Lark", status: "online" },
-          { name: "Robin", status: "online" },
-          { name: "Conrad", status: "online" },
-          { name: "Dennis", status: "idle" },
-          { name: "E. Starling", status: "idle" }
-        ]
-      },
-      {
-        id: "upper-canopy",
-        name: "upper-canopy",
-        desc: "Canopy level, airspace, and overhead concerns",
-        pinned: "This channel is for observations above tree line and airspace coordination. Report hazards, weather concerns, and overhead obstructions. Flight path disputes should be filed separately. \u2014 T. Nuthatch",
-        users: [
-          { name: "T. Nuthatch", role: "Clerk", status: "online" },
-          { name: "Robin", status: "online" },
-          { name: "F. Lark", status: "online" },
-          { name: "Conrad", status: "online" },
-          { name: "R. Nuthatch", status: "online" },
-          { name: "Dennis", status: "idle" }
-        ]
-      },
-      {
-        id: "west-meadow",
-        name: "west-meadow",
-        desc: "West meadow, tree line, and adjacent ground",
-        pinned: "Channel for the west meadow area and bordering tree line. Seasonal mowing schedules posted by the Clerk\u2019s Office. Do not use this channel for flight path disputes. \u2014 T. Nuthatch",
-        users: [
-          { name: "T. Nuthatch", role: "Clerk", status: "online" },
-          { name: "Conrad", status: "online" },
-          { name: "Robin", status: "online" },
-          { name: "F. Lark", status: "online" },
-          { name: "R. Nuthatch", status: "idle" },
-          { name: "Dennis", status: "idle" }
-        ]
-      },
-      {
         id: "garden-boundary",
         name: "garden-boundary",
         desc: "Garden fencing, hedging, and perimeter — Sycamore Lane",
+        group: "sycamore-lane",
         pinned: "Channel for the garden-side boundary of Sycamore Lane. Hedge trimming, fence repairs, and planter-box coordination. Do not post about front-facing issues here \u2014 use #sycamore-lane. \u2014 T. Nuthatch",
         users: [
           { name: "T. Nuthatch", role: "Clerk", status: "online" },
@@ -798,9 +780,101 @@
         ]
       },
       {
+        id: "elm-row",
+        name: "elm-row",
+        desc: "Elm row, tree line, and canopy access — Sycamore Lane",
+        group: "sycamore-lane",
+        pinned: "Channel for the elm row along the south side of Sycamore Lane. Canopy maintenance, root damage, and access coordination. Do not report front-of-lane issues here. — T. Nuthatch",
+        users: [
+          { name: "T. Nuthatch", role: "Clerk", status: "online" },
+          { name: "Cheryl Sparrow", status: "online" },
+          { name: "Denise Dove", status: "online" },
+          { name: "Gerald H.", status: "idle" },
+          { name: "Arthur P.", status: "idle" },
+          { name: "R. Nuthatch", status: "idle" }
+        ]
+      },
+      {
+        id: "municipal",
+        name: "municipal-notices",
+        desc: "General district updates & coordination",
+        group: "park-grounds",
+        pinned: "This channel is designated for municipal notices and community coordination. The Clerk's Office requests that personal disputes be directed to the appropriate filing window. — T. Nuthatch",
+        users: [
+          { name: "T. Nuthatch", role: "Clerk", status: "online" },
+          { name: "Cheryl Sparrow", status: "online" },
+          { name: "R. Nuthatch", status: "online" },
+          { name: "Conrad", status: "online" },
+          { name: "Dennis", status: "idle" },
+          { name: "E. Starling", status: "idle" }
+        ]
+      },
+      {
+        id: "southpath",
+        name: "south-path-and-park",
+        desc: "Park maintenance & south path coordination",
+        group: "park-grounds",
+        pinned: "Channel for south path, Municipal Park, and adjacent grounds. Maintenance schedules posted by the Clerk's Office. Please keep discussion relevant to park use. — T. Nuthatch",
+        users: [
+          { name: "T. Nuthatch", role: "Clerk", status: "online" },
+          { name: "F. Lark", status: "online" },
+          { name: "Robin", status: "online" },
+          { name: "Conrad", status: "idle" },
+          { name: "Dennis", status: "idle" },
+          { name: "E. Starling", status: "idle" }
+        ]
+      },
+      {
+        id: "bench-row",
+        name: "bench-row",
+        desc: "Bench row & south lot coordination",
+        group: "park-grounds",
+        pinned: "Channel for the bench row, south lot, and adjacent walkway. Maintenance and scheduling queries only. The third bench is not a municipal service. \u2014 T. Nuthatch",
+        users: [
+          { name: "T. Nuthatch", role: "Clerk", status: "online" },
+          { name: "F. Lark", status: "online" },
+          { name: "Robin", status: "online" },
+          { name: "Conrad", status: "online" },
+          { name: "Dennis", status: "idle" },
+          { name: "E. Starling", status: "idle" }
+        ]
+      },
+      {
+        id: "north-loop",
+        name: "north-loop",
+        desc: "North path loop, connecting trails, and overpass",
+        group: "park-grounds",
+        pinned: "Channel for the north loop path, connecting trails, and the overpass crossing. Speed and access concerns should be reported here. Foot traffic has priority. — T. Nuthatch",
+        users: [
+          { name: "T. Nuthatch", role: "Clerk", status: "online" },
+          { name: "Robin", status: "online" },
+          { name: "F. Lark", status: "online" },
+          { name: "Conrad", status: "online" },
+          { name: "R. Nuthatch", status: "online" },
+          { name: "Dennis", status: "idle" }
+        ]
+      },
+      {
+        id: "culvert-path",
+        name: "culvert-path",
+        desc: "Culvert crossing, east path, and drainage channel",
+        group: "park-grounds",
+        pinned: "Channel for the culvert path between the south lot and the east meadow. Drainage blockages, path erosion, and flooding should be reported here. — T. Nuthatch",
+        users: [
+          { name: "T. Nuthatch", role: "Clerk", status: "online" },
+          { name: "Robin", status: "online" },
+          { name: "F. Lark", status: "online" },
+          { name: "Conrad", status: "online" },
+          { name: "R. Nuthatch", status: "idle" },
+          { name: "Dennis", status: "idle" },
+          { name: "E. Starling", status: "idle" }
+        ]
+      },
+      {
         id: "south-lot",
         name: "south-lot",
         desc: "South lot, overflow parking, and adjacent walkway",
+        group: "open-grounds",
         pinned: "Channel for the south parking lot and overflow area. Report obstructions, abandoned vehicles, and access issues. The lot closes at dusk. \u2014 T. Nuthatch",
         users: [
           { name: "T. Nuthatch", role: "Clerk", status: "online" },
@@ -809,6 +883,36 @@
           { name: "Conrad", status: "online" },
           { name: "Dennis", status: "idle" },
           { name: "E. Starling", status: "idle" }
+        ]
+      },
+      {
+        id: "west-meadow",
+        name: "west-meadow",
+        desc: "West meadow, tree line, and adjacent ground",
+        group: "open-grounds",
+        pinned: "Channel for the west meadow area and bordering tree line. Seasonal mowing schedules posted by the Clerk\u2019s Office. Do not use this channel for flight path disputes. \u2014 T. Nuthatch",
+        users: [
+          { name: "T. Nuthatch", role: "Clerk", status: "online" },
+          { name: "Conrad", status: "online" },
+          { name: "Robin", status: "online" },
+          { name: "F. Lark", status: "online" },
+          { name: "R. Nuthatch", status: "idle" },
+          { name: "Dennis", status: "idle" }
+        ]
+      },
+      {
+        id: "upper-canopy",
+        name: "upper-canopy",
+        desc: "Canopy level, airspace, and overhead concerns",
+        group: "open-grounds",
+        pinned: "This channel is for observations above tree line and airspace coordination. Report hazards, weather concerns, and overhead obstructions. Flight path disputes should be filed separately. \u2014 T. Nuthatch",
+        users: [
+          { name: "T. Nuthatch", role: "Clerk", status: "online" },
+          { name: "Robin", status: "online" },
+          { name: "F. Lark", status: "online" },
+          { name: "Conrad", status: "online" },
+          { name: "R. Nuthatch", status: "online" },
+          { name: "Dennis", status: "idle" }
         ]
       },
       {
@@ -868,7 +972,7 @@
       }
     ];
 
-    const DEFAULT_CHANNEL = "municipal";
+    const DEFAULT_CHANNEL = "sycamore";
 
     const visibleCounts = {};
     const hasVisited = {};
@@ -1072,37 +1176,32 @@
       );
     }
 
+    function getActiveGroupId() {
+      var active = getChannel(state.activeChannel);
+      return active && active.group ? active.group : null;
+    }
+
     function buildChannelSections(activeChannelId) {
-      var pinned = [];
-      var regular = [];
-      var locked = [];
-
-      CHANNELS.forEach(function(channel) {
-        if (channel.locked) {
-          locked.push(channel);
-        } else if (channel.pinned_channel) {
-          pinned.push(channel);
-        } else {
-          regular.push(channel);
-        }
-      });
-
+      var activeGroupId = getActiveGroupId();
       var html = '';
 
-      if (pinned.length) {
-        html += '<div class="sidebar-section">' +
-          '<div class="sidebar-kicker">Pinned Channels</div>' +
-          pinned.map(function(ch) { return buildChannelButton(ch, activeChannelId); }).join("") +
-        '</div>';
-      }
+      CHANNEL_GROUPS.forEach(function(group) {
+        var channels = CHANNELS.filter(function(ch) { return ch.group === group.id; });
+        if (!channels.length) return;
 
-      if (regular.length) {
-        html += '<div class="sidebar-section">' +
-          '<div class="sidebar-kicker">Channels</div>' +
-          regular.map(function(ch) { return buildChannelButton(ch, activeChannelId); }).join("") +
+        var isOpen = group.id === activeGroupId;
+        html += '<div class="sidebar-section channel-group">' +
+          '<button class="group-header" data-group-id="' + group.id + '" aria-expanded="' + isOpen + '">' +
+            '<span class="group-chevron">' + (isOpen ? '\u25BE' : '\u25B8') + '</span>' +
+            '<span class="group-label">' + escapeHtml(group.label) + '</span>' +
+          '</button>' +
+          '<div class="group-channels' + (isOpen ? '' : ' collapsed') + '">' +
+            channels.map(function(ch) { return buildChannelButton(ch, activeChannelId); }).join("") +
+          '</div>' +
         '</div>';
-      }
+      });
 
+      var locked = CHANNELS.filter(function(ch) { return ch.locked; });
       if (locked.length) {
         html += '<div class="sidebar-section">' +
           locked.map(function(ch) { return buildChannelButton(ch, activeChannelId); }).join("") +
@@ -1278,6 +1377,18 @@
             return;
           }
           goToScreeningStep(nextStep);
+        });
+      });
+
+      document.querySelectorAll("[data-group-id]").forEach(function(button) {
+        button.addEventListener("click", function() {
+          var groupId = button.getAttribute("data-group-id");
+          var activeGroupId = getActiveGroupId();
+          if (groupId === activeGroupId) return;
+          var firstChannel = CHANNELS.find(function(ch) { return ch.group === groupId && !ch.locked; });
+          if (firstChannel) {
+            switchChannel(firstChannel.id);
+          }
         });
       });
 
