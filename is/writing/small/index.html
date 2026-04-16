@@ -34,17 +34,32 @@ body {
 }
 
 .back-link {
-  display: inline-block;
-  font-size: 11px;
-  color: #555;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #888;
   text-decoration: none;
-  letter-spacing: 0.08em;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   transition: color 0.15s ease;
 }
 
+.back-link::before {
+  content: "";
+  width: 43px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(207, 207, 207, 0.5));
+  transition: background 0.15s ease;
+}
+
 .back-link:hover {
-  color: #888;
+  color: #cfcfcf;
+}
+
+.back-link:hover::before {
+  background: linear-gradient(90deg, transparent, rgba(207, 207, 207, 0.75));
 }
 
 .page-title {
@@ -138,7 +153,7 @@ body {
 <body>
 <div class="page">
   <header class="page-header">
-    <a class="back-link" href="/is/writing/">&larr; back</a>
+    <a class="back-link" href="/is/writing/">Back to the house</a>
     <h1 class="page-title">Small things</h1>
     <p class="page-intro">Single-page experiences. Complete on their own, small enough to live without a room.</p>
   </header>
