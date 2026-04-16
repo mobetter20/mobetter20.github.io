@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>small</title>
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0d0d0d;
+  color: #888;
+  font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.page-title {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 32px;
+  font-weight: normal;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.card {
+  display: block;
+  background: #141414;
+  border: 1px solid #1f1f1f;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.card:hover {
+  border-color: #333;
+}
+
+.card-image {
+  aspect-ratio: 16 / 9;
+  background: #1a1a1a;
+  overflow: hidden;
+}
+
+.card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 12px;
+}
+
+.card-title {
+  font-size: 12px;
+  color: #cfcfcf;
+  margin-bottom: 4px;
+}
+
+.card-desc {
+  font-size: 11px;
+  color: #666;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 32px 16px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="page-title">small</div>
+  <div class="grid">
+    <a class="card" href="https://debugu.xyz" target="_blank" rel="noopener">
+      <div class="card-image">
+        <img src="/is/writing/small/screenshots/debugu.png" alt="debug::u" onerror="this.style.display='none'">
+      </div>
+      <div class="card-body">
+        <div class="card-title">debug::u</div>
+        <div class="card-desc">a diagnostic console for what you're feeling.</div>
+      </div>
+    </a>
+    <a class="card" href="/is/writing/small/deadend/">
+      <div class="card-image">
+        <img src="/is/writing/small/screenshots/deadend.png" alt="deadend" onerror="this.style.display='none'">
+      </div>
+      <div class="card-body">
+        <div class="card-title">deadend</div>
+        <div class="card-desc">for getting out of your thought that goes nowhere.</div>
+      </div>
+    </a>
+  </div>
+</div>
+</body>
+</html>

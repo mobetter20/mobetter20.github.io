@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>deadend</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #0d0d0d;
+    color: #cfcfcf;
+    font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    min-height: 100vh;
+  }
+
+  #frame {
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* --- Header --- */
+
+  #title {
+    font-size: 11px;
+    color: #5a5a5a;
+    letter-spacing: 0.3px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  #title .name { color: #888; }
+  #title .sep  { color: #333; margin: 0 4px; }
+
+  /* --- Thought display --- */
+
+  #thought-display {
+    font-size: 12px;
+    color: #888;
+    min-height: 18px;
+    letter-spacing: 0.2px;
+    padding: 4px 0;
+  }
+  #thought-display .quote { color: #cfcfcf; }
+
+  /* --- Stage --- */
+
+  #stage {
+    position: relative;
+    height: 140px;
+    border-top: 1px solid #1f1f1f;
+    border-bottom: 1px solid #1f1f1f;
+    overflow: hidden;
+  }
+
+  #ground {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 36px;
+    height: 1px;
+    background: #1a1a1a;
+  }
+
+  #sprite {
+    position: absolute;
+    bottom: 36px;
+    left: 0;
+    width: 16px;
+    height: 20px;
+    transition: none;
+  }
+
+  #wall {
+    position: absolute;
+    bottom: 36px;
+    width: 2px;
+    height: 48px;
+    background: #cfcfcf;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+  #wall.visible { opacity: 1; }
+
+  /* --- Question prompt --- */
+
+  #question {
+    font-size: 12px;
+    color: #888;
+    min-height: 18px;
+    letter-spacing: 0.3px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  #question.visible { opacity: 1; }
+
+  /* --- Distortions --- */
+
+  #distortions {
+    display: none;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 0;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  #distortions.visible { display: flex; }
+
+  .distortion {
+    font-size: 11px;
+    color: #666;
+    padding: 4px 8px;
+    border: 1px solid #222;
+    cursor: pointer;
+    position: relative;
+    letter-spacing: 0.2px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    user-select: none;
+  }
+
+  .distortion:hover {
+    color: #cfcfcf;
+    border-color: #444;
+  }
+
+  .distortion.active {
+    color: #cfcfcf;
+    border-color: #666;
+    background: #141414;
+  }
+
+  .distortion .tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 8px 10px;
+    width: 240px;
+    font-size: 11px;
+    color: #bbb;
+    line-height: 1.5;
+    letter-spacing: 0.1px;
+    z-index: 10;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .distortion:hover .tooltip { display: block; }
+
+  /* --- Inputs --- */
+
+  #input-area, #refute-area {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid #1f1f1f;
+    background: #0d0d0d;
+  }
+  #input-area:focus-within,
+  #refute-area:focus-within { border-color: #333; }
+
+  #refute-area { display: none; }
+  #refute-area.visible { display: flex; }
+
+  .prompt-char {
+    padding: 11px 0 11px 12px;
+    color: #444;
+    user-select: none;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #cfcfcf;
+    padding: 11px 12px;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    resize: none;
+    min-height: 38px;
+    max-height: 120px;
+    overflow-y: auto;
+  }
+  textarea::placeholder { color: #3a3a3a; }
+  textarea:disabled { color: #555; cursor: not-allowed; }
+
+  #input-guidance {
+    font-size: 11px;
+    color: #5a5a5a;
+    line-height: 1.7;
+    letter-spacing: 0.2px;
+    text-align: center;
+    padding: 4px 0;
+  }
+
+  /* --- Status + footer --- */
+
+  #status {
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    min-height: 14px;
+    letter-spacing: 0.3px;
+  }
+
+  #reset {
+    font-size: 10px;
+    color: #333;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    letter-spacing: 0.3px;
+    padding: 4px 0;
+    display: none;
+  }
+  #reset.visible { display: block; }
+  #reset:hover { color: #666; }
+
+  #footnote {
+    font-size: 10px;
+    color: #2a2a2a;
+    text-align: center;
+    letter-spacing: 0.3px;
+    padding-top: 4px;
+  }
+</style>
+</head>
+<body>
+  <div id="frame">
+    <div id="title">
+      <span class="name">deadend</span><span class="sep">:</span><span>for getting out of your thought that goes nowhere.</span>
+    </div>
+
+    <div id="thought-display">&nbsp;</div>
+
+    <div id="stage">
+      <div id="ground"></div>
+      <div id="wall"></div>
+      <svg id="sprite" viewBox="0 0 8 10" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"></svg>
+    </div>
+
+    <div id="question">is this true?</div>
+
+    <div id="distortions"><!-- populated by JS --></div>
+
+    <div id="status">&nbsp;</div>
+
+    <div id="input-guidance">
+      what happened? write a neutral observation. factual statement, not a judgement.
+    </div>
+
+    <div id="input-area">
+      <span class="prompt-char">&gt;</span>
+      <textarea id="input" autofocus placeholder="write the thought" rows="1"></textarea>
+    </div>
+
+    <div id="refute-area">
+      <span class="prompt-char">&raquo;</span>
+      <textarea id="refute-input" placeholder="refute your own thought" rows="1"></textarea>
+    </div>
+
+    <div id="reset">reset</div>
+
+    <div id="footnote">enter to submit · shift+enter for newline</div>
+  </div>
+
+  <script>
+    // --- Distortion reference (9 categories) ----------------------------
+
+    const DEFAULT_REFUTE_PROMPT = 'refute your own thought';
+
+    const DISTORTIONS = [
+      {
+        name: 'all-or-nothing',
+        explanation: 'seeing things in extremes. always, never, totally, ruined. no middle.',
+        prompt: 'refute your own thought. without extremes.'
+      },
+      {
+        name: 'overgeneralization',
+        explanation: 'one bad instance becomes every instance. "this always happens."',
+        prompt: 'refute your own thought. this instance only, not a perceived pattern.'
+      },
+      {
+        name: 'mind-reading',
+        explanation: 'claiming to know what someone else thinks or feels. unseeable from outside.',
+        prompt: 'refute your own thought. without claiming others state.'
+      },
+      {
+        name: 'fortune-telling',
+        explanation: 'stating the future as known fact. "this will never work."',
+        prompt: 'refute your own thought. without predicting.'
+      },
+      {
+        name: 'catastrophizing',
+        explanation: 'treating something bad as the end. "it\'s over." "i can\'t survive this."',
+        prompt: 'refute your own thought. at real scale.'
+      },
+      {
+        name: 'emotional reasoning',
+        explanation: 'treating a feeling as proof. "i feel worthless, so i must be."',
+        prompt: 'refute your own thought. without using the feeling as proof.'
+      },
+      {
+        name: 'labeling',
+        explanation: 'turning a behavior or event into an identity. "i\'m a failure."',
+        prompt: 'refute your own thought. state the behavior, not the identity.'
+      },
+      {
+        name: 'should statements',
+        explanation: 'demands on self or others that override reality. "i should have known."',
+        prompt: 'refute your own thought. what is, not what should be.'
+      },
+      {
+        name: 'personalization / blame',
+        explanation: 'assigning your state to someone else\'s action, skipping your own response as the actual cause. "he ruined my day." "she made me feel stupid."',
+        prompt: 'refute your own thought. agency comes from responsibility. what agency did you have?'
+      }
+    ];
+
+    // --- Sprite frames --------------------------------------------------
+
+    const COLOR = '#a04545'; // red sprite
+
+    function spriteFrame(a) {
+      if (a) {
+        return `
+          <rect x="3" y="0" width="2" height="2" fill="${COLOR}"/>
+          <rect x="2" y="2" width="4" height="1" fill="${COLOR}"/>
+          <rect x="2" y="3" width="4" height="2" fill="${COLOR}"/>
+          <rect x="3" y="5" width="2" height="2" fill="${COLOR}"/>
+          <rect x="2" y="7" width="1" height="3" fill="${COLOR}"/>
+          <rect x="5" y="7" width="1" height="3" fill="${COLOR}"/>
+        `;
+      }
+      return `
+        <rect x="3" y="0" width="2" height="2" fill="${COLOR}"/>
+        <rect x="2" y="2" width="4" height="1" fill="${COLOR}"/>
+        <rect x="2" y="3" width="4" height="2" fill="${COLOR}"/>
+        <rect x="3" y="5" width="2" height="2" fill="${COLOR}"/>
+        <rect x="1" y="7" width="2" height="3" fill="${COLOR}"/>
+        <rect x="5" y="7" width="2" height="3" fill="${COLOR}"/>
+      `;
+    }
+
+    // --- DOM refs --------------------------------------------------------
+
+    const stage          = document.getElementById('stage');
+    const sprite         = document.getElementById('sprite');
+    const wall           = document.getElementById('wall');
+    const thoughtDisplay = document.getElementById('thought-display');
+    const questionEl     = document.getElementById('question');
+    const distortionsEl  = document.getElementById('distortions');
+    const status         = document.getElementById('status');
+    const input          = document.getElementById('input');
+    const refuteArea     = document.getElementById('refute-area');
+    const refuteInput    = document.getElementById('refute-input');
+    const resetEl        = document.getElementById('reset');
+
+    // --- Populate distortions -------------------------------------------
+
+    DISTORTIONS.forEach(d => {
+      const el = document.createElement('div');
+      el.className = 'distortion';
+      el.innerHTML = `${d.name}<div class="tooltip">${d.explanation}</div>`;
+      el.addEventListener('click', () => {
+        if (el.classList.contains('active')) {
+          el.classList.remove('active');
+          refuteInput.placeholder = DEFAULT_REFUTE_PROMPT;
+          return;
+        }
+        distortionsEl.querySelectorAll('.distortion.active').forEach(o => o.classList.remove('active'));
+        el.classList.add('active');
+        refuteInput.placeholder = d.prompt;
+        refuteInput.focus();
+      });
+      distortionsEl.appendChild(el);
+    });
+
+    // --- State ----------------------------------------------------------
+
+    let phase = 'awaiting-thought'; // 'awaiting-refutation' | 'resolved'
+    let walkTimer = null;
+
+    function setSprite(a) { sprite.innerHTML = spriteFrame(a); }
+
+    function startWalkCycle() {
+      let a = true;
+      stopWalkCycle();
+      walkTimer = setInterval(() => {
+        a = !a;
+        setSprite(a);
+      }, 160);
+    }
+    function stopWalkCycle() {
+      if (walkTimer) { clearInterval(walkTimer); walkTimer = null; }
+      setSprite(true);
+    }
+
+    // --- Wall placement -------------------------------------------------
+
+    const WALL_POSITION = 0.45; // 45% across the stage
+
+    function placeWall() {
+      const w = stage.clientWidth;
+      const x = Math.round(w * WALL_POSITION);
+      wall.style.left = x + 'px';
+      // fade in
+      requestAnimationFrame(() => {
+        setTimeout(() => wall.classList.add('visible'), 50);
+      });
+      return x;
+    }
+
+    function dropWall() {
+      wall.classList.remove('visible');
+    }
+
+    // --- Walk functions -------------------------------------------------
+
+    function walkSprite(targetX, duration) {
+      return new Promise(resolve => {
+        sprite.style.transition = `left ${duration}ms linear`;
+        sprite.style.left = targetX + 'px';
+        startWalkCycle();
+        setTimeout(() => {
+          stopWalkCycle();
+          resolve();
+        }, duration);
+      });
+    }
+
+    // --- UI helpers -----------------------------------------------------
+
+    function showThought(text) {
+      thoughtDisplay.innerHTML = '<span class="quote">' + escapeHtml(text) + '</span>';
+    }
+
+    function hideAll() {
+      questionEl.classList.remove('visible');
+      distortionsEl.classList.remove('visible');
+      refuteArea.classList.remove('visible');
+      resetEl.classList.remove('visible');
+      wall.classList.remove('visible');
+      thoughtDisplay.innerHTML = '&nbsp;';
+      status.textContent = '';
+    }
+
+    function resetAll() {
+      hideAll();
+      stopWalkCycle();
+      sprite.style.transition = 'none';
+      sprite.style.left = '0px';
+      sprite.offsetHeight;
+      setSprite(true);
+      input.value = '';
+      refuteInput.value = '';
+      input.disabled = false;
+      refuteInput.disabled = false;
+      distortionsEl.querySelectorAll('.distortion.active').forEach(el => el.classList.remove('active'));
+      refuteInput.placeholder = DEFAULT_REFUTE_PROMPT;
+      autoresize(input);
+      autoresize(refuteInput);
+      phase = 'awaiting-thought';
+      input.focus();
+    }
+
+    // --- Phase 1: thought submission ------------------------------------
+
+    async function submitThought(text) {
+      if (phase !== 'awaiting-thought') return;
+      phase = 'processing';
+      input.disabled = true;
+      showThought(text);
+
+      // place wall ahead of sprite
+      const wallX = placeWall();
+
+      // walk sprite up to just before the wall
+      const stopX = wallX - 18; // sprite ~16px wide, stop 2px before wall
+      await walkSprite(stopX, 1300);
+
+      // reveal the question + distortions + refute input
+      questionEl.classList.add('visible');
+      distortionsEl.classList.add('visible');
+      refuteArea.classList.add('visible');
+      refuteInput.focus();
+
+      phase = 'awaiting-refutation';
+    }
+
+    // --- Phase 2: refutation submission ---------------------------------
+
+    async function submitRefutation(text) {
+      if (phase !== 'awaiting-refutation') return;
+      phase = 'resolving';
+      refuteInput.disabled = true;
+
+      // drop the wall
+      dropWall();
+
+      // brief pause to let the wall visually clear
+      await new Promise(r => setTimeout(r, 350));
+
+      // walk sprite to end of stage and off
+      const endX = stage.clientWidth + 24;
+      await walkSprite(endX, 1500);
+
+      status.textContent = 'through.';
+      resetEl.classList.add('visible');
+      phase = 'resolved';
+    }
+
+    // --- Utilities ------------------------------------------------------
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function autoresize(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(120, el.scrollHeight) + 'px';
+    }
+
+    // --- Listeners ------------------------------------------------------
+
+    input.addEventListener('input', () => autoresize(input));
+    refuteInput.addEventListener('input', () => autoresize(refuteInput));
+
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+        submitThought(text);
+      }
+    });
+
+    refuteInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        const text = refuteInput.value.trim();
+        if (!text) return;
+        submitRefutation(text);
+      }
+    });
+
+    resetEl.addEventListener('click', resetAll);
+
+    // --- Init -----------------------------------------------------------
+
+    setSprite(true);
+    autoresize(input);
+    autoresize(refuteInput);
+  </script>
+</body>
+</html>
