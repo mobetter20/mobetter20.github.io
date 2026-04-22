@@ -1,12 +1,13 @@
 # ajin.im stats
 
 ## running
-# Manual entry for now. Future: Garmin Connect integration will overwrite total_km.
-# Other fields stay manual since they depend on derivation from total_km.
+# total_km is auto-incremented from daily journal `Run:` lines by update_stats_from_journal.py.
+# last_processed tracks the most recent journal date already folded in; re-runs start after it.
+# Other fields stay manual (since_year is static; earth/moon lines are derived in build_root.py).
 total_km: 75000
 since_year: 2009
+last_processed: 2026-04-21
 # Earth circumference: 40,075 km. Moon distance: 384,400 km.
-# These are calculated from total_km by the build script, not set manually.
 
 ## reading_current
 - The Knockout Queen — Rufi Thorpe
