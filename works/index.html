@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajin Im — Taste as a Service</title>
+  <meta name="description" content="Bilingual copywriter and editorial strategist. I help Korean tech companies sound world-class in English.">
+  <script src="/analytics.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FAFAF8;
+      --bg-alt: #F0EFEB;
+      --text: #1A1A1A;
+      --text-secondary: #5A5A56;
+      --accent: #1A1A1A;
+      --accent-warm: #C4633E;
+      --border: #E0DFD9;
+      --white: #FFFFFF;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; font-size: 17px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250, 250, 248, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    nav.scrolled { border-bottom-color: var(--border); }
+
+    .nav-name {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2rem; }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+
+    .hero-sub {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-creds span { white-space: nowrap; }
+    .hero-creds span::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-warm); margin-right: 0.5rem; vertical-align: middle; }
+
+    /* THESIS SECTION */
+    .thesis {
+      padding: 6rem 2rem;
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .thesis-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .thesis-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 2rem;
+    }
+
+    .thesis blockquote {
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      line-height: 1.3;
+      color: var(--bg);
+      margin-bottom: 2rem;
+    }
+
+    .thesis p {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: #A8A8A0;
+      max-width: 620px;
+    }
+
+    /* SECTION DEFAULTS */
+    section { padding: 6rem 2rem; }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.15;
+      margin-bottom: 3rem;
+    }
+
+    /* WHAT I DO */
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .capability {
+      background: var(--white);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+
+    .capability:hover { background: var(--bg); }
+
+    .capability-number {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent-warm);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .capability h3 {
+      font-family: var(--serif);
+      font-size: 1.375rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .capability p {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* EDGE - SYSTEMIC THINKING */
+    .edge {
+      padding: 5rem 2rem;
+      background: var(--bg-alt);
+    }
+
+    .edge-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .edge-points {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .edge-point {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .edge-point-marker {
+      width: 2px;
+      height: 100%;
+      min-height: 2.5rem;
+      background: var(--accent-warm);
+      margin-top: 0.25rem;
+    }
+
+    .edge-point h4 {
+      font-weight: 700;
+      font-size: 1.0625rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .edge-point p {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* WORK / PORTFOLIO */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .work-item {
+      border: 1px solid var(--border);
+      background: var(--white);
+      padding: 2rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-item:hover {
+      border-color: var(--text);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .work-category {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 0.75rem;
+    }
+
+    .work-item h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .work-item p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      flex-grow: 1;
+    }
+
+    .work-result {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .work-link {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--accent-warm);
+      letter-spacing: 0.02em;
+    }
+
+    .work-link::after { content: ' \2192'; }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 4px;
+      object-fit: cover;
+      filter: grayscale(10%);
+    }
+
+    .about-monogram {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--text);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-monogram span {
+      font-family: var(--serif);
+      font-size: 6rem;
+      color: var(--bg);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .about-text h2 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .about-text p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-text p strong { color: var(--text); }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      .nav-links a { font-size: 0.8125rem; }
+      .hero { padding: 7rem 1.25rem 3rem; min-height: auto; }
+      .capabilities-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-photo { max-width: 200px; }
+      section { padding: 4rem 1.25rem; }
+      .thesis { padding: 4rem 1.25rem; }
+      .edge { padding: 4rem 1.25rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero-creds { flex-direction: column; gap: 0.35rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-name">Ajin Im</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="mailto:contact@ajin.im">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-tag">Ajin Im</div>
+    <h1>Taste as a Service.</h1>
+    <p class="hero-sub">
+      Bilingual strategist who makes Korean tech companies
+      sound world-class in English &mdash; not translated, not corrected, but <em>right</em>.
+    </p>
+    <div class="hero-creds">
+      <span>Cited in Forbes &amp; Bloomberg</span>
+      <span>15,000+ subscribers built from zero</span>
+      <span>Seoul &amp; London</span>
+    </div>
+  </section>
+
+  <!-- THESIS -->
+  <div class="thesis">
+    <div class="thesis-inner">
+      <div class="thesis-label">The Premise</div>
+      <blockquote>
+        Writing got cheap.<br>
+        Knowing what&rsquo;s good didn&rsquo;t.
+      </blockquote>
+      <p>
+        I catch what others miss: the Konglish that erodes trust,
+        the tone that sounds translated, the messaging that&rsquo;s technically correct
+        but strategically empty. Copy systems, brand voice, product UX, growth content &mdash;
+        built to a standard, not just a deadline.
+      </p>
+    </div>
+  </div>
+
+  <!-- WHAT I DO -->
+  <section id="capabilities">
+    <div class="section-inner">
+      <div class="section-label">What I Do</div>
+      <h2 class="section-title">Your words, but better</h2>
+      <div class="capabilities-grid">
+        <div class="capability">
+          <div class="capability-number">01</div>
+          <h3>Product &amp; UX Copy</h3>
+          <p>Tooltips to onboarding flows. I build English copy systems that product teams actually use &mdash; not one-off translations that rot in a spreadsheet.</p>
+        </div>
+        <div class="capability">
+          <div class="capability-number">02</div>
+          <h3>Content &amp; Growth</h3>
+          <p>Blog strategy, SEO, email campaigns. I grew a logistics SaaS blog from nothing to 15K subscribers and coverage in Forbes and Bloomberg.</p>
+        </div>
+        <div class="capability">
+          <div class="capability-number">03</div>
+          <h3>Brand &amp; Messaging</h3>
+          <p>Landing pages, pricing copy, sales decks. I distill technical features into sharp value propositions that convert English-speaking buyers.</p>
+        </div>
+        <div class="capability">
+          <div class="capability-number">04</div>
+          <h3>Voice &amp; Tone</h3>
+          <p>Medium Top Writer. Reddit front page. I write for real audiences, not briefs &mdash; with range from B2B authority to internet-native comedy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDGE -->
+  <div class="edge">
+    <div class="edge-inner">
+      <div class="section-label">How I Think</div>
+      <h2 class="section-title">The operating system</h2>
+      <div class="edge-points">
+        <div class="edge-point">
+          <div class="edge-point-marker"></div>
+          <div>
+            <h4>Systems thinker</h4>
+            <p>I don't just write pages &mdash; I build copy systems, messaging architectures, and editorial workflows that scale across products and teams.</p>
+          </div>
+        </div>
+        <div class="edge-point">
+          <div class="edge-point-marker"></div>
+          <div>
+            <h4>Structural judgment</h4>
+            <p>I spot when hierarchy doesn't match intent, when naming breaks consistency, when a page says the right things in the wrong order. Most writers fix words. I fix architecture.</p>
+          </div>
+        </div>
+        <div class="edge-point">
+          <div class="edge-point-marker"></div>
+          <div>
+            <h4>Cultural bridge</h4>
+            <p>Korean by birth, bilingual by practice. I understand why Korean corporate tone distorts in English &mdash; and how to rebuild it so it sounds native, not patched.</p>
+          </div>
+        </div>
+        <div class="edge-point">
+          <div class="edge-point-marker"></div>
+          <div>
+            <h4>Tool-fluent</h4>
+            <p>I build my own workflows and use every tool that makes the work better &mdash; including AI. The difference is knowing when the output is good enough and when it isn&rsquo;t.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SELECTED WORK -->
+  <section id="work">
+    <div class="section-inner">
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-title">Proof, not promises.</h2>
+      <div class="work-grid">
+
+        <a href="https://www.tradlinx.com/" class="work-item" target="_blank" rel="noopener">
+          <div class="work-category">UX &amp; Content System</div>
+          <h3>Tradlinx &mdash; English Copy System</h3>
+          <p>Built the company&rsquo;s first English copy and UX writing system from scratch. Now used across all departments &mdash; product, marketing, sales, client tools.</p>
+          <div class="work-result">15K+ blog subscribers &bull; Forbes &amp; Bloomberg coverage &bull; 40%+ email open rates</div>
+          <span class="work-link">View site</span>
+        </a>
+
+        <a href="https://www.tradlinx.com/products/ocean-visibility/pricing" class="work-item" target="_blank" rel="noopener">
+          <div class="work-category">SaaS Landing Copy</div>
+          <h3>Pricing Page &amp; Conversion Copy</h3>
+          <p>Landing and pricing page copy tuned for clarity and conversion. Structured feature comparison, CTA hierarchy, and trust signals for B2B SaaS.</p>
+          <span class="work-link">View pricing page</span>
+        </a>
+
+        <a href="https://www.tradlinx.com/" class="work-item" target="_blank" rel="noopener">
+          <div class="work-category">B2B Messaging</div>
+          <h3>Messaging Strategy &amp; UVPs</h3>
+          <p>Distilled complex logistics technology features into sharp value propositions and strategic messaging blocks for global market positioning.</p>
+          <span class="work-link">View landing page</span>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=laDFXC7mBuM" class="work-item" target="_blank" rel="noopener">
+          <div class="work-category">Brand Copy</div>
+          <h3>LG Signature &mdash; Brand Event Copy</h3>
+          <p>Brand video and event copy with global tone and emotional clarity for premium product launch.</p>
+          <span class="work-link">Watch video</span>
+        </a>
+
+        <a href="https://www.lg.com/sa_en/better-choice/" class="work-item" target="_blank" rel="noopener">
+          <div class="work-category">Product Copy</div>
+          <h3>Region-Specific UX &amp; Microcopy</h3>
+          <p>Culturally fluent microcopy for product flows, onboarding, and region-specific user experiences. Not translated &mdash; rewritten for each market.</p>
+          <span class="work-link">View regional site</span>
+        </a>
+
+        <a href="https://www.pointsincase.com/author/ajin-im" class="work-item" target="_blank" rel="noopener">
+          <div class="work-category">Writing &amp; Voice</div>
+          <h3>Comedy &amp; Audience-First Writing</h3>
+          <p>Medium Top Writer in Comedy &amp; Satire. Reddit front page. Published across humor outlets with a focus on tone switches, narrative reversals, and internet-native storytelling.</p>
+          <span class="work-link">Read published work</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="background: var(--bg-alt);">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <!-- Swap this for a real photo: <img src="img/profile.png" alt="Ajin Im" class="about-photo"> -->
+          <div class="about-monogram"><span>A</span></div>
+        </div>
+        <div class="about-text">
+          <h2>About me</h2>
+          <p>
+            I'm a <strong>bilingual copywriter and editorial strategist</strong> based between Seoul and London. Korean by birth, English by craft. I've spent my career at the intersection where Korean ambition meets English-speaking markets &mdash; and the words keep getting in the way.
+          </p>
+          <p>
+            Currently <strong>UX Writer and Content Manager at Tradlinx</strong>, a logistics SaaS company, where I built the English content operation from zero &mdash; the blog, the copy system, the brand voice, the editorial workflow. I also write comedy that&rsquo;s hit Reddit&rsquo;s front page and earned Medium&rsquo;s Top Writer badge.
+          </p>
+          <p>
+            What connects all of it: <strong>I care whether the words actually work.</strong> Not whether they're grammatically correct or technically translated. Whether they land. Whether they convert. Whether they sound like a real company wrote them, not a translation layer. That's taste. And it's what I do.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">&copy; Ajin Im 2026</div>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/ajin-im/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.pointsincase.com/author/ajin-im" target="_blank" rel="noopener">Writing</a>
+        <a href="mailto:contact@ajin.im">contact@ajin.im</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+
+</body>
+</html>

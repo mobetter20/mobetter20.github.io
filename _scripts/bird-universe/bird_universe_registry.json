@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "lastReviewed": "2026-04-09",
+  "scope": "Bird-universe sites under /is/writing/ only. Excludes comedy, essays, and unrelated writing projects.",
+  "officialHubSlug": "avian-district",
+  "metaDirectorySlug": "bird-docket",
+  "notes": [
+    "avian-district is planned and will become the canonical in-world hub.",
+    "bird-docket remains live but is considered the meta/out-of-world directory.",
+    "Proceedings pages are subordinate to nest-court and should not be treated as peer hubs."
+  ],
+  "sites": [
+    {
+      "slug": "avian-district",
+      "title": "Avian Municipal District",
+      "kind": "official_hub",
+      "status": "live",
+      "canonicalPath": "/is/writing/avian-district/",
+      "publicUrl": "https://ajin.im/is/writing/avian-district/",
+      "parent": null,
+      "showInOfficialHub": false,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "bird-docket",
+      "title": "Bird Docket",
+      "kind": "meta_directory",
+      "status": "live",
+      "canonicalPath": "/is/writing/bird-docket/",
+      "publicUrl": "https://ajin.im/is/writing/bird-docket/",
+      "parent": null,
+      "showInOfficialHub": false,
+      "showInMetaDirectory": false
+    },
+    {
+      "slug": "nest-court",
+      "title": "Avian Municipal Nest Court",
+      "kind": "official_service",
+      "status": "live",
+      "canonicalPath": "/is/writing/nest-court/",
+      "publicUrl": "https://ajin.im/is/writing/nest-court/",
+      "parent": "avian-district",
+      "showInOfficialHub": true,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "nest-court-proceedings",
+      "title": "Nest Court Proceedings",
+      "kind": "record_surface",
+      "status": "live",
+      "canonicalPath": "/is/writing/nest-court-proceedings/",
+      "publicUrl": "https://ajin.im/is/writing/nest-court-proceedings/",
+      "parent": "nest-court",
+      "showInOfficialHub": false,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "nest-court-proceedings-pigeon",
+      "title": "Nest Court Proceedings — Pigeon",
+      "kind": "record_surface",
+      "status": "live",
+      "canonicalPath": "/is/writing/nest-court-proceedings-pigeon/",
+      "publicUrl": "https://ajin.im/is/writing/nest-court-proceedings-pigeon/",
+      "parent": "nest-court",
+      "showInOfficialHub": false,
+      "showInMetaDirectory": false
+    },
+    {
+      "slug": "nest-court-proceedings-starling",
+      "title": "Nest Court Proceedings — Starling",
+      "kind": "record_surface",
+      "status": "live",
+      "canonicalPath": "/is/writing/nest-court-proceedings-starling/",
+      "publicUrl": "https://ajin.im/is/writing/nest-court-proceedings-starling/",
+      "parent": "nest-court",
+      "showInOfficialHub": false,
+      "showInMetaDirectory": false
+    },
+    {
+      "slug": "bird-coo",
+      "title": "The Municipal Coo",
+      "kind": "media",
+      "status": "live",
+      "canonicalPath": "/is/writing/bird-coo/",
+      "publicUrl": "https://ajin.im/is/writing/bird-coo/",
+      "parent": "avian-district",
+      "showInOfficialHub": true,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "secondnest",
+      "title": "SecondNest",
+      "kind": "community",
+      "status": "live",
+      "canonicalPath": "/is/writing/secondnest/",
+      "publicUrl": "https://ajin.im/is/writing/secondnest/",
+      "parent": "avian-district",
+      "showInOfficialHub": true,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "perch-chat",
+      "title": "The Perch",
+      "kind": "community",
+      "status": "live",
+      "canonicalPath": "/is/writing/perch-chat/",
+      "publicUrl": "https://ajin.im/is/writing/perch-chat/",
+      "parent": "avian-district",
+      "showInOfficialHub": true,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "karen-hawk",
+      "title": "Karen Hawk, Attorney at Law",
+      "kind": "practitioner",
+      "status": "live",
+      "canonicalPath": "/is/writing/karen-hawk/",
+      "publicUrl": "https://ajin.im/is/writing/karen-hawk/",
+      "parent": "avian-district",
+      "showInOfficialHub": true,
+      "showInMetaDirectory": true
+    }
+  ],
+  "futureGeneratedBlocks": [
+    {
+      "name": "avian-district.services",
+      "status": "planned"
+    },
+    {
+      "name": "nest-court.district-resources",
+      "status": "planned"
+    },
+    {
+      "name": "bird-docket.meta-directory",
+      "status": "planned"
+    }
+  ]
+}
