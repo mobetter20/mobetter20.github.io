@@ -799,6 +799,8 @@ def issue_page_html(
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/img/a3.png">
+<link rel="apple-touch-icon" href="/img/a3.png">
 <title>{text(SITE_TITLE)} — {text(issue.archive_label)}</title>
 <meta name="description" content="{html.escape(issue.lead_headline, quote=True)}">
 <link rel="canonical" href="{html.escape(canonical_href, quote=True)}">
@@ -943,6 +945,8 @@ def archive_page_html(
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/img/a3.png">
+<link rel="apple-touch-icon" href="/img/a3.png">
 <title>{text(SITE_TITLE)} Archive</title>
 <meta name="description" content="Past issues of The Municipal Coo">
 <link rel="canonical" href="{html.escape(canonical_href, quote=True)}">

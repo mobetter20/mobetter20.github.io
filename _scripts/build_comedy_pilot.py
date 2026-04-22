@@ -99,6 +99,8 @@ def build_page(title: str, subtitle: str, date: str, canonical: str, body_html: 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/a3.png" />
+    <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>{html.escape(title)} | ajin.im/is/writing/comedy</title>
     <meta
       name="description"
