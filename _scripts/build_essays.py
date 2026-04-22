@@ -296,6 +296,8 @@ def build_post_page(post: EssayPost) -> str:
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/a3.png" />
+    <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>{html.escape(post.title)} | ajin.im/is/writing/essays</title>
     <meta name="description" content="{html.escape(post.excerpt or post.title)}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -358,6 +360,8 @@ def render_index(posts: list[EssayPost]) -> str:
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/a3.png" />
+    <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>ajin.im/is/writing/essays</title>
     <meta
       name="description"

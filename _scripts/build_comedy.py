@@ -243,6 +243,8 @@ def build_page(post: ComedyPost) -> str:
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/a3.png" />
+    <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>{html.escape(post.title)} | ajin.im/is/writing/comedy</title>
     <meta name="description" content="{html.escape(post.subtitle or post.title)}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -284,6 +286,8 @@ def build_standalone_page(post: StandaloneComedyPost) -> str:
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/a3.png" />
+    <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>{html.escape(post.title)} | ajin.im/is/writing/comedy</title>
     <meta name="description" content="{html.escape(post.subtitle or post.title)}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -343,6 +347,8 @@ def render_index(medium_posts: list[ComedyPost], standalone_posts: list[Standalo
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/a3.png" />
+    <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>ajin.im/is/writing/comedy</title>
     <meta name="description" content="Comedy pieces by Ajin Im, largely from the Medium years." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
