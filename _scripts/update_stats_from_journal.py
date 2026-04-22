@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
-"""Fold daily journal entries into content/stats.md.
+"""Fold Garmin run distance + daily journal Read/Learn events into stats.md.
 
-Reads one journal file per day from JOURNAL_DIR, parses `Key: value` lines,
-and applies:
-  Run:   accumulate km into stats.md running.total_km
-  Read:  started/finished/paused markers mutate reading_current + reading_year
-  Learn: started/stopped markers flag the commit message (no auto-edit)
+Source of truth:
+  - total_km: baseline_km + all-time run distance from Garmin Connect.
+  - reading_current / reading_year: mutated by `Read: started/finished/paused`
+    markers in journal files.
+  - learning prose: untouched by this script; `Learn:` markers surface in the
+    commit body for manual follow-up.
 
-Advances stats.md running.last_processed on success. Other keys (Sleep, State,
-goal, "One thing that happened") are ignored by design.
+On Garmin failure: send email + macOS banner, prefix commit body with WARN,
+skip total_km update. Journal Read/Learn still processes so reading lists
+don't stall behind a Garmin outage.
+
+On journal Read hard-error (marker with no unique match): abort without
+advancing last_processed so the user can fix and re-run.
 
 Usage:
-    python3 _scripts/update_stats_from_journal.py              # apply + commit + push
-    python3 _scripts/update_stats_from_journal.py --dry-run    # print, no writes
-    python3 _scripts/update_stats_from_journal.py --no-push    # commit locally only
-    python3 _scripts/update_stats_from_journal.py --today YYYY-MM-DD  # override cutoff
+    python3 _scripts/update_stats_from_journal.py              # sync + commit + push
+    python3 _scripts/update_stats_from_journal.py --dry-run    # no writes
+    python3 _scripts/update_stats_from_journal.py --no-push    # commit, no push
+    python3 _scripts/update_stats_from_journal.py --skip-garmin  # skip Garmin (test)
+    python3 _scripts/update_stats_from_journal.py --today YYYY-MM-DD
 """
 
 from __future__ import annotations
@@ -24,39 +30,39 @@ import re
 import subprocess
 import sys
 from dataclasses import dataclass, field
-from datetime import date, timedelta
+from datetime import date
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+SCRIPTS_DIR = REPO_ROOT / "_scripts"
 STATS_PATH = REPO_ROOT / "content" / "stats.md"
-INDEX_PATH = REPO_ROOT / "index.html"
-BUILD_ROOT = REPO_ROOT / "_scripts" / "build_root.py"
+BUILD_ROOT = SCRIPTS_DIR / "build_root.py"
+SYNC_GARMIN = SCRIPTS_DIR / "sync_from_garmin.py"
 JOURNAL_DIR = Path("/Users/ajin/Documents/New project/personal/Journal")
 
-MI_TO_KM = 1.609344
+sys.path.insert(0, str(SCRIPTS_DIR))
+from notify import notify  # noqa: E402
+
 JOURNAL_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})\.md$")
-RUN_SEGMENT_RE = re.compile(r"(\d+(?:\.\d+)?)\s*(km|kilometer|kilometers|mi|mile|miles)?", re.I)
 READ_MARKER_RE = re.compile(r"^(started|finished|paused)\s+(.+)$", re.I)
 LEARN_MARKER_RE = re.compile(r"^(started|stopped)\s+(.+)$", re.I)
 
 
 class JournalError(Exception):
-    """Bad grammar in a journal file. Caller decides whether to skip or abort."""
+    pass
 
 
 @dataclass
 class JournalResult:
     journal_date: date
-    run_km: float = 0.0
-    reads: list[tuple[str, str]] = field(default_factory=list)  # (action, phrase)
-    learn_notes: list[str] = field(default_factory=list)        # flagged for commit body
+    reads: list[tuple[str, str]] = field(default_factory=list)
+    learn_notes: list[str] = field(default_factory=list)
     errors: list[str] = field(default_factory=list)
 
 
 # ---------- journal parsing ----------
 
 def strip_comment(line: str) -> str:
-    """Strip `#` comment to end of line, but NOT `#` at column 0 (markdown heading)."""
     if line.startswith("#"):
         return line
     idx = line.find(" #")
@@ -68,23 +74,17 @@ def strip_comment(line: str) -> str:
 def parse_journal(path: Path) -> JournalResult:
     journal_date = date.fromisoformat(path.stem)
     result = JournalResult(journal_date=journal_date)
-
     for raw in path.read_text(encoding="utf-8").splitlines():
         line = strip_comment(raw).strip()
-        if not line or line.startswith("#"):
-            continue
-        if ":" not in line:
+        if not line or line.startswith("#") or ":" not in line:
             continue
         key, value = line.split(":", 1)
         key = key.strip().lower()
         value = value.strip()
         if not value:
             continue
-
         try:
-            if key == "run":
-                result.run_km += parse_run(value)
-            elif key == "read":
+            if key == "read":
                 action, phrase = parse_marker(value, READ_MARKER_RE, "Read")
                 if action:
                     result.reads.append((action, phrase))
@@ -94,35 +94,15 @@ def parse_journal(path: Path) -> JournalResult:
                     result.learn_notes.append(f"{action} {phrase}")
         except JournalError as e:
             result.errors.append(str(e))
-
     return result
-
-
-def parse_run(value: str) -> float:
-    """Extract total km. Requires an explicit km/mi unit — bare numbers and prose
-    (e.g. 'good. did stretching', '3x 400m intervals') count as 0."""
-    lower = value.strip().lower()
-    if not lower or lower in {"rest", "off", "-", "none", "skip"}:
-        return 0.0
-    total = 0.0
-    for num_str, unit in RUN_SEGMENT_RE.findall(value):
-        if not unit:
-            continue
-        km = float(num_str)
-        if unit.lower().startswith("mi"):
-            km *= MI_TO_KM
-        total += km
-    return total
 
 
 def parse_marker(value: str, pattern: re.Pattern[str], key_name: str) -> tuple[str | None, str]:
     m = pattern.match(value)
     if not m:
-        # Bare `Read: chapter 3` without a marker is a log, not an event — silently ignore.
         return None, ""
     action = m.group(1).lower()
     phrase = m.group(2).strip()
-    # Strip surrounding quotes (either kind) for convenience.
     if len(phrase) >= 2 and phrase[0] in "\"'" and phrase[-1] == phrase[0]:
         phrase = phrase[1:-1].strip()
     if not phrase:
@@ -145,7 +125,6 @@ class StatsFile:
         self.path.write_text("\n".join(self.lines) + "\n", encoding="utf-8")
 
     def section_range(self, name: str) -> tuple[int, int]:
-        """Return (start_line_after_header, end_line_exclusive) for `## name`."""
         start = None
         for i, line in enumerate(self.lines):
             if line.strip().startswith("##") and line.strip()[2:].strip() == name:
@@ -185,37 +164,22 @@ class StatsFile:
 
     def get_bullets(self, section: str) -> list[str]:
         start, end = self.section_range(section)
-        out: list[str] = []
-        for i in range(start, end):
-            s = self.lines[i].strip()
-            if s.startswith("-"):
-                out.append(s[1:].strip())
-        return out
+        return [self.lines[i].strip()[1:].strip() for i in range(start, end) if self.lines[i].strip().startswith("-")]
 
     def set_bullets(self, section: str, bullets: list[str]) -> None:
         start, end = self.section_range(section)
-        # Capture non-bullet, non-blank lines (comments) and re-emit them above the bullets.
-        preserved: list[str] = []
-        for i in range(start, end):
-            s = self.lines[i]
-            stripped = s.strip()
-            if stripped and not stripped.startswith("-"):
-                preserved.append(s)
-        new_section: list[str] = []
-        if preserved:
-            new_section.extend(preserved)
+        preserved = [self.lines[i] for i in range(start, end) if self.lines[i].strip() and not self.lines[i].strip().startswith("-")]
+        new_section: list[str] = list(preserved)
         for b in bullets:
             new_section.append(f"- {b}")
-        # Keep one trailing blank line between sections.
         if end < len(self.lines) and self.lines[end].strip().startswith("##"):
             new_section.append("")
         self.lines[start:end] = new_section
 
 
-# ---------- reading mutations ----------
+# ---------- reading mutations (idempotent) ----------
 
 def title_of(bullet: str) -> str:
-    """`The Knockout Queen — Rufi Thorpe` → `the knockout queen` (lowercased, stripped)."""
     for sep in (" — ", " – ", " -- "):
         if sep in bullet:
             return bullet.split(sep, 1)[0].strip().lower()
@@ -223,12 +187,9 @@ def title_of(bullet: str) -> str:
 
 
 def match_title(needle: str, haystack: list[str]) -> int | None:
-    """Case-insensitive prefix match on the TITLE portion of bullets. Returns index or None."""
     n = title_of(needle)
     matches = [i for i, b in enumerate(haystack) if title_of(b).startswith(n)]
-    if len(matches) == 1:
-        return matches[0]
-    return None
+    return matches[0] if len(matches) == 1 else None
 
 
 def apply_reads(
@@ -236,25 +197,27 @@ def apply_reads(
     current: list[str],
     year: list[str],
 ) -> tuple[list[str], list[str], list[str]]:
-    """Return (new_current, new_year, errors). Pure — does not mutate args."""
     current = list(current)
     year = list(year)
     errors: list[str] = []
 
     for action, phrase in reads:
         if action == "started":
+            # Idempotent: skip if already in current.
+            if match_title(phrase, current) is not None:
+                continue
             current.append(phrase)
         elif action in {"finished", "paused"}:
             idx = match_title(phrase, current)
             if idx is None:
+                # Idempotent: if already in year, skip silently — we already processed this.
+                if match_title(phrase, year) is not None:
+                    continue
                 errors.append(f"Read: {action} {phrase!r} — no unique match in reading_current")
                 continue
             removed = current.pop(idx)
             title_only = removed.split(" — ", 1)[0].split(" – ", 1)[0].strip()
-            if action == "paused":
-                year.append(f"{title_only} (paused)")
-            else:
-                year.append(title_only)
+            year.append(f"{title_only} (paused)" if action == "paused" else title_only)
         else:
             errors.append(f"Read: unknown action {action!r}")
 
@@ -272,36 +235,54 @@ def discover_journals(last_processed: date, cutoff_exclusive: date) -> list[Path
         if not m:
             continue
         d = date.fromisoformat(m.group(1))
-        if d <= last_processed:
-            continue
-        if d >= cutoff_exclusive:
-            continue
-        out.append(entry)
+        if last_processed < d < cutoff_exclusive:
+            out.append(entry)
     return out
 
 
 def run_git(*args: str) -> str:
-    proc = subprocess.run(
-        ["git", *args], cwd=REPO_ROOT, capture_output=True, text=True, check=False
-    )
+    proc = subprocess.run(["git", *args], cwd=REPO_ROOT, capture_output=True, text=True)
     if proc.returncode != 0:
         raise RuntimeError(f"git {' '.join(args)} failed:\n{proc.stderr}")
     return proc.stdout
 
 
 def run_build_root() -> None:
-    proc = subprocess.run(
-        [sys.executable, str(BUILD_ROOT)], cwd=REPO_ROOT, capture_output=True, text=True
-    )
+    proc = subprocess.run([sys.executable, str(BUILD_ROOT)], cwd=REPO_ROOT, capture_output=True, text=True)
     if proc.returncode != 0:
         raise RuntimeError(f"build_root.py failed:\n{proc.stderr}")
 
 
+def call_garmin_sync(today: date) -> tuple[bool, float | None, str, str | None]:
+    """Returns (ok, total_run_km, last_run_date_iso, error_message)."""
+    proc = subprocess.run(
+        [sys.executable, str(SYNC_GARMIN), "--today", today.isoformat()],
+        cwd=REPO_ROOT, capture_output=True, text=True,
+    )
+    if proc.returncode != 0:
+        return False, None, "", (proc.stderr or proc.stdout or "").strip()
+
+    total_km: float | None = None
+    last_run = ""
+    for line in proc.stdout.splitlines():
+        if line.startswith("GARMIN_TOTAL_RUN_KM="):
+            try:
+                total_km = float(line.split("=", 1)[1])
+            except ValueError:
+                pass
+        elif line.startswith("GARMIN_LAST_RUN_DATE="):
+            last_run = line.split("=", 1)[1].strip()
+    if total_km is None:
+        return False, None, "", f"sync_from_garmin printed no GARMIN_TOTAL_RUN_KM:\n{proc.stdout}"
+    return True, total_km, last_run, None
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Fold daily journal entries into stats.md")
-    parser.add_argument("--dry-run", action="store_true", help="print plan, write nothing")
-    parser.add_argument("--no-push", action="store_true", help="commit locally, skip push")
-    parser.add_argument("--today", type=str, default=None, help="override today (YYYY-MM-DD)")
+    parser = argparse.ArgumentParser(description="Fold Garmin + journal into stats.md")
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--no-push", action="store_true")
+    parser.add_argument("--today", type=str, default=None)
+    parser.add_argument("--skip-garmin", action="store_true", help="for testing; skip Garmin sync")
     args = parser.parse_args()
 
     today = date.fromisoformat(args.today) if args.today else date.today()
@@ -309,34 +290,43 @@ def main() -> int:
     stats = StatsFile.load(STATS_PATH)
     last_processed = date.fromisoformat(stats.get_running_kv("last_processed"))
     total_km_before = int(stats.get_running_kv("total_km").replace(",", ""))
+    baseline_km = int(stats.get_running_kv("baseline_km").replace(",", ""))
 
+    # --- Garmin ---
+    garmin_ok = False
+    garmin_total_km: float | None = None
+    garmin_last_run = ""
+    garmin_error: str | None = None
+    if not args.skip_garmin:
+        garmin_ok, garmin_total_km, garmin_last_run, garmin_error = call_garmin_sync(today)
+        if garmin_error:
+            print(f"garmin sync failed: {garmin_error}", file=sys.stderr)
+            notify(
+                f"ajin.im stats: Garmin sync failed {today.isoformat()}",
+                f"{garmin_error}\n\ntotal_km will not advance until this is fixed.\n"
+                f"Logs: ~/Library/Logs/mobetter-stats.err.log",
+            )
+
+    # --- Journals: Read/Learn only ---
     journals = discover_journals(last_processed, today)
-    if not journals:
-        print(f"no new journals (last_processed={last_processed}, today={today})")
-        return 0
-
-    added_km = 0.0
     all_reads: list[tuple[str, str]] = []
     all_learn: list[tuple[date, str]] = []
     hard_errors: list[str] = []
-    last_ok: date | None = None
-
+    last_journal_ok: date | None = None
     for path in journals:
         jr = parse_journal(path)
         if jr.errors:
             hard_errors.append(f"{path.name}: " + "; ".join(jr.errors))
-            break  # stop at first bad day so user can fix and re-run
-        added_km += jr.run_km
+            break
         all_reads.extend(jr.reads)
         for note in jr.learn_notes:
             all_learn.append((jr.journal_date, note))
-        last_ok = jr.journal_date
+        last_journal_ok = jr.journal_date
 
     current = stats.get_bullets("reading_current")
     year = stats.get_bullets("reading_year")
     new_current, new_year, read_errors = apply_reads(all_reads, current, year)
-    if read_errors:
-        hard_errors.extend(read_errors)
+    hard_errors.extend(read_errors)
 
     if hard_errors:
         print("errors — aborting without advancing last_processed:", file=sys.stderr)
@@ -344,14 +334,23 @@ def main() -> int:
             print(f"  - {e}", file=sys.stderr)
         return 1
 
-    if last_ok is None:
-        print("no processable journals (all empty or errored).")
+    # --- Decide what changed ---
+    new_total_km = total_km_before
+    if garmin_ok and garmin_total_km is not None:
+        new_total_km = baseline_km + int(round(garmin_total_km))
+
+    reading_changed = new_current != current or new_year != year
+    total_changed = new_total_km != total_km_before
+
+    if not journals and not total_changed:
+        print(f"nothing to do (last_processed={last_processed}, today={today}, garmin_ok={garmin_ok})")
         return 0
 
-    new_total_km = total_km_before + int(round(added_km))
-
-    print(f"processed {len(journals)} journal(s) up to {last_ok}")
-    print(f"  run km added: {added_km:.2f} (total {total_km_before} → {new_total_km})")
+    # Summary
+    print(f"garmin_ok={garmin_ok}, last_run={garmin_last_run or '—'}, "
+          f"total_km {total_km_before} → {new_total_km}")
+    if last_journal_ok:
+        print(f"processed {len(journals)} journal(s) up to {last_journal_ok}")
     if all_reads:
         print(f"  read events: {all_reads}")
     if all_learn:
@@ -361,10 +360,14 @@ def main() -> int:
         print("--dry-run: no writes, no commit")
         return 0
 
-    stats.set_running_kv("total_km", str(new_total_km))
-    stats.set_running_kv("last_processed", last_ok.isoformat())
-    stats.set_bullets("reading_current", new_current)
-    stats.set_bullets("reading_year", new_year)
+    # --- Apply changes ---
+    if total_changed:
+        stats.set_running_kv("total_km", str(new_total_km))
+    if last_journal_ok:
+        stats.set_running_kv("last_processed", last_journal_ok.isoformat())
+    if reading_changed:
+        stats.set_bullets("reading_current", new_current)
+        stats.set_bullets("reading_year", new_year)
     stats.save()
 
     run_build_root()
@@ -375,13 +378,20 @@ def main() -> int:
         print("nothing to commit after build.")
         return 0
 
-    first = journals[0].stem
-    last = last_ok.isoformat()
-    range_str = last if first == last else f"{first}→{last}"
-    subject = f"Update stats from journal ({range_str})"
+    # --- Commit message ---
+    if last_journal_ok and journals:
+        first = journals[0].stem
+        last = last_journal_ok.isoformat()
+        range_str = last if first == last else f"{first}→{last}"
+        subject = f"Update stats from journal ({range_str})"
+    else:
+        subject = f"Update stats ({today.isoformat()})"
+
     body_lines: list[str] = []
-    if added_km:
-        body_lines.append(f"+{added_km:.1f} km running → {new_total_km} total")
+    if garmin_error:
+        body_lines.append(f"WARN: Garmin sync failed on {today.isoformat()} — total_km not advanced")
+    if garmin_ok and total_changed:
+        body_lines.append(f"+{new_total_km - total_km_before} km running → {new_total_km} total (from Garmin)")
     for d, note in all_learn:
         body_lines.append(f"Learn note {d}: {note} (stats.md learning section needs manual edit)")
     commit_msg = subject + ("\n\n" + "\n".join(body_lines) if body_lines else "")
