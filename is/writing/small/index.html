@@ -1,185 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="/img/a3.png" >
-<link rel="apple-touch-icon" href="/img/a3.png" >
-<title>Small tools</title>
-<meta name="description" content="Small tools for big questions.">
-<style>
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/a3.png" />
+    <link rel="apple-touch-icon" href="/img/a3.png" />
+    <title>ajin.im/is/writing/small</title>
+    <meta name="description" content="Small tools for big questions." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../../creative-house.css" />
+    <script src="../../../analytics.js" defer></script>
+    <script src="../../../creative-house.js" defer></script>
+  </head>
+  <body class="house-page writing-house small-tools-house">
+    <main class="house-stage">
+      <header class="house-lede">
+        <a class="back-link" href="/is/writing/">Back to the house</a>
+        <p class="path-mark">ajin.im/is/writing/small</p>
+        <p class="house-whisper">Small tools for big questions.</p>
+      </header>
 
-body {
-  background: #0d0d0d;
-  color: #888;
-  font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
-
-.page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 56px 28px;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.page-header {
-  margin-bottom: 44px;
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 11px;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #888;
-  text-decoration: none;
-  margin-bottom: 22px;
-  transition: color 0.15s ease;
-}
-
-.back-link::before {
-  content: "";
-  width: 43px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(207, 207, 207, 0.5));
-  transition: background 0.15s ease;
-}
-
-.back-link:hover {
-  color: #cfcfcf;
-}
-
-.back-link:hover::before {
-  background: linear-gradient(90deg, transparent, rgba(207, 207, 207, 0.75));
-}
-
-.page-title {
-  font-size: 14px;
-  color: #cfcfcf;
-  font-weight: normal;
-  margin-bottom: 8px;
-  letter-spacing: 0.01em;
-}
-
-.page-intro {
-  font-size: 12px;
-  color: #555;
-  line-height: 1.6;
-  max-width: 52ch;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  display: block;
-  background: #141414;
-  border: 1px solid #1f1f1f;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 0.15s ease;
-}
-
-.card:hover {
-  border-color: #333;
-}
-
-.card-image {
-  aspect-ratio: 16 / 9;
-  background: #1a1a1a;
-  overflow: hidden;
-}
-
-.card-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 14px 16px 16px;
-}
-
-.card-title {
-  font-size: 13px;
-  color: #cfcfcf;
-  margin-bottom: 6px;
-  letter-spacing: 0.01em;
-}
-
-.card-desc {
-  font-size: 11px;
-  color: #666;
-  line-height: 1.55;
-}
-
-.page-footer {
-  margin-top: auto;
-  padding-top: 72px;
-  font-size: 11px;
-  color: #444;
-  line-height: 1.6;
-}
-
-@media (max-width: 640px) {
-  .page {
-    padding: 40px 18px;
-  }
-  .page-header {
-    margin-bottom: 32px;
-  }
-  .grid {
-    gap: 14px;
-  }
-  .page-footer {
-    padding-top: 48px;
-  }
-}
-</style>
-</head>
-<body>
-<div class="page">
-  <header class="page-header">
-    <a class="back-link" href="/is/writing/">Back to the house</a>
-    <h1 class="page-title">Small tools</h1>
-    <p class="page-intro">Small tools for big questions.</p>
-  </header>
-  <div class="grid">
-    <a class="card" href="https://debugu.xyz" target="_blank" rel="noopener">
-      <div class="card-image">
-        <img src="/is/writing/small/screenshots/debugu.png" alt="debug::u" onerror="this.style.display='none'">
+      <div class="mobile-hero" aria-hidden="true">
+        <img src="../../../img/04_circuitboard.png" alt="" />
+        <p class="hero-cap">Small tools · diagnostics · est. 2024</p>
       </div>
-      <div class="card-body">
-        <div class="card-title">debug::u</div>
-        <div class="card-desc">a diagnostic console for what you're feeling.</div>
-      </div>
-    </a>
-    <a class="card" href="/is/writing/small/deadend/">
-      <div class="card-image">
-        <img src="/is/writing/small/screenshots/deadend.png" alt="deadend" onerror="this.style.display='none'">
-      </div>
-      <div class="card-body">
-        <div class="card-title">deadend</div>
-        <div class="card-desc">for getting out of your thought that goes nowhere.</div>
-      </div>
-    </a>
-  </div>
-  <footer class="page-footer">more joining as they land.</footer>
-</div>
-</body>
+
+      <section class="house-frame" aria-label="Small tools">
+        <div class="house-grid" data-room-count="2">
+          <a
+            class="room room-debugu"
+            href="https://debugu.xyz"
+            target="_blank"
+            rel="noreferrer noopener"
+            data-room="debugu"
+          >
+            <div class="room-copy">
+              <p class="room-kicker">Tool <span class="room-number"></span> / Live</p>
+              <h2>debug::u</h2>
+              <span class="room-meta">a diagnostic console for what you're feeling.</span>
+            </div>
+          </a>
+
+          <a class="room room-deadend" href="/is/writing/small/deadend/" data-room="deadend">
+            <div class="room-copy">
+              <p class="room-kicker">Tool <span class="room-number"></span> / Live</p>
+              <h2>deadend</h2>
+              <span class="room-meta">for getting out of your thought that goes nowhere.</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="house-footer">
+        <p class="house-footer-line">
+          <span>more joining as they land.</span>
+        </p>
+      </footer>
+    </main>
+  </body>
 </html>
