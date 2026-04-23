@@ -500,61 +500,8 @@ footer {
   }
 }
 
-@media (max-width: 1100px) {
-  .writing-house .room::before {
-    display: none;
-  }
-
-  .writing-house .room::after {
-    display: none;
-  }
-}
-
 .writing-house .mobile-hero {
   display: none;
-}
-
-@media (max-width: 1100px) {
-  .writing-house .mobile-hero {
-    display: block;
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1000 / 667;
-    border-radius: 1.2rem;
-    overflow: hidden;
-    margin: 0 0 1rem;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-  }
-
-  .writing-house .mobile-hero img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(0.9) brightness(0.88) contrast(1.04);
-  }
-
-  .writing-house .mobile-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 55%, rgba(9, 6, 5, 0.5) 100%);
-    pointer-events: none;
-  }
-
-  .writing-house .mobile-hero .hero-cap {
-    position: absolute;
-    left: 0.8rem;
-    right: 0.8rem;
-    bottom: 0.7rem;
-    margin: 0;
-    z-index: 2;
-    font-family: var(--mono, "DM Mono", monospace);
-    font-size: 0.58rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(242, 232, 218, 0.82);
-  }
 }
 
 @media (max-width: 720px) {
@@ -655,6 +602,43 @@ footer {
 
 .writing-house .room-copy {
   z-index: 3;
+}
+
+/* Mobile seal-fragment reveal: each room shows one horizontal band of the
+   full seal, aspect-preserving, centered. Scrolling top-to-bottom
+   reassembles the complete image. Desktop's 2x2 puzzle is untouched. */
+@media (max-width: 1100px) {
+  .writing-house .room::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: auto 500%;
+    background-position-x: center;
+    background-position-y: var(--mobile-band-y, 0%);
+    filter: saturate(1.3) brightness(1.65) contrast(1.22);
+  }
+
+  .writing-house .room-bic   { --mobile-band-y: 12.5%; }
+  .writing-house .room-birds { --mobile-band-y: 37.5%; }
+  .writing-house .room-loose { --mobile-band-y: 62.5%; }
+  .writing-house .room-small { --mobile-band-y: 87.5%; }
+
+  /* Two-card layouts (e.g. /is/writing/small): 2 bands covering center 80%. */
+  .writing-house .house-grid[data-room-count="2"] .room::before {
+    background-size: auto 250%;
+  }
+  .writing-house .house-grid[data-room-count="2"] .room-debugu  { --mobile-band-y: 16.67%; }
+  .writing-house .house-grid[data-room-count="2"] .room-deadend { --mobile-band-y: 83.33%; }
+
+  .writing-house .room::after {
+    background: linear-gradient(
+      180deg,
+      rgba(9, 6, 5, 0.02) 0%,
+      rgba(9, 6, 5, 0.1) 50%,
+      rgba(9, 6, 5, 0.55) 100%
+    );
+  }
 }
 
 @keyframes ember-pulse {
