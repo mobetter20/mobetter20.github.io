@@ -504,51 +504,6 @@ footer {
   display: none;
 }
 
-@media (max-width: 720px) {
-  .writing-house .house-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .writing-house .room {
-    border-radius: 1.1rem;
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.03),
-      0 10px 24px rgba(0, 0, 0, 0.22);
-    min-height: 0;
-  }
-
-  .writing-house .room-copy {
-    position: relative;
-    inset: auto;
-    padding: 0.95rem 1rem 1rem;
-    gap: 0.3rem;
-    background: linear-gradient(
-      180deg,
-      rgba(30, 20, 16, 0.6) 0%,
-      rgba(12, 8, 7, 0.92) 100%
-    );
-    transform: none;
-  }
-
-  .writing-house .room h2 {
-    font-size: 1.25rem;
-    line-height: 1;
-  }
-
-  .writing-house .room-kicker {
-    font-size: 0.58rem;
-    letter-spacing: 0.22em;
-  }
-
-  .writing-house .room-meta {
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-}
-
 .writing-house .room.is-writing-focus {
   border-color: rgba(242, 232, 218, 0.18);
   box-shadow:
@@ -604,10 +559,25 @@ footer {
   z-index: 3;
 }
 
-/* Mobile seal-fragment reveal: each room shows one horizontal band of the
-   full seal, aspect-preserving, centered. Scrolling top-to-bottom
-   reassembles the complete image. Desktop's 2x2 puzzle is untouched. */
+/* Below 1100px the seal fragments across vertical cards; stack and reveal
+   must activate together so the bands reassemble top-to-bottom. Featured
+   card keeps a taller min-height so the editorial hierarchy survives in
+   the single-column stack. */
 @media (max-width: 1100px) {
+  .writing-house .house-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .writing-house .room {
+    min-height: 11rem;
+  }
+
+  .writing-house .room-featured {
+    min-height: 14rem;
+  }
+
   .writing-house .room::before {
     top: 0;
     left: 0;
