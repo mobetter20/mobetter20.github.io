@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Build ajin.im/index.html from templates/root.html + content/stats.md.
+"""Build ajin.im pages from templates/ + content/stats.md.
+
+Renders:
+  - index.html              (root sentence page) from templates/root.html
+  - is/running/index.html   (personal stats page) from templates/running.html
 
 Usage:
-    python3 _scripts/build_root.py          # write index.html
-    python3 _scripts/build_root.py --check  # print output, don't write
+    python3 _scripts/build_root.py          # write both
+    python3 _scripts/build_root.py --check  # print output sizes, don't write
 """
 
 import argparse
@@ -11,9 +15,11 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TEMPLATE_PATH = ROOT / "templates" / "root.html"
+ROOT_TEMPLATE_PATH = ROOT / "templates" / "root.html"
+RUNNING_TEMPLATE_PATH = ROOT / "templates" / "running.html"
 STATS_PATH = ROOT / "content" / "stats.md"
 INDEX_PATH = ROOT / "index.html"
+RUNNING_INDEX_PATH = ROOT / "is" / "running" / "index.html"
 
 EARTH_KM = 40075
 MOON_KM = 384400
@@ -125,6 +131,10 @@ def earth_prose(total_km: int) -> str:
     return f"{ratio:.1f} times around earth"
 
 
+def earth_multiplier(total_km: int) -> str:
+    return f"{total_km / EARTH_KM:.2f}×"
+
+
 def render_reading_current(books: list[tuple[str, str]]) -> str:
     if not books:
         raise StatsError("reading_current: at least one book required")
@@ -158,7 +168,23 @@ def render_reading_year(books: list[tuple[str, str]]) -> str:
     return out
 
 
-def build(check_only: bool = False) -> str:
+def render(template_path: Path, replacements: dict[str, str]) -> str:
+    if not template_path.is_file():
+        raise StatsError(f"template not found: {template_path}")
+    template = template_path.read_text(encoding="utf-8")
+    used = {t: v for t, v in replacements.items() if t in template}
+    if not used:
+        raise StatsError(f"template uses no known tokens: {template_path}")
+    output = template
+    for token, value in used.items():
+        output = output.replace(token, value)
+    leftover = [t for t in used if t in output]
+    if leftover:
+        raise StatsError(f"unresolved tokens after substitution in {template_path.name}: {leftover}")
+    return output
+
+
+def build(check_only: bool = False) -> None:
     sections = parse_stats(STATS_PATH)
 
     running_kv = parse_kv(require(sections, "running"), "running")
@@ -171,6 +197,7 @@ def build(check_only: bool = False) -> str:
     remaining_km = MOON_KM - total_km
     remaining_fmt = f"{remaining_km:,}"
     earth = earth_prose(total_km)
+    earth_mult = earth_multiplier(total_km)
 
     books_current = parse_books(require(sections, "reading_current"), "reading_current")
     reading_current_html = render_reading_current(books_current)
@@ -182,45 +209,35 @@ def build(check_only: bool = False) -> str:
     if not learning:
         raise StatsError("learning: section body is empty")
 
-    if not TEMPLATE_PATH.is_file():
-        raise StatsError(f"template not found: {TEMPLATE_PATH}")
-    template = TEMPLATE_PATH.read_text(encoding="utf-8")
-
     replacements = {
         "{{running_total_km}}": total_km_fmt,
         "{{running_since}}": str(since_year),
         "{{running_earth_prose}}": earth,
+        "{{running_earth_multiplier}}": earth_mult,
         "{{running_moon_remaining}}": remaining_fmt,
         "{{reading_current}}": reading_current_html,
         "{{reading_year}}": reading_year_str,
         "{{learning}}": learning,
     }
 
-    for token in replacements:
-        if token not in template:
-            raise StatsError(f"template missing token: {token}")
+    targets: list[tuple[Path, Path]] = [
+        (ROOT_TEMPLATE_PATH, INDEX_PATH),
+        (RUNNING_TEMPLATE_PATH, RUNNING_INDEX_PATH),
+    ]
 
-    output = template
-    for token, value in replacements.items():
-        output = output.replace(token, value)
-
-    unresolved = [t for t in replacements if t in output]
-    if unresolved:
-        raise StatsError(f"unresolved tokens after substitution: {unresolved}")
-
-    if not check_only:
-        INDEX_PATH.write_text(output, encoding="utf-8")
-
-    print(f"running: {total_km_fmt} km since {since_year} — {earth} — {remaining_fmt} km left")
+    print(f"running: {total_km_fmt} km since {since_year} — {earth} ({earth_mult}) — {remaining_fmt} km left")
     print(f"reading_current: {len(books_current)} book(s)")
     print(f"reading_year: {len(books_year)} book(s) (actives + paused combined)")
     print(f"learning: {learning!r}")
-    if check_only:
-        print(f"--check mode: would write {INDEX_PATH} ({len(output)} bytes)")
-    else:
-        print(f"wrote {INDEX_PATH} ({len(output)} bytes)")
 
-    return output
+    for tpl, out_path in targets:
+        output = render(tpl, replacements)
+        if check_only:
+            print(f"--check mode: would write {out_path} ({len(output)} bytes)")
+        else:
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            out_path.write_text(output, encoding="utf-8")
+            print(f"wrote {out_path} ({len(output)} bytes)")
 
 
 def main() -> int:
