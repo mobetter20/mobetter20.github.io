@@ -195,6 +195,18 @@ footer {
   counter-reset: room-counter;
 }
 
+/* Mirror data-room-count into a CSS custom property so mobile fragment math
+   is generic (authors only ever edit the data attribute). Extend the range
+   if a house ever grows past eight rooms. */
+.house-grid[data-room-count="1"] { --house-room-count: 1; }
+.house-grid[data-room-count="2"] { --house-room-count: 2; }
+.house-grid[data-room-count="3"] { --house-room-count: 3; }
+.house-grid[data-room-count="4"] { --house-room-count: 4; }
+.house-grid[data-room-count="5"] { --house-room-count: 5; }
+.house-grid[data-room-count="6"] { --house-room-count: 6; }
+.house-grid[data-room-count="7"] { --house-room-count: 7; }
+.house-grid[data-room-count="8"] { --house-room-count: 8; }
+
 .room {
   --room-col-span: 1;
   --room-row-span: 2;
@@ -366,97 +378,31 @@ footer {
   transform: translateY(var(--room-copy-offset));
 }
 
+/* Desktop puzzle layout: each .room declares its grid cell via inline custom
+   properties (--desk-col-start/--desk-col-span/--desk-row-start/--desk-row-span)
+   and the parent .house-grid declares the total grid dimensions
+   (--desk-grid-cols, --desk-grid-rows). The seal-fragment background is
+   derived from those so each tile shows its quadrant of a single image that
+   is notionally stretched across the whole grid. No per-room CSS needed. */
 @media (min-width: 1101px) {
-  .house-grid[data-room-count="4"] {
-    --house-columns: 12;
+  .house-grid {
+    --house-columns: var(--desk-grid-cols, 12);
     --house-row-step: 5.6rem;
     grid-template-columns: repeat(var(--house-columns), minmax(0, 1fr));
     grid-auto-rows: minmax(var(--house-row-step), auto);
   }
 
-  .house-grid[data-room-count="4"] .room-bic {
-    grid-column: 1 / span 7;
-    grid-row: 1 / span 4;
-    min-height: 23rem;
+  .house-grid .room {
+    grid-column: var(--desk-col-start, auto) / span var(--desk-col-span, var(--room-col-span));
+    grid-row: var(--desk-row-start, auto) / span var(--desk-row-span, var(--room-row-span));
+    min-height: var(--desk-min-height, var(--room-min-height));
   }
 
-  .house-grid[data-room-count="4"] .room-small {
-    grid-column: 8 / span 5;
-    grid-row: 1 / span 4;
-    min-height: 23rem;
-  }
-
-  .house-grid[data-room-count="4"] .room-birds {
-    grid-column: 1 / span 6;
-    grid-row: 5 / span 3;
-    min-height: 15rem;
-  }
-
-  .house-grid[data-room-count="4"] .room-loose {
-    grid-column: 7 / span 6;
-    grid-row: 5 / span 3;
-    min-height: 15rem;
-  }
-
-  .writing-house .house-grid[data-room-count="4"] .room-bic {
-    --bg-w: calc(100% * 12 / 7);
-    --bg-h: calc(100% * 7 / 4);
-    --bg-left: 0%;
-    --bg-top: 0%;
-  }
-
-  .writing-house .house-grid[data-room-count="4"] .room-small {
-    --bg-w: calc(100% * 12 / 5);
-    --bg-h: calc(100% * 7 / 4);
-    --bg-left: calc(-100% * 7 / 5);
-    --bg-top: 0%;
-  }
-
-  .writing-house .house-grid[data-room-count="4"] .room-birds {
-    --bg-w: calc(100% * 12 / 6);
-    --bg-h: calc(100% * 7 / 3);
-    --bg-left: 0%;
-    --bg-top: calc(-100% * 4 / 3);
-  }
-
-  .writing-house .house-grid[data-room-count="4"] .room-loose {
-    --bg-w: calc(100% * 12 / 6);
-    --bg-h: calc(100% * 7 / 3);
-    --bg-left: -100%;
-    --bg-top: calc(-100% * 4 / 3);
-  }
-
-  .house-grid[data-room-count="2"] {
-    --house-columns: 12;
-    --house-row-step: 5.6rem;
-    grid-template-columns: repeat(var(--house-columns), minmax(0, 1fr));
-    grid-auto-rows: minmax(var(--house-row-step), auto);
-  }
-
-  .house-grid[data-room-count="2"] .room-debugu {
-    grid-column: 1 / span 6;
-    grid-row: 1 / span 4;
-    min-height: 23rem;
-  }
-
-  .house-grid[data-room-count="2"] .room-deadend {
-    grid-column: 7 / span 6;
-    grid-row: 1 / span 4;
-    min-height: 23rem;
-  }
-
-  .writing-house .house-grid[data-room-count="2"] .room-debugu {
-    --bg-w: calc(100% * 12 / 6);
-    --bg-h: 100%;
-    --bg-left: 0%;
-    --bg-top: 0%;
-  }
-
-  .writing-house .house-grid[data-room-count="2"] .room-deadend {
-    --bg-w: calc(100% * 12 / 6);
-    --bg-h: 100%;
-    --bg-left: -100%;
-    --bg-top: 0%;
+  .writing-house .house-grid .room {
+    --bg-w: calc(var(--desk-grid-cols, 12) / var(--desk-col-span) * 100%);
+    --bg-h: calc(var(--desk-grid-rows, 1) / var(--desk-row-span) * 100%);
+    --bg-left: calc((1 - var(--desk-col-start)) / var(--desk-col-span) * 100%);
+    --bg-top: calc((1 - var(--desk-row-start)) / var(--desk-row-span) * 100%);
   }
 }
 
@@ -578,28 +524,23 @@ footer {
     min-height: 14rem;
   }
 
+  /* Seal fragments stacked top-to-bottom: N rooms show N bands covering the
+     center 80% of the seal image. Each room's --room-index (0..N-1) and the
+     grid's --house-room-count drive both the image scale and the slice
+     position, so adding a room is purely an HTML change. */
   .writing-house .room::before {
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: auto 500%;
+    background-size: auto calc(var(--house-room-count, 4) * 125%);
     background-position-x: center;
-    background-position-y: var(--mobile-band-y, 0%);
+    background-position-y: calc(
+      50% * (var(--house-room-count, 4) + 8 * var(--room-index, 0)) /
+      (5 * var(--house-room-count, 4) - 4)
+    );
     filter: saturate(1.3) brightness(1.65) contrast(1.22);
   }
-
-  .writing-house .room-bic   { --mobile-band-y: 12.5%; }
-  .writing-house .room-birds { --mobile-band-y: 37.5%; }
-  .writing-house .room-loose { --mobile-band-y: 62.5%; }
-  .writing-house .room-small { --mobile-band-y: 87.5%; }
-
-  /* Two-card layouts (e.g. /is/writing/small): 2 bands covering center 80%. */
-  .writing-house .house-grid[data-room-count="2"] .room::before {
-    background-size: auto 250%;
-  }
-  .writing-house .house-grid[data-room-count="2"] .room-debugu  { --mobile-band-y: 16.67%; }
-  .writing-house .house-grid[data-room-count="2"] .room-deadend { --mobile-band-y: 83.33%; }
 
   .writing-house .room::after {
     background: linear-gradient(

@@ -28,13 +28,14 @@
       </header>
 
       <section class="house-frame" aria-label="Creative rooms">
-        <div class="house-grid" data-room-count="4">
+        <div class="house-grid" data-room-count="4" style="--desk-grid-rows: 7;">
           <a
-            class="room room-bic room-featured"
+            class="room room-featured"
             href="https://propagandaformyself.xyz"
             target="_blank"
             rel="noreferrer noopener"
             data-room="bic"
+            style="--room-index: 0; --desk-col-start: 1; --desk-col-span: 7; --desk-row-start: 1; --desk-row-span: 4; --desk-min-height: 23rem;"
           >
             <div class="room-copy">
               <p class="room-kicker">Room <span class="room-number"></span> / Live</p>
@@ -44,9 +45,10 @@
           </a>
 
           <a
-            class="room room-birds"
+            class="room"
             href="./avian-district/index.html"
             data-room="birds"
+            style="--room-index: 1; --desk-col-start: 1; --desk-col-span: 6; --desk-row-start: 5; --desk-row-span: 3; --desk-min-height: 15rem;"
           >
             <div class="room-copy">
               <p class="room-kicker">Room <span class="room-number"></span> / Active</p>
@@ -55,7 +57,12 @@
             </div>
           </a>
 
-          <a class="room room-loose" href="/is/writing/loose/" data-room="loose">
+          <a
+            class="room"
+            href="/is/writing/loose/"
+            data-room="loose"
+            style="--room-index: 2; --desk-col-start: 7; --desk-col-span: 6; --desk-row-start: 5; --desk-row-span: 3; --desk-min-height: 15rem;"
+          >
             <div class="room-copy">
               <p class="room-kicker">Room <span class="room-number"></span> / Live</p>
               <h2>Loose pieces</h2>
@@ -63,7 +70,12 @@
             </div>
           </a>
 
-          <a class="room room-small room-wide" href="/is/writing/small/" data-room="small">
+          <a
+            class="room room-wide"
+            href="/is/writing/small/"
+            data-room="small"
+            style="--room-index: 3; --desk-col-start: 8; --desk-col-span: 5; --desk-row-start: 1; --desk-row-span: 4; --desk-min-height: 23rem;"
+          >
             <div class="room-copy">
               <p class="room-kicker">Room <span class="room-number"></span> / Live</p>
               <h2>Small tools</h2>
