@@ -504,36 +504,6 @@ footer {
   display: none;
 }
 
-/* Mobile seal-fragment reveal: each room shows one horizontal band of the
-   seal, aspect-preserving, centered horizontally. Scrolling top-to-bottom
-   reassembles the full image. Desktop's 2x2 puzzle stays intact. */
-@media (max-width: 1100px) {
-  .writing-house .room::before {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: auto 400%;
-    background-position-x: center;
-    background-position-y: var(--mobile-band-y, 0%);
-    filter: saturate(0.95) brightness(0.78) contrast(1.06);
-  }
-
-  .writing-house .room-bic   { --mobile-band-y: 0%; }
-  .writing-house .room-birds { --mobile-band-y: 33.333%; }
-  .writing-house .room-loose { --mobile-band-y: 66.666%; }
-  .writing-house .room-small { --mobile-band-y: 100%; }
-
-  .writing-house .room::after {
-    background: linear-gradient(
-      180deg,
-      rgba(9, 6, 5, 0.35) 0%,
-      rgba(9, 6, 5, 0.55) 45%,
-      rgba(9, 6, 5, 0.9) 100%
-    );
-  }
-}
-
 @media (max-width: 720px) {
   .writing-house .house-grid {
     display: flex;
@@ -632,6 +602,43 @@ footer {
 
 .writing-house .room-copy {
   z-index: 3;
+}
+
+/* Mobile seal-fragment reveal: each room shows one horizontal band of the
+   full seal, aspect-preserving, centered. Scrolling top-to-bottom
+   reassembles the complete image. Desktop's 2x2 puzzle is untouched. */
+@media (max-width: 1100px) {
+  .writing-house .room::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: auto 500%;
+    background-position-x: center;
+    background-position-y: var(--mobile-band-y, 0%);
+    filter: saturate(1.3) brightness(1.65) contrast(1.22);
+  }
+
+  .writing-house .room-bic   { --mobile-band-y: 12.5%; }
+  .writing-house .room-birds { --mobile-band-y: 37.5%; }
+  .writing-house .room-loose { --mobile-band-y: 62.5%; }
+  .writing-house .room-small { --mobile-band-y: 87.5%; }
+
+  /* Two-card layouts (e.g. /is/writing/small): 2 bands covering center 80%. */
+  .writing-house .house-grid[data-room-count="2"] .room::before {
+    background-size: auto 250%;
+  }
+  .writing-house .house-grid[data-room-count="2"] .room-debugu  { --mobile-band-y: 16.67%; }
+  .writing-house .house-grid[data-room-count="2"] .room-deadend { --mobile-band-y: 83.33%; }
+
+  .writing-house .room::after {
+    background: linear-gradient(
+      180deg,
+      rgba(9, 6, 5, 0.02) 0%,
+      rgba(9, 6, 5, 0.1) 50%,
+      rgba(9, 6, 5, 0.55) 100%
+    );
+  }
 }
 
 @keyframes ember-pulse {
