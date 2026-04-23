@@ -425,6 +425,39 @@ footer {
     --bg-left: -100%;
     --bg-top: calc(-100% * 4 / 3);
   }
+
+  .house-grid[data-room-count="2"] {
+    --house-columns: 12;
+    --house-row-step: 5.6rem;
+    grid-template-columns: repeat(var(--house-columns), minmax(0, 1fr));
+    grid-auto-rows: minmax(var(--house-row-step), auto);
+  }
+
+  .house-grid[data-room-count="2"] .room-debugu {
+    grid-column: 1 / span 6;
+    grid-row: 1 / span 4;
+    min-height: 23rem;
+  }
+
+  .house-grid[data-room-count="2"] .room-deadend {
+    grid-column: 7 / span 6;
+    grid-row: 1 / span 4;
+    min-height: 23rem;
+  }
+
+  .writing-house .house-grid[data-room-count="2"] .room-debugu {
+    --bg-w: calc(100% * 12 / 6);
+    --bg-h: 100%;
+    --bg-left: 0%;
+    --bg-top: 0%;
+  }
+
+  .writing-house .house-grid[data-room-count="2"] .room-deadend {
+    --bg-w: calc(100% * 12 / 6);
+    --bg-h: 100%;
+    --bg-left: -100%;
+    --bg-top: 0%;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) and (min-width: 1101px) {
@@ -599,6 +632,10 @@ footer {
   z-index: 1;
   transition: filter 0.6s ease;
   pointer-events: none;
+}
+
+.small-tools-house .room::before {
+  background-image: url("img/04_circuitboard.png");
 }
 
 .writing-house .room::after {
