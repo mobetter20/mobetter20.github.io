@@ -1,9 +1,9 @@
 # ajin.im stats
 
 ## running
-# total_km = baseline_km + all-time run distance from Garmin Connect (see sync_from_garmin.py).
-# baseline_km is the locked pre-Garmin total; do not change without intent.
-# last_processed gates journal Read/Learn events (Garmin handles run distance independently).
+# total_km = baseline_km + cumulative run km from Strava (see ../../../strava_activity/sync_strava.py).
+# baseline_km is the locked pre-Strava total; do not change without intent.
+# last_processed gates journal Read/Learn events; run distance is handled independently by sync_strava.py.
 total_km: 75000
 baseline_km: 75000
 since_year: 2009

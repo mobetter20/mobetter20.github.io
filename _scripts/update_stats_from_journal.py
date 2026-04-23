@@ -1,25 +1,21 @@
 #!/usr/bin/env python3
-"""Fold Garmin run distance + daily journal Read/Learn events into stats.md.
+"""Fold daily journal Read/Learn events into stats.md.
 
 Source of truth:
-  - total_km: baseline_km + all-time run distance from Garmin Connect.
   - reading_current / reading_year: mutated by `Read: started/finished/paused`
     markers in journal files.
   - learning prose: untouched by this script; `Learn:` markers surface in the
     commit body for manual follow-up.
 
-On Garmin failure: send email + macOS banner, prefix commit body with WARN,
-skip total_km update. Journal Read/Learn still processes so reading lists
-don't stall behind a Garmin outage.
+Run distance is handled separately by strava_activity/sync_strava.py.
 
 On journal Read hard-error (marker with no unique match): abort without
 advancing last_processed so the user can fix and re-run.
 
 Usage:
-    python3 _scripts/update_stats_from_journal.py              # sync + commit + push
+    python3 _scripts/update_stats_from_journal.py              # commit + push
     python3 _scripts/update_stats_from_journal.py --dry-run    # no writes
     python3 _scripts/update_stats_from_journal.py --no-push    # commit, no push
-    python3 _scripts/update_stats_from_journal.py --skip-garmin  # skip Garmin (test)
     python3 _scripts/update_stats_from_journal.py --today YYYY-MM-DD
 """
 
@@ -37,11 +33,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS_DIR = REPO_ROOT / "_scripts"
 STATS_PATH = REPO_ROOT / "content" / "stats.md"
 BUILD_ROOT = SCRIPTS_DIR / "build_root.py"
-SYNC_GARMIN = SCRIPTS_DIR / "sync_from_garmin.py"
 JOURNAL_DIR = Path("/Users/ajin/Documents/New project/personal/Journal")
-
-sys.path.insert(0, str(SCRIPTS_DIR))
-from notify import notify  # noqa: E402
 
 JOURNAL_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})\.md$")
 READ_MARKER_RE = re.compile(r"^(started|finished|paused)\s+(.+)$", re.I)
@@ -203,14 +195,12 @@ def apply_reads(
 
     for action, phrase in reads:
         if action == "started":
-            # Idempotent: skip if already in current.
             if match_title(phrase, current) is not None:
                 continue
             current.append(phrase)
         elif action in {"finished", "paused"}:
             idx = match_title(phrase, current)
             if idx is None:
-                # Idempotent: if already in year, skip silently — we already processed this.
                 if match_title(phrase, year) is not None:
                     continue
                 errors.append(f"Read: {action} {phrase!r} — no unique match in reading_current")
@@ -253,61 +243,18 @@ def run_build_root() -> None:
         raise RuntimeError(f"build_root.py failed:\n{proc.stderr}")
 
 
-def call_garmin_sync(today: date) -> tuple[bool, float | None, str, str | None]:
-    """Returns (ok, total_run_km, last_run_date_iso, error_message)."""
-    proc = subprocess.run(
-        [sys.executable, str(SYNC_GARMIN), "--today", today.isoformat()],
-        cwd=REPO_ROOT, capture_output=True, text=True,
-    )
-    if proc.returncode != 0:
-        return False, None, "", (proc.stderr or proc.stdout or "").strip()
-
-    total_km: float | None = None
-    last_run = ""
-    for line in proc.stdout.splitlines():
-        if line.startswith("GARMIN_TOTAL_RUN_KM="):
-            try:
-                total_km = float(line.split("=", 1)[1])
-            except ValueError:
-                pass
-        elif line.startswith("GARMIN_LAST_RUN_DATE="):
-            last_run = line.split("=", 1)[1].strip()
-    if total_km is None:
-        return False, None, "", f"sync_from_garmin printed no GARMIN_TOTAL_RUN_KM:\n{proc.stdout}"
-    return True, total_km, last_run, None
-
-
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Fold Garmin + journal into stats.md")
+    parser = argparse.ArgumentParser(description="Fold journal Read/Learn events into stats.md")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--no-push", action="store_true")
     parser.add_argument("--today", type=str, default=None)
-    parser.add_argument("--skip-garmin", action="store_true", help="for testing; skip Garmin sync")
     args = parser.parse_args()
 
     today = date.fromisoformat(args.today) if args.today else date.today()
 
     stats = StatsFile.load(STATS_PATH)
     last_processed = date.fromisoformat(stats.get_running_kv("last_processed"))
-    total_km_before = int(stats.get_running_kv("total_km").replace(",", ""))
-    baseline_km = int(stats.get_running_kv("baseline_km").replace(",", ""))
 
-    # --- Garmin ---
-    garmin_ok = False
-    garmin_total_km: float | None = None
-    garmin_last_run = ""
-    garmin_error: str | None = None
-    if not args.skip_garmin:
-        garmin_ok, garmin_total_km, garmin_last_run, garmin_error = call_garmin_sync(today)
-        if garmin_error:
-            print(f"garmin sync failed: {garmin_error}", file=sys.stderr)
-            notify(
-                f"ajin.im stats: Garmin sync failed {today.isoformat()}",
-                f"{garmin_error}\n\ntotal_km will not advance until this is fixed.\n"
-                f"Logs: ~/Library/Logs/mobetter-stats.err.log",
-            )
-
-    # --- Journals: Read/Learn only ---
     journals = discover_journals(last_processed, today)
     all_reads: list[tuple[str, str]] = []
     all_learn: list[tuple[date, str]] = []
@@ -334,21 +281,12 @@ def main() -> int:
             print(f"  - {e}", file=sys.stderr)
         return 1
 
-    # --- Decide what changed ---
-    new_total_km = total_km_before
-    if garmin_ok and garmin_total_km is not None:
-        new_total_km = baseline_km + int(round(garmin_total_km))
-
     reading_changed = new_current != current or new_year != year
-    total_changed = new_total_km != total_km_before
 
-    if not journals and not total_changed:
-        print(f"nothing to do (last_processed={last_processed}, today={today}, garmin_ok={garmin_ok})")
+    if not journals:
+        print(f"nothing to do (last_processed={last_processed}, today={today})")
         return 0
 
-    # Summary
-    print(f"garmin_ok={garmin_ok}, last_run={garmin_last_run or '—'}, "
-          f"total_km {total_km_before} → {new_total_km}")
     if last_journal_ok:
         print(f"processed {len(journals)} journal(s) up to {last_journal_ok}")
     if all_reads:
@@ -360,9 +298,6 @@ def main() -> int:
         print("--dry-run: no writes, no commit")
         return 0
 
-    # --- Apply changes ---
-    if total_changed:
-        stats.set_running_kv("total_km", str(new_total_km))
     if last_journal_ok:
         stats.set_running_kv("last_processed", last_journal_ok.isoformat())
     if reading_changed:
@@ -372,13 +307,12 @@ def main() -> int:
 
     run_build_root()
 
-    run_git("add", "content/stats.md", "index.html")
-    status = run_git("status", "--porcelain", "content/stats.md", "index.html")
+    run_git("add", "content/stats.md", "index.html", "is/running/index.html")
+    status = run_git("status", "--porcelain", "content/stats.md", "index.html", "is/running/index.html")
     if not status.strip():
         print("nothing to commit after build.")
         return 0
 
-    # --- Commit message ---
     if last_journal_ok and journals:
         first = journals[0].stem
         last = last_journal_ok.isoformat()
@@ -388,10 +322,6 @@ def main() -> int:
         subject = f"Update stats ({today.isoformat()})"
 
     body_lines: list[str] = []
-    if garmin_error:
-        body_lines.append(f"WARN: Garmin sync failed on {today.isoformat()} — total_km not advanced")
-    if garmin_ok and total_changed:
-        body_lines.append(f"+{new_total_km - total_km_before} km running → {new_total_km} total (from Garmin)")
     for d, note in all_learn:
         body_lines.append(f"Learn note {d}: {note} (stats.md learning section needs manual edit)")
     commit_msg = subject + ("\n\n" + "\n".join(body_lines) if body_lines else "")
