@@ -3,3 +3,5 @@ README.local.md
 _scripts/__pycache__/
 is/writing/_lab/
 *.local.md
+.claude/
+.vscode/
