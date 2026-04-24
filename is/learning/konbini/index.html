@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/png" href="/img/a3.png" />
+    <link rel="apple-touch-icon" href="/img/a3.png" />
+    <title>コンビニ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="../../../analytics.js" defer></script>
+  </head>
+  <body>
+    <header class="chrome" aria-label="navigation">
+      <a class="chrome-brand" href="#/" aria-label="shelves">
+        <span class="chrome-brand-jp">コンビニ</span>
+      </a>
+      <nav class="chrome-nav" id="chrome-nav"></nav>
+    </header>
+
+    <main id="app" class="app" aria-live="polite"></main>
+
+    <div
+      id="popup"
+      class="popup"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    ></div>
+    <div
+      id="popup-scrim"
+      class="popup-scrim"
+      aria-hidden="true"
+    ></div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
