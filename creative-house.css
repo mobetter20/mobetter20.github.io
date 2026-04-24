@@ -444,6 +444,11 @@ footer {
   .writing-house .house-frame:hover .room-copy {
     opacity: 0;
   }
+
+  .writing-house .room:hover .room-copy,
+  .writing-house .room:focus-visible .room-copy {
+    opacity: 1;
+  }
 }
 
 .writing-house .mobile-hero {
