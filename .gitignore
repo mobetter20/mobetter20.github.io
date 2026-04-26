@@ -5,3 +5,4 @@ is/writing/_lab/
 *.local.md
 .claude/
 .vscode/
+.playwright-mcp/

@@ -3,11 +3,9 @@
 ## running
 # total_km = baseline_km + cumulative run km from Strava (see ../../../strava_activity/sync_strava.py).
 # baseline_km is the locked pre-Strava total; do not change without intent.
-# last_processed gates journal Read/Learn events; run distance is handled independently by sync_strava.py.
 total_km: 75049
 baseline_km: 75000
 since_year: 2009
-last_processed: 2026-04-21
 # Earth circumference: 40,075 km. Moon distance: 384,400 km.
 
 ## reading_current
