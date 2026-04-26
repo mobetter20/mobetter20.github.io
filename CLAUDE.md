@@ -23,6 +23,8 @@ Read `INDEX.md` for what to load and when. Modular files:
 
 `_scripts/build_bird_coo.py` generates all Municipal Coo HTML (index, issues, archive). Manual edits to generated files will be overwritten on next build. Make template changes in the build script.
 
+The script also auto-updates the "From the Municipal Coo" excerpt block on `is/writing/avian-district/index.html`. The block lives between `<!-- COO-EXCERPT-START -->` and `<!-- COO-EXCERPT-END -->` markers — manual edits inside that range will be overwritten on next build. Edit the renderer in `_scripts/build_bird_coo.py` (`render_avian_district_excerpt`) instead.
+
 ## CSS / Layout Changes
 
 Any change to padding, margin, width, max-width, grid, or flexbox layout requires verification at three widths before committing:
