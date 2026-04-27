@@ -1005,7 +1005,7 @@ def render_avian_district_excerpt(issue: Issue) -> str:
         '      <span>From the Municipal Coo</span>\n'
         '    </div>\n'
         f'    <h3 class="coo-headline">{headline}</h3>\n'
-        '    <p class="coo-body">The Coo operates independently of the Clerk\'s Office. The Clerk\'s Office reads it anyway.</p>\n'
+        '    <p class="coo-body">The Coo operates independently of the Clerk\'s Office. The&nbsp;Clerk\'s Office reads it anyway.</p>\n'
         '    <a class="coo-link" href="/is/writing/bird-coo/" target="_blank">\n'
         '      <span class="arrow">→</span> Read the full edition\n'
         '    </a>\n'
