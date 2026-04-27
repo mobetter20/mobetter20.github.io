@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMD Map Option 4 — Property GIS 2.5D</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --page-bg:#e8e6e1;
+  --surface:#f4f2ed;
+  --surface-alt:#eceae4;
+  --panel:#fbfaf7;
+  --ink:#1a1a18;
+  --ink-light:#33332e;
+  --ink-faded:#5a5a52;
+  --ink-ghost:#88887e;
+  --rule:#c8c4b8;
+  --rule-heavy:#8a877e;
+  --header-bg:#1d2b3a;
+  --link:#1d4a6a;
+  --map-bg:#eef1ed;
+}
+html{font-size:16px}
+body{
+  margin:0;
+  background:transparent;
+  color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+button,input{font:inherit}
+.gis-module{
+  border:1px solid var(--rule);
+  background:var(--surface);
+  overflow:hidden;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+}
+.module-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:1rem;
+  align-items:end;
+  border-bottom:1px solid var(--rule);
+  background:var(--surface-alt);
+  padding:.82rem .9rem .72rem;
+}
+.module-kicker{
+  margin:0 0 .16rem;
+  color:var(--ink-ghost);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.58rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.module-head h2{
+  margin:0;
+  color:var(--ink);
+  font-size:1.08rem;
+  font-weight:650;
+  line-height:1.22;
+}
+.module-sub{
+  margin:.22rem 0 0;
+  color:var(--ink-faded);
+  font-size:.76rem;
+}
+.module-meta{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:.35rem;
+  color:var(--ink-faded);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.6rem;
+}
+.meta-chip{
+  border:1px solid var(--rule);
+  background:var(--panel);
+  padding:.18rem .36rem;
+  white-space:nowrap;
+}
+.toolbar{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:.65rem;
+  align-items:end;
+  border-bottom:1px solid var(--rule);
+  background:var(--panel);
+  padding:.7rem .9rem;
+}
+.toolbar label{
+  display:block;
+  margin-bottom:.22rem;
+  color:var(--ink-ghost);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.56rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.toolbar input{
+  width:100%;
+  border:1px solid var(--rule);
+  background:#fff;
+  padding:.48rem .55rem;
+  color:var(--ink);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.74rem;
+}
+.toolbar button{
+  border:1px solid #172434;
+  background:var(--header-bg);
+  color:#fff;
+  padding:.48rem .78rem;
+  cursor:pointer;
+  font-size:.74rem;
+  font-weight:500;
+}
+.gis-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 238px;
+  min-height:520px;
+  width:100%;
+  min-width:0;
+}
+.map-stage{
+  position:relative;
+  min-width:0;
+  max-width:100%;
+  overflow:hidden;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.55),rgba(226,232,226,.35)),
+    var(--map-bg);
+}
+.map-svg{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  min-height:520px;
+}
+.record-panel{
+  border-left:1px solid var(--rule);
+  background:var(--panel);
+  padding:.78rem;
+  min-width:0;
+}
+.record-search{
+  margin-bottom:.65rem;
+  border:1px solid #c4c9c1;
+  background:#fff;
+  padding:.42rem .5rem;
+  color:#6d746e;
+  font-family:"IBM Plex Sans",Arial,sans-serif;
+  font-size:.74rem;
+}
+.side-kicker{
+  color:#7a817a;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.56rem;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+.record-panel h3{
+  margin:.15rem 0 .3rem;
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:1.05rem;
+  font-style:italic;
+  font-weight:400;
+}
+.side-row{
+  display:flex;
+  justify-content:space-between;
+  gap:.5rem;
+  border-top:1px solid #e1e3dd;
+  padding:.28rem 0;
+  color:#4f554e;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.61rem;
+}
+.side-row span:last-child{
+  text-align:right;
+  overflow-wrap:anywhere;
+}
+.record-panel p{
+  margin:.45rem 0;
+  color:#3f453f;
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:.8rem;
+  line-height:1.38;
+}
+.map-ui{
+  position:absolute;
+  z-index:8;
+  left:.55rem;
+  top:.55rem;
+  display:grid;
+  gap:.4rem;
+}
+.zoom-control,
+.pitch-control{
+  border:1px solid #b8beb6;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 1px 4px rgba(20,26,20,.12);
+}
+.zoom-control{width:28px}
+.zoom-control div{
+  display:grid;
+  place-items:center;
+  height:28px;
+  border-bottom:1px solid #d7dad3;
+  color:#5d645e;
+  font-family:"IBM Plex Mono",monospace;
+}
+.zoom-control div:last-child{border-bottom:0}
+.pitch-control{
+  width:74px;
+  padding:.28rem .35rem;
+  color:#697169;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.52rem;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.layer-stack{
+  position:absolute;
+  z-index:8;
+  top:.55rem;
+  right:.55rem;
+  display:flex;
+  gap:.28rem;
+}
+.layer-chip{
+  border:1px solid #c4c9c1;
+  background:rgba(255,255,255,.9);
+  padding:.28rem .36rem;
+  color:#666d66;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.54rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.map-attrib{
+  position:absolute;
+  right:.45rem;
+  bottom:.35rem;
+  z-index:8;
+  color:#757b75;
+  background:rgba(246,247,243,.86);
+  padding:.12rem .25rem;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.52rem;
+  max-width:calc(100% - .9rem);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.legend{
+  display:flex;
+  justify-content:space-between;
+  gap:.8rem;
+  align-items:center;
+  border-top:1px solid var(--rule);
+  padding:.55rem .75rem 0;
+  color:var(--ink-faded);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.66rem;
+}
+.legend-scale{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.7rem;
+  align-items:center;
+}
+.legend-item{
+  display:inline-flex;
+  gap:.28rem;
+  align-items:center;
+  white-space:nowrap;
+}
+.nest-swatch{
+  position:relative;
+  display:inline-block;
+  width:18px;
+  height:13px;
+  border:1.3px solid #8e4b25;
+  border-radius:50%;
+  background:rgba(201,126,64,.14);
+  box-shadow:inset 0 0 0 2px rgba(168,92,45,.2);
+}
+.nest-swatch::before,
+.nest-swatch::after{
+  content:"";
+  position:absolute;
+  left:3px;
+  right:3px;
+  border-top:1px solid rgba(116,79,51,.58);
+  border-radius:50%;
+}
+.nest-swatch::before{top:3px}
+.nest-swatch::after{top:7px}
+.nest-swatch.selected{
+  width:24px;
+  height:17px;
+  border-color:#7e3918;
+  background:rgba(199,86,34,.22);
+}
+.nest-swatch.zero{
+  border-color:#68716b;
+  background:#fff;
+  box-shadow:inset 0 0 0 2px rgba(104,113,107,.16);
+}
+.nest-swatch.zero::before,
+.nest-swatch.zero::after{border-color:rgba(104,113,107,.52)}
+.footnote{
+  margin:.45rem .75rem .7rem;
+  color:var(--ink-ghost);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.61rem;
+  line-height:1.5;
+}
+svg .tile-bg{fill:#edf1ed}
+svg .tile-seam{stroke:#dfe5de;stroke-width:.8}
+svg .parcel{fill:none;stroke:#d0d6cf;stroke-width:.75}
+svg .parcel-strong{fill:none;stroke:#bcc5bc;stroke-width:1}
+svg .park{fill:#dce9d8;stroke:#c1d0bc;stroke-width:.8}
+svg .water{fill:#d5e8ef;stroke:#b8cdd5;stroke-width:.8}
+svg .road-shadow{fill:none;stroke:rgba(98,105,99,.22);stroke-linecap:round;stroke-linejoin:round}
+svg .road-casing{fill:none;stroke:#c5cbc3;stroke-linecap:round;stroke-linejoin:round}
+svg .road-fill{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round}
+svg .major-shadow{stroke-width:18;transform:translate(2px,3px)}
+svg .major-casing{stroke-width:17}
+svg .major-fill{stroke-width:12}
+svg .small-shadow{stroke-width:11;transform:translate(2px,3px)}
+svg .small-casing{stroke-width:10}
+svg .small-fill{stroke-width:6.5}
+svg .selected-parcel{fill:rgba(49,105,153,.10);stroke:#316999;stroke-width:1.5}
+svg .b-shadow{fill:rgba(49,55,50,.16)}
+svg .b-side-east{fill:#aeb8ae;stroke:#99a49a;stroke-width:.55}
+svg .b-side-south{fill:#bec7be;stroke:#a8b2a8;stroke-width:.55}
+svg .b-roof{fill:#dce1dc;stroke:#aeb8ae;stroke-width:.72}
+svg .b-roof-core{fill:#cfd7d0;stroke:#9faa9f;stroke-width:.8}
+svg .label{
+  font-family:"IBM Plex Sans",Arial,sans-serif;
+  font-size:11px;
+  fill:#555e58;
+  paint-order:stroke;
+  stroke:#edf1ed;
+  stroke-width:4;
+  pointer-events:none;
+}
+svg .label.small{font-size:9px;fill:#777f78;stroke-width:3}
+svg .label.code{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:8px;
+  fill:#909a92;
+  stroke:none;
+}
+svg .halo{fill:none;stroke:rgba(49,105,153,.35);stroke-width:5}
+svg .nest-fill{fill:rgba(201,126,64,.15);stroke:#8e4b25;stroke-width:1.25}
+svg .nest-line{fill:none;stroke:#71482f;stroke-width:1;stroke-linecap:round;opacity:.68}
+svg .nest-core{fill:rgba(199,86,34,.72);stroke:#8e3617;stroke-width:.9}
+svg .nest-zero{fill:rgba(255,255,255,.92);stroke:#68716b;stroke-width:1.45}
+svg .nest-zero-line{fill:none;stroke:#68716b;stroke-width:1.2;stroke-linecap:round;opacity:.65}
+@media(max-width:760px){
+  body{overflow-x:hidden}
+  .gis-module{width:100vw;max-width:100vw}
+  .module-head,.toolbar{grid-template-columns:1fr}
+  .module-meta{justify-content:flex-start}
+  .toolbar button{justify-self:start}
+  .gis-layout{grid-template-columns:minmax(0,1fr)}
+  .record-panel{border-left:0;border-top:1px solid var(--rule)}
+  .side-row{display:block}
+  .side-row span:last-child{display:block;text-align:left;margin-top:.08rem;color:#4f554e}
+  .map-svg{min-height:330px}
+  .layer-stack{display:none}
+  .pitch-control{display:none}
+  .legend{align-items:flex-start;flex-direction:column}
+  .legend-scale{align-items:flex-start}
+  .legend-item{white-space:normal}
+}
+</style>
+</head>
+<body>
+<section class="gis-module" aria-label="District Map">
+  <div class="module-head">
+    <div>
+      <p class="module-kicker">Public Records Property GIS</p>
+      <h2>District Map</h2>
+      <p class="module-sub">Activity by location · Quarterly · 2.5D building layer</p>
+    </div>
+    <div class="module-meta">
+      <span class="meta-chip">Spring 2026</span>
+      <span class="meta-chip">Clerk's Office</span>
+      <span class="meta-chip">Pitch 42°</span>
+    </div>
+  </div>
+  <div class="toolbar">
+    <div>
+      <label for="districtMapSearch">Address or public record search</label>
+      <input id="districtMapSearch" type="text" value="14 Municipal Oak" aria-label="Address or public record search">
+    </div>
+    <button type="button">Search records</button>
+  </div>
+  <div class="gis-layout">
+    <div class="map-stage">
+      <div class="map-ui" aria-hidden="true">
+        <div class="zoom-control"><div>+</div><div>-</div></div>
+        <div class="pitch-control">3D buildings</div>
+      </div>
+      <div class="layer-stack" aria-hidden="true">
+        <span class="layer-chip">Records</span>
+        <span class="layer-chip">Parcels</span>
+        <span class="layer-chip">Buildings</span>
+      </div>
+      <svg class="map-svg" viewBox="0 0 760 560" role="img" aria-label="2.5D property GIS map of Avian Municipal District filings">
+        <title>2.5D public records property map</title>
+        <rect class="tile-bg" width="760" height="560"></rect>
+        <g class="tile-layer" aria-hidden="true"></g>
+        <g class="parcel-layer" aria-hidden="true"></g>
+        <path class="park" d="M292 382 L648 382 L660 468 L296 478 Z"></path>
+        <path class="water" d="M420 424 L548 424 L568 442 L548 458 L420 456 Z"></path>
+        <g class="building-layer" aria-hidden="true"></g>
+        <g aria-hidden="true">
+          <path class="road-shadow major-shadow" d="M-20 292 L128 274 L270 276 L414 284 L580 270 L782 238"></path>
+          <path class="road-casing major-casing" d="M-20 292 L128 274 L270 276 L414 284 L580 270 L782 238"></path>
+          <path class="road-fill major-fill" d="M-20 292 L128 274 L270 276 L414 284 L580 270 L782 238"></path>
+          <path class="road-shadow small-shadow" d="M500 272 L542 218 L622 160 L720 124"></path>
+          <path class="road-casing small-casing" d="M500 272 L542 218 L622 160 L720 124"></path>
+          <path class="road-fill small-fill" d="M500 272 L542 218 L622 160 L720 124"></path>
+          <path class="road-shadow small-shadow" d="M366 282 L366 336 L396 402 L438 462"></path>
+          <path class="road-casing small-casing" d="M366 282 L366 336 L396 402 L438 462"></path>
+          <path class="road-fill small-fill" d="M366 282 L366 336 L396 402 L438 462"></path>
+          <path class="road-shadow small-shadow" d="M72 492 L226 468 L372 464 L520 476 L704 488 L774 476"></path>
+          <path class="road-casing small-casing" d="M72 492 L226 468 L372 464 L520 476 L704 488 L774 476"></path>
+          <path class="road-fill small-fill" d="M72 492 L226 468 L372 464 L520 476 L704 488 L774 476"></path>
+        </g>
+        <path class="selected-parcel" d="M320 232 L414 234 L410 316 L316 314 Z"></path>
+        <path class="selected-parcel" d="M458 236 L548 236 L548 304 L456 304 Z"></path>
+        <text class="label" x="252" y="266">Sycamore Lane</text>
+        <text class="label" x="346" y="252">14 Municipal Oak</text>
+        <text class="label small" x="474" y="252">Lot 7</text>
+        <text class="label small" x="580" y="172">22 Birch Ct</text>
+        <text class="label small" x="414" y="450">Municipal Park</text>
+        <text class="label code" x="52" y="82">AMD-37</text>
+        <g aria-label="selected nest record">
+          <ellipse class="halo" cx="356" cy="280" rx="24" ry="18"></ellipse>
+          <ellipse class="nest-fill" cx="356" cy="280" rx="17" ry="12"></ellipse>
+          <path class="nest-line" d="M342 276 C350 271 362 271 370 276"></path>
+          <path class="nest-line" d="M340 280 C350 286 362 286 372 280"></path>
+          <path class="nest-line" d="M344 284 C352 281 361 281 368 284"></path>
+          <circle class="nest-core" cx="356" cy="280" r="3"></circle>
+        </g>
+        <g aria-label="nest filing record">
+          <ellipse class="nest-fill" cx="482" cy="276" rx="12" ry="8.5"></ellipse>
+          <path class="nest-line" d="M472 273 C478 270 486 270 492 273"></path>
+          <path class="nest-line" d="M471 277 C478 281 486 281 493 277"></path>
+          <circle class="nest-core" cx="482" cy="276" r="2.2"></circle>
+        </g>
+        <g aria-label="observed nest, no filing">
+          <ellipse class="nest-zero" cx="602" cy="168" rx="11.5" ry="8"></ellipse>
+          <path class="nest-zero-line" d="M593 165 C598 162 606 162 611 165"></path>
+          <path class="nest-zero-line" d="M593 169 C598 172 606 172 611 169"></path>
+        </g>
+        <g aria-label="nest filing record">
+          <ellipse class="nest-fill" cx="560" cy="258" rx="12" ry="8.5"></ellipse>
+          <path class="nest-line" d="M550 255 C556 252 564 252 570 255"></path>
+          <path class="nest-line" d="M549 259 C556 263 564 263 571 259"></path>
+          <circle class="nest-core" cx="560" cy="258" r="2.2"></circle>
+        </g>
+      </svg>
+      <div class="map-attrib">AMD parcel records · synthetic 2.5D basemap · Spring 2026</div>
+    </div>
+    <aside class="record-panel">
+      <div class="record-search">14 Municipal Oak</div>
+      <div class="side-kicker">Selected record</div>
+      <h3>14 Municipal Oak</h3>
+      <div class="side-row"><span>Use</span><span>Judicial</span></div>
+      <div class="side-row"><span>Filings</span><span>4</span></div>
+      <div class="side-row"><span>Status</span><span>Active</span></div>
+      <p>Clerk's Office, Court, and Perch &amp; Perch. Active filings.</p>
+      <div class="side-row"><span>Scale</span><span>wingspans</span></div>
+      <div class="side-row"><span>Layer</span><span>3D buildings</span></div>
+    </aside>
+  </div>
+  <div class="legend" aria-label="Map legend">
+    <div class="legend-scale">
+      <span class="legend-item"><span class="nest-swatch selected"></span>Selected nest record</span>
+      <span class="legend-item"><span class="nest-swatch"></span>Other filing</span>
+      <span class="legend-item"><span class="nest-swatch zero"></span>No filing</span>
+    </div>
+    <div>Source: Clerk's Office</div>
+  </div>
+  <p class="footnote">Activity reflects formal filings and public records as of Spring 2026. Observations are recorded separately and do not appear on this map.</p>
+</section>
+<script>
+function addSvg(parent,tag,attrs){
+  var node=document.createElementNS("http://www.w3.org/2000/svg",tag);
+  Object.keys(attrs).forEach(function(key){node.setAttribute(key,attrs[key])});
+  parent.appendChild(node);
+  return node;
+}
+function addBuilding(parent,x,y,w,h,height,rot,core){
+  var cx=x+w/2;
+  var cy=y+h/2;
+  var g=addSvg(parent,"g",{transform:"rotate("+rot+" "+cx+" "+cy+")"});
+  var dx=height*.42;
+  var dy=-height;
+  addSvg(g,"polygon",{class:"b-shadow",points:[x+dx+3,y+dy+8,x+w+dx+3,y+dy+8,x+w+dx+3,y+h+dy+8,x+dx+3,y+h+dy+8]});
+  addSvg(g,"polygon",{class:"b-side-east",points:[x+w,y,x+w+dx,y+dy,x+w+dx,y+h+dy,x+w,y+h]});
+  addSvg(g,"polygon",{class:"b-side-south",points:[x,y+h,x+w,y+h,x+w+dx,y+h+dy,x+dx,y+h+dy]});
+  addSvg(g,"polygon",{class:core?"b-roof-core":"b-roof",points:[x,y,x+w,y,x+w+dx,y+dy,x+dx,y+dy]});
+}
+function seedMap(svg){
+  var tiles=svg.querySelector(".tile-layer");
+  var parcels=svg.querySelector(".parcel-layer");
+  var buildings=svg.querySelector(".building-layer");
+  if(tiles&&!tiles.dataset.done){
+    for(var x=80;x<760;x+=80)addSvg(tiles,"path",{class:"tile-seam",d:"M"+x+" 0V560"});
+    for(var y=80;y<560;y+=80)addSvg(tiles,"path",{class:"tile-seam",d:"M0 "+y+"H760"});
+    tiles.dataset.done="1";
+  }
+  if(!parcels||!buildings||parcels.dataset.done)return;
+  var blocks=[
+    {x:34,y:42,w:150,h:82,c:5,r:2,a:-4},{x:214,y:38,w:176,h:96,c:5,r:2,a:2},{x:424,y:48,w:174,h:84,c:5,r:2,a:5},{x:620,y:52,w:124,h:88,c:3,r:2,a:-2},
+    {x:42,y:156,w:210,h:108,c:6,r:2,a:-4},{x:288,y:154,w:180,h:100,c:5,r:2,a:2},{x:512,y:164,w:150,h:94,c:4,r:2,a:-1},
+    {x:48,y:322,w:154,h:88,c:4,r:2,a:6},{x:272,y:316,w:174,h:78,c:5,r:2,a:-5},{x:300,y:500,w:188,h:58,c:5,r:1,a:4},{x:540,y:498,w:174,h:62,c:4,r:1,a:-3}
+  ];
+  blocks.forEach(function(block,blockIndex){
+    var centerX=block.x+block.w/2;
+    var centerY=block.y+block.h/2;
+    var pg=addSvg(parcels,"g",{transform:"rotate("+block.a+" "+centerX+" "+centerY+")"});
+    addSvg(pg,"rect",{class:"parcel-strong",x:block.x,y:block.y,width:block.w,height:block.h});
+    var cellW=block.w/block.c;
+    var cellH=block.h/block.r;
+    for(var col=0;col<block.c;col++){
+      for(var row=0;row<block.r;row++){
+        var px=block.x+col*cellW;
+        var py=block.y+row*cellH;
+        addSvg(pg,"rect",{class:"parcel",x:px,y:py,width:cellW,height:cellH});
+        if((col+row+blockIndex)%5!==0){
+          var margin=5+((col+row+blockIndex)%3);
+          var bw=Math.max(13,cellW-margin*2-((row+blockIndex)%2)*4);
+          var bh=Math.max(13,cellH-margin*2-((col+blockIndex)%2)*5);
+          var height=7+((blockIndex+col*2+row)%5)*3;
+          addBuilding(buildings,px+margin,py+margin,bw,bh,height,block.a,blockIndex%5===1&&col===2);
+        }
+      }
+    }
+  });
+  parcels.dataset.done="1";
+}
+document.querySelectorAll(".map-svg").forEach(seedMap);
+</script>
+</body>
+</html>
