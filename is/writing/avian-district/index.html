@@ -108,6 +108,43 @@ a:hover { color: var(--link-hover); }
   font-family: "IBM Plex Mono", monospace;
 }
 
+.notice-box {
+  background: var(--notice-bg);
+  border: 1px solid var(--notice-border);
+  border-left: 3px solid var(--ink-archive);
+  padding: 0.7rem 1rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-light);
+  margin: 1.4rem 0 0;
+  position: relative;
+}
+.notice-box .case-pill {
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-archive);
+  border: 1px solid var(--ink-archive);
+  padding: 0.05rem 0.35rem;
+  margin-right: 0.4rem;
+  background: var(--ink-archive-tint);
+  text-decoration: none;
+  vertical-align: 1px;
+}
+.notice-box .case-pill:hover { background: var(--ink-archive); color: var(--surface); }
+
+.notice-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.6rem;
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--ink-ghost);
+}
+
 .title-section {
   background: var(--surface);
   border-bottom: 1px solid var(--rule);
@@ -126,6 +163,147 @@ a:hover { color: var(--link-hover); }
   font-weight: 700;
   color: var(--ink);
   letter-spacing: -0.01em;
+}
+
+/* ─────────────────────────────────────────────────
+   Quick-action hero — Seocho-style tile band.
+   Sits between title and Clerk's Letter; full-bleed of .main.
+   Big tiles for the most common civic tasks. Saturated header-blue
+   for the primary tile, muted surface for the secondary three.
+   ───────────────────────────────────────────────── */
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 0;
+  margin: 1.4rem 0 0;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+.qa-tile {
+  position: relative;
+  display: block;
+  padding: 1.15rem 1.1rem 1.4rem;
+  text-decoration: none;
+  color: inherit;
+  border-right: 1px solid var(--rule);
+  transition: background 0.15s, color 0.15s;
+}
+.qa-tile:last-child { border-right: none; }
+.qa-tile:hover { background: var(--surface-alt); }
+
+.qa-tile.is-primary {
+  background: var(--header-bg);
+  color: var(--header-text);
+  border-right-color: var(--header-bg);
+}
+.qa-tile.is-primary:hover {
+  background: #15212d;
+}
+
+.qa-tile-glyph {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.qa-tile.is-primary .qa-tile-glyph {
+  color: rgba(232,230,225,0.6);
+}
+
+.qa-tile-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+.qa-tile.is-primary .qa-tile-title { color: var(--header-text); }
+
+.qa-tile-sub {
+  font-size: 0.74rem;
+  color: var(--ink-faded);
+  line-height: 1.45;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+.qa-tile.is-primary .qa-tile-sub {
+  color: rgba(232,230,225,0.7);
+}
+
+.qa-tile-arrow {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.9rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.9rem;
+  color: var(--ink-ghost);
+  transition: transform 0.15s ease;
+}
+.qa-tile:hover .qa-tile-arrow { transform: translateX(3px); color: var(--ink); }
+.qa-tile.is-primary .qa-tile-arrow { color: rgba(232,230,225,0.7); }
+.qa-tile.is-primary:hover .qa-tile-arrow { color: var(--header-text); }
+
+/* ─────────────────────────────────────────────────
+   Notice ticker — thin scrolling band of recent notices.
+   Korean municipal portals frequently use this; matches
+   AMD's "ongoing record" tone.
+   ───────────────────────────────────────────────── */
+.notice-ticker {
+  margin: 0.7rem 0 0;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  display: flex;
+  align-items: stretch;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  overflow: hidden;
+}
+.notice-ticker-label {
+  flex: 0 0 auto;
+  padding: 0.55rem 0.9rem;
+  background: var(--ink-stamp);
+  color: #f4ede4;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+.notice-ticker-track {
+  flex: 1 1 auto;
+  overflow: hidden;
+  position: relative;
+  padding: 0.55rem 0;
+  white-space: nowrap;
+}
+.notice-ticker-content {
+  display: inline-block;
+  padding-left: 100%;
+  animation: ticker-scroll 60s linear infinite;
+  color: var(--ink-light);
+}
+.notice-ticker-content span {
+  margin: 0 1.6rem;
+}
+.notice-ticker-content span::before {
+  content: "·";
+  margin-right: 1.6rem;
+  color: var(--ink-ghost);
+}
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 760px) {
+  .quick-actions { grid-template-columns: 1fr 1fr; }
+  .qa-tile { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .qa-tile:nth-child(2n) { border-right: none; }
+  .qa-tile:nth-child(n+3) { border-bottom: none; }
+  .qa-tile.is-primary { grid-column: 1 / -1; border-right: none; }
+  .qa-tile.is-primary + .qa-tile { border-right: 1px solid var(--rule); }
 }
 
 .title-sub {
@@ -504,6 +682,16 @@ a:hover { color: var(--link-hover); }
   border-right: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   position: relative;
+  /* button reset */
+  background: none;
+  border-top: none;
+  border-left: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  display: block;
 }
 .stat-cell:nth-child(3n) { border-right: none; }
 .stat-cell:nth-child(n+4) { /* bottom row */ border-bottom: none; }
@@ -540,6 +728,45 @@ a:hover { color: var(--link-hover); }
   gap: 1rem;
 }
 .stat-foot .stat-period { color: var(--ink-faded); }
+
+/* Expandable cell behavior — click reveals a Clerk's-voice expansion. */
+.stat-cell {
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.stat-cell:hover { background: var(--surface-alt); }
+
+.stat-cell::after {
+  content: "+";
+  position: absolute;
+  top: 0.7rem;
+  right: 0.8rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--ink-ghost);
+  line-height: 1;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.stat-cell:hover::after { color: var(--ink-light); }
+.stat-cell.is-open::after {
+  content: "−";
+  color: var(--ink);
+}
+
+.stat-expand {
+  display: none;
+  margin-top: 0.7rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--rule);
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ink-light);
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.stat-cell.is-open .stat-expand { display: block; }
 
 /* ─────────────────────────────────────────────────
    From the Municipal Coo — excerpt block
@@ -595,6 +822,10 @@ a:hover { color: var(--link-hover); }
   margin: 0 0 0.9rem;
   max-width: 56ch;
   text-wrap: pretty;
+}
+.coo-body .coo-dash {
+  color: var(--ink-stamp);
+  font-style: normal;
 }
 .coo-link {
   font-family: "IBM Plex Sans", sans-serif;
@@ -1010,11 +1241,48 @@ a:hover { color: var(--link-hover); }
 
 <div class="main">
 
+  <div class="quick-actions">
+    <a class="qa-tile is-primary" href="#" onclick="event.preventDefault(); openNoiseForm();">
+      <span class="qa-tile-glyph">Civic action</span>
+      <div class="qa-tile-title">File a Noise Complaint</div>
+      <span class="qa-tile-arrow">→</span>
+    </a>
+    <a class="qa-tile" href="/is/writing/nest-court/calendar/" target="_blank">
+      <span class="qa-tile-glyph">Judicial</span>
+      <div class="qa-tile-title">Court calendar</div>
+      <span class="qa-tile-arrow">→</span>
+    </a>
+    <a class="qa-tile" href="/is/writing/nest-court-proceedings/" target="_blank">
+      <span class="qa-tile-glyph">Judicial</span>
+      <div class="qa-tile-title">Observe a proceeding</div>
+      <span class="qa-tile-arrow">→</span>
+    </a>
+    <a class="qa-tile" href="/is/writing/nest-court/" target="_blank">
+      <span class="qa-tile-glyph">Judicial</span>
+      <div class="qa-tile-title">Search the docket</div>
+      <span class="qa-tile-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="notice-ticker" aria-label="Recent notices">
+    <div class="notice-ticker-label">Notices</div>
+    <div class="notice-ticker-track">
+      <div class="notice-ticker-content">
+        <span>Quiet hours compliance review in progress (AMNC-2026-011A)</span>
+        <span>Telephone wire above south parking lot — request filed; not designated</span>
+        <span>Spring nesting season underway; solo permits are not required</span>
+        <span>Third bench is public property; it is a bench</span>
+        <span>Unclaimed vine in Clerk's drawer since March</span>
+        <span>Finch &amp; Sons Nest Repair added to contractor registry; applicant persistent</span>
+        <span>Fax line remains not operational</span>
+      </div>
+    </div>
+  </div>
+
   <div class="clerk-letter">
     <div class="clerk-letter-head">From the Clerk's Office — Spring 2026</div>
     <p>The Avian Municipal District serves the residents of Sycamore Lane, Birch Court, Municipal Oak, and surrounding branches. The Clerk's Office maintains public records, processes filings, and provides access to district services. It does not provide opinions on who was right. It has opinions. It does not provide them.</p>
-    <p>This spring has been active. The Court has processed four cases this term, including two nest abandonments, a noise matter under compliance review, and a domestic dispute about humming. Solo nesting consultations with approved contractors are up. The third bench at Municipal Park now has three regular occupants, none of whom have filed paperwork.</p>
-    <p>Residents seeking legal representation will find a licensed practitioner listed on this portal. The Clerk's Office does not recommend her.</p>
+    <p>This spring has been active. The Court has processed four cases this term, including two nest abandonments, a noise matter under compliance review, and a domestic dispute about humming. Solo nesting consultations with approved contractors are up.</p>
     <p>The fax line remains not operational. Please do not ask again until autumn.</p>
     <div class="sig">— T. Nuthatch, Clerk of Court</div>
   </div>
@@ -1023,30 +1291,36 @@ a:hover { color: var(--link-hover); }
 
   <div class="stat-panel" aria-label="District statistics">
     <div class="stat-grid">
-      <div class="stat-cell">
+      <button type="button" class="stat-cell" aria-expanded="false">
         <div class="stat-num">7</div>
         <div class="stat-label">Broken hearts</div>
-      </div>
-      <div class="stat-cell">
+        <div class="stat-expand">Counted by filing. Not counted by observation, where the number is higher.</div>
+      </button>
+      <button type="button" class="stat-cell" aria-expanded="false">
         <div class="stat-num">12</div>
         <div class="stat-label">Self-help books,<br>drainage pipe</div>
-      </div>
-      <div class="stat-cell">
+        <div class="stat-expand">Located behind 22 Birch Court. The Clerk's Office knows whose they are.</div>
+      </button>
+      <button type="button" class="stat-cell" aria-expanded="false">
         <div class="stat-num">1</div>
         <div class="stat-label">Public argument</div>
-      </div>
-      <div class="stat-cell">
+        <div class="stat-expand">Filed under noise. Reclassification denied; argument was structurally a noise event.</div>
+      </button>
+      <button type="button" class="stat-cell" aria-expanded="false">
         <div class="stat-num">1</div>
         <div class="stat-label">Unclaimed vine</div>
-      </div>
-      <div class="stat-cell">
+        <div class="stat-expand">In the Clerk's drawer since March. It is beginning to affect the filing.</div>
+      </button>
+      <button type="button" class="stat-cell" aria-expanded="false">
         <div class="stat-num is-zero">0</div>
         <div class="stat-label">Reconciliations</div>
-      </div>
-      <div class="stat-cell">
+        <div class="stat-expand">The Clerk's Office does not keep a separate count and would not know where to begin.</div>
+      </button>
+      <button type="button" class="stat-cell" aria-expanded="false">
         <div class="stat-num">1</div>
         <div class="stat-label">Fax, not operational</div>
-      </div>
+        <div class="stat-expand">Inquiries about the fax line should be directed to the fax line.</div>
+      </button>
     </div>
     <div class="stat-foot">
       <span>Source: Clerk's Office</span>
@@ -1121,160 +1395,18 @@ a:hover { color: var(--link-hover); }
 
   <ul class="notices-list">
     <li>
-      <div class="notice-date">April 12, 2026</div>
-      <div class="notice-text">The Clerk's Office has received a request to designate the telephone wire above the south parking lot as a "shared-use perch." The request has been filed. The Clerk's Office does not designate wires. The wire does not belong to the district. The pigeons have been informed.</div>
-    </li>
-    <li>
       <div class="notice-date">April 10, 2026</div>
       <div class="notice-text">Court proceedings with gallery assessments are now available for three cases through the <a href="/is/writing/nest-court/">eCourt Public Portal</a>. The Clerk's Office reminds the public that gallery observation is not the same as attendance and does not count toward community service hours.</div>
-    </li>
-    <li>
-      <div class="notice-date">April 7, 2026</div>
-      <div class="notice-text">Spring nesting season is underway. Solo building permits are not required and have never been required. The Clerk's Office has received eleven enquiries this month anyway.</div>
-    </li>
-    <li>
-      <div class="notice-date">April 3, 2026</div>
-      <div class="notice-text">The third bench at Municipal Park is public property. It does not have assigned seating or a reservation system. It is a bench. The Clerk's Office should not have had to write this notice.</div>
-    </li>
-    <li>
-      <div class="notice-date">March 28, 2026</div>
-      <div class="notice-text">Unclaimed nest materials at public intersections become district property after 30 days. One (1) vine has been in the Clerk's drawer since March. It is beginning to affect the filing.</div>
     </li>
     <li>
       <div class="notice-date">March 21, 2026</div>
       <div class="notice-text">The community meeting on post-separation perch usage has been postponed. The organizer will reconvene when the community "demonstrates readiness." The Clerk's Office attended the previous meeting and would describe readiness as early-stage.</div>
     </li>
     <li>
-      <div class="notice-date">March 14, 2026</div>
-      <div class="notice-text">Finch & Sons Nest Repair has been added to the approved contractor registry. The Clerk's Office does not typically announce contractor approvals but processed the request because the applicant returned to the window three times.</div>
-    </li>
-    <li>
-      <div class="notice-date">March 7, 2026</div>
-      <div class="notice-text">The fax line remains not operational. The Clerk's Office has been asked whether "not operational" means broken or disconnected. The answer is yes.</div>
-    </li>
-    <li>
       <div class="notice-date">February 28, 2026</div>
       <div class="notice-text">The Clerk's Office is not a mediation service, a counselling resource, or a venue for continuing arguments that began at home. The front window is for filings. Visiting hours ended in 2024.</div>
     </li>
   </ul>
-
-  <div class="section-heading">District Map</div>
-  <p class="map-sub">Activity by location · Quarterly · Hover or tap a marker</p>
-
-  <section class="district-map-shell" aria-label="District Map">
-    <div class="district-map-wrap" id="districtMapWrap">
-      <svg class="district-map" id="districtMap" viewBox="0 0 860 430" role="img" aria-labelledby="districtMapTitle districtMapDesc">
-        <title id="districtMapTitle">Avian Municipal District activity map</title>
-        <desc id="districtMapDesc">A Clerk's Office map showing public activity by location across Municipal Oak, Sycamore Lane, Birch Court, Municipal Park, South Ridge, and eastern infrastructure.</desc>
-
-        <rect width="860" height="430" fill="#e8e4d2"></rect>
-
-        <g aria-hidden="true">
-          <path class="map-graticule" d="M120 0V430 M240 0V430 M360 0V430 M480 0V430 M600 0V430 M720 0V430"></path>
-          <path class="map-graticule" d="M0 80H860 M0 160H860 M0 240H860 M0 320H860 M0 400H860"></path>
-        </g>
-
-        <path class="map-boundary" d="M94 128 C122 86 198 72 286 88 C356 58 472 68 558 102 C630 86 726 116 776 184 C820 244 796 318 714 350 C620 389 522 392 434 366 C346 404 230 386 154 324 C92 272 62 190 94 128 Z"></path>
-
-        <path class="map-green" d="M92 264 C134 232 205 234 258 270 C296 296 304 344 256 367 C200 392 132 354 102 318 C88 300 78 282 92 264 Z"></path>
-        <path class="map-green" d="M382 292 C432 262 512 276 548 318 C566 342 546 366 498 372 C438 380 382 350 376 320 C374 308 374 300 382 292 Z"></path>
-        <ellipse class="map-water" cx="485" cy="326" rx="46" ry="18" transform="rotate(-10 485 326)"></ellipse>
-        <path class="map-feature" d="M350 246 L430 250 L428 292 L348 288 Z"></path>
-        <path class="map-feature" d="M692 224 C738 218 776 238 790 270 C758 286 714 288 680 268 C678 250 682 236 692 224 Z"></path>
-
-        <path class="map-road" d="M142 211 C218 186 303 191 384 201 C474 211 552 193 626 190"></path>
-        <path class="map-road-secondary" d="M626 190 C645 172 670 151 716 132"></path>
-        <path class="map-path" d="M410 205 C404 240 422 286 462 321"></path>
-        <path class="map-path" d="M354 204 C314 232 260 285 214 333"></path>
-        <path class="map-path" d="M626 190 C662 212 694 226 733 245"></path>
-
-        <text class="map-road-label" x="238" y="178">Sycamore Lane</text>
-        <text class="map-road-label" x="656" y="160" transform="rotate(-28 656 160)">Birch Court</text>
-        <text class="map-label" x="370" y="164">Municipal Oak</text>
-        <text class="map-label map-label-small" x="407" y="348">Municipal Park</text>
-        <text class="map-label map-label-small" x="150" y="354">South Ridge</text>
-        <text class="map-label map-label-small secondary-label" x="686" y="216">Bldg. C East</text>
-        <text class="map-label map-label-small secondary-label" x="344" y="282">Parking Lot</text>
-
-        <g class="map-compass" aria-hidden="true" transform="translate(775 58)">
-          <circle cx="0" cy="0" r="22" fill="rgba(244,242,237,0.45)" stroke="#8a877e" stroke-width="1"></circle>
-          <path d="M0 -16 L5 3 L0 0 L-5 3 Z" fill="#5a5a52" stroke="none"></path>
-          <line x1="0" y1="5" x2="0" y2="15"></line>
-          <text class="map-control-label" x="-4" y="-25">N</text>
-        </g>
-
-        <g class="map-scale" aria-hidden="true" transform="translate(64 374)">
-          <line x1="0" y1="0" x2="112" y2="0"></line>
-          <line x1="0" y1="-6" x2="0" y2="6"></line>
-          <line x1="56" y1="-6" x2="56" y2="6"></line>
-          <line x1="112" y1="-6" x2="112" y2="6"></line>
-          <text class="map-control-label" x="0" y="22">0</text>
-          <text class="map-control-label" x="47" y="22">50</text>
-          <text class="map-control-label" x="94" y="22">100 wingspans</text>
-        </g>
-
-        <g class="hotspot" id="hotspot-municipal-oak" data-hotspot-id="municipalOak" tabindex="0" role="button" aria-label="14 Municipal Oak, Judicial, Filings: 4">
-          <circle class="hotspot-hit" cx="410" cy="195" r="24"></circle>
-          <circle class="hotspot-ring" cx="410" cy="195" r="19"></circle>
-          <circle class="hotspot-dot" cx="410" cy="195" r="15"></circle>
-        </g>
-        <g class="hotspot" id="hotspot-sycamore-lot" data-hotspot-id="sycamoreLot" tabindex="0" role="button" aria-label="14 Sycamore Lane, Lot 7, Residential, Filings: 1">
-          <circle class="hotspot-hit" cx="555" cy="205" r="22"></circle>
-          <circle class="hotspot-ring" cx="555" cy="205" r="15"></circle>
-          <circle class="hotspot-dot" cx="555" cy="205" r="10"></circle>
-        </g>
-        <g class="hotspot" id="hotspot-birch-22" data-hotspot-id="birch22" tabindex="0" role="button" aria-label="22 Birch Court, Residential, Filings: 0">
-          <circle class="hotspot-hit" cx="690" cy="150" r="22"></circle>
-          <circle class="hotspot-ring" cx="690" cy="150" r="14"></circle>
-          <circle class="hotspot-dot hotspot-zero" cx="690" cy="150" r="9"></circle>
-        </g>
-        <g class="hotspot" id="hotspot-birch-sycamore" data-hotspot-id="birchSycamore" tabindex="0" role="button" aria-label="Birch / Sycamore Intersection, Public, Filings: 1">
-          <circle class="hotspot-hit" cx="625" cy="190" r="22"></circle>
-          <circle class="hotspot-ring" cx="625" cy="190" r="15"></circle>
-          <circle class="hotspot-dot" cx="625" cy="190" r="10"></circle>
-        </g>
-        <g class="hotspot" id="hotspot-third-bench" data-hotspot-id="thirdBench" tabindex="0" role="button" aria-label="Municipal Park, Third Bench, Public, Filings: 1">
-          <circle class="hotspot-hit" cx="450" cy="325" r="22"></circle>
-          <circle class="hotspot-ring" cx="450" cy="325" r="15"></circle>
-          <circle class="hotspot-dot" cx="450" cy="325" r="10"></circle>
-        </g>
-        <g class="hotspot" id="hotspot-drainage-pipe" data-hotspot-id="drainagePipe" tabindex="0" role="button" aria-label="Drainage Pipe, Building C East, Infrastructure, Filings: 1">
-          <circle class="hotspot-hit" cx="735" cy="245" r="22"></circle>
-          <circle class="hotspot-ring" cx="735" cy="245" r="15"></circle>
-          <circle class="hotspot-dot" cx="735" cy="245" r="10"></circle>
-        </g>
-        <g class="hotspot" id="hotspot-south-ridge" data-hotspot-id="southRidge" tabindex="0" role="button" aria-label="South Ridge, Infrastructure, Filings: 0">
-          <circle class="hotspot-hit" cx="220" cy="330" r="22"></circle>
-          <circle class="hotspot-ring" cx="220" cy="330" r="14"></circle>
-          <circle class="hotspot-dot hotspot-zero" cx="220" cy="330" r="9"></circle>
-        </g>
-        <g class="hotspot" id="hotspot-parking-lot" data-hotspot-id="parkingLot" tabindex="0" role="button" aria-label="Parking Lot South, Public, Filings: 1">
-          <circle class="hotspot-hit" cx="390" cy="270" r="22"></circle>
-          <circle class="hotspot-ring" cx="390" cy="270" r="15"></circle>
-          <circle class="hotspot-dot" cx="390" cy="270" r="10"></circle>
-        </g>
-      </svg>
-    </div>
-
-    <div class="map-legend" aria-label="Map legend">
-      <div class="legend-scale">
-        <span class="legend-item"><span class="legend-dot legend-small"></span>Small dot · 1</span>
-        <span class="legend-item"><span class="legend-dot legend-medium"></span>Medium dot · 2-3</span>
-        <span class="legend-item"><span class="legend-dot legend-large"></span>Large dot · 4+</span>
-        <span class="legend-item"><span class="legend-dot legend-zero"></span>Hollow circle · 0</span>
-      </div>
-      <div class="map-source">Source: Clerk's Office</div>
-    </div>
-    <p class="map-footnote">Activity reflects formal filings and public records as of Spring 2026. Observations are recorded separately and do not appear on this map.</p>
-  </section>
-
-  <div class="map-popup" id="districtMapPopup" role="status" aria-live="polite">
-    <button type="button" class="map-popup-close" id="districtMapPopupClose" aria-label="Close map popup">&times;</button>
-    <div class="map-popup-category" id="districtMapPopupCategory"></div>
-    <div class="map-popup-title" id="districtMapPopupTitle"></div>
-    <div class="map-popup-stats" id="districtMapPopupStats"></div>
-    <p class="map-popup-note" id="districtMapPopupNote"></p>
-  </div>
 
   <div class="section-heading">Frequently Requested Information</div>
 
@@ -1287,20 +1419,12 @@ a:hover { color: var(--link-hover); }
     <div class="faq-a"><a class="form-trigger" onclick="openNoiseForm()">File with the Clerk's Office</a>. Include dates, times, description of the noise, and its apparent purpose. Residents describing the noise as "you'd have to hear it" are advised that the Clerk has heard it. The Clerk lives on Municipal Oak.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q">Is the third bench a designated residence?</div>
-    <div class="faq-a">No. The third bench is a bench. A recent ruling awarded it to the respondent. This was a custodial outcome, not a reclassification of furniture.</div>
-  </div>
-  <div class="faq-item">
     <div class="faq-q">Is SecondNest affiliated with the district?</div>
     <div class="faq-a">No. The Clerk's Office lists it because not listing it resulted in more questions than listing it.</div>
   </div>
   <div class="faq-item">
     <div class="faq-q">Can I attend a court hearing?</div>
     <div class="faq-a">Hearings are open to the public. Seating is limited. Spectators who have already formed opinions are asked to keep them at foraging volume.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">What are quiet hours?</div>
-    <div class="faq-a">Quiet hours prohibit sustained vocal performance between 9:00 PM and 6:30 AM under Ordinance 9.3(a). The Court has encouraged the respondent to acquire a timepiece.</div>
   </div>
 
   <footer class="site-footer">
@@ -1657,7 +1781,19 @@ function handleNoiseSubmit() {
   }, 1200);
 }
 
-initDistrictMap();
+// District map removed — initDistrictMap() retained but not invoked.
+// initDistrictMap();
+
+// Expandable stat cells — toggle Clerk's-voice expansion on click.
+(function initStatCells() {
+  var cells = document.querySelectorAll('.stat-panel .stat-cell');
+  cells.forEach(function(cell) {
+    cell.addEventListener('click', function() {
+      var isOpen = cell.classList.toggle('is-open');
+      cell.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+})();
 </script>
 
 </body>

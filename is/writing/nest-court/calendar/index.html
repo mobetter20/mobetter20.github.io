@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spring Term Docket — Nest Court, Branch Division</title>
+<meta name="description" content="Spring Term Docket for the Avian Municipal Nest Court, Branch Division. Pending matters, recent dispositions, and Clerk's notes for March–May 2026.">
+<meta property="og:title" content="Spring Term Docket — Nest Court, Branch Division">
+<meta property="og:description" content="Pending matters, recent dispositions, and Clerk's notes for March–May 2026.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ajin.im/is/writing/nest-court/calendar/">
+<link rel="canonical" href="https://ajin.im/is/writing/nest-court/calendar/">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon.png">
+<script src="../../../../analytics.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --header-navy: #1d2b3a;
+    --bg-warm: #e8e6e1;
+    --surface: #f4f2ed;
+    --surface-alt: #ede9e0;
+    --text-primary: #1a1a18;
+    --text-secondary: #5a5a52;
+    --text-ghost: #88887e;
+    --rule-light: #c8c4b8;
+    --rule-heavy: #8a877e;
+    --link: #1d4a6a;
+    --redact: #2a2a26;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg-warm);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 80px;
+  }
+
+  /* HEADER BANDS — match existing Nest Court / government tier */
+  .gov-band {
+    background: var(--header-navy);
+    color: #d4d2cc;
+    padding: 10px 0;
+    border-bottom: 3px solid #0f1922;
+  }
+  .gov-band-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  .gov-band-inner .left { text-transform: uppercase; }
+  .gov-band-inner .right { color: #8a9aa8; }
+
+  .portal-bar {
+    background: #243646;
+    color: #c8c4b8;
+    padding: 14px 0;
+    border-bottom: 1px solid #0f1922;
+  }
+  .portal-bar-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .portal-title {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+  }
+  .portal-title .tm { font-size: 9px; vertical-align: super; opacity: 0.7; }
+  .portal-version {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #8a9aa8;
+    letter-spacing: 0.05em;
+  }
+
+  /* DOCUMENT SHELL */
+  .doc-shell {
+    max-width: 960px;
+    margin: 32px auto 0;
+    padding: 0 24px;
+  }
+
+  .doc-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-ghost);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--rule-light);
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .doc-meta a {
+    color: var(--text-ghost);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--text-ghost);
+  }
+  .doc-meta a:hover { color: var(--link); border-bottom-color: var(--link); }
+
+  /* DOCKET (the document) */
+  .docket {
+    background: var(--surface);
+    border: 1px solid var(--rule-light);
+    padding: 56px 64px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  }
+
+  .docket-letterhead {
+    text-align: center;
+    border-bottom: 2px solid var(--rule-heavy);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+  .docket-letterhead .court-name {
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .docket-letterhead .court-sub {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 18px;
+  }
+  .docket-letterhead .doc-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .docket-letterhead .term-of {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+  }
+
+  /* Issuance block */
+  .issuance {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 32px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .issuance .label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-ghost);
+  }
+  .issuance .val { color: var(--text-primary); }
+
+  /* INTRO PARAGRAPH from the Clerk */
+  .term-preamble {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: 36px;
+    padding: 0 4px;
+  }
+
+  /* SECTION HEADERS — for "PENDING THIS TERM," "RECENTLY DISPOSED," etc. */
+  .section-header {
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    padding: 14px 0 6px;
+    border-top: 2px solid var(--rule-heavy);
+    border-bottom: 1px solid var(--rule-light);
+    margin-top: 32px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .section-header .count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 400;
+    font-size: 10px;
+    color: var(--text-ghost);
+    letter-spacing: 0.06em;
+  }
+
+  /* MONTH HEADERS within a section */
+  .month-header {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    padding: 14px 0 6px;
+    margin-top: 10px;
+    border-bottom: 1px dashed var(--rule-light);
+    display: flex;
+    justify-content: space-between;
+  }
+  .month-header .month-note {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 10.5px;
+    color: var(--text-ghost);
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-style: italic;
+  }
+
+  /* DOCKET ENTRY */
+  .entry {
+    display: grid;
+    grid-template-columns: 110px 110px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule-light);
+    align-items: start;
+  }
+  .entry:last-child { border-bottom: none; }
+
+  .entry-when {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-primary);
+    line-height: 1.45;
+  }
+  .entry-when .week {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .entry-when .session {
+    display: block;
+    font-size: 10px;
+    color: var(--text-ghost);
+    letter-spacing: 0.04em;
+  }
+
+  .entry-case {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--link);
+  }
+  .entry-case a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .entry-case a:hover { border-bottom-color: var(--link); }
+  .entry-case .type-code {
+    display: block;
+    font-size: 9.5px;
+    color: var(--text-ghost);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .entry-detail .caption {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .entry-detail .hearing-type {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .entry-detail .parties {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-ghost);
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+  }
+  .entry-detail .clerk-aside {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    padding-left: 10px;
+    border-left: 2px solid var(--rule-light);
+  }
+
+  /* Disposed entries — slightly faded */
+  .entry.disposed .entry-detail .caption { color: var(--text-secondary); }
+  .entry.disposed .entry-when { color: var(--text-secondary); }
+
+  .badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1px 6px;
+    border: 1px solid var(--text-ghost);
+    color: var(--text-secondary);
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge.continued { border-color: #8a6e3a; color: #8a6e3a; }
+  .badge.compliance { border-color: var(--link); color: var(--link); }
+  .badge.pro-se { border-color: var(--text-ghost); color: var(--text-ghost); }
+  .badge.emergency { border-color: #8a3a3a; color: #8a3a3a; }
+  .badge.disposed { border-color: var(--text-ghost); color: var(--text-ghost); }
+  .badge.ruled { border-color: #4a6e4a; color: #4a6e4a; }
+
+  /* Confidential redactions */
+  .redacted {
+    display: inline-block;
+    background: var(--redact);
+    color: var(--redact);
+    user-select: none;
+    padding: 0 2px;
+    margin: 0 1px;
+  }
+  .conf-row {
+    color: var(--text-ghost);
+    font-style: italic;
+  }
+
+  /* CLERK'S NOTES */
+  .clerks-notes {
+    margin-top: 40px;
+    padding: 24px 28px;
+    background: var(--surface-alt);
+    border: 1px solid var(--rule-light);
+    border-left: 3px solid var(--rule-heavy);
+  }
+  .clerks-notes-header {
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .clerks-notes-header .cl-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 400;
+    font-size: 10px;
+    color: var(--text-ghost);
+    letter-spacing: 0.08em;
+  }
+  .clerks-notes ul {
+    list-style: none;
+    font-family: 'Source Serif 4', serif;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--text-primary);
+  }
+  .clerks-notes li {
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+  .clerks-notes li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--text-ghost);
+  }
+
+  .clerk-signature {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule-light);
+    text-align: right;
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .clerk-signature .name {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: block;
+    margin-top: 4px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  /* MID-TERM NOTICE indicator (placeholder for future updates) */
+  .mid-term-strip {
+    margin-top: 32px;
+    padding: 16px 22px;
+    background: var(--surface);
+    border: 1px dashed var(--rule-light);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-ghost);
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+  .mid-term-strip .label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  /* Auto-generated cruft */
+  .doc-footer-cruft {
+    margin-top: 48px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--rule-light);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text-ghost);
+    letter-spacing: 0.06em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* PAGE FOOTER (district cross-links) */
+  .page-footer {
+    max-width: 960px;
+    margin: 48px auto 0;
+    padding: 32px 24px 0;
+    border-top: 1px solid var(--rule-light);
+    font-size: 11px;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+  }
+  .page-footer .links {
+    margin-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .page-footer a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .page-footer a:hover { border-bottom-color: var(--link); }
+  .page-footer .legal {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: var(--text-ghost);
+    letter-spacing: 0.06em;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 720px) {
+    .docket { padding: 32px 24px; }
+    .entry { grid-template-columns: 90px 100px 1fr; gap: 10px; }
+    .docket-letterhead .court-name { font-size: 16px; letter-spacing: 0.1em; }
+    .docket-letterhead .doc-title { font-size: 22px; }
+    .issuance { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Government band -->
+<div class="gov-band">
+  <div class="gov-band-inner">
+    <span class="left">Avian Municipal District · Official Portal</span>
+    <span class="right">A service of the Clerk's Office</span>
+  </div>
+</div>
+
+<!-- Portal sub-band -->
+<div class="portal-bar">
+  <div class="portal-bar-inner">
+    <div class="portal-title">NestLaw<span class="tm">™</span> eCourt Portal</div>
+    <div class="portal-version">v 2.3.1 · Branch Division</div>
+  </div>
+</div>
+
+<div class="doc-shell">
+
+  <div class="doc-meta">
+    <span>Term Docket · Posted Mar 2, 2026 · Last revised Apr 14, 2026</span>
+  </div>
+
+  <article class="docket">
+
+    <!-- Letterhead -->
+    <header class="docket-letterhead">
+      <div class="court-name">Avian Municipal Nest Court</div>
+      <div class="court-sub">Branch Division · Chamber B</div>
+      <h1 class="doc-title">Spring Term Docket</h1>
+      <div class="term-of">March — May 2026</div>
+    </header>
+
+    <!-- Issuance block -->
+    <div class="issuance">
+      <div><span class="label">Issued by:</span> <span class="val">Clerk's Office, 14 Municipal Oak</span></div>
+      <div><span class="label">Presiding:</span> <span class="val">Hon. M. Owl</span></div>
+      <div><span class="label">First posted:</span> <span class="val">March 2, 2026</span></div>
+      <div><span class="label">Last revised:</span> <span class="val">April 14, 2026</span></div>
+      <div><span class="label">Form:</span> <span class="val">CL-TD-04 (Rev. 2024)</span></div>
+      <div><span class="label">Next term:</span> <span class="val">Summer Term — posts late May</span></div>
+    </div>
+
+    <!-- Clerk's preamble -->
+    <p class="term-preamble">This docket records what the Court intends to do, what the Court has already done, and what otherwise concerns the Court. Past dockets are kept on file at the Clerk's Office.</p>
+
+    <!-- ============================================ -->
+    <!-- SECTION 1: PENDING THIS TERM -->
+    <!-- ============================================ -->
+    <h2 class="section-header">
+      <span>Pending This Term</span>
+      <span class="count">14 matters · organized by month</span>
+    </h2>
+
+    <!-- MARCH -->
+    <h3 class="month-header">
+      <span>March 2026</span>
+      <span class="month-note">Term opens · early calendar</span>
+    </h3>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of Mar 9</span>
+        <span class="session">Morning Sitting</span>
+      </div>
+      <div class="entry-case">
+        <a href="/is/writing/nest-court-proceedings/" target="_blank">AMNC-2026-007B</a>
+        <span class="type-code">110 — Nest Abandonment</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Dove v. Dove <span class="badge">Pre-Trial</span></div>
+        <div class="hearing-type">Status conference; consideration of pre-hearing motions</div>
+        <div class="parties">
+          (P) Denise Dove, pro se · (R) Greg Dove, pro se
+        </div>
+        <div class="clerk-aside">Both parties confirmed attendance. The Court has reserved a longer block than usual.</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of Mar 23</span>
+        <span class="session">Morning Sitting</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-009A</span>
+        <span class="type-code">410 — Noise / Domestic</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Wren v. Wren <span class="badge">Pre-Hearing</span></div>
+        <div class="hearing-type">Scheduling conference; recording-evidence review</div>
+        <div class="parties">(P) Wren, pro se · (R) Wren, pro se</div>
+        <div class="clerk-aside">The Petitioner has indicated she will bring a recording. The Respondent has indicated he was not aware he was being recorded.</div>
+      </div>
+    </div>
+
+    <!-- APRIL -->
+    <h3 class="month-header">
+      <span>April 2026</span>
+      <span class="month-note">Hearing-heavy month</span>
+    </h3>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of Apr 13</span>
+        <span class="session">Morning Sitting</span>
+      </div>
+      <div class="entry-case">
+        <a href="/is/writing/nest-court-proceedings/" target="_blank">AMNC-2026-007B</a>
+        <span class="type-code">110 — Nest Abandonment</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Dove v. Dove <span class="badge">Hearing on Merits</span></div>
+        <div class="hearing-type">Final hearing; testimony from witness for Petitioner</div>
+        <div class="parties">
+          (P) Denise Dove, pro se · (R) Greg Dove, pro se<br>
+          (W) Cheryl Sparrow, called by Petitioner
+        </div>
+        <div class="clerk-aside">The witness has filed six pages of additional context. The Court has neither requested nor refused them.</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of Apr 20</span>
+        <span class="session">Late Light</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-011A</span>
+        <span class="type-code">410 — Noise / Nuisance</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Mun. Dist. v. Conrad <span class="badge">Hearing</span></div>
+        <div class="hearing-type">Hearing on the merits; consideration of artistic-expression defense</div>
+        <div class="parties">(P) Municipal District · (R) Conrad (mockingbird), pro se</div>
+        <div class="clerk-aside">The Respondent has indicated he wishes to submit a contextual performance sample. The Court has indicated it does not.</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of Apr 27</span>
+        <span class="session">Morning Sitting</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-011A</span>
+        <span class="type-code">410 — Noise / Nuisance</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Mun. Dist. v. Conrad <span class="badge">Rule to Show Cause</span></div>
+        <div class="hearing-type">Quiet hours violation review (6:29 AM, April 22)</div>
+        <div class="parties">(P) Municipal District · (R) Conrad, pro se</div>
+        <div class="clerk-aside">The Respondent has been advised that the Court recognizes the concept of a clock and recommends the Respondent acquire one.</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of Apr 27</span>
+        <span class="session">Afternoon Calendar</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-019A</span>
+        <span class="type-code">510 — Territorial Dispute</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">H. v. H. <span class="badge">Pre-Hearing</span></div>
+        <div class="hearing-type">Status conference re: park perch (south end)</div>
+        <div class="parties">(P) Margaret H., pro se · (R) Gerald H., pro se</div>
+        <div class="clerk-aside">Both parties have indicated a willingness to attend. Neither has indicated a willingness to leave.</div>
+      </div>
+    </div>
+
+    <!-- MAY -->
+    <h3 class="month-header">
+      <span>May 2026</span>
+      <span class="month-note">Term closes · disposition month</span>
+    </h3>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of May 4</span>
+        <span class="session">Morning Sitting</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-021A</span>
+        <span class="type-code">770 — Vine Provenance</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">In re: Unclaimed Vine, Birch / Sycamore <span class="badge">Petition</span></div>
+        <div class="hearing-type">Petition for adjudication of abandoned property</div>
+        <div class="parties">(P) Clerk's Office · (R) None appearing</div>
+        <div class="clerk-aside">The vine has been at the Clerk's Office since February. The Clerk would like it not to be.</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of May 11</span>
+        <span class="session">Morning Sitting</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-009A</span>
+        <span class="type-code">410 — Noise / Domestic</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Wren v. Wren <span class="badge">Hearing on Merits</span></div>
+        <div class="hearing-type">Hearing on the merits; recording reviewed; ruling expected</div>
+        <div class="parties">(P) Wren, pro se · (R) Wren, pro se</div>
+        <div class="clerk-aside">The Court has set aside additional time to listen to the recording, which has been described as "patterned."</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of May 11</span>
+        <span class="session">Late Light</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-016B</span>
+        <span class="type-code">130 — Separate Branch Maintenance</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Finch v. Finch <span class="badge continued">Continued (3rd)</span></div>
+        <div class="hearing-type">Motion to compel division of jointly held materials</div>
+        <div class="parties">(P) F. Finch · (R) F. Finch</div>
+        <div class="clerk-aside">Continued at the request of both parties, who have not stated whose request takes precedence. Both will be re-set.</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of May 18</span>
+        <span class="session">Afternoon Calendar</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-018A</span>
+        <span class="type-code">111 — Nest Abandonment (uncontested)</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">In re: Sparrow <span class="badge pro-se">Pro Se</span></div>
+        <div class="hearing-type">Confirmation of nest dissolution; entry of default</div>
+        <div class="parties">(P) C. Sparrow · (R) did not file an answer</div>
+        <div class="clerk-aside">The Respondent has not been seen on the branch since February. The Court will infer.</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of May 18</span>
+        <span class="session">Late Light</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-022A</span>
+        <span class="type-code">510 — Territorial Dispute</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">In re: Telephone Wire (south parking lot) <span class="badge">Pre-Hearing</span></div>
+        <div class="hearing-type">Petition arising from community meeting (April 21)</div>
+        <div class="parties">(P) Name withheld · (R) Name withheld</div>
+        <div class="clerk-aside">The Court has reviewed the meeting transcript and notes that the parties did not, in fact, dispute the wire.</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of May 25</span>
+        <span class="session">Emergency</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-020A</span>
+        <span class="type-code">220 — Egg Custody</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption conf-row">In re: <span class="redacted">██████████</span> <span class="badge emergency">Emergency</span></div>
+        <div class="hearing-type">Modification of visitation schedule</div>
+        <div class="parties conf-row">
+          Confidential — matter involves fledglings.<br>
+          Caption and parties are not displayed.
+        </div>
+        <div class="clerk-aside">The Court reminds the public that scheduling difficulties between two parents are not, by themselves, grounds for an emergency. The Court will determine what is.</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">Wk of May 25</span>
+        <span class="session">Morning Sitting</span>
+      </div>
+      <div class="entry-case">
+        <a href="/is/writing/nest-court-proceedings/" target="_blank">AMNC-2026-007B</a>
+        <span class="type-code">110 — Nest Abandonment</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Dove v. Dove <span class="badge compliance">Compliance</span></div>
+        <div class="hearing-type">Final compliance review; closure of file</div>
+        <div class="parties">(P) Denise Dove, pro se · (R) Greg Dove, whereabouts as previously noted</div>
+        <div class="clerk-aside">The Respondent's continued absence from the proceedings has been noted, again, for what it is worth.</div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 2: DISPOSED THIS TERM -->
+    <!-- ============================================ -->
+    <h2 class="section-header">
+      <span>Disposed This Term</span>
+      <span class="count">3 matters · ruled or closed</span>
+    </h2>
+
+    <div class="entry disposed">
+      <div class="entry-when">
+        <span class="week">Disposed</span>
+        <span class="session">Apr 9, 2026</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2026-014B</span>
+        <span class="type-code">111 — Nest Abandonment (uncontested)</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Pigeon v. Pigeon <span class="badge ruled">Default Ruling</span></div>
+        <div class="hearing-type">Default entered; nest awarded to Petitioner; bench retained by Respondent</div>
+        <div class="parties">(P) Petitioner Pigeon · (R) Respondent Pigeon, on a bench</div>
+        <div class="clerk-aside">Service was confirmed via the third bench at Municipal Park. The Respondent did not contest the filing or, to the Clerk's knowledge, anything else.</div>
+      </div>
+    </div>
+
+    <div class="entry disposed">
+      <div class="entry-when">
+        <span class="week">Disposed</span>
+        <span class="session">Mar 17, 2026</span>
+      </div>
+      <div class="entry-case">
+        <span>AMNC-2025-038A</span>
+        <span class="type-code">810 — Nest Inspection Appeal</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">In re: Wren <span class="badge disposed">Dismissed</span></div>
+        <div class="hearing-type">Appeal dismissed; carried over from Winter Term</div>
+        <div class="parties">(P) Wren, pro se</div>
+        <div class="clerk-aside">The Court has dismissed the appeal for failure to appear. The Petitioner has been notified at her last known nest, which is the nest under appeal.</div>
+      </div>
+    </div>
+
+    <div class="entry disposed">
+      <div class="entry-when">
+        <span class="week">Disposed</span>
+        <span class="session">Mar 4, 2026</span>
+      </div>
+      <div class="entry-case">
+        <a href="/is/writing/nest-court-proceedings-starling/" target="_blank">AMNC-2025-022C</a>
+        <span class="type-code">220 — Egg Custody</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Starling v. Starling <span class="badge ruled">Closed</span></div>
+        <div class="hearing-type">Custody arrangement finalized; alternating weekends, shared Wednesdays, one floating holiday annually</div>
+        <div class="parties">(P) Starling · (R) Starling</div>
+        <div class="clerk-aside">Both parties indicated satisfaction with the arrangement, which the Court interpreted as best it could.</div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 3: ON THE COURT'S ATTENTION -->
+    <!-- ============================================ -->
+    <h2 class="section-header">
+      <span>On the Court's Attention</span>
+      <span class="count">2 matters · no action required of parties</span>
+    </h2>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">—</span>
+        <span class="session">Court motion</span>
+      </div>
+      <div class="entry-case">
+        <span style="color: var(--text-ghost); font-style: italic; font-size: 11px;">Ord. 9.3</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">Ordinance Review — Quiet Hours</div>
+        <div class="hearing-type">The Court will consider proposed amendments to Ordinance 9.3 (Quiet Hours)</div>
+        <div class="parties">Conducted in chambers · No public comment during review</div>
+        <div class="clerk-aside">The proposed amendments arose, in the Court's view, "naturally."</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-when">
+        <span class="week">—</span>
+        <span class="session">Standing matter</span>
+      </div>
+      <div class="entry-case">
+        <span style="color: var(--text-ghost); font-style: italic; font-size: 11px;">Service note</span>
+      </div>
+      <div class="entry-detail">
+        <div class="caption">The Clerk's Fax</div>
+        <div class="hearing-type">Status: not operational</div>
+        <div class="parties">Reported on every term docket since 2023 · Will continue to be reported</div>
+        <div class="clerk-aside">The fax remains not operational. The Court declines to elaborate.</div>
+      </div>
+    </div>
+
+    <!-- CLERK'S NOTES -->
+    <section class="clerks-notes">
+      <div class="clerks-notes-header">
+        <span>Clerk's Notes for the Term</span>
+        <span class="cl-meta">Issued with this docket · Not part of the official record</span>
+      </div>
+      <ul>
+        <li>The Spring Term has been active in a way that suggests the winter was difficult for many. This is not a legal observation.</li>
+        <li>Matters involving fledglings are not displayed. Matters under seal are not displayed. Matters the Clerk has chosen not to display are not displayed.</li>
+        <li>The Court does not sit on Wednesdays except under emergency calendar. The Clerk's Office is, however, open. Filings will be received but not processed.</li>
+        <li>Mid-Term Notices may be issued as needed. Their absence should not be interpreted as the absence of activity. Their presence should not be interpreted as the presence of urgency.</li>
+        <li>The vine recovered at the Birch / Sycamore intersection (February 2026) remains unclaimed and is set for adjudication in May. Interested parties are encouraged to claim it before the Court adjudicates it on their behalf.</li>
+        <li>The Clerk's Office has received seven (7) phone calls this term from individuals impersonating the Clerk's Office. The public is reminded that the Clerk's Office does not call. The Clerk's Office is called.</li>
+      </ul>
+
+      <div class="clerk-signature">
+        Issued for the Court,
+        <span class="name">T. Nuthatch · Clerk of Court</span>
+      </div>
+    </section>
+
+    <!-- Auto-generated cruft -->
+    <div class="doc-footer-cruft">
+      <span>Prepared by: NESTLAW-CLERK-PROD-OAK01</span>
+      <span>Report: CL-TD-04 · Term 2026-S · Page 1 of 1</span>
+      <span>Cycle: Spring · Year 2026</span>
+    </div>
+
+  </article>
+
+  <!-- Page footer -->
+  <footer class="page-footer">
+    <div class="links">
+      <a href="/is/writing/avian-district/" target="_blank">Avian Municipal District</a>
+      <a href="/is/writing/nest-court/" target="_blank">Nest Court Portal</a>
+      <a href="/is/writing/nest-court/" target="_blank">Active Docket Search</a>
+      <a href="/is/writing/nest-court-proceedings/" target="_blank">Gallery Assessment</a>
+    </div>
+    <div class="legal">
+      Term Dockets are issued by the Clerk's Office at the start of each term and revised periodically through Mid-Term Notices. Last-minute changes may occur and are to be expected. Cases under seal, cases involving fledglings, and cases the Court has chosen not to display are not displayed. In no event shall the Court or the Clerk's Office be liable for inconvenience, lost time, lost feathers, or other consequential matters arising from reliance on this docket.
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

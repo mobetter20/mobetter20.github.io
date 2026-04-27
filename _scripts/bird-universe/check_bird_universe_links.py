@@ -150,9 +150,6 @@ def main() -> int:
                 errors,
             )
 
-            if any("nest-court-proceedings" in href for href in avian_hrefs):
-                errors.append("avian-district: official hub should not link directly to proceedings pages")
-
             if any("bird-docket" in href for href in avian_hrefs):
                 errors.append("avian-district: official hub should not point to bird-docket as a primary district destination")
 
