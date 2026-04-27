@@ -10,9 +10,9 @@ Reads:
 Writes:
   - _scripts/bird-universe/bird_universe_graph.json
 
-Schema v1:
+Schema v2:
   {
-    "version": 1,
+    "version": 2,
     "registry_source_sha": "<sha256 of 02-registry.md>",
     "sites": [...],         # verbatim from bird_universe_registry.json
     "characters": [          # parsed from 02-registry.md Characters table
@@ -21,11 +21,13 @@ Schema v1:
     "cases": [               # parsed from 02-registry.md Cases table
       {"number", "type", "parties", "filed", "status", "key_facts",
        "mentions": [...], "dedicated_page": <path or null>}
+    ],
+    "forms": [               # parsed from 02-registry.md Forms table
+      {"id", "full_id", "name", "purpose", "notes", "mentions": [...]}
     ]
   }
 
-Future entity types (locations, ordinances, forms) are intentionally
-deferred until a downstream consumer needs them.
+Locations and ordinances are still deferred — no downstream consumer yet.
 """
 
 from __future__ import annotations
@@ -43,6 +45,7 @@ SITES_REGISTRY_PATH = SCRIPT_DIR / "bird_universe_registry.json"
 GRAPH_OUTPUT_PATH = SCRIPT_DIR / "bird_universe_graph.json"
 
 CASE_NUMBER_PATTERN = re.compile(r"AMNC-\d{4}-\d+[A-Z]")
+FORM_ID_PATTERN = re.compile(r"CL-[A-Z]{2}-\d+")
 
 
 def load_config() -> dict:
@@ -113,6 +116,27 @@ def parse_cases(content: str) -> list[dict]:
     ]
 
 
+def parse_forms(content: str) -> list[dict]:
+    """Form IDs in the registry may carry a revision suffix (e.g. 'CL-TD-04 (Rev. 2024)').
+    Split into bare 'id' (matches the FORM_ID_PATTERN) and full 'full_id' (raw cell)."""
+    rows = []
+    for r in parse_table(content, "Forms"):
+        full = r.get("Form ID", "").strip()
+        if not full:
+            continue
+        m = FORM_ID_PATTERN.search(full)
+        if not m:
+            continue  # cell has no recognizable form ID
+        rows.append({
+            "id": m.group(0),
+            "full_id": full,
+            "name": r.get("Name", "").strip(),
+            "purpose": r.get("Purpose", "").strip(),
+            "notes": r.get("Notes", "").strip(),
+        })
+    return rows
+
+
 def collect_html_files(sites: list[dict]) -> list[Path]:
     """All HTML files under any registered site's canonicalPath."""
     seen: set[Path] = set()
@@ -163,6 +187,16 @@ def collect_character_mentions(name: str, html_files: list[Path]) -> list[str]:
     return mentions
 
 
+def collect_form_mentions(form_id: str, html_files: list[Path]) -> list[str]:
+    mentions: list[str] = []
+    pattern = re.compile(rf"\b{re.escape(form_id)}\b")
+    for f in html_files:
+        text = f.read_text(encoding="utf-8", errors="ignore")
+        if pattern.search(text):
+            mentions.append(str(f.relative_to(REPO_ROOT)))
+    return mentions
+
+
 def main() -> int:
     config = load_config()
     registry_path_str = config.get("registryRepoPath")
@@ -183,6 +217,7 @@ def main() -> int:
 
     characters = parse_characters(registry_text)
     cases = parse_cases(registry_text)
+    forms = parse_forms(registry_text)
 
     html_files = collect_html_files(sites)
 
@@ -194,12 +229,16 @@ def main() -> int:
     for char in characters:
         char["mentions"] = collect_character_mentions(char["name"], html_files)
 
+    for form in forms:
+        form["mentions"] = collect_form_mentions(form["id"], html_files)
+
     output = {
-        "version": 1,
+        "version": 2,
         "registry_source_sha": registry_sha,
         "sites": sites,
         "characters": characters,
         "cases": cases,
+        "forms": forms,
     }
 
     GRAPH_OUTPUT_PATH.write_text(
@@ -209,7 +248,7 @@ def main() -> int:
     print(
         f"[generate_graph] Wrote {GRAPH_OUTPUT_PATH.name} "
         f"({len(sites)} sites, {len(characters)} characters, "
-        f"{len(cases)} cases, {len(html_files)} files scanned)."
+        f"{len(cases)} cases, {len(forms)} forms, {len(html_files)} files scanned)."
     )
     return 0
 

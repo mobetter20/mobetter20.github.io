@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "registry_source_sha": "2a150e204d397005e48f138a6f433342d174666f274f0a2ca6dc2c68b25bfd0c",
+  "version": 2,
+  "registry_source_sha": "4bb2208183cfff3370e5b9bdce9f6d0b670c4bf0834e3b3600b87f08d5d24ebf",
   "sites": [
     {
       "slug": "avian-district",
@@ -469,6 +469,78 @@
       "dedicated_page": null
     },
     {
+      "number": "AMNC-2026-016B",
+      "type": "Separate branch maintenance",
+      "parties": "Finch v. Finch",
+      "filed": "Unknown",
+      "status": "Pending. Continued (3rd).",
+      "key_facts": "Motion to compel division of jointly held materials. Both parties requested continuance; neither stated whose request takes precedence. Set for week of May 11, 2026 (Late Light) per Spring Term Docket.",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-018A",
+      "type": "Nest abandonment (uncontested)",
+      "parties": "In re: Sparrow",
+      "filed": "Unknown",
+      "status": "Default expected.",
+      "key_facts": "Confirmation of nest dissolution; entry of default. Petitioner C. Sparrow; respondent did not file an answer. Respondent unseen on the branch since February 2026. Set for week of May 18, 2026 (Afternoon Calendar).",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-019A",
+      "type": "Territorial dispute",
+      "parties": "H. v. H. (Margaret v. Gerald)",
+      "filed": "Unknown",
+      "status": "Pre-hearing.",
+      "key_facts": "Status conference re: park perch (south end). Both parties willing to attend; neither willing to leave. Set for week of April 27, 2026 (Afternoon Calendar).",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-020A",
+      "type": "Egg custody",
+      "parties": "Confidential — fledglings involved",
+      "filed": "Unknown",
+      "status": "Emergency calendar. Pending.",
+      "key_facts": "Modification of visitation schedule. Caption and parties not displayed. Court has noted that scheduling difficulties between two parents are not, by themselves, grounds for an emergency. Set for week of May 25, 2026 (Emergency).",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-021A",
+      "type": "Vine provenance",
+      "parties": "In re: Unclaimed Vine, Birch / Sycamore",
+      "filed": "Unknown",
+      "status": "Petition pending.",
+      "key_facts": "Petition for adjudication of abandoned property. Petitioner: Clerk's Office; no respondent appearing. Vine has been at Clerk's Office since February 2026. Set for week of May 4, 2026 (Morning Sitting).",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-022A",
+      "type": "Territorial dispute",
+      "parties": "In re: Telephone Wire (south parking lot)",
+      "filed": "Unknown",
+      "status": "Pre-hearing.",
+      "key_facts": "Names withheld. Petition arising from community meeting (April 21, 2026). Court has reviewed meeting transcript and notes that parties did not, in fact, dispute the wire. Set for week of May 18, 2026 (Late Light).",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html"
+      ],
+      "dedicated_page": null
+    },
+    {
       "number": "AMNC-2025-041A",
       "type": "Territorial dispute",
       "parties": "Finch v. Finch",
@@ -520,6 +592,18 @@
         "is/writing/nest-court-proceedings-pigeon/index.html"
       ],
       "dedicated_page": null
+    }
+  ],
+  "forms": [
+    {
+      "id": "CL-TD-04",
+      "full_id": "CL-TD-04 (Rev. 2024)",
+      "name": "Spring Term Docket",
+      "purpose": "Clerk's Office term-by-term calendar of pending matters, recent dispositions, and items on the Court's attention. Issued at the start of each term and revised periodically through Mid-Term Notices.",
+      "notes": "Lives at `/is/writing/nest-court/calendar/`. Spring 2026 term posted Mar 2, 2026; last revised Apr 14, 2026.",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html"
+      ]
     }
   ]
 }

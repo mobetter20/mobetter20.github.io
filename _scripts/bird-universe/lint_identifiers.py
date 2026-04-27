@@ -11,18 +11,14 @@ Checks:
     - Case-variant of a registered case    → ERROR (likely typo)
     - Plausible but unregistered           → WARNING (new case to add, or typo)
   - Form-ID format. Pattern: CL-XX-NN.
-    - Canonical uppercase format           → silent
-    - Lowercase or mixed-case variant      → ERROR
-    - Unregistered uppercase form          → WARNING (new form to add)
+    - Exact match against registered form  → silent
+    - Case-variant of a registered form    → ERROR (likely typo)
+    - Plausible but unregistered           → WARNING (new form to add, or typo)
 
 Character names are intentionally NOT linted in v1 — single-token names like
 "Conrad" / "Dennis" / "Robin" collide with English words and produce a
 false-positive flood. graph.json's characters[].mentions is available for
 manual cross-check.
-
-Forms are tracked here even though they are not yet in the graph schema; the
-checker treats every uppercase form-ID it finds as "unregistered" and warns,
-which is the safe default until the graph adds a forms section.
 
 Exit code: 0 if no errors (warnings allowed). Non-zero if any error.
 """
@@ -80,9 +76,12 @@ def main() -> int:
     graph = load_graph()
     sites = graph.get("sites", [])
     cases = graph.get("cases", [])
+    forms = graph.get("forms", [])
 
     registered_cases: set[str] = {c["number"] for c in cases if c.get("number")}
     registered_cases_lower: dict[str, str] = {c.lower(): c for c in registered_cases}
+    registered_forms: set[str] = {f["id"] for f in forms if f.get("id")}
+    registered_forms_lower: dict[str, str] = {f.lower(): f for f in registered_forms}
 
     errors: list[str] = []
     warnings: list[str] = []
@@ -110,18 +109,19 @@ def main() -> int:
                 )
 
         for form in set(FORM_PATTERN.findall(text)):
-            canonical = form.upper()
-            if form != canonical:
+            if form in registered_forms:
+                continue
+            canonical = registered_forms_lower.get(form.lower())
+            if canonical:
                 errors.append(
-                    f"{rel}: form identifier {form!r} is not in canonical "
-                    f"uppercase form (expected {canonical!r})"
+                    f"{rel}: form identifier {form!r} is a case-variant of "
+                    f"registered {canonical!r} — fix the casing in the HTML"
                 )
             elif form not in seen_unregistered_forms:
                 seen_unregistered_forms.add(form)
                 warnings.append(
-                    f"form {form!r} appears in HTML (first seen in {rel}) — "
-                    f"once forms are tracked in the graph, this should resolve to "
-                    f"a registered form or be added to 02-registry.md"
+                    f"form {form!r} appears in HTML (first seen in {rel}) "
+                    f"but is not in the registry — add to 02-registry.md or fix typo"
                 )
 
     for w in warnings:
