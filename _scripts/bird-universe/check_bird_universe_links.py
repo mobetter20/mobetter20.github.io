@@ -50,6 +50,36 @@ def require_substrings(text: str, required: list[str], context: str, errors: lis
             errors.append(f"{context}: missing required reference {needle!r}")
 
 
+_A_ANCHOR_PATTERN = re.compile(r'<a\b[^>]*\bhref="#([^"]+)"', re.IGNORECASE)
+
+
+def check_anchor_targets(repo_root: Path, sites: list[dict], errors: list[str]) -> None:
+    """Verify every <a href="#X"> in bird-universe pages has a matching id="X" on the same page.
+
+    Scoped to <a> elements only. SVG textPath/use/clipPath href="#..." references
+    resolve through <defs>, not body ids, and are intentionally not checked here.
+    """
+    seen_files: set[Path] = set()
+    for site in sites:
+        canonical = site.get("canonicalPath", "").lstrip("/")
+        if not canonical:
+            continue
+        site_root = repo_root / canonical
+        if not site_root.exists():
+            continue
+        for html_file in sorted(site_root.rglob("*.html")):
+            if html_file in seen_files:
+                continue
+            seen_files.add(html_file)
+            text = html_file.read_text(encoding="utf-8", errors="ignore")
+            for anchor in sorted(set(_A_ANCHOR_PATTERN.findall(text))):
+                if not re.search(rf'\bid="{re.escape(anchor)}"', text):
+                    rel = html_file.relative_to(repo_root)
+                    errors.append(
+                        f'{rel}: <a href="#{anchor}"> has no matching id="{anchor}" on the page'
+                    )
+
+
 def main() -> int:
     script_path = Path(__file__).resolve()
     repo_root = script_path.parents[2]
@@ -191,6 +221,8 @@ def main() -> int:
                 secondnest_hrefs = extract_hrefs(read_text(secondnest_index))
                 if any("bird-docket" in href for href in secondnest_hrefs):
                     warn("secondnest still uses bird-docket as district parent; expected before avian-district cutover")
+
+    check_anchor_targets(repo_root, sites, errors)
 
     if errors:
         for message in errors:

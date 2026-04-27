@@ -42,3 +42,28 @@ When changing a container's width or padding, inspect the computed width of the 
 - Use root-relative paths (`/is/writing/nest-court/`) not relative (`../nest-court/`)
 - All cross-site links must include `target="_blank"`
 - The pre-push hook enforces root-relative paths for structural links
+
+## AMD Tooling
+
+`_scripts/bird-universe/` contains three tools that automate cross-reference checks
+when working on Avian Municipal District pages. Read `_scripts/bird-universe/README.md`
+for full details. Quick reference:
+
+- **`generate_graph.py`** — produces `bird_universe_graph.json`, a precomputed
+  cross-reference cache (sites + characters + cases, with reverse-index
+  `mentions` per entity). Runs from `publish.sh` before other build scripts.
+  When you need to know "where is X mentioned?" or "is this case in the
+  registry?", read this file instead of re-greping HTML and re-reading
+  `02-registry.md`. Path to the registry repo is configured in
+  `_scripts/bird-universe/config.json`.
+- **`check_bird_universe_links.py`** — pre-push validator. In addition to
+  registry/structural rules, now also verifies that every `<a href="#X">`
+  in bird-universe pages has a matching `id="X"` on the same page. SVG
+  internal references (`<textPath>`, `<use>`, `<clipPath>`) are intentionally
+  not checked.
+- **`lint_identifiers.py`** — pre-push warning system. Scans HTML for
+  case-number patterns (`AMNC-YYYY-NNN[A-Z]`) and form-ID patterns
+  (`CL-XX-NN`). Errors on case-format typos; warns on identifiers in HTML
+  that aren't in the registry yet. Character-name linting is intentionally
+  deferred — single-token names like "Conrad" / "Dennis" collide with
+  ordinary English.

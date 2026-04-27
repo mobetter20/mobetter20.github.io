@@ -1,0 +1,525 @@
+{
+  "version": 1,
+  "registry_source_sha": "2a150e204d397005e48f138a6f433342d174666f274f0a2ca6dc2c68b25bfd0c",
+  "sites": [
+    {
+      "slug": "avian-district",
+      "title": "Avian Municipal District",
+      "kind": "official_hub",
+      "status": "live",
+      "canonicalPath": "/is/writing/avian-district/",
+      "publicUrl": "https://ajin.im/is/writing/avian-district/",
+      "parent": null,
+      "showInOfficialHub": false,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "bird-docket",
+      "title": "Bird Docket",
+      "kind": "meta_directory",
+      "status": "live",
+      "canonicalPath": "/is/writing/bird-docket/",
+      "publicUrl": "https://ajin.im/is/writing/bird-docket/",
+      "parent": null,
+      "showInOfficialHub": false,
+      "showInMetaDirectory": false
+    },
+    {
+      "slug": "nest-court",
+      "title": "Avian Municipal Nest Court",
+      "kind": "official_service",
+      "status": "live",
+      "canonicalPath": "/is/writing/nest-court/",
+      "publicUrl": "https://ajin.im/is/writing/nest-court/",
+      "parent": "avian-district",
+      "showInOfficialHub": true,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "nest-court-proceedings",
+      "title": "Nest Court Proceedings",
+      "kind": "record_surface",
+      "status": "live",
+      "canonicalPath": "/is/writing/nest-court-proceedings/",
+      "publicUrl": "https://ajin.im/is/writing/nest-court-proceedings/",
+      "parent": "nest-court",
+      "showInOfficialHub": false,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "nest-court-proceedings-pigeon",
+      "title": "Nest Court Proceedings — Pigeon",
+      "kind": "record_surface",
+      "status": "live",
+      "canonicalPath": "/is/writing/nest-court-proceedings-pigeon/",
+      "publicUrl": "https://ajin.im/is/writing/nest-court-proceedings-pigeon/",
+      "parent": "nest-court",
+      "showInOfficialHub": false,
+      "showInMetaDirectory": false
+    },
+    {
+      "slug": "nest-court-proceedings-starling",
+      "title": "Nest Court Proceedings — Starling",
+      "kind": "record_surface",
+      "status": "live",
+      "canonicalPath": "/is/writing/nest-court-proceedings-starling/",
+      "publicUrl": "https://ajin.im/is/writing/nest-court-proceedings-starling/",
+      "parent": "nest-court",
+      "showInOfficialHub": false,
+      "showInMetaDirectory": false
+    },
+    {
+      "slug": "bird-coo",
+      "title": "The Municipal Coo",
+      "kind": "media",
+      "status": "live",
+      "canonicalPath": "/is/writing/bird-coo/",
+      "publicUrl": "https://ajin.im/is/writing/bird-coo/",
+      "parent": "avian-district",
+      "showInOfficialHub": true,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "secondnest",
+      "title": "SecondNest",
+      "kind": "community",
+      "status": "live",
+      "canonicalPath": "/is/writing/secondnest/",
+      "publicUrl": "https://ajin.im/is/writing/secondnest/",
+      "parent": "avian-district",
+      "showInOfficialHub": true,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "perch-chat",
+      "title": "The Perch",
+      "kind": "community",
+      "status": "live",
+      "canonicalPath": "/is/writing/perch-chat/",
+      "publicUrl": "https://ajin.im/is/writing/perch-chat/",
+      "parent": "avian-district",
+      "showInOfficialHub": true,
+      "showInMetaDirectory": true
+    },
+    {
+      "slug": "karen-hawk",
+      "title": "Karen Hawk, Attorney at Law",
+      "kind": "practitioner",
+      "status": "live",
+      "canonicalPath": "/is/writing/karen-hawk/",
+      "publicUrl": "https://ajin.im/is/writing/karen-hawk/",
+      "parent": "avian-district",
+      "showInOfficialHub": true,
+      "showInMetaDirectory": true
+    }
+  ],
+  "characters": [
+    {
+      "name": "Denise Dove",
+      "species": "Mourning Dove, F",
+      "location": "14 Sycamore Ln, Lot 7 (meter box, upper ledge)",
+      "key_facts": "Petitioner 007B. Pro se. Two eggs. Sealed nest in 40 min with pre-stashed material. Sycamore Lane Perch regular. Protective of nest at 14. \"How far from 14.\" [Perch: #sycamore-lane, #garden-boundary, #elm-row]",
+      "active_cases": [
+        "AMNC-2026-007B"
+      ],
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/nest-court-proceedings/index.html",
+        "is/writing/perch-chat/index.html"
+      ]
+    },
+    {
+      "name": "Greg Dove",
+      "species": "Mourning Dove, M",
+      "location": "\"Various branches, east side\" (formerly 14 Sycamore)",
+      "key_facts": "Respondent 007B. Pro se. Left Jan 27. Gone 11 days. Observed near 22 Birch Ct 4x. Has been in a drainage pipe. Claims zip tie.",
+      "active_cases": [
+        "AMNC-2026-007B"
+      ],
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/nest-court-proceedings/index.html"
+      ]
+    },
+    {
+      "name": "Cheryl Sparrow",
+      "species": "Sparrow, F",
+      "location": "16 Sycamore Ln (two lots east of #14)",
+      "key_facts": "Witness for Denise. Neighborhood watch. Timed Greg's departure. Foraging: rotating schedule, Birch Ct on Fridays. Filed 6 extra pages. Drives Sycamore Lane Perch channels. \"Just for context\" is her verbal tic. Narrates cats, cars, bread, dogs in real-time. [Perch: #sycamore-lane, #sycamore-east, #garden-boundary, #elm-row]",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/nest-court-proceedings/index.html",
+        "is/writing/perch-chat/index.html"
+      ]
+    },
+    {
+      "name": "Linda Sparrow",
+      "species": "Sparrow, F",
+      "location": "22 Birch Court (~0.3 mi east of 14 Sycamore)",
+      "key_facts": "Never appears. Greg observed at/near her address 4x. Has a balcony. Greg brought vine there. Species: \"Sparrow\" is canonical (published docket).",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/nest-court/index.html"
+      ]
+    },
+    {
+      "name": "Judge Miriam Owl (Hon. M. Owl)",
+      "species": "Owl (\"Bench Owl\")",
+      "location": "Municipal Oak, Chamber B",
+      "key_facts": "Presiding judge. Appointed 2019.",
+      "active_cases": [
+        "Presides over 007B",
+        "009A",
+        "011A"
+      ],
+      "mentions": []
+    },
+    {
+      "name": "T. Nuthatch",
+      "species": "Nuthatch",
+      "location": "Clerk's Office, 14 Municipal Oak",
+      "key_facts": "Clerk of Court.",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/avian-district/index.html",
+        "is/writing/avian-district/map-options/site-preview-option-4-property-gis-2_5d.html",
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/bird-coo/issues/2026-03-10.html",
+        "is/writing/bird-coo/issues/2026-03-17.html",
+        "is/writing/bird-coo/issues/2026-03-24.html",
+        "is/writing/bird-coo/issues/2026-04-07.html",
+        "is/writing/bird-coo/issues/2026-04-14.html",
+        "is/writing/bird-coo/issues/2026-05-05.html",
+        "is/writing/bird-coo/issues/2026-05-19.html",
+        "is/writing/bird-coo/issues/2026-06-02.html",
+        "is/writing/perch-chat/index.html"
+      ]
+    },
+    {
+      "name": "R. Wren",
+      "species": "Wren",
+      "location": "Clerk's Office",
+      "key_facts": "Deputy Clerk.",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/avian-district/index.html",
+        "is/writing/avian-district/map-options/site-preview-option-4-property-gis-2_5d.html",
+        "is/writing/nest-court/index.html"
+      ]
+    },
+    {
+      "name": "Dennis",
+      "species": "Pigeon, M",
+      "location": "Third bench, Municipal Park",
+      "key_facts": "No surname given. \"Between situations.\" Bench: 5:30–7:15 PM. Wife filed 014B citing \"has been on a bench.\" Default ruling: wife gets nest, Dennis gets bench. Answering machine: 14 messages, 13 from one number. Man feeds pigeons 6 feet from him weekly; he faces the water. \"It did not seem like something to say.\" [Perch: #bench-row, #south-path-and-park, others]",
+      "active_cases": [
+        "AMNC-2026-014B (closed)"
+      ],
+      "mentions": [
+        "is/writing/avian-district/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/bird-coo/index.html",
+        "is/writing/bird-coo/issues/2026-04-21.html",
+        "is/writing/bird-coo/issues/2026-05-12.html",
+        "is/writing/bird-coo/issues/2026-05-19.html",
+        "is/writing/perch-chat/index.html"
+      ]
+    },
+    {
+      "name": "E. Starling",
+      "species": "Starling, F",
+      "location": "Municipal Park (east end)",
+      "key_facts": "Dennis's bench companion. \"Not a situation.\" Appeared on bench Coo #09. Wrote letter clarifying non-situation Coo #10. Personal ad that isn't one Coo #12. \"The bread was fine.\" Appears in ~5 Perch channels. [Perch: #municipal-notices, #bench-row, #south-path-and-park, others]",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-05-12.html",
+        "is/writing/perch-chat/index.html"
+      ]
+    },
+    {
+      "name": "Conrad",
+      "species": "Mockingbird, M",
+      "location": "Municipal Oak area",
+      "key_facts": "Morning singer. \"In recovery.\" Quiet hours ordered: 9PM–6:30AM (Ord. 9.3(a)). Sang at 6:34 AM (technical compliance). 6:29 AM potential violation under review. Most ubiquitous Perch voice (~9 channels). Principled objector. \"I am not a display.\" Crosses between lane and park crews. [Perch: multiple]",
+      "active_cases": [
+        "AMNC-2026-011A (ruled)"
+      ],
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/bird-coo/issues/2026-04-07.html",
+        "is/writing/bird-coo/issues/2026-04-28.html",
+        "is/writing/bird-coo/issues/2026-05-05.html",
+        "is/writing/bird-coo/issues/2026-05-12.html",
+        "is/writing/bird-coo/issues/2026-05-26.html",
+        "is/writing/bird-coo/issues/2026-06-02.html",
+        "is/writing/secondnest/index.html",
+        "is/writing/perch-chat/index.html"
+      ]
+    },
+    {
+      "name": "R. Nuthatch",
+      "species": "Nuthatch, M",
+      "location": "Municipal Oak",
+      "key_facts": "No relation to Clerk. Filed original noise complaint re Conrad. Called 6:34 AM \"a position.\" Roams between lane and park in Perch. Cites ordinances. [Perch: #municipal-notices, #sycamore-east, #garden-boundary, #upper-canopy, others]",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-03-17.html",
+        "is/writing/bird-coo/issues/2026-04-07.html",
+        "is/writing/bird-coo/issues/2026-05-12.html",
+        "is/writing/perch-chat/index.html"
+      ]
+    },
+    {
+      "name": "Arthur P.",
+      "species": "Unknown species, M",
+      "location": "Sycamore Lane",
+      "key_facts": "Wife moved to coast Feb 2026. Reads the Coo alone. The tender moment (Issue 05). Sycamore Lane Perch regular. \"Sometimes you sit in the car because the car is the last place that is just yours.\" [Perch: #sycamore-lane, #sycamore-east]",
+      "active_cases": [],
+      "mentions": []
+    },
+    {
+      "name": "Milo S.",
+      "species": "Unknown species, young",
+      "location": "Dad on Sycamore, Mom on Birch Court",
+      "key_facts": "Child of divorced parents. Court-ordered flying schedule. Two appearances (Issues 03, 07).",
+      "active_cases": [],
+      "mentions": []
+    },
+    {
+      "name": "Gerald H.",
+      "species": "Unknown species, M",
+      "location": "Sycamore Lane",
+      "key_facts": "Margaret H.'s ex-husband. Claims park perch since 2022. Mother also uses the perch. Sycamore Lane Perch regular. Objects to being observed, then can't stop reading. [Perch: #sycamore-lane, #sycamore-east, #garden-boundary, #elm-row]",
+      "active_cases": [],
+      "mentions": []
+    },
+    {
+      "name": "Margaret H.",
+      "species": "Unknown species, F",
+      "location": "Unknown (implied near park)",
+      "key_facts": "Gerald's ex-wife. Wrote letter Issue 01 (complaint about ex at perch).",
+      "active_cases": [],
+      "mentions": []
+    },
+    {
+      "name": "F. Lark",
+      "species": "Lark, unknown gender",
+      "location": "Near Municipal Park",
+      "key_facts": "Observed Dennis and E. Starling on bench (Coo #09 letter). Deeper voice in The Perch. Observational, gentle, careful around the bench. Park crew lead — appears across Park Grounds and Open Grounds channels. [Perch: #south-path-and-park, #bench-row, #south-lot, #west-meadow, #upper-canopy, #culvert-path, #north-loop]",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-05-05.html",
+        "is/writing/perch-chat/index.html"
+      ]
+    },
+    {
+      "name": "Robin",
+      "species": "Robin, unknown gender",
+      "location": "Near Municipal Park",
+      "key_facts": "Found Dennis \"melancholy, then familiar, then honestly a little annoying\" (Coo #04). Personal ad Coo #06 (female, 39 — may be same bird). Sharp voice in The Perch. Blunt, dry, says things others are thinking. Park crew lead — appears across Park Grounds and Open Grounds channels. [Perch: #south-path-and-park, #bench-row, #south-lot, #west-meadow, #upper-canopy, #culvert-path, #north-loop]",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/secondnest/index.html",
+        "is/writing/perch-chat/index.html"
+      ]
+    },
+    {
+      "name": "Martin Perch",
+      "species": "Unknown species, M",
+      "location": "14 Municipal Oak, Suite 2",
+      "key_facts": "Co-founder Perch & Perch Family Law (est. 2021).",
+      "active_cases": [],
+      "mentions": []
+    },
+    {
+      "name": "Diane Perch",
+      "species": "Unknown species, F",
+      "location": "14 Municipal Oak, Suite 2",
+      "key_facts": "Co-founder Perch & Perch Family Law (est. 2021).",
+      "active_cases": [],
+      "mentions": []
+    },
+    {
+      "name": "Karen Hawk",
+      "species": "Hawk, F",
+      "location": "Unknown office location",
+      "key_facts": "Attorney at law. 18 years experience (as of current ads). Specializes in rapid descents.",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/avian-district/index.html",
+        "is/writing/avian-district/map-options/site-preview-option-4-property-gis-2_5d.html",
+        "is/writing/bird-docket/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/bird-coo/index.html",
+        "is/writing/bird-coo/issues/2026-03-10.html",
+        "is/writing/bird-coo/issues/2026-03-17.html",
+        "is/writing/bird-coo/issues/2026-03-24.html",
+        "is/writing/bird-coo/issues/2026-03-31.html",
+        "is/writing/bird-coo/issues/2026-04-07.html",
+        "is/writing/bird-coo/issues/2026-04-14.html",
+        "is/writing/bird-coo/issues/2026-04-21.html",
+        "is/writing/bird-coo/issues/2026-04-28.html",
+        "is/writing/bird-coo/issues/2026-05-05.html",
+        "is/writing/bird-coo/issues/2026-05-12.html",
+        "is/writing/bird-coo/issues/2026-05-19.html",
+        "is/writing/bird-coo/issues/2026-05-26.html",
+        "is/writing/bird-coo/issues/2026-06-02.html",
+        "is/writing/secondnest/index.html",
+        "is/writing/perch-chat/index.html",
+        "is/writing/karen-hawk/index.html"
+      ]
+    },
+    {
+      "name": "D.D.",
+      "species": "Unknown, F",
+      "location": "Sycamore Lane",
+      "key_facts": "Karen Hawk client testimonial. Initials suggest Denise Dove — ambiguity intentional.",
+      "active_cases": [],
+      "mentions": []
+    },
+    {
+      "name": "G.F.",
+      "species": "Unknown, F",
+      "location": "Sycamore District",
+      "key_facts": "Karen Hawk client testimonial, Issue 02.",
+      "active_cases": [],
+      "mentions": []
+    }
+  ],
+  "cases": [
+    {
+      "number": "AMNC-2026-007B",
+      "type": "Nest abandonment (contested)",
+      "parties": "Dove v. Dove",
+      "filed": "Feb 12, 2026",
+      "status": "Ruling issued. Compliance monitoring.",
+      "key_facts": "Greg left Jan 27. Hearing concluded (Coo #06). Ruling issued (Coo #07).",
+      "mentions": [
+        "is/writing/avian-district/index.html",
+        "is/writing/avian-district/map-options/site-preview-option-4-property-gis-2_5d.html",
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/nest-court-proceedings/index.html",
+        "is/writing/bird-coo/index.html",
+        "is/writing/bird-coo/issues/2026-03-10.html",
+        "is/writing/bird-coo/issues/2026-03-31.html",
+        "is/writing/bird-coo/issues/2026-04-14.html",
+        "is/writing/bird-coo/issues/2026-04-21.html",
+        "is/writing/bird-coo/issues/2026-06-02.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-009A",
+      "type": "Noise complaint (domestic)",
+      "parties": "Wren v. Wren",
+      "filed": "Unknown",
+      "status": "Ruled.",
+      "key_facts": "\"Deliberately humming\" during meals. Hearing May 12, 2026 (Coo #06). Ruled: vary the rhythm (Coo #11).",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/bird-coo/issues/2026-03-24.html",
+        "is/writing/bird-coo/issues/2026-04-14.html",
+        "is/writing/bird-coo/issues/2026-05-19.html",
+        "is/writing/bird-coo/issues/2026-06-02.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-011A",
+      "type": "Noise/nuisance",
+      "parties": "Mun. Dist. v. Conrad",
+      "filed": "Unknown",
+      "status": "Ruled. Quiet hours 9PM–6:30AM. One potential violation under review.",
+      "key_facts": "Filed by Clerk on behalf of 3 Municipal Oak + 1 Sycamore residents. Hearing (Coo #09). Ruling (Coo #10). Conrad sang 6:29 AM (Coo #12).",
+      "mentions": [
+        "is/writing/avian-district/index.html",
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/bird-coo/issues/2026-04-07.html",
+        "is/writing/bird-coo/issues/2026-04-28.html",
+        "is/writing/bird-coo/issues/2026-05-05.html",
+        "is/writing/bird-coo/issues/2026-05-12.html",
+        "is/writing/bird-coo/issues/2026-05-26.html",
+        "is/writing/bird-coo/issues/2026-06-02.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-014B",
+      "type": "Nest abandonment (uncontested)",
+      "parties": "Pigeon v. Pigeon",
+      "filed": "Unknown",
+      "status": "Default ruling entered. Closed.",
+      "key_facts": "Dennis's case. Wife filed. He didn't contest. Service confirmed via third bench. Nest to wife, bench to Dennis.",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/bird-coo/issues/2026-05-05.html",
+        "is/writing/bird-coo/issues/2026-05-12.html",
+        "is/writing/bird-coo/issues/2026-06-02.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2025-041A",
+      "type": "Territorial dispute",
+      "parties": "Finch v. Finch",
+      "filed": "Nov 3, 2025",
+      "status": "Settled.",
+      "key_facts": "Not developed. Referenced as \"fullest gallery since\" (Coo #09).",
+      "mentions": [
+        "is/writing/nest-court/index.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2025-038A",
+      "type": "Nest inspection appeal",
+      "parties": "In re: Wren",
+      "filed": "Sep 17, 2025",
+      "status": "Dismissed.",
+      "key_facts": "Not developed.",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2025-022C",
+      "type": "Egg custody",
+      "parties": "Starling v. Starling",
+      "filed": "Jun 2, 2025",
+      "status": "Closed.",
+      "key_facts": "Status update Coo #02: alternating weekends, shared Wednesdays, one floating holiday.",
+      "mentions": [
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/nest-court/index.html",
+        "is/writing/nest-court-proceedings-starling/index.html",
+        "is/writing/bird-coo/issues/2026-03-17.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2024-119A",
+      "type": "Noise/nuisance",
+      "parties": "Mun. Dist. v. Pigeon (J.)",
+      "filed": "Dec 14, 2024",
+      "status": "Closed.",
+      "key_facts": "Fully developed as interactive proceedings page (nest-court-proceedings-pigeon). Pigeon cooing at volume after wife's departure. Noise measurements 62–71 dB (threshold 55 dB). Volume increase coincided with wife leaving (~18 months prior).",
+      "mentions": [
+        "is/writing/nest-court/index.html",
+        "is/writing/nest-court-proceedings-pigeon/index.html"
+      ],
+      "dedicated_page": null
+    }
+  ]
+}
