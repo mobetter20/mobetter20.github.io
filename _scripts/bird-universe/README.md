@@ -131,11 +131,41 @@ pre-push
 
 ## Deferred
 
+Each entry: what, why it's deferred, the concrete trigger to revisit.
+
 - **Screenshot tool for triple-width CSS check.** Held back until CSS-churn
   rate justifies a ~200MB Playwright install. Manual triple-width check
-  remains the rule per CLAUDE.md.
-- **Locations / ordinances / forms in graph schema.** Add when a consumer
-  beyond the linter materializes.
-- **Character-name linting.** Add when a way to disambiguate single-token
-  names from English words emerges (e.g., a `data-character="..."` attribute
-  on character mentions).
+  remains the rule per CLAUDE.md. *Trigger:* next time you wish manual
+  resizing in browser would be automated, or any session where 3+ CSS
+  changes ship.
+- **Locations + ordinances in graph schema.** Schema v2 added `forms`
+  because the linter consumed them; locations and ordinances have no
+  consumer yet. *Trigger:* a checker, page generator, or registry
+  audit that would benefit from a reverse-index of mentions.
+- **Character-name linting in `lint_identifiers.py`.** Single-token names
+  ("Conrad", "Dennis", "Robin") collide with ordinary English. *Trigger:*
+  introduce a `data-character="..."` attribute (or similar) on canonical
+  character mentions, then add an opt-in scan that only checks inside
+  those wrappers.
+- **Shared HTML `<head>` template generator.** Each new AMD page hand-
+  authors canonical, og:*, favicon, analytics, and font links. ~1 hr to
+  build a `_scripts/render_amd_head.py` Jinja-style helper. *Trigger:*
+  next new AMD site (would be the third page authoring this block by
+  hand — at three, the abstraction earns its keep).
+- **Registry GitHub-backup mismatch detector.** CLAUDE.md requires the
+  local `02-registry.md` and the `mobetter20/ajin-universe-bible` GitHub
+  backup stay in sync. ~30 min to add a pre-push warning that diffs
+  local SHA against remote HEAD. *Trigger:* first time the two diverge
+  silently and cause confusion.
+- **Proposal pre-fill from CADENCE.md drift sources.** The
+  `amd-room-cadence-drift` skill drafts proposals; a chunk of frontmatter
+  + canon-basis citations could be auto-filled from the drift's source
+  pointers. ~2 hr. *Trigger:* third proposal in a row where the same
+  fields get hand-copied from CADENCE.
+- **Registry JSON schema + validator.** Formalize the registry's table
+  shapes (Characters, Cases, Forms, etc.) as JSON schema; warn on
+  missing/extra columns. ~3 hr. *Trigger:* next time a registry edit
+  silently introduces an inconsistency the parser tolerates.
+
+The pattern: each deferred item lists a *trigger*, not a date. Don't build
+ahead of a real demand.
