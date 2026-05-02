@@ -1,0 +1,51 @@
+name: Rebuild root pages when stats.md changes
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "content/stats.md"
+      - "templates/root.html"
+      - "templates/running.html"
+      - "_scripts/build_root.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild index + running pages
+        run: python3 _scripts/build_root.py
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add index.html is/running/index.html
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit rebuilt pages
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rebuild root pages from stats.md"
+
+      - name: Push rebuilt pages
+        if: steps.changes.outputs.changed == 'true'
+        run: git push

@@ -9,8 +9,8 @@ since_year: 2009
 # Earth circumference: 40,075 km. Moon distance: 384,400 km.
 
 ## reading_current
-- The Knockout Queen — Rufi Thorpe
-- Elon Musk — Walter Isaacson
+- Nobody's Fool — Richard Russo
+- An Immense World — Ed Yong
 
 ## reading_year
 - Butter — Asako Yuzuki
@@ -19,6 +19,8 @@ since_year: 2009
 - Intimacies — Katie Kitamura
 - Real World — Natsuo Kirino
 - Woman Running in the Mountains — Yoko Tawada
+- The Knockout Queen — Rufi Thorpe
+- Elon Musk — Walter Isaacson
 - SPQR — Mary Beard (paused)
 
 ## learning
