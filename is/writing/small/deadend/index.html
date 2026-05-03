@@ -30,10 +30,17 @@
 
   #frame {
     width: 100%;
-    max-width: 760px;
+    max-width: 720px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
+  }
+
+  /* tighter visual groups */
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
   /* --- Header --- */
@@ -63,7 +70,7 @@
 
   #stage {
     position: relative;
-    height: 140px;
+    height: 96px;
     border-top: 1px solid #1f1f1f;
     border-bottom: 1px solid #1f1f1f;
     overflow: hidden;
@@ -73,14 +80,14 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 36px;
+    bottom: 24px;
     height: 1px;
     background: #1a1a1a;
   }
 
   #sprite {
     position: absolute;
-    bottom: 36px;
+    bottom: 24px;
     left: 0;
     width: 16px;
     height: 20px;
@@ -89,45 +96,44 @@
 
   #wall {
     position: absolute;
-    bottom: 36px;
+    bottom: 24px;
     width: 2px;
-    height: 48px;
+    height: 40px;
     background: #cfcfcf;
     opacity: 0;
     transition: opacity 0.3s ease-out;
   }
   #wall.visible { opacity: 1; }
 
-  /* --- Question prompt --- */
+  /* --- Diagnose section (shown after thought) --- */
 
-  #question {
-    font-size: 12px;
-    color: #888;
-    min-height: 18px;
-    letter-spacing: 0.3px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s;
+  #diagnose {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
   }
-  #question.visible { opacity: 1; }
+  #diagnose.visible { display: flex; }
+
+  .section-label {
+    font-size: 10px;
+    color: #5a5a5a;
+    letter-spacing: 0.4px;
+    text-transform: lowercase;
+  }
 
   /* --- Distortions --- */
 
   #distortions {
-    display: none;
+    display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    padding: 10px 0;
-    border-top: 1px solid #1a1a1a;
-    border-bottom: 1px solid #1a1a1a;
   }
-  #distortions.visible { display: flex; }
 
   .distortion {
     font-size: 11px;
-    color: #666;
-    padding: 4px 8px;
-    border: 1px solid #222;
+    color: #888;
+    padding: 5px 9px;
+    border: 1px solid #2a2a2a;
     cursor: pointer;
     position: relative;
     letter-spacing: 0.2px;
@@ -167,6 +173,16 @@
 
   .distortion:hover .tooltip { display: block; }
 
+  /* explanation of currently-selected distortion */
+  #distortion-explainer {
+    font-size: 11px;
+    color: #777;
+    line-height: 1.55;
+    letter-spacing: 0.1px;
+    min-height: 18px;
+    padding: 2px 0;
+  }
+
   /* --- Inputs --- */
 
   #input-area, #refute-area {
@@ -177,9 +193,6 @@
   }
   #input-area:focus-within,
   #refute-area:focus-within { border-color: #333; }
-
-  #refute-area { display: none; }
-  #refute-area.visible { display: flex; }
 
   .prompt-char {
     padding: 11px 0 11px 12px;
@@ -228,13 +241,15 @@
     font-style: italic;
     line-height: 1.5;
     letter-spacing: 0.2px;
-    text-align: center;
-    padding: 6px 0 2px;
+    padding: 0 2px 4px;
     min-height: 18px;
     opacity: 0;
     transition: opacity 0.2s;
   }
   #refute-prompt.visible { opacity: 1; }
+
+  /* hide the initial input area once we move past phase 1 */
+  #initial-block.done { display: none; }
 
   #input-guidance {
     font-size: 11px;
@@ -303,33 +318,42 @@
       <svg id="sprite" viewBox="0 0 8 10" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"></svg>
     </div>
 
-    <div id="question">is this true?</div>
+    <!-- Phase 1: capture the stuck thought -->
+    <div id="initial-block" class="group">
+      <div id="input-guidance" class="section-label">
+        the thought you can&rsquo;t shake &mdash; write it down.
+      </div>
+      <div id="input-area">
+        <span class="prompt-char">&gt;</span>
+        <textarea id="input" autofocus placeholder="write the thought" rows="1"></textarea>
+        <button id="input-submit" type="button" class="submit-btn">submit</button>
+      </div>
+    </div>
 
-    <div id="distortions"><!-- populated by JS --></div>
+    <!-- Phase 2: pick a distortion, then refute -->
+    <div id="diagnose">
 
-    <div id="refute-prompt">&nbsp;</div>
+      <div class="group">
+        <div class="section-label">which kind of trap is the thought stuck in?</div>
+        <div id="distortions"><!-- populated by JS --></div>
+        <div id="distortion-explainer">&nbsp;</div>
+      </div>
+
+      <div class="group">
+        <div id="refute-prompt">&nbsp;</div>
+        <div id="refute-area">
+          <span class="prompt-char">&raquo;</span>
+          <textarea id="refute-input" placeholder="pick a trap above, then refute the thought here" rows="1"></textarea>
+          <button id="refute-submit" type="button" class="submit-btn">submit</button>
+        </div>
+      </div>
+
+    </div>
 
     <div id="status">&nbsp;</div>
-
-    <div id="input-guidance">
-      the thought you can&rsquo;t shake. write it down.
-    </div>
-
-    <div id="input-area">
-      <span class="prompt-char">&gt;</span>
-      <textarea id="input" autofocus placeholder="write the thought" rows="1"></textarea>
-      <button id="input-submit" type="button" class="submit-btn">submit</button>
-    </div>
-
-    <div id="refute-area">
-      <span class="prompt-char">&raquo;</span>
-      <textarea id="refute-input" placeholder="refute your own thought" rows="1"></textarea>
-      <button id="refute-submit" type="button" class="submit-btn">submit</button>
-    </div>
-
     <div id="reset">reset</div>
 
-    <div id="footnote">enter to submit · shift+enter for newline</div>
+    <div id="footnote">enter to submit &middot; shift+enter for newline</div>
 
     <a id="back-link" href="/is/writing/small/">&larr; small tools</a>
   </div>
@@ -418,13 +442,14 @@
     const sprite         = document.getElementById('sprite');
     const wall           = document.getElementById('wall');
     const thoughtDisplay = document.getElementById('thought-display');
-    const questionEl     = document.getElementById('question');
+    const initialBlock   = document.getElementById('initial-block');
+    const diagnoseBlock  = document.getElementById('diagnose');
     const distortionsEl  = document.getElementById('distortions');
+    const distortionExplainer = document.getElementById('distortion-explainer');
     const refutePromptEl = document.getElementById('refute-prompt');
     const status         = document.getElementById('status');
     const input          = document.getElementById('input');
     const inputSubmit    = document.getElementById('input-submit');
-    const refuteArea     = document.getElementById('refute-area');
     const refuteInput    = document.getElementById('refute-input');
     const refuteSubmit   = document.getElementById('refute-submit');
     const resetEl        = document.getElementById('reset');
@@ -438,9 +463,10 @@
       el.addEventListener('click', () => {
         if (el.classList.contains('active')) {
           el.classList.remove('active');
-          refuteInput.placeholder = DEFAULT_REFUTE_PROMPT;
+          refuteInput.placeholder = 'pick a trap above, then refute the thought here';
           refutePromptEl.textContent = '';
           refutePromptEl.classList.remove('visible');
+          distortionExplainer.innerHTML = '&nbsp;';
           return;
         }
         distortionsEl.querySelectorAll('.distortion.active').forEach(o => o.classList.remove('active'));
@@ -448,6 +474,7 @@
         refuteInput.placeholder = d.prompt;
         refutePromptEl.textContent = d.prompt;
         refutePromptEl.classList.add('visible');
+        distortionExplainer.textContent = d.explanation;
         refuteInput.focus();
       });
       distortionsEl.appendChild(el);
@@ -513,11 +540,11 @@
     }
 
     function hideAll() {
-      questionEl.classList.remove('visible');
-      distortionsEl.classList.remove('visible');
+      diagnoseBlock.classList.remove('visible');
       refutePromptEl.classList.remove('visible');
       refutePromptEl.textContent = '';
-      refuteArea.classList.remove('visible');
+      distortionExplainer.innerHTML = '&nbsp;';
+      initialBlock.classList.remove('done');
       resetEl.classList.remove('visible');
       wall.classList.remove('visible');
       thoughtDisplay.innerHTML = '&nbsp;';
@@ -536,7 +563,7 @@
       input.disabled = false;
       refuteInput.disabled = false;
       distortionsEl.querySelectorAll('.distortion.active').forEach(el => el.classList.remove('active'));
-      refuteInput.placeholder = DEFAULT_REFUTE_PROMPT;
+      refuteInput.placeholder = 'pick a trap above, then refute the thought here';
       autoresize(input);
       autoresize(refuteInput);
       phase = 'awaiting-thought';
@@ -558,10 +585,9 @@
       const stopX = wallX - 18; // sprite ~16px wide, stop 2px before wall
       await walkSprite(stopX, 1300);
 
-      // reveal the question + distortions + refute input
-      questionEl.classList.add('visible');
-      distortionsEl.classList.add('visible');
-      refuteArea.classList.add('visible');
+      // hide phase 1, reveal phase 2
+      initialBlock.classList.add('done');
+      diagnoseBlock.classList.add('visible');
       refuteInput.focus();
 
       phase = 'awaiting-refutation';
