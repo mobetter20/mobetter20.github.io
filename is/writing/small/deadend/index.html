@@ -46,14 +46,14 @@
   /* --- Header --- */
 
   #title {
-    font-size: 11px;
-    color: #5a5a5a;
-    letter-spacing: 0.3px;
-    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #cfcfcf;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    padding-bottom: 14px;
     border-bottom: 1px solid #1a1a1a;
   }
-  #title .name { color: #888; }
-  #title .sep  { color: #333; margin: 0 4px; }
 
   /* --- Thought display --- */
 
@@ -120,6 +120,10 @@
     letter-spacing: 0.4px;
     text-transform: lowercase;
   }
+  .section-label .hint {
+    color: #3a3a3a;
+    margin-left: 4px;
+  }
 
   /* --- Distortions --- */
 
@@ -173,15 +177,6 @@
 
   .distortion:hover .tooltip { display: block; }
 
-  /* explanation of currently-selected distortion */
-  #distortion-explainer {
-    font-size: 11px;
-    color: #777;
-    line-height: 1.55;
-    letter-spacing: 0.1px;
-    min-height: 18px;
-    padding: 2px 0;
-  }
 
   /* --- Inputs --- */
 
@@ -260,6 +255,15 @@
     padding: 4px 0;
   }
 
+  #tagline {
+    font-size: 11px;
+    color: #444;
+    text-align: center;
+    font-style: italic;
+    letter-spacing: 0.2px;
+    padding-top: 12px;
+  }
+
   #back-link {
     display: block;
     font-size: 10px;
@@ -267,7 +271,7 @@
     text-align: center;
     text-decoration: none;
     letter-spacing: 0.3px;
-    padding-top: 14px;
+    padding-top: 6px;
     transition: color 0.15s;
   }
   #back-link:hover { color: #888; }
@@ -306,9 +310,7 @@
 </head>
 <body>
   <div id="frame">
-    <div id="title">
-      <span class="name">deadend</span><span class="sep">:</span><span>for getting out of your thought that goes nowhere.</span>
-    </div>
+    <div id="title">deadend</div>
 
     <div id="thought-display">&nbsp;</div>
 
@@ -336,7 +338,6 @@
       <div class="group">
         <div class="section-label">which kind of trap is the thought stuck in?</div>
         <div id="distortions"><!-- populated by JS --></div>
-        <div id="distortion-explainer">&nbsp;</div>
       </div>
 
       <div class="group">
@@ -355,6 +356,7 @@
 
     <div id="footnote">enter to submit &middot; shift+enter for newline</div>
 
+    <div id="tagline">for getting out of your thought that goes nowhere.</div>
     <a id="back-link" href="/is/writing/small/">&larr; small tools</a>
   </div>
 
@@ -445,7 +447,6 @@
     const initialBlock   = document.getElementById('initial-block');
     const diagnoseBlock  = document.getElementById('diagnose');
     const distortionsEl  = document.getElementById('distortions');
-    const distortionExplainer = document.getElementById('distortion-explainer');
     const refutePromptEl = document.getElementById('refute-prompt');
     const status         = document.getElementById('status');
     const input          = document.getElementById('input');
@@ -466,7 +467,6 @@
           refuteInput.placeholder = 'pick a trap above, then refute the thought here';
           refutePromptEl.textContent = '';
           refutePromptEl.classList.remove('visible');
-          distortionExplainer.innerHTML = '&nbsp;';
           return;
         }
         distortionsEl.querySelectorAll('.distortion.active').forEach(o => o.classList.remove('active'));
@@ -474,7 +474,6 @@
         refuteInput.placeholder = d.prompt;
         refutePromptEl.textContent = d.prompt;
         refutePromptEl.classList.add('visible');
-        distortionExplainer.textContent = d.explanation;
         refuteInput.focus();
       });
       distortionsEl.appendChild(el);
@@ -543,7 +542,6 @@
       diagnoseBlock.classList.remove('visible');
       refutePromptEl.classList.remove('visible');
       refutePromptEl.textContent = '';
-      distortionExplainer.innerHTML = '&nbsp;';
       initialBlock.classList.remove('done');
       resetEl.classList.remove('visible');
       wall.classList.remove('visible');
