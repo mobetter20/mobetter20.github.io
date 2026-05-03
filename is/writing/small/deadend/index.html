@@ -171,7 +171,7 @@
 
   #input-area, #refute-area {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     border: 1px solid #1f1f1f;
     background: #0d0d0d;
   }
@@ -206,6 +206,36 @@
   textarea::placeholder { color: #3a3a3a; }
   textarea:disabled { color: #555; cursor: not-allowed; }
 
+  .submit-btn {
+    background: transparent;
+    border: none;
+    border-left: 1px solid #1f1f1f;
+    color: #666;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    padding: 0 14px;
+    letter-spacing: 0.3px;
+    user-select: none;
+    transition: color 0.15s, background 0.15s;
+  }
+  .submit-btn:hover { color: #cfcfcf; background: #141414; }
+  .submit-btn:disabled { color: #2a2a2a; cursor: not-allowed; background: transparent; }
+
+  #refute-prompt {
+    font-size: 12px;
+    color: #c8a878;
+    font-style: italic;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    text-align: center;
+    padding: 6px 0 2px;
+    min-height: 18px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  #refute-prompt.visible { opacity: 1; }
+
   #input-guidance {
     font-size: 11px;
     color: #5a5a5a;
@@ -214,6 +244,18 @@
     text-align: center;
     padding: 4px 0;
   }
+
+  #back-link {
+    display: block;
+    font-size: 10px;
+    color: #444;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    padding-top: 14px;
+    transition: color 0.15s;
+  }
+  #back-link:hover { color: #888; }
 
   /* --- Status + footer --- */
 
@@ -265,25 +307,31 @@
 
     <div id="distortions"><!-- populated by JS --></div>
 
+    <div id="refute-prompt">&nbsp;</div>
+
     <div id="status">&nbsp;</div>
 
     <div id="input-guidance">
-      what happened? write a neutral observation. factual statement, not a judgement.
+      the thought you can&rsquo;t shake. write it down.
     </div>
 
     <div id="input-area">
       <span class="prompt-char">&gt;</span>
       <textarea id="input" autofocus placeholder="write the thought" rows="1"></textarea>
+      <button id="input-submit" type="button" class="submit-btn">submit</button>
     </div>
 
     <div id="refute-area">
       <span class="prompt-char">&raquo;</span>
       <textarea id="refute-input" placeholder="refute your own thought" rows="1"></textarea>
+      <button id="refute-submit" type="button" class="submit-btn">submit</button>
     </div>
 
     <div id="reset">reset</div>
 
     <div id="footnote">enter to submit · shift+enter for newline</div>
+
+    <a id="back-link" href="/is/writing/small/">&larr; small tools</a>
   </div>
 
   <script>
@@ -372,10 +420,13 @@
     const thoughtDisplay = document.getElementById('thought-display');
     const questionEl     = document.getElementById('question');
     const distortionsEl  = document.getElementById('distortions');
+    const refutePromptEl = document.getElementById('refute-prompt');
     const status         = document.getElementById('status');
     const input          = document.getElementById('input');
+    const inputSubmit    = document.getElementById('input-submit');
     const refuteArea     = document.getElementById('refute-area');
     const refuteInput    = document.getElementById('refute-input');
+    const refuteSubmit   = document.getElementById('refute-submit');
     const resetEl        = document.getElementById('reset');
 
     // --- Populate distortions -------------------------------------------
@@ -388,11 +439,15 @@
         if (el.classList.contains('active')) {
           el.classList.remove('active');
           refuteInput.placeholder = DEFAULT_REFUTE_PROMPT;
+          refutePromptEl.textContent = '';
+          refutePromptEl.classList.remove('visible');
           return;
         }
         distortionsEl.querySelectorAll('.distortion.active').forEach(o => o.classList.remove('active'));
         el.classList.add('active');
         refuteInput.placeholder = d.prompt;
+        refutePromptEl.textContent = d.prompt;
+        refutePromptEl.classList.add('visible');
         refuteInput.focus();
       });
       distortionsEl.appendChild(el);
@@ -460,6 +515,8 @@
     function hideAll() {
       questionEl.classList.remove('visible');
       distortionsEl.classList.remove('visible');
+      refutePromptEl.classList.remove('visible');
+      refutePromptEl.textContent = '';
       refuteArea.classList.remove('visible');
       resetEl.classList.remove('visible');
       wall.classList.remove('visible');
@@ -548,23 +605,34 @@
     input.addEventListener('input', () => autoresize(input));
     refuteInput.addEventListener('input', () => autoresize(refuteInput));
 
+    function trySubmitThought() {
+      const text = input.value.trim();
+      if (!text) return;
+      submitThought(text);
+    }
+
+    function trySubmitRefutation() {
+      const text = refuteInput.value.trim();
+      if (!text) return;
+      submitRefutation(text);
+    }
+
     input.addEventListener('keydown', e => {
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
-        const text = input.value.trim();
-        if (!text) return;
-        submitThought(text);
+        trySubmitThought();
       }
     });
 
     refuteInput.addEventListener('keydown', e => {
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
-        const text = refuteInput.value.trim();
-        if (!text) return;
-        submitRefutation(text);
+        trySubmitRefutation();
       }
     });
+
+    inputSubmit.addEventListener('click', trySubmitThought);
+    refuteSubmit.addEventListener('click', trySubmitRefutation);
 
     resetEl.addEventListener('click', resetAll);
 
