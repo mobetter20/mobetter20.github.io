@@ -45,14 +45,27 @@
 
   /* --- Header --- */
 
+  #title-block {
+    padding-bottom: 14px;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
   #title {
     font-size: 18px;
     font-weight: 600;
     color: #cfcfcf;
     letter-spacing: 1px;
     text-transform: lowercase;
-    padding-bottom: 14px;
-    border-bottom: 1px solid #1a1a1a;
+  }
+
+  #subtitle {
+    font-size: 11px;
+    color: #5a5a5a;
+    font-style: italic;
+    letter-spacing: 0.2px;
   }
 
   /* --- Thought display --- */
@@ -60,11 +73,20 @@
   #thought-display {
     font-size: 12px;
     color: #888;
-    min-height: 18px;
+    min-height: 0;
     letter-spacing: 0.2px;
-    padding: 4px 0;
+    padding: 0;
+    display: none;
   }
-  #thought-display .quote { color: #cfcfcf; }
+  #thought-display.visible {
+    display: block;
+    padding: 6px 0 0;
+  }
+  #thought-display .quote-mark {
+    color: #444;
+    margin-right: 6px;
+  }
+  #thought-display .quote { color: #cfcfcf; font-style: italic; }
 
   /* --- Stage --- */
 
@@ -255,70 +277,74 @@
     padding: 4px 0;
   }
 
-  #tagline {
-    font-size: 11px;
-    color: #444;
-    text-align: center;
-    font-style: italic;
-    letter-spacing: 0.2px;
-    padding-top: 12px;
-  }
-
   #back-link {
     display: block;
     font-size: 10px;
     color: #444;
-    text-align: center;
     text-decoration: none;
-    letter-spacing: 0.3px;
-    padding-top: 6px;
+    letter-spacing: 0.4px;
+    padding: 18px 0 4px;
+    border-top: 1px solid #1a1a1a;
+    margin-top: 8px;
     transition: color 0.15s;
   }
   #back-link:hover { color: #888; }
 
-  /* --- Status + footer --- */
+  /* --- Completion (status + reset) --- */
+
+  #completion {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 0;
+  }
+  #completion.visible { display: flex; }
 
   #status {
-    font-size: 11px;
-    color: #555;
-    text-align: center;
-    min-height: 14px;
-    letter-spacing: 0.3px;
+    font-size: 18px;
+    color: #c8a878;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    line-height: 1;
   }
 
   #reset {
-    font-size: 10px;
-    color: #333;
-    text-align: center;
+    font-size: 11px;
+    color: #5a5a5a;
     cursor: pointer;
     user-select: none;
-    letter-spacing: 0.3px;
-    padding: 4px 0;
-    display: none;
+    letter-spacing: 0.4px;
+    padding: 6px 14px;
+    border: 1px solid #2a2a2a;
+    transition: color 0.15s, border-color 0.15s;
   }
-  #reset.visible { display: block; }
-  #reset:hover { color: #666; }
+  #reset:hover { color: #cfcfcf; border-color: #444; }
 
-  #footnote {
+  /* --- Input hint (under each input) --- */
+
+  .input-hint {
     font-size: 10px;
-    color: #2a2a2a;
-    text-align: center;
+    color: #333;
     letter-spacing: 0.3px;
-    padding-top: 4px;
+    padding: 0 4px;
   }
 </style>
 </head>
 <body>
   <div id="frame">
-    <div id="title">deadend</div>
-
-    <div id="thought-display">&nbsp;</div>
+    <div id="title-block">
+      <div id="title">deadend</div>
+      <div id="subtitle">for getting out of your thought that goes nowhere.</div>
+    </div>
 
     <div id="stage">
       <div id="ground"></div>
       <div id="wall"></div>
       <svg id="sprite" viewBox="0 0 8 10" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"></svg>
     </div>
+
+    <div id="thought-display"><span class="quote-mark">&ldquo;</span><span class="quote-text"></span><span class="quote-mark">&rdquo;</span></div>
 
     <!-- Phase 1: capture the stuck thought -->
     <div id="initial-block" class="group">
@@ -330,6 +356,7 @@
         <textarea id="input" autofocus placeholder="write the thought" rows="1"></textarea>
         <button id="input-submit" type="button" class="submit-btn">submit</button>
       </div>
+      <div class="input-hint">enter to submit &middot; shift+enter for newline</div>
     </div>
 
     <!-- Phase 2: pick a distortion, then refute -->
@@ -347,16 +374,17 @@
           <textarea id="refute-input" placeholder="pick a trap above, then refute the thought here" rows="1"></textarea>
           <button id="refute-submit" type="button" class="submit-btn">submit</button>
         </div>
+        <div class="input-hint">enter to submit &middot; shift+enter for newline</div>
       </div>
 
     </div>
 
-    <div id="status">&nbsp;</div>
-    <div id="reset">reset</div>
+    <!-- Phase 3: completion -->
+    <div id="completion">
+      <div id="status"></div>
+      <div id="reset">reset</div>
+    </div>
 
-    <div id="footnote">enter to submit &middot; shift+enter for newline</div>
-
-    <div id="tagline">for getting out of your thought that goes nowhere.</div>
     <a id="back-link" href="/is/writing/small/">&larr; small tools</a>
   </div>
 
@@ -444,8 +472,10 @@
     const sprite         = document.getElementById('sprite');
     const wall           = document.getElementById('wall');
     const thoughtDisplay = document.getElementById('thought-display');
+    const thoughtQuoteText = thoughtDisplay.querySelector('.quote-text');
     const initialBlock   = document.getElementById('initial-block');
     const diagnoseBlock  = document.getElementById('diagnose');
+    const completionEl   = document.getElementById('completion');
     const distortionsEl  = document.getElementById('distortions');
     const refutePromptEl = document.getElementById('refute-prompt');
     const status         = document.getElementById('status');
@@ -535,7 +565,9 @@
     // --- UI helpers -----------------------------------------------------
 
     function showThought(text) {
-      thoughtDisplay.innerHTML = '<span class="quote">' + escapeHtml(text) + '</span>';
+      thoughtQuoteText.textContent = text;
+      thoughtQuoteText.classList.add('quote');
+      thoughtDisplay.classList.add('visible');
     }
 
     function hideAll() {
@@ -543,9 +575,10 @@
       refutePromptEl.classList.remove('visible');
       refutePromptEl.textContent = '';
       initialBlock.classList.remove('done');
-      resetEl.classList.remove('visible');
+      completionEl.classList.remove('visible');
       wall.classList.remove('visible');
-      thoughtDisplay.innerHTML = '&nbsp;';
+      thoughtDisplay.classList.remove('visible');
+      thoughtQuoteText.textContent = '';
       status.textContent = '';
     }
 
@@ -608,8 +641,9 @@
       const endX = stage.clientWidth + 24;
       await walkSprite(endX, 1500);
 
+      diagnoseBlock.classList.remove('visible');
       status.textContent = 'through.';
-      resetEl.classList.add('visible');
+      completionEl.classList.add('visible');
       phase = 'resolved';
     }
 
