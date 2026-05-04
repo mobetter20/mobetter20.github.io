@@ -77,6 +77,7 @@
     letter-spacing: 0.2px;
     padding: 0;
     display: none;
+    transition: color 0.4s ease;
   }
   #thought-display.visible {
     display: block;
@@ -85,8 +86,16 @@
   #thought-display .quote-mark {
     color: #444;
     margin-right: 6px;
+    transition: opacity 0.4s ease;
   }
-  #thought-display .quote { color: #cfcfcf; font-style: italic; }
+  #thought-display .quote-text { color: #cfcfcf; font-style: italic; transition: color 0.4s ease, font-size 0.4s ease; }
+
+  #thought-display.completed .quote-mark { opacity: 0; }
+  #thought-display.completed .quote-text {
+    color: #c8a878;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+  }
 
   /* --- Stage --- */
 
@@ -290,24 +299,14 @@
   }
   #back-link:hover { color: #888; }
 
-  /* --- Completion (status + reset) --- */
+  /* --- Completion (reset only; "through." replaces the thought) --- */
 
   #completion {
     display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    padding: 8px 0;
+    justify-content: flex-start;
+    padding: 4px 0;
   }
   #completion.visible { display: flex; }
-
-  #status {
-    font-size: 18px;
-    color: #c8a878;
-    font-style: italic;
-    letter-spacing: 0.5px;
-    line-height: 1;
-  }
 
   #reset {
     font-size: 11px;
@@ -379,9 +378,8 @@
 
     </div>
 
-    <!-- Phase 3: completion -->
+    <!-- Phase 3: thought-display turns into "through.", only reset shows -->
     <div id="completion">
-      <div id="status"></div>
       <div id="reset">reset</div>
     </div>
 
@@ -478,7 +476,6 @@
     const completionEl   = document.getElementById('completion');
     const distortionsEl  = document.getElementById('distortions');
     const refutePromptEl = document.getElementById('refute-prompt');
-    const status         = document.getElementById('status');
     const input          = document.getElementById('input');
     const inputSubmit    = document.getElementById('input-submit');
     const refuteInput    = document.getElementById('refute-input');
@@ -577,9 +574,8 @@
       initialBlock.classList.remove('done');
       completionEl.classList.remove('visible');
       wall.classList.remove('visible');
-      thoughtDisplay.classList.remove('visible');
+      thoughtDisplay.classList.remove('visible', 'completed');
       thoughtQuoteText.textContent = '';
-      status.textContent = '';
     }
 
     function resetAll() {
@@ -642,7 +638,8 @@
       await walkSprite(endX, 1500);
 
       diagnoseBlock.classList.remove('visible');
-      status.textContent = 'through.';
+      thoughtQuoteText.textContent = 'through.';
+      thoughtDisplay.classList.add('completed');
       completionEl.classList.add('visible');
       phase = 'resolved';
     }
