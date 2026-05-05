@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="/img/a3.png">
+<link rel="apple-touch-icon" href="/img/a3.png">
+<title>Who's Asking</title>
+<meta name="description" content="A game about what people are actually saying.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f3ed;
+    --ink: #161412;
+    --rule: #1a1a1a;
+    --muted: #6b6258;
+    --faint: #aaa097;
+    --serif: 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px 60px;
+  }
+
+  main {
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .screen {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+  .screen.active { display: flex; }
+
+  /* --- Start screen --- */
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 8vw, 56px);
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--muted);
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  .start-buttons {
+    margin-top: 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* --- Buttons (shared) --- */
+
+  .btn {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--ink);
+    padding: 14px 22px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1.2;
+    transition: background 0.14s ease, color 0.14s ease;
+  }
+  .btn:hover { background: var(--ink); color: var(--bg); }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus { outline: 1px solid var(--ink); outline-offset: 3px; }
+
+  .btn-mono {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    padding: 10px 18px;
+  }
+
+  /* --- Game screen --- */
+
+  .prompt {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 22px;
+    min-height: 16px;
+  }
+
+  .progress {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--faint);
+    margin-bottom: 8px;
+  }
+
+  .card {
+    width: 100%;
+    perspective: 1200px;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 220px;
+    transform-style: preserve-3d;
+    transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border: 1px solid var(--ink);
+    background: var(--bg);
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card-back { transform: rotateY(180deg); }
+
+  .card-text {
+    font-family: var(--serif);
+    font-size: clamp(22px, 4.4vw, 28px);
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+
+  .answer-label {
+    font-family: var(--mono);
+    font-size: clamp(22px, 4.6vw, 30px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .answer-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  .why-wrap {
+    margin-top: 22px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .why-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--muted);
+    cursor: pointer;
+    user-select: none;
+    background: transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding: 0 0 1px;
+  }
+  .why-link:hover, .why-link:focus { color: var(--ink); border-bottom-color: var(--ink); outline: none; }
+
+  .why-text {
+    display: none;
+    font-family: var(--serif);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--ink);
+    padding: 12px 14px;
+    margin-top: 12px;
+    max-width: 360px;
+    text-align: left;
+  }
+  .why-wrap.open .why-text { display: block; }
+  .why-wrap:hover .why-text { display: block; }
+
+  /* Action area below the card */
+
+  .actions {
+    margin-top: 24px;
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .actions .btn { flex: 1; min-width: 140px; max-width: 240px; }
+
+  .actions.next-mode { justify-content: center; }
+  .actions.next-mode .btn { flex: 0 0 auto; }
+
+  .action-set { display: contents; }
+  .action-set.hidden { display: none; }
+
+  /* --- End screen --- */
+
+  .score-line {
+    font-family: var(--mono);
+    font-size: clamp(20px, 4vw, 24px);
+    color: var(--ink);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  .end-buttons {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Footer back link */
+  .back-link {
+    margin-top: 56px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+  }
+  .back-link:hover { color: var(--ink); }
+
+  /* Mobile tweaks */
+  @media (max-width: 460px) {
+    .actions .btn { min-width: 100%; flex: 1 1 100%; }
+    .card-inner { min-height: 200px; }
+    .card-face { padding: 28px 20px; }
+    .why-text { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- Start screen -->
+  <section id="screen-start" class="screen active" aria-label="Start">
+    <h1>Who&rsquo;s Asking</h1>
+    <p class="tagline">Spot the tell.</p>
+    <div class="start-buttons">
+      <button class="btn" data-mode="question">Question?</button>
+      <button class="btn" data-mode="observation">Observation!</button>
+    </div>
+  </section>
+
+  <!-- Game screen -->
+  <section id="screen-game" class="screen" aria-label="Game">
+    <div class="progress" id="progress"></div>
+    <div class="prompt" id="prompt"></div>
+
+    <div class="card" id="card">
+      <div class="card-inner">
+        <div class="card-face card-front">
+          <p class="card-text" id="card-text"></p>
+        </div>
+        <div class="card-face card-back">
+          <p class="answer-label" id="answer-label"></p>
+          <p class="answer-sub" id="answer-sub"></p>
+          <span class="why-wrap" id="why-wrap">
+            <button type="button" class="why-link" id="why-link">Why?</button>
+            <div class="why-text" id="why-text"></div>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions" id="actions">
+      <div class="action-set" id="answer-set">
+        <button class="btn" id="btn-yes"></button>
+        <button class="btn" id="btn-no"></button>
+      </div>
+      <div class="action-set hidden" id="next-set">
+        <button class="btn btn-mono" id="btn-next">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- End screen -->
+  <section id="screen-end" class="screen" aria-label="End">
+    <p class="score-line" id="score-line"></p>
+    <div class="end-buttons">
+      <button class="btn" id="btn-again">Again</button>
+      <button class="btn" id="btn-other">Other deck</button>
+    </div>
+  </section>
+
+  <a class="back-link" href="/is/writing/small/">&larr; small ware</a>
+
+</main>
+
+<script>
+  // ============================================================
+  // Decks
+  // ============================================================
+  const questionDeck = [
+    { text: "What time does the pharmacy close?", isQuestion: true },
+    { text: "Have you eaten?", isQuestion: true },
+    { text: "Where did I put my keys?", isQuestion: true },
+    { text: "Is the meeting at 3 or 4?", isQuestion: true },
+    { text: "Did the package arrive?", isQuestion: true },
+    { text: "Which one did you order?", isQuestion: true },
+    { text: "How long does the train take from here?", isQuestion: true },
+    { text: "Do you want the window or the aisle?", isQuestion: true },
+    { text: "Is it supposed to rain tomorrow?", isQuestion: true },
+    { text: "What's the wifi password?", isQuestion: true },
+    { text: "Did she say when she'd be back?", isQuestion: true },
+    { text: "How much was it?", isQuestion: true },
+
+    { text: "Why didn't you tell me?", isQuestion: false, label: "Accusation" },
+    { text: "Do you have to chew like that?", isQuestion: false, label: "Complaint" },
+    { text: "Could you maybe not leave your stuff on the counter?", isQuestion: false, label: "Demand" },
+    { text: "Who even invited him?", isQuestion: false, label: "Rhetorical" },
+    { text: "Why am I the only one who cleans around here?", isQuestion: false, label: "Accusation" },
+    { text: "You think I have time for that?", isQuestion: false, label: "Rhetorical" },
+    { text: "Did I ask for your opinion?", isQuestion: false, label: "Rhetorical" },
+    { text: "How many times do I have to say this?", isQuestion: false, label: "Complaint" },
+    { text: "Why would you do that?", isQuestion: false, label: "Accusation" },
+    { text: "Can you not?", isQuestion: false, label: "Demand" },
+    { text: "Is it really that hard?", isQuestion: false, label: "Complaint" },
+    { text: "Why are you like this?", isQuestion: false, label: "Accusation" },
+    { text: "You really think that's a good idea?", isQuestion: false, label: "Rhetorical" },
+  ];
+
+  const observationDeck = [
+    { text: "He hasn't spoken since dinner started.", isObservation: true },
+    { text: "The dishes are in the sink.", isObservation: true },
+    { text: "She left at 9.", isObservation: true },
+    { text: "There are three messages I haven't replied to.", isObservation: true },
+    { text: "He arrived twenty minutes after the start time.", isObservation: true },
+    { text: "She's eaten two bowls.", isObservation: true },
+    { text: "The light is still on in the kitchen.", isObservation: true },
+    { text: "He hung up before I finished.", isObservation: true },
+    { text: "She wore the blue jacket today.", isObservation: true },
+    { text: "The window has been open since this morning.", isObservation: true },
+    { text: "He texted twice and called once.", isObservation: true },
+    { text: "She finished the report on Tuesday.", isObservation: true },
+
+    { text: "He's being weird tonight.", isObservation: false, label: "Evaluation" },
+    { text: "She's avoiding me.", isObservation: false, label: "Mind-read" },
+    { text: "You always do this.", isObservation: false, label: "Generalization" },
+    { text: "He's upset with me.", isObservation: false, label: "Interpretation" },
+    { text: "She's lazier than her sister.", isObservation: false, label: "Comparison" },
+    { text: "You're barely trying.", isObservation: false, label: "Evaluation" },
+    { text: "He doesn't care.", isObservation: false, label: "Mind-read" },
+    { text: "She's overreacting.", isObservation: false, label: "Evaluation" },
+    { text: "You never listen.", isObservation: false, label: "Generalization" },
+    { text: "He thinks he's better than us.", isObservation: false, label: "Mind-read" },
+    { text: "She's been distant lately.", isObservation: false, label: "Evaluation" },
+    { text: "You're acting just like your father.", isObservation: false, label: "Comparison" },
+    { text: "He's clearly not interested.", isObservation: false, label: "Interpretation" },
+  ];
+
+  const explanations = {
+    "Accusation": "Question shape, but it's a complaint about something already done. The asker isn't seeking information.",
+    "Complaint": "Asks permission to be irritated, not for an answer.",
+    "Demand": "A request softened into a question. The expected reply is compliance, not a yes/no.",
+    "Rhetorical": "The asker already knows what they think. The question is a way of saying it.",
+    "Evaluation": "Adds a judgment a camera couldn't record (weird, lazy, barely, distant).",
+    "Mind-read": "Claims to know an internal state that wasn't reported.",
+    "Generalization": "Always, never, every time — collapses many moments into one verdict.",
+    "Interpretation": "Names a meaning behind the behavior, not the behavior itself.",
+    "Comparison": "Measures against another person rather than describing what happened.",
+  };
+
+  // ============================================================
+  // State
+  // ============================================================
+  const screens = {
+    start: document.getElementById('screen-start'),
+    game: document.getElementById('screen-game'),
+    end: document.getElementById('screen-end'),
+  };
+
+  const promptEl = document.getElementById('prompt');
+  const progressEl = document.getElementById('progress');
+  const cardEl = document.getElementById('card');
+  const cardTextEl = document.getElementById('card-text');
+  const answerLabelEl = document.getElementById('answer-label');
+  const answerSubEl = document.getElementById('answer-sub');
+  const whyWrap = document.getElementById('why-wrap');
+  const whyLink = document.getElementById('why-link');
+  const whyText = document.getElementById('why-text');
+  const btnYes = document.getElementById('btn-yes');
+  const btnNo = document.getElementById('btn-no');
+  const btnNext = document.getElementById('btn-next');
+  const answerSet = document.getElementById('answer-set');
+  const nextSet = document.getElementById('next-set');
+  const scoreLine = document.getElementById('score-line');
+  const btnAgain = document.getElementById('btn-again');
+  const btnOther = document.getElementById('btn-other');
+
+  let mode = null;       // 'question' | 'observation'
+  let deck = [];         // shuffled cards for the current run
+  let idx = 0;
+  let score = 0;
+  let total = 0;
+  let cardLocked = false;
+
+  // ============================================================
+  // Helpers
+  // ============================================================
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function showScreen(name) {
+    Object.entries(screens).forEach(([key, el]) => {
+      el.classList.toggle('active', key === name);
+    });
+  }
+
+  function isPositive(card) {
+    return mode === 'question' ? !!card.isQuestion : !!card.isObservation;
+  }
+
+  function modeLabels() {
+    if (mode === 'question') {
+      return {
+        prompt: 'Is this a question?',
+        yes: 'Question',
+        no: 'Not a question',
+        positiveLabel: 'Question',
+        negativeSub: 'Not a question.',
+      };
+    }
+    return {
+      prompt: 'Is this an observation?',
+      yes: 'Observation',
+      no: 'Not an observation',
+      positiveLabel: 'Observation',
+      negativeSub: 'Not an observation.',
+    };
+  }
+
+  // ============================================================
+  // Game flow
+  // ============================================================
+  function startMode(m) {
+    mode = m;
+    const source = m === 'question' ? questionDeck : observationDeck;
+    deck = shuffle(source);
+    idx = 0;
+    score = 0;
+    total = deck.length;
+    showScreen('game');
+    renderCard();
+  }
+
+  function renderCard() {
+    cardLocked = false;
+    cardEl.classList.remove('flipped');
+    closeWhy();
+
+    const card = deck[idx];
+    const labels = modeLabels();
+
+    promptEl.textContent = labels.prompt;
+    progressEl.textContent = `${idx + 1} / ${total}`;
+    cardTextEl.textContent = card.text;
+
+    btnYes.textContent = labels.yes;
+    btnNo.textContent = labels.no;
+
+    answerSet.classList.remove('hidden');
+    nextSet.classList.add('hidden');
+
+    // Pre-fill the back face so the flip reveals it instantly.
+    if (isPositive(card)) {
+      answerLabelEl.textContent = labels.positiveLabel;
+      answerSubEl.textContent = '';
+      answerSubEl.style.display = 'none';
+      whyText.textContent = '';
+      whyWrap.style.visibility = 'hidden';
+    } else {
+      answerLabelEl.textContent = card.label;
+      answerSubEl.textContent = labels.negativeSub;
+      answerSubEl.style.display = '';
+      const explanation = explanations[card.label] || '';
+      whyText.textContent = explanation;
+      whyWrap.style.visibility = explanation ? 'visible' : 'hidden';
+    }
+  }
+
+  function answer(playerSaysPositive) {
+    if (cardLocked) return;
+    cardLocked = true;
+    const card = deck[idx];
+    if (playerSaysPositive === isPositive(card)) score++;
+
+    cardEl.classList.add('flipped');
+    answerSet.classList.add('hidden');
+    nextSet.classList.remove('hidden');
+  }
+
+  function next() {
+    idx++;
+    if (idx >= total) {
+      finishRun();
+      return;
+    }
+    // Flip back, then re-render the next card during the back-flip.
+    cardEl.classList.remove('flipped');
+    closeWhy();
+    setTimeout(() => {
+      // Mid-flip swap so the new front face is in place when it lands.
+      const card = deck[idx];
+      cardTextEl.textContent = card.text;
+      progressEl.textContent = `${idx + 1} / ${total}`;
+    }, 140);
+    setTimeout(() => {
+      renderCard();
+    }, 280);
+  }
+
+  function finishRun() {
+    scoreLine.textContent = `You got ${score} of ${total}.`;
+    showScreen('end');
+  }
+
+  function closeWhy() {
+    whyWrap.classList.remove('open');
+  }
+
+  // ============================================================
+  // Event wiring
+  // ============================================================
+  document.querySelectorAll('[data-mode]').forEach(btn => {
+    btn.addEventListener('click', () => startMode(btn.dataset.mode));
+  });
+
+  btnYes.addEventListener('click', () => answer(true));
+  btnNo.addEventListener('click', () => answer(false));
+  btnNext.addEventListener('click', next);
+
+  btnAgain.addEventListener('click', () => startMode(mode));
+  btnOther.addEventListener('click', () => {
+    mode = null;
+    showScreen('start');
+  });
+
+  // Why? toggle (tap on mobile, hover on desktop via CSS)
+  whyLink.addEventListener('click', (e) => {
+    e.stopPropagation();
+    whyWrap.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!whyWrap.contains(e.target)) closeWhy();
+  });
+
+  // Optional keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (!screens.game.classList.contains('active')) return;
+    const answerVisible = !answerSet.classList.contains('hidden');
+    if (answerVisible) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); btnYes.click(); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); btnNo.click(); }
+    } else {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btnNext.click(); }
+    }
+  });
+</script>
+<script src="../../../../analytics.js" defer></script>
+</body>
+</html>
