@@ -52,7 +52,8 @@
   }
 
   button,
-  input {
+  input,
+  textarea {
     font: inherit;
   }
 
@@ -342,7 +343,9 @@
   }
 
   .final-answer {
+    display: block;
     width: 100%;
+    min-height: 38px;
     padding: 6px 0;
     border: 0;
     border-bottom: 1.5px dashed #e0d4c8;
@@ -352,7 +355,13 @@
     font-family: inherit;
     font-size: 17px;
     font-weight: 600;
+    line-height: 1.45;
     letter-spacing: -0.01em;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    resize: none;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
   .final-answer:focus {
@@ -1013,7 +1022,7 @@
             <article class="triplet">
               <p class="triplet-statement">${escapeHtml(item.statement)}</p>
               <p class="triplet-question">${escapeHtml(question)}</p>
-              <input class="final-answer" type="text" value="${escapeAttribute(answer.answer)}" placeholder="(empty)" data-answer-index="${index}" autocomplete="off">
+              <textarea class="final-answer" rows="1" wrap="soft" placeholder="(empty)" data-answer-index="${index}" autocomplete="off">${escapeHtml(answer.answer)}</textarea>
             </article>
           `;
         }).join('')}
@@ -1025,9 +1034,11 @@
     `, false);
 
     document.querySelectorAll('.final-answer').forEach((input) => {
+      autosizeAnswer(input);
       input.addEventListener('input', () => {
         const index = Number(input.dataset.answerIndex);
         labelState.answers[index].answer = input.value;
+        autosizeAnswer(input);
         debounceFinalSave();
       });
     });
@@ -1047,6 +1058,17 @@
   function escapeAttribute(value) {
     return escapeHtml(value).replace(/`/g, '&#096;');
   }
+
+  function autosizeAnswer(input) {
+    input.style.height = 'auto';
+    input.style.height = input.scrollHeight + 'px';
+  }
+
+  function autosizeFinalAnswers() {
+    document.querySelectorAll('.final-answer').forEach(autosizeAnswer);
+  }
+
+  window.addEventListener('resize', autosizeFinalAnswers);
 
   window.addEventListener('beforeunload', () => {
     if (mode === 'final') saveData();
