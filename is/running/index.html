@@ -163,21 +163,13 @@
     50%      { transform: translate(-50%, -78%) scaleX(-1); }
   }
 
-  /* prose sections */
-  .prose {
+  .closer {
     color: var(--text-soft);
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: 2.2rem;
+    font-size: 0.92rem;
+    font-style: italic;
+    line-height: 1.6;
+    animation: fade 0.9s ease-out 0.4s both;
   }
-
-  .prose.first { animation: fade 0.9s ease-out 0.4s both; }
-  .prose.second { animation: fade 0.9s ease-out 0.55s both; }
-
-  .prose p { margin-bottom: 1rem; }
-  .prose p:last-child { margin-bottom: 0; }
-
-  .prose .em { color: var(--text); font-style: italic; }
 
   .divider {
     width: 40px;
@@ -196,7 +188,7 @@
     .title { font-size: 1.18rem; margin-bottom: 2.5rem; }
     .stat-value { font-size: 1.2rem; min-width: 6rem; }
     .stat-label { font-size: 0.88rem; }
-    .prose { font-size: 0.96rem; }
+    .closer { font-size: 0.88rem; }
     .divider { margin: 2.2rem 0; }
     .trail { gap: 0.55rem; padding: 1.1rem 0 0.5rem; }
     .trail .endpoint { font-size: 1.2rem; }
@@ -241,25 +233,7 @@
 
   <div class="divider"></div>
 
-  <div class="prose first">
-    <p>
-      The <span class="em">common swift</span> spends almost its entire life in the air. Over a lifetime it covers roughly two million miles, about four round trips to the moon.
-    </p>
-    <p>
-      One trip is enough for me.
-    </p>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="prose second">
-    <p>
-      I've been running at least 10 km a day since 2009, and 15 km since 2017. I don't always wear the watch, so the numbers above aren't exact.
-    </p>
-    <p>
-      The earth is 40,075 km around. The moon is 384,400 km from here. If I keep going, I should make it.
-    </p>
-  </div>
+  <p class="closer">If I keep going, I should make it.</p>
 
 </main>
 
