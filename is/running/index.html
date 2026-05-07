@@ -107,6 +107,62 @@
     letter-spacing: 0.02em;
   }
 
+  /* trail: earth → runner → moon */
+  .trail {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1.4rem 0 0.6rem;
+  }
+
+  .trail .endpoint {
+    font-size: 1.35rem;
+    line-height: 1;
+    flex-shrink: 0;
+    filter: saturate(0.85);
+  }
+
+  .trail .track {
+    position: relative;
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .trail .track-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--progress);
+    background: linear-gradient(to right, transparent, rgba(232, 224, 208, 0.4));
+    animation: trail-fill 1.8s cubic-bezier(0.4, 0, 0.2, 1) 1s both;
+  }
+
+  .trail .runner {
+    position: absolute;
+    top: 50%;
+    left: var(--progress);
+    font-size: 1.15rem;
+    line-height: 1;
+    transform: translate(-50%, -50%) scaleX(-1);
+    animation: trail-runner 1.8s cubic-bezier(0.4, 0, 0.2, 1) 1s both,
+               trail-bob 1.4s ease-in-out 2.9s infinite;
+  }
+
+  @keyframes trail-fill {
+    from { width: 0; }
+    to   { width: var(--progress); }
+  }
+
+  @keyframes trail-runner {
+    from { left: 0; }
+    to   { left: var(--progress); }
+  }
+
+  @keyframes trail-bob {
+    0%, 100% { transform: translate(-50%, -50%) scaleX(-1); }
+    50%      { transform: translate(-50%, -78%) scaleX(-1); }
+  }
+
   /* prose sections */
   .prose {
     color: var(--text-soft);
@@ -142,6 +198,9 @@
     .stat-label { font-size: 0.88rem; }
     .prose { font-size: 0.96rem; }
     .divider { margin: 2.2rem 0; }
+    .trail { gap: 0.55rem; padding: 1.1rem 0 0.5rem; }
+    .trail .endpoint { font-size: 1.2rem; }
+    .trail .runner { font-size: 1rem; }
   }
 </style>
 </head>
@@ -166,6 +225,17 @@
       <div class="stat-value">309,219 km</div>
       <div class="stat-label">to the moon</div>
     </div>
+
+    <!-- update --progress when km changes: round(km / 384400 * 100, 1) -->
+    <div class="trail" style="--progress: 19.6%" role="img" aria-label="19.6% of the way to the moon">
+      <span class="endpoint" aria-hidden="true">🌍</span>
+      <div class="track">
+        <div class="track-fill"></div>
+        <span class="runner" aria-hidden="true">🏃</span>
+      </div>
+      <span class="endpoint" aria-hidden="true">🌕</span>
+    </div>
+
     <div class="updated">updated daily</div>
   </div>
 
