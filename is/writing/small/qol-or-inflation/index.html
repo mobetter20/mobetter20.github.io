@@ -770,8 +770,8 @@
   <h1>Quality of Life,<br>or <span class="accent">Inflation</span>?</h1>
 </header>
 
-<!-- DASHBOARD: visible during selection + questions, hidden on summary -->
-<section class="dashboard" id="dashboard">
+<!-- DASHBOARD: hidden until an item is picked; visible during questions; hidden on summary -->
+<section class="dashboard hidden-region" id="dashboard">
 
   <div class="scale-region">
     <div class="scale-poles">
@@ -1146,6 +1146,7 @@ function selectItem(item) {
   updateProgressBar();
   renderAxisGrid();
 
+  dashboard.classList.remove('hidden-region');
   picker.style.display = 'none';
   questionSlot.classList.remove('hidden-region');
   summaryPage.classList.add('hidden-region');
@@ -1419,8 +1420,8 @@ function restart() {
 
   renderAxisGrid();
 
-  // Restore dashboard + picker, hide question slot and summary
-  dashboard.classList.remove('hidden-region');
+  // Hide dashboard + question slot + summary; restore picker
+  dashboard.classList.add('hidden-region');
   questionSlot.classList.add('hidden-region');
   slotContent.innerHTML = '';
 
