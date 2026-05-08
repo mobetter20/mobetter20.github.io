@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ajin.im is running</title>
-<meta name="description" content="Ajin Im's running log — about 75,000 km since 2009, tracked toward earth-to-moon mileage.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,400&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -108,60 +107,27 @@
     letter-spacing: 0.02em;
   }
 
-  /* trail: earth → runner → moon */
-  .trail {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    padding: 1.4rem 0 0.6rem;
+  /* prose sections */
+  .prose {
+    color: var(--text-soft);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2.2rem;
   }
 
-  .trail .endpoint {
-    font-size: 1.35rem;
-    line-height: 1;
-    flex-shrink: 0;
-    filter: saturate(0.85);
-  }
+  .prose.first { animation: fade 0.9s ease-out 0.4s both; }
+  .prose.second { animation: fade 0.9s ease-out 0.55s both; }
 
-  .trail .track {
-    position: relative;
-    flex: 1;
+  .prose p { margin-bottom: 1rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .prose .em { color: var(--text); font-style: italic; }
+
+  .divider {
+    width: 40px;
     height: 1px;
     background: var(--rule);
-  }
-
-  .trail .track-fill {
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: var(--progress);
-    background: linear-gradient(to right, transparent, rgba(232, 224, 208, 0.4));
-    animation: trail-fill 1.8s cubic-bezier(0.4, 0, 0.2, 1) 1s both;
-  }
-
-  .trail .runner {
-    position: absolute;
-    top: 50%;
-    left: var(--progress);
-    font-size: 1.15rem;
-    line-height: 1;
-    transform: translate(-50%, -50%) scaleX(-1);
-    animation: trail-runner 1.8s cubic-bezier(0.4, 0, 0.2, 1) 1s both,
-               trail-bob 1.4s ease-in-out 2.9s infinite;
-  }
-
-  @keyframes trail-fill {
-    from { width: 0; }
-    to   { width: var(--progress); }
-  }
-
-  @keyframes trail-runner {
-    from { left: 0; }
-    to   { left: var(--progress); }
-  }
-
-  @keyframes trail-bob {
-    0%, 100% { transform: translate(-50%, -50%) scaleX(-1); }
-    50%      { transform: translate(-50%, -78%) scaleX(-1); }
+    margin: 2.8rem 0;
   }
 
   @keyframes fade {
@@ -174,9 +140,8 @@
     .title { font-size: 1.18rem; margin-bottom: 2.5rem; }
     .stat-value { font-size: 1.2rem; min-width: 6rem; }
     .stat-label { font-size: 0.88rem; }
-    .trail { gap: 0.55rem; padding: 1.1rem 0 0.5rem; }
-    .trail .endpoint { font-size: 1.2rem; }
-    .trail .runner { font-size: 1rem; }
+    .prose { font-size: 0.96rem; }
+    .divider { margin: 2.2rem 0; }
   }
 </style>
 </head>
@@ -190,7 +155,7 @@
 
   <div class="stats">
     <div class="stat">
-      <div class="stat-value">75,181 km</div>
+      <div class="stat-value">75,260 km</div>
       <div class="stat-label">running, since 2009</div>
     </div>
     <div class="stat">
@@ -198,21 +163,32 @@
       <div class="stat-label">around the earth</div>
     </div>
     <div class="stat">
-      <div class="stat-value">309,219 km</div>
+      <div class="stat-value">309,140 km</div>
       <div class="stat-label">to the moon</div>
     </div>
-
-    <!-- update --progress when km changes: round(km / 384400 * 100, 1) -->
-    <div class="trail" style="--progress: 19.6%" role="img" aria-label="19.6% of the way to the moon">
-      <span class="endpoint" aria-hidden="true">🌍</span>
-      <div class="track">
-        <div class="track-fill"></div>
-        <span class="runner" aria-hidden="true">🏃</span>
-      </div>
-      <span class="endpoint" aria-hidden="true">🌕</span>
-    </div>
-
     <div class="updated">updated daily</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="prose first">
+    <p>
+      The <span class="em">common swift</span> spends almost its entire life in the air. Over a lifetime it covers roughly two million miles, about four round trips to the moon.
+    </p>
+    <p>
+      One trip is enough for me.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="prose second">
+    <p>
+      I've been running at least 10 km a day since 2009, and 15 km since 2017. I don't always wear the watch, so the numbers above aren't exact.
+    </p>
+    <p>
+      The earth is 40,075 km around. The moon is 384,400 km from here. If I keep going, I should make it.
+    </p>
   </div>
 
 </main>
