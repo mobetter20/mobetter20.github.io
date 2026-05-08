@@ -164,21 +164,6 @@
     50%      { transform: translate(-50%, -78%) scaleX(-1); }
   }
 
-  .closer {
-    color: var(--text-soft);
-    font-size: 0.92rem;
-    font-style: italic;
-    line-height: 1.6;
-    animation: fade 0.9s ease-out 0.4s both;
-  }
-
-  .divider {
-    width: 40px;
-    height: 1px;
-    background: var(--rule);
-    margin: 2.8rem 0;
-  }
-
   @keyframes fade {
     from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -189,8 +174,6 @@
     .title { font-size: 1.18rem; margin-bottom: 2.5rem; }
     .stat-value { font-size: 1.2rem; min-width: 6rem; }
     .stat-label { font-size: 0.88rem; }
-    .closer { font-size: 0.88rem; }
-    .divider { margin: 2.2rem 0; }
     .trail { gap: 0.55rem; padding: 1.1rem 0 0.5rem; }
     .trail .endpoint { font-size: 1.2rem; }
     .trail .runner { font-size: 1rem; }
@@ -231,10 +214,6 @@
 
     <div class="updated">updated daily</div>
   </div>
-
-  <div class="divider"></div>
-
-  <p class="closer">If I keep going, I should make it.</p>
 
 </main>
 
