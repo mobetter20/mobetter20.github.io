@@ -17,9 +17,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ROOT_TEMPLATE_PATH = ROOT / "templates" / "root.html"
 RUNNING_TEMPLATE_PATH = ROOT / "templates" / "running.html"
+READING_TEMPLATE_PATH = ROOT / "templates" / "reading.html"
+LEARNING_TEMPLATE_PATH = ROOT / "templates" / "learning.html"
 STATS_PATH = ROOT / "content" / "stats.md"
 INDEX_PATH = ROOT / "index.html"
 RUNNING_INDEX_PATH = ROOT / "is" / "running" / "index.html"
+READING_INDEX_PATH = ROOT / "is" / "reading" / "index.html"
+LEARNING_INDEX_PATH = ROOT / "is" / "learning" / "index.html"
 
 EARTH_KM = 40075
 MOON_KM = 384400
@@ -225,6 +229,8 @@ def build(check_only: bool = False) -> None:
     targets: list[tuple[Path, Path]] = [
         (ROOT_TEMPLATE_PATH, INDEX_PATH),
         (RUNNING_TEMPLATE_PATH, RUNNING_INDEX_PATH),
+        (READING_TEMPLATE_PATH, READING_INDEX_PATH),
+        (LEARNING_TEMPLATE_PATH, LEARNING_INDEX_PATH),
     ]
 
     print(f"running: {total_km_fmt} km since {since_year} — {earth} ({earth_mult}) — {remaining_fmt} km left")

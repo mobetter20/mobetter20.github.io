@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ajin.im is reading</title>
+<meta name="description" content="What Ajin Im is reading now and has read this year.">
+<link rel="icon" type="image/png" href="/img/a1.png">
+<link rel="apple-touch-icon" href="/img/a1.png">
+<script src="/analytics.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,400&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1612;
+    --text: #e8e0d0;
+    --text-soft: #8a7f70;
+    --text-faint: #6a6055;
+    --rule: rgba(138, 127, 112, 0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.78 0 0 0 0 0.66 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+
+  main {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 10vh 8vw 8vh;
+  }
+
+  .title {
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    margin-bottom: 3rem;
+    color: var(--text);
+    animation: fade 0.9s ease-out 0.1s both;
+  }
+
+  .title .prefix {
+    color: var(--text-faint);
+  }
+
+  .title .verb {
+    font-style: italic;
+  }
+
+  .now {
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 2.6rem;
+    animation: fade 0.9s ease-out 0.25s both;
+  }
+
+  .now .work-title {
+    color: #c4b9a6;
+  }
+
+  .past {
+    color: var(--text-soft);
+    font-size: 0.96rem;
+    line-height: 1.75;
+    animation: fade 0.9s ease-out 0.4s both;
+  }
+
+  .past-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.8rem;
+  }
+
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    main { padding: 7vh 7vw 6vh; }
+    .title { font-size: 1.18rem; margin-bottom: 2.5rem; }
+    .now { font-size: 1rem; }
+    .past { font-size: 0.92rem; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+  <div class="title">
+    <span class="prefix">ajin.im is</span> <span class="verb">reading</span>
+  </div>
+
+  <div class="now">
+    {{reading_current}}
+  </div>
+
+  <div class="past">
+    <div class="past-label">This year, so far</div>
+    {{reading_year}}
+  </div>
+
+</main>
+
+</body>
+</html>
