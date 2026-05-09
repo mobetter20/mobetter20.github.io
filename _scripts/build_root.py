@@ -196,6 +196,7 @@ def build(check_only: bool = False) -> None:
     total_km_fmt = f"{total_km:,}"
     remaining_km = MOON_KM - total_km
     remaining_fmt = f"{remaining_km:,}"
+    moon_pct_fmt = f"{round(total_km / MOON_KM * 100, 1)}"
     earth = earth_prose(total_km)
     earth_mult = earth_multiplier(total_km)
 
@@ -215,6 +216,7 @@ def build(check_only: bool = False) -> None:
         "{{running_earth_prose}}": earth,
         "{{running_earth_multiplier}}": earth_mult,
         "{{running_moon_remaining}}": remaining_fmt,
+        "{{running_moon_pct}}": moon_pct_fmt,
         "{{reading_current}}": reading_current_html,
         "{{reading_year}}": reading_year_str,
         "{{learning}}": learning,
