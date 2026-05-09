@@ -107,27 +107,60 @@
     letter-spacing: 0.02em;
   }
 
-  /* prose sections */
-  .prose {
-    color: var(--text-soft);
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: 2.2rem;
+  /* trail: earth → runner → moon */
+  .trail {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1.4rem 0 0.6rem;
   }
 
-  .prose.first { animation: fade 0.9s ease-out 0.4s both; }
-  .prose.second { animation: fade 0.9s ease-out 0.55s both; }
+  .trail .endpoint {
+    font-size: 1.35rem;
+    line-height: 1;
+    flex-shrink: 0;
+    filter: saturate(0.85);
+  }
 
-  .prose p { margin-bottom: 1rem; }
-  .prose p:last-child { margin-bottom: 0; }
-
-  .prose .em { color: var(--text); font-style: italic; }
-
-  .divider {
-    width: 40px;
+  .trail .track {
+    position: relative;
+    flex: 1;
     height: 1px;
     background: var(--rule);
-    margin: 2.8rem 0;
+  }
+
+  .trail .track-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--progress);
+    background: linear-gradient(to right, transparent, rgba(232, 224, 208, 0.4));
+    animation: trail-fill 1.8s cubic-bezier(0.4, 0, 0.2, 1) 1s both;
+  }
+
+  .trail .runner {
+    position: absolute;
+    top: 50%;
+    left: var(--progress);
+    font-size: 1.15rem;
+    line-height: 1;
+    transform: translate(-50%, -50%) scaleX(-1);
+    animation: trail-runner 1.8s cubic-bezier(0.4, 0, 0.2, 1) 1s both,
+               trail-bob 1.4s ease-in-out 2.9s infinite;
+  }
+
+  @keyframes trail-fill {
+    from { width: 0; }
+    to   { width: var(--progress); }
+  }
+
+  @keyframes trail-runner {
+    from { left: 0; }
+    to   { left: var(--progress); }
+  }
+
+  @keyframes trail-bob {
+    0%, 100% { transform: translate(-50%, -50%) scaleX(-1); }
+    50%      { transform: translate(-50%, -78%) scaleX(-1); }
   }
 
   @keyframes fade {
@@ -140,8 +173,9 @@
     .title { font-size: 1.18rem; margin-bottom: 2.5rem; }
     .stat-value { font-size: 1.2rem; min-width: 6rem; }
     .stat-label { font-size: 0.88rem; }
-    .prose { font-size: 0.96rem; }
-    .divider { margin: 2.2rem 0; }
+    .trail { gap: 0.55rem; padding: 1.1rem 0 0.5rem; }
+    .trail .endpoint { font-size: 1.2rem; }
+    .trail .runner { font-size: 1rem; }
   }
 </style>
 </head>
@@ -166,29 +200,17 @@
       <div class="stat-value">{{running_moon_remaining}} km</div>
       <div class="stat-label">to the moon</div>
     </div>
+
+    <div class="trail" style="--progress: {{running_moon_pct}}%" role="img" aria-label="{{running_moon_pct}}% of the way to the moon">
+      <span class="endpoint" aria-hidden="true">🌍</span>
+      <div class="track">
+        <div class="track-fill"></div>
+        <span class="runner" aria-hidden="true">🏃</span>
+      </div>
+      <span class="endpoint" aria-hidden="true">🌕</span>
+    </div>
+
     <div class="updated">updated daily</div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="prose first">
-    <p>
-      The <span class="em">common swift</span> spends almost its entire life in the air. Over a lifetime it covers roughly two million miles, about four round trips to the moon.
-    </p>
-    <p>
-      One trip is enough for me.
-    </p>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="prose second">
-    <p>
-      I've been running at least 10 km a day since 2009, and 15 km since 2017. I don't always wear the watch, so the numbers above aren't exact.
-    </p>
-    <p>
-      The earth is 40,075 km around. The moon is 384,400 km from here. If I keep going, I should make it.
-    </p>
   </div>
 
 </main>
