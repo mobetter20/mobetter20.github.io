@@ -105,14 +105,14 @@
     color: var(--text);
   }
 
-  .detail a, .works a {
+  .detail a {
     color: var(--accent);
     text-decoration: none;
     border-bottom: 1px solid var(--accent-soft);
     transition: border-color 0.25s ease, color 0.25s ease;
   }
 
-  .detail a:hover, .works a:hover {
+  .detail a:hover {
     color: #d8b884;
     border-bottom-color: rgba(201, 168, 118, 0.7);
   }
@@ -128,21 +128,6 @@
   .line .verb a:hover {
     color: #f4ecdc;
     border-bottom-color: rgba(232, 224, 208, 0.45);
-  }
-
-  .works {
-    margin-top: auto;
-    padding-top: 5rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--text-faint);
-    letter-spacing: 0.01em;
-    animation: fade 0.9s ease-out 0.85s both;
-  }
-
-  .works a {
-    color: var(--text-soft);
-    border-bottom-color: rgba(138, 127, 112, 0.3);
   }
 
   @media (max-width: 600px) {
@@ -179,10 +164,6 @@
       <a href="https://propagandaformyself.xyz">BIC</a>, an institutional comedy archive.<br>
       <a href="/is/writing/bird-coo/">AMD</a>, a fictional bird municipality.
     </div>
-  </div>
-
-  <div class="works">
-    professionally, <a href="/works">ajin.im/works</a>
   </div>
 
 </main>
