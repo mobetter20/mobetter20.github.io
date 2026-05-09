@@ -65,7 +65,6 @@
   .stanza:nth-child(1) { animation-delay: 0.1s; }
   .stanza:nth-child(2) { animation-delay: 0.25s; }
   .stanza:nth-child(3) { animation-delay: 0.4s; }
-  .stanza:nth-child(4) { animation-delay: 0.55s; }
 
   @keyframes fade {
     from { opacity: 0; transform: translateY(6px); }
@@ -104,14 +103,6 @@
 
   .detail .em {
     color: var(--text);
-  }
-
-  .also {
-    margin-top: 0.45rem;
-    color: var(--text-faint);
-    font-size: 0.86rem;
-    line-height: 1.6;
-    font-style: italic;
   }
 
   .detail a, .works a {
@@ -178,16 +169,6 @@
     <div class="line"><span class="prefix">ajin.im is</span> <span class="verb">reading</span></div>
     <div class="detail">
       {{reading_current}}
-      <div class="also">
-        also this year: {{reading_year}}
-      </div>
-    </div>
-  </div>
-
-  <div class="stanza">
-    <div class="line"><span class="prefix">ajin.im is</span> <span class="verb">learning</span></div>
-    <div class="detail">
-      {{learning}}
     </div>
   </div>
 
