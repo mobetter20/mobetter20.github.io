@@ -14,6 +14,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../../../creative-house.css" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('ajin_theme');
+          if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        } catch (e) {}
+      }());
+    </script>
     <script src="../../../../analytics.js" defer></script>
   </head>
   <body class="post-page">
@@ -68,5 +76,33 @@
         <p>Tokens began as a way for machines to count language. They are becoming a way for platforms to price, ration, and govern access to cognition.</p>
       </article>
     </main>
+    <script>
+      (function () {
+        if (!document.body.classList.contains('post-page')) return;
+        var head = document.querySelector('.post-head');
+        if (!head) return;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'theme-toggle';
+        function render() {
+          var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+          btn.textContent = isLight ? 'dark' : 'light';
+          btn.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+        }
+        btn.addEventListener('click', function () {
+          var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+          if (isLight) {
+            document.documentElement.removeAttribute('data-theme');
+            try { localStorage.setItem('ajin_theme', 'dark'); } catch (e) {}
+          } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            try { localStorage.setItem('ajin_theme', 'light'); } catch (e) {}
+          }
+          render();
+        });
+        render();
+        head.appendChild(btn);
+      }());
+    </script>
   </body>
 </html>
