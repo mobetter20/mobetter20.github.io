@@ -7,7 +7,7 @@ Static site hosted on GitHub Pages. Contains the creative house at `ajin.im/is/w
 The world-building reference for the Avian Municipal District lives in two locations that must stay in sync:
 
 - **Local (primary working copy):** the `bird-universe/` folder in the local writing directory
-- **GitHub (backup):** `github.com/mobetter20/ajin-universe-bible` (private)
+- **GitHub (backup):** private companion repo (see local notes)
 
 Read `INDEX.md` for what to load and when. Modular files:
 - `00-foundation.md` — philosophy, tone hierarchy, house principles

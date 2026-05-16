@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -9,7 +10,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ESSAY_ROOT = REPO_ROOT / "is" / "writing" / "essays"
 SOURCE_ROOT = ESSAY_ROOT / "_src"
-EXPORT_ROOT = Path("/Users/ajin/Documents/New project/personal/ajin.im:is:writing/archive/essay")
+EXPORT_ROOT = Path(os.environ.get("ESSAY_EXPORT_ROOT", str(Path.home() / "Documents" / "New project" / "personal" / "ajin.im:is:writing" / "archive" / "essay")))
 
 
 POST_DEFS = [

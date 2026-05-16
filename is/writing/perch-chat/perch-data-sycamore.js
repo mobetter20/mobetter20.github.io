@@ -1,7 +1,7 @@
 window.PERCH_DATA = window.PERCH_DATA || {};
 window.PERCH_DATA["sycamore"] = [
   { time: "6:12 AM", author: "T. Nuthatch", text: "SYCAMORE LANE NOTICE. EXTERIOR ACCESS CHECKS FOR METER BOXES WILL BEGIN AT 7:00 AM. RESIDENTS ARE ASKED TO CLEAR LOOSE NEST MATERIAL FROM LEDGES AND NOT OBSTRUCT ACCESS WITH POTTED ITEMS.", system: true, delay: 0 },
-  { time: "6:13 AM", author: "Cheryl Sparrow", text: "As context, there are already two cones by the hydrant. The north one is leaning.", delay: 2500 },
+  { time: "6:13 AM", author: "Cheryl Sparrow", text: "There are already two cones by the hydrant. The north one is leaning.", delay: 2500 },
   { time: "6:14 AM", author: "Denise Dove", text: "Nothing on my ledge is loose.", delay: 2000 },
   { time: "6:17 AM", author: "Cheryl Sparrow", text: "As context, 14 still has the upper meter box on the east side and the nest line is intact.", delay: 4000 },
   { time: "6:18 AM", author: "Denise Dove", text: "I re-centered the eggs twice already.", delay: 2000 },

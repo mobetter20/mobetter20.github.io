@@ -1,7 +1,7 @@
 window.PERCH_DATA = window.PERCH_DATA || {};
 window.PERCH_DATA["garden-boundary"] = [
   { time: "10:15 AM", author: "T. Nuthatch", text: "GARDEN BOUNDARY NOTICE. THE SOUTH HEDGE WILL BE TRIMMED TO REGULATION HEIGHT BEFORE THE END OF THE MONTH. RESIDENTS WHO HAVE ADDED PERSONAL ITEMS TO THE HEDGE LINE SHOULD RETRIEVE THEM IN ADVANCE.", system: true, delay: 0 },
-  { time: "10:22 AM", author: "Cheryl Sparrow", text: "As context, someone is installing something on the fence post behind 18.", delay: 2500 },
+  { time: "10:22 AM", author: "Cheryl Sparrow", text: "Someone is installing something on the fence post behind 18.", delay: 2500 },
   { time: "10:23 AM", author: "Gerald H.", text: "Installing what.", delay: 2000 },
   { time: "10:24 AM", author: "Cheryl Sparrow", text: "A small wooden box. Painted blue. There is a round hole in the front.", delay: 2000 },
   { time: "10:25 AM", author: "R. Nuthatch", text: "That is a birdhouse.", delay: 2000 },

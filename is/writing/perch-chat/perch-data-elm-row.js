@@ -1,7 +1,7 @@
 window.PERCH_DATA = window.PERCH_DATA || {};
 window.PERCH_DATA["elm-row"] = [
   { time: "8:20 AM", author: "T. Nuthatch", text: "ELM ROW NOTICE. A ROOT ASSESSMENT FOR THE SECOND AND THIRD ELMS HAS BEEN REQUESTED. NO WORK IS SCHEDULED. THE ASSESSMENT IS VISUAL ONLY AND WILL NOT AFFECT CANOPY RESIDENTS.", system: true, delay: 0 },
-  { time: "8:28 AM", author: "Cheryl Sparrow", text: "As context, there is a dog on the lane.", delay: 2500 },
+  { time: "8:28 AM", author: "Cheryl Sparrow", text: "There is a dog on the lane.", delay: 2500 },
   { time: "8:28 AM", author: "Gerald H.", text: "There are dogs on the lane every morning.", delay: 1500 },
   { time: "8:29 AM", author: "Cheryl Sparrow", text: "This one is pulling. Toward the elms. The person on the other end of the lead is not keeping up.", delay: 2000 },
   { time: "8:30 AM", author: "Denise Dove", text: "How big.", delay: 2000 },
