@@ -732,6 +732,44 @@ ISSUES = [
         letter_signature="A finch, south district",
         letter_editor_note="Editor's note: Printed with permission.",
     ),
+    Issue(
+        issue_number="14",
+        issue_date=date(2026, 6, 9),
+        lead_headline="Perch Standoff at Municipal Park Enters Third Week; Neither Bird Will Leave First",
+        lead_dateline="Municipal Park, south end · District Desk",
+        lead_paragraphs=[
+            "For nineteen consecutive evenings, a male and a female — who once shared a nest and now share, with visible reluctance, a four-foot railing at the south end of Municipal Park — have arrived at the same perch and refused, in turn, to be the one who leaves.",
+            "The pattern holds nightly. She arrives first. He arrives second. Neither acknowledges the other. They sit at opposite ends, facing the water, until full dark, when both depart in separate directions and the perch is, briefly, unclaimed.",
+            'The arrival times have crept earlier. What began at 6 PM is now closer to 4:30, and one resident reports the female was in position by 3:15 on Thursday, "with a look that suggested she intended to stay through the weekend."',
+            "The matter is also before the Court (AMNC-2026-019A), where a proposal to alternate use was declined by both parties. Hon. M. Owl has asked whether either had considered a different perch. Neither, as of this printing, has.",
+        ],
+        court_title="Emergency Calendar — AMNC-2026-020A",
+        court_paragraphs=[
+            "A petition for emergency relief has been filed over a visitation schedule. The Court has reviewed it and finds that two parents who cannot agree on a Tuesday do not, between them, constitute an emergency.",
+            "The matter is moved to the regular calendar. The eggs are not in any hurry.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="FREE: Self-help books (12), lightly read",
+        classified_paragraphs=[
+            'In the drainage pipe behind Building C, east side. Twelve volumes, various titles, all concerning communication, growth, and "doing the work." The previous owner acquired them over several years and departed without them, which the Clerk\'s Office considers the most honest review the books have received.',
+            "Pickup only. The Clerk's Office knows whose they are and would prefer not to discuss it.",
+        ],
+        classified_reply=None,
+        personal_title="MALE, SPARROW, 40",
+        personal_paragraphs=[
+            "Two kids, alternating weekends. On the weekends without them I have learned to cook for one, which is a skill I did not ask for and cannot return.",
+            "Not looking for anything serious — just someone for the quiet weekends, the ones that are too quiet. You don't have to be good at anything. You don't have to fix anything. I have enough instructions in my life.",
+        ],
+        personal_reply="Reply to: Box 40-S.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "There is a man who feeds the pigeons by the south benches on Wednesdays. He brings his own seed in a paper bag and folds the bag the same way each time before he puts it back in his pocket.",
+            "I am not a pigeon. I have no stake in this. But I have started timing my walks to pass by on Wednesdays, and I have been trying to work out why it steadies me, and I think it is this: he shows up, on purpose, for something that cannot thank him, and he will do it again next week whether anyone notices or not.",
+            "I noticed. That is all I wanted to say.",
+        ],
+        letter_signature="F. Lark, Municipal Park loop",
+    ),
 ]
 
 ISSUES = [replace(issue, display_ad=KAREN_HAWK_AD) for issue in ISSUES]
