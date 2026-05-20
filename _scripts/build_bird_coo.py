@@ -770,9 +770,64 @@ ISSUES = [
         ],
         letter_signature="F. Lark, Municipal Park loop",
     ),
+    Issue(
+        issue_number="15",
+        issue_date=date(2026, 6, 16),
+        lead_headline="Cat Reported on Sycamore Lane; Residents Respond With Coordination, Then With Commentary",
+        lead_dateline="Sycamore Lane · District Desk",
+        lead_paragraphs=[
+            "A domestic cat was observed on Sycamore Lane on Thursday morning, prompting what residents described as the most organized collective response the lane has mounted in years — followed immediately by its least organized.",
+            'The cat, grey and unhurried, wore a collar that suggested it had somewhere to be and was in no rush to get there. It was first reported near the meter boxes at 6:50 AM. Within minutes, residents had relayed its position across four branches. "We had eyes on it the whole time," said one sparrow, who asked to be credited as "the one who called it first."',
+            "The coordination held until the cat left, at which point it dissolved into a dispute over whether one resident's running commentary had been helpful or merely loud.",
+            "The cat departed of its own accord at 7:15. The lane has called a follow-up meeting, which residents have agreed to attend and to disagree about.",
+        ],
+        court_title="Continuance — AMNC-2026-016B",
+        court_paragraphs=[
+            "Finch v. Finch. Separate branch maintenance. The motion to divide jointly held materials has been continued a fourth time. Both parties again requested the delay; neither will say which of them asked first, and neither will proceed until the other admits to wanting it more.",
+            "The Court has set a fifth date and asked the parties to bring, at minimum, a list of the materials in dispute. To date the file contains only the continuances.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="FOR SALE: One wedding band, gold, slightly resized",
+        classified_paragraphs=[
+            "Worn fourteen years. Resized once, when it stopped fitting — which the owner now recognizes as the first sign. Off for good since February. In a drawer ever since.",
+            "Selling because keeping it had begun to feel like waiting, and the owner is done waiting. Offers welcome; the owner would rather not discuss the history.",
+        ],
+        classified_reply="Box 14-C, c/o this publication.",
+        personal_title="MALE, WOODPECKER, 39",
+        personal_paragraphs=[
+            "I tap. Always have. My ex said she could never tell whether it meant I was happy, bored, anxious, or thinking — and that not knowing was the problem.",
+            "There is a slow double-tap I do when I'm content. Nobody has heard it in a while. I wouldn't mind someone learning to tell my taps apart, eventually. No rush. It took her nine years not to.",
+        ],
+        personal_reply="Reply to: Box 39-W.",
+        display_ad=AdBlock(
+            title="Finch & Sons Nest Repair",
+            tagline="Established construction · Honest assessments · Elm near the south ridge",
+            body_paragraphs=[
+                "Solo builds, repairs, and structural reassessments. We do not ask why you're building alone. We ask where, how big, and whether the branch will take the weight.",
+                "If you have a sketch, bring the sketch. If you have a budget, bring the budget. If you have neither, bring the branch measurements and we'll start there.",
+            ],
+            testimonial='"They told me the entrance faced the wrong way before I\'d finished describing the budget. They were right. Fixed it in a morning." — client, south district',
+            contact_lines=[
+                "Consultations six days a week. We are usually up before you are.",
+            ],
+        ),
+        letter_title=None,
+        letter_paragraphs=[
+            "I'd like to say something in defense of the bird who keeps up the running commentary. Everyone on the lane complains about her. I complained about her. Then Thursday happened, and when the cat came, hers was the voice that told us where it was, where it was going, and when it had gone.",
+            "She is loud because she is watching. I would rather live on a lane where someone is watching and loud than one where everyone is quiet and alone.",
+            "She can keep an eye on me anytime.",
+        ],
+        letter_signature="A resident of Sycamore Lane",
+    ),
 ]
 
-ISSUES = [replace(issue, display_ad=KAREN_HAWK_AD) for issue in ISSUES]
+# Most issues run the standard Karen Hawk ad. A few carry an intentional
+# alternate (Perch & Perch #13, Finch & Sons #15) and keep their own display_ad.
+_ALT_AD_ISSUES = {"13", "15"}
+ISSUES = [
+    issue if issue.issue_number in _ALT_AD_ISSUES else replace(issue, display_ad=KAREN_HAWK_AD)
+    for issue in ISSUES
+]
 
 
 def today_in_seoul() -> date:
