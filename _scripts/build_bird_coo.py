@@ -857,6 +857,44 @@ ISSUES = [
         ],
         letter_signature="Milo S., age 8",
     ),
+    Issue(
+        issue_number="17",
+        issue_date=date(2026, 6, 30),
+        lead_headline="Perch Standoff Ends Quietly After One Party Simply Stops Coming",
+        lead_dateline="Municipal Park, south end · District Desk",
+        lead_paragraphs=[
+            "The territorial dispute over the south-end perch (AMNC-2026-019A), which by last count had both parties arriving before dawn to claim it, ended this week when one of them stopped arriving at all.",
+            'For three days the female came alone, sat at her end of the railing, and faced the water. By the third evening, residents reported, she had moved to the center of the perch — the contested middle she had spent weeks refusing to cede — and sat there by herself, looking, one observer said, "like someone who had won an argument and found the room empty."',
+            'The male has not been seen at the perch since Thursday. The Court, informed that the matter may be moot, has left the case open "pending clarification of whether the dispute still exists."',
+            "The female continues to arrive each evening, though she has stopped coming early. There is no longer anyone to be early for.",
+        ],
+        court_title="Compliance Note — AMNC-2026-009A",
+        court_paragraphs=[
+            "Wren v. Wren. The Respondent, ordered in May to vary the rhythm of his mealtime humming, has filed a statement reporting full compliance. He notes that he now hums a different four-note phrase, which the Petitioner has identified as the song from their honeymoon rather than their wedding.",
+            "The Court considers the order satisfied. It declines to specify which songs remain available.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="FOR SALE: One mirror, full-length, honest",
+        classified_paragraphs=[
+            "Hung in the same spot for nine years. Shows the whole bird, no flattery.",
+            "Selling because the owner has seen enough of herself getting ready to go places alone. A full-length mirror, it turns out, is a great deal of company she did not choose.",
+        ],
+        classified_reply="Box 09-M, c/o this publication.",
+        personal_title="MALE, HERON, 52",
+        personal_paragraphs=[
+            'I stand still for long periods. My last partner said being with me was "like being accompanied by furniture." I have decided to take the accompaniment part as the compliment.',
+            "Looking for someone who does not need constant motion to feel kept company. I will be at the east end of the pond, where I am easy to find on account of not moving much.",
+        ],
+        personal_reply="Reply to: Box 52-H.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "I wrote to you in March about a perch. My ex-husband had started using it, and I wanted the district to make him stop. You did not make him stop. I am writing to report that he has stopped on his own.",
+            "I have the perch now. All of it. I sit in the middle, where I always wanted to sit, and the view is exactly as good as I always said it was.",
+            "I thought winning would feel better than this. I was not honest in my first letter, so let me be honest now: it was never really about the perch. I wanted him to want to share it, and a perch cannot make someone want that, and it turns out neither could I. I have the rest of the spring to sit with the view.",
+        ],
+        letter_signature="Margaret H., south end",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
