@@ -819,6 +819,44 @@ ISSUES = [
         ],
         letter_signature="A resident of Sycamore Lane",
     ),
+    Issue(
+        issue_number="16",
+        issue_date=date(2026, 6, 23),
+        lead_headline="Bread Distributor Returns to South Benches, This Time With an Audience",
+        lead_dateline="Municipal Park, south end · District Desk",
+        lead_paragraphs=[
+            "The woman in the green coat who distributes bread at the south benches on weekday afternoons returned Wednesday with a second human, who carried a device and pointed it at the assembled birds for the length of the feeding.",
+            'The regulars, accustomed to being fed but not to being recorded, responded with what one observer called "a noticeable drop in dignity." Birds that normally approach the bread directly waited in the hedge until the device was lowered. The smaller ones performed. The older ones did not.',
+            "One pigeon left without eating. Those who know him said they had never seen him do that — he is, by reputation, always already there, and always stays. On Wednesday he looked at the bread, looked at the device, and went home.",
+            "The birds have not decided whether to return Thursday. The bread has always been reason enough. For at least one of them, it is now competing with the wish not to be watched while he takes it.",
+        ],
+        court_title="Default Entered — AMNC-2026-018A",
+        court_paragraphs=[
+            "In re: Sparrow. Nest abandonment (uncontested). Default ruling entered for the Petitioner, C. Sparrow. The Respondent did not appear, file an answer, or respond to notice posted at the shared branch.",
+            "The Respondent has not been seen at the branch since February. The Court makes no finding as to where he went — only that he has not, for the purposes of this matter, come back.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="NOTICE: Disposition of one (1) unclaimed vine",
+        classified_paragraphs=[
+            "After four months in the Clerk's drawer and one formal adjudication (AMNC-2026-021A), the vine recovered from the Birch/Sycamore intersection has been declared abandoned property and released for general use.",
+            "It went unclaimed for the full four months, and no party ever came forward to say why it had been left at the intersection. The Clerk's Office wishes to state that it is glad to have the drawer back, considers the matter closed, and regards the question of why the vine was there as none of its concern.",
+        ],
+        classified_reply="Inquiries to the Clerk's Office, 14 Municipal Oak. There are none. There had better not be.",
+        personal_title="FEMALE, MAGPIE, 41",
+        personal_paragraphs=[
+            "When it ended, I kept the nest, and I have never once felt bad about how. The Court agreed with me — which I mention only because so few others have agreed with me about anything.",
+            'I like bright things, strong opinions, and being right, which I have been told is "a lot." Looking for someone who can keep up and does not use the phrase "a lot" as if it were a diagnosis.',
+        ],
+        personal_reply="Reply to: Box 41-M. Shiny replies move to the top of the pile.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "My mom and dad live in different trees now. I have two backpacks, one for each, and I am not allowed to forget things, but I forget things, because I am eight and I have two of everything in two places.",
+            "Last week I left my homework at Dad's, and my mom said it was Dad's fault and Dad said it was Mom's fault and I said it was my fault, because it was, and everyone got quiet.",
+            "I am not writing to complain. I just think that if I can keep track of two backpacks, they can keep track of one me.",
+        ],
+        letter_signature="Milo S., age 8",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
