@@ -969,6 +969,44 @@ ISSUES = [
         ],
         letter_signature="Arthur P., Sycamore Lane",
     ),
+    Issue(
+        issue_number="20",
+        issue_date=date(2026, 7, 21),
+        lead_headline="Speed Perching Night Returns to the Community Hall, Drawing the Recently and the Long Divorced",
+        lead_dateline="Community Hall · District Desk",
+        lead_paragraphs=[
+            "The district's monthly Speed Perching Night was held Thursday at the community hall, drawing some forty birds for an evening of three-minute conversations, rotated by bell.",
+            'Organizers describe the format as low-pressure. Attendees described it less generously. One sparrow said she had come "to practice being a bird who goes places," and left after the second rotation, which she also counted as practice.',
+            "The evening's longest conversation ran well past the bell, between two birds who, it emerged, had been married to each other until last spring. Neither had known the other would attend. Both stayed.",
+            "The next Speed Perching Night is in August. Organizers have asked that attendees check, in advance, who else is coming.",
+        ],
+        court_title="Petition Withdrawn — AMNC-2026-023A",
+        court_paragraphs=[
+            "In re: a petition for dissolution, filed jointly and withdrawn jointly — for the second time. The parties filed in May, withdrew in June, refiled, and have now withdrawn again, each time by agreement.",
+            "The Court accepted the withdrawal and, at the parties' request, kept the file open. It expects to see them again.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="FOR SALE: One anniversary clock, stopped",
+        classified_paragraphs=[
+            "A mantel clock, given on a tenth anniversary, kept good time for years. It stopped in February. I have not wound it since — I keep meaning to, and keep not.",
+            "Selling it as it is. The new owner is welcome to start it again; I would rather not be the one to.",
+        ],
+        classified_reply="Box 21-C, c/o this publication.",
+        personal_title="MALE, CARDINAL, 50",
+        personal_paragraphs=[
+            "I will be honest, as I am known for being: I am a catch. Striking plumage, a strong territorial record, and a singing voice that has been called — by me — exceptional.",
+            "Recently single, through no fault I am prepared to discuss. Seeking a bird who appreciates a bird like me, of which there are, I am told, few.",
+        ],
+        personal_reply="Reply to: Box 50-C. Serious inquiries. I will know.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "My husband and I have not spoken in four months. We still share the nest. He takes the north side, I take the south, and we have worked out the timing so we are rarely on the branch at the same time.",
+            "We are not separated. Nobody has filed anything. On paper we are exactly as married as we ever were. I read the court notices every week — the filings, the continuances, the withdrawals — and I have started to think the birds in them are further along than we are.",
+            "I am not asking for anything. I do not know why we have not done anything. I think we are each waiting for the other to be the one who ends it, and neither of us has.",
+        ],
+        letter_signature="Name withheld, by request",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
