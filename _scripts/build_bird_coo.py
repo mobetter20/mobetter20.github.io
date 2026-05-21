@@ -1007,6 +1007,44 @@ ISSUES = [
         ],
         letter_signature="Name withheld, by request",
     ),
+    Issue(
+        issue_number="21",
+        issue_date=date(2026, 7, 28),
+        lead_headline="Investigative Service Opens in the South District",
+        lead_dateline="South parking lot · District Desk",
+        lead_paragraphs=[
+            "A bird has begun advertising investigative services from the south parking lot, offering stakeouts, documentation of comings and goings, and what a notice posted near the telephone wire calls discreet observation. He is, by the Clerk's records, the district's first.",
+            "The reception has been shaped by the fact that the district already does this at no charge. Sightings are logged by the foraging groups and on The Perch, often before the bird being observed has finished landing. Cheryl Sparrow, asked whether she would engage the service, said she did not see the need. \"We already know. We have always known. We provide context for free.\"",
+            "The practitioner, Lionel Kingfisher, who previously photographed weddings, said the work suited a patient bird. He also acknowledged returning the fee on his only assignment. Engaged to document a male's evening absences, he had instead, over a week, come to understand them, and submitted a hand-illustrated account of the male's routine in place of the evidence requested. The client did not pay.",
+            "He has set up where he is easy to see. A kingfisher is not a discreet bird, and by the second day the foraging group had logged his position three times and, as a courtesy, suggested a perch from which he might be harder to notice. He thanked them. He did not move.",
+        ],
+        court_title="Ruling — AMNC-2026-011A",
+        court_paragraphs=[
+            "Municipal District v. Conrad. The Court, having reserved its ruling on whether 6:29 AM is before 6:30 AM, finds that it is. A minute exists in order to be one minute, and 6:29 falls on the earlier side of the line the order drew.",
+            "Conrad is found to have sung once within the quiet hours. The Court imposes no penalty beyond the finding, observing that a bird who sings at 6:29 to be heard before 6:30 has made his point, and that the point, now on the record, does not require repeating. Quiet hours remain in effect until 6:30.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="FOUND: one list, folded, left at the community hall",
+        classified_paragraphs=[
+            "Recovered from a chair after Speed Perching Night. Numbered, in a careful hand, to eleven. The first three items read \"kind,\" \"employed,\" and \"still in contact with at least one of his children.\"",
+            "We did not read past the third. The owner may claim it at the Clerk's Office, where it is held folded, the remaining eight items unread and, the Clerk wishes to add, unjudged.",
+        ],
+        classified_reply="Inquiries to the Clerk's Office, 14 Municipal Oak.",
+        personal_title="FEMALE, SWIFT, 38",
+        personal_paragraphs=[
+            "I am not closed off. I am slow to open, which is a different thing, and I would ask for five to seven business days to warm up — longer if there is a weekend in the middle.",
+            "I have been told this is a long time to wait from a bird who does not land. I am aware of the contradiction. I am addressing it on the schedule above.",
+        ],
+        personal_reply="Reply to: Box 38-S. Allow time for processing.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "My brother says that as long as we do not pick a favorite, we get to keep both of them. So we have not picked. We are careful about it. We like them exactly the same amount, out loud, where they can hear.",
+            "It takes work to keep it even. We count — who got the longer weekend, who came to the thing at school, who we run to first at pickup, so that the next time we run to the other one. My brother keeps the tally. I check it.",
+            "I do not think they have noticed we are doing this. I think they believe we have not worked out that anything is different. We have decided to let them keep thinking that. It seems to be the thing that helps.",
+        ],
+        letter_signature="Davey, age 9",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
