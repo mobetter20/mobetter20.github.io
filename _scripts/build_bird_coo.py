@@ -895,6 +895,42 @@ ISSUES = [
         ],
         letter_signature="Margaret H., south end",
     ),
+    Issue(
+        issue_number="18",
+        issue_date=date(2026, 7, 7),
+        lead_headline="Foraging Group Adjusts Route to Pass New Resident's Nest More Often",
+        lead_dateline="Sycamore Lane · District Desk",
+        lead_paragraphs=[
+            "A morning foraging group on Sycamore Lane has changed its route so that it now passes the nest of a newly arrived male several times each morning. The group describes the change as unrelated to him.",
+            'Cheryl Sparrow, who flies in the group, said the route was chosen for ground cover. "We are not watching anyone. We forage in his area, in a group, on a schedule, and we discuss what we find afterward — but that is foraging."',
+            'The group added a second pass after the male began keeping to the back of his nest. Sparrow said the second pass was also about ground cover. "Just for context, he has nothing to hide. And we would know."',
+        ],
+        court_title="Ruling Reserved — AMNC-2026-011A",
+        court_paragraphs=[
+            "Municipal District v. Conrad. Conrad, restricted from singing before 6:30 AM under quiet-hours Ordinance 9.3(a), was recorded singing at 6:29. The Court has been asked to decide one question: whether 6:29 AM is before 6:30 AM.",
+            "R. Nuthatch, who filed the complaint, said the timing was not an accident. The Court has reserved its ruling. Quiet hours remain in effect until 6:30.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="FOR SALE: One suitcase, red, used once",
+        classified_paragraphs=[
+            "Hard-shell, wheels intact. Bought for a trip; used once, to leave. Packed in four minutes.",
+            "The wheels still work, which I hold against them slightly. Selling because I would like the hallway back.",
+        ],
+        classified_reply="Box 07-S, c/o this publication.",
+        personal_title="MALE, GRACKLE, 51",
+        personal_paragraphs=[
+            "Low-maintenance. I do not need much and I do not ask for much. It was put to me in mediation that I also did not give much, and I have decided to lead with the part that sounds better.",
+            "Seeking a calm partner who will not, two years in, call the calm a problem.",
+        ],
+        personal_reply="Reply to: Box 51-G.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "I was one of the birds who wanted the singing to stop. It was early, it was loud, and it was every morning. Now it is quiet until 6:30, exactly as requested.",
+            "I am writing to report that I lie awake until 6:29 anyway, to see if he will risk it, and that most mornings he does not. I got what I asked for. I did not expect to miss it.",
+        ],
+        letter_signature="Name withheld, Municipal Oak",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
