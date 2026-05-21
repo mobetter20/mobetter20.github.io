@@ -931,6 +931,44 @@ ISSUES = [
         ],
         letter_signature="Name withheld, Municipal Oak",
     ),
+    Issue(
+        issue_number="19",
+        issue_date=date(2026, 7, 14),
+        lead_headline="Outing Meant to Prove Everyone Was Fine Ends in the South Pond",
+        lead_dateline="Municipal Park, south end · District Desk",
+        lead_paragraphs=[
+            "A weekday outing organized to demonstrate that its three participants were, after their respective divorces, fine, ended Thursday evening with two of them in the south pond and the third on the roof of the maintenance shed.",
+            "The three — all recently separated — had agreed to spend the evening not discussing it. By most accounts they managed nearly an hour. What happened after is disputed, but it involved a dare, the low fence by the pond, and a misjudgment about the depth.",
+            'Robin, who was on the far bank, said one of the three had announced he was "completely over it" moments before attempting the fence.',
+            "The third bird reached the shed roof during the confusion and declined to come down until the others had gone home. Reached separately for comment afterward, all three described the evening as fine.",
+        ],
+        court_title="Compliance Note — AMNC-2026-007B",
+        court_paragraphs=[
+            "Dove v. Dove. Under ongoing compliance monitoring, the Respondent has reported a change of residence: from the drainage pipe adjacent to Building C to a second drainage pipe, on the west side. The Petitioner continues to maintain the nest at 14 Sycamore Lane and reports no change.",
+            "The Court recorded the move.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="WANTED: One record player, sold during the divorce",
+        classified_paragraphs=[
+            "I sold ours in the spring — quickly, because keeping it felt worse than the money at the time. The money is gone and the feeling came back anyway.",
+            "If you bought a record player off the south lane in March, I will pay more than you did. I should not have sold it.",
+        ],
+        classified_reply="Box 33-R, c/o this publication.",
+        personal_title="FEMALE, JAY, 43",
+        personal_paragraphs=[
+            'Seeking someone new. I am ready. Specifically: not tall, not funny in the way that is actually mean, and not someone who "travels for work."',
+            "I have a list of what I want, and I notice it is mostly the opposite of him. I am completely over it and would like to meet someone who is nothing like him.",
+        ],
+        personal_reply="Reply to: Box 43-J.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "Now and then this paper carries a classified from a bird trying to buy back something they sold in the divorce. I have started watching for them.",
+            "My wife moved to the coast in February. I did not sell anything. I kept all of it — sure at the time it was the smarter choice, and most mornings now I am not so sure.",
+            "I am not writing for advice. I only wanted the next bird who places one of those ads to know that keeping everything is not obviously the better choice.",
+        ],
+        letter_signature="Arthur P., Sycamore Lane",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
