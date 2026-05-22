@@ -1188,11 +1188,88 @@ ISSUES = [
         ],
         letter_signature="Milo S., age 8",
     ),
+    Issue(
+        issue_number="26",
+        issue_date=date(2026, 9, 1),
+        lead_headline="Migration Season Nears; the Recently Divorced Confront the Question of Routes",
+        lead_dateline="Open grounds · District Desk",
+        lead_paragraphs=[
+            "With the first cold mornings, the district's migratory residents have begun planning the flight south — a matter of logistics most years, and this year, for several recently separated pairs, a negotiation.",
+            "The dispute is over routes. Birds who once flew together now file two plans, and the good route — the warm coast, the reliable stopovers — cannot, by long custom, be shared by birds no longer speaking. One male has announced he will take the inland route \"for the challenge.\" Residents note the inland route offers no challenge. It is merely colder, and alone.",
+            "The Clerk's Office has been asked to mediate three route disputes and declined all three, noting that it holds no jurisdiction over the sky, and that the birds will resolve it the way they resolve everything: badly, and in the air.",
+        ],
+        court_title="New Filing — AMNC-2026-024A",
+        court_paragraphs=[
+            "A petition asks the Court to decide which of two separated parties keeps the nest through the winter — the petitioner intending to migrate, the respondent intending to stay. The petitioner argues a nest should be held for the one who returns; the respondent, that a nest is for the one who is in it.",
+            "The Court has set a hearing and asked each party to define \"home,\" in writing, in under fifty words. Clerk: T. Nuthatch.",
+        ],
+        classified_title="FOR SALE: one board game, two-player",
+        classified_paragraphs=[
+            "We stopped mid-game and never settled who was ahead. I am selling it with the score pad included. I was ahead.",
+        ],
+        classified_reply="Box 26-B, c/o this publication.",
+        personal_title="FEMALE, WARBLER, 37",
+        personal_paragraphs=[
+            "I have a great deal to say and have been told, by one bird in particular, that I say it. I have chosen to take that as confirmed rather than corrected. Seeking someone who listens the way one listens to the radio, and not the news.",
+        ],
+        personal_reply="Reply to: Box 37-W.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "I am not flying south this year. I have the excuses ready — the wind, the wing, the cost of the stopovers. The truth is the route was only ever somewhere because she was at the end of it. Without her it is distance.",
+            "I will stay. I will keep the feeder full. I will be here when the others come back.",
+        ],
+        letter_signature="Dennis",
+    ),
+    Issue(
+        issue_number="27",
+        issue_date=date(2026, 9, 8),
+        lead_headline="Conrad Resumes Morning Performances at 6:30 Sharp",
+        lead_dateline="Municipal Oak · District Desk",
+        lead_paragraphs=[
+            "Conrad, the mockingbird restricted by court order from singing before 6:30 AM, has begun singing at 6:30 AM exactly. Not 6:31. Neighbors report he is audibly waiting.",
+            "The performances have grown longer and more pointed. One neighbor described the current material as \"impressions of the birds who complained,\" rendered, he allowed, \"accurately.\" Another said the 6:30 start was technically perfect and, in spirit, a provocation.",
+            "R. Nuthatch, who brought the original complaint, has filed nothing further. He was overheard observing that one cannot file a complaint against a bird for obeying the order, and that this was, he suspected, the entire point.",
+        ],
+        court_title="Hearing Held — AMNC-2026-016B",
+        court_paragraphs=[
+            "Finch v. Finch. For the first time since the matter was filed, both parties appeared on the same day, each having been told a continuance could be granted only in person. Each waited for the other to request it. Neither did.",
+            "The Court, with both parties present and no pending motion, heard the case. Ruling reserved. Clerk: T. Nuthatch.",
+        ],
+        classified_title="NOTICE: Unclaimed items, Clerk's Office",
+        classified_paragraphs=[
+            "Left at the counter during filings and never retrieved: two pens, a reading glass, a house key that fits nothing the Office has tried, and a photograph of a nest with one party removed by careful tearing. Owners may claim them. The photograph in particular.",
+        ],
+        classified_reply="Inquiries to the Clerk's Office, 14 Municipal Oak.",
+        personal_title="MALE, GREBE, 48",
+        personal_paragraphs=[
+            "In my courting days I performed a water dance, mirror-perfect, for hours; I am told it is why she married me and, when it stopped sometime in the second year, part of why she left. I have been practicing again. Seeking someone to practice toward.",
+        ],
+        personal_reply="Reply to: Box 48-G.",
+        display_ad=AdBlock(
+            title="Lionel Kingfisher, Investigations",
+            tagline="Discreet Observation · Hand-Illustrated Reports",
+            body_paragraphs=[
+                "Autumn is my busy season; the light is good and everyone is leaving. I will document a departure with sensitivity and, if asked, a small watercolor.",
+                "I remain unable to catch anyone at anything, and have stopped advertising otherwise.",
+            ],
+            testimonial=None,
+            contact_lines=[
+                "The south parking lot. I am the blue one.",
+            ],
+        ),
+        letter_title=None,
+        letter_paragraphs=[
+            "I have begun reading the personals not to reply but to feel better, and I am writing to report that it works. Every week a male my age describes himself as \"low-maintenance\" and \"told he doesn't give much,\" and every week I think: not yet.",
+            "There is comfort in the column. Thank you for keeping it.",
+        ],
+        letter_signature="Name withheld, Sycamore Lane",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
 # alternate (Perch & Perch #13, Finch & Sons #15) and keep their own display_ad.
-_ALT_AD_ISSUES = {"13", "15", "22"}
+_ALT_AD_ISSUES = {"13", "15", "22", "27"}
 ISSUES = [
     issue if issue.issue_number in _ALT_AD_ISSUES else replace(issue, display_ad=KAREN_HAWK_AD)
     for issue in ISSUES
