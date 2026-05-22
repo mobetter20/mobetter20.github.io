@@ -1089,6 +1089,39 @@ ISSUES = [
         ],
         letter_signature="R. Nuthatch, Municipal Oak",
     ),
+    Issue(
+        issue_number="23",
+        issue_date=date(2026, 8, 11),
+        lead_headline="Resident's Former Mother-in-Law Has Not Stopped Coming to Things",
+        lead_dateline="Sycamore Lane · District Desk",
+        lead_paragraphs=[
+            "A resident's former mother-in-law has continued to attend the neighborhood gatherings he attends, eighteen months after the divorce he believed had concluded the relationship.",
+            "She arrives early, takes a seat with a view of him, and refers to him by his full name. At the spring social she asked, of the room, where \"the male who wasted her daughter's best nesting years\" had got to. He was beside her at the time.",
+            "Asked whether she planned to keep coming, she said she had attended these gatherings for thirty years and saw no reason a divorce of his should affect her calendar. She brought a dish. It was very good. He had two helpings and now regrets them.",
+        ],
+        court_title="Dismissal — AMNC-2026-022A",
+        court_paragraphs=[
+            "In re: Telephone Wire, south parking lot. The petition arising from the April community meeting has been dismissed. The Court reviewed the meeting transcript twice and could not locate the dispute the petition describes.",
+            "Asked separately what they wanted, both parties said they wanted the wire left as it is. The Court has left the wire as it is. Clerk: T. Nuthatch.",
+        ],
+        classified_title="FOR SALE: one swing, built for two",
+        classified_paragraphs=[
+            "Fits one, with room. It tips if you sit in the middle, which I have tested. Frame solid, rope sound. Collection from the elm row — I will help you carry it and will not make it strange.",
+        ],
+        classified_reply="Box 11-W, c/o this publication.",
+        personal_title="FEMALE, KESTREL, 46",
+        personal_paragraphs=[
+            "I hover — over plans, over conversations, over a male until he commits. The last one experienced this as a problem. Seeking someone who takes close attention as devotion, not as something to report.",
+        ],
+        personal_reply="Reply to: Box 46-K.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "I still set out two cups every morning. Thirty years of it; my hands are finished before I am awake enough to stop them.",
+            "I rinse the clean one at night. I tried leaving it in the cupboard and the morning felt wrong, so I have gone back to washing a cup that no one drank from. It is a small thing to keep doing for someone who is not coming back, and I have decided I do not mind.",
+        ],
+        letter_signature="Walter, Sycamore Lane",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
