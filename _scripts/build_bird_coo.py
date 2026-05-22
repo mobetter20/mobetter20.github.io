@@ -1155,6 +1155,39 @@ ISSUES = [
         ],
         letter_signature="Cheryl Sparrow, 16 Sycamore Lane",
     ),
+    Issue(
+        issue_number="25",
+        issue_date=date(2026, 8, 25),
+        lead_headline="Resident Spends His Evenings Outside the Hardware Store; Does Not Go In",
+        lead_dateline="South lane · District Desk",
+        lead_paragraphs=[
+            "A male has spent the last several evenings standing outside the hardware store on the south lane. He arrives after closing, stays about an hour, and does not go in. The store is dark the whole time.",
+            "Residents who pass say he is not loitering so much as keeping an appointment only he can see. Asked about it, he said his ex-wife consults there on Saturdays and he likes to know the building is still where she left it. He was there on a Wednesday.",
+            "The owner has taken to leaving the outside light on, which the male has not acknowledged and has not stopped coming for.",
+        ],
+        court_title="Petition Withdrawn — AMNC-2026-023A",
+        court_paragraphs=[
+            "In re: a petition for dissolution, filed jointly and withdrawn jointly for the third time. The parties filed in May, withdrew, refiled, withdrew, refiled again this month, and withdrew again — each time by agreement, and each time before the Court could do anything about it.",
+            "The Court has accepted the withdrawal and kept the file open. It has stopped scheduling hearings and started leaving the date blank. Clerk: T. Nuthatch.",
+        ],
+        classified_title="FOR SALE: his-and-hers towels",
+        classified_paragraphs=[
+            "Monogrammed, a wedding gift. Hers worn soft; his never used — I kept it out of spite and have lately run out of spite. The pair, cheap.",
+        ],
+        classified_reply="Box 25-T, c/o this publication.",
+        personal_title="FEMALE, GOLDFINCH, 40",
+        personal_paragraphs=[
+            "I am told I am a lot to look at and a lot to keep up with. Both are true. The word for a group of goldfinches is a charm, and I have always needed to be in one. Seeking someone content to be the audience, and now and then the charm.",
+        ],
+        personal_reply="Reply to: Box 40-G.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "I have worked out that I am better at telling time than either of my parents. Dad's weekend ends Sunday at six. Mom's begins Sunday at six.",
+            "There is no gap, but they both arrive at ten past, so for ten minutes every week I belong to no one. I have not told them. I have started to look forward to it.",
+        ],
+        letter_signature="Milo S., age 8",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
