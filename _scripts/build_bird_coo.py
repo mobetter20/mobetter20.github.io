@@ -88,6 +88,21 @@ KAREN_HAWK_AD = AdBlock(
 )
 
 
+LIONEL_KINGFISHER_AD = AdBlock(
+    title="Lionel Kingfisher, Investigations",
+    tagline="Discreet Observation · Hand-Illustrated Reports",
+    body_paragraphs=[
+        "I watch, I wait, and I render what I see in ink. I will document comings, goings, and the occasional male who paused at the gate longer than he meant to.",
+        "In the interest of honesty: I grow attached to my subjects. By the second day I am usually on their side. If you need someone caught, I am not your bird. If you need someone seen, I am taking new clients.",
+    ],
+    testimonial='"He did not find what I asked for. He found something kinder, which I did not want and have not stopped thinking about." — former client',
+    contact_lines=[
+        "Rates negotiable and frequently waived. Bird seed accepted.",
+        "Find me at the south parking lot. I am the blue one.",
+    ],
+)
+
+
 ISSUES = [
     Issue(
         issue_number="01",
@@ -1041,11 +1056,44 @@ ISSUES = [
         ],
         letter_signature="Davey, age 9",
     ),
+    Issue(
+        issue_number="22",
+        issue_date=date(2026, 8, 4),
+        lead_headline="Tuesday Support Group Grows to Forty; No One Has Left",
+        lead_dateline="Community Hall · District Desk",
+        lead_paragraphs=[
+            "The divorce support group that meets on Tuesdays has grown to forty members, up from six in the spring. No one has left.",
+            "Members describe the meetings as helpful. They have also acquired a chant, a shared position on whether the others were ever really trying, and a habit of arriving early for a seat near the bird who started it. Asked how long he intended to keep attending, one member said he had not been aware there was an end.",
+            "The Clerk's Office, asked whether the group needs a permit, said it does not, and asked not to be listed as a point of contact.",
+        ],
+        court_title="Continuance — AMNC-2026-016B",
+        court_paragraphs=[
+            "Finch v. Finch. Separate branch maintenance. The motion to divide jointly held materials has been continued a fifth time. Each party blamed the other for the delay; neither would go first.",
+            "The Court has ordered that any further continuance be entered jointly, on its own motion, so that neither party need admit to wanting it. Clerk: T. Nuthatch.",
+        ],
+        classified_title="FREE: one chest freezer, full",
+        classified_paragraphs=[
+            "Meals portioned for two, labeled and dated, going back to the spring. I kept cooking for both of us out of habit, and the habit outlasted the marriage. Collection from the south lane; bring a bag.",
+        ],
+        classified_reply=None,
+        personal_title="MALE, CROW, 44",
+        personal_paragraphs=[
+            "I keep things. Bottle caps, a single earring, every receipt from a marriage I am told is over. My ex had a word for it; I prefer \"collector.\" Seeking someone who sees value where others see clutter — and I have, by volume, a great deal of value.",
+        ],
+        personal_reply="Reply to: Box 44-C.",
+        display_ad=LIONEL_KINGFISHER_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "I supported the noise ordinance, and I support it still. I am writing to ask whether it covers chanting.",
+            "The Tuesday group has begun a practice at 4:44 in the afternoon — afternoon, I grant them — which they call devotional and I call carrying. Ordinance 9.3(a) addresses singing before sunrise; it does not address this. I am not asking the district to act. I would just like it on the record.",
+        ],
+        letter_signature="R. Nuthatch, Municipal Oak",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
 # alternate (Perch & Perch #13, Finch & Sons #15) and keep their own display_ad.
-_ALT_AD_ISSUES = {"13", "15"}
+_ALT_AD_ISSUES = {"13", "15", "22"}
 ISSUES = [
     issue if issue.issue_number in _ALT_AD_ISSUES else replace(issue, display_ad=KAREN_HAWK_AD)
     for issue in ISSUES
