@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "registry_source_sha": "4bb2208183cfff3370e5b9bdce9f6d0b670c4bf0834e3b3600b87f08d5d24ebf",
+  "registry_source_sha": "e5de8013c94ad29a6989371f61e5cac8bda269dd457c5328908564dc24570bce",
   "sites": [
     {
       "slug": "avian-district",
@@ -133,7 +133,7 @@
       "name": "Greg Dove",
       "species": "Mourning Dove, M",
       "location": "\"Various branches, east side\" (formerly 14 Sycamore)",
-      "key_facts": "Respondent 007B. Pro se. Left Jan 27. Gone 11 days. Observed near 22 Birch Ct 4x. Has been in a drainage pipe. Claims zip tie.",
+      "key_facts": "Respondent 007B. Pro se. Left Jan 27. Gone 11 days. Observed near 22 Birch Ct 4x. Has been in a drainage pipe; moved to a second pipe, west side (Coo #19). Claims zip tie.",
       "active_cases": [
         "AMNC-2026-007B"
       ],
@@ -147,12 +147,14 @@
       "name": "Cheryl Sparrow",
       "species": "Sparrow, F",
       "location": "16 Sycamore Ln (two lots east of #14)",
-      "key_facts": "Witness for Denise. Neighborhood watch. Timed Greg's departure. Foraging: rotating schedule, Birch Ct on Fridays. Filed 6 extra pages. Drives Sycamore Lane Perch channels. \"Just for context\" is her verbal tic. Narrates cats, cars, bread, dogs in real-time. [Perch: #sycamore-lane, #sycamore-east, #garden-boundary, #elm-row]",
+      "key_facts": "Witness for Denise. Neighborhood watch. Timed Greg's departure. Foraging: rotating schedule, Birch Ct on Fridays. Filed 6 extra pages. Drives Sycamore Lane Perch channels. \"Just for context\" is her verbal tic. Narrates cats, cars, bread, dogs in real-time. Flies in a coordinated morning foraging group on Sycamore Lane; group rerouted passes to go by nest of a newly arrived male several times each morning (Coo #18). Describes it as being about ground cover. [Perch: #sycamore-lane, #sycamore-east, #garden-boundary, #elm-row]",
       "active_cases": [],
       "mentions": [
         "is/writing/nest-court/calendar/index.html",
         "is/writing/nest-court/index.html",
         "is/writing/nest-court-proceedings/index.html",
+        "is/writing/bird-coo/issues/2026-07-07.html",
+        "is/writing/bird-coo/issues/2026-07-28.html",
         "is/writing/perch-chat/index.html"
       ]
     },
@@ -189,6 +191,7 @@
         "is/writing/avian-district/map-options/site-preview-option-4-property-gis-2_5d.html",
         "is/writing/nest-court/calendar/index.html",
         "is/writing/nest-court/index.html",
+        "is/writing/bird-coo/index.html",
         "is/writing/bird-coo/issues/2026-03-10.html",
         "is/writing/bird-coo/issues/2026-03-17.html",
         "is/writing/bird-coo/issues/2026-03-24.html",
@@ -197,6 +200,14 @@
         "is/writing/bird-coo/issues/2026-05-05.html",
         "is/writing/bird-coo/issues/2026-05-19.html",
         "is/writing/bird-coo/issues/2026-06-02.html",
+        "is/writing/bird-coo/issues/2026-06-09.html",
+        "is/writing/bird-coo/issues/2026-06-16.html",
+        "is/writing/bird-coo/issues/2026-06-23.html",
+        "is/writing/bird-coo/issues/2026-06-30.html",
+        "is/writing/bird-coo/issues/2026-07-07.html",
+        "is/writing/bird-coo/issues/2026-07-14.html",
+        "is/writing/bird-coo/issues/2026-07-21.html",
+        "is/writing/bird-coo/issues/2026-07-28.html",
         "is/writing/perch-chat/index.html"
       ]
     },
@@ -221,7 +232,6 @@
         "AMNC-2026-014B (closed)"
       ],
       "mentions": [
-        "is/writing/avian-district/index.html",
         "is/writing/nest-court/index.html",
         "is/writing/bird-coo/index.html",
         "is/writing/bird-coo/issues/2026-04-21.html",
@@ -245,9 +255,9 @@
       "name": "Conrad",
       "species": "Mockingbird, M",
       "location": "Municipal Oak area",
-      "key_facts": "Morning singer. \"In recovery.\" Quiet hours ordered: 9PM–6:30AM (Ord. 9.3(a)). Sang at 6:34 AM (technical compliance). 6:29 AM potential violation under review. Most ubiquitous Perch voice (~9 channels). Principled objector. \"I am not a display.\" Crosses between lane and park crews. [Perch: multiple]",
+      "key_facts": "Morning singer. \"In recovery.\" Quiet hours ordered: 9PM–6:30AM (Ord. 9.3(a)). Sang at 6:34 AM (technical compliance). Sang at 6:29 AM — ruling reserved on whether this violates quiet hours; R. Nuthatch says timing was deliberate (Coo #18). Most ubiquitous Perch voice (~9 channels). Principled objector. \"I am not a display.\" Crosses between lane and park crews. [Perch: multiple]",
       "active_cases": [
-        "AMNC-2026-011A (ruled)"
+        "AMNC-2026-011A (ruling reserved on 6:29 violation)"
       ],
       "mentions": [
         "is/writing/nest-court/calendar/index.html",
@@ -258,6 +268,9 @@
         "is/writing/bird-coo/issues/2026-05-12.html",
         "is/writing/bird-coo/issues/2026-05-26.html",
         "is/writing/bird-coo/issues/2026-06-02.html",
+        "is/writing/bird-coo/issues/2026-07-07.html",
+        "is/writing/bird-coo/issues/2026-07-28.html",
+        "is/writing/bird-coo/issues/index.html",
         "is/writing/secondnest/index.html",
         "is/writing/perch-chat/index.html"
       ]
@@ -272,6 +285,7 @@
         "is/writing/bird-coo/issues/2026-03-17.html",
         "is/writing/bird-coo/issues/2026-04-07.html",
         "is/writing/bird-coo/issues/2026-05-12.html",
+        "is/writing/bird-coo/issues/2026-07-07.html",
         "is/writing/perch-chat/index.html"
       ]
     },
@@ -287,7 +301,7 @@
       "name": "Milo S.",
       "species": "Unknown species, young",
       "location": "Dad on Sycamore, Mom on Birch Court",
-      "key_facts": "Child of divorced parents. Court-ordered flying schedule. Two appearances (Issues 03, 07).",
+      "key_facts": "Child of divorced parents. Court-ordered flying schedule. Age 8 (Coo #16). Two backpacks, one per household. Calculated 1.4 mi each way, 18.2 mi/month. Three appearances (Issues 03, 07, 16).",
       "active_cases": [],
       "mentions": []
     },
@@ -303,7 +317,7 @@
       "name": "Margaret H.",
       "species": "Unknown species, F",
       "location": "Unknown (implied near park)",
-      "key_facts": "Gerald's ex-wife. Wrote letter Issue 01 (complaint about ex at perch).",
+      "key_facts": "Gerald's ex-wife. Wrote letter Issue 01 (complaint about ex at perch). Won the perch after Gerald stopped coming (Coo #17). Moved to center of perch. Admits it was never about the perch: \"I wanted him to want to share it.\" [Coo: #17]",
       "active_cases": [],
       "mentions": []
     },
@@ -315,6 +329,7 @@
       "active_cases": [],
       "mentions": [
         "is/writing/bird-coo/issues/2026-05-05.html",
+        "is/writing/bird-coo/issues/2026-06-09.html",
         "is/writing/perch-chat/index.html"
       ]
     },
@@ -325,6 +340,7 @@
       "key_facts": "Found Dennis \"melancholy, then familiar, then honestly a little annoying\" (Coo #04). Personal ad Coo #06 (female, 39 — may be same bird). Sharp voice in The Perch. Blunt, dry, says things others are thinking. Park crew lead — appears across Park Grounds and Open Grounds channels. [Perch: #south-path-and-park, #bench-row, #south-lot, #west-meadow, #upper-canopy, #culvert-path, #north-loop]",
       "active_cases": [],
       "mentions": [
+        "is/writing/bird-coo/issues/2026-07-14.html",
         "is/writing/secondnest/index.html",
         "is/writing/perch-chat/index.html"
       ]
@@ -370,6 +386,14 @@
         "is/writing/bird-coo/issues/2026-05-19.html",
         "is/writing/bird-coo/issues/2026-05-26.html",
         "is/writing/bird-coo/issues/2026-06-02.html",
+        "is/writing/bird-coo/issues/2026-06-09.html",
+        "is/writing/bird-coo/issues/2026-06-16.html",
+        "is/writing/bird-coo/issues/2026-06-23.html",
+        "is/writing/bird-coo/issues/2026-06-30.html",
+        "is/writing/bird-coo/issues/2026-07-07.html",
+        "is/writing/bird-coo/issues/2026-07-14.html",
+        "is/writing/bird-coo/issues/2026-07-21.html",
+        "is/writing/bird-coo/issues/2026-07-28.html",
         "is/writing/secondnest/index.html",
         "is/writing/perch-chat/index.html",
         "is/writing/karen-hawk/index.html"
@@ -390,6 +414,26 @@
       "key_facts": "Karen Hawk client testimonial, Issue 02.",
       "active_cases": [],
       "mentions": []
+    },
+    {
+      "name": "Lionel Kingfisher",
+      "species": "Kingfisher, M",
+      "location": "South parking lot",
+      "key_facts": "District's first investigative service / private investigator. Formerly a wedding photographer. Conspicuous (\"not a discreet bird\"); tends to sympathize with subjects — returned the fee on his only assignment, submitting a hand-illustrated account of the male's routine in place of evidence. The foraging group logs his position routinely; he does not move. Introduced Coo #21.",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-07-28.html"
+      ]
+    },
+    {
+      "name": "Davey",
+      "species": "Unknown species, young (age 9)",
+      "location": "Two households (locations unspecified)",
+      "key_facts": "New nestling letter writer (Coo #21). Has a brother. The two keep an even score — longer weekend, who came to the school thing, who they run to first at pickup — to avoid picking a favorite of their separating parents, and hide the bookkeeping to protect them.",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-07-28.html"
+      ]
     }
   ],
   "cases": [
@@ -399,19 +443,19 @@
       "parties": "Dove v. Dove",
       "filed": "Feb 12, 2026",
       "status": "Ruling issued. Compliance monitoring.",
-      "key_facts": "Greg left Jan 27. Hearing concluded (Coo #06). Ruling issued (Coo #07).",
+      "key_facts": "Greg left Jan 27. Hearing concluded (Coo #06). Ruling issued (Coo #07). Compliance: Greg reported a move between drainage pipes (Coo #19).",
       "mentions": [
         "is/writing/avian-district/index.html",
         "is/writing/avian-district/map-options/site-preview-option-4-property-gis-2_5d.html",
         "is/writing/nest-court/calendar/index.html",
         "is/writing/nest-court/index.html",
         "is/writing/nest-court-proceedings/index.html",
-        "is/writing/bird-coo/index.html",
         "is/writing/bird-coo/issues/2026-03-10.html",
         "is/writing/bird-coo/issues/2026-03-31.html",
         "is/writing/bird-coo/issues/2026-04-14.html",
         "is/writing/bird-coo/issues/2026-04-21.html",
-        "is/writing/bird-coo/issues/2026-06-02.html"
+        "is/writing/bird-coo/issues/2026-06-02.html",
+        "is/writing/bird-coo/issues/2026-07-14.html"
       ],
       "dedicated_page": null
     },
@@ -420,15 +464,17 @@
       "type": "Noise complaint (domestic)",
       "parties": "Wren v. Wren",
       "filed": "Unknown",
-      "status": "Ruled.",
-      "key_facts": "\"Deliberately humming\" during meals. Hearing May 12, 2026 (Coo #06). Ruled: vary the rhythm (Coo #11).",
+      "status": "Closed. Compliance satisfied.",
+      "key_facts": "\"Deliberately humming\" during meals. Hearing May 12, 2026 (Coo #06). Ruled: vary the rhythm (Coo #11). Compliance filed (Coo #17): Respondent now hums honeymoon song (four-note phrase). Court considers order satisfied.",
       "mentions": [
         "is/writing/nest-court/calendar/index.html",
         "is/writing/nest-court/index.html",
+        "is/writing/bird-coo/index.html",
         "is/writing/bird-coo/issues/2026-03-24.html",
         "is/writing/bird-coo/issues/2026-04-14.html",
         "is/writing/bird-coo/issues/2026-05-19.html",
-        "is/writing/bird-coo/issues/2026-06-02.html"
+        "is/writing/bird-coo/issues/2026-06-02.html",
+        "is/writing/bird-coo/issues/2026-06-30.html"
       ],
       "dedicated_page": null
     },
@@ -437,8 +483,8 @@
       "type": "Noise/nuisance",
       "parties": "Mun. Dist. v. Conrad",
       "filed": "Unknown",
-      "status": "Ruled. Quiet hours 9PM–6:30AM. One potential violation under review.",
-      "key_facts": "Filed by Clerk on behalf of 3 Municipal Oak + 1 Sycamore residents. Hearing (Coo #09). Ruling (Coo #10). Conrad sang 6:29 AM (Coo #12).",
+      "status": "Ruled. Quiet hours 9PM–6:30AM. 6:29 violation resolved (Coo #21).",
+      "key_facts": "Filed by Clerk on behalf of 3 Municipal Oak + 1 Sycamore residents. Hearing (Coo #09). Ruling (Coo #10). Conrad sang 6:29 AM (Coo #12). Ruling reserved: Court asked to decide whether 6:29 is before 6:30; R. Nuthatch says timing was deliberate (Coo #18). Ruled: 6:29 IS before 6:30; Conrad found to have sung once within quiet hours; no penalty beyond the finding (\"has made his point... does not require repeating\"); quiet hours remain until 6:30 (Coo #21).",
       "mentions": [
         "is/writing/avian-district/index.html",
         "is/writing/nest-court/calendar/index.html",
@@ -448,7 +494,9 @@
         "is/writing/bird-coo/issues/2026-05-05.html",
         "is/writing/bird-coo/issues/2026-05-12.html",
         "is/writing/bird-coo/issues/2026-05-26.html",
-        "is/writing/bird-coo/issues/2026-06-02.html"
+        "is/writing/bird-coo/issues/2026-06-02.html",
+        "is/writing/bird-coo/issues/2026-07-07.html",
+        "is/writing/bird-coo/issues/2026-07-28.html"
       ],
       "dedicated_page": null
     },
@@ -473,10 +521,11 @@
       "type": "Separate branch maintenance",
       "parties": "Finch v. Finch",
       "filed": "Unknown",
-      "status": "Pending. Continued (3rd).",
-      "key_facts": "Motion to compel division of jointly held materials. Both parties requested continuance; neither stated whose request takes precedence. Set for week of May 11, 2026 (Late Light) per Spring Term Docket.",
+      "status": "Pending. Continued (4th); 5th date set.",
+      "key_facts": "Motion to compel division of jointly held materials. Both parties requested continuance; neither stated whose request takes precedence. Set for week of May 11, 2026 (Late Light) per Spring Term Docket. Continued 4th time (Coo #15); parties asked to bring list of disputed materials; neither will admit who asked for the delay first. File contains only continuances so far.",
       "mentions": [
-        "is/writing/nest-court/calendar/index.html"
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/bird-coo/issues/2026-06-16.html"
       ],
       "dedicated_page": null
     },
@@ -485,10 +534,11 @@
       "type": "Nest abandonment (uncontested)",
       "parties": "In re: Sparrow",
       "filed": "Unknown",
-      "status": "Default expected.",
-      "key_facts": "Confirmation of nest dissolution; entry of default. Petitioner C. Sparrow; respondent did not file an answer. Respondent unseen on the branch since February 2026. Set for week of May 18, 2026 (Afternoon Calendar).",
+      "status": "Default ruling entered. Closed.",
+      "key_facts": "Petitioner C. Sparrow. Respondent did not appear, file, or respond to notice. Respondent unseen since February 2026. Default ruling entered for petitioner (Coo #16). Court made no finding as to where respondent went — only that he has not come back.",
       "mentions": [
-        "is/writing/nest-court/calendar/index.html"
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/bird-coo/issues/2026-06-23.html"
       ],
       "dedicated_page": null
     },
@@ -497,10 +547,12 @@
       "type": "Territorial dispute",
       "parties": "H. v. H. (Margaret v. Gerald)",
       "filed": "Unknown",
-      "status": "Pre-hearing.",
-      "key_facts": "Status conference re: park perch (south end). Both parties willing to attend; neither willing to leave. Set for week of April 27, 2026 (Afternoon Calendar).",
+      "status": "Resolved (de facto). Case left open.",
+      "key_facts": "Status conference re: park perch (south end). Both parties in standoff for 3+ weeks (Coo #14). Gerald stopped coming (Coo #17). Margaret holds the perch; moved to center. Court left case open \"pending clarification of whether the dispute still exists.\"",
       "mentions": [
-        "is/writing/nest-court/calendar/index.html"
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/bird-coo/issues/2026-06-09.html",
+        "is/writing/bird-coo/issues/2026-06-30.html"
       ],
       "dedicated_page": null
     },
@@ -509,10 +561,11 @@
       "type": "Egg custody",
       "parties": "Confidential — fledglings involved",
       "filed": "Unknown",
-      "status": "Emergency calendar. Pending.",
-      "key_facts": "Modification of visitation schedule. Caption and parties not displayed. Court has noted that scheduling difficulties between two parents are not, by themselves, grounds for an emergency. Set for week of May 25, 2026 (Emergency).",
+      "status": "Regular calendar. Pending.",
+      "key_facts": "Modification of visitation schedule. Caption and parties not displayed. Moved from emergency to regular calendar (Coo #14): \"two parents who cannot agree on a Tuesday do not, between them, constitute an emergency.\" Court noted \"the eggs are not in any hurry.\"",
       "mentions": [
-        "is/writing/nest-court/calendar/index.html"
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/bird-coo/issues/2026-06-09.html"
       ],
       "dedicated_page": null
     },
@@ -521,10 +574,11 @@
       "type": "Vine provenance",
       "parties": "In re: Unclaimed Vine, Birch / Sycamore",
       "filed": "Unknown",
-      "status": "Petition pending.",
-      "key_facts": "Petition for adjudication of abandoned property. Petitioner: Clerk's Office; no respondent appearing. Vine has been at Clerk's Office since February 2026. Set for week of May 4, 2026 (Morning Sitting).",
+      "status": "Closed. Vine declared abandoned property.",
+      "key_facts": "Petition for adjudication of abandoned property. After 4 months in Clerk's drawer and formal adjudication, vine declared abandoned and released for general use (Coo #16). No party ever came forward to explain why it was left at the intersection. Clerk's Office \"glad to have the drawer back.\"",
       "mentions": [
-        "is/writing/nest-court/calendar/index.html"
+        "is/writing/nest-court/calendar/index.html",
+        "is/writing/bird-coo/issues/2026-06-23.html"
       ],
       "dedicated_page": null
     },
@@ -537,6 +591,18 @@
       "key_facts": "Names withheld. Petition arising from community meeting (April 21, 2026). Court has reviewed meeting transcript and notes that parties did not, in fact, dispute the wire. Set for week of May 18, 2026 (Late Light).",
       "mentions": [
         "is/writing/nest-court/calendar/index.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-023A",
+      "type": "Dissolution (joint)",
+      "parties": "In re: parties withheld",
+      "filed": "May 2026",
+      "status": "Withdrawn (2nd time); file kept open.",
+      "key_facts": "Joint petition for dissolution filed and withdrawn twice (filed May, withdrew June, refiled, withdrew again), each by agreement. Court accepted the withdrawal and, at the parties' request, kept the file open (Coo #20).",
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-07-21.html"
       ],
       "dedicated_page": null
     },
@@ -600,7 +666,7 @@
       "full_id": "CL-TD-04 (Rev. 2024)",
       "name": "Spring Term Docket",
       "purpose": "Clerk's Office term-by-term calendar of pending matters, recent dispositions, and items on the Court's attention. Issued at the start of each term and revised periodically through Mid-Term Notices.",
-      "notes": "Lives at `/is/writing/nest-court/calendar/`. Spring 2026 term posted Mar 2, 2026; last revised Apr 14, 2026.",
+      "notes": "Lives at `/is/writing/nest-court/calendar/`. Spring 2026 term posted Mar 2, 2026; last revised Jul 7, 2026 (Mid-Term Notice — late-term close-out reflecting Coo #14–#18 dispositions).",
       "mentions": [
         "is/writing/nest-court/calendar/index.html"
       ]
