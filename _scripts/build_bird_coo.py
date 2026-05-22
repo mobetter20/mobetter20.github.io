@@ -1122,6 +1122,39 @@ ISSUES = [
         ],
         letter_signature="Walter, Sycamore Lane",
     ),
+    Issue(
+        issue_number="24",
+        issue_date=date(2026, 8, 18),
+        lead_headline="Custody Case Resolves After Eggs in Question Hatch",
+        lead_dateline="Municipal Oak · District Desk",
+        lead_paragraphs=[
+            "The egg-custody case the Court moved to its regular calendar in June has been resolved by the eggs, which hatched on Tuesday while the parents were in mediation.",
+            "The dispute, over a visitation schedule, concerned two eggs. There are now two chicks, who need feeding on a schedule neither parent has contested — possibly because neither has yet had the time.",
+            "Informed of the development, the Court noted that it had once observed the eggs were not in any hurry, and that it stood corrected. The parents have requested a continuance to revise their filing. The chicks have requested nothing, so far.",
+        ],
+        court_title="Compliance Note — AMNC-2026-007B",
+        court_paragraphs=[
+            "Dove v. Dove. Under continuing compliance monitoring, the Respondent reports that the west-side drainage pipe floods. He has asked the Court to note that he is aware of the irony and does not require it pointed out.",
+            "The Court has noted it. Clerk: T. Nuthatch.",
+        ],
+        classified_title="LOST: one alarm clock",
+        classified_paragraphs=[
+            "Mine, packed into her boxes by mistake during the move. I have not woken on time since, and I am beginning to suspect it was not a mistake.",
+        ],
+        classified_reply="Box 17-A, c/o this publication.",
+        personal_title="MALE, BITTERN, 49",
+        personal_paragraphs=[
+            "I keep to myself. When uncomfortable I go very still and point my bill at the sky, on the understanding that this makes me invisible. My ex could always see me. Seeking someone willing to let me believe, now and then, that I have not been spotted.",
+        ],
+        personal_reply="Reply to: Box 49-B.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "I am writing to correct the record, which I keep. Several have remarked that the male at the end of the lane is \"thriving\" since his divorce.",
+            "I forage past his nest twice a day. The lights are on at hours that suggest otherwise, and as of last week he has begun talking to the feeder. I am not concerned.",
+        ],
+        letter_signature="Cheryl Sparrow, 16 Sycamore Lane",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
