@@ -494,7 +494,7 @@ footer {
   left: var(--bg-left, 0);
   width: var(--bg-w, 100%);
   height: var(--bg-h, 100%);
-  background-image: url("img/bic-seal.png");
+  background-image: url("img/bic-seal.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   filter: saturate(0.9) brightness(0.84) contrast(1.04);
