@@ -1,6 +1,6 @@
 .DS_Store
 README.local.md
-_scripts/__pycache__/
+__pycache__/
 _scripts/bird-universe/config.json
 is/writing/_lab/
 *.local.md
