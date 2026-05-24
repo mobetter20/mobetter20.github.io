@@ -504,7 +504,7 @@ footer {
 }
 
 .small-tools-house .room::before {
-  background-image: url("img/04_circuitboard.png");
+  background-image: url("img/04_circuitboard.webp");
 }
 
 .writing-house .room::after {
