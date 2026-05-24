@@ -25,6 +25,7 @@ Exit code: 0 if no errors (warnings allowed). Non-zero if any error.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -33,6 +34,7 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent.parent
 GRAPH_PATH = SCRIPT_DIR / "bird_universe_graph.json"
+CONFIG_PATH = SCRIPT_DIR / "config.json"
 
 CASE_PATTERN = re.compile(r"\bAMNC-\d{4}-\d+[A-Za-z]\b", re.IGNORECASE)
 FORM_PATTERN = re.compile(r"\bCL-[A-Za-z]{2}-\d+\b", re.IGNORECASE)
@@ -53,6 +55,33 @@ def load_graph() -> dict:
             "Run generate_graph.py first."
         )
     return json.loads(GRAPH_PATH.read_text(encoding="utf-8"))
+
+
+def check_cache_staleness(graph: dict) -> str | None:
+    """WARN if the cache's stamped registry sha != the live 02-registry.md sha.
+
+    The graph is a derived cache of 02-registry.md (which lives in a separate
+    repo). Editing the registry and committing without re-running
+    generate_graph.py leaves the cache stale; this catches that directly,
+    not just when HTML happens to reference a not-yet-cached case. Returns
+    None (skips silently) if the stamp or the registry file is unavailable.
+    """
+    stamped = graph.get("registry_source_sha")
+    if not stamped or not CONFIG_PATH.exists():
+        return None
+    try:
+        config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+        registry_md = Path(config["registryRepoPath"]).expanduser() / "02-registry.md"
+        live = hashlib.sha256(registry_md.read_text(encoding="utf-8").encode("utf-8")).hexdigest()
+    except (OSError, KeyError, json.JSONDecodeError):
+        return None
+    if live != stamped:
+        return (
+            "bird_universe_graph.json is stale — its registry_source_sha no longer "
+            "matches 02-registry.md; run _scripts/bird-universe/generate_graph.py "
+            "(or publish.sh) to rebuild the cache."
+        )
+    return None
 
 
 def collect_html_files(sites: list[dict]) -> list[Path]:
@@ -87,6 +116,10 @@ def main() -> int:
     warnings: list[str] = []
     seen_unregistered_cases: set[str] = set()
     seen_unregistered_forms: set[str] = set()
+
+    stale = check_cache_staleness(graph)
+    if stale:
+        warnings.append(stale)
 
     for html_file in collect_html_files(sites):
         rel = str(html_file.relative_to(REPO_ROOT))
