@@ -64,6 +64,8 @@ for full details. Quick reference:
 - **`lint_identifiers.py`** — pre-push warning system. Scans HTML for
   case-number patterns (`AMNC-YYYY-NNN[A-Z]`) and form-ID patterns
   (`CL-XX-NN`). Errors on case-format typos; warns on identifiers in HTML
-  that aren't in the registry yet. Character-name linting is intentionally
+  that aren't in the registry yet. Also warns when
+  `bird_universe_graph.json` is stale relative to `02-registry.md` (rebuild
+  with `generate_graph.py`). Character-name linting is intentionally
   deferred — single-token names like "Conrad" / "Dennis" collide with
   ordinary English.
