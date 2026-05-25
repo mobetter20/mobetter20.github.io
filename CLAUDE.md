@@ -21,6 +21,8 @@ Read `INDEX.md` for what to load and when. Modular files:
 
 ## Build Scripts
 
+`_scripts/build_root.py` generates the stats-driven pages — `index.html` (the root `ajin.im is …` page), `is/running/`, `is/reading/`, `is/learning/` — from `templates/{root,running,reading,learning}.html` + `content/stats.md`. **Edit the templates, never the generated `index.html` files.** Direct edits are overwritten on the next build, and `.github/workflows/rebuild-root-on-stats.yml` rebuilds them automatically whenever a template, `stats.md`, or the script changes. Each generated file carries a `GENERATED FILE — DO NOT EDIT` banner under its doctype as an in-file reminder.
+
 `_scripts/build_bird_coo.py` generates all Municipal Coo HTML (index, issues, archive). Manual edits to generated files will be overwritten on next build. Make template changes in the build script.
 
 The script also auto-updates the "From the Municipal Coo" excerpt block on `is/writing/avian-district/index.html`. The block lives between `<!-- COO-EXCERPT-START -->` and `<!-- COO-EXCERPT-END -->` markers — manual edits inside that range will be overwritten on next build. Edit the renderer in `_scripts/build_bird_coo.py` (`render_avian_district_excerpt`) instead.
