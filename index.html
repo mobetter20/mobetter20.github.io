@@ -130,11 +130,36 @@
     border-bottom-color: rgba(232, 224, 208, 0.45);
   }
 
+  /* colophon — a quiet door, pinned to the bottom of the page; recedes from the verse */
+  .colophon {
+    margin-top: auto;
+    padding-top: 3.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: var(--text-faint);
+    animation: fade 0.9s ease-out 0.55s both;
+  }
+
+  .colophon a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .colophon a:hover {
+    color: var(--text-soft);
+    border-bottom-color: rgba(138, 127, 112, 0.45);
+  }
+
   @media (max-width: 600px) {
     main { padding: 7vh 7vw 5vh; }
     .line { font-size: 1.18rem; }
     .detail { font-size: 0.93rem; }
     .stanza { margin-bottom: 2.6rem; }
+    .colophon { padding-top: 2.5rem; }
   }
 </style>
 </head>
@@ -164,6 +189,10 @@
       <a href="https://seoulcrushing.com">seoulcrushing.com</a>, Korea made legible. With bite.
     </div>
   </div>
+
+  <footer class="colophon">
+    <a href="mailto:contact@ajin.im">contact@ajin.im</a>
+  </footer>
 
 </main>
 
