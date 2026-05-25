@@ -172,6 +172,28 @@ def render_reading_year(books: list[tuple[str, str]]) -> str:
     return out
 
 
+def with_generated_banner(output: str, template_path: Path) -> str:
+    """Insert a GENERATED-FILE banner just under the doctype.
+
+    The banner is what makes these pages safe to leave around: it trips
+    ~/.claude/hooks/upstream-awareness-guard.py and tells any human/agent
+    reading the file that edits belong in the template, not the output.
+    Placed *after* the doctype line so it never triggers quirks mode.
+    """
+    banner = (
+        f"<!-- GENERATED FILE — DO NOT EDIT. "
+        f"Source: templates/{template_path.name} · built by _scripts/build_root.py. "
+        f"Edits here are overwritten on the next build "
+        f"(.github/workflows/rebuild-root-on-stats.yml). -->\n"
+    )
+    if output.lstrip()[:9].lower() == "<!doctype":
+        nl = output.find("\n")
+        if nl == -1:
+            return output + "\n" + banner
+        return output[: nl + 1] + banner + output[nl + 1 :]
+    return banner + output
+
+
 def render(template_path: Path, replacements: dict[str, str]) -> str:
     if not template_path.is_file():
         raise StatsError(f"template not found: {template_path}")
@@ -185,7 +207,7 @@ def render(template_path: Path, replacements: dict[str, str]) -> str:
     leftover = [t for t in used if t in output]
     if leftover:
         raise StatsError(f"unresolved tokens after substitution in {template_path.name}: {leftover}")
-    return output
+    return with_generated_banner(output, template_path)
 
 
 def build(check_only: bool = False) -> None:
