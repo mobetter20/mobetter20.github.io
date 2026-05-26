@@ -3,1793 +3,614 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Avian Municipal District — Official Portal</title>
+<title>Office of the Clerk · Avian Municipal District</title>
 <meta
   name="description"
-  content="Official portal for the Avian Municipal District. Services, notices, licensed practitioners, and public records maintained by the Clerk's Office."
+  content="Office of the Clerk, Avian Municipal District. Public records, notices, the Ordinance Code, and access to district services. Maintained by T. Nuthatch, Clerk of Court."
 >
 <link rel="canonical" href="https://ajin.im/is/writing/avian-district/">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap">
-  <script src="../../../analytics.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+<script src="../../../analytics.js" defer></script>
 <style>
-*,*::before,*::after{box-sizing:border-box}
-
-:root {
-  --header-bg: #1d2b3a;
-  --header-text: #e8e6e1;
-  --notice-bg: #e2e0da;
-  --notice-border: #b8b4a8;
-  --notice-accent: #7a776e;
-  --page-bg: #e8e6e1;
-  --surface: #f4f2ed;
-  --surface-alt: #eceae4;
-  --surface-deep: #ddd9cf;
-  --ink: #1a1a18;
-  --ink-light: #33332e;
-  --ink-faded: #5a5a52;
-  --ink-ghost: #88887e;
-  --rule: #c8c4b8;
-  --rule-heavy: #8a877e;
-  --link: #1d4a6a;
-  --link-hover: #0f3048;
-  --card-border: #b8b4a8;
-  /* Two controlled accents — already present in map hotspots.
-     Read as "ink stamps" / "filing labels," not "decoration." */
-  --ink-stamp: #7a3614;        /* rust/oxblood — active, flagged, regulated */
-  --ink-archive: #3a5a64;      /* deep teal — system, informational, archival */
-  --ink-stamp-tint: rgba(122,54,20,0.08);
-  --ink-archive-tint: rgba(58,90,100,0.08);
-
-  /* Category keys for service cards. Desaturated, period-appropriate.
-     Used only as 2px top hairline + faint label color shift. */
-  --cat-judicial: #4a5d6e;     /* slate, court-blue cousin */
-  --cat-media:    #6b6258;     /* newsprint warm gray */
-  --cat-community:#5a6b58;     /* moss, restrained */
-  --cat-licensed: #7a3614;     /* ink-stamp red, regulated */
-}
-
-/* Subtle paper grain on the page background only.
-   Surfaces (cards, letter, notice) stay clean — documents on a desk. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.55;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.10  0 0 0 0 0.09  0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-body > * { position: relative; z-index: 1; }
-
-html { font-size: 16px; }
-
-body {
-  margin: 0;
-  background: var(--page-bg);
-  color: var(--ink);
-  font-family: "IBM Plex Sans", -apple-system, sans-serif;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-}
-
-a { color: var(--link); }
-a:hover { color: var(--link-hover); }
-
-.header-band {
-  background: var(--header-bg);
-  color: var(--header-text);
-  padding: 0.6rem 2rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-}
-
-.header-band-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-org {
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.7rem;
-}
-
-.header-util {
-  font-size: 0.65rem;
-  color: rgba(232,230,225,0.6);
-  font-family: "IBM Plex Mono", monospace;
-}
-
-.notice-box {
-  background: var(--notice-bg);
-  border: 1px solid var(--notice-border);
-  border-left: 3px solid var(--ink-archive);
-  padding: 0.7rem 1rem;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  color: var(--ink-light);
-  margin: 1.4rem 0 0;
-  position: relative;
-}
-.notice-box .case-pill {
-  display: inline-block;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
-  color: var(--ink-archive);
-  border: 1px solid var(--ink-archive);
-  padding: 0.05rem 0.35rem;
-  margin-right: 0.4rem;
-  background: var(--ink-archive-tint);
-  text-decoration: none;
-  vertical-align: 1px;
-}
-.notice-box .case-pill:hover { background: var(--ink-archive); color: var(--surface); }
-
-.notice-label {
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.6rem;
-  display: block;
-  margin-bottom: 0.15rem;
-  color: var(--ink-ghost);
-}
-
-.title-section {
-  background: var(--surface);
-  border-bottom: 1px solid var(--rule);
-  padding: 1.6rem 2rem 1.2rem;
-}
-
-.title-section-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.title-section h1 {
-  margin: 0 0 0.15rem;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-}
-
-/* ─────────────────────────────────────────────────
-   Quick-action hero — Seocho-style tile band.
-   Sits between title and Clerk's Letter; full-bleed of .main.
-   Big tiles for the most common civic tasks. Saturated header-blue
-   for the primary tile, muted surface for the secondary three.
-   ───────────────────────────────────────────────── */
-.quick-actions {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 0;
-  margin: 1.4rem 0 0;
-  border: 1px solid var(--rule);
-  background: var(--surface);
-}
-.qa-tile {
-  position: relative;
-  display: block;
-  padding: 1.15rem 1.1rem 1.4rem;
-  text-decoration: none;
-  color: inherit;
-  border-right: 1px solid var(--rule);
-  transition: background 0.15s, color 0.15s;
-}
-.qa-tile:last-child { border-right: none; }
-.qa-tile:hover { background: var(--surface-alt); }
-
-.qa-tile.is-primary {
-  background: var(--header-bg);
-  color: var(--header-text);
-  border-right-color: var(--header-bg);
-}
-.qa-tile.is-primary:hover {
-  background: #15212d;
-}
-
-.qa-tile-glyph {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-ghost);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-.qa-tile.is-primary .qa-tile-glyph {
-  color: rgba(232,230,225,0.6);
-}
-
-.qa-tile-title {
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-  line-height: 1.25;
-}
-.qa-tile.is-primary .qa-tile-title { color: var(--header-text); }
-
-.qa-tile-sub {
-  font-size: 0.74rem;
-  color: var(--ink-faded);
-  line-height: 1.45;
-  font-family: "IBM Plex Sans", sans-serif;
-}
-.qa-tile.is-primary .qa-tile-sub {
-  color: rgba(232,230,225,0.7);
-}
-
-.qa-tile-arrow {
-  position: absolute;
-  right: 1rem;
-  bottom: 0.9rem;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.9rem;
-  color: var(--ink-ghost);
-  transition: transform 0.15s ease;
-}
-.qa-tile:hover .qa-tile-arrow { transform: translateX(3px); color: var(--ink); }
-.qa-tile.is-primary .qa-tile-arrow { color: rgba(232,230,225,0.7); }
-.qa-tile.is-primary:hover .qa-tile-arrow { color: var(--header-text); }
-
-/* ─────────────────────────────────────────────────
-   Notice ticker — thin scrolling band of recent notices.
-   Korean municipal portals frequently use this; matches
-   AMD's "ongoing record" tone.
-   ───────────────────────────────────────────────── */
-.notice-ticker {
-  margin: 0.7rem 0 0;
-  border: 1px solid var(--rule);
-  background: var(--surface);
-  display: flex;
-  align-items: stretch;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.72rem;
-  overflow: hidden;
-}
-.notice-ticker-label {
-  flex: 0 0 auto;
-  padding: 0.55rem 0.9rem;
-  background: var(--ink-stamp);
-  color: #f4ede4;
-  font-size: 0.62rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-}
-.notice-ticker-track {
-  flex: 1 1 auto;
-  overflow: hidden;
-  position: relative;
-  padding: 0.55rem 0;
-  white-space: nowrap;
-}
-.notice-ticker-content {
-  display: inline-block;
-  padding-left: 100%;
-  animation: ticker-scroll 60s linear infinite;
-  color: var(--ink-light);
-}
-.notice-ticker-content span {
-  margin: 0 1.6rem;
-}
-.notice-ticker-content span::before {
-  content: "·";
-  margin-right: 1.6rem;
-  color: var(--ink-ghost);
-}
-@keyframes ticker-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-@media (max-width: 760px) {
-  .quick-actions { grid-template-columns: 1fr 1fr; }
-  .qa-tile { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-  .qa-tile:nth-child(2n) { border-right: none; }
-  .qa-tile:nth-child(n+3) { border-bottom: none; }
-  .qa-tile.is-primary { grid-column: 1 / -1; border-right: none; }
-  .qa-tile.is-primary + .qa-tile { border-right: 1px solid var(--rule); }
-}
-
-.title-sub {
-  margin: 0;
-  color: var(--ink-faded);
-  font-size: 0.85rem;
-}
-
-.main {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 2rem 2rem;
-}
-
-.clerk-letter {
-  margin: 1.4rem 0;
-  padding: 1.1rem 1.4rem 1.2rem;
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-left: 4px solid var(--ink-light);
-  box-shadow: 0 1px 0 rgba(26,26,24,0.04);
-}
-
-.clerk-letter-head {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-ghost);
-  margin-bottom: 0.6rem;
-}
-
-.clerk-letter p {
-  margin: 0;
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: var(--ink-light);
-}
-
-.clerk-letter p + p { margin-top: 0.45rem; }
-
-.clerk-letter .sig {
-  margin-top: 0.6rem;
-  font-style: italic;
-  color: var(--ink-faded);
-  font-size: 0.82rem;
-}
-
-.section-heading {
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--ink-ghost);
-  margin: 1.8rem 0 0.8rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 2px solid var(--rule-heavy);
-}
-
-.map-sub {
-  margin: -0.45rem 0 0.75rem;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-ghost);
-}
-
-.district-map-shell {
-  border: 1px solid var(--rule);
-  background: var(--surface);
-  padding: 0.75rem;
-  position: relative;
-}
-
-.district-map-wrap {
-  position: relative;
-  border: 1px solid var(--card-border);
-  background: #e8e4d2;
-  overflow: hidden;
-}
-
-.district-map {
-  display: block;
-  width: 100%;
-  height: auto;
-  touch-action: manipulation;
-  user-select: none;
-}
-
-.map-graticule {
-  stroke: rgba(138,135,126,0.22);
-  stroke-width: 0.7;
-}
-
-.map-boundary {
-  fill: #d2cdb5;
-  stroke: #8a877e;
-  stroke-width: 2;
-}
-
-.map-green {
-  fill: rgba(129,142,104,0.18);
-  stroke: rgba(129,142,104,0.24);
-  stroke-width: 1;
-}
-
-.map-water {
-  fill: rgba(126,145,154,0.18);
-  stroke: rgba(126,145,154,0.36);
-  stroke-width: 1;
-}
-
-.map-road {
-  fill: none;
-  stroke: #b8b4a8;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.map-road-secondary {
-  fill: none;
-  stroke: rgba(122,119,110,0.56);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 6 7;
-}
-
-.map-path {
-  fill: none;
-  stroke: rgba(122,119,110,0.48);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-dasharray: 3 6;
-}
-
-.map-feature {
-  fill: rgba(244,242,237,0.42);
-  stroke: rgba(138,135,126,0.35);
-  stroke-width: 1;
-}
-
-.map-label {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-style: italic;
-  font-size: 13px;
-  fill: #4f4d47;
-  paint-order: stroke;
-  stroke: rgba(232,228,210,0.9);
-  stroke-width: 4;
-  stroke-linejoin: round;
-  pointer-events: none;
-}
-
-.map-label-small {
-  font-size: 11px;
-  fill: #66635b;
-}
-
-.map-road-label {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-style: italic;
-  font-size: 12px;
-  fill: #6a665d;
-  paint-order: stroke;
-  stroke: rgba(232,228,210,0.9);
-  stroke-width: 4;
-  pointer-events: none;
-}
-
-.hotspot {
-  cursor: pointer;
-  outline: none;
-}
-
-.hotspot-hit {
-  fill: transparent;
-  pointer-events: all;
-}
-
-.hotspot-dot {
-  fill: rgba(184,84,32,0.72);
-  stroke: #7a3614;
-  stroke-width: 1.5;
-  transition: r 0.16s ease, fill 0.16s ease, stroke-width 0.16s ease;
-}
-
-.hotspot-zero {
-  fill: rgba(244,242,237,0.58);
-  stroke: #88887e;
-  stroke-width: 1.7;
-}
-
-.hotspot:hover .hotspot-dot,
-.hotspot:focus .hotspot-dot,
-.hotspot.is-active .hotspot-dot {
-  fill: rgba(184,84,32,0.9);
-  stroke-width: 2.4;
-}
-
-.hotspot:focus .hotspot-ring,
-.hotspot.is-active .hotspot-ring {
-  opacity: 1;
-}
-
-.hotspot-ring {
-  fill: none;
-  stroke: rgba(244,242,237,0.95);
-  stroke-width: 4;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.map-control-label {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  fill: #5a5a52;
-}
-
-.map-compass line,
-.map-compass path,
-.map-scale line {
-  stroke: #5a5a52;
-  stroke-width: 1.2;
-  stroke-linecap: round;
-}
-
-.map-popup {
-  position: fixed;
-  z-index: 90;
-  width: min(270px, calc(100vw - 28px));
-  padding: 0.75rem 0.85rem 0.8rem;
-  background: rgba(244,242,237,0.98);
-  border: 1px solid var(--rule-heavy);
-  color: var(--ink);
-  box-shadow: 0 6px 18px rgba(26,26,24,0.14);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(3px);
-  transition: opacity 0.12s ease, transform 0.12s ease, visibility 0.12s;
-}
-
-.map-popup.is-visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.map-popup-close {
-  position: absolute;
-  top: 0.25rem;
-  right: 0.35rem;
-  border: 0;
-  background: transparent;
-  color: var(--ink-ghost);
-  font-size: 1rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0.2rem;
-}
-
-.map-popup-close:hover,
-.map-popup-close:focus {
-  color: var(--ink);
-}
-
-.map-popup-category {
-  margin: 0 1.4rem 0.2rem 0;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.62rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-ghost);
-}
-
-.map-popup-title {
-  margin: 0 0 0.18rem;
-  font-family: "Source Serif 4", Georgia, serif;
-  font-style: italic;
-  font-size: 0.98rem;
-  line-height: 1.25;
-  color: var(--ink);
-}
-
-.map-popup-stats {
-  margin: 0 0 0.45rem;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.68rem;
-  color: var(--ink-faded);
-}
-
-.map-popup-note {
-  margin: 0;
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 0.82rem;
-  line-height: 1.45;
-  color: var(--ink-light);
-}
-
-.map-legend {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.8rem;
-  align-items: center;
-  margin-top: 0.6rem;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.68rem;
-  color: var(--ink-faded);
-}
-
-.legend-scale {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
-}
-
-.legend-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.28rem;
-  white-space: nowrap;
-}
-
-.legend-dot {
-  display: inline-block;
-  border-radius: 50%;
-  background: rgba(184,84,32,0.72);
-  border: 1.5px solid #7a3614;
-}
-
-.legend-small { width: 8px; height: 8px; }
-.legend-medium { width: 12px; height: 12px; }
-.legend-large { width: 16px; height: 16px; }
-.legend-zero {
-  width: 12px;
-  height: 12px;
-  background: transparent;
-  border-color: #88887e;
-}
-
-.map-source {
-  color: var(--ink-ghost);
-  white-space: nowrap;
-}
-
-.map-footnote {
-  margin: 0.45rem 0 0;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.62rem;
-  line-height: 1.5;
-  color: var(--ink-ghost);
-}
-
-/* ─────────────────────────────────────────────────
-   District at a Glance — civic stat panel
-   3×2 grid; hairline rules between cells (table-style).
-   Numbers in Plex Sans light; labels in Plex Mono uppercase.
-   ───────────────────────────────────────────────── */
-.stat-panel {
-  border: 1px solid var(--rule);
-  background: var(--surface);
-  margin-bottom: 0.4rem;
-}
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.stat-cell {
-  padding: 1.1rem 1.1rem 1rem;
-  border-right: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  position: relative;
-  /* button reset */
-  background: none;
-  border-top: none;
-  border-left: none;
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
-  text-align: left;
-  width: 100%;
-  display: block;
-}
-.stat-cell:nth-child(3n) { border-right: none; }
-.stat-cell:nth-child(n+4) { /* bottom row */ border-bottom: none; }
-.stat-num {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-weight: 300;
-  font-size: 2.6rem;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 0.5rem;
-  display: inline-block;
-}
-.stat-num.is-zero { color: var(--ink-faded); }
-.stat-label {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.62rem;
-  line-height: 1.45;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-faded);
-}
-.stat-foot {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-ghost);
-  text-transform: uppercase;
-  padding: 0.55rem 1.1rem;
-  border-top: 1px solid var(--rule-heavy);
-  background: var(--surface-alt);
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-}
-.stat-foot .stat-period { color: var(--ink-faded); }
-
-/* Expandable cell behavior — click reveals a Clerk's-voice expansion. */
-.stat-cell {
-  cursor: pointer;
-  transition: background 0.12s ease;
-}
-.stat-cell:hover { background: var(--surface-alt); }
-
-.stat-cell::after {
-  content: "+";
-  position: absolute;
-  top: 0.7rem;
-  right: 0.8rem;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.85rem;
-  color: var(--ink-ghost);
-  line-height: 1;
-  transition: transform 0.15s ease, color 0.15s ease;
-}
-.stat-cell:hover::after { color: var(--ink-light); }
-.stat-cell.is-open::after {
-  content: "−";
-  color: var(--ink);
-}
-
-.stat-expand {
-  display: none;
-  margin-top: 0.7rem;
-  padding-top: 0.65rem;
-  border-top: 1px solid var(--rule);
-  font-family: "IBM Plex Sans", sans-serif;
-  font-size: 0.78rem;
-  line-height: 1.5;
-  color: var(--ink-light);
-  font-style: italic;
-  letter-spacing: 0;
-  text-transform: none;
-}
-.stat-cell.is-open .stat-expand { display: block; }
-
-/* ─────────────────────────────────────────────────
-   From the Municipal Coo — excerpt block
-   Heavy double rules top + bottom; serif italic headline.
-   ───────────────────────────────────────────────── */
-.coo-excerpt {
-  margin: 1.2rem 0 0.4rem;
-  padding: 1.4rem 0.4rem 1.5rem;
-  border-top: 2px solid var(--ink-light);
-  border-bottom: 2px solid var(--ink-light);
-  position: relative;
-}
-.coo-excerpt::before,
-.coo-excerpt::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--ink-light);
-}
-.coo-excerpt::before { top: 4px; }
-.coo-excerpt::after  { bottom: 4px; }
-.coo-masthead {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.62rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--ink-ghost);
-  margin-bottom: 0.85rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-}
-.coo-headline {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 1.25;
-  color: var(--ink);
-  margin: 0 0 0.7rem;
-  text-wrap: balance;
-  letter-spacing: -0.005em;
-}
-.coo-body {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: var(--ink-light);
-  margin: 0 0 0.9rem;
-  max-width: 56ch;
-  text-wrap: pretty;
-}
-.coo-link {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 500;
-  text-decoration: none;
-  color: var(--link);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.coo-link:hover { color: var(--link-hover); }
-.coo-link .arrow {
-  font-family: "IBM Plex Mono", monospace;
-  transition: transform 0.15s ease;
-}
-.coo-link:hover .arrow { transform: translateX(2px); }
-
-/* ─────────────────────────────────────────────────
-   Service cards — bumped to system level.
-   - 2px top hairline keyed to category (--cat-*)
-   - Mono category label, slightly louder
-   - Ordinance reference in mono (typographic mark, civic register)
-   - Trailing "→" cue indicates navigation without competing with stats above
-   ───────────────────────────────────────────────── */
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.8rem;
-}
-
-.service-card {
-  position: relative;
-  border: 1px solid var(--card-border);
-  border-top: 2px solid var(--cat-color, var(--rule-heavy));
-  background: var(--surface);
-  padding: 0.95rem 1.1rem 1.05rem;
-  text-decoration: none;
-  color: inherit;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 0.35rem;
-  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
-}
-
-.service-card[data-cat="judicial"]  { --cat-color: var(--cat-judicial); }
-.service-card[data-cat="media"]     { --cat-color: var(--cat-media); }
-.service-card[data-cat="community"] { --cat-color: var(--cat-community); }
-.service-card[data-cat="licensed"]  { --cat-color: var(--cat-licensed); }
-
-.service-card:hover {
-  border-color: var(--rule-heavy);
-  border-top-color: var(--cat-color);
-  box-shadow: 0 1px 0 rgba(26,26,24,0.06), 0 4px 14px -8px rgba(26,26,24,0.18);
-}
-
-.service-card .card-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-}
-
-.service-card .card-category {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--cat-color, var(--ink-ghost));
-  margin: 0;
-}
-
-.service-card .card-ref {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.04em;
-  color: var(--ink-ghost);
-}
-
-.service-card .card-title {
-  font-size: 0.98rem;
-  font-weight: 600;
-  color: var(--link);
-  margin: 0.05rem 0 0.15rem;
-  line-height: 1.3;
-  letter-spacing: -0.005em;
-}
-
-.service-card:hover .card-title { color: var(--link-hover); }
-
-.service-card .card-desc {
-  font-size: 0.78rem;
-  color: var(--ink-faded);
-  line-height: 1.55;
-  margin: 0;
-}
-
-.service-card .card-cue {
-  margin-top: 0.4rem;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-ghost);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.service-card .card-cue .arrow {
-  transition: transform 0.15s ease;
-  color: var(--ink-faded);
-}
-
-.service-card:hover .card-cue .arrow {
-  transform: translateX(3px);
-  color: var(--ink);
-}
-
-.service-card.full-width {
-  grid-column: 1 / -1;
-}
-
-.notices-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.notices-list li {
-  padding: 0.65rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.notices-list li:last-child {
-  border-bottom: none;
-}
-
-.notice-date {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.65rem;
-  color: var(--ink-ghost);
-  margin-bottom: 0.15rem;
-}
-
-.notice-text {
-  font-size: 0.82rem;
-  color: var(--ink-light);
-  line-height: 1.5;
-}
-
-.faq-item {
-  border-bottom: 1px solid var(--rule);
-  padding: 0.7rem 0;
-}
-
-.faq-item:last-child { border-bottom: none; }
-
-.faq-q {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 0.3rem;
-}
-
-.faq-a {
-  font-size: 0.82rem;
-  color: var(--ink-light);
-  line-height: 1.55;
-}
-
-.faq-a a { text-decoration: underline; text-underline-offset: 2px; }
-
-.site-footer {
-  margin-top: 1.5rem;
-  padding: 1rem 0;
-  border-top: 2px solid var(--rule-heavy);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 1.2rem;
-  font-size: 0.72rem;
-  color: var(--ink-faded);
-}
-
-.footer-col h4 {
-  margin: 0 0 0.3rem;
-  font-size: 0.65rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-ghost);
-}
-
-.footer-col p {
-  margin: 0;
-  line-height: 1.6;
-}
-
-.footer-col p + p { margin-top: 0.15rem; }
-
-.footer-links a {
-  color: var(--ink-faded);
-  text-decoration: none;
-}
-.footer-links a:hover {
-  color: var(--ink);
-  text-decoration: underline;
-}
-
-.footer-bottom {
-  margin-top: 1rem;
-  padding-top: 0.6rem;
-  border-top: 1px solid var(--rule);
-  text-align: center;
-  font-size: 0.6rem;
-  color: var(--ink-ghost);
-  font-family: "IBM Plex Mono", monospace;
-}
-
-@media (max-width: 640px) {
-  .header-band, .title-section { padding-left: 1rem; padding-right: 1rem; }
-  .title-section-inner { padding: 0; }
-  .main { padding-left: 1rem; padding-right: 1rem; }
-  .services-grid { grid-template-columns: 1fr; }
-  .service-card.full-width { grid-column: auto; }
-  .site-footer { grid-template-columns: 1fr; gap: 0.8rem; }
-  .title-section h1 { font-size: 1.4rem; }
-  .header-util { display: none; }
-  .district-map-shell { padding: 0.5rem; }
-  .map-label,
-  .map-road-label { display: none; }
-  .map-label-small,
-  .map-road-label.secondary-label { display: none; }
-  .hotspot-hit { r: 36px; }
-  .map-legend { align-items: flex-start; flex-direction: column; }
-  .map-source { white-space: normal; }
-
-  /* Stat panel — fall to 2 cols on tablet, 1 col under 420px */
-  .stat-grid { grid-template-columns: 1fr 1fr; }
-  .stat-cell { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-  .stat-cell:nth-child(3n) { border-right: 1px solid var(--rule); }
-  .stat-cell:nth-child(2n) { border-right: none; }
-  .stat-cell:nth-child(n+5) { border-bottom: none; }
-  .stat-num { font-size: 2.2rem; }
-
-  .coo-headline { font-size: 1.2rem; }
-  .coo-body { font-size: 0.88rem; }
-  .coo-masthead { flex-direction: column; gap: 0.1rem; align-items: flex-start; }
-
-  .clerk-letter { padding: 1rem 1.05rem 1.1rem; }
-}
-
-@media (max-width: 420px) {
-  .stat-grid { grid-template-columns: 1fr; }
-  .stat-cell { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
-  .stat-cell:last-child { border-bottom: none !important; }
-  .stat-num { font-size: 2rem; }
-}
-
-.form-trigger {
-  color: var(--link);
-  text-decoration: none;
-  cursor: pointer;
-  border-bottom: 1px solid var(--rule);
-}
-.form-trigger:hover { color: var(--link-hover); }
-
-.noise-form-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 100;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.noise-form-overlay.open { display: flex; }
-
-.noise-form {
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  max-width: 520px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 28px;
-  position: relative;
-}
-
-.nf-close {
-  position: absolute; top: 12px; right: 16px;
-  background: none; border: none; font-size: 22px;
-  color: var(--ink-ghost); cursor: pointer;
-  line-height: 1; padding: 4px;
-}
-.nf-close:hover { color: var(--ink); }
-
-.nf-title {
-  font-size: 18px; font-weight: 600;
-  color: var(--ink); margin-bottom: 2px;
-}
-.nf-subtitle {
-  font-size: 12px; color: var(--ink-ghost);
-  font-family: "IBM Plex Mono", monospace;
-  margin-bottom: 20px;
-}
-
-.nf-field { margin-bottom: 16px; }
-
-.nf-label {
-  display: block; font-size: 13px; font-weight: 600;
-  color: var(--ink); margin-bottom: 4px;
-}
-.nf-hint {
-  font-size: 12px; color: var(--ink-ghost);
-  margin-bottom: 6px;
-}
-
-.nf-input, .nf-select, .nf-textarea {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid var(--rule);
-  background: #fff;
-  font-family: "IBM Plex Sans", sans-serif;
-  font-size: 14px;
-  color: var(--ink);
-}
-.nf-input:focus, .nf-select:focus, .nf-textarea:focus {
-  outline: none;
-  border-color: var(--rule-heavy);
-}
-.nf-textarea { min-height: 80px; resize: vertical; }
-
-.nf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-.nf-submit {
-  display: block; width: 100%;
-  padding: 10px;
-  background: var(--header-bg, #1d2b3a);
-  color: #fff; border: none;
-  font-family: "IBM Plex Sans", sans-serif;
-  font-size: 14px; font-weight: 500;
-  cursor: pointer;
-  margin-top: 8px;
-}
-.nf-submit:hover { opacity: 0.9; }
-
-.nf-footer {
-  margin-top: 16px;
-  font-size: 12px;
-  color: var(--ink-ghost);
-  font-family: "IBM Plex Mono", monospace;
-  line-height: 1.5;
-}
-
-.nf-rejection {
-  display: none;
-  background: #f5e8e8;
-  border: 1px solid #d4b0b0;
-  padding: 24px 28px;
-  margin-top: 24px;
-  line-height: 1.7;
-}
-.nf-rejection.visible { display: block; }
-
-.nf-rejection .rej-header {
-  font-size: 11px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  color: #8a3a3a;
-  font-family: "IBM Plex Mono", monospace;
-  margin-bottom: 12px;
-}
-.nf-rejection p {
-  font-size: 14px; color: var(--ink-light);
-  margin: 0 0 10px;
-}
-.nf-rejection p:last-child { margin-bottom: 0; }
-.nf-rejection .rej-sig {
-  margin-top: 14px;
-  font-size: 12px; color: var(--ink-ghost);
-  font-style: italic;
-}
-
-.nf-body.rejected .nf-field,
-.nf-body.rejected .nf-submit,
-.nf-body.rejected .nf-footer,
-.nf-body.rejected .nf-row-wrap {
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-@media (max-width: 500px) {
-  .nf-row { grid-template-columns: 1fr; }
-}
+  *,*::before,*::after{box-sizing:border-box}
+  :root{
+    --page:#f0ede6; --surface:#fbfaf7; --surface-alt:#eceae2;
+    --ink:#1b1a17; --ink-soft:#56534a; --ink-faint:#8a857a;
+    --navy:#1d2a37; --navy-soft:#33485a;
+    --rust:#8f3a17; --rust-deep:#6f2c10;
+    --teal:#355b64;
+    --gold:#c9a14e;
+    --rule:#d9d5ca; --rule-soft:#e4e0d6;
+    --link:#1d4a6a;
+    --maxw:1120px;
+    --serif:"Source Serif 4",Georgia,serif;
+    --sans:"IBM Plex Sans",-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--page);color:var(--ink);
+    font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.09  0 0 0 0 0.08  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+  body>*{position:relative;z-index:1}
+  a{color:var(--link);text-underline-offset:2px;text-decoration-thickness:1px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 2.4rem}
+
+  /* utility band */
+  .util{background:var(--navy);color:#e9e5db}
+  .util-in{max-width:var(--maxw);margin:0 auto;padding:.5rem 2.4rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
+  .util-gov{display:flex;align-items:center;gap:.5rem;color:#cdd4db}
+  .util-gov .dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--gold);display:inline-block;flex:0 0 auto}
+  .util .right{color:rgba(233,229,219,.55);letter-spacing:.08em;text-align:right}
+
+  /* masthead */
+  .mast{padding:2.5rem 0 1.7rem;border-bottom:2px solid var(--ink)}
+  .mast-row{display:flex;align-items:center;gap:1.5rem}
+  .seal{width:84px;height:84px;flex:0 0 auto}
+  .mast-id{flex:1 1 auto}
+  .mast-id .org{font-family:var(--serif);font-weight:600;font-size:2.35rem;line-height:1;letter-spacing:-.015em;color:var(--ink)}
+  .mast-id .sub{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--navy-soft);margin-top:.5rem}
+  .mast-tag{margin-left:auto;text-align:right;font-family:var(--mono);font-size:.66rem;line-height:1.7;letter-spacing:.06em;color:var(--ink-faint)}
+  .mast-tag .strong{color:var(--ink-soft)}
+  .lede{font-family:var(--serif);font-size:1.42rem;line-height:1.45;font-weight:400;color:var(--ink);max-width:46ch;margin:1.5rem 0 0}
+  .lede .accent{color:var(--rust);font-style:italic}
+
+  /* section scaffolding */
+  .section{padding:3.2rem 0}
+  .section + .section{border-top:1px solid var(--rule)}
+  .eyebrow{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rust);margin:0 0 .2rem}
+  .h2{font-family:var(--serif);font-weight:600;font-size:1.55rem;letter-spacing:-.01em;margin:0 0 .15rem;color:var(--ink)}
+  .h2-note{font-family:var(--sans);font-size:.86rem;color:var(--ink-faint);margin:.1rem 0 0;max-width:56ch}
+
+  /* I want to */
+  .iwant{display:grid;grid-template-columns:0.85fr 2fr;gap:2.6rem;align-items:start}
+  .iwant-head .big{font-family:var(--serif);font-style:italic;font-weight:400;font-size:2rem;line-height:1.1;color:var(--ink);letter-spacing:-.01em}
+  .iwant-head p{font-size:.84rem;color:var(--ink-faint);margin:.8rem 0 0;max-width:26ch}
+  .tasklist{list-style:none;margin:0;padding:0;column-count:2;column-gap:2.4rem}
+  .tasklist li{break-inside:avoid;padding:.7rem 0;border-top:1px solid var(--rule-soft)}
+  .tasklist li:first-child,.tasklist li:nth-child(4){border-top:none}
+  .tasklist a,.tasklist .task-static{display:block;font-family:var(--serif);font-size:1.06rem;color:var(--ink);text-decoration:none;line-height:1.3;cursor:pointer}
+  .tasklist a:hover{color:var(--rust)}
+  .tasklist a::after{content:" \2192";color:var(--ink-faint);font-family:var(--sans)}
+  .tasklist .task-static{color:var(--ink-soft)}
+  .tasklist .win{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--rule);border-radius:2px;padding:0 .3rem;margin-left:.45rem;vertical-align:2px;white-space:nowrap}
+  .tasklist .note{display:block;font-family:var(--sans);font-size:.76rem;color:var(--ink-faint);margin-top:.18rem;line-height:1.45}
+
+  /* body grid */
+  .body-grid{display:grid;grid-template-columns:1.65fr 1fr;gap:3.4rem;align-items:start}
+  .stack>*+*{margin-top:2.6rem}
+
+  /* notices */
+  .notice{padding:0 0 0 1.1rem;border-left:2px solid var(--teal);margin-bottom:1.7rem}
+  .notice:last-child{margin-bottom:0}
+  .notice .nmeta{font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.35rem}
+  .notice p{margin:0;font-size:.96rem;line-height:1.62;color:var(--ink-soft)}
+  .notice .boiler{color:var(--ink);font-variant:small-caps;letter-spacing:.02em;font-weight:500}
+  .pill{display:inline-block;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--teal);border:1px solid var(--teal);
+    background:rgba(53,91,100,.07);padding:.05rem .35rem;border-radius:2px;text-decoration:none;white-space:nowrap;vertical-align:1px}
+  .pill:hover{background:var(--teal);color:var(--surface)}
+  .ord-ref{font-family:var(--mono);font-size:.92em;color:var(--rust);text-decoration:none;border-bottom:1px dotted rgba(143,58,23,.5);white-space:nowrap}
+
+  /* ordinance code */
+  .ordcode{background:var(--surface);border:1px solid var(--rule);border-top:2px solid var(--navy)}
+  .ordcode .ocrow{display:grid;grid-template-columns:auto 1fr;gap:1rem;padding:.85rem 1.2rem;border-top:1px solid var(--rule-soft)}
+  .ordcode .ocrow:first-of-type{border-top:none}
+  .ordcode .oc-no{font-family:var(--mono);font-size:.78rem;font-weight:500;color:var(--rust);white-space:nowrap;padding-top:.1rem}
+  .ordcode .oc-title{font-weight:600;font-size:.92rem;color:var(--ink)}
+  .ordcode .oc-text{font-family:var(--mono);font-size:.78rem;line-height:1.55;color:var(--ink-soft);margin-top:.2rem}
+
+  /* minutes */
+  .minutes{font-family:var(--mono);font-size:.8rem;line-height:1.85;color:var(--ink-soft)}
+  .minutes .mhead{color:var(--ink);letter-spacing:.08em;text-transform:uppercase;font-size:.66rem;margin-bottom:.6rem;display:block}
+  .minutes .item{display:block;margin-bottom:.15rem}
+  .minutes .item b{color:var(--ink);font-weight:600}
+
+  /* faq */
+  .faq{margin-top:1.4rem}
+  .faq dt{font-family:var(--serif);font-size:1.06rem;color:var(--ink);margin-top:1.1rem;line-height:1.3}
+  .faq dt:first-child{margin-top:0}
+  .faq dd{margin:.25rem 0 0;font-size:.9rem;color:var(--ink-soft);line-height:1.6}
+  .faq dd .em{color:var(--ink);font-style:italic}
+
+  /* sidebar modules */
+  .module{margin-bottom:2.4rem}
+  .module:last-child{margin-bottom:0}
+  .mod-title{font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0 0 .2rem;padding-bottom:.5rem;border-bottom:2px solid var(--ink)}
+  .mod-sub{font-family:var(--serif);font-style:italic;font-size:.92rem;color:var(--ink-faint);margin:.55rem 0 .9rem}
+  .glance{list-style:none;margin:0;padding:0}
+  .glance li{display:flex;justify-content:space-between;gap:1rem;padding:.42rem 0;border-bottom:1px solid var(--rule-soft);font-size:.84rem;color:var(--ink-soft)}
+  .glance li .n{font-family:var(--mono);font-weight:500;color:var(--ink);text-align:right;white-space:nowrap}
+  .info{font-size:.86rem;line-height:1.7;color:var(--ink-soft)}
+  .info b{color:var(--ink);font-weight:600}
+  .info .ln{display:block;padding:.3rem 0;border-bottom:1px solid var(--rule-soft)}
+  .notlist{list-style:none;margin:.4rem 0 0;padding:0;font-size:.86rem;color:var(--ink-soft)}
+  .notlist li{padding:.32rem 0 .32rem 1.1rem;position:relative;line-height:1.5}
+  .notlist li::before{content:"\2014";position:absolute;left:0;color:var(--rust)}
+
+  /* coo excerpt — AUTO-INJECTED region (build_bird_coo.py). Styled here via CSS only; markup is not hand-edited. */
+  .coo-excerpt{background:var(--surface);border:1px solid var(--rule);padding:1.2rem 1.3rem}
+  .coo-masthead{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.5rem}
+  .coo-headline{font-family:var(--serif);font-weight:600;font-size:1.02rem;color:var(--ink);margin:0 0 .35rem;line-height:1.25}
+  .coo-body{margin:0;font-size:.86rem;color:var(--ink-soft);line-height:1.55}
+  .coo-link{font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;display:inline-block;margin-top:.7rem;text-decoration:none;color:var(--rust)}
+  .coo-link .arrow{margin-right:.15rem}
+
+  /* services ledger */
+  .svc{border-top:2px solid var(--ink)}
+  .svc-row{display:grid;grid-template-columns:11rem 1fr 9rem;gap:1.5rem;align-items:baseline;padding:1.4rem 0;border-bottom:1px solid var(--rule)}
+  .svc-cat{font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);padding-top:.35rem}
+  .svc-cat .dot{color:var(--rust)}
+  .svc-main .name{font-family:var(--serif);font-size:1.28rem;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+  .svc-main .name:hover{color:var(--rust)}
+  .svc-main .rel{font-size:.9rem;color:var(--ink-soft);margin-top:.3rem;line-height:1.55;max-width:58ch}
+  .svc-go{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-align:right;color:var(--ink-faint);text-decoration:none;padding-top:.45rem}
+  .svc-go:hover{color:var(--rust)}
+  .svc-go .arrow{display:inline-block;margin-left:.2rem}
+
+  /* footer */
+  .foot{background:var(--navy);color:#cdd4db}
+  .foot-in{max-width:var(--maxw);margin:0 auto;padding:2.6rem 2.4rem}
+  .foot-top{display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:1.6rem}
+  .foot-stat{font-family:var(--serif);font-size:1.05rem;color:#eef1f4;max-width:42ch;line-height:1.45}
+  .foot-links{margin-left:auto;text-align:right;font-family:var(--mono);font-size:.72rem;line-height:2;letter-spacing:.04em}
+  .foot-links a{color:#cdd4db;text-decoration:none;display:block}
+  .foot-links a:hover{color:#fff}
+  .foot-links .lbl{color:rgba(205,212,219,.5);letter-spacing:.14em;text-transform:uppercase;font-size:.6rem;display:block;margin-bottom:.3rem}
+  .foot-bot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.4rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.05em;color:rgba(205,212,219,.55)}
+  .foot-bot .sig{color:#cdd4db}
+
+  /* ---------- noise complaint form (modal overlay) ---------- */
+  .noise-form-overlay{position:fixed;inset:0;z-index:1000;display:none;align-items:flex-start;justify-content:center;
+    padding:5vh 1rem;overflow-y:auto;background:rgba(20,18,15,.55)}
+  .noise-form-overlay.open{display:flex}
+  .noise-form{position:relative;width:100%;max-width:560px;background:var(--surface);border:1px solid var(--rule);
+    border-top:3px solid var(--navy);box-shadow:0 30px 70px -28px rgba(0,0,0,.5);padding:2rem 2rem 1.6rem}
+  .nf-close{position:absolute;top:.7rem;right:.9rem;background:none;border:none;font-size:1.5rem;line-height:1;
+    color:var(--ink-faint);cursor:pointer;padding:.2rem}
+  .nf-close:hover{color:var(--rust)}
+  .nf-title{font-family:var(--serif);font-weight:600;font-size:1.45rem;color:var(--ink);letter-spacing:-.01em}
+  .nf-subtitle{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:.25rem 0 1.4rem}
+  .nf-field{margin-bottom:1.1rem}
+  .nf-label{display:block;font-weight:600;font-size:.82rem;color:var(--ink);margin-bottom:.15rem}
+  .nf-hint{font-size:.72rem;color:var(--ink-faint);margin-bottom:.35rem}
+  .nf-input,.nf-select,.nf-textarea{width:100%;font-family:var(--sans);font-size:.88rem;color:var(--ink);
+    background:#fff;border:1px solid var(--rule);border-radius:3px;padding:.55rem .65rem}
+  .nf-input:focus,.nf-select:focus,.nf-textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 2px rgba(29,42,55,.12)}
+  .nf-textarea{min-height:84px;resize:vertical}
+  .nf-row{display:flex;gap:1rem}
+  .nf-row .nf-field{flex:1 1 0}
+  .nf-submit{width:100%;font-family:var(--sans);font-weight:600;font-size:.9rem;color:var(--surface);
+    background:var(--rust);border:none;border-radius:4px;padding:.7rem;cursor:pointer;margin-top:.3rem}
+  .nf-submit:hover{background:var(--rust-deep)}
+  .nf-footer{font-size:.74rem;color:var(--ink-faint);line-height:1.5;margin-top:1rem;border-top:1px solid var(--rule-soft);padding-top:.8rem}
+  .nf-rejection{display:none;border-left:3px solid var(--rust);background:rgba(143,58,23,.05);padding:1rem 1.1rem;margin-top:.4rem}
+  .nf-rejection.visible{display:block}
+  .nf-rejection .rej-header{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);font-weight:600;margin-bottom:.6rem}
+  .nf-rejection p{margin:0 0 .7rem;font-size:.88rem;line-height:1.6;color:var(--ink-soft)}
+  .nf-rejection .rej-sig{font-family:var(--serif);font-style:italic;color:var(--ink);margin-top:.4rem}
+  .nf-body.rejected .nf-field,
+  .nf-body.rejected .nf-row-wrap,
+  .nf-body.rejected .nf-submit,
+  .nf-body.rejected .nf-footer{display:none}
+
+  /* responsive */
+  @media(max-width:880px){
+    .wrap{padding:0 1.5rem}
+    .util-in,.foot-in{padding-left:1.5rem;padding-right:1.5rem}
+    .mast-id .org{font-size:1.9rem}
+    .mast-tag{display:none}
+    .iwant{grid-template-columns:1fr;gap:1.4rem}
+    .iwant-head .big{font-size:1.7rem}
+    .body-grid{grid-template-columns:1fr;gap:2.8rem}
+    .svc-row{grid-template-columns:1fr;gap:.4rem;padding:1.2rem 0}
+    .svc-cat{padding-top:0}
+    .svc-go{text-align:left;padding-top:.3rem}
+  }
+  @media(max-width:560px){
+    .tasklist{column-count:1}
+    .tasklist li:nth-child(4){border-top:1px solid var(--rule-soft)}
+    .mast-row{gap:1rem}
+    .seal{width:64px;height:64px}
+    .mast-id .org{font-size:1.55rem}
+    .lede{font-size:1.18rem}
+    .util-in{font-size:.58rem}
+    .util .right{display:none}
+    .foot-links{margin-left:0;text-align:left}
+    .noise-form{padding:1.6rem 1.2rem 1.2rem}
+    .nf-row{flex-direction:column;gap:0}
+  }
 </style>
 </head>
 <body>
 
-<div class="header-band">
-  <div class="header-band-inner">
-    <div class="header-org">Avian Municipal District</div>
-    <div class="header-util">Clerk's Office · 14 Municipal Oak</div>
-  </div>
-</div>
-
-<div class="title-section">
-  <div class="title-section-inner">
-    <h1>Avian Municipal District</h1>
-    <p class="title-sub">Official portal · Services, notices, and public records</p>
-  </div>
-</div>
-
-<div class="main">
-
-  <div class="quick-actions">
-    <a class="qa-tile is-primary" href="javascript:void(0)" onclick="openNoiseForm();">
-      <span class="qa-tile-glyph">Civic action</span>
-      <div class="qa-tile-title">File a Noise Complaint</div>
-      <span class="qa-tile-arrow">→</span>
-    </a>
-    <a class="qa-tile" href="/is/writing/nest-court/calendar/" target="_blank">
-      <span class="qa-tile-glyph">Judicial</span>
-      <div class="qa-tile-title">Court calendar</div>
-      <span class="qa-tile-arrow">→</span>
-    </a>
-    <a class="qa-tile" href="/is/writing/nest-court-proceedings/" target="_blank">
-      <span class="qa-tile-glyph">Judicial</span>
-      <div class="qa-tile-title">Observe a proceeding</div>
-      <span class="qa-tile-arrow">→</span>
-    </a>
-    <a class="qa-tile" href="/is/writing/nest-court/" target="_blank">
-      <span class="qa-tile-glyph">Judicial</span>
-      <div class="qa-tile-title">Search the docket</div>
-      <span class="qa-tile-arrow">→</span>
-    </a>
+  <!-- utility band -->
+  <div class="util">
+    <div class="util-in">
+      <span class="util-gov"><span class="dot"></span> An official site of the Avian Municipal District</span>
+      <span class="right">Office of record · Last updated May 26, 2026</span>
+    </div>
   </div>
 
-  <div class="notice-ticker" aria-label="Recent notices">
-    <div class="notice-ticker-label">Notices</div>
-    <div class="notice-ticker-track">
-      <div class="notice-ticker-content">
-        <span>Quiet hours compliance review in progress (AMNC-2026-011A)</span>
-        <span>Telephone wire above south parking lot — request filed; not designated</span>
-        <span>Spring nesting season underway; solo permits are not required</span>
-        <span>Third bench is public property; it is a bench</span>
-        <span>Unclaimed vine in Clerk's drawer since March</span>
-        <span>Finch &amp; Sons Nest Repair added to contractor registry; applicant persistent</span>
-        <span>Fax line remains not operational</span>
+  <div class="wrap">
+
+    <!-- masthead -->
+    <header class="mast">
+      <div class="mast-row">
+        <svg class="seal" viewBox="0 0 100 100" role="img" aria-label="Seal of the Office of the Clerk">
+          <defs>
+            <path id="arcTop" d="M 17,50 A 33,33 0 0 1 83,50" fill="none"/>
+            <path id="arcBot" d="M 17,52 A 33,33 0 0 0 83,52" fill="none"/>
+          </defs>
+          <circle cx="50" cy="50" r="47" fill="none" stroke="#1d2a37" stroke-width="1.6"/>
+          <circle cx="50" cy="50" r="42.5" fill="none" stroke="#c9a14e" stroke-width="0.8"/>
+          <circle cx="50" cy="50" r="29" fill="none" stroke="#1d2a37" stroke-width="0.8"/>
+          <text font-family="IBM Plex Mono, monospace" font-size="6.1" letter-spacing="1.1" fill="#1d2a37" font-weight="500">
+            <textPath href="#arcTop" startOffset="50%" text-anchor="middle">OFFICE OF THE CLERK</textPath>
+          </text>
+          <text font-family="IBM Plex Mono, monospace" font-size="4.7" letter-spacing="1.0" fill="#33485a">
+            <textPath href="#arcBot" startOffset="50%" text-anchor="middle">AVIAN MUNICIPAL DISTRICT</textPath>
+          </text>
+          <g stroke="#1d2a37" stroke-width="1.5" stroke-linecap="round" fill="none">
+            <path d="M50,65 L50,37"/>
+            <path d="M50,46 L41,39"/><path d="M50,46 L59,39"/>
+            <path d="M50,54 L43,48"/><path d="M50,54 L57,48"/>
+          </g>
+          <g fill="#8f3a17"><circle cx="40" cy="38" r="1.5"/><circle cx="60" cy="38" r="1.5"/><circle cx="50" cy="35" r="1.5"/></g>
+        </svg>
+        <div class="mast-id">
+          <div class="org">Office of the Clerk</div>
+          <div class="sub">Avian Municipal District</div>
+        </div>
+        <div class="mast-tag">
+          <span class="strong">Serving the branches</span><br>
+          Sycamore Lane · Birch Court<br>Municipal Oak &amp; surrounding
+        </div>
       </div>
-    </div>
-  </div>
+      <p class="lede">The Office of the Clerk maintains the public records of the district — filings, notices, and the Ordinance Code. It does not provide opinions on who was right. <span class="accent">It has opinions. It does not provide them.</span></p>
+    </header>
 
-  <div class="clerk-letter">
-    <div class="clerk-letter-head">From the Clerk's Office — Spring 2026</div>
-    <p>The Avian Municipal District serves the residents of Sycamore Lane, Birch Court, Municipal Oak, and surrounding branches. The Clerk's Office maintains public records, processes filings, and provides access to district services. It does not provide opinions on who was right. It has opinions. It does not provide them.</p>
-    <p>This spring has been active. The Court has processed four cases this term, including two nest abandonments, a noise matter under compliance review, and a domestic dispute about humming. Solo nesting consultations with approved contractors are up.</p>
-    <p>The fax line remains not operational. Please do not ask again until autumn.</p>
-    <div class="sig">— T. Nuthatch, Clerk of Court</div>
-  </div>
-
-  <div class="section-heading">District at a Glance</div>
-
-  <div class="stat-panel" aria-label="District statistics">
-    <div class="stat-grid">
-      <button type="button" class="stat-cell" aria-expanded="false">
-        <div class="stat-num">7</div>
-        <div class="stat-label">Broken hearts</div>
-        <div class="stat-expand">Counted by filing. Not counted by observation, where the number is higher.</div>
-      </button>
-      <button type="button" class="stat-cell" aria-expanded="false">
-        <div class="stat-num">12</div>
-        <div class="stat-label">Self-help books,<br>drainage pipe</div>
-        <div class="stat-expand">Located behind 22 Birch Court. The Clerk's Office knows whose they are.</div>
-      </button>
-      <button type="button" class="stat-cell" aria-expanded="false">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Public argument</div>
-        <div class="stat-expand">Filed under noise. Reclassification denied; argument was structurally a noise event.</div>
-      </button>
-      <button type="button" class="stat-cell" aria-expanded="false">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Unclaimed vine</div>
-        <div class="stat-expand">In the Clerk's drawer since March. It is beginning to affect the filing.</div>
-      </button>
-      <button type="button" class="stat-cell" aria-expanded="false">
-        <div class="stat-num is-zero">0</div>
-        <div class="stat-label">Reconciliations</div>
-        <div class="stat-expand">The Clerk's Office does not keep a separate count and would not know where to begin.</div>
-      </button>
-      <button type="button" class="stat-cell" aria-expanded="false">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Fax, not operational</div>
-        <div class="stat-expand">Inquiries about the fax line should be directed to the fax line.</div>
-      </button>
-    </div>
-    <div class="stat-foot">
-      <span>Source: Clerk's Office</span>
-      <span class="stat-period">Counts updated as observed</span>
-    </div>
-  </div>
-
-  <!-- COO-EXCERPT-START (auto-generated by _scripts/build_bird_coo.py — manual edits will be overwritten) -->
-  <section class="coo-excerpt" aria-label="From the Municipal Coo">
-    <div class="coo-masthead">
-      <span>From the Municipal Coo</span>
-    </div>
-    <h3 class="coo-headline">Community Meeting Proposed on Shared Perch Usage; Attendance Already Contentious</h3>
-    <p class="coo-body">A community meeting has been proposed to address "recurring disputes over public perch usage following domestic separation," according to a notice posted on the Municipal Oak bulletin board on&nbsp;Thursday.</p>
-    <a class="coo-link" href="/is/writing/bird-coo/" target="_blank">
-      <span class="arrow">→</span> Read the full edition
-    </a>
-  </section>
-  <!-- COO-EXCERPT-END -->
-
-  <div class="section-heading">District Services</div>
-
-  <div class="services-grid">
-    <a class="service-card" data-cat="judicial" href="/is/writing/nest-court/" target="_blank">
-      <div class="card-meta">
-        <span class="card-category">Judicial</span>
-        <span class="card-ref">Ord. 14.7(b)</span>
+    <!-- I want to -->
+    <section class="section iwant">
+      <div class="iwant-head">
+        <div class="big">I want to&hellip;</div>
+        <p>Most residents want one of the following. The nest is usually a pretext.</p>
       </div>
-      <div class="card-title">Nest Court — eCourt Public Portal</div>
-      <div class="card-desc">Case filings, hearing schedules, rulings, and docket records. Public access under Ordinance 14.7(b). Spectators reviewing active cases are asked to refrain from editorial commentary in the queue. Recent proceedings with public gallery assessments are available for review.</div>
-      <div class="card-cue"><span>eCourt portal</span><span class="arrow">→</span></div>
-    </a>
-    <a class="service-card" data-cat="media" href="/is/writing/bird-coo/" target="_blank">
-      <div class="card-meta">
-        <span class="card-category">Media</span>
-        <span class="card-ref">Indep. publication</span>
+      <ul class="tasklist">
+        <li><a href="/is/writing/nest-court/" target="_blank">Apply for a Separation of Nesting Rights</a></li>
+        <li><a href="/is/writing/nest-court/" target="_blank">Check the status of a contested egg custody</a></li>
+        <li><a href="javascript:void(0)" onclick="openNoiseForm()">Report a humming violation</a></li>
+        <li><a href="#ordinances">Look up what counts as abandonment</a></li>
+        <li><a href="#notices">See what was left unclaimed at the window</a></li>
+        <li><a href="/is/writing/karen-hawk/" target="_blank">Retain a bird of prey</a></li>
+      </ul>
+    </section>
+
+    <!-- body grid -->
+    <section class="section">
+      <div class="body-grid">
+
+        <!-- main -->
+        <div class="stack">
+          <div id="notices">
+            <p class="eyebrow">Posted by the Clerk's Office</p>
+            <h2 class="h2">Public Notices</h2>
+            <p class="h2-note">Listed reverse-chronologically. A notice records how a matter was processed, not who was right.</p>
+
+            <div style="margin-top:1.7rem">
+              <div class="notice">
+                <div class="nmeta">Notice 26-114 · May 18, 2026</div>
+                <p><span class="boiler">Public notice is hereby given that</span> the following items remain unclaimed at the Clerk's window: one (1) wedding band, listed twice and reduced once; one (1) photograph, one party removed by careful tearing; and one (1) zip tie of disputed provenance, claimed by two parties and released to neither. Owners may claim them on presentation of identification. The photograph in particular.</p>
+              </div>
+              <div class="notice">
+                <div class="nmeta">Notice 26-110 · May 11, 2026</div>
+                <p><span class="boiler">Public notice is hereby given that</span> the petition concerning the telephone wire above the south lot <a href="/is/writing/nest-court/" class="pill" target="_blank">AMNC-2026-022A</a> has been dismissed. Asked separately, both parties wished the wire left as it is. The Clerk's Office could not locate the dispute described and has left the wire as it is.</p>
+              </div>
+              <div class="notice">
+                <div class="nmeta">Notice 26-103 · April 30, 2026</div>
+                <p><span class="boiler">Public notice is hereby given that</span> the unclaimed vine held at the Birch Court intersection, retained in the Clerk's drawer for four months, has been adjudicated abandoned property under <a href="#ordinances" class="ord-ref">Ord. 31.4</a> and released for general use. No party came forward to say why it was left. The Clerk's Office is glad to have the drawer back.</p>
+              </div>
+              <div class="notice">
+                <div class="nmeta">Notice 26-098 · April 2, 2026</div>
+                <p><span class="boiler">Public notice is hereby given that</span> the quiet-hours review under <a href="#ordinances" class="ord-ref">Ord. 9.3(a)</a> <a href="/is/writing/nest-court/" class="pill" target="_blank">AMNC-2026-011A</a> has concluded. The Court found that 6:29 AM is before 6:30 AM. The resident, having sung once within quiet hours, is found to have made his point and is not required to repeat it.</p>
+              </div>
+              <div class="notice">
+                <div class="nmeta">Notice 26-087 · March 7, 2026</div>
+                <p><span class="boiler">Public notice is hereby given that</span> the fax line remains not operational. The Clerk's Office has been asked whether "not operational" means broken or disconnected. The answer is yes.</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="ordinances">
+            <p class="eyebrow">The district's law</p>
+            <h2 class="h2">The Ordinance Code</h2>
+            <p class="h2-note">Cited often and read rarely. Reproduced below in full.</p>
+            <div class="ordcode" style="margin-top:1.5rem">
+              <div class="ocrow"><div class="oc-no">Ord. 9.3(a)</div><div><div class="oc-title">Noise disturbance</div><div class="oc-text">No resident shall vocalize between 9:00 PM and 6:30 AM. The Court has found that 6:29 AM is before 6:30 AM.</div></div></div>
+              <div class="ocrow"><div class="oc-no">Ord. 14.7(b)</div><div><div class="oc-title">Public records access</div><div class="oc-text">The records of the District are open to the public. Copies are made at the window, one per party.</div></div></div>
+              <div class="ocrow"><div class="oc-no">Ord. 22.1</div><div><div class="oc-title">Perch occupancy</div><div class="oc-text">A perch accommodates the birds upon it. Seating is not assigned.</div></div></div>
+              <div class="ocrow"><div class="oc-no">Ord. 31.4</div><div><div class="oc-title">Abandoned property</div><div class="oc-text">Property left unclaimed for ninety days may be adjudicated abandoned and released for general use. The drawer is not indefinite.</div></div></div>
+            </div>
+          </div>
+
+          <div>
+            <p class="eyebrow">On the record</p>
+            <h2 class="h2">Meeting Minutes</h2>
+            <p class="h2-note">Regular meeting of the District. Recorded by the Deputy Clerk.</p>
+            <div class="minutes" style="margin-top:1.4rem">
+              <span class="mhead">Minutes — Regular Meeting · May 14, 2026</span>
+              <span class="item"><b>Item 1.</b> Call to order. Present: the Clerk; the Deputy Clerk (R. Wren). A quorum was met by the Clerk being present and not leaving.</span>
+              <span class="item"><b>Item 3.</b> Continued matters. One matter has now been continued five times; neither party will say who asked. The Court has ordered that any further continuance be entered on its own motion, so that neither party need admit to wanting it.</span>
+              <span class="item"><b>Item 5.</b> One dissolution filed and withdrawn for the third time. The Court has stopped scheduling the hearing and now leaves the date blank.</span>
+              <span class="item"><b>Item 7.</b> Public comment period. No members of the public were present.</span>
+              <span class="item"><b>Item 9.</b> Adjournment. The Clerk adjourned to the window.</span>
+            </div>
+          </div>
+
+          <div>
+            <p class="eyebrow">Frequently requested</p>
+            <h2 class="h2">Information</h2>
+            <dl class="faq">
+              <dt>How do I file for nest abandonment?</dt>
+              <dd>Through the eCourt Public Portal or at the window. Include the nest, the date of departure, and evidence of where the respondent went. <span class="em">"He knows what he did" is not evidence.</span></dd>
+              <dt>May I observe a proceeding?</dt>
+              <dd>Three matters are open to gallery observation through the eCourt Portal. Observation is not attendance and does not count toward community service hours.</dd>
+              <dt>Where did the respondent go?</dt>
+              <dd>The Clerk's Office does not know. In one matter the Court made no finding as to where the respondent went — only that he has not come back.</dd>
+            </dl>
+          </div>
+        </div>
+
+        <!-- sidebar -->
+        <aside>
+          <div class="module">
+            <h3 class="mod-title">The District at a Glance</h3>
+            <p class="mod-sub">The Clerk's Office counts. It does not interpret.</p>
+            <ul class="glance">
+              <li><span>Residents on the register</span><span class="n">1,204</span></li>
+              <li><span>Continuances in one matter</span><span class="n">5</span></li>
+              <li><span>Dissolutions filed, then withdrawn</span><span class="n">1</span></li>
+              <li><span>Former-mate proximity waivers</span><span class="n">2</span></li>
+              <li><span>Ordinances in effect</span><span class="n">47</span></li>
+              <li><span>Items in the unclaimed drawer</span><span class="n">3</span></li>
+              <li><span>Designated benches</span><span class="n">1 (contested)</span></li>
+              <li><span>Fax line</span><span class="n">not operational</span></li>
+            </ul>
+          </div>
+
+          <div class="module">
+            <h3 class="mod-title">Hours &amp; Contact</h3>
+            <div class="info">
+              <span class="ln"><b>Window hours</b> — Tue–Thu, 9:00 AM&ndash;3:00 PM. Closed during molt.</span>
+              <span class="ln"><b>Filings</b> — received by the Deputy Clerk (R. Wren).</span>
+              <span class="ln"><b>Fax</b> — not operational.</span>
+              <span class="ln"><b>The telephone wire</b> — not a designated residence. The matter is closed.</span>
+              <span class="ln" style="border-bottom:none"><b>Clerk of Court</b> — T. Nuthatch.</span>
+            </div>
+          </div>
+
+          <div class="module">
+            <h3 class="mod-title">Not reasons to visit this office</h3>
+            <ul class="notlist">
+              <li>To adjudicate a migratory dispute — <a href="/is/writing/nest-court/" target="_blank">the Court</a> is in Chamber B.</li>
+              <li>To locate a former mate.</li>
+              <li>To have a feeling validated.</li>
+              <li>To serve as the contact for the Tuesday support group.</li>
+              <li>To correct the newspaper. It has been reminded of its independence.</li>
+            </ul>
+          </div>
+
+          <div class="module">
+            <!-- COO-EXCERPT-START (auto-generated by _scripts/build_bird_coo.py — manual edits will be overwritten) -->
+            <section class="coo-excerpt" aria-label="From the Municipal Coo">
+              <div class="coo-masthead">
+                <span>From the Municipal Coo</span>
+              </div>
+              <h3 class="coo-headline">Community Meeting Proposed on Shared Perch Usage; Attendance Already Contentious</h3>
+              <p class="coo-body">A community meeting has been proposed to address "recurring disputes over public perch usage following domestic separation," according to a notice posted on the Municipal Oak bulletin board on&nbsp;Thursday.</p>
+              <a class="coo-link" href="/is/writing/bird-coo/" target="_blank">
+                <span class="arrow">→</span> Read the full edition
+              </a>
+            </section>
+            <!-- COO-EXCERPT-END -->
+          </div>
+        </aside>
+
       </div>
-      <div class="card-title">The Municipal Coo</div>
-      <div class="card-desc">The district's newspaper of record. Published weekly. Court coverage, community letters, classifieds, and licensed practitioner advertising. The Coo operates independently of the Clerk's Office and has been reminded of this whenever it publishes something the Clerk's Office would have preferred it didn't.</div>
-      <div class="card-cue"><span>Weekly edition</span><span class="arrow">→</span></div>
-    </a>
-    <a class="service-card" data-cat="community" href="/is/writing/secondnest/" target="_blank">
-      <div class="card-meta">
-        <span class="card-category">Community</span>
-        <span class="card-ref">Not endorsed</span>
+    </section>
+
+    <!-- services directory -->
+    <section class="section">
+      <p class="eyebrow">Directory</p>
+      <h2 class="h2">District Services &amp; Linked Institutions</h2>
+      <p class="h2-note">The Clerk's Office links to the following. A link is provided for navigation. It is not an endorsement.</p>
+
+      <div class="svc" style="margin-top:1.8rem">
+        <div class="svc-row">
+          <div class="svc-cat"><span class="dot">&#9670;</span> Judicial</div>
+          <div class="svc-main"><a class="name" href="/is/writing/nest-court/" target="_blank">Nest Court</a><div class="rel">The docket of record — filings, rulings, and compliance monitoring. The Clerk's Office files; the Court decides.</div></div>
+          <a class="svc-go" href="/is/writing/nest-court/" target="_blank">/nest-court<span class="arrow">&rarr;</span></a>
+        </div>
+        <div class="svc-row">
+          <div class="svc-cat"><span class="dot">&#9670;</span> Media</div>
+          <div class="svc-main"><a class="name" href="/is/writing/bird-coo/" target="_blank">The Municipal Coo</a><div class="rel">The district's newspaper. It operates independently of the Clerk's Office and has been reminded of this.</div></div>
+          <a class="svc-go" href="/is/writing/bird-coo/" target="_blank">/bird-coo<span class="arrow">&rarr;</span></a>
+        </div>
+        <div class="svc-row">
+          <div class="svc-cat"><span class="dot">&#9670;</span> Community</div>
+          <div class="svc-main"><a class="name" href="/is/writing/perch-chat/" target="_blank">The Perch</a><div class="rel">Intended for municipal coordination. Used by residents for personal disputes. Maintenance continues on principle.</div></div>
+          <a class="svc-go" href="/is/writing/perch-chat/" target="_blank">/perch-chat<span class="arrow">&rarr;</span></a>
+        </div>
+        <div class="svc-row">
+          <div class="svc-cat"><span class="dot">&#9670;</span> Community</div>
+          <div class="svc-main"><a class="name" href="/is/writing/secondnest/" target="_blank">SecondNest</a><div class="rel">A peer platform the Clerk's Office does not operate, endorse, or moderate. Residents who recognise someone on it are encouraged to mind their business.</div></div>
+          <a class="svc-go" href="/is/writing/secondnest/" target="_blank">/secondnest<span class="arrow">&rarr;</span></a>
+        </div>
+        <div class="svc-row">
+          <div class="svc-cat"><span class="dot" style="color:var(--rust)">&#9670;</span> Licensed practitioner</div>
+          <div class="svc-main"><a class="name" href="/is/writing/karen-hawk/" target="_blank">Karen Hawk, Attorney</a><div class="rel">The Clerk's Office processes her filings more frequently than any other practitioner's. This is not an endorsement. It is a volume observation.</div></div>
+          <a class="svc-go" href="/is/writing/karen-hawk/" target="_blank">/karen-hawk<span class="arrow">&rarr;</span></a>
+        </div>
       </div>
-      <div class="card-title">SecondNest</div>
-      <div class="card-desc">Community personals platform. The Clerk's Office does not operate, endorse, or moderate SecondNest. Residents who recognise someone on the platform are encouraged to mind their business.</div>
-      <div class="card-cue"><span>External platform</span><span class="arrow">→</span></div>
-    </a>
-    <a class="service-card" data-cat="community" href="/is/writing/perch-chat/" target="_blank">
-      <div class="card-meta">
-        <span class="card-category">Community</span>
-        <span class="card-ref">Clerk-maintained</span>
+    </section>
+
+  </div><!-- /wrap -->
+
+  <!-- footer -->
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="foot-top">
+        <div class="foot-stat">Records are maintained under the District's retention schedule. Cross-references to linked institutions are provided for navigation and do not constitute endorsement.</div>
+        <nav class="foot-links">
+          <span class="lbl">District Services</span>
+          <a href="/is/writing/nest-court/" target="_blank">Nest Court</a>
+          <a href="/is/writing/bird-coo/" target="_blank">The Municipal Coo</a>
+          <a href="/is/writing/perch-chat/" target="_blank">The Perch</a>
+          <a href="/is/writing/secondnest/" target="_blank">SecondNest</a>
+          <a href="/is/writing/karen-hawk/" target="_blank">Karen Hawk</a>
+        </nav>
       </div>
-      <div class="card-title">The Perch — Community Chat</div>
-      <div class="card-desc">District messaging platform maintained by the Clerk's Office for municipal coordination. The Clerk's Office is aware most messages are not about municipal coordination. Maintenance continues on principle.</div>
-      <div class="card-cue"><span>Messaging platform</span><span class="arrow">→</span></div>
-    </a>
-    <a class="service-card" data-cat="licensed" href="/is/writing/karen-hawk/" target="_blank">
-      <div class="card-meta">
-        <span class="card-category">Licensed Practitioner</span>
-        <span class="card-ref">Reg. 02 · Family law</span>
+      <div class="foot-bot">
+        <span>Office of the Clerk · Avian Municipal District</span>
+        <span class="sig">— T. Nuthatch, Clerk of Court</span>
       </div>
-      <div class="card-title">Karen Hawk, Attorney at Law</div>
-      <div class="card-desc">Family law. Eighteen years. Offices at 11 Municipal Oak, Suite 4, Sycamore District. The Clerk's Office processes her filings more frequently than any other practitioner's. This is not an endorsement. It is a volume observation.</div>
-      <div class="card-cue"><span>Practitioner listing</span><span class="arrow">→</span></div>
-    </a>
-  </div>
-
-  <div class="section-heading">Recent Notices</div>
-
-  <ul class="notices-list">
-    <li>
-      <div class="notice-date">April 10, 2026</div>
-      <div class="notice-text">Court proceedings with gallery assessments are now available for three cases through the <a href="/is/writing/nest-court/">eCourt Public Portal</a>. The Clerk's Office reminds the public that gallery observation is not the same as attendance and does not count toward community service hours.</div>
-    </li>
-    <li>
-      <div class="notice-date">March 21, 2026</div>
-      <div class="notice-text">The community meeting on post-separation perch usage has been postponed. The organizer will reconvene when the community "demonstrates readiness." The Clerk's Office attended the previous meeting and would describe readiness as early-stage.</div>
-    </li>
-    <li>
-      <div class="notice-date">February 28, 2026</div>
-      <div class="notice-text">The Clerk's Office is not a mediation service, a counselling resource, or a venue for continuing arguments that began at home. The front window is for filings. Visiting hours ended in 2024.</div>
-    </li>
-  </ul>
-
-  <div class="section-heading">Frequently Requested Information</div>
-
-  <div class="faq-item">
-    <div class="faq-q">How do I file a nest abandonment claim?</div>
-    <div class="faq-a">Petitions may be submitted through the <a href="/is/writing/nest-court/" target="_blank">eCourt Public Portal</a> or in person during business hours. Documentation should include a description of the nest, the date of departure, and evidence of where the respondent went. "He knows what he did" is not evidence.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">How do I file a noise complaint?</div>
-    <div class="faq-a"><a class="form-trigger" onclick="openNoiseForm()">File with the Clerk's Office</a>. Include dates, times, description of the noise, and its apparent purpose. Residents describing the noise as "you'd have to hear it" are advised that the Clerk has heard it. The Clerk lives on Municipal Oak.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">Is SecondNest affiliated with the district?</div>
-    <div class="faq-a">No. The Clerk's Office lists it because not listing it resulted in more questions than listing it.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">Can I attend a court hearing?</div>
-    <div class="faq-a">Hearings are open to the public. Seating is limited. Spectators who have already formed opinions are asked to keep them at foraging volume.</div>
-  </div>
-
-  <footer class="site-footer">
-    <div class="footer-col">
-      <h4>Clerk's Office</h4>
-      <p>14 Municipal Oak</p>
-      <p>Sycamore District</p>
-    </div>
-    <div class="footer-col">
-      <h4>Staff</h4>
-      <p>Clerk: T. Nuthatch</p>
-      <p>Deputy Clerk: R. Wren</p>
-    </div>
-    <div class="footer-col">
-      <h4>Hours</h4>
-      <p>Mon–Fri: Dawn+2 to Dusk-1</p>
-      <p>Sat: Emergency filings only</p>
-      <p>Sun: Closed</p>
-      <p>Fax: Not operational</p>
-    </div>
-    <div class="footer-col footer-links">
-      <h4>District Services</h4>
-      <p><a href="/is/writing/nest-court/" target="_blank">Nest Court</a></p>
-      <p><a href="/is/writing/bird-coo/" target="_blank">The Municipal Coo</a></p>
-      <p><a href="/is/writing/secondnest/" target="_blank">SecondNest</a></p>
-      <p><a href="/is/writing/perch-chat/" target="_blank">The Perch</a></p>
-      <p><a href="/is/writing/karen-hawk/" target="_blank">Karen Hawk, Attorney at Law</a></p>
     </div>
   </footer>
 
-  <div class="footer-bottom">
-    Avian Municipal District · Clerk's Office · Est. public record
-  </div>
+  <!-- noise complaint form (modal; isolated — does not POST, no storage) -->
+  <div class="noise-form-overlay" id="noiseOverlay" onclick="if(event.target===this)closeNoiseForm()">
+    <div class="noise-form">
+      <button class="nf-close" onclick="closeNoiseForm()">&times;</button>
+      <div class="nf-title">File a Noise Complaint</div>
+      <div class="nf-subtitle">Clerk's Office · Avian Municipal District</div>
 
-</div>
+      <div class="nf-body" id="noiseFormBody">
+        <div class="nf-field">
+          <label class="nf-label">Complainant species</label>
+          <div class="nf-hint">As registered with the district</div>
+          <input class="nf-input" type="text" placeholder="e.g. Nuthatch, Sparrow, Wren">
+        </div>
 
-<div class="noise-form-overlay" id="noiseOverlay" onclick="if(event.target===this)closeNoiseForm()">
-  <div class="noise-form">
-    <button class="nf-close" onclick="closeNoiseForm()">&times;</button>
-    <div class="nf-title">File a Noise Complaint</div>
-    <div class="nf-subtitle">Clerk's Office · Avian Municipal District</div>
-
-    <div class="nf-body" id="noiseFormBody">
-      <div class="nf-field">
-        <label class="nf-label">Complainant species</label>
-        <div class="nf-hint">As registered with the district</div>
-        <input class="nf-input" type="text" placeholder="e.g. Nuthatch, Sparrow, Wren">
-      </div>
-
-      <div class="nf-row-wrap">
-        <div class="nf-row">
-          <div class="nf-field">
-            <label class="nf-label">Wing type</label>
-            <select class="nf-select">
-              <option value="">Select</option>
-              <option>Broad / soaring</option>
-              <option>Narrow / rapid</option>
-              <option>Rounded / short-burst</option>
-              <option>Other / prefer not to say</option>
-            </select>
-          </div>
-          <div class="nf-field">
-            <label class="nf-label">Approximate wingspan</label>
-            <div class="nf-hint">In centimetres</div>
-            <input class="nf-input" type="text" placeholder="e.g. 22">
+        <div class="nf-row-wrap">
+          <div class="nf-row">
+            <div class="nf-field">
+              <label class="nf-label">Wing type</label>
+              <select class="nf-select">
+                <option value="">Select</option>
+                <option>Broad / soaring</option>
+                <option>Narrow / rapid</option>
+                <option>Rounded / short-burst</option>
+                <option>Other / prefer not to say</option>
+              </select>
+            </div>
+            <div class="nf-field">
+              <label class="nf-label">Approximate wingspan</label>
+              <div class="nf-hint">In centimetres</div>
+              <input class="nf-input" type="text" placeholder="e.g. 22">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="nf-field">
-        <label class="nf-label">Address (perch, nest, or branch)</label>
-        <input class="nf-input" type="text" placeholder="e.g. 14 Municipal Oak">
-      </div>
+        <div class="nf-field">
+          <label class="nf-label">Address (perch, nest, or branch)</label>
+          <input class="nf-input" type="text" placeholder="e.g. 14 Municipal Oak">
+        </div>
 
-      <div class="nf-row-wrap">
-        <div class="nf-row">
-          <div class="nf-field">
-            <label class="nf-label">Time of disturbance</label>
-            <div class="nf-hint">Dawn-relative preferred</div>
-            <input class="nf-input" type="text" placeholder="e.g. Dawn-2, or 4:45 AM">
-          </div>
-          <div class="nf-field">
-            <label class="nf-label">Distance from source</label>
-            <div class="nf-hint">In wingspans</div>
-            <input class="nf-input" type="text" placeholder="e.g. 12 wingspans">
+        <div class="nf-row-wrap">
+          <div class="nf-row">
+            <div class="nf-field">
+              <label class="nf-label">Time of disturbance</label>
+              <div class="nf-hint">Dawn-relative preferred</div>
+              <input class="nf-input" type="text" placeholder="e.g. Dawn-2, or 4:45 AM">
+            </div>
+            <div class="nf-field">
+              <label class="nf-label">Distance from source</label>
+              <div class="nf-hint">In wingspans</div>
+              <input class="nf-input" type="text" placeholder="e.g. 12 wingspans">
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="nf-field">
-        <label class="nf-label">Nature of noise</label>
-        <select class="nf-select">
-          <option value="">Select category</option>
-          <option>Vocal (singing, calling, humming)</option>
-          <option>Structural (nest construction, tapping)</option>
-          <option>Domestic (argument, deliberate silence)</option>
-          <option>Unclear but persistent</option>
-        </select>
-      </div>
+        <div class="nf-field">
+          <label class="nf-label">Nature of noise</label>
+          <select class="nf-select">
+            <option value="">Select category</option>
+            <option>Vocal (singing, calling, humming)</option>
+            <option>Structural (nest construction, tapping)</option>
+            <option>Domestic (argument, deliberate silence)</option>
+            <option>Unclear but persistent</option>
+          </select>
+        </div>
 
-      <div class="nf-field">
-        <label class="nf-label">Description of disturbance</label>
-        <div class="nf-hint">Include apparent emotional intent if known</div>
-        <textarea class="nf-textarea" placeholder="Describe the noise, its frequency, and any pattern the Clerk's Office should be aware of."></textarea>
-      </div>
+        <div class="nf-field">
+          <label class="nf-label">Description of disturbance</label>
+          <div class="nf-hint">Include apparent emotional intent if known</div>
+          <textarea class="nf-textarea" placeholder="Describe the noise, its frequency, and any pattern the Clerk's Office should be aware of."></textarea>
+        </div>
 
-      <div class="nf-field">
-        <label class="nf-label">Have you attempted to resolve this directly?</label>
-        <select class="nf-select">
-          <option value="">Select</option>
-          <option>Yes, without result</option>
-          <option>Yes, it made it worse</option>
-          <option>No</option>
-          <option>No — direct contact inadvisable</option>
-        </select>
-      </div>
+        <div class="nf-field">
+          <label class="nf-label">Have you attempted to resolve this directly?</label>
+          <select class="nf-select">
+            <option value="">Select</option>
+            <option>Yes, without result</option>
+            <option>Yes, it made it worse</option>
+            <option>No</option>
+            <option>No — direct contact inadvisable</option>
+          </select>
+        </div>
 
-      <button class="nf-submit" id="noiseSubmit" onclick="handleNoiseSubmit()">Submit to Clerk's Office</button>
+        <button class="nf-submit" id="noiseSubmit" onclick="handleNoiseSubmit()">Submit to Clerk's Office</button>
 
-      <div class="nf-footer">
-        Filings are processed during business hours (Dawn+2 to Dusk-1). The Clerk's Office does not guarantee a response time and does not appreciate being asked for one.
-      </div>
+        <div class="nf-footer">
+          Filings are processed during business hours (Tue–Thu, 9:00 AM–3:00 PM). The Clerk's Office does not guarantee a response time and does not appreciate being asked for one.
+        </div>
 
-      <div class="nf-rejection" id="noiseRejection">
-        <div class="rej-header">Filing Rejected</div>
-        <p>The Clerk's Office has reviewed your submission. Your reported wingspan is inconsistent with any registered resident species, your typing pattern suggests the use of fingers rather than a beak, and your description includes vocabulary not typically produced by birds.</p>
-        <p>This form is for residents of the Avian Municipal District. Humans are not residents. Humans are, in the Clerk's experience, a significant source of noise themselves.</p>
-        <p>This filing has not been processed. The Clerk's Office wishes you a quiet evening.</p>
-        <p class="rej-sig">— Clerk's Office, Avian Municipal District</p>
+        <div class="nf-rejection" id="noiseRejection">
+          <div class="rej-header">Filing Rejected</div>
+          <p>The Clerk's Office has reviewed your submission. Your reported wingspan is inconsistent with any registered resident species, your typing pattern suggests the use of fingers rather than a beak, and your description includes vocabulary not typically produced by birds.</p>
+          <p>This form is for residents of the Avian Municipal District. Humans are not residents. Humans are, in the Clerk's experience, a significant source of noise themselves.</p>
+          <p>This filing has not been processed. The Clerk's Office wishes you a quiet evening.</p>
+          <p class="rej-sig">— Clerk's Office, Avian Municipal District</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-var districtMapHotspots = {
-  municipalOak: {
-    category: 'Judicial',
-    name: '14 Municipal Oak',
-    filings: 4,
-    note: "Clerk's Office, Court, and Perch & Perch. Active filings."
-  },
-  sycamoreLot: {
-    category: 'Residential',
-    name: '14 Sycamore Lane, Lot 7',
-    filings: 1,
-    note: 'Subject of AMNC-2026-007B. Ruling issued.'
-  },
-  birch22: {
-    category: 'Residential',
-    name: '22 Birch Court',
-    filings: 0,
-    note: 'Frequently observed. Never filed against.'
-  },
-  birchSycamore: {
-    category: 'Public',
-    name: 'Birch / Sycamore Intersection',
-    filings: 1,
-    note: "One unclaimed vine. Removed to Clerk's drawer."
-  },
-  thirdBench: {
-    category: 'Public',
-    name: 'Municipal Park, Third Bench',
-    filings: 1,
-    note: 'Three regular occupants. None have filed paperwork.'
-  },
-  drainagePipe: {
-    category: 'Infrastructure',
-    name: 'Drainage Pipe, Bldg. C (East)',
-    filings: 1,
-    note: 'Self-help books available. Pickup only.'
-  },
-  southRidge: {
-    category: 'Infrastructure',
-    name: 'South Ridge',
-    filings: 0,
-    note: 'Material source. No registered residents.'
-  },
-  parkingLot: {
-    category: 'Public',
-    name: 'Parking Lot (South)',
-    filings: 1,
-    note: 'Telephone wire status under review.'
+  <script>
+  function openNoiseForm() {
+    document.getElementById('noiseOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
-};
-
-var districtMapState = {
-  activeElement: null,
-  sticky: false
-};
-
-function initDistrictMap() {
-  var map = document.getElementById('districtMap');
-  var popup = document.getElementById('districtMapPopup');
-  if (!map || !popup) return;
-
-  var categoryEl = document.getElementById('districtMapPopupCategory');
-  var titleEl = document.getElementById('districtMapPopupTitle');
-  var statsEl = document.getElementById('districtMapPopupStats');
-  var noteEl = document.getElementById('districtMapPopupNote');
-  var closeBtn = document.getElementById('districtMapPopupClose');
-  var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var hotspots = Array.prototype.slice.call(map.querySelectorAll('.hotspot'));
-
-  function showPopup(element, sticky) {
-    var id = element.getAttribute('data-hotspot-id');
-    var data = districtMapHotspots[id];
-    if (!data) return;
-
-    hotspots.forEach(function(node) {
-      node.classList.toggle('is-active', node === element);
-      node.setAttribute('aria-expanded', node === element ? 'true' : 'false');
-    });
-
-    categoryEl.textContent = data.category;
-    titleEl.textContent = data.name;
-    statsEl.textContent = 'Filings: ' + data.filings;
-    noteEl.textContent = data.note;
-    popup.classList.add('is-visible');
-    districtMapState.activeElement = element;
-    districtMapState.sticky = Boolean(sticky);
-
-    window.requestAnimationFrame(function() {
-      positionMapPopup(element);
-    });
+  function closeNoiseForm() {
+    document.getElementById('noiseOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('noiseFormBody').classList.remove('rejected');
+    document.getElementById('noiseRejection').classList.remove('visible');
+    var btn = document.getElementById('noiseSubmit');
+    btn.textContent = 'Submit to Clerk\'s Office';
+    btn.style.pointerEvents = '';
+    btn.style.opacity = '';
   }
-
-  function hidePopup(force) {
-    if (districtMapState.sticky && !force) return;
-    popup.classList.remove('is-visible');
-    hotspots.forEach(function(node) {
-      node.classList.remove('is-active');
-      node.setAttribute('aria-expanded', 'false');
-    });
-    districtMapState.activeElement = null;
-    districtMapState.sticky = false;
+  function handleNoiseSubmit() {
+    var btn = document.getElementById('noiseSubmit');
+    btn.textContent = 'Processing...';
+    btn.style.pointerEvents = 'none';
+    btn.style.opacity = '0.5';
+    setTimeout(function() {
+      document.getElementById('noiseFormBody').classList.add('rejected');
+      document.getElementById('noiseRejection').classList.add('visible');
+      document.getElementById('noiseRejection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 1200);
   }
-
-  function toggleSticky(element) {
-    if (districtMapState.sticky && districtMapState.activeElement === element) {
-      hidePopup(true);
-      return;
-    }
-    showPopup(element, true);
-  }
-
-  hotspots.forEach(function(element) {
-    element.setAttribute('aria-haspopup', 'true');
-    element.setAttribute('aria-expanded', 'false');
-    element.addEventListener('click', function(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      toggleSticky(element);
-    });
-    element.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleSticky(element);
-      }
-    });
-    element.addEventListener('focus', function() {
-      if (!districtMapState.sticky) showPopup(element, false);
-    });
-    element.addEventListener('blur', function() {
-      if (!districtMapState.sticky) hidePopup(false);
-    });
-    if (canHover) {
-      element.addEventListener('pointerenter', function() {
-        if (!districtMapState.sticky) showPopup(element, false);
-      });
-      element.addEventListener('pointerleave', function() {
-        if (!districtMapState.sticky) hidePopup(false);
-      });
-    }
-  });
-
-  closeBtn.addEventListener('click', function(event) {
-    event.stopPropagation();
-    var active = districtMapState.activeElement;
-    hidePopup(true);
-    if (active) active.focus();
-  });
-
-  document.addEventListener('pointerdown', function(event) {
-    if (!districtMapState.sticky) return;
-    var path = event.composedPath ? event.composedPath() : [];
-    if (path.indexOf(popup) !== -1 || path.indexOf(districtMapState.activeElement) !== -1) return;
-    hidePopup(true);
-  }, true);
-
   document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && popup.classList.contains('is-visible')) {
-      var active = districtMapState.activeElement;
-      hidePopup(true);
-      if (active) active.focus();
-    }
+    if (event.key === 'Escape') closeNoiseForm();
   });
-
-  window.addEventListener('resize', function() {
-    if (districtMapState.activeElement && popup.classList.contains('is-visible')) {
-      positionMapPopup(districtMapState.activeElement);
-    }
-  });
-}
-
-function positionMapPopup(anchor) {
-  var popup = document.getElementById('districtMapPopup');
-  if (!popup || !anchor) return;
-
-  var margin = 14;
-  var anchorRect = anchor.getBoundingClientRect();
-  var popupRect = popup.getBoundingClientRect();
-  var left = anchorRect.left + anchorRect.width / 2 + margin;
-  var top = anchorRect.top - popupRect.height - margin;
-
-  if (left + popupRect.width > window.innerWidth - margin) {
-    left = anchorRect.left - popupRect.width - margin;
-  }
-  if (top < margin) {
-    top = anchorRect.bottom + margin;
-  }
-
-  left = Math.max(margin, Math.min(left, window.innerWidth - popupRect.width - margin));
-  top = Math.max(margin, Math.min(top, window.innerHeight - popupRect.height - margin));
-  popup.style.left = left + 'px';
-  popup.style.top = top + 'px';
-}
-
-function openNoiseForm() {
-  document.getElementById('noiseOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeNoiseForm() {
-  document.getElementById('noiseOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-  document.getElementById('noiseFormBody').classList.remove('rejected');
-  document.getElementById('noiseRejection').classList.remove('visible');
-  var btn = document.getElementById('noiseSubmit');
-  btn.textContent = 'Submit to Clerk\'s Office';
-  btn.style.pointerEvents = '';
-  btn.style.opacity = '';
-}
-
-function handleNoiseSubmit() {
-  var btn = document.getElementById('noiseSubmit');
-  btn.textContent = 'Processing...';
-  btn.style.pointerEvents = 'none';
-  btn.style.opacity = '0.5';
-  setTimeout(function() {
-    document.getElementById('noiseFormBody').classList.add('rejected');
-    document.getElementById('noiseRejection').classList.add('visible');
-    document.getElementById('noiseRejection').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 1200);
-}
-
-// District map removed — initDistrictMap() retained but not invoked.
-// initDistrictMap();
-
-// Expandable stat cells — toggle Clerk's-voice expansion on click.
-(function initStatCells() {
-  var cells = document.querySelectorAll('.stat-panel .stat-cell');
-  cells.forEach(function(cell) {
-    cell.addEventListener('click', function() {
-      var isOpen = cell.classList.toggle('is-open');
-      cell.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-  });
-})();
-</script>
+  </script>
 
 </body>
 </html>
