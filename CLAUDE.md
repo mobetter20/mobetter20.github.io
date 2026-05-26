@@ -2,6 +2,28 @@
 
 Static site hosted on GitHub Pages. Contains the creative house at `ajin.im/is/writing/` and the Avian Municipal District universe.
 
+## Design System — typographic tiers
+
+Governing rule: **consistent chrome, free content.** The wrapper is uniform; what's inside is free to vary by tier. When adding or restyling a page, classify it first, then give it that tier's chrome.
+
+**Tier test — does the visitor *dwell* in the page, or *scan past* it?**
+
+| Tier | Test | Serif | Where |
+|---|---|---|---|
+| **Frame** | scan-and-navigate; points at things | Source Serif 4 | `/`, `/is/running`, `/is/reading`, `/is/learning`, `/is/building` |
+| **House** | dwell; the page *is* the made thing | Cormorant (`creative-house.css`) | `/is/writing` + rooms (comedy, essays, desk, loose, bird-coo, bird-docket), `/wrote` |
+| **Bespoke** | a singular work whose form is part of the art | its own | avian-district, secondnest, konbini, the `every-few-years` essay, perch-chat, Small Ware's sub-tools |
+
+Tier follows a page's **nature, not its URL parent** — konbini (bespoke) sits under frame `/is/learning`; Small Ware (house) sits under frame `/is/building`. A sub-page keeps its own tier and gets a working up-link to its parent; it does NOT inherit the parent's serif.
+
+**Chrome = a 5-part envelope:** (1) the "ajin.im is ___" title device — faint prefix, italic verb, "ajin.im" links home (`target="_self"`); (2) a way home / up-link; (3) a contact/footer line; (4) DM Mono for labels; (5) warm-dark palette (bg `#1a1612` frame / `#110d0b` house, text `#e8e0d0`).
+
+**Chrome is a gradient, not a switch:**
+- **Frame + House** wear the FULL envelope. The title device renders in the page's own serif: frame uses `.title` (in `templates/*.html`), house uses `.house-title` (in `creative-house.css`). Same device, tier-local serif.
+- **Bespoke** wear only the ANCHORS — a way home + palette sympathy + DM Mono if labels appear. Do NOT force the title device on them; their singular design is intentional, and flattening it is a regression.
+
+Within the house, `.house-title` marks **section entrances and orphan URLs** (`/is/writing` → "ajin.im *is* writing"; `/wrote` → "ajin.im *wrote*", past tense). Individual works (comedy pieces, essays, Coo issues) carry their own title as content. The device tolerates the page's tense/phrasing — a sub-hub may fold its tagline in, e.g. Small Ware → "ajin.im *is* building small ware for big questions."
+
 ## World Bible
 
 The world-building reference for the Avian Municipal District lives in two locations that must stay in sync:
