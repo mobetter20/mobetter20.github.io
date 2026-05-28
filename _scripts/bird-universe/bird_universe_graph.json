@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "registry_source_sha": "40f9df494e5922537b71644f9dafabe2e5947598742f651ebd81a693a3540c3e",
+  "registry_source_sha": "7147b8cc4378eb1a2e7c0dc630dc7513a43d4366517107dcb8917b7d0b9bda56",
   "sites": [
     {
       "slug": "avian-district",
@@ -156,6 +156,7 @@
         "is/writing/bird-coo/issues/2026-07-07.html",
         "is/writing/bird-coo/issues/2026-07-28.html",
         "is/writing/bird-coo/issues/2026-08-18.html",
+        "is/writing/bird-coo/issues/2026-09-15.html",
         "is/writing/perch-chat/index.html"
       ]
     },
@@ -214,6 +215,7 @@
         "is/writing/bird-coo/issues/2026-08-25.html",
         "is/writing/bird-coo/issues/2026-09-01.html",
         "is/writing/bird-coo/issues/2026-09-08.html",
+        "is/writing/bird-coo/issues/2026-09-15.html",
         "is/writing/perch-chat/index.html"
       ]
     },
@@ -410,6 +412,7 @@
         "is/writing/bird-coo/issues/2026-08-25.html",
         "is/writing/bird-coo/issues/2026-09-01.html",
         "is/writing/bird-coo/issues/2026-09-08.html",
+        "is/writing/bird-coo/issues/2026-09-15.html",
         "is/writing/secondnest/index.html",
         "is/writing/perch-chat/index.html",
         "is/writing/karen-hawk/index.html"
@@ -447,10 +450,11 @@
       "name": "Davey",
       "species": "Unknown species, young (age 9)",
       "location": "Two households (locations unspecified)",
-      "key_facts": "New nestling letter writer (Coo #21). Has a brother. The two keep an even score — longer weekend, who came to the school thing, who they run to first at pickup — to avoid picking a favorite of their separating parents, and hide the bookkeeping to protect them.",
+      "key_facts": "New nestling letter writer (Coo #21). Has a brother. The two keep an even score — longer weekend, who came to the school thing, who they run to first at pickup — to avoid picking a favorite of their separating parents, and hide the bookkeeping to protect them. Coo #28: the brothers coordinated their \"what I did this summer\" school accounts so the two households' versions matched — \"we are not lying. We are coordinating.\"",
       "active_cases": [],
       "mentions": [
-        "is/writing/bird-coo/issues/2026-07-28.html"
+        "is/writing/bird-coo/issues/2026-07-28.html",
+        "is/writing/bird-coo/issues/2026-09-15.html"
       ]
     },
     {
@@ -460,6 +464,16 @@
       "key_facts": "Recurring Coo personal-ad voice. A collector/hoarder who reframes it as discernment — keeps bottle caps, a single earring, \"every receipt from a marriage I am told is over\"; \"my ex had a word for it; I prefer 'collector.'\" First seen Coo #07; developed Coo #22. The self-presentation reveals the hoard.",
       "active_cases": [],
       "mentions": []
+    },
+    {
+      "name": "Pearl Magpie",
+      "species": "Magpie, F",
+      "location": "Office unestablished (\"by appointment\")",
+      "key_facts": "Nest appraiser & divider; new practitioner introduced via display ad (Coo #28). Catalogues and prices a separating couple's nest, then divides it; \"values bright things.\" Takes shiny items as her fee (\"her fee was three of them… she did very well out of it\"). Gentle-grift voice, Cat. 8 — distinct from Karen the advocate. Distinct from the unnamed magpie of Coo #16 (Box 41-M) — names ≠ identities.",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-09-15.html"
+      ]
     }
   ],
   "cases": [
@@ -646,6 +660,18 @@
       "key_facts": "Petition to determine which separated party keeps the nest over the winter — petitioner migrating, respondent staying. Petitioner: a nest is held for the one who returns; respondent: a nest is for the one in it. Court set a hearing and asked each to define \"home\" in writing, in under fifty words (Coo #26).",
       "mentions": [
         "is/writing/bird-coo/issues/2026-09-01.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-025A",
+      "type": "Request to compel disclosure",
+      "parties": "In re: Sycamore Lane foraging group",
+      "filed": "Sep 2026",
+      "status": "Denied (Coo #28).",
+      "key_facts": "An unnamed male whose nest the foraging group's route passes petitioned to compel the group to produce its records on him. Court found there is nothing to produce — the group keeps no file — and cannot order disclosure of a record never written down; \"no mechanism to subpoena and, having met them, no desire to.\" Petition denied.",
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-09-15.html"
       ],
       "dedicated_page": null
     },
