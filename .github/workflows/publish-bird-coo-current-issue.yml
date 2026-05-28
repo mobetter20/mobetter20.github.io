@@ -27,7 +27,7 @@ jobs:
       - name: Check for bird-coo changes
         id: changes
         run: |
-          git add is/writing/bird-coo/index.html is/writing/bird-coo/issues
+          git add is/writing/bird-coo/index.html is/writing/bird-coo/issues is/writing/avian-district/index.html
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
