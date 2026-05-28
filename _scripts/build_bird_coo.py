@@ -103,6 +103,21 @@ LIONEL_KINGFISHER_AD = AdBlock(
 )
 
 
+PEARL_MAGPIE_AD = AdBlock(
+    title="Pearl Magpie · Nest Appraisal & Division",
+    tagline="Every Twig Valued · Nothing Overlooked · Equitable to a Fault",
+    body_paragraphs=[
+        "When a nest comes apart, someone has to say what it was all worth. I am a magpie. I have been valuing bright things since before I could fly, and I do not miss much.",
+        "I will catalogue the nest, price every item — the load-bearing, the decorative, the one he swears is his — and divide the whole down the middle. You will be surprised what you were sitting on.",
+    ],
+    testimonial="\"She valued things we had stopped seeing. Her fee was three of them. I cannot say the division was unfair — only that she did very well out of it.\" — former client",
+    contact_lines=[
+        "Consultations by appointment. References on request.",
+        "Payment accepted in coin or equivalent shine.",
+    ],
+)
+
+
 ISSUES = [
     Issue(
         issue_number="01",
@@ -1265,11 +1280,47 @@ ISSUES = [
         ],
         letter_signature="Name withheld, Sycamore Lane",
     ),
+    Issue(
+        issue_number="28",
+        issue_date=date(2026, 9, 15),
+        lead_headline="Foraging Group's Morning Debrief Draws a Request for Disclosure",
+        lead_dateline="Sycamore Lane · District Desk",
+        lead_paragraphs=[
+            "The morning foraging group that flies the Sycamore Lane circuit has begun ending each outing with a debrief — a short accounting, over the wire, of which birds were seen where, with whom, and looking how. A male whose nest the route passes has asked to see what the group has on him.",
+            "He was told there is nothing to see. The group keeps no file, takes no notes, posts nothing. \"We discuss what we observe and then we go home,\" said Cheryl Sparrow, who flies in the group. \"There is no document. There is only what we know.\" Asked what they know, she said that was between the group.",
+            "The male has asked the district to compel disclosure. The group has offered, instead, to add him to the debrief.",
+        ],
+        court_title="In re: Request to Compel Disclosure — AMNC-2026-025A",
+        court_paragraphs=[
+            "A petition asks the Court to order the Sycamore Lane foraging group to produce its records concerning the petitioner. The Court finds there is nothing to produce: the group maintains no file, and the Court cannot order disclosure of a record that was never written down.",
+            "The petitioner is advised that the information he seeks exists only in the recollection of the group's members — which the Court has no mechanism to subpoena and, having met them, no desire to. The petition is denied.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="FOR SALE: one nest-warming gift, unopened",
+        classified_paragraphs=[
+            "Given to us when we built the nest. It has sat in the corner two years, still wrapped. I am selling it sealed: I never opened it, and I am not going to start now.",
+        ],
+        classified_reply="Box 28-G, c/o this publication.",
+        personal_title="FEMALE, CUCKOO, 42",
+        personal_paragraphs=[
+            "I have never built a nest. I find one that is already comfortable and make myself at home. The last one had someone in it, which I am told was the problem. Seeking a nest with good light and an occupant who does not count the eggs too closely.",
+        ],
+        personal_reply="Reply to: Box 42-C.",
+        display_ad=PEARL_MAGPIE_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "School started, and the teacher asked everyone to write about their summer. My brother and I compared notes before we turned ours in, because we spend the summer in two houses, and if the two accounts do not match, the parents want to know which house was more fun.",
+            "So we picked the same good parts. We are not lying. We are coordinating.",
+        ],
+        letter_signature="Davey, age 9",
+        letter_editor_note="Editor's note: The Municipal Coo prints letters as received. It does not verify summers.",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
-# alternate (Perch & Perch #13, Finch & Sons #15) and keep their own display_ad.
-_ALT_AD_ISSUES = {"13", "15", "22", "27"}
+# alternate (Perch & Perch #13, Finch & Sons #15, Lionel Kingfisher #22/#27,
+# Pearl Magpie #28) and keep their own display_ad.
+_ALT_AD_ISSUES = {"13", "15", "22", "27", "28"}
 ISSUES = [
     issue if issue.issue_number in _ALT_AD_ISSUES else replace(issue, display_ad=KAREN_HAWK_AD)
     for issue in ISSUES
