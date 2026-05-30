@@ -43,14 +43,10 @@
   .co-body .cn{color:var(--gold)}
   .co-note{margin-top:14px; padding:10px 13px; border-left:2px solid var(--crit); background:rgba(240,82,74,.06); font-size:12px; color:var(--tx2); line-height:1.65}
   .co-note .w{color:var(--crit)}
-  .co-foot{display:flex; align-items:center; justify-content:space-between; padding:11px 18px; border-top:1px solid var(--line); background:var(--panel2)}
-  .co-meta{font-size:10px; color:var(--tx3); letter-spacing:.6px}
-  .co-meta .cn{color:var(--gold)}
+  .co-foot{display:flex; align-items:center; justify-content:flex-end; padding:11px 18px; border-top:1px solid var(--line); background:var(--panel2)}
   .co-enter{font-family:var(--mono); font-size:12.5px; letter-spacing:.5px; color:#0b0e13; background:var(--gold); border:1px solid var(--gold); font-weight:700; padding:9px 18px; border-radius:6px; cursor:pointer; transition:background .15s, transform .05s}
   .co-enter:hover{background:#d8b257}
   .co-enter:active{transform:translateY(1px)}
-  .co-x{width:27px; height:27px; border-radius:6px; border:1px solid var(--line2); background:transparent; color:var(--tx3); font-family:var(--mono); font-size:13px; line-height:1; cursor:pointer; padding:0; flex-shrink:0}
-  .co-x:hover,.co-x:focus-visible{color:var(--tx); border-color:var(--tx3); outline:none}
 
   /* ---- header ---- */
   header{
@@ -347,14 +343,14 @@
 
 <div id="coldopen">
   <div class="co-inner">
-    <div class="co-head"><span class="m">☶ omen<span class="g">.</span>ops</span><span class="tag">SYSTEM NOTICE</span><button class="co-x" id="coClose" type="button" aria-label="close notice">✕</button></div>
+    <div class="co-head"><span class="m">☶ omen<span class="g">.</span>ops</span><span class="tag">SYSTEM NOTICE</span></div>
     <div class="co-pad">
       <div class="co-body">
         <p>The <b>Joseon</b> court — the dynasty that ruled <b>Korea</b> for five centuries (1392–1897) — watched and recorded eclipses, comets, droughts, floods, and tiger incursions as signs bearing on the Mandate of Heaven: Heaven's read on whether the dynasty should stand.</p>
         <p>This console logs those readings as operational telemetry — every entry a real record from the <span class="cn">朝鮮王朝實錄</span>.</p>
       </div>
     </div>
-    <div class="co-foot"><span class="co-meta"><span class="cn">觀象監</span> · royal observatory</span><button class="co-enter" id="coEnter">open console →</button></div>
+    <div class="co-foot"><button class="co-enter" id="coEnter">open console →</button></div>
   </div>
 </div>
 
@@ -700,7 +696,6 @@
     try{ if(localStorage.getItem('omen_seen_v3')==='1') co.classList.add('gone'); }catch(e){}
     var dismissModal=function(){ co.classList.add('gone'); try{localStorage.setItem('omen_seen_v3','1');}catch(e){} };
     var enter=document.getElementById('coEnter'); if(enter) enter.addEventListener('click',dismissModal);
-    var xbtn=document.getElementById('coClose'); if(xbtn) xbtn.addEventListener('click',dismissModal);
     co.addEventListener('click',function(e){ if(e.target===co) dismissModal(); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !co.classList.contains('gone')) dismissModal(); });
   }
