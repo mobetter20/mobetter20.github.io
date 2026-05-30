@@ -301,18 +301,18 @@
   .note{color:var(--warn)}
 
   /* ---- glossary tooltips ---- */
-  .term{border-bottom:1px dotted rgba(201,162,75,.55); cursor:help; position:relative; outline:none}
+  .term{border-bottom:1px dotted rgba(201,162,75,.55); cursor:help; position:relative; outline:none; white-space:nowrap}
   .term:hover,.term:focus,.term.tipopen{color:var(--gold); border-bottom-color:var(--gold)}
   .term .tip,.ix .tip{position:absolute; left:0; top:calc(100% + 8px); width:252px; max-width:72vw; background:#070a0e; border:1px solid var(--line2); border-radius:6px; padding:9px 11px; font-family:var(--mono); font-size:11px; font-weight:400; line-height:1.55; letter-spacing:0; text-transform:none; color:var(--tx2); box-shadow:0 12px 32px rgba(0,0,0,.6); opacity:0; visibility:hidden; transform:translateY(-4px); transition:opacity .15s, transform .15s; z-index:60; white-space:normal; text-align:left; pointer-events:none}
   .term:hover .tip,.term:focus .tip,.term.tipopen>.tip,.ix:hover .tip,.ix:focus .tip,.ix.tipopen>.tip{opacity:1; visibility:visible; transform:none}
   .ix{position:relative; cursor:help; color:var(--tx3); font-size:11px; outline:none}
   .ix:hover,.ix:focus,.ix.tipopen{color:var(--gold)}
   .ix .tip{left:auto; right:0}
-  /* root fix: tips open down+left by default; fitTip() (below) adds .up / .toleft on hover/focus
-     when the default placement would leave the term's clipping box or the viewport, so a tip can
-     never be cut off — covers the modal footer, panel edges, page footer, and browser-zoom cases */
+  /* root fix: tips open down + left-aligned by default; fitTip() (below) flips .up when the tip would
+     spill the bottom, and clamps the tip's horizontal position into the clipping box / viewport so it
+     can never be cut off — covers the modal footer, panel edges, page footer, narrow phones, and browser
+     zoom. (Horizontal placement is set inline by fitTip; the old .toleft flip is gone.) */
   .term.up > .tip,.ix.up > .tip{top:auto; bottom:calc(100% + 8px); transform:translateY(4px)}
-  .term.toleft > .tip,.ix.toleft > .tip{left:auto; right:0}
 
   @media (max-width:980px){
     .statrow{grid-template-columns:1fr 1fr; }
@@ -759,13 +759,21 @@
   }
   function fitTip(host){
     var tip=host.querySelector('.tip'); if(!tip) return;
-    host.classList.remove('up','toleft');
+    host.classList.remove('up');
+    tip.style.left=''; tip.style.right='';
     var hr=host.getBoundingClientRect(), th=tip.offsetHeight, tw=tip.offsetWidth, box=clipBox(host);
     var vw=window.innerWidth||document.documentElement.clientWidth, vh=window.innerHeight||document.documentElement.clientHeight;
-    var limB=Math.min(vh, box?box.bottom:Infinity), limR=Math.min(vw, box?box.right:Infinity);
-    var limT=box?box.top:0;
+    var m=8;
+    // vertical: flip above the term if the tip would spill the clip box / viewport bottom and there's room above
+    var limB=Math.min(vh, box?box.bottom:Infinity), limT=box?box.top:0;
     if(hr.bottom+8+th > limB-4 && hr.top-8-th > limT+4) host.classList.add('up');
-    if(hr.left+tw > limR-4) host.classList.add('toleft');
+    // horizontal: clamp the tip into the clip box / viewport so it can never crop off an edge (narrow phones)
+    var limL=Math.max(m, box?box.left+m:m), limR=Math.min(vw-m, (box?box.right:vw)-m);
+    var x=hr.left;                    // default: align the tip's left edge with the term
+    if(x+tw > limR) x=limR-tw;        // pull left so the right edge fits
+    if(x < limL) x=limL;              // then guarantee the left edge fits
+    tip.style.left=(x-hr.left)+'px';  // offset from the term (the tip is absolutely positioned within it)
+    tip.style.right='auto';
   }
   document.addEventListener('mouseover',function(e){ var h=e.target.closest&&e.target.closest('.term,.ix'); if(h) fitTip(h); });
   document.addEventListener('focusin',function(e){ var h=e.target.closest&&e.target.closest('.term,.ix'); if(h) fitTip(h); });
