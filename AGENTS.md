@@ -22,7 +22,7 @@ Tier follows a page's **nature, not its URL parent** — konbini (bespoke) sits 
 - **Frame + House** wear the FULL envelope. The title device renders in the page's own serif: frame uses `.title` (in `templates/*.html`), house uses `.house-title` (in `creative-house.css`). Same device, tier-local serif.
 - **Bespoke** wear only the ANCHORS — a way home + palette sympathy + DM Mono if labels appear. Do NOT force the title device on them; their singular design is intentional, and flattening it is a regression.
 
-Within the house, `.house-title` marks **section entrances and orphan URLs** (`/is/writing` → "ajin.im *is* writing"; `/wrote` → "ajin.im *wrote*", past tense). Individual works (comedy pieces, essays, Coo issues) carry their own title as content. The device tolerates the page's tense/phrasing — a sub-hub may fold its tagline in, e.g. Small Ware → "ajin.im *is* building small ware for big questions."
+Within the house, `.house-title` marks **section entrances and orphan URLs** (`/is/writing` → "ajin.im *is* writing"; `/wrote` → "ajin.im *wrote*", past tense). Individual works (comedy pieces, essays, Coo issues) carry their own title as content. The device tolerates the page's tense/phrasing — a sub-hub may extend its parent's verb, e.g. Small Ware → "ajin.im *is* building small."
 
 ## World Bible
 
