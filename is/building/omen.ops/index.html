@@ -302,11 +302,11 @@
 
   /* ---- glossary tooltips ---- */
   .term{border-bottom:1px dotted rgba(201,162,75,.55); cursor:help; position:relative; outline:none}
-  .term:hover,.term:focus{color:var(--gold); border-bottom-color:var(--gold)}
+  .term:hover,.term:focus,.term.tipopen{color:var(--gold); border-bottom-color:var(--gold)}
   .term .tip,.ix .tip{position:absolute; left:0; top:calc(100% + 8px); width:252px; max-width:72vw; background:#070a0e; border:1px solid var(--line2); border-radius:6px; padding:9px 11px; font-family:var(--mono); font-size:11px; font-weight:400; line-height:1.55; letter-spacing:0; text-transform:none; color:var(--tx2); box-shadow:0 12px 32px rgba(0,0,0,.6); opacity:0; visibility:hidden; transform:translateY(-4px); transition:opacity .15s, transform .15s; z-index:60; white-space:normal; text-align:left; pointer-events:none}
-  .term:hover .tip,.term:focus .tip,.ix:hover .tip,.ix:focus .tip{opacity:1; visibility:visible; transform:none}
+  .term:hover .tip,.term:focus .tip,.term.tipopen>.tip,.ix:hover .tip,.ix:focus .tip,.ix.tipopen>.tip{opacity:1; visibility:visible; transform:none}
   .ix{position:relative; cursor:help; color:var(--tx3); font-size:11px; outline:none}
-  .ix:hover,.ix:focus{color:var(--gold)}
+  .ix:hover,.ix:focus,.ix.tipopen{color:var(--gold)}
   .ix .tip{left:auto; right:0}
   /* root fix: tips open down+left by default; fitTip() (below) adds .up / .toleft on hover/focus
      when the default placement would leave the term's clipping box or the viewport, so a tip can
@@ -739,7 +739,7 @@
     var d=e.target.closest('.drv'); if(d){ gotoRow(d.getAttribute('data-target')); return; }
     var ol=e.target.closest('.od-link'); if(ol){ gotoRow(ol.getAttribute('data-target')); return; }
     var tr=e.target.closest('.tlr'); if(tr && tr.getAttribute('data-id')){ setPeriod(tr.getAttribute('data-id')); var ntc=document.querySelector('[data-tl]'); if(ntc) toggleCard(ntc); return; }
-    var c=e.target.closest('[data-mvi],[data-anom],[data-tl]'); if(c) toggleCard(c);
+    var c=e.target.closest('[data-mvi],[data-anom],[data-tl]'); if(c && !e.target.closest('.term,.ix')) toggleCard(c);
   });
   dashEl.addEventListener('keydown',function(e){ if(e.key!=='Enter'&&e.key!==' ') return; var c=e.target.closest('[data-mvi],[data-anom],[data-tl]'); if(c&&c===e.target){ e.preventDefault(); toggleCard(c); } });
 
@@ -769,6 +769,26 @@
   }
   document.addEventListener('mouseover',function(e){ var h=e.target.closest&&e.target.closest('.term,.ix'); if(h) fitTip(h); });
   document.addEventListener('focusin',function(e){ var h=e.target.closest&&e.target.closest('.term,.ix'); if(h) fitTip(h); });
+
+  // touch dismissal: a tap opens a tip (via :focus), but on touch nothing closes it — re-tapping
+  // doesn't un-focus, and iOS won't blur on outside taps. Track an explicit .tipopen so a second
+  // tap, a tap on another control or term, focus leaving, or Escape all close it. Desktop hover +
+  // keyboard focus are unchanged.
+  function closeTips(except){
+    document.querySelectorAll('.term.tipopen,.ix.tipopen').forEach(function(el){ if(el!==except) el.classList.remove('tipopen'); });
+    var a=document.activeElement;
+    if(a && a!==except && a.blur && (a.classList.contains('term')||a.classList.contains('ix'))) a.blur();
+  }
+  document.addEventListener('click',function(e){
+    var h=e.target.closest&&e.target.closest('.term,.ix');
+    if(!h){ closeTips(null); return; }
+    var open=h.classList.contains('tipopen');
+    closeTips(h);
+    if(open){ h.classList.remove('tipopen'); if(h.blur) h.blur(); }
+    else { h.classList.add('tipopen'); fitTip(h); }
+  });
+  document.addEventListener('focusout',function(e){ var h=e.target.closest&&e.target.closest('.term,.ix'); if(h) h.classList.remove('tipopen'); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeTips(null); });
 
   // init
   setPeriod('seonjo');
