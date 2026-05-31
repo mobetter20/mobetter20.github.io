@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "registry_source_sha": "7147b8cc4378eb1a2e7c0dc630dc7513a43d4366517107dcb8917b7d0b9bda56",
+  "registry_source_sha": "a537d07e079fbbc66a4a4da97fb075f66485d8a91b9fdd7d8b571ed9f6a75c59",
   "sites": [
     {
       "slug": "avian-district",
@@ -216,6 +216,7 @@
         "is/writing/bird-coo/issues/2026-09-01.html",
         "is/writing/bird-coo/issues/2026-09-08.html",
         "is/writing/bird-coo/issues/2026-09-15.html",
+        "is/writing/bird-coo/issues/2026-09-22.html",
         "is/writing/perch-chat/index.html"
       ]
     },
@@ -413,6 +414,7 @@
         "is/writing/bird-coo/issues/2026-09-01.html",
         "is/writing/bird-coo/issues/2026-09-08.html",
         "is/writing/bird-coo/issues/2026-09-15.html",
+        "is/writing/bird-coo/issues/2026-09-22.html",
         "is/writing/secondnest/index.html",
         "is/writing/perch-chat/index.html",
         "is/writing/karen-hawk/index.html"
@@ -672,6 +674,18 @@
       "key_facts": "An unnamed male whose nest the foraging group's route passes petitioned to compel the group to produce its records on him. Court found there is nothing to produce — the group keeps no file — and cannot order disclosure of a record never written down; \"no mechanism to subpoena and, having met them, no desire to.\" Petition denied.",
       "mentions": [
         "is/writing/bird-coo/issues/2026-09-15.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-026A",
+      "type": "Nest division (recursive provenance)",
+      "parties": "In re: nest of multiple provenance",
+      "filed": "Sep 2026",
+      "status": "Joinder ordered; open (Coo #29).",
+      "key_facts": "A separating couple's motion to divide their nest stalled when the Court found the materials were salvaged from the parties' two earlier dissolutions, and several items remain claimed by birds from those prior marriages. Prior spouses ordered joined as interested parties — a 2-bird division is now a 4-bird division. \"Each prior division was entered as final; finality, in this district, has proven a renewable resource.\"",
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-09-22.html"
       ],
       "dedicated_page": null
     },
