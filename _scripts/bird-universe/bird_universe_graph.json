@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "registry_source_sha": "a537d07e079fbbc66a4a4da97fb075f66485d8a91b9fdd7d8b571ed9f6a75c59",
+  "registry_source_sha": "c8bef6fe1fcece767697a4fcddf5a0f0be9ea2a3ee882ae7bc93290a249e6c2a",
   "sites": [
     {
       "slug": "avian-district",
@@ -217,6 +217,7 @@
         "is/writing/bird-coo/issues/2026-09-08.html",
         "is/writing/bird-coo/issues/2026-09-15.html",
         "is/writing/bird-coo/issues/2026-09-22.html",
+        "is/writing/bird-coo/issues/2026-09-29.html",
         "is/writing/perch-chat/index.html"
       ]
     },
@@ -415,6 +416,7 @@
         "is/writing/bird-coo/issues/2026-09-08.html",
         "is/writing/bird-coo/issues/2026-09-15.html",
         "is/writing/bird-coo/issues/2026-09-22.html",
+        "is/writing/bird-coo/issues/2026-09-29.html",
         "is/writing/secondnest/index.html",
         "is/writing/perch-chat/index.html",
         "is/writing/karen-hawk/index.html"
@@ -475,6 +477,16 @@
       "active_cases": [],
       "mentions": [
         "is/writing/bird-coo/issues/2026-09-15.html"
+      ]
+    },
+    {
+      "name": "Cordelia Crow",
+      "species": "Crow, F",
+      "location": "Late 50s; formerly Sycamore District Counseling Practice (Sycamore District)",
+      "key_facts": "Retired marriage counselor. Practice closed ~3 years ago following \"personal reorganization.\" \"Ask Cordelia\" advice columnist; biweekly, even-numbered issues, debut Coo #30 (Sep 29, 2026). Direct, brief, with occasional small rulings about herself. Will not take: legal questions (refers to Karen Hawk), reconciliation work (\"my practice closed for a reason\"), any letter involving an owl (no explanation given).",
+      "active_cases": [],
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-09-29.html"
       ]
     }
   ],
@@ -686,6 +698,18 @@
       "key_facts": "A separating couple's motion to divide their nest stalled when the Court found the materials were salvaged from the parties' two earlier dissolutions, and several items remain claimed by birds from those prior marriages. Prior spouses ordered joined as interested parties — a 2-bird division is now a 4-bird division. \"Each prior division was entered as final; finality, in this district, has proven a renewable resource.\"",
       "mentions": [
         "is/writing/bird-coo/issues/2026-09-22.html"
+      ],
+      "dedicated_page": null
+    },
+    {
+      "number": "AMNC-2026-029A",
+      "type": "Pair-bond review (joint declaration)",
+      "parties": "Dove v. Dove (Autumn Review)",
+      "filed": "Sep 29, 2026",
+      "status": "Hearing not scheduled.",
+      "key_facts": "Joint declaration filed under autumn pair-bond review provisions. Clerk: T. Nuthatch. Referenced in Coo #30 court notice.",
+      "mentions": [
+        "is/writing/bird-coo/issues/2026-09-29.html"
       ],
       "dedicated_page": null
     },
