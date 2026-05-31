@@ -5,7 +5,7 @@
   "officialHubSlug": "avian-district",
   "metaDirectorySlug": "bird-docket",
   "notes": [
-    "avian-district is planned and will become the canonical in-world hub.",
+    "avian-district is the live canonical in-world hub; parent-link migration from bird-docket is complete.",
     "bird-docket remains live but is considered the meta/out-of-world directory.",
     "Proceedings pages are subordinate to nest-court and should not be treated as peer hubs."
   ],
