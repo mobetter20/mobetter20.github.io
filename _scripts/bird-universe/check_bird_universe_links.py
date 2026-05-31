@@ -164,6 +164,29 @@ def main() -> int:
             '/is/writing/karen-hawk/',
         ]
 
+        # The hardcoded list above is the independent enforcement assertion — a
+        # second pair of eyes on what avian-district must link, deliberately not
+        # auto-derived from the registry. Cross-check it against the registry's
+        # showInOfficialHub flags so the two cannot silently drift: a newly
+        # flagged hub site that nobody added here would otherwise go unguarded,
+        # and a leftover entry here would outlive its flag.
+        flagged_hub_paths = {
+            site_entry.get("canonicalPath")
+            for site_entry in sites
+            if site_entry.get("showInOfficialHub") and site_entry.get("slug") != official_hub_slug
+        }
+        required_paths = set(required_root_relative)
+        for missing in sorted(flagged_hub_paths - required_paths):
+            errors.append(
+                f"avian-district: {missing} is showInOfficialHub in the registry "
+                "but missing from the checker's required-link set"
+            )
+        for stale in sorted(required_paths - flagged_hub_paths):
+            errors.append(
+                f"avian-district: {stale} is in the checker's required-link set "
+                "but not showInOfficialHub in the registry"
+            )
+
         if not avian_index.exists():
             warn("avian-district is still planned; parent-link migration has not started yet.")
         else:

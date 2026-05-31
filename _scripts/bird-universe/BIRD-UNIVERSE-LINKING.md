@@ -1,8 +1,9 @@
 # Bird-Universe Linking Rules
 
-This document is local-only workspace guidance for the bird-related sites under
+This document is workspace guidance for the bird-related sites under
 `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/`.
-It is not part of the public site and should not be committed.
+It lives in the committed dev tooling at `_scripts/bird-universe/` and is not
+served as part of the published site output.
 
 ## Scope
 
@@ -94,8 +95,8 @@ Before adding a new bird-universe site:
    - `record_surface`
    - `meta_directory`
    - `listed_only`
-2. Add or update the local registry:
-   `/Users/ajin/Documents/New project/personal/mobetter20.github.io/.codex-local/bird-universe/bird_universe_registry.json`
+2. Add or update the registry:
+   `/Users/ajin/Documents/New project/personal/mobetter20.github.io/_scripts/bird-universe/bird_universe_registry.json`
 3. Decide whether it belongs in:
    - the future `avian-district` official directory
    - the `bird-docket` meta directory
@@ -117,22 +118,25 @@ Known migration watchpoints:
 - `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/index.html`
 - `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/secondnest/index.html`
 
-## Local-Only Rule
+## What Is Committed vs Local
 
-These files are intentionally local-only:
+The bird-universe tooling and this policy doc now live committed under
+`_scripts/bird-universe/` (the former `.codex-local/bird-universe/` location is
+retired). They are dev-only: they run at build / pre-push time and are never
+served as published site output.
 
-- `.codex-local/bird-universe/*`
-- the bird-site `AGENTS.md` files
+Genuinely local / per-machine:
 
-Do not commit them. Do not move them into public site directories in tracked
-form. If a future workflow needs repo-visible automation, keep it generic and
-non-fictional, and continue storing the bird-universe policy layer locally.
+- `_scripts/bird-universe/config.json` — gitignored; each working copy points it
+  at its own checkout of the separate world-bible registry repo.
+- the world-bible entity registry (`02-registry.md`) — lives in a separate repo,
+  not here.
 
 ## Enforcement
 
-- The effective guardrail is the local checker:
-  `/Users/ajin/Documents/New project/personal/mobetter20.github.io/.codex-local/bird-universe/check_bird_universe_links.py`
-- Push-time enforcement should happen through the local Git hook at:
+- The effective guardrail is the checker:
+  `/Users/ajin/Documents/New project/personal/mobetter20.github.io/_scripts/bird-universe/check_bird_universe_links.py`
+- Push-time enforcement happens through the local Git hook at:
   `/Users/ajin/Documents/New project/personal/mobetter20.github.io/.git/hooks/pre-push`
 - `publish.sh` is not the safety model. Treat it as an optional local helper.
 - If this repo is recloned or `.git` is replaced, the local hook and local
