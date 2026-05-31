@@ -463,6 +463,73 @@ body{
 }
 .rejection .ref a{color:var(--ember-dim)}
 
+/* FILTER + SHOW ALL */
+.filterbar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:1px;
+  padding-bottom:1rem;
+  margin-bottom:.5rem;
+  border-bottom:1px solid var(--line-soft);
+}
+.filter-link{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  color:var(--muted);
+  text-decoration:none;
+  cursor:pointer;
+  padding:3px 7px;
+  letter-spacing:.02em;
+  transition:color .15s;
+}
+.filter-link:hover{color:var(--ink)}
+.filter-link.active{color:var(--ember)}
+.filter-sep{color:var(--line);font-size:11px}
+.empty-note{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  color:var(--muted);
+  padding:2.4rem 0;
+  text-align:center;
+  line-height:1.7;
+}
+.showall-row{padding-top:1.4rem;text-align:center}
+.showall-link{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11.5px;
+  color:var(--muted);
+  cursor:pointer;
+  letter-spacing:.03em;
+  border:1px solid var(--line);
+  padding:8px 18px;
+  display:inline-block;
+  transition:all .15s;
+}
+.showall-link:hover{color:var(--ember);border-color:var(--ember-deep);background:rgba(224,147,90,.05)}
+
+/* SUCCESS STORIES */
+.story{padding:1.3rem 0;border-bottom:1px solid var(--line-soft)}
+.story:last-child{border-bottom:none}
+.story-text{font-size:14.5px;line-height:1.74;color:var(--ink-soft)}
+
+/* TOOK IT DOWN */
+.removed{padding:1.05rem 0;border-bottom:1px solid var(--line-soft)}
+.removed:last-child{border-bottom:none}
+.removed-text{font-size:14px;line-height:1.7;color:var(--ink-soft)}
+.removed-stamp{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9.5px;
+  color:var(--faint);
+  margin-top:7px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+
+/* non-linked sponsor ad */
+.sponsor-copy.nolink{cursor:default}
+.sponsor-copy.nolink:hover{color:var(--ink-soft)}
+
 /* MOBILE */
 @media(max-width:600px){
   .page{margin:.6rem;max-width:none}
@@ -491,6 +558,8 @@ body{
 <nav class="nav" id="nav">
   <a class="active" data-page="browse">Browse</a>
   <a data-page="missed">Missed connections</a>
+  <a data-page="success">Success stories</a>
+  <a data-page="tookdown">Took it down</a>
   <a data-page="about">About</a>
   <a data-page="faq">FAQ</a>
 </nav>
@@ -500,17 +569,13 @@ body{
   <button class="join-btn" onclick="showJoin()">+ Create profile</button>
 </div>
 
-<div class="sponsor-banner">
-  <div class="sponsor-label">Sponsored</div>
-  <a class="sponsor-copy" href="/is/writing/karen-hawk/" target="_blank">
-    <strong>Karen Hawk, Attorney at Law</strong>
-    Back on the market? Karen Hawk can make sure you left the last one cleanly.
-  </a>
-</div>
+<div class="sponsor-banner" id="sponsorBanner"></div>
 
 <!-- BROWSE -->
 <div class="section active" id="page-browse">
+  <div class="filterbar" id="filterBar"></div>
   <div class="profiles" id="profileList"></div>
+  <div class="showall-row" id="showAllRow"></div>
 </div>
 
 <!-- MISSED CONNECTIONS -->
@@ -518,6 +583,20 @@ body{
   <h3>Missed connections</h3>
   <div class="section-sub">You saw someone. You didn't say anything. This is where that goes.</div>
   <div id="mcList"></div>
+</div>
+
+<!-- SUCCESS STORIES -->
+<div class="section" id="page-success">
+  <h3>Success stories</h3>
+  <div class="section-sub">Birds who met here. Results vary.</div>
+  <div id="successList"></div>
+</div>
+
+<!-- TOOK IT DOWN -->
+<div class="section" id="page-tookdown">
+  <h3>Took it down</h3>
+  <div class="section-sub">Profiles come down for all kinds of reasons. We don't ask. They tell us anyway.</div>
+  <div id="tookdownList"></div>
 </div>
 
 <!-- ABOUT -->
@@ -986,6 +1065,76 @@ var PROFILES = [
     about:"Quiet. Prefers quiet. Has recently emerged from a domestic noise dispute and would like to state for the record that she did not hum, she has never hummed, and the four notes the Court referenced bore no resemblance to any wedding song because she chose the song and she remembers what it sounds like and it was nothing like that.",
     looking:"Someone who chews with his beak closed. This is the entire list.",
     days:12
+  },
+  {
+    species:"Male",type:"Catbird",age:"42",location:"West district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I am a mimic. I make the sound of other birds, and cats, and once, memorably, a car alarm, which cleared a foraging ground in seconds and which I do not regret. My wife said I never had a song of my own. ||She was not wrong. I learned everyone else's songs because I was not sure mine was worth singing. I am working on it. I have a few notes now that are only mine. They are not good yet. But they are mine.",
+    looking:"Someone patient while I figure out what I actually sound like. No requests the first month. I will take them. I cannot help it. That is the problem.",
+    days:7
+  },
+  {
+    species:"Female",type:"Killdeer",age:"38",location:"South district",
+    status:"Recently restructured",extras:["2 dependents"],
+    about:"When something threatens the nest I drag a wing and limp away to draw it off. It works on predators. It worked, for a while, on my marriage. ||I made myself look hurt so he would follow me instead of going where I did not want him to go. He called it manipulative. The Court did not have a word for it. I have decided the word is \"mother,\" but I am open to other readings.",
+    looking:"Someone who can tell the difference between a real injury and a performed one. I will not always make it easy. I am told I should. I am working on it.",
+    days:4
+  },
+  {
+    species:"Male",type:"Cormorant",age:"47",location:"East district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I do not waterproof. Most water birds have oil. I do not. So when I dive, I go all the way under, and then I have to stand on a rock with my wings spread open until I dry, in full view of everyone, looking like I am posing. ||I am not posing. I am recovering. It is the only way I know how. My wife found it embarrassing that I felt things so visibly. I told her it was that or not dive at all. She suggested not diving. That was, in the end, the disagreement.",
+    looking:"Someone who does not mind that I dry out in public. I cannot do it any other way. I have tried staying out of the water. It is worse.",
+    days:16
+  },
+  {
+    species:"Female",type:"Junco",age:"35",location:"North district",
+    status:"Recently restructured",extras:["no dependents"],
+    about:"I am a snowbird. I am only here in the cold months. When it warms up I go north, and when it cools down I come back, and my ex said I treated the marriage the same way — present in winter, gone by spring, back when I got lonely. ||He wanted someone who stayed. I understand that now. I did not then. I thought coming back counted as staying. It is a different thing. I am learning it is a different thing.",
+    looking:"Someone who understands seasons. Or someone warm enough that I stop needing to leave. I do not know if that bird exists. I am asking anyway.",
+    days:9
+  },
+  {
+    species:"Male",type:"Loon",age:"53",location:"Municipal Park",
+    status:"Widowed",extras:["no dependents"],
+    about:"I have a call that carries across the entire lake. You have heard it even if you did not know it was me. It is the loneliest sound in the district and I made it on purpose for years, to find her across the water, and it always worked, and she always answered. ||She does not answer now. I still make the call some evenings. I know she will not. I make it anyway. A neighbor asked me to stop because it is \"difficult to hear.\" I understand. I am going to keep doing it a little longer.",
+    looking:"Someone who can stand a sad sound now and then. I am mostly fine. It is just the evenings.",
+    days:21
+  },
+  {
+    species:"Male",type:"Grackle",age:"40",location:"South parking lot",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"Loud. Shiny in the right light. I walk across the parking lot like I own it. I do not. No one owns the parking lot. This was, I am told, a recurring theme — confidence unsupported by holdings. ||I have decided not to apologize for the walk. The walk is free. The walk has gotten me through worse than this. If the walk is the problem then the problem and I are going to stay together, because it is the longest relationship I have.",
+    looking:"Someone who likes the walk. Or someone who can see past it to the part of me that practices the walk before leaving the nest, which no one is supposed to know about, and which you now know.",
+    days:5
+  },
+  {
+    species:"Female",type:"Brown Thrasher",age:"49",location:"South district",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I know over a thousand songs. This is not an exaggeration; it is a documented feature of my species. I can sing more songs than almost any bird alive. ||What I could not do was sing the right one at the right time. He needed a particular song on a particular night, and I had a thousand to choose from, and I chose wrong, and then I chose wrong again, and the marriage ended not from silence but from a vast and useless abundance. I have all the songs. I just never had the one.",
+    looking:"Someone who will tell me which song he needs. I have it. I promise you I have it. I just need to be told.",
+    days:13
+  },
+  {
+    species:"Male",type:"Flicker",age:"44",location:"West district",
+    status:"Recently restructured",extras:["1 dependent"],
+    about:"I am a woodpecker who eats off the ground. Ants, mostly. My whole family pecks wood like they are supposed to and I am down in the grass, and they have never let me forget it. My ex-wife found it \"unambitious.\" ||For the record: there are more ants than there is good wood, I have never gone hungry, and I raised a chick on ground ants who is now taller than me. I did that down in the grass where no one was looking. I am not unambitious. I am just not loud about it.",
+    looking:"Someone who does not need me to peck wood to prove I am a real woodpecker. I know what I am. I would like to stop explaining it.",
+    days:11
+  },
+  {
+    species:"Female",type:"Waxwing",age:"37",location:"East district",
+    status:"Never nested (no judgment)",extras:["no dependents"],
+    about:"My species passes berries down a line. One bird takes a berry and passes it to the next, who passes it to the next, until someone eats it or it comes all the way back. It is a courtship thing. It is about generosity. ||I have been the bird who passes everything down the line and keeps nothing, my whole life. My friends say that is why I have never nested — I give it all away before I get to the part where I keep someone. I am trying to learn to eat the berry. It feels enormous. It is one berry.",
+    looking:"Someone who will pass it back. That is the whole game. You pass it back.",
+    days:6
+  },
+  {
+    species:"Male",type:"Phoebe",age:"51",location:"Sycamore Ln",
+    status:"Formally dissolved",extras:["no dependents"],
+    about:"I return to the same nest site every year. Same eave, same beam, same view of the same yard. I did it with her for most of my life. She stopped returning. I did not. ||Everyone agrees I should give up the site. I am not going to. She is not there, but the place where she was is there, and I find I can sit next to the place where she was. Eventually that was the whole story, and I have made my peace with being the one who kept coming back.",
+    looking:"Someone with a place they return to, who understands why I keep mine. We do not have to share a site. We could keep our own and visit.",
+    days:24
   }
 ];
 
@@ -1004,11 +1153,54 @@ var MISSED = [
   {where:"Pond, east end \u00b7 dusk",text:"You were standing in the shallows. Alone. Very still. I could not tell if you were fishing or thinking. I did not want to interrupt either one. The light was behind you and you looked like something I would remember, and I was right, because I am writing this.",when:"6 days ago"},
   {where:"Sycamore Lane, utility pole \u00b7 evening",text:"You were singing. Quietly. Not like the mockingbird \u2014 not for an audience. Just for yourself. Or maybe for no one. I stopped underneath and listened for longer than was appropriate for a stranger. You did not notice me. Or you noticed and did not mind. I prefer to believe the second one.",when:"last Thursday"},
   {where:"Municipal Oak, staircase to Suite 2 \u00b7 morning",text:"We passed on the narrow staircase. You pressed against the wall to let me by. You smelled like cedar. Not the wood. The tree. I don't know why that matters but I have not stopped thinking about it. The staircase is narrow and emotions are wide. Someone wrote that somewhere. I think they were talking about the law firm but they were also talking about this.",when:"9 days ago"},
-  {where:"Third bench, Municipal Park \u00b7 evening",text:"This is not about the pigeon or the starling. This is about the bench itself. I sat there once, last Tuesday, while they were both absent. The bench was empty and warm from the day and I understood, briefly, why someone would come back to it every evening. It was not about the company. It was about the returning. I have not had a place to return to in a while. I sat there for forty minutes. Then I left before they arrived because it was not my bench. But for forty minutes it was.",when:"last Tuesday"}
+  {where:"Third bench, Municipal Park \u00b7 evening",text:"This is not about the pigeon or the starling. This is about the bench itself. I sat there once, last Tuesday, while they were both absent. The bench was empty and warm from the day and I understood, briefly, why someone would come back to it every evening. It was not about the company. It was about the returning. I have not had a place to return to in a while. I sat there for forty minutes. Then I left before they arrived because it was not my bench. But for forty minutes it was.",when:"last Tuesday"},
+  {where:"Speed Perching Night, Community Hall · by the bell",text:"You were three birds before the bell. We had ninety seconds. You spent sixty of them describing a fence dispute and thirty apologizing for describing it. I have thought about both halves. If they ring the bell again I am skipping ahead to your perch. I know that is not how the bell works.",when:"last Tuesday"},
+  {where:"Outside the hardware store, after closing · evening",text:"You keep watch outside the hardware store after it closes. The owner leaves the light on for you now. I have started walking past at the same time. I do not need anything from the hardware store. I have everything I need. I just wanted to stand for a minute in a light someone left on for someone.",when:"6 days ago"},
+  {where:"Culvert path, by the railing · late afternoon",text:"We both stopped at the railing to look at the drainage channel, which is not a view, which is a channel. You said \"I come here when I don't want to be found.\" Then you realized you had been found. You laughed. I have been back to the railing four times. You have not. I understand. Being found once is probably the limit.",when:"last week"},
+  {where:"West meadow, after the mowing · morning",text:"They had just mowed and the whole field smelled like the start of something. You were standing in the cut grass, not foraging, just standing, and I thought: there is a bird who also does not know what to do with a fresh start. I did not say it. It is a strange thing to say to a stranger. I am saying it now to no one, which is somehow easier.",when:"3 days ago"},
+  {where:"The foraging group's morning route · Tuesday",text:"You are the male whose nest the group flies past twice every morning. I am in the group. I want you to know I am only in it for the company, and I have never reported your position, although I have heard it reported, and I am sorry. If you read this: stay at the back. They notice the back less. I have said too much.",when:"yesterday"}
+];
+
+var ADS = [
+  {strong:"Karen Hawk, Attorney at Law", href:"/is/writing/karen-hawk/", copy:"Back on the market? Karen Hawk can make sure you left the last one cleanly."},
+  {strong:"Perch &amp; Perch, Family Law", href:null, copy:"Two attorneys. Married to each other. Still in business. When the nest cannot be divided evenly, we divide it legally. Walk-ins Tuesdays — the staircase has been widened."},
+  {strong:"Pearl Magpie · Nest Appraiser &amp; Divider", href:"/is/writing/bird-coo/", copy:"I catalogue what you built together and price every twig. My fee is three bright things of my choosing. You will not miss them. You did not know you had them."},
+  {strong:"Lionel Kingfisher · Discreet Inquiries", href:"/is/writing/bird-coo/", copy:"I will watch your ex for one week and report what I find. I should say in advance that I tend to grow attached. The last report was an illustration."},
+  {strong:"Ask Cordelia", href:"/is/writing/bird-coo/", copy:"Advice, biweekly, in the Municipal Coo. Retired counselor. Will not answer legal questions, will not help you reconcile, will not discuss owls. Everything else, briefly."}
+];
+
+var SUCCESS = [
+  "We matched in March. We are still together. We have agreed not to discuss what either of us did before March. So far this has worked better than anything either of us tried in our marriages, which were full of discussing it.",
+  "I left a feather. He left one back. That was seven weeks ago. We have not met. We leave each other a feather every few days. It is the most reliable thing in my life and I am terrified that meeting him would end it.",
+  "She said my profile made her laugh. I had not meant it to be funny — it was a list of my failures. I have decided not to clarify. If my failures are charming, I would like to keep being charming.",
+  "We met here in April. We did not rush. We ate lunch eleven times before either of us called it anything. Last week we built a small nest, the two of us, on a low branch where the light is good in the morning. There is nothing clever to say about it. That is how I knew.",
+  "He was perfect. Kind, employed, present, exactly what the profile asked for. I ended it after a month. I am told this is \"a pattern.\" I am beginning to suspect the pattern is me. I am putting the profile back up. I will let you know.",
+  "I met someone wonderful and we are very happy and I am only writing this so my ex-husband, who I know reads this section, can see it. Hello. We are very happy."
+];
+
+var TOOKDOWN = [
+  {text:"Met someone.", stamp:"Down after 31 days"},
+  {text:"Met someone. Reposted. Met someone else. Reposted.", stamp:"Down, reposted, and down again — in that order"},
+  {text:"Reconciled. We are trying again. The Court has not been notified and we would prefer it stay that way for now.", stamp:"Down, quietly"},
+  {text:"My son found my profile.", stamp:"Down within the hour"},
+  {text:"Decided I am not ready. Announced this on the second date, out loud, unprompted. The other bird called it \"at least efficient.\"", stamp:"Down"},
+  {text:"Did not meet anyone. Just stopped needing to look. I am all right on the bench. I would not have believed that in February.", stamp:"Down, no hard feelings"},
+  {text:"Found out the bird I had been talking to was my ex, claiming a different species. I have questions for this site about how that is possible.", stamp:"Down. Furious"}
 ];
 
 var PROFILES_PER_PAGE = 15;
-var MC_PER_PAGE = 7;
+var MC_PER_PAGE = 10;
+
+var currentFilter = null;
+var showAll = false;
+var FILTERS = [
+  {label:'All', status:null},
+  {label:'Dissolved', status:'Formally dissolved'},
+  {label:'Restructured', status:'Recently restructured'},
+  {label:'Widowed', status:'Widowed'},
+  {label:'Never nested', status:'Never nested (no judgment)'},
+  {label:"It's complicated", status:"It's complicated but legally it isn't"}
+];
 
 function shuffle(arr) {
   var a = arr.slice();
@@ -1027,11 +1219,30 @@ function daysAgo(d) {
   return Math.floor(d / 7) + ' weeks ago';
 }
 
+function poolForFilter() {
+  return currentFilter ? PROFILES.filter(function(p){ return p.status === currentFilter; }) : PROFILES.slice();
+}
+
+function barTextForBrowse() {
+  if (currentFilter) {
+    var lbl = '';
+    for (var i = 0; i < FILTERS.length; i++) { if (FILTERS[i].status === currentFilter) { lbl = FILTERS[i].label; break; } }
+    return poolForFilter().length + ' \u00b7 ' + lbl.toLowerCase();
+  }
+  return PROFILES.length + ' active profiles';
+}
+
 function renderProfiles() {
-  var selected = shuffle(PROFILES).slice(0, PROFILES_PER_PAGE);
+  var pool = poolForFilter();
+  var list;
+  if (showAll || currentFilter || pool.length <= PROFILES_PER_PAGE) {
+    list = pool;
+  } else {
+    list = shuffle(pool).slice(0, PROFILES_PER_PAGE);
+  }
   var html = '';
-  for (var i = 0; i < selected.length; i++) {
-    var p = selected[i];
+  for (var i = 0; i < list.length; i++) {
+    var p = list[i];
     var speciesLine = p.species + ' \u00b7 ' + p.type;
     if (p.age) speciesLine += ' \u00b7 ' + p.age;
     if (p.location) speciesLine += ' \u00b7 ' + p.location;
@@ -1051,8 +1262,73 @@ function renderProfiles() {
     html += '<div class="feather-row"><button class="feather-btn" onclick="leaveFeather(this)">' + FEATHER_SVG + 'Leave a feather</button></div>';
     html += '</div>';
   }
+  if (list.length === 0) {
+    html = '<div class="empty-note">No profiles in this category right now. Even here, some categories are quieter than others.</div>';
+  }
   document.getElementById('profileList').innerHTML = html;
-  document.getElementById('barText').textContent = PROFILES.length + ' active profiles';
+  document.getElementById('barText').textContent = barTextForBrowse();
+  renderShowAll(pool.length);
+}
+
+function renderShowAll(poolLen) {
+  var row = document.getElementById('showAllRow');
+  if (!row) return;
+  if (!currentFilter && !showAll && poolLen > PROFILES_PER_PAGE) {
+    row.innerHTML = '<a class="showall-link" id="showAllLink">Show all ' + poolLen + ' profiles \u25b8</a>';
+    document.getElementById('showAllLink').addEventListener('click', function(){ showAll = true; renderProfiles(); });
+  } else if (!currentFilter && showAll) {
+    row.innerHTML = '<a class="showall-link" id="showFewerLink">\u25b4 Show fewer</a>';
+    document.getElementById('showFewerLink').addEventListener('click', function(){ showAll = false; renderProfiles(); window.scrollTo(0,0); });
+  } else {
+    row.innerHTML = '';
+  }
+}
+
+function renderFilter() {
+  var html = '';
+  for (var i = 0; i < FILTERS.length; i++) {
+    var active = (FILTERS[i].status === currentFilter) ? ' active' : '';
+    html += '<a class="filter-link' + active + '" data-idx="' + i + '">' + FILTERS[i].label + '</a>';
+    if (i < FILTERS.length - 1) html += '<span class="filter-sep">\u00b7</span>';
+  }
+  var fb = document.getElementById('filterBar');
+  fb.innerHTML = html;
+  fb.querySelectorAll('.filter-link').forEach(function(a){
+    a.addEventListener('click', function(){
+      currentFilter = FILTERS[parseInt(a.getAttribute('data-idx'), 10)].status;
+      showAll = false;
+      renderFilter();
+      renderProfiles();
+    });
+  });
+}
+
+function renderAds() {
+  var ad = ADS[Math.floor(Math.random() * ADS.length)];
+  var inner = '<div class="sponsor-label">Sponsored</div>';
+  var body = '<strong>' + ad.strong + '</strong>' + ad.copy;
+  if (ad.href) {
+    inner += '<a class="sponsor-copy" href="' + ad.href + '" target="_blank">' + body + '</a>';
+  } else {
+    inner += '<div class="sponsor-copy nolink">' + body + '</div>';
+  }
+  document.getElementById('sponsorBanner').innerHTML = inner;
+}
+
+function renderSuccess() {
+  var html = '';
+  for (var i = 0; i < SUCCESS.length; i++) {
+    html += '<div class="story"><div class="story-text">' + SUCCESS[i] + '</div></div>';
+  }
+  document.getElementById('successList').innerHTML = html;
+}
+
+function renderTookdown() {
+  var html = '';
+  for (var i = 0; i < TOOKDOWN.length; i++) {
+    html += '<div class="removed"><div class="removed-text">' + TOOKDOWN[i].text + '</div><div class="removed-stamp">Removed \u00b7 ' + TOOKDOWN[i].stamp + '</div></div>';
+  }
+  document.getElementById('tookdownList').innerHTML = html;
 }
 
 function renderMC() {
@@ -1075,7 +1351,7 @@ function leaveFeather(btn) {
   btn.onclick = null;
 }
 
-var barLabels = {browse:null, missed:'Missed connections are anonymous', about:'', faq:''};
+var barLabels = {browse:null, missed:'Missed connections are anonymous', success:'Outcomes are not guaranteed', tookdown:'No longer accepting feathers here', about:'', faq:''};
 
 document.querySelectorAll('.nav a').forEach(function(a) {
   a.addEventListener('click', function() {
@@ -1086,7 +1362,7 @@ document.querySelectorAll('.nav a').forEach(function(a) {
     document.getElementById('page-' + pg).classList.add('active');
     var bt = document.getElementById('barText');
     if (pg === 'browse') {
-      bt.textContent = PROFILES.length + ' active profiles';
+      bt.textContent = barTextForBrowse();
     } else {
       bt.textContent = barLabels[pg] || '';
     }
@@ -1116,8 +1392,12 @@ function submitProfile() {
   document.getElementById('cancelBtn').textContent = 'close';
 }
 
+renderAds();
+renderFilter();
 renderProfiles();
 renderMC();
+renderSuccess();
+renderTookdown();
 </script>
 
 </body>
