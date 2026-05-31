@@ -41,6 +41,22 @@ class AdBlock:
 
 
 @dataclass(frozen=True)
+class AdviceLetter:
+    title: str
+    paragraphs: list[str]
+    signature: str
+    reply_paragraphs: list[str]
+
+
+@dataclass(frozen=True)
+class AdviceColumn:
+    eyebrow: str
+    title: str
+    byline: str
+    letters: list[AdviceLetter]
+
+
+@dataclass(frozen=True)
 class Issue:
     issue_number: str
     issue_date: date
@@ -60,6 +76,7 @@ class Issue:
     letter_paragraphs: list[str]
     letter_signature: str
     letter_editor_note: str | None = None
+    advice_column: AdviceColumn | None = None
 
     @property
     def slug(self) -> str:
@@ -1349,12 +1366,99 @@ ISSUES = [
         ],
         letter_signature="Name withheld",
     ),
+    Issue(
+        issue_number="30",
+        issue_date=date(2026, 9, 29),
+        lead_headline="Clerk's Office Sees Early Volume as Autumn Pair-Bond Review Season Opens",
+        lead_dateline="Clerk's Office · District Desk",
+        lead_paragraphs=[
+            "The Clerk's office has issued its annual notice of the autumn pair-bond review season, which traditionally begins the third Tuesday of September. Filings under this period — review-of-status declarations, voluntary continuations, and the occasional surprise dissolution — typically run three times the usual weekly volume.",
+            "T. Nuthatch, Clerk, asked at the public window whether the season was busier than last year, said it was too early to say but that he had already received \"two filings before the office opened, one of which was slipped under the door.\" He declined to characterize the contents.",
+            "Forms are available at the front desk. Birds reviewing in good standing should expect a five-day processing window. Birds reviewing because the other party has already filed should expect a shorter one.",
+        ],
+        court_title="Filing Opens — AMNC-2026-029A",
+        court_paragraphs=[
+            "Dove v. Dove (Autumn Review). Joint declaration filed under the pair-bond review provisions. Both parties present at filing. Both parties asked the Clerk if filing jointly was \"still considered filing.\" The Clerk confirmed it was, but noted the question itself was, in his experience, \"the beginning of a longer conversation.\"",
+            "Hearing date: not scheduled. The Court has placed the matter on the autumn calendar and will revisit if either party files an addendum, which it expects within the week.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="WANTED: A second opinion",
+        classified_paragraphs=[
+            "A second opinion. On a situation. I have asked three friends. They have given me three different answers. I have asked my mother. She has given me a fourth. I am willing to pay a reasonable fee for a fifth opinion, provided the giver does not know me and is not currently going through anything themselves.",
+            "Discretion appreciated. So is honesty. I will know if you are sugarcoating it.",
+        ],
+        classified_reply="Box 029-C, c/o this publication.",
+        personal_title="FEMALE, ROBIN, 43",
+        personal_paragraphs=[
+            "Pleasant on the branch and capable in the nest. Not seeking a project. Not opposed to one if it is upfront about being one.",
+            "Last partnership ended on terms I have stopped trying to characterize. I am told this means I have processed it. I am not sure it means anything except that I have stopped trying.",
+            "Looking for: company, accountability, someone who answers when I call. In that order.",
+        ],
+        personal_reply="Reply to: Box 43-R.",
+        display_ad=AdBlock(
+            title="KAREN HAWK, ATTORNEY AT LAW",
+            tagline="Autumn filing season is here. So are we.",
+            body_paragraphs=[
+                "If a joint review is on your calendar this week, you may have heard that \"we will work it out without lawyers\" is also a position. It is, briefly. Karen Hawk handles the part after that. Autumn appointments fill quickly. Same-week filings still available.",
+            ],
+            testimonial="\"I came in for a 'consultation.' I left with a filing date and a clear plan. He came in expecting reconciliation. He left.\" — D.D., Sycamore Lane",
+            contact_lines=[
+                "Walk-ins discouraged. Calls returned within the day. I do not do mediation. I do conclusions.",
+            ],
+        ),
+        letter_title=None,
+        letter_paragraphs=[
+            "I would like to thank whoever has been cleaning the birdbath at the Sycamore Lane bus stop. I noticed it had gone green two months ago. I am not the kind of bird who cleans birdbaths. I am the kind of bird who waits to see if anyone else will.",
+            "Someone has been. Three Saturdays in a row the birdbath has been a little clearer than the Saturday before. I would like that bird to know I have noticed and am grateful. I do not know how to find them without involving the rest of the street, which I do not want to do.",
+        ],
+        letter_signature="Quiet thanks, Sycamore Lane",
+        advice_column=AdviceColumn(
+            eyebrow="The Salmon Pages",
+            title="Ask Cordelia",
+            byline="Cordelia Crow, formerly of the Sycamore District Counseling Practice, answers letters on matters this publication is not qualified to address.",
+            letters=[
+                AdviceLetter(
+                    title="\"My partner has become more interesting than I am\"",
+                    paragraphs=[
+                        "I have been paired with my husband for fourteen years. In that time he has learned three new songs, taken up wood identification as a hobby, and made friends with a heron who he describes as \"challenging in a good way.\" I have done none of these things. I have kept the nest in order. I have raised our chicks. I have been the bird he comes back to.",
+                        "Lately I notice that when we are on the branch together, he tells me things and I have nothing to tell him back. Not because nothing has happened. Because what has happened is that I have run the household while he ran his own development.",
+                        "I am not angry. I am asking whether being out-paced by your own husband means anything, or whether it is just what staying still feels like next to someone who didn't.",
+                    ],
+                    signature="A.R., Birch Court",
+                    reply_paragraphs=[
+                        "Dear A.R.,",
+                        "Yes. It means something. The thing it means is that one of you treated the nest as a project and the other treated it as a base. Both are honest uses of a nest. They are not equivalent in what they leave you with at fifty.",
+                        "I am not going to tell you to take up wood identification. You already know what your husband does and you have declined to do it, which is information.",
+                        "The question worth answering is whether your stillness was a contribution to the partnership — which is what it sounds like you believe — or a habit you have stopped questioning. These are not the same, and only you can tell them apart. Though I will say: when I asked myself this question, I lied to myself about the answer for nine years.",
+                        "Walk somewhere new tomorrow. Anywhere. Don't tell him. See what it feels like to come back with something he doesn't know.",
+                    ],
+                ),
+                AdviceLetter(
+                    title="\"The chick is not ours\"",
+                    paragraphs=[
+                        "Our second clutch hatched in April. Three eggs. Two of them are ours. The third is a cuckoo.",
+                        "My husband wants to push the chick out of the nest, which he says is well within our rights and is in fact what most of the district would do. He has cited cases. He has been to see Karen Hawk.",
+                        "I am the one feeding her. She does not know she is not ours. She opens her mouth wider than the other two and I bring her more, which I am told is biologically inevitable but which feels like a choice I am making.",
+                        "What do I owe a chick I did not lay, who I am raising at the expense of the two I did?",
+                    ],
+                    signature="L.W., name withheld",
+                    reply_paragraphs=[
+                        "Dear L.W.,",
+                        "You owe the chick what you have already been giving her, which is a lot. You do not owe her more. You do not, in particular, owe her the position your two are currently being out-fed for.",
+                        "I am not going to tell you to push her out. I am going to tell you that the question you wrote me is not actually about the cuckoo chick. It is about whether being the bird who feeds the loudest mouth is a thing you are doing, or a thing that is happening to you. Those have very different answers.",
+                        "Your husband is wrong about most of this and right about the part that matters, which is that two of those mouths are yours. Karen Hawk will tell you the same thing in fewer words and charge you for it. Save the money.",
+                        "If you want to keep the cuckoo, keep her, and make sure your two see you doing it on purpose. If you want her gone, that is also within the range of choices a reasonable bird makes in this district. What is not within the range is feeding her on autopilot and resenting her at the same time. That is not raising a chick. That is martyrdom with a feeding schedule.",
+                    ],
+                ),
+            ],
+        ),
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
 # alternate (Perch & Perch #13, Finch & Sons #15, Lionel Kingfisher #22/#27,
-# Pearl Magpie #28) and keep their own display_ad.
-_ALT_AD_ISSUES = {"13", "15", "22", "27", "28"}
+# Pearl Magpie #28, autumn-variant Karen Hawk #30) and keep their own display_ad.
+_ALT_AD_ISSUES = {"13", "15", "22", "27", "28", "30"}
 ISSUES = [
     issue if issue.issue_number in _ALT_AD_ISSUES else replace(issue, display_ad=KAREN_HAWK_AD)
     for issue in ISSUES
@@ -1397,6 +1501,34 @@ def link_case_numbers(html_str: str, *, relative_prefix: str = "") -> str:
     return html_str
 
 
+def render_advice_block(advice: AdviceColumn) -> str:
+    letters_html = []
+    for letter in advice.letters:
+        letters_html.append(
+            f'<article class="cordelia-letter">\n'
+            f'<h4>{text(letter.title)}</h4>\n'
+            f'<div class="cordelia-letter-body">\n{build_paragraphs(letter.paragraphs)}\n</div>\n'
+            f'<div class="cordelia-letter-sig">— {text(letter.signature)}</div>\n'
+            f'<div class="cordelia-reply">\n'
+            f'<div class="cordelia-reply-label">Cordelia replies</div>\n'
+            f'<div class="cordelia-reply-body">\n{build_paragraphs(letter.reply_paragraphs)}\n</div>\n'
+            f'<div class="cordelia-reply-sig">— C.</div>\n'
+            f'</div>\n'
+            f'</article>'
+        )
+    return (
+        f'<hr class="section-rule">\n\n'
+        f'<div class="cordelia-eyebrow">{text(advice.eyebrow)}</div>\n\n'
+        f'<section class="cordelia-section" id="cordelia">\n'
+        f'<div class="cordelia-masthead">\n'
+        f'<h2 class="cordelia-title">{text(advice.title)}</h2>\n'
+        f'<p class="cordelia-byline">{text(advice.byline)}</p>\n'
+        f'</div>\n\n'
+        + "\n\n".join(letters_html)
+        + "\n\n</section>"
+    )
+
+
 def issue_page_html(
     issue: Issue,
     *,
@@ -1424,6 +1556,9 @@ def issue_page_html(
             + "\n".join(f"<p>{text(line)}</p>" for line in issue.display_ad.contact_lines)
             + "\n</div>"
         )
+    mast_subtitle = "Online Edition · with Ask Cordelia" if issue.advice_column else "Online Edition · Published Tuesdays"
+    nav_cordelia = '\n<a href="#cordelia">Ask Cordelia</a>' if issue.advice_column else ""
+    advice_section = f"\n\n{render_advice_block(issue.advice_column)}" if issue.advice_column else ""
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1447,7 +1582,7 @@ def issue_page_html(
 <h1 class="mast-title">{text(SITE_TITLE)}</h1>
 <div class="mast-meta">
 <span>{text(issue.date_label)}</span>
-<span>Online Edition · Published Tuesdays</span>
+<span>{text(mast_subtitle)}</span>
 <span>Est. unrecorded</span>
 </div>
 </header>
@@ -1458,7 +1593,7 @@ def issue_page_html(
 <a href="#classifieds">Classifieds</a>
 <a href="#personals">Personals</a>
 <a href="#services">Services</a>
-<a href="#letters">Letters</a>
+<a href="#letters">Letters</a>{nav_cordelia}
 </nav>
 
 <main class="content">
@@ -1525,7 +1660,7 @@ def issue_page_html(
 {build_paragraphs(issue.letter_paragraphs)}
 </div>
 <div class="sig">— {text(issue.letter_signature)}</div>{letter_editor_note}
-</div>
+</div>{advice_section}
 
 </main>
 
