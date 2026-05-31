@@ -1315,6 +1315,40 @@ ISSUES = [
         letter_signature="Davey, age 9",
         letter_editor_note="Editor's note: The Municipal Coo prints letters as received. It does not verify summers.",
     ),
+    Issue(
+        issue_number="29",
+        issue_date=date(2026, 9, 22),
+        lead_headline="Nest Division Stalls; Court Traces the Materials to Earlier Marriages",
+        lead_dateline="Nest Court, Chamber B · Court Desk",
+        lead_paragraphs=[
+            "A petition to divide a separating couple's nest has stalled after the Court determined that most of the nest was salvaged from the parties' two previous marriages — and that several of the disputed materials are still claimed by birds who are not party to the case.",
+            "The couple, who met after their respective divorces and built the nest from what each described as \"what we walked away with,\" kept no record of which materials came from where. A length of vine, a section of lining, and one particularly good twig have since been claimed by two prior spouses, neither of whom knew the items had been reused.",
+            "The Court has asked whether anything in the nest was ever new.",
+        ],
+        court_title="Joinder Ordered — AMNC-2026-026A",
+        court_paragraphs=[
+            "The motion to divide the nest in question has been complicated by provenance. Examining the parties' principal exhibit — the nest itself — the Court found a substantial portion salvaged from two earlier dissolutions, with several items still recorded as the property of spouses from those marriages.",
+            "The Court has ordered the prior spouses joined as interested parties. A division between two birds is now a division among four, two of whom believed their own matters concluded years ago. Each prior division was entered as final; finality, in this district, has proven a renewable resource.",
+            "Clerk: T. Nuthatch.",
+        ],
+        classified_title="FOR SALE: one telescope",
+        classified_paragraphs=[
+            "Bought so we could look at the stars together. Used twice. It turns out stargazing requires two birds willing to be cold and quiet at the same time, on the same night — which was, in the end, the whole problem.",
+        ],
+        classified_reply="Box 29-T, c/o this publication.",
+        personal_title="MALE, LOON, 54",
+        personal_paragraphs=[
+            "I am graceless on land — my legs sit too far back, and I have been told I should simply have stayed on the water, where I am, frankly, magnificent. Seeking someone willing to meet me at the lake and overlook the walk from the nest.",
+        ],
+        personal_reply="Reply to: Box 54-L.",
+        display_ad=KAREN_HAWK_AD,
+        letter_title=None,
+        letter_paragraphs=[
+            "I was at a neighbor's nest-warming last week and recognized the lining — silver birch bark I stripped and softened myself, for the nest I built with my first husband. I gave it up in the division and never asked where it went.",
+            "I did not say anything. It looked well kept, which is more than I managed with the marriage it came from. I had not expected to meet my own bark again, in someone else's home.",
+        ],
+        letter_signature="Name withheld",
+    ),
 ]
 
 # Most issues run the standard Karen Hawk ad. A few carry an intentional
