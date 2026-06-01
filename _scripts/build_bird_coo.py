@@ -1568,8 +1568,15 @@ def issue_page_html(
     # Meta description text (matches the <meta name="description"> content below).
     # The index reuses this template but is socially titled as the publication
     # itself rather than the current lead headline.
-    meta_description = html.escape(issue.lead_headline, quote=True)
-    social_title = html.escape(SITE_TITLE, quote=True) if is_index else meta_description
+    headline_esc = html.escape(issue.lead_headline, quote=True)
+    if issue.lead_paragraphs:
+        _summary = f"{issue.lead_dateline} — {issue.lead_paragraphs[0]}"
+        if len(_summary) > 200:
+            _summary = _summary[:199].rstrip() + "…"
+        meta_description = html.escape(_summary, quote=True)
+    else:
+        meta_description = headline_esc
+    social_title = html.escape(SITE_TITLE, quote=True) if is_index else headline_esc
     social_url = html.escape(canonical_href, quote=True)
     og_type = "website" if is_index else "article"
     feed_autodiscovery = (
@@ -1593,11 +1600,11 @@ def issue_page_html(
 <meta property="og:description" content="{meta_description}">
 <meta property="og:type" content="{og_type}">
 <meta property="og:url" content="{social_url}">
-<meta property="og:image" content="https://ajin.im/img/og-default.png">
-<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{social_title}">
 <meta name="twitter:description" content="{meta_description}">
-<meta name="twitter:image" content="https://ajin.im/img/og-default.png">{feed_autodiscovery}
+{feed_autodiscovery}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap">
@@ -1752,11 +1759,11 @@ def archive_page_html(
 <meta property="og:description" content="Past issues of The Municipal Coo">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{html.escape(canonical_href, quote=True)}">
-<meta property="og:image" content="https://ajin.im/img/og-default.png">
-<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{html.escape(SITE_TITLE + ' Archive', quote=True)}">
 <meta name="twitter:description" content="Past issues of The Municipal Coo">
-<meta name="twitter:image" content="https://ajin.im/img/og-default.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap">

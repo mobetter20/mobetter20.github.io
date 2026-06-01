@@ -306,11 +306,11 @@ def build_post_page(post: EssayPost) -> str:
     <meta property="og:description" content="{html.escape(post.excerpt or post.title)}" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://ajin.im/is/writing/essays/{post.slug}/" />
-    <meta property="og:image" content="https://ajin.im/img/og-default.png" />
-    <meta name="twitter:card" content="summary_large_image" />
+    
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="{html.escape(post.title)}" />
     <meta name="twitter:description" content="{html.escape(post.excerpt or post.title)}" />
-    <meta name="twitter:image" content="https://ajin.im/img/og-default.png" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -384,11 +384,11 @@ def render_index(posts: list[EssayPost]) -> str:
     <meta property="og:description" content="Essays on systems, competence, translation, and invisible structures." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ajin.im/is/writing/essays/" />
-    <meta property="og:image" content="https://ajin.im/img/og-default.png" />
-    <meta name="twitter:card" content="summary_large_image" />
+    
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="ajin.im/is/writing/essays" />
     <meta name="twitter:description" content="Essays on systems, competence, translation, and invisible structures." />
-    <meta name="twitter:image" content="https://ajin.im/img/og-default.png" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
