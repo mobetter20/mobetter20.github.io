@@ -300,6 +300,17 @@ def build_post_page(post: EssayPost) -> str:
     <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>{html.escape(post.title)} | ajin.im/is/writing/essays</title>
     <meta name="description" content="{html.escape(post.excerpt or post.title)}" />
+    <link rel="canonical" href="https://ajin.im/is/writing/essays/{post.slug}/" />
+    <meta property="og:site_name" content="ajin.im" />
+    <meta property="og:title" content="{html.escape(post.title)}" />
+    <meta property="og:description" content="{html.escape(post.excerpt or post.title)}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://ajin.im/is/writing/essays/{post.slug}/" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{html.escape(post.title)}" />
+    <meta name="twitter:description" content="{html.escape(post.excerpt or post.title)}" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -367,6 +378,17 @@ def render_index(posts: list[EssayPost]) -> str:
       name="description"
       content="Essays on systems, competence, translation, and invisible structures."
     />
+    <link rel="canonical" href="https://ajin.im/is/writing/essays/" />
+    <meta property="og:site_name" content="ajin.im" />
+    <meta property="og:title" content="ajin.im/is/writing/essays" />
+    <meta property="og:description" content="Essays on systems, competence, translation, and invisible structures." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ajin.im/is/writing/essays/" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ajin.im/is/writing/essays" />
+    <meta name="twitter:description" content="Essays on systems, competence, translation, and invisible structures." />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

@@ -24,6 +24,8 @@ Tier follows a page's **nature, not its URL parent** — konbini (bespoke) sits 
 
 Within the house, `.house-title` marks **section entrances and orphan URLs** (`/is/writing` → "ajin.im *is* writing"; `/wrote` → "ajin.im *wrote*", past tense). Individual works (comedy pieces, essays, Coo issues) carry their own title as content. The device tolerates the page's tense/phrasing — a sub-hub may extend its parent's verb, e.g. Small Ware → "ajin.im *is* building small."
 
+**Favicon scheme:** `a1` = frame hubs (`/`, running, reading, learning, building); `a2` = error/404; `a3` = house + all generated pages; bespoke pages carry their own art. (Single 180px PNGs today; full sized-set + manifest deferred.)
+
 ## World Bible
 
 The world-building reference for the Avian Municipal District lives in two locations that must stay in sync:

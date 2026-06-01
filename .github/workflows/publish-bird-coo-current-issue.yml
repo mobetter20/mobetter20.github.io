@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -24,10 +26,13 @@ jobs:
       - name: Rebuild The Municipal Coo
         run: python3 _scripts/build_bird_coo.py
 
+      - name: Rebuild sitemap
+        run: python3 _scripts/build_sitemap.py
+
       - name: Check for bird-coo changes
         id: changes
         run: |
-          git add is/writing/bird-coo/index.html is/writing/bird-coo/issues is/writing/avian-district/index.html
+          git add is/writing/bird-coo/index.html is/writing/bird-coo/issues is/writing/avian-district/index.html is/writing/bird-coo/feed.xml sitemap.xml
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else

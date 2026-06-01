@@ -12,8 +12,12 @@ from zoneinfo import ZoneInfo
 REPO_ROOT = Path(__file__).resolve().parents[1]
 BIRD_COO_ROOT = REPO_ROOT / "is" / "writing" / "bird-coo"
 ISSUES_ROOT = BIRD_COO_ROOT / "issues"
+BIRD_COO_FEED = BIRD_COO_ROOT / "feed.xml"
 AVIAN_DISTRICT_INDEX = REPO_ROOT / "is" / "writing" / "avian-district" / "index.html"
 SEOUL = ZoneInfo("Asia/Seoul")
+
+BIRD_COO_BASE_URL = "https://ajin.im/is/writing/bird-coo/"
+BIRD_COO_FEED_URL = BIRD_COO_BASE_URL + "feed.xml"
 
 AVIAN_EXCERPT_PATTERN = re.compile(
     r"<!-- COO-EXCERPT-START.*?<!-- COO-EXCERPT-END -->",
@@ -1536,6 +1540,7 @@ def issue_page_html(
     analytics_href: str,
     archive_href: str,
     canonical_href: str,
+    is_index: bool = False,
 ) -> str:
     classified_reply = (
         f'\n<div class="box-reply">{text(issue.classified_reply)}</div>' if issue.classified_reply else ""
@@ -1560,6 +1565,26 @@ def issue_page_html(
     nav_cordelia = '\n<a href="#cordelia">Ask Cordelia</a>' if issue.advice_column else ""
     advice_section = f"\n\n{render_advice_block(issue.advice_column)}" if issue.advice_column else ""
 
+    # Meta description text (matches the <meta name="description"> content below).
+    # The index reuses this template but is socially titled as the publication
+    # itself rather than the current lead headline.
+    headline_esc = html.escape(issue.lead_headline, quote=True)
+    if issue.lead_paragraphs:
+        _summary = f"{issue.lead_dateline} — {issue.lead_paragraphs[0]}"
+        if len(_summary) > 200:
+            _summary = _summary[:199].rstrip() + "…"
+        meta_description = html.escape(_summary, quote=True)
+    else:
+        meta_description = headline_esc
+    social_title = html.escape(SITE_TITLE, quote=True) if is_index else headline_esc
+    social_url = html.escape(canonical_href, quote=True)
+    og_type = "website" if is_index else "article"
+    feed_autodiscovery = (
+        '\n<link rel="alternate" type="application/atom+xml" title="The Municipal Coo" href="/is/writing/bird-coo/feed.xml">'
+        if is_index
+        else ""
+    )
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1568,8 +1593,21 @@ def issue_page_html(
 <link rel="icon" type="image/png" href="/img/a3.png">
 <link rel="apple-touch-icon" href="/img/a3.png">
 <title>{text(SITE_TITLE)} — {text(issue.archive_label)}</title>
-<meta name="description" content="{html.escape(issue.lead_headline, quote=True)}">
-<link rel="canonical" href="{html.escape(canonical_href, quote=True)}">
+<meta name="description" content="{meta_description}">
+<link rel="canonical" href="{social_url}">
+<meta property="og:site_name" content="ajin.im">
+<meta property="og:title" content="{social_title}">
+<meta property="og:description" content="{meta_description}">
+<meta property="og:type" content="{og_type}">
+<meta property="og:url" content="{social_url}">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{social_title}">
+<meta name="twitter:description" content="{meta_description}">
+{feed_autodiscovery}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="{html.escape(styles_href, quote=True)}">
 <script src="{html.escape(analytics_href, quote=True)}" defer></script>
 </head>
@@ -1716,6 +1754,19 @@ def archive_page_html(
 <title>{text(SITE_TITLE)} Archive</title>
 <meta name="description" content="Past issues of The Municipal Coo">
 <link rel="canonical" href="{html.escape(canonical_href, quote=True)}">
+<meta property="og:site_name" content="ajin.im">
+<meta property="og:title" content="{html.escape(SITE_TITLE + ' Archive', quote=True)}">
+<meta property="og:description" content="Past issues of The Municipal Coo">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{html.escape(canonical_href, quote=True)}">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{html.escape(SITE_TITLE + ' Archive', quote=True)}">
+<meta name="twitter:description" content="Past issues of The Municipal Coo">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="{html.escape(styles_href, quote=True)}">
 <script src="{html.escape(analytics_href, quote=True)}" defer></script>
 </head>
@@ -1753,6 +1804,56 @@ def archive_page_html(
 def write_text(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
+
+
+def xml_escape(value: str) -> str:
+    """Escape text for use in XML element content or attribute values.
+
+    html.escape(quote=True) produces &amp; &lt; &gt; &quot; &#x27; — all valid
+    XML entity/character references, so the result is safe in both contexts."""
+    return html.escape(value, quote=True)
+
+
+def render_feed(published_issues: list[Issue]) -> str:
+    """Build a valid Atom 1.0 feed from the published (date-gated) issues.
+
+    Only issues with issue_date <= build date are included; callers pass the
+    same `published_issues` list main() computes from today_in_seoul()."""
+    entries = []
+    for issue in reversed(published_issues):
+        entry_url = f"https://ajin.im/is/writing/bird-coo/issues/{issue.slug}.html"
+        timestamp = f"{issue.issue_date.isoformat()}T00:00:00Z"
+        summary = f"{issue.lead_dateline} — {issue.lead_paragraphs[0]}"
+        entries.append(
+            "<entry>\n"
+            f"<id>{xml_escape(entry_url)}</id>\n"
+            f'<link rel="alternate" href="{xml_escape(entry_url)}"/>\n'
+            f"<title>{xml_escape(issue.lead_headline)}</title>\n"
+            f"<updated>{timestamp}</updated>\n"
+            f"<published>{timestamp}</published>\n"
+            f'<summary type="text">{xml_escape(summary)}</summary>\n'
+            "</entry>"
+        )
+
+    feed_updated = (
+        f"{published_issues[-1].issue_date.isoformat()}T00:00:00Z"
+        if published_issues
+        else f"{today_in_seoul().isoformat()}T00:00:00Z"
+    )
+    entries_block = ("\n" + "\n".join(entries) + "\n") if entries else "\n"
+
+    return (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<feed xmlns="http://www.w3.org/2005/Atom">\n'
+        f"<title>{xml_escape(SITE_TITLE)}</title>\n"
+        f'<link rel="alternate" href="{xml_escape(BIRD_COO_BASE_URL)}"/>\n'
+        f'<link rel="self" href="{xml_escape(BIRD_COO_FEED_URL)}"/>\n'
+        f"<id>{xml_escape(BIRD_COO_BASE_URL)}</id>\n"
+        f"<updated>{feed_updated}</updated>\n"
+        "<author><name>The Municipal Coo</name></author>"
+        f"{entries_block}"
+        "</feed>\n"
+    )
 
 
 def _bind_last_two_words(text: str) -> str:
@@ -1847,8 +1948,11 @@ def main() -> None:
             analytics_href="../../../analytics.js",
             archive_href="./issues/index.html",
             canonical_href="https://ajin.im/is/writing/bird-coo/",
+            is_index=True,
         )),
     )
+
+    write_text(BIRD_COO_FEED, render_feed(published_issues))
 
     if current_issue in published_issues:
         avian_status = "updated" if update_avian_district_excerpt(current_issue) else "unchanged"
