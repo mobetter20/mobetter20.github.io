@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ajin im</title>
+<meta name="description" content="Ajin Im's corner of the internet — writing, running, reading, and a small civic universe of birds. The ajin.im is ___ index.">
+<link rel="canonical" href="https://ajin.im/">
+<meta property="og:site_name" content="ajin.im">
+<meta property="og:title" content="ajin.im is ___">
+<meta property="og:description" content="Ajin Im's corner of the internet — writing, running, reading, and a small civic universe of birds. The ajin.im is ___ index.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ajin.im/">
+<meta property="og:image" content="https://ajin.im/img/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ajin.im is ___">
+<meta name="twitter:description" content="Ajin Im's corner of the internet — writing, running, reading, and a small civic universe of birds. The ajin.im is ___ index.">
+<meta name="twitter:image" content="https://ajin.im/img/og-default.png">
 <link rel="icon" type="image/png" href="/img/a1.png">
 <link rel="apple-touch-icon" href="/img/a1.png">
 <script src="/analytics.js" defer></script>
@@ -14,8 +26,8 @@
   :root {
     --bg: #1a1612;
     --text: #e8e0d0;
-    --text-soft: #8a7f70;
-    --text-faint: #6a6055;
+    --text-soft: #a89c87;
+    --text-faint: #8f8473;
     --accent: #c9a876;
     --accent-soft: rgba(201, 168, 118, 0.25);
   }
@@ -112,7 +124,8 @@
     transition: border-color 0.25s ease, color 0.25s ease;
   }
 
-  .detail a:hover {
+  .detail a:hover,
+  .detail a:focus-visible {
     color: #d8b884;
     border-bottom-color: rgba(201, 168, 118, 0.7);
   }
@@ -125,7 +138,8 @@
     transition: border-color 0.3s ease, color 0.3s ease;
   }
 
-  .line .verb a:hover {
+  .line .verb a:hover,
+  .line .verb a:focus-visible {
     color: #f4ecdc;
     border-bottom-color: rgba(232, 224, 208, 0.45);
   }
@@ -147,7 +161,8 @@
     transition: color 0.25s ease, border-color 0.25s ease;
   }
 
-  .colophon a:hover {
+  .colophon a:hover,
+  .colophon a:focus-visible {
     color: var(--text-soft);
     border-bottom-color: rgba(138, 127, 112, 0.45);
   }
@@ -164,9 +179,10 @@
 <body>
 
 <main>
+  <h1 class="vh" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">ajin.im</h1>
 
   <div class="stanza">
-    <div class="line"><span class="prefix">ajin.im is</span> <span class="verb"><a href="/is/running">running</a></span></div>
+    <div class="line"><span class="prefix">ajin.im is</span> <span class="verb"><a href="/is/running/">running</a></span></div>
     <div class="detail">
       ~{{running_total_km}} km running since {{running_since}}, {{running_earth_prose}}.<br>
       {{running_moon_remaining}} km left until the moon.
@@ -174,7 +190,7 @@
   </div>
 
   <div class="stanza">
-    <div class="line"><span class="prefix">ajin.im is</span> <span class="verb"><a href="/is/writing">writing</a></span></div>
+    <div class="line"><span class="prefix">ajin.im is</span> <span class="verb"><a href="/is/writing/">writing</a></span></div>
     <div class="detail">
       <a href="https://propagandaformyself.xyz">Bureau of Interior Conditions</a>, where feelings become filings.<br>
       <a href="/is/writing/bird-coo/">Avian Municipal District</a>, where divorced birds file for clean separations.
@@ -182,7 +198,7 @@
   </div>
 
   <div class="stanza">
-    <div class="line"><span class="prefix">ajin.im is</span> <span class="verb"><a href="/is/building">building</a></span></div>
+    <div class="line"><span class="prefix">ajin.im is</span> <span class="verb"><a href="/is/building/">building</a></span></div>
     <div class="detail">
       <a href="https://seoulcrushing.com">Seoul Crushing</a>, Korea made legible. With bite.<br>
       <a href="/is/building/small/">Small Ware</a>, small instruments for big questions.

@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,10 +31,13 @@ jobs:
       - name: Rebuild index + running pages
         run: python3 _scripts/build_root.py
 
+      - name: Rebuild sitemap
+        run: python3 _scripts/build_sitemap.py
+
       - name: Check for changes
         id: changes
         run: |
-          git add index.html is/running/index.html
+          git add index.html is/running/index.html sitemap.xml
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else

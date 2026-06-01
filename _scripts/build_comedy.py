@@ -247,6 +247,17 @@ def build_page(post: ComedyPost) -> str:
     <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>{html.escape(post.title)} | ajin.im/is/writing/comedy</title>
     <meta name="description" content="{html.escape(post.subtitle or post.title)}" />
+    <link rel="canonical" href="https://ajin.im/is/writing/comedy/{post.slug}/" />
+    <meta property="og:site_name" content="ajin.im" />
+    <meta property="og:title" content="{html.escape(post.title)}" />
+    <meta property="og:description" content="{html.escape(post.subtitle or post.title)}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://ajin.im/is/writing/comedy/{post.slug}/" />
+    <meta property="og:image" content="https://ajin.im/img/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{html.escape(post.title)}" />
+    <meta name="twitter:description" content="{html.escape(post.subtitle or post.title)}" />
+    <meta name="twitter:image" content="https://ajin.im/img/og-default.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -290,6 +301,17 @@ def build_standalone_page(post: StandaloneComedyPost) -> str:
     <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>{html.escape(post.title)} | ajin.im/is/writing/comedy</title>
     <meta name="description" content="{html.escape(post.subtitle or post.title)}" />
+    <link rel="canonical" href="https://ajin.im/is/writing/comedy/{post.slug}/" />
+    <meta property="og:site_name" content="ajin.im" />
+    <meta property="og:title" content="{html.escape(post.title)}" />
+    <meta property="og:description" content="{html.escape(post.subtitle or post.title)}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://ajin.im/is/writing/comedy/{post.slug}/" />
+    <meta property="og:image" content="https://ajin.im/img/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{html.escape(post.title)}" />
+    <meta name="twitter:description" content="{html.escape(post.subtitle or post.title)}" />
+    <meta name="twitter:image" content="https://ajin.im/img/og-default.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -351,6 +373,17 @@ def render_index(medium_posts: list[ComedyPost], standalone_posts: list[Standalo
     <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>ajin.im/is/writing/comedy</title>
     <meta name="description" content="Comedy pieces by Ajin Im, largely from the Medium years." />
+    <link rel="canonical" href="https://ajin.im/is/writing/comedy/" />
+    <meta property="og:site_name" content="ajin.im" />
+    <meta property="og:title" content="ajin.im/is/writing/comedy" />
+    <meta property="og:description" content="Comedy pieces by Ajin Im, largely from the Medium years." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ajin.im/is/writing/comedy/" />
+    <meta property="og:image" content="https://ajin.im/img/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ajin.im/is/writing/comedy" />
+    <meta name="twitter:description" content="Comedy pieces by Ajin Im, largely from the Medium years." />
+    <meta name="twitter:image" content="https://ajin.im/img/og-default.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
