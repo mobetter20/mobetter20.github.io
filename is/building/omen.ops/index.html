@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>omen.ops — Joseon court observability</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0d12'/%3E%3Crect x='7' y='8' width='18' height='3' rx='1.5' fill='%23c2a25f'/%3E%3Crect x='7' y='14.5' width='7' height='3' rx='1.5' fill='%23c2a25f'/%3E%3Crect x='18' y='14.5' width='7' height='3' rx='1.5' fill='%23c2a25f'/%3E%3Crect x='7' y='21' width='7' height='3' rx='1.5' fill='%23c2a25f'/%3E%3Crect x='18' y='21' width='7' height='3' rx='1.5' fill='%23c2a25f'/%3E%3C/svg%3E">
+<script src="/analytics.js" defer></script>
 <style>
   :root{
     --bg:#0a0d12; --bg2:#0e131b; --panel:#10161f; --panel2:#0c1118;
@@ -310,6 +311,10 @@
   footer{margin-top:24px; padding-top:16px; border-top:1px solid var(--line); color:var(--tx3); font-size:10.5px; line-height:1.7}
   footer .cn{color:var(--gold)}
   .note{color:var(--warn)}
+  /* way-home: discreet breadcrumb back to the parent hub (ajin.im / building) */
+  .wayhome{margin-bottom:10px}
+  .wayhome a{color:var(--tx3); letter-spacing:.4px}
+  .wayhome a:hover{color:var(--gold); text-decoration:none}
 
   /* ---- glossary tooltips ---- */
   .term{border-bottom:1px dotted rgba(201,162,75,.55); cursor:help; position:relative; outline:none; white-space:nowrap}
@@ -397,6 +402,7 @@
 <div class="wrap">
   <div id="dash"></div>
   <footer>
+    <div class="wayhome"><a href="/is/building/">← ajin.im / building</a></div>
     <div>data · <span class="cn">朝鮮王朝實錄</span> Veritable Records of the Joseon Dynasty · <a href="https://sillok.history.go.kr" target="_blank">sillok.history.go.kr</a> · every entry is a real record; open any row for the translated text, original 漢文, and source link.</div>
     <div class="note">prototype · omen.ops · <span id="ftPeriods"></span> · Mandate Volatility Index is a derived composite, not a recorded value.</div>
   </footer>
