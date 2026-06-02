@@ -311,10 +311,9 @@
   footer{margin-top:24px; padding-top:16px; border-top:1px solid var(--line); color:var(--tx3); font-size:10.5px; line-height:1.7}
   footer .cn{color:var(--gold)}
   .note{color:var(--warn)}
-  /* way-home: discreet breadcrumb back to the parent hub (ajin.im / building) */
-  .wayhome{margin-bottom:10px}
-  .wayhome a{color:var(--tx3); letter-spacing:.4px}
-  .wayhome a:hover{color:var(--gold); text-decoration:none}
+  /* maker's-mark colophon: discreet "made by ajin.im" home link on the footer fine-print */
+  .note .mkby{color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(194,162,95,.4)}
+  .note .mkby:hover{border-bottom-color:var(--gold)}
 
   /* ---- glossary tooltips ---- */
   .term{border-bottom:1px dotted rgba(201,162,75,.55); cursor:help; position:relative; outline:none; white-space:nowrap}
@@ -402,9 +401,8 @@
 <div class="wrap">
   <div id="dash"></div>
   <footer>
-    <div class="wayhome"><a href="/is/building/">← ajin.im / building</a></div>
     <div>data · <span class="cn">朝鮮王朝實錄</span> Veritable Records of the Joseon Dynasty · <a href="https://sillok.history.go.kr" target="_blank">sillok.history.go.kr</a> · every entry is a real record; open any row for the translated text, original 漢文, and source link.</div>
-    <div class="note">prototype · omen.ops · <span id="ftPeriods"></span> · Mandate Volatility Index is a derived composite, not a recorded value.</div>
+    <div class="note">prototype · omen.ops · <span id="ftPeriods"></span> · Mandate Volatility Index is a derived composite, not a recorded value. · made by <a href="/" class="mkby">ajin.im</a></div>
   </footer>
 </div>
 

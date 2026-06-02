@@ -18,7 +18,7 @@ VALID_KINDS = {
     "listed_only",
 }
 
-VALID_STATUS = {"planned", "live", "listed_only"}
+VALID_STATUS = {"planned", "live", "listed_only", "archived"}  # archived = retired/unlinked (noindex), e.g. bird-docket
 
 
 def fail(message: str) -> None:

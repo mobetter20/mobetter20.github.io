@@ -1,12 +1,14 @@
 {
   "version": 1,
-  "lastReviewed": "2026-04-09",
+  "lastReviewed": "2026-06-02",
   "scope": "Bird-universe sites under /is/writing/ only. Excludes comedy, essays, and unrelated writing projects.",
   "officialHubSlug": "avian-district",
+  "featuredFrontDoorSlug": "bird-coo",
   "metaDirectorySlug": "bird-docket",
   "notes": [
-    "avian-district is the live canonical in-world hub; parent-link migration from bird-docket is complete.",
-    "bird-docket remains live but is considered the meta/out-of-world directory.",
+    "bird-coo (The Municipal Coo) is the featured public front door as of 2026-06; the writing-house index links to it directly.",
+    "avian-district remains the canonical in-world hub but is now an internal hub, not the public entry point.",
+    "bird-docket is archived: noindex and unlinked from live navigation; retained only as a historical meta/out-of-world directory.",
     "Proceedings pages are subordinate to nest-court and should not be treated as peer hubs."
   ],
   "sites": [
@@ -25,7 +27,7 @@
       "slug": "bird-docket",
       "title": "Bird Docket",
       "kind": "meta_directory",
-      "status": "live",
+      "status": "archived",
       "canonicalPath": "/is/writing/bird-docket/",
       "publicUrl": "https://ajin.im/is/writing/bird-docket/",
       "parent": null,
