@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ajin.im/</loc>
-    <lastmod>2026-06-02T04:18:02+09:00</lastmod>
+    <lastmod>2026-06-02T12:19:44+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/</loc>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://ajin.im/is/building/omen.ops/</loc>
-    <lastmod>2026-06-02T04:33:18+09:00</lastmod>
+    <lastmod>2026-06-02T11:06:21+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/building/small/</loc>
@@ -50,7 +50,7 @@
   </url>
   <url>
     <loc>https://ajin.im/is/running/</loc>
-    <lastmod>2026-06-02T04:18:02+09:00</lastmod>
+    <lastmod>2026-06-02T12:19:44+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/writing/</loc>
@@ -58,7 +58,7 @@
   </url>
   <url>
     <loc>https://ajin.im/is/writing/avian-district/</loc>
-    <lastmod>2026-06-02T04:18:02+09:00</lastmod>
+    <lastmod>2026-06-02T11:06:21+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/writing/avian-district/map-options/option-4-property-gis-2_5d.html</loc>
@@ -122,6 +122,10 @@
   </url>
   <url>
     <loc>https://ajin.im/is/writing/bird-coo/issues/2026-05-26.html</loc>
+    <lastmod>2026-06-02T04:18:02+09:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ajin.im/is/writing/bird-coo/issues/2026-06-02.html</loc>
     <lastmod>2026-06-02T04:18:02+09:00</lastmod>
   </url>
   <url>
