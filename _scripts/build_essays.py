@@ -10,9 +10,15 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 ESSAY_ROOT = REPO_ROOT / "is" / "writing" / "essays"
 SOURCE_ROOT = ESSAY_ROOT / "_src"
 EXPORT_ROOT = Path("/Users/ajin/Documents/New project/personal/ajin.im:is:writing/archive/essay")
+WROTE_ROOT = REPO_ROOT / "wrote"
 
 
 POST_DEFS = [
+    {
+        "source": "the-house-chips-of-ai.md",
+        "title": "The House Chips of AI",
+        "order": 0,
+    },
     {
         "source": "already-seen.md",
         "title": "Already Seen",
@@ -298,14 +304,14 @@ def build_post_page(post: EssayPost) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/img/a3.png" />
     <link rel="apple-touch-icon" href="/img/a3.png" />
-    <title>{html.escape(post.title)} | ajin.im/is/writing/essays</title>
+    <title>{html.escape(post.title)} | ajin.im/wrote</title>
     <meta name="description" content="{html.escape(post.excerpt or post.title)}" />
-    <link rel="canonical" href="https://ajin.im/is/writing/essays/{post.slug}/" />
+    <link rel="canonical" href="https://ajin.im/wrote/{post.slug}/" />
     <meta property="og:site_name" content="ajin.im" />
     <meta property="og:title" content="{html.escape(post.title)}" />
     <meta property="og:description" content="{html.escape(post.excerpt or post.title)}" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://ajin.im/is/writing/essays/{post.slug}/" />
+    <meta property="og:url" content="https://ajin.im/wrote/{post.slug}/" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="{html.escape(post.title)}" />
@@ -317,14 +323,14 @@ def build_post_page(post: EssayPost) -> str:
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../../../creative-house.css" />
-    <script src="../../../../analytics.js" defer></script>
+    <link rel="stylesheet" href="/creative-house.css" />
+    <script src="/analytics.js" defer></script>
   </head>
   <body class="post-page">
     <main class="post-shell">
       <header class="post-head">
-        <a class="back-link" href="../index.html">Back to essays</a>
-        <p class="path-mark">ajin.im is writing essays</p>
+        <a class="back-link" href="/wrote/">Back to ajin.im/wrote</a>
+        <p class="path-mark">ajin.im wrote</p>
         <h1 class="post-title">{html.escape(post.title)}</h1>
       </header>
 
@@ -342,85 +348,6 @@ def indent_body(body_html: str) -> str:
     return "\n".join(f"        {line}" for line in lines)
 
 
-def render_index(posts: list[EssayPost]) -> str:
-    posts = sorted(posts, key=lambda post: post.order)
-    feature = posts[0]
-    feature_card = f"""          <article class="essay-feature">
-            <h2 class="essay-title">
-              <a href="./{feature.slug}/index.html" target="_self" rel="noreferrer noopener">
-                {html.escape(feature.title)}
-              </a>
-            </h2>
-            <p class="essay-excerpt">{html.escape(feature.excerpt)}</p>
-          </article>"""
-
-    stack_cards = []
-    for post in posts[1:]:
-        stack_cards.append(
-            f"""            <article class="essay-entry">
-              <h2>
-                <a href="./{post.slug}/index.html">
-                  {html.escape(post.title)}
-                </a>
-              </h2>
-            </article>"""
-        )
-
-    return f"""<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/img/a3.png" />
-    <link rel="apple-touch-icon" href="/img/a3.png" />
-    <title>ajin.im/is/writing/essays</title>
-    <meta
-      name="description"
-      content="Essays on systems, competence, translation, and invisible structures."
-    />
-    <link rel="canonical" href="https://ajin.im/is/writing/essays/" />
-    <meta property="og:site_name" content="ajin.im" />
-    <meta property="og:title" content="ajin.im/is/writing/essays" />
-    <meta property="og:description" content="Essays on systems, competence, translation, and invisible structures." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ajin.im/is/writing/essays/" />
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="ajin.im/is/writing/essays" />
-    <meta name="twitter:description" content="Essays on systems, competence, translation, and invisible structures." />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../../../creative-house.css" />
-    <script src="../../../analytics.js" defer></script>
-  </head>
-  <body class="archive-page">
-    <main class="archive-shell">
-      <header class="archive-head">
-        <a class="back-link" href="../index.html">Back to the house</a>
-        <p class="path-mark">ajin.im/is/writing/essays</p>
-        <h1 class="sentence">Essays on systems, competence, translation, and invisible structures.</h1>
-        <p class="archive-intro">
-          Essays that stay close to the ground. New pieces join the room as they arrive.
-        </p>
-      </header>
-
-      <section class="essay-flow">
-{feature_card}
-        <div class="essay-list">
-{chr(10).join(stack_cards)}
-        </div>
-      </section>
-    </main>
-  </body>
-</html>
-"""
-
-
 def load_posts() -> list[EssayPost]:
     ensure_source_markdown()
     posts: list[EssayPost] = []
@@ -433,13 +360,10 @@ def load_posts() -> list[EssayPost]:
 def main() -> None:
     posts = load_posts()
     for post in posts:
-        out_dir = ESSAY_ROOT / post.slug
+        out_dir = WROTE_ROOT / post.slug
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(build_post_page(post), encoding="utf-8")
         print(f"built {out_dir / 'index.html'}")
-
-    (ESSAY_ROOT / "index.html").write_text(render_index(posts), encoding="utf-8")
-    print(f"built {ESSAY_ROOT / 'index.html'}")
 
 
 if __name__ == "__main__":

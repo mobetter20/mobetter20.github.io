@@ -7,7 +7,7 @@ Have you ever heard of the call of the void?
 
 That strange voice in your head when you’re standing near a ledge or high window, and it casually suggests: *what if you jumped?*
 
-Not because you want to die.**But because some part of you wants to eliminate the possibility of falling.
+Not because you want to die. But because some part of you wants to eliminate the possibility of falling.
 
 Sometimes, in the middle of a fight with my partner, I hear that same siren go off. The urge to get it over with.
 
