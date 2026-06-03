@@ -10,8 +10,8 @@ Governing rule: **consistent chrome, free content.** The wrapper is uniform; wha
 
 | Tier | Test | Serif | Where |
 |---|---|---|---|
-| **Frame** | scan-and-navigate; points at things | Source Serif 4 | `/`, `/is/running`, `/is/reading`, `/is/learning`, `/is/building` |
-| **House** | dwell; the page *is* the made thing | Cormorant (`creative-house.css`) | `/is/writing` + rooms (bird-coo, bird-docket), the `/wrote` archive (essays + comedy, pieces at `/wrote/<slug>/`) |
+| **Frame** | scan-and-navigate; points at things | EB Garamond | `/`, `/is/running`, `/is/reading`, `/is/learning`, `/is/building` |
+| **House** | dwell; the page *is* the made thing | EB Garamond (`creative-house.css`) | `/is/writing` + rooms (bird-coo, bird-docket), the `/wrote` archive (essays + comedy, pieces at `/wrote/<slug>/`) |
 | **Bespoke** | a singular work whose form is part of the art | its own | avian-district, secondnest, konbini, the `every-few-years` essay, perch-chat, Small Ware's sub-tools |
 
 Tier follows a page's **nature, not its URL parent** — konbini (bespoke) sits under frame `/is/learning`; Small Ware (house) sits under frame `/is/building`. A sub-page keeps its own tier and gets a working up-link to its parent; it does NOT inherit the parent's serif.
@@ -19,7 +19,7 @@ Tier follows a page's **nature, not its URL parent** — konbini (bespoke) sits 
 **Chrome = a 5-part envelope:** (1) the "ajin.im is ___" title device — faint prefix, italic verb, "ajin.im" links home (`target="_self"`); (2) a way home / up-link; (3) a contact/footer line; (4) DM Mono for labels; (5) warm-dark palette (bg `#1a1612` frame / `#110d0b` house, text `#e8e0d0`).
 
 **Chrome is a gradient, not a switch:**
-- **Frame + House** wear the FULL envelope. The title device renders in the page's own serif: frame uses `.title` (in `templates/*.html`), house uses `.house-title` (in `creative-house.css`). Same device, tier-local serif.
+- **Frame + House** wear the FULL envelope. The title device renders in the page's own serif: frame uses `.title` (in `templates/*.html`), house uses `.house-title` (in `creative-house.css`). Same device, shared serif EB Garamond — tier is carried by palette + chrome + content, not typeface.
 - **Bespoke** wear only the ANCHORS — a way home + palette sympathy + DM Mono if labels appear. Do NOT force the title device on them; their singular design is intentional, and flattening it is a regression.
 - **The "made by ajin.im" colophon** is the standard form of that *way home* for Bespoke pages and standalone sites (own domain) that don't wear the title device. It's a maker's *signature* — meta, sitting outside the fiction — so it rides fiction-heavy worlds (the bird-universe, BIC) where a back-breadcrumb would break character; keep it to one discreet, muted footer line. Internal ajin.im pages link `/` (same tab); standalone sites link `https://ajin.im` (new tab, `rel=noopener`). **On:** omen.ops, BIC (propagandaformyself.xyz), seoulcrushing, bird-universe **avian-district** (in-world hub). **NOT on:** standard section pages (title device already links home), the sealed bird-universe leaf rooms, **bird-coo / The Municipal Coo** (it added footer bulk — rejected 2026-06), or archived/noindex pages. Per-site bird-universe status (front door = bird-coo, internal hub = avian-district, archived = bird-docket) lives in `_scripts/bird-universe/bird_universe_registry.json`.
 
