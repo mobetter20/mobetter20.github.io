@@ -272,7 +272,6 @@ def build_page(post: ComedyPost) -> str:
     <main class="post-shell">
       <header class="post-head">
         <a class="back-link" href="/wrote/">Back to ajin.im/wrote</a>
-        <p class="path-mark">ajin.im wrote</p>
         <p class="archive-meta">Medium years / {post.readable_date}</p>
         <h1 class="post-title">{html.escape(post.title)}</h1>
 {subtitle_html}        <p class="post-note">
@@ -326,7 +325,6 @@ def build_standalone_page(post: StandaloneComedyPost) -> str:
     <main class="post-shell">
       <header class="post-head">
         <a class="back-link" href="/wrote/">Back to ajin.im/wrote</a>
-        <p class="path-mark">ajin.im wrote</p>
         <p class="archive-meta">Standalone comedy</p>
         <h1 class="post-title">{html.escape(post.title)}</h1>
 {subtitle_html}      </header>

@@ -320,7 +320,6 @@ def build_post_page(post: EssayPost) -> str:
     <main class="post-shell">
       <header class="post-head">
         <a class="back-link" href="/wrote/">Back to ajin.im/wrote</a>
-        <p class="path-mark">ajin.im wrote</p>
         <h1 class="post-title">{html.escape(post.title)}</h1>
       </header>
 
