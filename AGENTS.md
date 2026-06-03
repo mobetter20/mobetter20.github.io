@@ -11,7 +11,7 @@ Governing rule: **consistent chrome, free content.** The wrapper is uniform; wha
 | Tier | Test | Serif | Where |
 |---|---|---|---|
 | **Frame** | scan-and-navigate; points at things | Source Serif 4 | `/`, `/is/running`, `/is/reading`, `/is/learning`, `/is/building` |
-| **House** | dwell; the page *is* the made thing | Cormorant (`creative-house.css`) | `/is/writing` + rooms (comedy, essays, desk, loose, bird-coo, bird-docket), `/wrote` |
+| **House** | dwell; the page *is* the made thing | Cormorant (`creative-house.css`) | `/is/writing` + rooms (bird-coo, bird-docket), the `/wrote` archive (essays + comedy, pieces at `/wrote/<slug>/`) |
 | **Bespoke** | a singular work whose form is part of the art | its own | avian-district, secondnest, konbini, the `every-few-years` essay, perch-chat, Small Ware's sub-tools |
 
 Tier follows a page's **nature, not its URL parent** — konbini (bespoke) sits under frame `/is/learning`; Small Ware (house) sits under frame `/is/building`. A sub-page keeps its own tier and gets a working up-link to its parent; it does NOT inherit the parent's serif.
@@ -49,6 +49,8 @@ Read `INDEX.md` for what to load and when. Modular files:
 `_scripts/build_bird_coo.py` generates all Municipal Coo HTML (index, issues, archive). Manual edits to generated files will be overwritten on next build. Make template changes in the build script.
 
 The script also auto-updates the "From the Municipal Coo" excerpt block on `is/writing/avian-district/index.html`. The block lives between `<!-- COO-EXCERPT-START -->` and `<!-- COO-EXCERPT-END -->` markers — manual edits inside that range will be overwritten on next build. Edit the renderer in `_scripts/build_bird_coo.py` (`render_avian_district_excerpt`) instead.
+
+`_scripts/build_essays.py` and `_scripts/build_comedy.py` generate the writing-archive pieces into `/wrote/<slug>/` (essays from `is/writing/essays/_src/`; comedy from external Medium exports + `is/writing/comedy/_src/`). `_scripts/build_wrote.py` renders the single combined index `/wrote/index.html` by importing both generators — it is the source of truth for the archive listing, so the index can never drift from the pieces that exist. Run order in `publish.sh`: `build_comedy.py` → `build_essays.py` → `build_wrote.py`. The old section indexes `is/writing/essays/index.html` and `is/writing/comedy/index.html` are redirect stubs to `/wrote/`; do not add piece links by hand. To add an essay: drop its markdown in `is/writing/essays/_src/` and register it in `build_essays.POST_DEFS` (or, for a hand-built bespoke page like `every-few-years`, add it to `build_wrote.BESPOKE_ESSAYS`).
 
 ## CSS / Layout Changes
 

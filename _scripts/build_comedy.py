@@ -11,6 +11,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 EXPORT_ROOT = Path("/Users/ajin/Documents/New project/personal/ajin.im:is:writing/archive/wrote")
 COMEDY_ROOT = REPO_ROOT / "is" / "writing" / "comedy"
 COMEDY_SOURCE_ROOT = COMEDY_ROOT / "_src"
+WROTE_ROOT = REPO_ROOT / "wrote"
 
 
 @dataclass(frozen=True)
@@ -245,14 +246,14 @@ def build_page(post: ComedyPost) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/img/a3.png" />
     <link rel="apple-touch-icon" href="/img/a3.png" />
-    <title>{html.escape(post.title)} | ajin.im/is/writing/comedy</title>
+    <title>{html.escape(post.title)} | ajin.im/wrote</title>
     <meta name="description" content="{html.escape(post.subtitle or post.title)}" />
-    <link rel="canonical" href="https://ajin.im/is/writing/comedy/{post.slug}/" />
+    <link rel="canonical" href="https://ajin.im/wrote/{post.slug}/" />
     <meta property="og:site_name" content="ajin.im" />
     <meta property="og:title" content="{html.escape(post.title)}" />
     <meta property="og:description" content="{html.escape(post.subtitle or post.title)}" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://ajin.im/is/writing/comedy/{post.slug}/" />
+    <meta property="og:url" content="https://ajin.im/wrote/{post.slug}/" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="{html.escape(post.title)}" />
@@ -264,14 +265,14 @@ def build_page(post: ComedyPost) -> str:
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../../../creative-house.css" />
-    <script src="../../../../analytics.js" defer></script>
+    <link rel="stylesheet" href="/creative-house.css" />
+    <script src="/analytics.js" defer></script>
   </head>
   <body class="post-page">
     <main class="post-shell">
       <header class="post-head">
-        <a class="back-link" href="../index.html">Back to comedy</a>
-        <p class="path-mark">ajin.im is writing comedy</p>
+        <a class="back-link" href="/wrote/">Back to ajin.im/wrote</a>
+        <p class="path-mark">ajin.im wrote</p>
         <p class="archive-meta">Medium years / {post.readable_date}</p>
         <h1 class="post-title">{html.escape(post.title)}</h1>
 {subtitle_html}        <p class="post-note">
@@ -299,14 +300,14 @@ def build_standalone_page(post: StandaloneComedyPost) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/img/a3.png" />
     <link rel="apple-touch-icon" href="/img/a3.png" />
-    <title>{html.escape(post.title)} | ajin.im/is/writing/comedy</title>
+    <title>{html.escape(post.title)} | ajin.im/wrote</title>
     <meta name="description" content="{html.escape(post.subtitle or post.title)}" />
-    <link rel="canonical" href="https://ajin.im/is/writing/comedy/{post.slug}/" />
+    <link rel="canonical" href="https://ajin.im/wrote/{post.slug}/" />
     <meta property="og:site_name" content="ajin.im" />
     <meta property="og:title" content="{html.escape(post.title)}" />
     <meta property="og:description" content="{html.escape(post.subtitle or post.title)}" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://ajin.im/is/writing/comedy/{post.slug}/" />
+    <meta property="og:url" content="https://ajin.im/wrote/{post.slug}/" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="{html.escape(post.title)}" />
@@ -318,14 +319,14 @@ def build_standalone_page(post: StandaloneComedyPost) -> str:
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../../../creative-house.css" />
-    <script src="../../../../analytics.js" defer></script>
+    <link rel="stylesheet" href="/creative-house.css" />
+    <script src="/analytics.js" defer></script>
   </head>
   <body class="post-page">
     <main class="post-shell">
       <header class="post-head">
-        <a class="back-link" href="../index.html">Back to comedy</a>
-        <p class="path-mark">ajin.im is writing comedy</p>
+        <a class="back-link" href="/wrote/">Back to ajin.im/wrote</a>
+        <p class="path-mark">ajin.im wrote</p>
         <p class="archive-meta">Standalone comedy</p>
         <h1 class="post-title">{html.escape(post.title)}</h1>
 {subtitle_html}      </header>
@@ -339,88 +340,7 @@ def build_standalone_page(post: StandaloneComedyPost) -> str:
 """
 
 
-def render_index(medium_posts: list[ComedyPost], standalone_posts: list[StandaloneComedyPost]) -> str:
-    cards = []
-    for post in sorted(standalone_posts, key=lambda item: item.order):
-        cards.append(
-            f"""            <article class="archive-card">
-              <p class="archive-meta">Standalone comedy</p>
-              <h2>
-                <a href="./{post.slug}/index.html">
-                  {html.escape(post.title)}
-                </a>
-              </h2>
-            </article>"""
-        )
-    for post in medium_posts:
-        cards.append(
-            f"""            <article class="archive-card">
-              <p class="archive-meta">Medium years / {post.month_label}</p>
-              <h2>
-                <a href="./{post.slug}/index.html">
-                  {html.escape(post.title)}
-                </a>
-              </h2>
-            </article>"""
-        )
-
-    return f"""<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/img/a3.png" />
-    <link rel="apple-touch-icon" href="/img/a3.png" />
-    <title>ajin.im/is/writing/comedy</title>
-    <meta name="description" content="Comedy pieces by Ajin Im, largely from the Medium years." />
-    <link rel="canonical" href="https://ajin.im/is/writing/comedy/" />
-    <meta property="og:site_name" content="ajin.im" />
-    <meta property="og:title" content="ajin.im/is/writing/comedy" />
-    <meta property="og:description" content="Comedy pieces by Ajin Im, largely from the Medium years." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ajin.im/is/writing/comedy/" />
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="ajin.im/is/writing/comedy" />
-    <meta name="twitter:description" content="Comedy pieces by Ajin Im, largely from the Medium years." />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../../../creative-house.css" />
-    <script src="../../../analytics.js" defer></script>
-  </head>
-  <body class="archive-page">
-    <main class="archive-shell">
-      <header class="archive-head">
-        <a class="back-link" href="../index.html">Back to the house</a>
-        <p class="path-mark">ajin.im is writing comedy</p>
-        <h1 class="sentence">...where marriage, objects, and small humiliations keep misbehaving.</h1>
-        <p class="archive-intro">
-          Domestic systems, bureaucratic logic, bodily events, and private embarrassments, all
-          treated with the wrong amount of seriousness.
-        </p>
-      </header>
-
-      <section class="archive-grid">
-        <article class="archive-panel archive-panel-wide">
-          <h2 class="panel-title">Comedy</h2>
-          <p class="quiet-note">Pieces first published on Medium are marked below.</p>
-          <div class="archive-list">
-{chr(10).join(cards)}
-          </div>
-        </article>
-      </section>
-    </main>
-  </body>
-</html>
-"""
-
-
-def main() -> None:
+def load_posts() -> tuple[list[ComedyPost], list[StandaloneComedyPost]]:
     COMEDY_SOURCE_ROOT.mkdir(parents=True, exist_ok=True)
 
     medium_posts: list[ComedyPost] = []
@@ -449,20 +369,23 @@ def main() -> None:
             )
         unique_medium_posts.append(post)
 
+    return unique_medium_posts, standalone_posts
+
+
+def main() -> None:
+    unique_medium_posts, standalone_posts = load_posts()
+
     for post in unique_medium_posts:
-        out_dir = COMEDY_ROOT / post.slug
+        out_dir = WROTE_ROOT / post.slug
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(build_page(post), encoding="utf-8")
         print(f"built {out_dir / 'index.html'}")
 
     for post in standalone_posts:
-        out_dir = COMEDY_ROOT / post.slug
+        out_dir = WROTE_ROOT / post.slug
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(build_standalone_page(post), encoding="utf-8")
         print(f"built {out_dir / 'index.html'}")
-
-    (COMEDY_ROOT / "index.html").write_text(render_index(unique_medium_posts, standalone_posts), encoding="utf-8")
-    print(f"built {COMEDY_ROOT / 'index.html'}")
 
 
 if __name__ == "__main__":
