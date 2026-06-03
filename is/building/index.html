@@ -61,6 +61,7 @@
   .projects { animation: fade 0.9s ease-out 0.25s both; }
   .project { padding: 1.15rem 0; border-bottom: 1px solid var(--rule); }
   .project:first-child { border-top: 1px solid var(--rule); }
+  .project.group-start { border-top: 1px solid var(--rule); }
   .project-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
   .project-name { font-size: 1.25rem; }
   .project-name a {
@@ -72,7 +73,31 @@
     font-family: 'DM Mono', monospace; font-size: .68rem;
     letter-spacing: .16em; text-transform: uppercase; color: var(--text-faint); white-space: nowrap;
   }
+  .project-status.is-collection { color: var(--text-soft); }
   .project-desc { color: var(--text-soft); font-size: .95rem; margin-top: .35rem; }
+
+  /* the single section label — frame-native DM Mono, matches learning's "Self-made tools" */
+  .section-label {
+    font-family: 'DM Mono', monospace; font-size: .7rem;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--text-faint);
+    margin: 2.9rem 0 .15rem;
+  }
+
+  /* growth valve: folds the tail once "Lately" gets long (dormant until needed) */
+  .earlier { border-bottom: 1px solid var(--rule); }
+  .earlier > summary {
+    list-style: none; cursor: pointer; padding: 1.15rem 0;
+    font-family: 'DM Mono', monospace; font-size: .7rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--text-faint);
+    display: flex; align-items: center; gap: .55rem; transition: color .25s;
+  }
+  .earlier > summary::-webkit-details-marker { display: none; }
+  .earlier > summary::before { content: '▸'; font-size: .65rem; transition: transform .2s ease; }
+  .earlier[open] > summary::before { transform: rotate(90deg); }
+  .earlier > summary:hover { color: var(--text-soft); }
+  .earlier .project { border-bottom: 1px solid var(--rule); }
+  .earlier .project:first-child { border-top: 1px solid var(--rule); }
+  .earlier .project:last-child { border-bottom: none; }
 
   .updated { margin-top: 1.6rem; font-size: .9rem; color: var(--text-faint); }
 
@@ -83,6 +108,7 @@
     .title { font-size: 1.18rem; margin-bottom: 2.5rem; }
     .project-name { font-size: 1.12rem; }
     .project-desc { font-size: .9rem; }
+    .section-label { margin-top: 2.4rem; }
   }
 </style>
 </head>
@@ -91,21 +117,25 @@
   <h1 class="title"><span class="prefix"><a href="/" target="_self">ajin.im</a> is</span> <span class="verb">building</span></h1>
 
   <div class="projects">
+    <!-- Container builds: no section label; the count chip carries "contains more" -->
     <div class="project">
       <div class="project-head">
-        <span class="project-name"><a href="https://seoulcrushing.com">Seoul Crushing</a></span>
-        <span class="project-status">live</span>
+        <span class="project-name"><a href="https://seoulcrushing.com" target="_blank" rel="noopener">Seoul Crushing</a></span>
+        <span class="project-status is-collection">4 pieces &rarr;</span>
       </div>
       <p class="project-desc">Korea, made legible. With bite.</p>
     </div>
     <div class="project">
       <div class="project-head">
         <span class="project-name"><a href="/is/building/small/">Small Ware</a></span>
-        <span class="project-status">live</span>
+        <span class="project-status is-collection">5 tools &rarr;</span>
       </div>
       <p class="project-desc">Small instruments for big questions.</p>
     </div>
-    <div class="project">
+
+    <!-- Lately: the growing stream of single public builds, newest first -->
+    <div class="section-label">Lately</div>
+    <div class="project group-start">
       <div class="project-head">
         <span class="project-name"><a href="/is/building/omen.ops/">omen.ops</a></span>
         <span class="project-status">live</span>
@@ -121,7 +151,7 @@
     </div>
     <div class="project">
       <div class="project-head">
-        <span class="project-name"><a href="https://github.com/mobetter20/windy-plugin-weather-why">Weather Why</a></span>
+        <span class="project-name"><a href="https://github.com/mobetter20/windy-plugin-weather-why" target="_blank" rel="noopener">Weather Why</a></span>
         <span class="project-status">plugin</span>
       </div>
       <p class="project-desc">Click a weather map, learn why it looks like that.</p>
