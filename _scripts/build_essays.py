@@ -25,11 +25,6 @@ POST_DEFS = [
         "order": 1,
     },
     {
-        "source": "money-cant-buy-better-judgment.md",
-        "title": "Money Can’t Buy Better Judgment",
-        "order": 2,
-    },
-    {
         "source": "adventure-is-danger-past-tense.md",
         "title": "Adventure Is Danger, Past Tense",
         "order": 3,
