@@ -40,11 +40,6 @@ POST_DEFS = [
         "order": 4,
     },
     {
-        "source": "taste-as-a-service-the-shift-from-production-to-discernment.md",
-        "title": "Taste as a Service: The Shift from Production to Discernment",
-        "order": 5,
-    },
-    {
         "source": "korea-was-the-beta-test-zone-for-modern-loneliness.md",
         "title": "Korea was the beta test zone for modern loneliness.",
         "order": 6,
