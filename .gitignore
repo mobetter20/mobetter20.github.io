@@ -7,3 +7,8 @@ is/writing/_lab/
 .claude/
 .vscode/
 .playwright-mcp/
+.env
+.env.*
+*.key
+*.pem
+*service-account*.json

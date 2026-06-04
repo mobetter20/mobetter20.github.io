@@ -13,7 +13,7 @@
       var href = a.getAttribute('href') || '';
       if (href.charAt(0) === '#' || a.target) continue; // skip in-page anchors + explicit targets
       a.target = '_blank';
-      if (!a.rel) a.rel = 'noopener';
+      if (!a.rel) a.rel = 'noopener noreferrer';
     }
   }
   if (document.readyState === 'loading') {
