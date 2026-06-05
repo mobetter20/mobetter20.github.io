@@ -34,11 +34,14 @@
   .bar h1{font-size:.74rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; margin:0; color:var(--ac)}
   .bar .stat{font-size:.66rem; letter-spacing:.12em; color:var(--tx3); text-transform:uppercase; white-space:nowrap}
   .tag{font-size:.74rem; color:var(--tx2); margin:.7rem 0 0}
-  .lens{display:flex; flex-wrap:wrap; gap:.2rem .9rem; align-items:baseline; padding:1.1rem 0 1rem; font-size:.7rem}
-  .lens .lead{color:var(--tx3); text-transform:uppercase; letter-spacing:.12em}
-  .lens button{font:inherit; font-size:.72rem; background:none; border:none; color:var(--tx2); cursor:pointer; padding:.1rem 0}
-  .lens button[aria-pressed="true"]{color:var(--ac)}
-  .lens button:hover{color:var(--tx)}
+  .lens{display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; padding:1.1rem 0 1rem; font-size:.7rem}
+  .lens .lead{color:var(--tx3); text-transform:uppercase; letter-spacing:.12em; margin-right:.15rem}
+  .lens button{font:inherit; font-size:.7rem; color:var(--tx2); cursor:pointer; white-space:nowrap;
+    background:var(--panel); border:1px solid var(--line2); border-radius:999px; padding:.32rem .72rem;
+    transition:color .15s, border-color .15s, background .15s}
+  .lens button:hover{color:var(--tx); border-color:var(--tx3)}
+  .lens button:focus-visible{outline:2px solid color-mix(in srgb,var(--ac) 60%, transparent); outline-offset:2px}
+  .lens button[aria-pressed="true"]{color:var(--ac); border-color:color-mix(in srgb,var(--ac) 55%, transparent); background:color-mix(in srgb,var(--ac) 13%, var(--panel))}
   .board{list-style:none; margin:0; padding:0}
   .row{display:grid; grid-template-columns:auto 9.5rem 1fr auto auto; align-items:center; gap:.75rem;
     padding:.62rem .35rem; border-bottom:1px solid var(--line); text-decoration:none; color:inherit}
@@ -122,6 +125,9 @@
       ol.appendChild(li);
     });
   }
+  document.getElementById("stat").textContent =
+    INST.filter(function(x){return x.status === "live";}).length + " live · " +
+    INST.filter(function(x){return x.status === "staging";}).length + " staging";
   paint();
 </script>
 </body>
