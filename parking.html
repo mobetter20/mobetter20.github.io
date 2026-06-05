@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Division of Emotional Parking</title>
+<style>
+  :root{
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+    --void:#0b0908;
+    --phosphor:#9fb8a4;
+    --phosphor-dim:#5f7565;
+    --amber:#d8a23a;
+    --amber-glow:rgba(216,162,58,.55);
+    --ink:#e6ddcd;
+    --stamp-red:#b23a2e;
+    --paper-ink:#2c261d;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    min-height:100vh;min-height:100svh;
+    background:radial-gradient(130% 90% at 50% -15%, #1c1713, #0b0908 72%);
+    display:flex;align-items:center;justify-content:center;
+    padding:24px 14px;
+    font-family:var(--mono);
+    color:#cfc6b8;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+
+  .stage{width:min(94vw,460px);}
+
+  /* ---------- screens ---------- */
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  /* ---------- the machine (screens 1-4) ---------- */
+  .machine{
+    background:linear-gradient(180deg,#1d1814,#141110 60%,#171311);
+    border:1px solid #050404;
+    border-top-color:#332b24;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.05),
+      inset 0 0 0 1px rgba(0,0,0,.6),
+      0 18px 40px rgba(0,0,0,.55);
+    padding:18px 18px 22px;
+    position:relative;
+  }
+  .machine::before,.machine::after{
+    content:"";position:absolute;top:9px;width:8px;height:8px;border-radius:50%;
+    background:radial-gradient(circle at 35% 32%,#cfc6b8,#2a231c 70%);
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.5);
+  }
+  .machine::before{left:10px;}
+  .machine::after{right:10px;}
+
+  .plate{
+    text-align:center;
+    padding:4px 24px 14px;
+    border-bottom:1px solid #0a0807;
+    margin-bottom:16px;
+  }
+  .plate b{
+    display:block;font-weight:700;font-size:.78rem;letter-spacing:.18em;
+    color:var(--ink);
+    text-shadow:0 1px 0 rgba(0,0,0,.7),0 -1px 0 rgba(255,255,255,.04);
+  }
+  .plate span{
+    display:block;margin-top:5px;font-size:.62rem;letter-spacing:.26em;
+    color:#7d7264;text-shadow:0 1px 0 rgba(0,0,0,.7);
+  }
+
+  /* LCD readout */
+  .lcd{
+    position:relative;
+    background:linear-gradient(180deg,#10160f,#161d16);
+    border:1px solid #000;
+    box-shadow:inset 0 2px 10px rgba(0,0,0,.85), inset 0 0 36px rgba(0,40,10,.18);
+    padding:18px 16px;
+    color:var(--phosphor);
+    text-shadow:0 0 3px rgba(159,184,164,.35);
+    overflow:hidden;
+  }
+  .lcd::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.20) 0 1px, transparent 1px 3px);
+    mix-blend-mode:multiply;opacity:.55;
+  }
+  .lcd > *{position:relative;}
+  .lcd .q{font-size:1.02rem;letter-spacing:.01em;}
+  .lcd .lede{color:var(--phosphor);}
+  .lcd .muted{color:var(--phosphor-dim);}
+
+  /* record fields inside the LCD */
+  .record{margin:14px 0;font-size:.86rem;}
+  .record .row{display:flex;gap:10px;padding:3px 0;}
+  .record .k{color:var(--phosphor-dim);min-width:5.5em;letter-spacing:.08em;}
+  .record .v{color:#cfe2cf;word-break:break-word;flex:1;}
+
+  /* meter */
+  .meter-val{
+    color:var(--amber);
+    text-shadow:0 0 7px var(--amber-glow);
+    font-variant-numeric:tabular-nums;letter-spacing:.04em;
+    white-space:nowrap;
+  }
+  .run-dot{display:inline-block;width:.42em;height:.42em;border-radius:50%;
+    background:var(--amber);box-shadow:0 0 6px var(--amber-glow);
+    margin-left:.1em;vertical-align:.04em;animation:blink 1.1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:.18;}}
+
+  /* corner meter chip (screen 3) */
+  .chip{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border:1px solid #000;background:#0d120c;
+    box-shadow:inset 0 1px 6px rgba(0,0,0,.7);
+    padding:7px 11px;margin-bottom:14px;
+  }
+  .chip .lbl{font-size:.6rem;letter-spacing:.2em;color:var(--phosphor-dim);}
+  .chip .meter-val{font-size:1rem;}
+  .chip > span:last-child{white-space:nowrap;display:inline-flex;align-items:center;gap:.2em;}
+  .chip .run-dot{margin-left:0;}
+
+  /* controls on the housing */
+  .controls{margin-top:16px;}
+  .field{
+    font:inherit;font-size:16px;width:100%;
+    color:#d7e6d7;background:#0c100b;
+    border:1px solid #000;
+    box-shadow:inset 0 2px 7px rgba(0,0,0,.75);
+    padding:.72em .8em;caret-color:var(--amber);
+    resize:none;
+  }
+  .field::placeholder{color:#4d5a4c;}
+  .field:focus{outline:none;box-shadow:inset 0 2px 7px rgba(0,0,0,.75),0 0 0 1px rgba(159,184,164,.3);}
+  textarea.field{min-height:108px;line-height:1.55;}
+
+  .key{
+    font:inherit;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    font-size:.82rem;color:var(--ink);
+    background:linear-gradient(#2c2620,#1b1714);
+    border:1px solid #000;border-top-color:#3c342c;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 3px 0 #000, 0 6px 12px rgba(0,0,0,.5);
+    padding:.85em 1.3em;margin-top:12px;width:100%;cursor:pointer;
+    transition:transform .04s, box-shadow .04s;
+  }
+  .key:active{transform:translateY(3px);box-shadow:inset 0 2px 5px rgba(0,0,0,.7);}
+
+  .helper{margin-top:11px;font-size:.68rem;color:#6f6457;letter-spacing:.03em;}
+  .err{margin-top:11px;font-size:.72rem;color:#e0a05a;letter-spacing:.02em;min-height:1em;}
+  .err:empty{margin-top:0;}
+
+  /* posted rules placard (brushed metal sign) */
+  .placard{
+    position:relative;margin-top:16px;
+    background:linear-gradient(155deg,#6e655a,#534b42);
+    color:#16120d;
+    border:1px solid #241f1a;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.20), inset 0 -3px 8px rgba(0,0,0,.32), 0 2px 7px rgba(0,0,0,.4);
+    padding:13px 15px 14px;
+    text-shadow:0 1px 0 rgba(255,255,255,.13);
+  }
+  .placard h2{margin:0 0 8px;font-size:.64rem;letter-spacing:.26em;font-weight:700;}
+  .placard ul{margin:0;padding:0;list-style:none;font-size:.72rem;line-height:1.62;}
+  .placard li{padding:1px 0;}
+  .placard .rivet{position:absolute;width:6px;height:6px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,#d6cdbf,#2c261f 72%);box-shadow:inset 0 0 0 1px rgba(0,0,0,.4);}
+  .placard .rivet.tl{top:6px;left:6px;} .placard .rivet.tr{top:6px;right:6px;}
+  .placard .rivet.bl{bottom:6px;left:6px;} .placard .rivet.br{bottom:6px;right:6px;}
+
+  /* validation ceremony (screen 4) */
+  .proc p{margin:.2em 0;color:var(--phosphor);opacity:0;animation:fadein .5s forwards;}
+  .proc p:nth-child(2){animation-delay:.7s;}
+  @keyframes fadein{to{opacity:1;}}
+  .result{display:none;}
+  .result.show{display:block;}
+  .stamp-bay{position:relative;min-height:120px;display:flex;align-items:center;justify-content:center;}
+  .stamp-bay .record{margin:0;opacity:.85;text-align:left;width:100%;}
+
+  /* ink stamp */
+  .stamp{
+    position:absolute;left:50%;top:50%;
+    transform:translate(-50%,-50%) rotate(-8deg);
+    font-weight:800;letter-spacing:.22em;font-size:1.55rem;text-transform:uppercase;
+    padding:.16em .52em;border:3px solid var(--stamp-red);color:var(--stamp-red);
+    opacity:0;pointer-events:none;white-space:nowrap;
+  }
+  .stamp::before{content:"";position:absolute;inset:3px;border:1px solid currentColor;opacity:.85;}
+  .stamp::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 35%, rgba(255,255,255,.16) 0 1px, transparent 1px) 0 0/4px 4px;
+    mix-blend-mode:screen;opacity:.5;pointer-events:none;}
+  .stamp.on-paper{mix-blend-mode:multiply;color:var(--stamp-red);}
+  .stamp.on-lcd{color:#e25b46;border-color:#e25b46;text-shadow:0 0 10px rgba(226,91,70,.5);}
+  .stamp.on-lcd::before{border-color:#e25b46;}
+
+  .stamp.go{animation:stampdown .5s cubic-bezier(.18,.8,.24,1) forwards;}
+  @keyframes stampdown{
+    0%{opacity:0;transform:translate(-50%,-50%) rotate(-8deg) scale(2.5);filter:blur(2.5px);}
+    55%{opacity:.95;transform:translate(-50%,-50%) rotate(-8deg) scale(.87);filter:blur(0);}
+    72%{transform:translate(-50%,-50%) rotate(-8deg) scale(1.07);}
+    100%{opacity:.88;transform:translate(-50%,-50%) rotate(-8deg) scale(1);}
+  }
+
+  .verdict{margin-top:8px;}
+  .verdict p{margin:.32em 0;font-size:.86rem;}
+  .verdict .meterline{margin-top:12px;}
+
+  /* ---------- the stub (screen 5) — warm thermal receipt ---------- */
+  .screen5{display:none;}
+  .screen5.active{display:flex;flex-direction:column;align-items:center;}
+  .receipt-wrap{filter:drop-shadow(0 14px 30px rgba(0,0,0,.55));animation:eject .55s ease-out;}
+  @keyframes eject{from{transform:translateY(34px);opacity:0;}to{transform:none;opacity:1;}}
+
+  .receipt{
+    position:relative;width:min(92vw,360px);
+    background:
+      repeating-linear-gradient(0deg, rgba(60,40,10,.022) 0 2px, transparent 2px 4px),
+      linear-gradient(180deg,#f3e9d3,#ece0c5);
+    color:var(--paper-ink);
+    padding:30px 24px 34px;
+    --hole:6px;--gap:15px;
+    -webkit-mask:
+      radial-gradient(var(--hole) at 50% 0, #0000 calc(var(--hole) - .5px), #000 var(--hole)) 50% 0/var(--gap) 51% repeat-x,
+      radial-gradient(var(--hole) at 50% 100%, #0000 calc(var(--hole) - .5px), #000 var(--hole)) 50% 100%/var(--gap) 51% repeat-x;
+    mask:
+      radial-gradient(var(--hole) at 50% 0, #0000 calc(var(--hole) - .5px), #000 var(--hole)) 50% 0/var(--gap) 51% repeat-x,
+      radial-gradient(var(--hole) at 50% 100%, #0000 calc(var(--hole) - .5px), #000 var(--hole)) 50% 100%/var(--gap) 51% repeat-x;
+  }
+  .receipt .r-title{text-align:center;}
+  .receipt .r-title b{display:block;font-size:.72rem;letter-spacing:.14em;font-weight:700;}
+  .receipt .r-title span{display:block;margin-top:4px;font-size:.66rem;letter-spacing:.06em;color:#6a5f49;}
+  .receipt .rule{border:0;border-top:1px dashed #b9a981;margin:14px 0;}
+  .r-fields{font-size:.8rem;}
+  .r-fields .row{display:flex;gap:8px;padding:4px 0;}
+  .r-fields .k{letter-spacing:.1em;color:#6a5f49;white-space:nowrap;}
+  .r-fields .v{flex:1;word-break:break-word;color:var(--paper-ink);}
+  .r-fields .row.stack{flex-direction:column;gap:3px;}
+  .r-fields .row.stack .v{padding-left:2px;}
+  .r-stamp-bay{position:relative;min-height:74px;}
+  .r-foot{font-size:.74rem;line-height:1.6;color:#4a4133;}
+  .r-foot .meter-val{color:#8a5a16;text-shadow:none;}
+  .again{
+    display:inline-block;margin-top:20px;
+    color:#5c5240;border-bottom:1px solid #5c5240;
+    text-decoration:none;font-size:.78rem;letter-spacing:.04em;cursor:pointer;
+    background:none;border-left:0;border-right:0;border-top:0;font-family:inherit;padding:0 0 1px;
+  }
+  .again:hover{color:#332d22;border-color:#332d22;}
+
+  @media (min-width:600px){
+    .machine{padding:22px 24px 26px;}
+    .lcd{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+<main class="stage">
+
+  <!-- SCREEN 1 — the lot (idle) -->
+  <section class="screen active" data-screen="1">
+    <div class="machine">
+      <div class="plate"><b>DIVISION OF EMOTIONAL PARKING</b><span>PUBLIC PAY STATION NO. 7</span></div>
+      <div class="lcd">
+        <div class="q">What are you parking today?</div>
+      </div>
+      <div class="controls">
+        <input class="field" id="feeling" type="text" autocomplete="off" spellcheck="false" aria-label="What are you parking today?" placeholder="">
+        <button class="key" id="pullIn">Pull In</button>
+        <div class="err" id="err1"></div>
+      </div>
+      <div class="placard">
+        <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
+        <h2>POSTED RULES</h2>
+        <ul>
+          <li>Park only what you are prepared to leave.</li>
+          <li>Do not park a feeling in a space assigned to another.</li>
+          <li>Do not obstruct shared lanes. Others are routing through.</li>
+          <li>Unattended feelings are subject to the posted limit.</li>
+          <li>The meter does not stop for explanation.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2 — spot assigned -->
+  <section class="screen" data-screen="2">
+    <div class="machine">
+      <div class="plate"><b>DIVISION OF EMOTIONAL PARKING</b><span>PUBLIC PAY STATION NO. 7</span></div>
+      <div class="lcd">
+        <div class="lede">Received.</div>
+        <div class="record">
+          <div class="row"><span class="k">PARKED</span><span class="v echo-feeling"></span></div>
+          <div class="row"><span class="k">SPACE</span><span class="v">B-14</span></div>
+          <div class="row"><span class="k">TIME IN</span><span class="v time-in"></span></div>
+          <div class="row"><span class="k">LIMIT</span><span class="v">4h</span></div>
+          <div class="row"><span class="k">METER</span><span class="v"><span class="meter-val">00h 00m</span> — running<span class="run-dot"></span></span></div>
+        </div>
+        <div class="muted">Your space is assigned. The meter is running.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3 — state your business -->
+  <section class="screen" data-screen="3">
+    <div class="machine">
+      <div class="plate"><b>DIVISION OF EMOTIONAL PARKING</b><span>PUBLIC PAY STATION NO. 7</span></div>
+      <div class="lcd">
+        <div class="chip">
+          <span class="lbl">SPACE B-14 · METER RUNNING</span>
+          <span><span class="meter-val">00h 00m</span><span class="run-dot"></span></span>
+        </div>
+        <div class="q">State the nature and expected duration of your stay.</div>
+      </div>
+      <div class="controls">
+        <textarea class="field" id="business" spellcheck="false" aria-label="State the nature and expected duration of your stay."></textarea>
+        <button class="key" id="submit">Submit for Validation</button>
+        <div class="helper">All stays are reviewed. Review does not pause the meter.</div>
+        <div class="err" id="err3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 4 — validation -->
+  <section class="screen" data-screen="4">
+    <div class="machine">
+      <div class="plate"><b>DIVISION OF EMOTIONAL PARKING</b><span>PUBLIC PAY STATION NO. 7</span></div>
+      <div class="lcd">
+        <div class="proc" id="proc">
+          <p>Reviewing stated business.</p>
+          <p>Confirming legitimacy of stay.</p>
+        </div>
+        <div class="result" id="result">
+          <div class="stamp-bay">
+            <div class="record">
+              <div class="row"><span class="k">PARKED</span><span class="v echo-feeling"></span></div>
+              <div class="row"><span class="k">SPACE</span><span class="v">B-14</span></div>
+            </div>
+            <div class="stamp on-lcd" id="stampLcd">Validated</div>
+          </div>
+          <div class="verdict">
+            <p>Your stay has been reviewed and found legitimate.</p>
+            <p>Validation confirms your reason. It does not reduce your fare.</p>
+            <p class="meterline muted">METER: <span class="meter-val">00h 00m</span> — running<span class="run-dot"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 5 — the stub -->
+  <section class="screen5" data-screen="5">
+    <div class="receipt-wrap">
+      <div class="receipt">
+        <div class="r-title">
+          <b>DIVISION OF EMOTIONAL PARKING</b>
+          <span>Validated Parking Stub</span>
+        </div>
+        <hr class="rule">
+        <div class="r-fields">
+          <div class="row"><span class="k">SPACE ·</span><span class="v">B-14</span></div>
+          <div class="row stack"><span class="k">PARKED ·</span><span class="v echo-feeling"></span></div>
+          <div class="row stack"><span class="k">STATED BUSINESS ·</span><span class="v echo-business"></span></div>
+          <div class="row"><span class="k">TIME IN ·</span><span class="v time-in"></span></div>
+          <div class="row"><span class="k">LIMIT ·</span><span class="v">4h</span></div>
+        </div>
+        <div class="r-stamp-bay">
+          <div class="stamp on-paper" id="stampPaper">Validated</div>
+        </div>
+        <div class="r-fields">
+          <div class="row"><span class="k">FARE ·</span><span class="v">full</span></div>
+          <div class="row"><span class="k">METER ·</span><span class="v"><span class="meter-val">00h 00m</span> — running</span></div>
+        </div>
+        <hr class="rule">
+        <div class="r-foot">
+          <p>This stub confirms your feeling was reviewed and found legitimate.</p>
+          <p>Full fare applies. The space remains occupied.</p>
+        </div>
+        <button class="again" id="again">Park another feeling.</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  var RATE = 4.5;          // parked minutes per real second (compressed time)
+  var TICK = 140;          // meter refresh interval (ms)
+
+  var state = { startMs:null, timeIn:"" };
+  var meterTimer = null;
+
+  function $(sel, root){ return (root||document).querySelector(sel); }
+  function all(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+
+  function pad(n){ return (n<10?"0":"")+n; }
+  function fmtClock(d){ return pad(d.getHours())+":"+pad(d.getMinutes()); }
+
+  function parkedMinutes(){
+    if(state.startMs===null) return 0;
+    var realSec = (performance.now()-state.startMs)/1000;
+    return realSec*RATE;
+  }
+  function fmtMeter(mins){
+    var t = Math.floor(mins);
+    return pad(Math.floor(t/60))+"h "+pad(t%60)+"m";
+  }
+  function paintMeter(){
+    var s = fmtMeter(parkedMinutes());
+    all(".meter-val").forEach(function(el){ el.textContent = s; });
+  }
+  function startMeter(){
+    state.startMs = performance.now();
+    if(meterTimer) clearInterval(meterTimer);
+    paintMeter();
+    meterTimer = setInterval(paintMeter, TICK);
+  }
+
+  function setEcho(cls, val){
+    all("."+cls).forEach(function(el){ el.textContent = val; });
+  }
+
+  function show(n){
+    all(".screen, .screen5").forEach(function(s){ s.classList.remove("active"); });
+    var sel = document.querySelector('[data-screen="'+n+'"]');
+    if(sel) sel.classList.add("active");
+  }
+
+  function fireStamp(el){
+    el.classList.remove("go");
+    void el.offsetWidth;      // reflow so the animation replays
+    el.classList.add("go");
+  }
+
+  // ---- screen 1 -> 2 ----
+  function pullIn(){
+    var f = $("#feeling").value.trim();
+    if(!f){ $("#err1").textContent = "A vehicle is required to assign a space."; return; }
+    $("#err1").textContent = "";
+    setEcho("echo-feeling", f);
+    state.timeIn = fmtClock(new Date());
+    setEcho("time-in", state.timeIn);
+    startMeter();
+    show(2);
+    setTimeout(function(){
+      show(3);
+      var ta = $("#business"); if(ta) ta.focus();
+    }, 2200);
+  }
+
+  // ---- screen 3 -> 4 -> 5 ----
+  function submit(){
+    var b = $("#business").value.trim();
+    if(!b){ $("#err3").textContent = "A statement of business is required for review."; return; }
+    $("#err3").textContent = "";
+    setEcho("echo-business", b);
+
+    show(4);
+    $("#proc").style.display = "block";
+    $("#result").classList.remove("show");
+
+    setTimeout(function(){
+      $("#proc").style.display = "none";
+      $("#result").classList.add("show");
+      fireStamp($("#stampLcd"));
+    }, 1700);
+
+    setTimeout(function(){
+      show(5);
+      fireStamp($("#stampPaper"));
+    }, 4300);
+  }
+
+  // ---- park another (no closure; a fresh loop) ----
+  function again(){
+    $("#feeling").value = "";
+    $("#business").value = "";
+    $("#err1").textContent = "";
+    $("#err3").textContent = "";
+    show(1);
+    $("#feeling").focus();
+  }
+
+  // ---- wire up ----
+  $("#pullIn").addEventListener("click", pullIn);
+  $("#feeling").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){ e.preventDefault(); pullIn(); }
+  });
+  $("#submit").addEventListener("click", submit);
+  $("#again").addEventListener("click", again);
+
+  $("#feeling").focus();
+})();
+</script>
+</body>
+</html>
