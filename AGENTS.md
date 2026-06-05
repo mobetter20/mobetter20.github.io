@@ -67,8 +67,11 @@ When changing a container's width or padding, inspect the computed width of the 
 ## Cross-Site Links
 
 - Use root-relative paths (`/is/writing/nest-court/`) not relative (`../nest-court/`)
-- All cross-site links must include `target="_blank"`
 - The pre-push hook enforces root-relative paths for structural links
+- **New tabs are global, by design.** `/analytics.js` (loaded on every page) runs a `retarget()` on load that sets `target="_blank"` on *every* `<a href>` except in-page `#anchors` and links that already declare a target. So **virtually every link on ajin.im opens in a new tab** — internal page-to-page navigation included, not just cross-site/external links. This is intentional: the current page stays open when you click out.
+  - You don't need to hand-add `target="_blank"` — analytics.js does it. Adding it explicitly (e.g. on a cross-site link) is a harmless fallback; analytics.js skips links that already have a target.
+  - **Don't infer tab behavior from a page's own markup** — it's overridden at runtime. To verify, inspect the rendered DOM (read `a.target`), not the source.
+  - **Don't put an "opens in new tab" marker (e.g. a ↗) on only some links** — since all links open new tabs, a per-link arrow is misleading; at most it can distinguish off-site (different domain) from on-site.
 
 ## AMD Tooling
 

@@ -119,7 +119,7 @@
         var tgt=it.ext?' target="_blank" rel="noreferrer noopener"':'';
         var dotcls=it.s.opens<20?"dot q":"dot";
         li.innerHTML='<a class="row" href="'+it.href+'"'+tgt+'><span class="'+dotcls+'"></span>'+
-          '<span class="nm">'+it.name+(it.ext?' <span class="ext">&#8599;</span>':'')+'</span>'+
+          '<span class="nm">'+it.name+'</span>'+
           '<span class="ds">'+it.desc+'</span>'+spark(it.name+cur)+'<span class="right">'+v+'</span></a>';
       }
       ol.appendChild(li);
