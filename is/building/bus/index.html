@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="/img/a3.png">
+<link rel="apple-touch-icon" href="/img/a3.png">
+<title>instrument bus</title>
+<meta name="description" content="A console of diagnostic instruments for interior conditions. Sort the bus by what it'll cost you, how close to the bone, or what people actually open.">
+<meta property="og:site_name" content="ajin.im">
+<meta property="og:title" content="interior-conditions // instrument bus">
+<meta property="og:description" content="A console of diagnostic instruments for interior conditions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ajin.im/is/building/bus/">
+<meta name="twitter:card" content="summary">
+<script src="/analytics.js" defer></script>
+<style>
+  :root{
+    --bg:#14110d; --panel:#1b1610; --line:#271f17; --line2:#3a2f22;
+    --tx:#e8e0d0; --tx2:#a2917a; --tx3:#6f6354; --stage:#7a6f5c;
+    --ac:#7fe0a8; --quiet:#b0944a;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","IBM Plex Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:var(--mono); background:var(--bg); color:var(--tx); line-height:1.45;
+    padding:1.7rem 1.1rem 3rem; -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(820px 460px at 84% -14%, #2a1d10 0%, transparent 60%);
+  }
+  main{max-width:760px; margin:0 auto}
+  .bar{display:flex; align-items:baseline; justify-content:space-between; gap:1rem;
+    border-bottom:1px solid var(--line); padding-bottom:.55rem}
+  .bar h1{font-size:.74rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; margin:0; color:var(--ac)}
+  .bar .stat{font-size:.66rem; letter-spacing:.12em; color:var(--tx3); text-transform:uppercase; white-space:nowrap}
+  .tag{font-size:.74rem; color:var(--tx2); margin:.7rem 0 0}
+  .lens{display:flex; flex-wrap:wrap; gap:.2rem .9rem; align-items:baseline; padding:1.1rem 0 1rem; font-size:.7rem}
+  .lens .lead{color:var(--tx3); text-transform:uppercase; letter-spacing:.12em}
+  .lens button{font:inherit; font-size:.72rem; background:none; border:none; color:var(--tx2); cursor:pointer; padding:.1rem 0}
+  .lens button[aria-pressed="true"]{color:var(--ac)}
+  .lens button:hover{color:var(--tx)}
+  .board{list-style:none; margin:0; padding:0}
+  .row{display:grid; grid-template-columns:auto 9.5rem 1fr auto auto; align-items:center; gap:.75rem;
+    padding:.62rem .35rem; border-bottom:1px solid var(--line); text-decoration:none; color:inherit}
+  a.row:hover{background:#1d1812}
+  .row.staged{opacity:.62}
+  .dot{width:.5rem; height:.5rem; border-radius:50%; background:var(--ac); box-shadow:0 0 6px color-mix(in srgb,var(--ac) 55%, transparent)}
+  .dot.q{background:var(--quiet); box-shadow:0 0 6px color-mix(in srgb,var(--quiet) 55%, transparent)}
+  .dot.s{background:transparent; border:1px solid var(--stage); box-shadow:none}
+  .nm{font-weight:600; color:var(--tx)}
+  .row.staged .nm{color:var(--tx2)}
+  .ds{color:var(--tx2); font-size:.78rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .right{font-size:.74rem; min-width:6.5ch; text-align:right; color:var(--ac)}
+  .right .u{color:var(--tx3)}
+  .right.s{color:var(--stage); letter-spacing:.08em; text-transform:uppercase; font-size:.64rem}
+  .ext{color:var(--tx3); font-size:.66rem}
+  footer{margin-top:2.4rem; padding-top:1rem; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:baseline; gap:1rem; font-size:.7rem}
+  footer a{color:var(--tx3); text-decoration:none}
+  footer a:hover{color:var(--tx2)}
+  .note{margin-top:1.1rem; font-size:.64rem; color:var(--tx3)}
+</style>
+</head>
+<body>
+<main>
+  <div class="bar"><h1>interior&#8203;-conditions // instrument bus</h1><span class="stat" id="stat">5 live · 5 staging</span></div>
+
+  <div class="lens" id="lens"><span class="lead">sort&nbsp;—</span></div>
+  <ol class="board" id="board"></ol>
+
+  <p class="note">Sort the bus by any reading. "Open rate" is illustrative for now — the counter just started.</p>
+  <footer>
+    <a href="/is/building/">&larr; building</a>
+    <a href="/">made by ajin.im</a>
+  </footer>
+</main>
+<script>
+  // status: live (linked) | staging (built, not yet deployed)
+  var INST=[
+    {name:"debug::u",href:"https://debugu.xyz",ext:true,status:"live",desc:"live diagnostics, feeling unspecified",s:{helps:8,tender:6,weird:6,cost:9,opens:64}},
+    {name:"deadend",href:"/is/building/deadend/",status:"live",desc:"egress from a non-terminating thought",s:{helps:9,tender:6,weird:3,cost:5,opens:49}},
+    {name:"who's asking",href:"/is/building/questions/",status:"live",desc:"question vs. accusation, discriminated",s:{helps:5,tender:3,weird:4,cost:3,opens:27}},
+    {name:"qol or inflation",href:"/is/building/qol-or-inflation/",status:"live",desc:"upgrade vs. baseline-drift, adjudicated",s:{helps:9,tender:1,weird:1,cost:6,opens:25}},
+    {name:"label",href:"/is/building/label/",status:"live",desc:"a self-issued label, disassembled",s:{helps:8,tender:6,weird:3,cost:4,opens:12}},
+    {name:"rehearsal",status:"staging",desc:"version control for unsent messages",s:{helps:5,tender:10,weird:8,cost:9,opens:-1}},
+    {name:"containment",status:"staging",desc:"object threat-assessment terminal",s:{helps:2,tender:3,weird:9,cost:8,opens:-1}},
+    {name:"latency",status:"staging",desc:"event-to-response latency diagnostic",s:{helps:3,tender:6,weird:9,cost:9,opens:-1}},
+    {name:"halflife",status:"staging",desc:"affective intensity-decay model",s:{helps:5,tender:6,weird:8,cost:6,opens:-1}},
+    {name:"sunk",status:"staging",desc:"cost-basis reconciliation of a held position",s:{helps:5,tender:9,weird:5,cost:6,opens:-1}}
+  ];
+  var LENS=[{k:"opens",l:"open rate"},{k:"helps",l:"clinical value"},{k:"tender",l:"affective load"},{k:"weird",l:"metaphor reach"},{k:"cost",l:"build cost"}];
+  var cur="opens";
+  function hash(s){var h=2166136261>>>0;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h>>>0;}
+  function spark(seed){
+    var h=hash(seed),w=58,hgt=15,n=14,p=[];
+    for(var i=0;i<n;i++){h^=h<<13;h>>>=0;h^=h>>17;h^=h<<5;h>>>=0;p.push((h%1000)/1000);}
+    var d="";for(var j=0;j<n;j++){var x=(j/(n-1))*w,y=hgt-p[j]*(hgt-2)-1;d+=(j?"L":"M")+x.toFixed(1)+" "+y.toFixed(1)+" ";}
+    return '<svg width="'+w+'" height="'+hgt+'" viewBox="0 0 '+w+' '+hgt+'" style="color:var(--ac)"><path d="'+d+'" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>';
+  }
+  var lensWrap=document.getElementById("lens");
+  LENS.forEach(function(L){var b=document.createElement("button");b.textContent=L.l;b.setAttribute("aria-pressed",L.k===cur?"true":"false");
+    b.onclick=function(){cur=L.k;paint();};lensWrap.appendChild(b);});
+  function paint(){
+    Array.prototype.forEach.call(lensWrap.querySelectorAll("button"),function(b,i){b.setAttribute("aria-pressed",LENS[i].k===cur?"true":"false");});
+    var sorted=INST.slice().sort(function(a,b){return b.s[cur]-a.s[cur];});
+    var ol=document.getElementById("board");ol.innerHTML="";
+    sorted.forEach(function(it){
+      var li=document.createElement("li");
+      if(it.status==="staging"){
+        var right='<span class="right s">staging</span>';
+        li.innerHTML='<div class="row staged"><span class="dot s"></span><span class="nm">'+it.name+'</span>'+
+          '<span class="ds">'+it.desc+'</span><span></span>'+right+'</div>';
+      } else {
+        var v=cur==="opens"?(it.s.opens+' <span class="u">op</span>'):(it.s[cur]+' <span class="u">/10</span>');
+        var tgt=it.ext?' target="_blank" rel="noreferrer noopener"':'';
+        var dotcls=it.s.opens<20?"dot q":"dot";
+        li.innerHTML='<a class="row" href="'+it.href+'"'+tgt+'><span class="'+dotcls+'"></span>'+
+          '<span class="nm">'+it.name+(it.ext?' <span class="ext">&#8599;</span>':'')+'</span>'+
+          '<span class="ds">'+it.desc+'</span>'+spark(it.name+cur)+'<span class="right">'+v+'</span></a>';
+      }
+      ol.appendChild(li);
+    });
+  }
+  paint();
+</script>
+</body>
+</html>
