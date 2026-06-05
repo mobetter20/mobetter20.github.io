@@ -2,6 +2,14 @@
 
 Static site hosted on GitHub Pages. Contains the creative house at `ajin.im/is/writing/` and the Avian Municipal District universe.
 
+## Cross-project context — the reclassification family
+
+Most of ajin.im's creative work — this site, plus the Avian Municipal District (bird-universe), the Bureau of Interior Conditions (propagandaformyself.xyz), omen.ops, and the Instrument Bus and its instruments — shares one method: **a human feeling routed through a sincere institution that was never built for it.** The durable map of that oeuvre (voice, current state, and the strategic stances already reasoned through) lives in **`~/Documents/New project/personal/profile/creative-constellation.md`**.
+
+**Read it before any structure / strategy / cross-linking / "findability" work on a family piece**, so you build on the existing thinking instead of re-deriving it (which has already happened more than once). Two stances to know going in: the work reads as *one connected oeuvre*, but the owner's repeatedly-demonstrated line is **light cross-link, never a unifying "universe" portal/hub** (over-structuring keeps getting killed as "abstraction tax"); and a missing affordance is usually a deliberate decision (check `git log`) before it's a gap.
+
+**Hold it as informed, not bound — it is not gospel.** It is dated decisions and a point-in-time read. Challenge it, bring fresh thinking, and treat state-dependent facts (e.g. "HN is the channel," traffic numbers, "the lever is X") as **snapshots to re-verify, not standing law.** Acting against something it says is fine — just say why. "Usually a decision" isn't "always."
+
 ## Design System — typographic tiers
 
 Governing rule: **consistent chrome, free content.** The wrapper is uniform; what's inside is free to vary by tier. When adding or restyling a page, classify it first, then give it that tier's chrome.
