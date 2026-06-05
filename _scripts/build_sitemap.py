@@ -7,6 +7,8 @@ https://ajin.im, and writes a sitemaps.org urlset to REPO_ROOT/sitemap.xml.
 Rules:
   - Excludes anything under /.git/, /.claude/, /_archive/, /_lab/, /templates/,
     and excludes 404.html.
+  - Skips redirect stubs (meta-refresh) and noindex pages — neither should be
+    advertised as a canonical URL.
   - ".../index.html" maps to its directory URL (root index.html -> site root).
   - Any other "*.html" maps to its own .html URL.
   - Future-dated Municipal Coo issues (is/writing/bird-coo/issues/YYYY-MM-DD.html
@@ -66,6 +68,20 @@ def is_future_coo_issue(rel_posix: str, today: date) -> bool:
     return issue_date > today
 
 
+def is_noindex_or_redirect(path: Path) -> bool:
+    """True for redirect stubs (meta-refresh) and noindex pages — neither
+    belongs in the sitemap as a canonical URL."""
+    try:
+        head = path.read_text(encoding="utf-8", errors="ignore")[:8192].lower()
+    except OSError:
+        return False
+    if 'http-equiv="refresh"' in head or "http-equiv='refresh'" in head:
+        return True
+    if 'name="robots"' in head and "noindex" in head:
+        return True
+    return False
+
+
 def url_for(rel_posix: str) -> str:
     """Map a served HTML relative path to its public https://ajin.im URL."""
     if rel_posix == "index.html":
@@ -112,6 +128,8 @@ def collect_urls() -> list[tuple[str, str]]:
         if is_excluded(rel_posix):
             continue
         if is_future_coo_issue(rel_posix, today):
+            continue
+        if is_noindex_or_redirect(path):
             continue
         loc = url_for(rel_posix)
         lastmod = lastmod_for(path, rel_posix)

@@ -5,20 +5,12 @@
     <lastmod>2026-06-05T14:20:12+09:00</lastmod>
   </url>
   <url>
-    <loc>https://ajin.im/is/</loc>
-    <lastmod>2026-06-03T13:27:31+09:00</lastmod>
-  </url>
-  <url>
     <loc>https://ajin.im/is/building/</loc>
-    <lastmod>2026-06-05T14:20:12+09:00</lastmod>
+    <lastmod>2026-06-05T14:31:24+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/building/bus/</loc>
     <lastmod>2026-06-05T14:04:29+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/building/cross-subject-eval/</loc>
-    <lastmod>2026-06-03T13:30:02+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/building/deadend/</loc>
@@ -53,36 +45,12 @@
     <lastmod>2026-06-05T13:44:50+09:00</lastmod>
   </url>
   <url>
-    <loc>https://ajin.im/is/building/small/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/building/small/deadend/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/building/small/label/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/building/small/qol-or-inflation/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/building/small/questions/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
     <loc>https://ajin.im/is/building/validation/</loc>
     <lastmod>2026-06-05T13:04:42+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/learning/</loc>
     <lastmod>2026-06-03T13:27:31+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/learning/konbini/</loc>
-    <lastmod>2026-06-02T04:18:02+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/reading/</loc>
@@ -99,14 +67,6 @@
   <url>
     <loc>https://ajin.im/is/writing/avian-district/</loc>
     <lastmod>2026-06-02T11:06:21+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/avian-district/map-options/option-4-property-gis-2_5d.html</loc>
-    <lastmod>2026-06-02T04:18:02+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/avian-district/map-options/site-preview-option-4-property-gis-2_5d.html</loc>
-    <lastmod>2026-06-02T04:18:02+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/writing/bird-coo/</loc>
@@ -169,36 +129,8 @@
     <lastmod>2026-06-02T04:18:02+09:00</lastmod>
   </url>
   <url>
-    <loc>https://ajin.im/is/writing/bird-docket-proceedings/</loc>
-    <lastmod>2026-05-25T09:28:44+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/bird-docket/</loc>
-    <lastmod>2026-06-03T13:27:31+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/bird-of-letters/</loc>
-    <lastmod>2026-05-25T09:28:44+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/comedy/</loc>
-    <lastmod>2026-06-03T13:27:31+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/desk/</loc>
-    <lastmod>2026-06-03T13:27:31+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/essays/</loc>
-    <lastmod>2026-06-03T13:27:31+09:00</lastmod>
-  </url>
-  <url>
     <loc>https://ajin.im/is/writing/karen-hawk/</loc>
     <lastmod>2026-06-02T04:18:02+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/loose/</loc>
-    <lastmod>2026-06-03T13:27:31+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/writing/nest-court-proceedings-pigeon/</loc>
@@ -221,48 +153,12 @@
     <lastmod>2026-06-02T04:18:02+09:00</lastmod>
   </url>
   <url>
-    <loc>https://ajin.im/is/writing/patches/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/patches/deadend/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/patches/label/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/patches/qol-or-inflation/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
     <loc>https://ajin.im/is/writing/perch-chat/</loc>
     <lastmod>2026-06-02T04:18:02+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/is/writing/secondnest/</loc>
     <lastmod>2026-06-02T04:18:02+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/small/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/small/deadend/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/small/label/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/small/qol-or-inflation/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ajin.im/is/writing/small/questions/</loc>
-    <lastmod>2026-06-05T13:27:32+09:00</lastmod>
   </url>
   <url>
     <loc>https://ajin.im/wrote/</loc>
