@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DECAY ASSAY — affective isotope decay model</title>
+<link rel="icon" type="image/png" href="/img/a3.png">
+<script src="/analytics.js" defer></script>
+<style>
+  :root{
+    --bg:#0b0e0c;
+    --panel:#0d100e;
+    --grid:#16201a;
+    --grid-major:#1d2c23;
+    --ink:#9fb4a6;
+    --ink-dim:#5f7466;
+    --ink-faint:#3c4d43;
+    --curve:#54d08a;
+    --axis:#2f4a3a;
+    --warn:#cdbf6a;
+    --rule:#1a241e;
+    --field-bg:#0a0d0b;
+    --field-line:#243029;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);}
+  body{
+    font-family:ui-monospace,"SF Mono","JetBrains Mono","IBM Plex Mono",Menlo,monospace;
+    color:var(--ink);
+    font-size:13px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    padding:0 14px 64px;
+  }
+  .wrap{max-width:680px;margin:0 auto;}
+
+  /* masthead */
+  header{
+    padding:26px 0 14px;
+    border-bottom:1px solid var(--rule);
+  }
+  .masthead-row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:12px;flex-wrap:wrap;
+  }
+  h1{
+    font-size:14px;font-weight:600;letter-spacing:.14em;
+    margin:0;color:var(--ink);text-transform:uppercase;
+  }
+  .unit{
+    font-size:10.5px;letter-spacing:.18em;color:var(--ink-faint);
+    text-transform:uppercase;white-space:nowrap;
+  }
+  .sub{
+    font-size:10.5px;letter-spacing:.06em;color:var(--ink-dim);
+    margin-top:7px;text-transform:uppercase;
+  }
+
+  /* form */
+  form{padding:22px 0 6px;}
+  .field{margin-bottom:20px;}
+  label{
+    display:block;font-size:10.5px;letter-spacing:.13em;
+    color:var(--ink-dim);text-transform:uppercase;margin-bottom:8px;
+  }
+  label .idx{color:var(--ink-faint);margin-right:9px;}
+  input[type=text],input[type=date],select{
+    width:100%;
+    background:var(--field-bg);
+    border:1px solid var(--field-line);
+    color:var(--ink);
+    font-family:inherit;font-size:13.5px;
+    padding:10px 11px;
+    border-radius:0;
+    -webkit-appearance:none;appearance:none;
+    letter-spacing:.02em;
+  }
+  input::placeholder{color:var(--ink-faint);letter-spacing:.02em;}
+  input:focus,select:focus{
+    outline:none;border-color:var(--curve);
+    box-shadow:0 0 0 1px var(--curve) inset;
+  }
+  select{
+    background-image:
+      linear-gradient(45deg,transparent 50%,var(--ink-dim) 50%),
+      linear-gradient(135deg,var(--ink-dim) 50%,transparent 50%);
+    background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;
+    background-size:5px 5px,5px 5px;
+    background-repeat:no-repeat;
+    padding-right:32px;cursor:pointer;
+  }
+  /* intensity slider */
+  .intensity-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+  }
+  .intensity-val{
+    font-size:15px;color:var(--ink);letter-spacing:.04em;
+  }
+  .intensity-val .scale{color:var(--ink-faint);font-size:11px;}
+  input[type=range]{
+    width:100%;-webkit-appearance:none;appearance:none;
+    background:transparent;height:26px;margin:2px 0 0;cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-runnable-track{
+    height:1px;background:var(--field-line);
+  }
+  input[type=range]::-moz-range-track{
+    height:1px;background:var(--field-line);
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;
+    width:2px;height:18px;background:var(--curve);
+    border:none;border-radius:0;margin-top:-8.5px;
+  }
+  input[type=range]::-moz-range-thumb{
+    width:2px;height:18px;background:var(--curve);
+    border:none;border-radius:0;
+  }
+  input[type=range]:focus{outline:none;}
+  input[type=range]:focus::-webkit-slider-thumb{box-shadow:0 0 0 3px rgba(84,208,138,.25);}
+  .ticks{
+    display:flex;justify-content:space-between;
+    font-size:9px;color:var(--ink-faint);letter-spacing:.04em;
+    margin-top:3px;padding:0 1px;
+  }
+
+  button{
+    width:100%;
+    background:var(--field-bg);
+    border:1px solid var(--curve);
+    color:var(--curve);
+    font-family:inherit;font-size:11.5px;letter-spacing:.18em;
+    text-transform:uppercase;
+    padding:13px;border-radius:0;cursor:pointer;
+    margin-top:4px;
+  }
+  button:hover{background:rgba(84,208,138,.07);}
+  button:active{background:rgba(84,208,138,.13);}
+  button:focus{outline:none;box-shadow:0 0 0 1px var(--curve) inset;}
+
+  .err{
+    color:var(--warn);font-size:10.5px;letter-spacing:.06em;
+    margin-top:-10px;margin-bottom:14px;min-height:0;text-transform:uppercase;
+  }
+
+  /* readout */
+  #out{display:none;padding-top:8px;}
+  #out.on{display:block;}
+  .assay-hd{
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:13px 0;margin-bottom:18px;
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:10px;flex-wrap:wrap;
+  }
+  .assay-hd .lbl{font-size:10px;letter-spacing:.16em;color:var(--ink-faint);text-transform:uppercase;}
+  .isotope{font-size:18px;letter-spacing:.06em;color:var(--ink);}
+  .isotope sup{font-size:10px;color:var(--ink-dim);vertical-align:super;letter-spacing:.02em;}
+
+  /* plot */
+  .plot-frame{
+    border:1px solid var(--field-line);
+    background:var(--field-bg);
+    padding:0;margin-bottom:4px;position:relative;
+  }
+  svg{display:block;width:100%;height:auto;}
+  .cap{
+    font-size:9px;letter-spacing:.08em;color:var(--ink-faint);
+    text-transform:uppercase;margin:7px 1px 22px;
+    display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  }
+
+  /* data block */
+  .datum{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--rule);
+    padding:9px 0;gap:14px;
+  }
+  .datum .k{font-size:10.5px;letter-spacing:.08em;color:var(--ink-dim);text-transform:uppercase;}
+  .datum .v{font-size:13.5px;color:var(--ink);letter-spacing:.03em;text-align:right;}
+  .datum .v .u{color:var(--ink-faint);font-size:10.5px;letter-spacing:.04em;}
+
+  .proj{margin-top:18px;}
+  .proj-hd{
+    font-size:10px;letter-spacing:.16em;color:var(--ink-faint);
+    text-transform:uppercase;padding-bottom:7px;
+  }
+  .proj-row{
+    display:grid;grid-template-columns:1fr auto auto;
+    gap:10px;align-items:baseline;
+    border-bottom:1px solid var(--rule);padding:8px 0;
+  }
+  .proj-row .t{font-size:10.5px;letter-spacing:.06em;color:var(--ink-dim);text-transform:uppercase;}
+  .proj-row .d{font-size:10.5px;color:var(--ink-faint);letter-spacing:.02em;text-align:right;}
+  .proj-row .n{font-size:13px;color:var(--ink);letter-spacing:.03em;text-align:right;min-width:64px;}
+
+  .threshold{
+    margin-top:20px;
+    border:1px solid var(--field-line);
+    padding:14px 13px;
+  }
+  .threshold .k{font-size:10px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase;}
+  .threshold .v{font-size:17px;color:var(--ink);letter-spacing:.04em;margin-top:6px;}
+  .threshold.nocross .v{color:var(--ink);font-size:13.5px;line-height:1.45;}
+
+  .rerun{margin-top:26px;}
+
+  .foot{
+    margin-top:30px;padding-top:13px;border-top:1px solid var(--rule);
+    font-size:9px;letter-spacing:.05em;color:var(--ink-faint);
+    text-transform:uppercase;line-height:1.7;
+  }
+  .foot span{color:var(--ink-faint);}
+
+  @media (max-width:420px){
+    body{font-size:12.5px;padding:0 11px 56px;}
+    .isotope{font-size:16px;}
+    .threshold .v{font-size:15px;}
+    .proj-row{grid-template-columns:1fr auto;}
+    .proj-row .d{grid-column:1 / -1;text-align:left;order:3;padding-top:2px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="masthead-row">
+      <h1>Decay&nbsp;Assay</h1>
+      <div class="unit">Affective Isotope Decay Model / rev 3</div>
+    </div>
+    <div class="sub">Models reported affect as a decaying isotope. Output is a projection.</div>
+  </header>
+
+  <form id="f" autocomplete="off" novalidate>
+    <div class="field">
+      <label for="feel"><span class="idx">01</span>Name the feeling</label>
+      <input type="text" id="feel" maxlength="48" placeholder="e.g. the email I should not have sent" spellcheck="false">
+    </div>
+
+    <div class="field">
+      <label for="amt"><span class="idx">02</span>Current intensity</label>
+      <div class="intensity-head">
+        <span></span>
+        <span class="intensity-val"><span id="amtv">6</span><span class="scale">&nbsp;/ 10</span></span>
+      </div>
+      <input type="range" id="amt" min="1" max="10" step="1" value="6">
+      <div class="ticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+    </div>
+
+    <div class="field">
+      <label for="onset"><span class="idx">03</span>Onset date</label>
+      <input type="date" id="onset">
+    </div>
+
+    <div class="field">
+      <label for="prior"><span class="idx">04</span>Prior occurrences of this isotope</label>
+      <select id="prior">
+        <option value="first">First detection</option>
+        <option value="recurring">Recurring — observed before</option>
+        <option value="chronic">Chronic — persistent background source</option>
+      </select>
+    </div>
+
+    <div class="err" id="err"></div>
+
+    <button type="submit" id="run">Run assay</button>
+  </form>
+
+  <section id="out" aria-live="polite">
+    <div class="assay-hd">
+      <div>
+        <div class="lbl">Specimen</div>
+        <div class="isotope" id="iso">—</div>
+      </div>
+      <div style="text-align:right">
+        <div class="lbl">Assayed</div>
+        <div class="isotope" style="font-size:13px;color:var(--ink-dim)" id="asof">—</div>
+      </div>
+    </div>
+
+    <div class="plot-frame">
+      <svg id="plot" viewBox="0 0 600 320" preserveAspectRatio="none" role="img" aria-label="Decay curve plot"></svg>
+    </div>
+    <div class="cap">
+      <span id="capx">Horizontal: days from onset</span>
+      <span>Vertical: intensity 0–10</span>
+    </div>
+
+    <div class="datum">
+      <span class="k">Half-life</span>
+      <span class="v"><span id="hl">—</span> <span class="u">days</span></span>
+    </div>
+    <div class="datum">
+      <span class="k">Decay constant &lambda;</span>
+      <span class="v"><span id="lam">—</span> <span class="u">/ day</span></span>
+    </div>
+    <div class="datum">
+      <span class="k">Elapsed since onset</span>
+      <span class="v"><span id="elapsed">—</span> <span class="u">days</span></span>
+    </div>
+    <div class="datum">
+      <span class="k">Current value on curve</span>
+      <span class="v"><span id="cur">—</span> <span class="u">/ 10</span></span>
+    </div>
+
+    <div class="proj">
+      <div class="proj-hd">Projected residual intensity</div>
+      <div class="proj-row"><span class="t">Onset + 30 d</span><span class="d" id="d30">—</span><span class="n" id="p30">—</span></div>
+      <div class="proj-row"><span class="t">Onset + 90 d</span><span class="d" id="d90">—</span><span class="n" id="p90">—</span></div>
+      <div class="proj-row"><span class="t">Onset + 365 d</span><span class="d" id="d365">—</span><span class="n" id="p365">—</span></div>
+    </div>
+
+    <div class="threshold" id="thr">
+      <div class="k">Projected to fall below threshold (3 / 10)</div>
+      <div class="v" id="thrv">—</div>
+    </div>
+
+    <div class="rerun">
+      <button type="button" id="again">Model another isotope</button>
+    </div>
+
+    <div class="foot">
+      Model: first-order decay, N(t) = N&#8320; &middot; e<sup>&minus;&lambda;t</sup>. <span id="footp"></span><br>
+      Threshold fixed at 3.0. Values are modeled, not measured.
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var $ = function(id){ return document.getElementById(id); };
+  var LN2 = Math.LN2;
+  var THRESHOLD = 3;
+  var WINDOW_DAYS = 3650; // 10-year modeling window
+  var MS_DAY = 86400000;
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  // ---- deterministic hash from feeling text -> isotope identity ----
+  function hash(str){
+    var h = 2166136261 >>> 0;
+    for (var i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619) >>> 0;
+    }
+    return h >>> 0;
+  }
+
+  // pull a short, pronounceable element-style stem out of the text + hash
+  var STEMS = ["Anhed","Rumin","Catastr","Resent","Longium","Dread","Mortif","Vexr",
+               "Nostalg","Acrim","Grievon","Spite","Yearn","Forebod","Compuls","Lament",
+               "Ennuon","Chagr","Remorr","Angst","Despond","Irritium","Fixat","Wistr",
+               "Humilon","Panicl","Sorrium","Obsess","Regrium","Distrac","Apprehen","Mope"];
+
+  // common words that carry no specimen signal; skip them when seeding the stem
+  var STOP = {the:1,a:1,an:1,and:1,or:1,of:1,to:1,for:1,with:1,that:1,this:1,it:1,
+              is:1,was:1,am:1,are:1,my:1,me:1,you:1,your:1,his:1,her:1,not:1,but:1,
+              about:1,from:1,have:1,had:1,has:1,been:1,being:1,too:1,very:1,so:1,
+              all:1,any:1,how:1,why:1,when:1,what:1,just:1,into:1,over:1,out:1,
+              should:1,would:1,could:1,will:1,can:1,did:1,does:1,doing:1,one:1};
+
+  function isotopeName(feeling, intensity){
+    var clean = (feeling||"").trim();
+    var h = hash(clean.toLowerCase());
+    // seed the stem from the first content word; fall back to hash-picked stem
+    var stem = null;
+    var words = clean.toLowerCase().match(/[a-z]{3,}/g) || [];
+    for (var i=0;i<words.length;i++){
+      if (!STOP[words[i]]){
+        var w = words[i];
+        stem = w.charAt(0).toUpperCase() + w.slice(1, Math.min(w.length, 6));
+        break;
+      }
+    }
+    if (!stem) stem = STEMS[h % STEMS.length];
+    // mass number: deterministic, in a plausible isotope range, perturbed by intensity
+    var mass = 100 + (h % 150) + intensity; // 101..259-ish
+    return { stem: stem, mass: mass };
+  }
+
+  // ---- half-life model (days) ----
+  // base scales with intensity (stronger affect persists longer),
+  // recurrence multiplies (prior exposure decays slower), chronic -> beyond window.
+  function halfLife(intensity, prior){
+    if (prior === "chronic") return Infinity;
+    // base curve: intensity 1 -> ~6d, 5 -> ~26d, 10 -> ~70d (super-linear)
+    var base = 4 + 0.55 * intensity * intensity + 1.6 * intensity;
+    var mult = (prior === "recurring") ? 2.4 : 1.0;
+    return base * mult;
+  }
+
+  function fmtNum(x, dp){
+    if (!isFinite(x)) return "∞";
+    if (dp === undefined) dp = 2;
+    return x.toFixed(dp);
+  }
+
+  function fmtDate(d){
+    return d.getDate() + " " + MONTHS[d.getMonth()] + " " + d.getFullYear();
+  }
+  function fmtMonth(d){
+    return MONTHS[d.getMonth()] + " " + d.getFullYear();
+  }
+  function isoShort(d){
+    var mm = ("0"+(d.getMonth()+1)).slice(-2);
+    var dd = ("0"+d.getDate()).slice(-2);
+    return d.getFullYear()+"-"+mm+"-"+dd;
+  }
+
+  function parseDate(v){
+    if (!v) return null;
+    var p = v.split("-");
+    if (p.length !== 3) return null;
+    var d = new Date(+p[0], (+p[1])-1, +p[2]);
+    if (isNaN(d.getTime())) return null;
+    d.setHours(0,0,0,0);
+    return d;
+  }
+
+  // ---- SVG decay curve ----
+  function drawPlot(N0, lambda, onset, today, hl, prior){
+    var svg = $("plot");
+    var W = 600, H = 320;
+    var padL = 38, padR = 14, padT = 16, padB = 30;
+    var plotW = W - padL - padR;
+    var plotH = H - padT - padB;
+
+    // x domain in days: span enough to show the descent.
+    // for chronic (lambda~0) show the window; else ~ 1.2x the threshold-cross or 4 half-lives.
+    var spanDays;
+    if (prior === "chronic"){
+      spanDays = 365; // show a near-flat line over a year
+    } else {
+      var tCross = (N0 > THRESHOLD) ? (Math.log(N0/THRESHOLD)/lambda) : 0;
+      var fourHl = 4 * hl;
+      spanDays = Math.max(tCross * 1.25, fourHl, 30);
+      // also make sure elapsed time is visible
+      var elapsed = (today - onset)/MS_DAY;
+      if (elapsed > spanDays) spanDays = elapsed * 1.1;
+      spanDays = Math.min(spanDays, WINDOW_DAYS);
+    }
+
+    var x = function(days){ return padL + (days/spanDays)*plotW; };
+    var y = function(val){ return padT + (1 - val/10)*plotH; };
+
+    var ns = "http://www.w3.org/2000/svg";
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    function line(x1,y1,x2,y2,stroke,w,dash,op){
+      var l = document.createElementNS(ns,"line");
+      l.setAttribute("x1",x1); l.setAttribute("y1",y1);
+      l.setAttribute("x2",x2); l.setAttribute("y2",y2);
+      l.setAttribute("stroke",stroke);
+      l.setAttribute("stroke-width",w||1);
+      if (dash) l.setAttribute("stroke-dasharray",dash);
+      if (op!==undefined) l.setAttribute("opacity",op);
+      l.setAttribute("vector-effect","non-scaling-stroke");
+      svg.appendChild(l);
+    }
+    function txt(xx,yy,s,fill,size,anchor){
+      var t = document.createElementNS(ns,"text");
+      t.setAttribute("x",xx); t.setAttribute("y",yy);
+      t.setAttribute("fill",fill);
+      t.setAttribute("font-size",size||10);
+      t.setAttribute("font-family",'ui-monospace,"SF Mono",Menlo,monospace');
+      t.setAttribute("letter-spacing",".04em");
+      if (anchor) t.setAttribute("text-anchor",anchor);
+      t.textContent = s;
+      svg.appendChild(t);
+    }
+
+    // grid: horizontal at every 2 units
+    for (var v=0; v<=10; v+=2){
+      var gy = y(v);
+      line(padL, gy, W-padR, gy, "#16201a", 1, null, 1);
+      txt(padL-7, gy+3, String(v), "#3c4d43", 9.5, "end");
+    }
+    // vertical grid: ~6 divisions across span
+    var divs = 6;
+    for (var i=0;i<=divs;i++){
+      var dd = (spanDays/divs)*i;
+      var gx = x(dd);
+      line(gx, padT, gx, H-padB, "#16201a", 1, null, 1);
+      var lab = Math.round(dd);
+      txt(gx, H-padB+13, String(lab), "#3c4d43", 9, "middle");
+    }
+
+    // axes (slightly brighter)
+    line(padL, padT, padL, H-padB, "#2f4a3a", 1, null, 1);   // y
+    line(padL, H-padB, W-padR, H-padB, "#2f4a3a", 1, null, 1); // x
+
+    // threshold line at 3
+    var ty = y(THRESHOLD);
+    line(padL, ty, W-padR, ty, "#cdbf6a", 1, "3 4", .7);
+    txt(W-padR-2, ty-4, "thr 3.0", "#cdbf6a", 9, "end");
+
+    // decay curve path
+    var pts = [];
+    var steps = 220;
+    for (var s=0;s<=steps;s++){
+      var dday = (spanDays/steps)*s;
+      var val = N0 * Math.exp(-lambda*dday);
+      pts.push([x(dday), y(val)]);
+    }
+    var dPath = "M " + pts.map(function(p){return p[0].toFixed(2)+" "+p[1].toFixed(2);}).join(" L ");
+    var path = document.createElementNS(ns,"path");
+    path.setAttribute("d", dPath);
+    path.setAttribute("fill","none");
+    path.setAttribute("stroke","#54d08a");
+    path.setAttribute("stroke-width","1.5");
+    path.setAttribute("vector-effect","non-scaling-stroke");
+    svg.appendChild(path);
+
+    // "now" marker: vertical at elapsed days, dot on curve
+    var elapsedD = Math.max(0,(today - onset)/MS_DAY);
+    if (elapsedD <= spanDays){
+      var nx = x(elapsedD);
+      var nval = N0 * Math.exp(-lambda*elapsedD);
+      var nyv = y(nval);
+      line(nx, padT, nx, H-padB, "#54d08a", 1, "2 3", .45);
+      var dot = document.createElementNS(ns,"circle");
+      dot.setAttribute("cx",nx); dot.setAttribute("cy",nyv);
+      dot.setAttribute("r","3"); dot.setAttribute("fill","#54d08a");
+      dot.setAttribute("vector-effect","non-scaling-stroke");
+      svg.appendChild(dot);
+      txt(Math.min(nx+5, W-padR-26), padT+11, "now", "#54d08a", 9, "start");
+    }
+
+    // threshold-cross marker
+    if (prior !== "chronic" && N0 > THRESHOLD){
+      var tC = Math.log(N0/THRESHOLD)/lambda;
+      if (tC <= spanDays){
+        var cx = x(tC);
+        var c2 = document.createElementNS(ns,"circle");
+        c2.setAttribute("cx",cx); c2.setAttribute("cy",ty);
+        c2.setAttribute("r","2.5");
+        c2.setAttribute("fill","none");
+        c2.setAttribute("stroke","#cdbf6a");
+        c2.setAttribute("stroke-width","1");
+        c2.setAttribute("vector-effect","non-scaling-stroke");
+        svg.appendChild(c2);
+      }
+    }
+  }
+
+  // ---- main compute + render ----
+  function run(){
+    var feeling = $("feel").value.trim();
+    var intensity = parseInt($("amt").value,10);
+    var onset = parseDate($("onset").value);
+    var prior = $("prior").value;
+    var err = $("err");
+
+    err.textContent = "";
+
+    // a failed assay must not leave a prior readout standing
+    function abort(msg, focusId){ err.textContent = msg; $("out").classList.remove("on"); $(focusId).focus(); }
+
+    if (!feeling){ abort("Specimen label required (field 01).", "feel"); return; }
+    if (!onset){ abort("Onset date required (field 03).", "onset"); return; }
+
+    var today = new Date(); today.setHours(0,0,0,0);
+    if (onset > today){ abort("Onset date is in the future. Decay undefined prior to onset.", "onset"); return; }
+
+    var iso = isotopeName(feeling, intensity);
+    var N0 = intensity; // intensity at onset = reported current intensity, modeled as initial activity
+    var hl = halfLife(intensity, prior);
+    var lambda = isFinite(hl) ? (LN2 / hl) : 0;
+
+    // render specimen identity
+    $("iso").innerHTML = iso.stem + "&#8202;<sup>" + iso.mass + "</sup>";
+    $("asof").textContent = isoShort(today);
+
+    // datum block
+    if (prior === "chronic"){
+      $("hl").textContent = ">" + WINDOW_DAYS;
+      $("lam").textContent = "≈ 0.000";
+    } else {
+      $("hl").textContent = fmtNum(hl, 1);
+      $("lam").textContent = fmtNum(lambda, 4);
+    }
+
+    var elapsedDays = Math.round((today - onset)/MS_DAY);
+    $("elapsed").textContent = String(elapsedDays);
+
+    function valueAtDays(d){ return N0 * Math.exp(-lambda*d); }
+
+    var curVal = valueAtDays(Math.max(0,elapsedDays));
+    $("cur").textContent = fmtNum(curVal, 2);
+
+    // projections measured from ONSET (+30/+90/+365), labeled with absolute dates
+    function projAt(daysFromOnset, nEl, dEl){
+      var val = valueAtDays(daysFromOnset);
+      $(nEl).textContent = fmtNum(val, 2) + " / 10";
+      var dt = new Date(onset.getTime() + daysFromOnset*MS_DAY);
+      $(dEl).textContent = isoShort(dt);
+    }
+    projAt(30,  "p30",  "d30");
+    projAt(90,  "p90",  "d90");
+    projAt(365, "p365", "d365");
+
+    // threshold crossing
+    var thr = $("thr");
+    var thrv = $("thrv");
+    thr.classList.remove("nocross");
+    if (prior === "chronic"){
+      thr.classList.add("nocross");
+      thrv.textContent = "Half-life exceeds modeling window. No threshold crossing projected.";
+    } else if (N0 <= THRESHOLD){
+      // already at/below threshold at onset
+      var crossDate0 = onset; // crossing is at or before onset
+      thr.classList.remove("nocross");
+      // report onset date as the crossing datum (value already <= threshold)
+      thrv.textContent = fmtDate(onset);
+    } else {
+      var tCross = Math.log(N0/THRESHOLD)/lambda; // days from onset
+      if (tCross > WINDOW_DAYS){
+        thr.classList.add("nocross");
+        thrv.textContent = "Crossing falls beyond modeling window. No threshold crossing projected.";
+      } else {
+        var crossDate = new Date(onset.getTime() + tCross*MS_DAY);
+        thrv.textContent = fmtMonth(crossDate) + " (modeled)";
+      }
+    }
+
+    // footnote: model params, flat
+    var priorTxt = prior === "first" ? "First detection." :
+                   prior === "recurring" ? "Recurring source; half-life scaled ×2.4." :
+                   "Chronic source; decay constant approaches zero.";
+    $("footp").textContent = priorTxt;
+
+    // capx note (mobile-friendly span label)
+    $("capx").textContent = "Horizontal: days from onset (" + isoShort(onset) + ")";
+
+    drawPlot(N0, lambda, onset, today, hl, prior);
+
+    $("out").classList.add("on");
+    // bring readout into view on small screens
+    requestAnimationFrame(function(){
+      var top = $("out").getBoundingClientRect().top + window.pageYOffset - 8;
+      window.scrollTo({ top: top, behavior: "smooth" });
+    });
+  }
+
+  // ---- wiring ----
+  $("amt").addEventListener("input", function(){
+    $("amtv").textContent = this.value;
+  });
+
+  $("f").addEventListener("submit", function(e){
+    e.preventDefault();
+    run();
+  });
+
+  $("again").addEventListener("click", function(){
+    $("out").classList.remove("on");
+    $("err").textContent = "";
+    window.scrollTo({ top:0, behavior:"smooth" });
+    $("feel").focus();
+  });
+
+  // default onset = today (low friction); user can change
+  (function initDate(){
+    var t = new Date();
+    var mm = ("0"+(t.getMonth()+1)).slice(-2);
+    var dd = ("0"+t.getDate()).slice(-2);
+    var el = $("onset");
+    el.value = t.getFullYear()+"-"+mm+"-"+dd;
+    el.max = t.getFullYear()+"-"+mm+"-"+dd;
+  })();
+
+  // redraw on resize so the SVG text/strokes stay crisp (viewBox handles scale,
+  // but re-run keeps non-scaling strokes consistent if re-laid out)
+  var rt;
+  window.addEventListener("resize", function(){
+    if (!$("out").classList.contains("on")) return;
+    clearTimeout(rt);
+    rt = setTimeout(function(){ run(); }, 180);
+  });
+
+})();
+</script>
+<a class="bus-home" href="/is/building/bus/">&larr; instrument bus</a>
+<style>
+.bus-home{position:fixed;left:14px;bottom:12px;z-index:60;font:600 11px/1 ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--ink-dim);text-decoration:none;padding:6px 10px;border:1px solid var(--rule);border-radius:999px;background:rgba(11,14,12,.8);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:color .18s,border-color .18s}
+.bus-home:hover,.bus-home:focus-visible{color:var(--ink);border-color:var(--ink-dim)}
+</style>
+</body>
+</html>

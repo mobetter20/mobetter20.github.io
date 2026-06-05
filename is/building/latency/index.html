@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STN OBR-1 — propagation monitor</title>
+<link rel="icon" type="image/png" href="/img/a3.png">
+<script src="/analytics.js" defer></script>
+<style>
+  :root {
+    --bg: #07090b;
+    --panel: #0b0f12;
+    --grid: #14201f;
+    --gridmaj: #1d2e2b;
+    --fg: #c7d2c9;
+    --dim: #5d6b62;
+    --dimmer: #38423c;
+    --trace: #e0a84b;
+    --traceq: #6c5a2e;
+    --mark: #7fb6a0;
+    --line: #161d1a;
+    --field: #0a0e10;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 14px 70px;
+  }
+
+  /* station header bar */
+  header {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 9px 12px;
+    margin-bottom: 14px;
+  }
+  .hdr-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 16px;
+  }
+  .stn-code { color: var(--fg); letter-spacing: 1px; font-weight: 600; }
+  .stn-name { color: var(--dim); font-size: 11px; letter-spacing: 0.5px; }
+  .hdr-right { margin-left: auto; color: var(--dim); font-size: 11px; }
+  .hdr-meta {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    color: var(--dim);
+    font-size: 11px;
+  }
+  .hdr-meta span b { color: var(--mark); font-weight: 400; }
+  .dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 0;
+    background: var(--trace); margin-right: 5px; vertical-align: baseline;
+    animation: pulse 1.8s steps(1) infinite;
+  }
+  @keyframes pulse { 50% { opacity: 0.25; } }
+
+  /* one prose line stating what the station is for — the plain-language
+     entry point a cold visitor needs before the technical codes */
+  .hdr-purpose {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+    color: #9fb0a4;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    max-width: 62ch;
+  }
+
+  /* drum / trace panel */
+  .drum {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 0;
+    margin-bottom: 14px;
+  }
+  .drum-label {
+    display: flex; flex-wrap: wrap; gap: 4px 14px;
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--line);
+    color: var(--dim); font-size: 11px; letter-spacing: 0.5px;
+  }
+  .drum-label .chan { color: var(--fg); }
+  .drum-label .spacer { margin-left: auto; }
+  .canvas-host {
+    position: relative;
+    width: 100%;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), var(--grid) calc(10% - 1px) 10%),
+      var(--field);
+  }
+  canvas { display: block; width: 100%; height: auto; }
+  .axis-row {
+    display: flex; justify-content: space-between;
+    padding: 4px 12px 8px;
+    color: var(--dimmer); font-size: 10px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* control console */
+  .console {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 12px 12px 14px;
+  }
+  .console-title {
+    color: var(--dim); font-size: 11px; letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 8px; margin-bottom: 4px;
+  }
+  label.fld { display: block; margin-top: 13px; }
+  .fld-key { display: block; color: var(--dim); font-size: 11px; margin-bottom: 5px; letter-spacing: 0.3px; }
+  .fld-key b { color: var(--fg); font-weight: 400; }
+  .fld-hint { color: var(--dimmer); }
+  input[type="text"], input[type="date"] {
+    width: 100%;
+    background: var(--field);
+    border: 1px solid var(--line);
+    color: var(--fg);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: 0;
+    outline: none;
+  }
+  input::placeholder { color: var(--dimmer); }
+  input:focus { border-color: var(--dim); }
+  input[type="date"] { color-scheme: dark; min-height: 36px; }
+  .row2 { display: flex; gap: 12px; flex-wrap: wrap; }
+  .row2 > .col { flex: 1 1 170px; }
+
+  .magwrap { display: flex; align-items: center; gap: 10px; }
+  input[type="range"] {
+    flex: 1; -webkit-appearance: none; appearance: none;
+    height: 2px; background: var(--line); outline: none; margin: 0;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 9px; height: 17px; background: var(--trace);
+    border: none; border-radius: 0; cursor: pointer;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 9px; height: 17px; background: var(--trace);
+    border: none; border-radius: 0; cursor: pointer;
+  }
+  .magval { width: 64px; text-align: right; color: var(--dim); font-size: 11px; white-space: nowrap; }
+
+  .actions { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+  button {
+    font-family: inherit; font-size: 12px;
+    background: var(--field); color: var(--fg);
+    border: 1px solid var(--dim);
+    padding: 8px 16px; border-radius: 0; cursor: pointer; letter-spacing: 0.4px;
+  }
+  button:hover { border-color: var(--trace); color: var(--trace); }
+  button:active { background: #10161480; }
+  button.ghost { border-color: var(--line); color: var(--dim); }
+  button.ghost:hover { border-color: var(--dim); color: var(--fg); }
+  button:disabled { opacity: 0.4; cursor: default; }
+  button:disabled:hover { border-color: var(--dim); color: var(--fg); }
+
+  .err { color: #c4795a; font-size: 11px; margin-top: 11px; min-height: 13px; }
+
+  /* readout */
+  #readout { margin-top: 14px; }
+  #readout:empty { display: none; }
+  .stream {
+    white-space: pre-wrap; word-break: break-word;
+    border: 1px solid var(--line); background: var(--field);
+    padding: 10px 12px; font-size: 12px; line-height: 1.55;
+  }
+  .stream:empty { display: none; }
+  .ln { display: block; }
+  .ln.dim { color: var(--dim); }
+  .ln.trace { color: var(--trace); }
+  .ln.mark { color: var(--mark); }
+  .ln.fg { color: var(--fg); }
+
+  .report { margin-top: 12px; border: 1px solid var(--line); background: var(--panel); }
+  .report .rtitle {
+    padding: 8px 12px; border-bottom: 1px solid var(--line);
+    color: var(--dim); font-size: 11px; letter-spacing: 0.5px;
+  }
+  .report table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .report td { padding: 7px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .report tr:last-child td { border-bottom: none; }
+  .report td.k { color: var(--dim); width: 46%; white-space: nowrap; }
+  .report td.v { color: var(--fg); }
+  .report td.v.trace { color: var(--trace); }
+  .report td.v.mark { color: var(--mark); }
+
+  .statusbar {
+    margin-top: 12px; padding: 9px 12px;
+    border: 1px solid var(--line); background: var(--panel);
+    font-size: 12px; color: var(--fg);
+  }
+  .statusbar .sb-key { color: var(--dim); }
+
+  footer {
+    margin-top: 22px; color: var(--dimmer); font-size: 10px;
+    border-top: 1px solid var(--line); padding-top: 9px; letter-spacing: 0.3px;
+  }
+  .cur {
+    display: inline-block; width: 6px; height: 12px; background: var(--trace);
+    vertical-align: text-bottom; animation: pulse 1.05s steps(1) infinite;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="hdr-top">
+      <span class="stn-code"><span class="dot"></span>STN OBR-1</span>
+      <span class="stn-name">single-station felt-arrival monitor</span>
+      <span class="hdr-right" id="clock">--:--:-- UTC</span>
+    </div>
+    <div class="hdr-purpose">Records the interval between an event and the response it produces. The delay is reported as distance from the epicenter.</div>
+    <div class="hdr-meta">
+      <span>net <b>OB</b></span>
+      <span>chan <b>BHZ</b></span>
+      <span>gain <b>auto</b></span>
+      <span>vel model <b>1.00 km/d</b></span>
+      <span id="state-meta">state <b>ACQUIRING</b></span>
+    </div>
+  </header>
+
+  <div class="drum">
+    <div class="drum-label">
+      <span class="chan">BHZ</span>
+      <span>continuous record</span>
+      <span class="spacer"></span>
+      <span id="drum-status">listening</span>
+    </div>
+    <div class="canvas-host">
+      <canvas id="trace" width="1480" height="320" aria-label="seismogram trace"></canvas>
+    </div>
+    <div class="axis-row">
+      <span id="ax-left">origin</span>
+      <span>propagation axis (days from origin) &#8594;</span>
+      <span id="ax-right">now</span>
+    </div>
+  </div>
+
+  <div class="console">
+    <div class="console-title">EVENT LOG — single channel</div>
+    <div class="console-note" style="color:var(--dim);font-size:11px;line-height:1.55;letter-spacing:.3px;margin-bottom:14px;max-width:54ch;">Log an event and the date its response was first felt here. The interval is reported as propagation delay.</div>
+    <form id="form" autocomplete="off">
+      <label class="fld">
+        <span class="fld-key"><b>log event</b> &#8212; origin label</span>
+        <input type="text" id="event" maxlength="120" placeholder="e.g. the call from the hospital" />
+      </label>
+
+      <div class="row2" style="margin-top:13px;">
+        <label class="fld col" style="margin-top:0;">
+          <span class="fld-key"><b>origin time</b> &#8212; when it happened</span>
+          <input type="date" id="t_event" />
+        </label>
+        <label class="fld col" style="margin-top:0;">
+          <span class="fld-key"><b>first arrival at station</b> &#8212; when the response was felt <span class="fld-hint">(blank if none)</span></span>
+          <input type="date" id="t_resp" />
+        </label>
+      </div>
+
+      <label class="fld">
+        <span class="fld-key"><b>recorded amplitude</b> &#8212; 1&#8211;10 <span class="fld-hint">(optional)</span></span>
+        <div class="magwrap">
+          <input type="range" id="mag" min="0" max="10" step="1" value="0" />
+          <span class="magval" id="magval">unset</span>
+        </div>
+      </label>
+
+      <div class="actions">
+        <button type="submit" id="run">record trace</button>
+        <button type="button" class="ghost" id="again" style="display:none;">clear &amp; log next</button>
+      </div>
+      <div class="err" id="err"></div>
+    </form>
+  </div>
+
+  <div id="readout" aria-live="polite"></div>
+
+  <footer>STN OBR-1 records on the vertical component. local session only; no telemetry transmitted.</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var form = document.getElementById("form");
+  var elEvent = document.getElementById("event");
+  var elTEvent = document.getElementById("t_event");
+  var elTResp = document.getElementById("t_resp");
+  var elMag = document.getElementById("mag");
+  var elMagVal = document.getElementById("magval");
+  var elErr = document.getElementById("err");
+  var elReadout = document.getElementById("readout");
+  var btnRun = document.getElementById("run");
+  var btnAgain = document.getElementById("again");
+  var canvas = document.getElementById("trace");
+  var ctx = canvas.getContext("2d");
+  var drumStatus = document.getElementById("drum-status");
+  var axLeft = document.getElementById("ax-left");
+  var axRight = document.getElementById("ax-right");
+  var stateMeta = document.getElementById("state-meta");
+  var clockEl = document.getElementById("clock");
+
+  // --- station clock (cosmetic, ticks UTC) ---
+  function tick() {
+    var d = new Date();
+    function p(n) { return (n < 10 ? "0" : "") + n; }
+    clockEl.textContent = p(d.getUTCHours()) + ":" + p(d.getUTCMinutes()) + ":" + p(d.getUTCSeconds()) + " UTC";
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  elMag.addEventListener("input", function () {
+    var v = parseInt(elMag.value, 10);
+    elMagVal.textContent = v === 0 ? "unset" : (v + " / 10");
+  });
+
+  // --- deterministic hash for cosmetic microseism wiggle (NOT for readings) ---
+  function hash32(str) {
+    var h = 2166136261 >>> 0;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619) >>> 0;
+    }
+    return h >>> 0;
+  }
+  function mixstep(h) {
+    h ^= h << 13; h >>>= 0;
+    h ^= h >> 17;
+    h ^= h << 5;  h >>>= 0;
+    return h >>> 0;
+  }
+  // seeded value generator in [0,1), deterministic
+  function seededRand(seed) {
+    var s = seed >>> 0;
+    return function () {
+      s = mixstep((s + 0x6d2b79f5) >>> 0);
+      return (s >>> 0) / 4294967296;
+    };
+  }
+
+  function pad(n, w) {
+    var s = "" + n;
+    while (s.length < w) s = " " + s;
+    return s;
+  }
+  function fixed(n, d) { return Number(n).toFixed(d); }
+  function commaInt(n) {
+    var s = "" + Math.round(n);
+    return s.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function parseDate(v) {
+    if (!v) return null;
+    var parts = v.split("-");
+    if (parts.length !== 3) return null;
+    var y = parseInt(parts[0], 10), m = parseInt(parts[1], 10), d = parseInt(parts[2], 10);
+    if (!y || !m || !d) return null;
+    return Date.UTC(y, m - 1, d);
+  }
+
+  var MS_DAY = 86400000;
+  var VELOCITY_KM_PER_DAY = 1.00; // declared velocity model; delay -> distance
+
+  function fmtDateUTC(ms) {
+    var d = new Date(ms);
+    function p(n) { return (n < 10 ? "0" : "") + n; }
+    return d.getUTCFullYear() + "-" + p(d.getUTCMonth() + 1) + "-" + p(d.getUTCDate());
+  }
+  function fmtStamp(ms) {
+    // monitoring-format timestamp: YYYY-MM-DD 00:00:00.000
+    return fmtDateUTC(ms) + " 00:00:00.000";
+  }
+
+  function originLabel(name) {
+    var n = name.trim();
+    if (!n) return "event";
+    return n.length > 54 ? n.slice(0, 53) + "…" : n;
+  }
+
+  // ------------------------------------------------------------------
+  //  CANVAS TRACE
+  //  Single horizontal channel. Quiet microseism baseline runs left->right.
+  //  An arrival burst (the wave) sits at a horizontal position set by the
+  //  propagation delay: the longer the delay, the further right. With no
+  //  arrival, the baseline simply continues quiet.
+  // ------------------------------------------------------------------
+
+  var DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+
+  var lastHostW = 0, lastCssH = 0;
+  function sizeCanvas() {
+    var hostW = canvas.parentNode.clientWidth || 740;
+    // keep a stable aspect; taller on wide, shorter on narrow
+    var cssH = hostW < 460 ? 240 : 320;
+    // only reallocate the backing store when the box actually changed —
+    // setting canvas.width every animation frame would clear + realloc needlessly
+    if (hostW === lastHostW && cssH === lastCssH) return;
+    lastHostW = hostW; lastCssH = cssH;
+    canvas.style.height = cssH + "px";
+    canvas.width = Math.round(hostW * DPR);
+    canvas.height = Math.round(cssH * DPR);
+  }
+
+  // current trace model, redrawn on resize
+  var traceModel = null; // {seed, delayFrac, amp, hasArrival}
+
+  function quietModel() {
+    return { seed: 0x515E15, delayFrac: 1.0, amp: 0, hasArrival: false, idle: true };
+  }
+
+  function drawTrace(model) {
+    sizeCanvas();
+    var W = canvas.width, H = canvas.height;
+    var padL = 6 * DPR, padR = 6 * DPR;
+    var midY = H * 0.5;
+    var plotW = W - padL - padR;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // grid: faint horizontal guides (drum trace lanes feel)
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "rgba(125,182,160,0.06)";
+    var lanes = 6;
+    for (var g = 1; g < lanes; g++) {
+      var y = (H / lanes) * g;
+      ctx.beginPath();
+      ctx.moveTo(0, Math.round(y) + 0.5);
+      ctx.lineTo(W, Math.round(y) + 0.5);
+      ctx.stroke();
+    }
+    // zero line
+    ctx.strokeStyle = "rgba(125,182,160,0.12)";
+    ctx.beginPath();
+    ctx.moveTo(0, Math.round(midY) + 0.5);
+    ctx.lineTo(W, Math.round(midY) + 0.5);
+    ctx.stroke();
+
+    var rnd = seededRand(model.seed >>> 0);
+    // pre-roll a few values so different seeds visibly diverge
+    for (var w = 0; w < 7; w++) rnd();
+
+    // microseism noise amplitude (quiet baseline)
+    var noiseAmp = (model.idle ? 2.0 : 2.6) * DPR;
+
+    // arrival geometry
+    var arrivalX = padL + plotW * Math.max(0.04, Math.min(0.98, model.delayFrac));
+    // burst envelope width scales a touch with amplitude, fixed-ish
+    var burstW = (38 + model.amp * 7) * DPR;
+    // peak deflection of the wave; grows with recorded amplitude
+    var peakAmp = (H * 0.30) * (0.30 + 0.70 * (model.amp / 10));
+    if (model.amp === 0) peakAmp = H * 0.20; // default modest deflection when amplitude unset
+
+    // walk pixel by pixel
+    var step = Math.max(1, Math.floor(DPR));
+    var prevX = padL, prevY = midY;
+    var firstPt = true;
+
+    // slow-drift component so baseline isn't a dead ruler
+    var driftPhase = rnd() * Math.PI * 2;
+    var driftFreq = 0.6 + rnd() * 0.5;
+
+    // build a deterministic phase for the burst oscillation
+    var burstFreq = 0.45 + rnd() * 0.25; // rad per px-ish
+    var burstPhase = rnd() * Math.PI * 2;
+
+    ctx.lineWidth = 1.25 * DPR;
+    ctx.strokeStyle = "#e0a84b";
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.beginPath();
+
+    for (var x = padL; x <= padL + plotW; x += step) {
+      var t = (x - padL);
+      // quiet microseism: low-amplitude pseudo-noise + slow drift
+      var n = (rnd() - 0.5) * 2 * noiseAmp;
+      var drift = Math.sin((t / plotW) * Math.PI * 2 * driftFreq * 3 + driftPhase) * 1.6 * DPR;
+      var yv = n + drift;
+
+      // arrival burst contribution (only if an arrival registered)
+      if (model.hasArrival) {
+        var dx = x - arrivalX;
+        // gaussian envelope centered at arrivalX, slight asymmetry (coda longer to the right)
+        var sigmaL = burstW * 0.55;
+        var sigmaR = burstW * 1.25;
+        var env;
+        if (dx <= 0) env = Math.exp(-(dx * dx) / (2 * sigmaL * sigmaL));
+        else env = Math.exp(-(dx * dx) / (2 * sigmaR * sigmaR));
+        // oscillation inside the envelope
+        var osc = Math.sin(dx * (burstFreq / DPR) + burstPhase);
+        // a second harmonic for body-wave texture
+        osc = osc * 0.78 + Math.sin(dx * (burstFreq / DPR) * 2.1 + burstPhase * 1.7) * 0.22;
+        yv += env * osc * peakAmp;
+      }
+
+      var py = midY - yv;
+      if (firstPt) { ctx.moveTo(x, py); firstPt = false; }
+      else { ctx.lineTo(x, py); }
+      prevX = x; prevY = py;
+    }
+    ctx.stroke();
+
+    // arrival marker (vertical pick line + label), only when arrival exists
+    if (model.hasArrival) {
+      ctx.save();
+      ctx.setLineDash([5 * DPR, 4 * DPR]);
+      ctx.lineWidth = 1 * DPR;
+      ctx.strokeStyle = "rgba(127,182,160,0.55)";
+      ctx.beginPath();
+      ctx.moveTo(Math.round(arrivalX) + 0.5, H * 0.06);
+      ctx.lineTo(Math.round(arrivalX) + 0.5, H * 0.94);
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.fillStyle = "#7fb6a0";
+      ctx.font = (11 * DPR) + "px ui-monospace, Menlo, monospace";
+      ctx.textBaseline = "top";
+      var lbl = "P";
+      var lblX = arrivalX + 5 * DPR;
+      // keep label on-canvas
+      if (lblX > W - 14 * DPR) lblX = arrivalX - 14 * DPR;
+      ctx.fillText(lbl, lblX, H * 0.06);
+    }
+
+    // "origin" tick at far left
+    ctx.fillStyle = "rgba(127,182,160,0.4)";
+    ctx.font = (10 * DPR) + "px ui-monospace, Menlo, monospace";
+    ctx.textBaseline = "top";
+    ctx.fillText("O", padL + 2 * DPR, H * 0.06);
+  }
+
+  // redraw the recorded/quiet trace (used on resize while an event is shown)
+  function drawCurrent() {
+    drawTrace(traceModel || quietModel());
+  }
+
+  // ------------------------------------------------------------------
+  //  IDLE LIVE RECORD
+  //  "continuous record" actually scrolls: a quiet microseism baseline,
+  //  new samples entering at the right ("now") and drifting left. This is
+  //  what makes the station read as *listening* rather than flatlined.
+  // ------------------------------------------------------------------
+  var IDLE_N = 240;            // logical sample columns across the plot
+  var idleBuf = null;
+  var idleRnd = seededRand(0x1A7E11);
+  var idlePhase = 0;
+  var idleRAF = null;
+  var idleLast = 0;
+
+  function clampv(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+
+  function initIdleBuf() {
+    idleBuf = new Float32Array(IDLE_N);
+    var v = 0;
+    for (var i = 0; i < IDLE_N; i++) {
+      v = clampv(v * 0.86 + (idleRnd() - 0.5) * 0.9, -2.2, 2.2);
+      idleBuf[i] = v;
+    }
+  }
+  function pushIdleSample() {
+    var N = idleBuf.length, i;
+    for (i = 0; i < N - 1; i++) idleBuf[i] = idleBuf[i + 1];
+    idleBuf[N - 1] = clampv(idleBuf[N - 2] * 0.86 + (idleRnd() - 0.5) * 0.9, -2.2, 2.2);
+  }
+
+  function drawGrid(W, H, midY) {
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "rgba(125,182,160,0.06)";
+    var lanes = 6, g, y;
+    for (g = 1; g < lanes; g++) {
+      y = (H / lanes) * g;
+      ctx.beginPath();
+      ctx.moveTo(0, Math.round(y) + 0.5);
+      ctx.lineTo(W, Math.round(y) + 0.5);
+      ctx.stroke();
+    }
+    ctx.strokeStyle = "rgba(125,182,160,0.12)";
+    ctx.beginPath();
+    ctx.moveTo(0, Math.round(midY) + 0.5);
+    ctx.lineTo(W, Math.round(midY) + 0.5);
+    ctx.stroke();
+  }
+
+  function drawIdleFrame() {
+    sizeCanvas();
+    var W = canvas.width, H = canvas.height;
+    var padL = 6 * DPR, padR = 6 * DPR, midY = H * 0.5, plotW = W - padL - padR;
+    ctx.clearRect(0, 0, W, H);
+    drawGrid(W, H, midY);
+
+    idlePhase += 0.02;
+    var ampPx = H * 0.085, driftPx = H * 0.05;
+    var N = idleBuf.length, i, x, drift, yv, py;
+
+    ctx.lineWidth = 1.25 * DPR;
+    ctx.strokeStyle = "#e0a84b";
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    for (i = 0; i < N; i++) {
+      x = padL + plotW * (i / (N - 1));
+      drift = Math.sin((i / N) * Math.PI * 2 * 1.5 + idlePhase) * 0.35;
+      yv = idleBuf[i] * ampPx + drift * driftPx;
+      py = midY - yv;
+      if (i === 0) ctx.moveTo(x, py); else ctx.lineTo(x, py);
+    }
+    ctx.stroke();
+
+    // "now" write head at the right edge — the pen the record scrolls under
+    ctx.strokeStyle = "rgba(127,182,160,0.30)";
+    ctx.lineWidth = 1 * DPR;
+    ctx.beginPath();
+    ctx.moveTo(Math.round(padL + plotW) + 0.5, H * 0.06);
+    ctx.lineTo(Math.round(padL + plotW) + 0.5, H * 0.94);
+    ctx.stroke();
+
+    // origin tick
+    ctx.fillStyle = "rgba(127,182,160,0.4)";
+    ctx.font = (10 * DPR) + "px ui-monospace, Menlo, monospace";
+    ctx.textBaseline = "top";
+    ctx.fillText("O", padL + 2 * DPR, H * 0.06);
+  }
+
+  function idleLoop(ts) {
+    idleRAF = requestAnimationFrame(idleLoop);
+    if (document.hidden) return;
+    if (!idleLast) idleLast = ts;
+    var dt = ts - idleLast, interval = 38; // ms per new sample (~26/s)
+    if (dt >= interval) {
+      idleLast = ts - (dt % interval);
+      pushIdleSample();
+      drawIdleFrame();
+    }
+  }
+  function startIdle() {
+    if (idleRAF) return;
+    if (!idleBuf) initIdleBuf();
+    traceModel = null;          // idle owns the canvas
+    idleLast = 0;
+    drawIdleFrame();
+    idleRAF = requestAnimationFrame(idleLoop);
+  }
+  function stopIdle() {
+    if (idleRAF) { cancelAnimationFrame(idleRAF); idleRAF = null; }
+  }
+
+  window.addEventListener("resize", function () {
+    if (idleRAF) drawIdleFrame();
+    else drawCurrent();
+  });
+
+  // initial state: live and listening, not a frozen baseline
+  initIdleBuf();
+  startIdle();
+
+  // ------------------------------------------------------------------
+  //  STREAMING READOUT
+  // ------------------------------------------------------------------
+
+  var running = false;
+
+  function lineEl(text, cls) {
+    var span = document.createElement("span");
+    span.className = "ln" + (cls ? " " + cls : "");
+    span.textContent = text;
+    return span;
+  }
+
+  function streamLines(target, items, done) {
+    var i = 0;
+    function next() {
+      if (i >= items.length) { if (done) done(); return; }
+      var it = items[i++];
+      target.appendChild(lineEl(it.text, it.cls));
+      window.scrollTo(0, document.body.scrollHeight);
+      setTimeout(next, it.wait != null ? it.wait : 80);
+    }
+    next();
+  }
+
+  function buildReportTable(rows, titleText) {
+    var box = document.createElement("div");
+    box.className = "report";
+    var t = document.createElement("div");
+    t.className = "rtitle";
+    t.textContent = titleText;
+    box.appendChild(t);
+    var tbl = document.createElement("table");
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      var td1 = document.createElement("td");
+      td1.className = "k";
+      td1.textContent = r[0];
+      var td2 = document.createElement("td");
+      td2.className = "v" + (r[2] ? " " + r[2] : "");
+      td2.textContent = r[1];
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tbl.appendChild(tr);
+    });
+    box.appendChild(tbl);
+    return box;
+  }
+
+  function statusBar(keyText, valText) {
+    var s = document.createElement("div");
+    s.className = "statusbar";
+    var k = document.createElement("span");
+    k.className = "sb-key";
+    k.textContent = keyText + "  ";
+    var v = document.createElement("span");
+    v.textContent = valText;
+    s.appendChild(k);
+    s.appendChild(v);
+    return s;
+  }
+
+  function appendNode(node) {
+    elReadout.appendChild(node);
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
+  // ------------------------------------------------------------------
+  //  RUN
+  // ------------------------------------------------------------------
+
+  function run() {
+    if (running) return;
+    elErr.textContent = "";
+
+    var evt = elEvent.value.trim();
+    var tE = parseDate(elTEvent.value);
+    var tR = parseDate(elTResp.value);
+    var mag = parseInt(elMag.value, 10) || 0;
+
+    if (!evt) { elErr.textContent = "no origin logged. enter an event to record."; return; }
+    if (tE == null) { elErr.textContent = "origin time required."; return; }
+    if (tR != null && tR < tE) { elErr.textContent = "arrival precedes origin. check the timestamps."; return; }
+
+    running = true;
+    stopIdle();                 // freeze the live record; the event trace takes over
+    btnRun.disabled = true;
+    btnAgain.style.display = "none";
+    elReadout.innerHTML = "";
+    drumStatus.textContent = "arming";
+    stateMeta.innerHTML = "state <b>RECORDING</b>";
+
+    var label = originLabel(evt);
+    var seed = hash32(evt + "|" + elTEvent.value) >>> 0;
+    var hasArrival = (tR != null);
+
+    var days = hasArrival ? Math.round((tR - tE) / MS_DAY) : null;
+    if (days != null && days < 0) days = 0;
+
+    // map delay -> horizontal fraction of the trace.
+    // log-ish compression so a 2-day and a 900-day arrival both fit, both legible.
+    var delayFrac;
+    if (!hasArrival) {
+      delayFrac = 1.0;
+    } else {
+      // 0 d -> ~0.10 ; 1 yr -> ~0.78 ; multi-yr asymptotes toward right edge
+      var f = Math.log(1 + days) / Math.log(1 + 1460); // 1460 d ~= 4 yr reference span
+      delayFrac = 0.10 + 0.84 * Math.min(1, f);
+    }
+
+    // axis labels reflect the recorded span
+    axLeft.textContent = "origin " + (tE != null ? fmtDateUTC(tE) : "");
+    if (hasArrival) {
+      axRight.textContent = fmtDateUTC(tR);
+    } else {
+      axRight.textContent = "monitoring";
+    }
+
+    // build trace model
+    traceModel = { seed: seed, delayFrac: delayFrac, amp: mag, hasArrival: hasArrival, idle: false };
+
+    // streaming "station coming online" sequence into a temp stream box
+    var stream = document.createElement("div");
+    stream.className = "stream";
+    elReadout.appendChild(stream);
+
+    var t0 = fmtStamp(tE);
+    var intro = [
+      { text: "STN OBR-1 :: channel BHZ armed", cls: "dim", wait: 200 },
+      { text: "origin logged  " + t0, cls: "dim", wait: 200 },
+      { text: "event » " + label, cls: "mark", wait: 220 },
+      { text: "transmitting through medium …", cls: "dim", wait: 320 }
+    ];
+
+    streamLines(stream, intro, function () {
+      drumStatus.textContent = "recording";
+      // animate the trace drawing in (progressive reveal via clip)
+      animateTraceIn(traceModel, function () {
+        if (hasArrival) {
+          renderArrival(stream, label, tE, tR, days, delayFrac, mag, seed);
+        } else {
+          renderNoArrival(stream, label, tE, seed);
+        }
+      });
+    });
+  }
+
+  // progressive draw: redraw full trace, then sweep a reveal mask left->right
+  function animateTraceIn(model, done) {
+    drawTrace(model); // full trace rendered underneath
+    var host = canvas.parentNode;
+    var mask = document.createElement("div");
+    mask.style.position = "absolute";
+    mask.style.top = "0";
+    mask.style.right = "0";
+    mask.style.bottom = "0";
+    mask.style.left = "0";
+    mask.style.background = "var(--field)";
+    mask.style.pointerEvents = "none";
+    host.appendChild(mask);
+
+    var start = null;
+    var dur = 900;
+    function frame(ts) {
+      if (start == null) start = ts;
+      var p = Math.min(1, (ts - start) / dur);
+      // reveal from left: mask covers the right portion
+      mask.style.left = (p * 100).toFixed(2) + "%";
+      if (p < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        host.removeChild(mask);
+        if (done) setTimeout(done, 160);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function ampDescriptor(mag) {
+    // seismic-flavored amplitude band, purely a label for the given 1-10 input
+    if (mag <= 0) return "not recorded";
+    if (mag <= 2) return "trace deflection";
+    if (mag <= 4) return "low amplitude";
+    if (mag <= 6) return "moderate amplitude";
+    if (mag <= 8) return "strong amplitude";
+    return "full-scale deflection";
+  }
+
+  function renderArrival(stream, label, tE, tR, days, delayFrac, mag, seed) {
+    var distanceKm = days * VELOCITY_KM_PER_DAY;
+
+    var arrivalLines = [
+      { text: "", wait: 100 },
+      { text: "first arrival registered  " + fmtStamp(tR), cls: "trace", wait: 260 },
+      { text: "P-phase picked", cls: "dim", wait: 180 },
+      { text: "", wait: 80 }
+    ];
+
+    streamLines(stream, arrivalLines, function () {
+      var rows = [];
+      rows.push(["origin event", label, "mark"]);
+      rows.push(["origin time", fmtStamp(tE), ""]);
+      rows.push(["first arrival", fmtStamp(tR), ""]);
+      rows.push(["phase", "P", ""]);
+      rows.push(["propagation delay", days + (days === 1 ? " d" : " d"), "trace"]);
+      rows.push(["station distance", commaInt(distanceKm) + " km", "trace"]);
+      rows.push(["velocity model", fixed(VELOCITY_KM_PER_DAY, 2) + " km/d", ""]);
+      if (mag > 0) {
+        rows.push(["recorded amplitude", mag + " / 10  (" + ampDescriptor(mag) + ")", ""]);
+      } else {
+        rows.push(["recorded amplitude", "not recorded", "dim"]);
+      }
+      rows.push(["channel", "BHZ", ""]);
+
+      appendNode(buildReportTable(rows, "READING — STN OBR-1 / " + label));
+
+      // flat status line: distance restatement, no interpretation
+      appendNode(statusBar(
+        "ARRIVAL RECORDED.",
+        "Propagation delay " + days + " d. Station distance " + commaInt(distanceKm) + " km from epicenter at the declared velocity. Trace stored."
+      ));
+
+      stateMeta.innerHTML = "state <b>STORED</b>";
+      drumStatus.textContent = "stored";
+      finish();
+    });
+  }
+
+  function renderNoArrival(stream, label, tE, seed) {
+    var lines = [
+      { text: "", wait: 100 },
+      { text: "no arrival within recorded window", cls: "dim", wait: 280 },
+      { text: "channel BHZ continues", cls: "dim", wait: 200 },
+      { text: "", wait: 80 }
+    ];
+    streamLines(stream, lines, function () {
+      var rows = [];
+      rows.push(["origin event", label, "mark"]);
+      rows.push(["origin time", fmtStamp(tE), ""]);
+      rows.push(["first arrival", "—", ""]);
+      rows.push(["phase", "—", ""]);
+      rows.push(["propagation delay", "—", ""]);
+      rows.push(["station distance", "indeterminate", ""]);
+      rows.push(["channel", "BHZ", ""]);
+      rows.push(["state", "MONITORING", "mark"]);
+
+      appendNode(buildReportTable(rows, "READING — STN OBR-1 / " + label));
+
+      appendNode(statusBar(
+        "NO ARRIVAL RECORDED.",
+        "Event transmitted. No arrival has registered at this station. The station continues monitoring."
+      ));
+
+      stateMeta.innerHTML = "state <b>MONITORING</b>";
+      drumStatus.textContent = "monitoring";
+      finish();
+    });
+  }
+
+  function finish() {
+    running = false;
+    btnRun.disabled = false;
+    btnAgain.style.display = "inline-block";
+    var c = document.createElement("div");
+    c.className = "ln dim";
+    c.style.marginTop = "10px";
+    c.style.fontSize = "11px";
+    var inner = document.createElement("span");
+    inner.textContent = "OBR-1 ";
+    var cur = document.createElement("span");
+    cur.className = "cur";
+    c.appendChild(inner);
+    c.appendChild(cur);
+    appendNode(c);
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    run();
+  });
+
+  btnAgain.addEventListener("click", function () {
+    elReadout.innerHTML = "";
+    elErr.textContent = "";
+    elEvent.value = "";
+    elTEvent.value = "";
+    elTResp.value = "";
+    elMag.value = "0";
+    elMagVal.textContent = "unset";
+    btnAgain.style.display = "none";
+    stateMeta.innerHTML = "state <b>ACQUIRING</b>";
+    drumStatus.textContent = "listening";
+    axLeft.textContent = "origin";
+    axRight.textContent = "now";
+    startIdle();                // resume the live record
+    elEvent.focus();
+    window.scrollTo(0, 0);
+  });
+})();
+</script>
+<a class="bus-home" href="/is/building/bus/">&larr; instrument bus</a>
+<style>
+.bus-home{position:fixed;left:14px;bottom:12px;z-index:60;font:600 11px/1 ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--dim);text-decoration:none;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(7,9,11,.8);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:color .18s,border-color .18s}
+.bus-home:hover,.bus-home:focus-visible{color:var(--fg);border-color:var(--mark)}
+</style>
+</body>
+</html>
