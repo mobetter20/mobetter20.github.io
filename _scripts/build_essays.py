@@ -5,12 +5,15 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+import writes_common
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ESSAY_ROOT = REPO_ROOT / "is" / "writing" / "essays"
 SOURCE_ROOT = ESSAY_ROOT / "_src"
 EXPORT_ROOT = Path("/Users/ajin/Documents/New project/personal/ajin.im:is:writing/archive/essay")
 WROTE_ROOT = REPO_ROOT / "wrote"
+WRITES_ROOT = REPO_ROOT / "writes"
 
 
 POST_DEFS = [
@@ -55,10 +58,15 @@ class EssayPost:
     body_md: str
     excerpt: str
     slug: str
+    date: str = ""
 
     @property
     def readable_order(self) -> str:
         return str(self.order)
+
+    @property
+    def year(self) -> str:
+        return self.date[:4] if self.date else ""
 
 
 def slugify(value: str) -> str:
@@ -178,6 +186,7 @@ def parse_markdown_post(source_path: Path) -> EssayPost:
         body_md=body_md,
         excerpt=excerpt,
         slug=slug,
+        date=front_matter.get("date", ""),
     )
 
 
@@ -286,50 +295,17 @@ def ensure_source_markdown() -> None:
 
 
 def build_post_page(post: EssayPost) -> str:
-    body_html = markdown_to_html(post.body_md)
-    return f"""<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/img/a3.png" />
-    <link rel="apple-touch-icon" href="/img/a3.png" />
-    <title>{html.escape(post.title)} | ajin.im/wrote</title>
-    <meta name="description" content="{html.escape(post.excerpt or post.title)}" />
-    <link rel="canonical" href="https://ajin.im/wrote/{post.slug}/" />
-    <meta property="og:site_name" content="ajin.im" />
-    <meta property="og:title" content="{html.escape(post.title)}" />
-    <meta property="og:description" content="{html.escape(post.excerpt or post.title)}" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://ajin.im/wrote/{post.slug}/" />
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="{html.escape(post.title)}" />
-    <meta name="twitter:description" content="{html.escape(post.excerpt or post.title)}" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/creative-house.css" />
-    <script src="/analytics.js" defer></script>
-  </head>
-  <body class="post-page">
-    <main class="post-shell">
-      <header class="post-head">
-        <a class="back-link" href="/wrote/">Back to ajin.im/wrote</a>
-        <h1 class="post-title">{html.escape(post.title)}</h1>
-      </header>
-
-      <article class="post-body">
-{indent_body(body_html)}
-      </article>
-    </main>
-  </body>
-</html>
-"""
+    body_html = indent_body(markdown_to_html(post.body_md))
+    kicker = f"{post.year} · a thought" if post.year else "a thought"
+    return writes_common.reading_page(
+        title=post.title,
+        body_html=body_html,
+        canonical=f"https://ajin.im/writes/{post.slug}/",
+        description=post.excerpt or post.title,
+        kicker=kicker,
+        back_href="/writes/",
+        back_label="← ajin.im/writes",
+    )
 
 
 def indent_body(body_html: str) -> str:
@@ -349,9 +325,16 @@ def load_posts() -> list[EssayPost]:
 def main() -> None:
     posts = load_posts()
     for post in posts:
-        out_dir = WROTE_ROOT / post.slug
+        out_dir = WRITES_ROOT / post.slug
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(build_post_page(post), encoding="utf-8")
+        # The piece moved from /wrote/<slug>/ to /writes/<slug>/ — leave a redirect.
+        old_dir = WROTE_ROOT / post.slug
+        old_dir.mkdir(parents=True, exist_ok=True)
+        (old_dir / "index.html").write_text(
+            writes_common.redirect_stub(f"/writes/{post.slug}/", title="Moved to ajin.im/writes"),
+            encoding="utf-8",
+        )
         print(f"built {out_dir / 'index.html'}")
 
 

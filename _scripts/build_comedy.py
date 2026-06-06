@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
+import writes_common
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EXPORT_ROOT = Path("/Users/ajin/Documents/New project/personal/ajin.im:is:writing/archive/wrote")
@@ -237,105 +239,37 @@ def is_response_like(post: ComedyPost) -> bool:
 
 
 def build_page(post: ComedyPost) -> str:
-    subtitle_html = f'        <p class="post-subtitle">{html.escape(post.subtitle)}</p>\n' if post.subtitle else ""
     body_html = indent_body(clean_body(post.body_html))
-    return f"""<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/img/a3.png" />
-    <link rel="apple-touch-icon" href="/img/a3.png" />
-    <title>{html.escape(post.title)} | ajin.im/wrote</title>
-    <meta name="description" content="{html.escape(post.subtitle or post.title)}" />
-    <link rel="canonical" href="https://ajin.im/wrote/{post.slug}/" />
-    <meta property="og:site_name" content="ajin.im" />
-    <meta property="og:title" content="{html.escape(post.title)}" />
-    <meta property="og:description" content="{html.escape(post.subtitle or post.title)}" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://ajin.im/wrote/{post.slug}/" />
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="{html.escape(post.title)}" />
-    <meta name="twitter:description" content="{html.escape(post.subtitle or post.title)}" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/creative-house.css" />
-    <script src="/analytics.js" defer></script>
-  </head>
-  <body class="post-page">
-    <main class="post-shell">
-      <header class="post-head">
-        <a class="back-link" href="/wrote/">Back to ajin.im/wrote</a>
-        <p class="archive-meta">Medium years / {post.readable_date}</p>
-        <h1 class="post-title">{html.escape(post.title)}</h1>
-{subtitle_html}        <p class="post-note">
-          Originally published on Medium on {post.readable_date}.
-          <a href="{html.escape(post.canonical, quote=True)}" target="_blank" rel="noreferrer noopener">View original</a>
-        </p>
-      </header>
-
-      <article class="post-body">
-{body_html}
-      </article>
-    </main>
-  </body>
-</html>
-"""
+    note_html = (
+        '<p class="post-note">Originally published on Medium on '
+        f"{html.escape(post.readable_date)}. "
+        f'<a href="{html.escape(post.canonical, quote=True)}" target="_blank" rel="noreferrer noopener">View original</a></p>'
+    )
+    return writes_common.reading_page(
+        title=post.title,
+        body_html=body_html,
+        canonical=f"https://ajin.im/wrote/{post.slug}/",
+        description=post.subtitle or post.title,
+        kicker=f"the comedy years · {post.month_label}",
+        back_href="/wrote/",
+        back_label="← ajin.im/wrote",
+        subtitle=post.subtitle,
+        note_html=note_html,
+    )
 
 
 def build_standalone_page(post: StandaloneComedyPost) -> str:
-    subtitle_html = f'        <p class="post-subtitle">{html.escape(post.subtitle)}</p>\n' if post.subtitle else ""
     body_html = indent_body(markdown_to_html(post.body_md))
-    return f"""<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/img/a3.png" />
-    <link rel="apple-touch-icon" href="/img/a3.png" />
-    <title>{html.escape(post.title)} | ajin.im/wrote</title>
-    <meta name="description" content="{html.escape(post.subtitle or post.title)}" />
-    <link rel="canonical" href="https://ajin.im/wrote/{post.slug}/" />
-    <meta property="og:site_name" content="ajin.im" />
-    <meta property="og:title" content="{html.escape(post.title)}" />
-    <meta property="og:description" content="{html.escape(post.subtitle or post.title)}" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://ajin.im/wrote/{post.slug}/" />
-    
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="{html.escape(post.title)}" />
-    <meta name="twitter:description" content="{html.escape(post.subtitle or post.title)}" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/creative-house.css" />
-    <script src="/analytics.js" defer></script>
-  </head>
-  <body class="post-page">
-    <main class="post-shell">
-      <header class="post-head">
-        <a class="back-link" href="/wrote/">Back to ajin.im/wrote</a>
-        <p class="archive-meta">Standalone comedy</p>
-        <h1 class="post-title">{html.escape(post.title)}</h1>
-{subtitle_html}      </header>
-
-      <article class="post-body">
-{body_html}
-      </article>
-    </main>
-  </body>
-</html>
-"""
+    return writes_common.reading_page(
+        title=post.title,
+        body_html=body_html,
+        canonical=f"https://ajin.im/wrote/{post.slug}/",
+        description=post.subtitle or post.title,
+        kicker="the comedy years",
+        back_href="/wrote/",
+        back_label="← ajin.im/wrote",
+        subtitle=post.subtitle,
+    )
 
 
 def load_posts() -> tuple[list[ComedyPost], list[StandaloneComedyPost]]:
