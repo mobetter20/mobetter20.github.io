@@ -1,6 +1,7 @@
 ---
 title: Korea was the beta test zone for modern loneliness.
 order: 6
+date: 2026
 ---
 
 Korea didn’t invent loneliness.

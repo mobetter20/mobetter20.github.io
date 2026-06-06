@@ -1,6 +1,7 @@
 ---
 title: How to Cry on the Subway and Not Be Seen
 order: 7
+date: 2026
 ---
 
 You’re surrounded by hundreds of people. You’re crying. No one looks.

@@ -1,6 +1,7 @@
 ---
 title: Adventure Is Danger, Past Tense
 order: 3
+date: 2026
 ---
 
 A young woman once got on the wrong train in a country where she didn’t speak the language.

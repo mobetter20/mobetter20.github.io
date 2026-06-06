@@ -28,7 +28,7 @@ BESPOKE_ESSAYS = [
         "slug": "every-few-years",
         "title": "Every Few Years, The Country Goes Off",
         "order": 0.5,
-        "date": "",
+        "date": "2026",
         "excerpt": "I am Korean. I grew up inside these explosions. Four cases — and a pattern that keeps repeating.",
     },
 ]
@@ -63,24 +63,35 @@ def collect_items() -> list[dict]:
 
 
 def render_index() -> str:
-    items = collect_items()
-    has_dates = any(item["date"] for item in items)
-    lines = []
-    for idx, item in enumerate(items):
-        year = item["date"][:4] if item["date"] else ""
-        # the two most recent carry a one-line dek; the rest stand on their titles
-        dek = item["excerpt"] if idx < 2 else ""
-        lines.append(
-            writes_common.log_line(
-                f'/writes/{item["slug"]}/',
-                item["title"],
-                date=year,
-                new=(idx == 0),
-                dek=dek,
-            )
+    items = collect_items()  # sorted by order (newest intent first)
+    newest_slug = items[0]["slug"] if items else None
+    dek_slugs = {item["slug"] for item in items[:2]}  # top two carry a one-line dek
+
+    def render_line(item: dict) -> str:
+        return writes_common.log_line(
+            f'/writes/{item["slug"]}/',
+            item["title"],
+            new=(item["slug"] == newest_slug),
+            dek=(item["excerpt"] if item["slug"] in dek_slugs else ""),
         )
-    log_class = "log" if has_dates else "log nodate"
-    body = f'      <div class="{log_class}">\n' + "\n".join(lines) + "\n      </div>"
+
+    # Group by year (the year lives in a "## YYYY" divider, not on every row —
+    # a per-row year would just repeat itself). Newest year first.
+    by_year: dict[str, list[dict]] = {}
+    undated: list[dict] = []
+    for item in items:
+        year = item["date"][:4] if item["date"] else ""
+        (by_year.setdefault(year, []) if year else undated).append(item)
+
+    inner: list[str] = []
+    for year in sorted(by_year, reverse=True):
+        inner.append(f'        <p class="yr">## {year}</p>')
+        for item in sorted(by_year[year], key=lambda x: x["order"]):
+            inner.append(render_line(item))
+    for item in sorted(undated, key=lambda x: x["order"]):
+        inner.append(render_line(item))
+
+    body = '      <div class="log nodate">\n' + "\n".join(inner) + "\n      </div>"
     return writes_common.log_page(
         title="ajin.im writes",
         description="A running log of thoughts — essays in the present voice.",

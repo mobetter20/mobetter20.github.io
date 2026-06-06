@@ -1,6 +1,7 @@
 ---
 title: Call of the Void
 order: 4
+date: 2026
 ---
 
 Have you ever heard of the call of the void?

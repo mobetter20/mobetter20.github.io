@@ -1,6 +1,7 @@
 ---
 title: Already Seen
 order: 1
+date: 2026
 ---
 
 At Hanoi Train Street, the train is not symbolic. It is loud, close, and solid. When it comes through, people flatten themselves against the wall, hold up their phones, and keep looking a moment longer than seems sensible. What struck me was not that they failed to recognize the train as real. They clearly knew it was real. The strange thing was that it could remain, almost until the last moment, a scene.
