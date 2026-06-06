@@ -62,9 +62,11 @@
   /* active section is the one reserved navy moment in the chrome */
   .nav a[aria-current="page"]{color:var(--accent); background:var(--accent-bg); font-weight:600}
   .search{display:flex; align-items:center; gap:0; flex-shrink:0}
-  .search input{font-family:inherit; font-size:13px; color:var(--ink); background:var(--panel); border:1px solid var(--rule2);
-    border-radius:3px; padding:7px 11px; width:160px; transition:width .18s ease, border-color .15s}
-  .search input:focus{outline:none; border-color:var(--accent2); width:200px}
+  .search input{font-family:inherit; font-size:13px; color:var(--ink); background:var(--panel) no-repeat left 11px center; border:1px solid var(--rule2);
+    border-radius:3px; padding:7px 11px 7px 33px; width:172px; transition:width .18s ease, border-color .15s;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='6' cy='6' r='4.3' fill='none' stroke='%2374726b' stroke-width='1.4'/%3E%3Cline x1='9.4' y1='9.4' x2='13' y2='13' stroke='%2374726b' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")}
+  .search input:focus{outline:none; border-color:var(--accent2); width:212px}
+  .search input:focus{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='6' cy='6' r='4.3' fill='none' stroke='%239bbbe0' stroke-width='1.4'/%3E%3Cline x1='9.4' y1='9.4' x2='13' y2='13' stroke='%239bbbe0' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")}
   .search input::placeholder{color:var(--ink3)}
   .navtoggle{display:none}
 
@@ -416,6 +418,88 @@
   /* note line (clan dry note, etc.) */
   .drynote{font-size:14px; color:var(--ink2); line-height:1.6; margin:14px 0 0; max-width:66ch; font-style:italic}
 
+  /* ============ examination explainer (the renamed "By the numbers" tab) ============
+     each remarkable fact is set the way the rest of the site sets facts: a timeline,
+     pull-figures, a magnitude bar — not a paragraph. */
+  .exm{padding:36px 0 6px; border-top:1px solid var(--rule)}
+  .exm:first-of-type{border-top:0; padding-top:18px}
+  .exm .eh{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:23px; letter-spacing:-.01em; margin:6px 0 0; color:var(--ink)}
+  .exm .ecap{font-size:13px; color:var(--ink3); margin:16px 0 2px; line-height:1.6; max-width:72ch}
+  .exm .ecap b{color:var(--ink2); font-weight:600; font-style:normal}
+  .exsrc{margin-top:9px; font-size:11.5px; color:var(--ink3)}
+  .exsrc a{color:var(--ink2); text-decoration:underline; text-decoration-color:var(--rule3); text-underline-offset:2px; margin-right:14px; white-space:nowrap}
+  .exsrc a:hover{text-decoration-color:var(--accent2)}
+
+  /* explainer module 1 — the examination's own span, 958 to 1894 */
+  .tl{position:relative; height:122px; margin:30px 0 2px}
+  .tl-axis{position:absolute; left:0; right:0; top:80px; height:2px; background:var(--rule2)}
+  .tl-cover{position:absolute; top:80px; height:2px; background:var(--accent2)}
+  .tl-dot{position:absolute; top:80px; width:12px; height:12px; border-radius:50%; background:var(--accent); border:3px solid var(--bg); box-shadow:0 0 0 1px var(--accent); transform:translate(-50%,-50%)}
+  .tl-dot.origin{width:15px; height:15px; background:var(--gold); box-shadow:0 0 0 1px var(--gold), 0 0 16px 2px rgba(199,168,104,.4)}
+  .tl-yr{position:absolute; top:34px; font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:28px; color:var(--ink); line-height:1; letter-spacing:-.01em; white-space:nowrap; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .tl-yr.origin{color:var(--gold); font-size:34px; top:30px}
+  .tl-lb{position:absolute; top:100px; font-size:11.5px; color:var(--ink3); letter-spacing:.03em; white-space:nowrap}
+
+  /* explainer module 2 — selectivity pull-figures */
+  .pull{display:grid; grid-template-columns:repeat(3,1fr); margin:26px 0 0; border-top:1px solid var(--rule2); border-bottom:1px solid var(--rule2)}
+  .pull .pc{padding:24px 24px 22px; border-left:1px solid var(--rule)}
+  .pull .pc:first-child{border-left:0; padding-left:2px}
+  .pull .pn{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:44px; line-height:1; color:var(--ink); letter-spacing:-.01em; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .pull .pc.hot .pn{color:var(--accent)}
+  .pull .pn small{font-size:18px; color:var(--ink3); font-weight:500}
+  .pull .pl{font-size:12.5px; color:var(--ink2); margin-top:12px; line-height:1.5; max-width:26ch}
+
+  /* explainer module 3 — merit in principle vs practice (.pbar avoids the league .bar) */
+  .para{display:grid; grid-template-columns:1fr 1.5fr; gap:34px; margin-top:28px; align-items:start}
+  .para .pside .pk{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  .para .pside .pt{font-size:14.5px; color:var(--ink); margin-top:10px; line-height:1.55}
+  .para .pside.practice .pk{color:var(--accent2)}
+  .para .barwrap{margin-top:16px}
+  .para .barrow{display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin-bottom:9px; font-size:13px; color:var(--ink2)}
+  .para .barrow .bn{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:17px; color:var(--ink); font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .para .pbar{height:11px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
+  .para .pbar span{display:block; height:100%; background:var(--accent); border-radius:2px}
+  .para .pnote{font-size:12.5px; color:var(--ink3); margin-top:16px; line-height:1.6; max-width:46ch}
+  .para .pnote a{color:var(--accent); text-decoration:none; font-weight:600}
+  .para .pnote a:hover{text-decoration:underline}
+
+  /* ============ graduates leaderboard table (Graduates tab) ============
+     mirrors the clan league: the placement the examination recorded is the rank. */
+  table.gradleague{width:100%; border-collapse:collapse}
+  .gradleague th{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600; text-align:left; padding:0 12px 12px; border-bottom:1px solid var(--rule3); white-space:nowrap}
+  .gradleague td{padding:16px 12px; border-bottom:1px solid var(--rule); vertical-align:top}
+  .gradleague tr:hover td{background:var(--hover)}
+  .gradleague a{text-decoration:none; color:inherit; display:block}
+  .gradleague .gp{width:160px}
+  .gradleague .gbadge{font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; color:var(--gold); line-height:1.3}
+  .gradleague .gbadge.plain{color:var(--ink3); font-weight:600}
+  .gradleague .gbadge .kr{display:block; font-family:"Noto Serif KR",serif; font-size:12px; letter-spacing:.02em; margin-top:3px; color:var(--ink3); font-weight:500}
+  .gradleague .gnm{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:20px; color:var(--ink); letter-spacing:-.01em; line-height:1.1}
+  .gradleague .gnm .gep{font-style:italic; color:var(--ink2); font-weight:500; font-size:16px; margin-left:7px}
+  .gradleague .gnm .gkr{display:block; font-family:"Noto Serif KR",serif; font-size:13px; color:var(--ink3); margin-top:5px; font-weight:500}
+  .gradleague .gcl{font-family:"Source Serif 4",Georgia,serif; font-size:17px; color:var(--ink2); white-space:nowrap; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .gradleague .gkf{font-size:13px; color:var(--ink2); line-height:1.5; max-width:46ch}
+
+  /* ============ clan profile header band (mirrors the league row) ============ */
+  .clanhdr{display:flex; align-items:flex-start; gap:24px; margin-top:26px; padding-top:24px; border-top:1px solid var(--rule3)}
+  .clanhdr .chrank{flex:0 0 auto; text-align:center; min-width:60px}
+  .clanhdr .chrk{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:42px; line-height:1; color:var(--ink2); letter-spacing:-.01em; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .clanhdr .chrk.m1{color:var(--gold)} .clanhdr .chrk.m2{color:#9a958a} .clanhdr .chrk.m3{color:#a8814e}
+  .clanhdr .chrl{font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600; margin-top:7px}
+  .clanhdr .chmain{flex:1; min-width:0}
+  .clanhdr .chscore{display:flex; align-items:baseline; gap:12px}
+  .clanhdr .chn{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:38px; line-height:1; color:var(--ink); letter-spacing:-.01em; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .clanhdr .chnl{font-size:12.5px; color:var(--ink2); letter-spacing:.02em}
+  .clanhdr .chbar{height:7px; background:var(--accent-bg); border-radius:2px; overflow:hidden; margin:14px 0 0; max-width:400px}
+  .clanhdr .chbar span{display:block; height:100%; background:var(--accent); border-radius:2px}
+  .clanhdr .chfame{font-size:14px; color:var(--ink2); margin-top:14px; line-height:1.5; max-width:54ch}
+
+  /* landing gloss — first-timer anchor under the masthead coverage */
+  .mast.edition .gloss{margin:12px 0 0; font-size:13px; color:var(--ink3); max-width:62ch; line-height:1.55}
+  .mast.edition .gloss .kr{color:var(--ink2)}
+  .mast.edition .gloss a{color:var(--accent); font-weight:600; text-decoration:none; white-space:nowrap}
+  .mast.edition .gloss a:hover{text-decoration:underline}
+
   /* ============ responsive ============ */
   @media (max-width:860px){
     .grid2{grid-template-columns:1fr; gap:30px}
@@ -452,6 +536,12 @@
     .tscroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0 -18px; padding:0 18px}
     .tscroll table{min-width:560px}
     .khead{flex-wrap:wrap; gap:6px 12px} .khead .kn{margin-left:0; width:100%}
+    /* explainer + new components */
+    .exm .eh{font-size:21px}
+    .tl{height:74px} .tl-yr{font-size:21px} .tl-yr.origin{font-size:24px; top:34px} .tl-lb{display:none}
+    .pull{grid-template-columns:1fr} .pull .pc{border-left:0; border-top:1px solid var(--rule); padding-left:2px} .pull .pc:first-child{border-top:0}
+    .para{grid-template-columns:1fr; gap:22px}
+    .clanhdr{gap:16px} .clanhdr .chn{font-size:32px} .clanhdr .chrk{font-size:36px}
   }
   @media (max-width:430px){
     .mast h1{font-size:32px}
@@ -476,7 +566,7 @@
       <a href="#/" data-route="">Clans</a>
       <a href="#/alumni" data-route="alumni">Graduates</a>
       <a href="#/cohorts" data-route="cohorts">Classes</a>
-      <a href="#/trends" data-route="trends">By the numbers</a>
+      <a href="#/trends" data-route="trends">Exams</a>
     </nav>
     <form class="search" id="searchform" role="search" autocomplete="off">
       <input type="text" id="searchbox" name="q" placeholder="Search a name or clan" aria-label="Search admitted officials by name or clan">
@@ -2029,6 +2119,14 @@
       {
         "label": "Chung & Choi, 'Meritocracy with Multiple Rules: How Special Civil Service Examinations Reproduced Privilege in Joseon Korea,' Social Science History, Cambridge",
         "url": "https://www.cambridge.org/core/journals/social-science-history/article/meritocracy-with-multiple-rules-how-special-civil-service-examinations-reproduced-privilege-in-joseon-korea/C50217F504E4DEBE3981E09572226FB7"
+      },
+      {
+        "label": "Northcote-Trevelyan Report (1854), on recruiting the British civil service by open examination, Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Northcote%E2%80%93Trevelyan_Report"
+      },
+      {
+        "label": "Pendleton Civil Service Reform Act (1883), on merit-based examination for the United States federal service, Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pendleton_Civil_Service_Reform_Act"
       }
     ]
   }
@@ -2323,6 +2421,52 @@ function alumniHeroHtml(x){
       + '<div class="lach">'+esc(meta.ach)+'</div></div>'
     + '<span class="lgo">View admit &rarr;</span></a>';
 }
+// resolve a cited source by a stable URL fragment, so inline source links stay
+// correct even if lookups.json reorders its sources array.
+function srcByUrl(frag){
+  var s = (LK.cited && LK.cited.sources) || [];
+  for(var i=0;i<s.length;i++){ if(s[i].url.indexOf(frag)!==-1) return s[i]; }
+  return null;
+}
+// a row of short inline source links from [urlFragment, shortLabel] pairs
+function exsrc(pairs){
+  return '<div class="exsrc">' + pairs.map(function(p){
+    var s = srcByUrl(p[0]);
+    return s ? '<a href="'+esc(s.url)+'" rel="noopener">'+esc(p[1])+'</a>' : '';
+  }).join('') + '</div>';
+}
+// placement tier for ordering the graduates leaderboard: the examination's own
+// verdict (first/second/third in the realm, then state-honored, then class year).
+function alumniPlacementRank(p){
+  if(p.z===1 || p.hon==='jangwon') return 0;
+  if(p.hon==='aweon') return 1;
+  if(p.hon==='tamhwarang') return 2;
+  if(p.sh) return 3;
+  return 4;
+}
+// the curated graduates as a ranked table mirroring the clan league; the placement
+// the record holds is the rank (no invented 1..n popularity order).
+function alumniTableHtml(list){
+  var sorted = list.slice().sort(function(a,b){
+    var ra = alumniPlacementRank(a.p), rb = alumniPlacementRank(b.p);
+    if(ra!==rb) return ra-rb;
+    return a.p.y - b.p.y;
+  });
+  var rows = sorted.map(function(x){
+    var p = x.p, meta = x.meta, b = alumniBadge(p);
+    var ep = meta.ep ? '<span class="gep">'+esc(meta.ep)+'</span>' : '';
+    var badge = '<span class="gbadge'+(b.gold?'':' plain')+'">'+esc(b.t)
+      + (b.rom?'<span class="kr">'+esc(b.rom)+'</span>':'')+'</span>';
+    return '<tr><td class="gp">'+badge+'</td>'
+      + '<td><a href="#/person/'+encodeURIComponent(p.i)+'"><span class="gnm">'+esc(meta.en)+ep
+        + '<span class="gkr">'+esc(p.n)+' '+esc(p.h)+'</span></span></a></td>'
+      + '<td class="gcl">'+p.y+'</td>'
+      + '<td class="gkf">'+esc(meta.ach)+'</td></tr>';
+  }).join('');
+  return '<div class="tscroll"><table class="gradleague"><thead><tr>'
+    + '<th>Placement</th><th>Graduate</th><th>Class</th><th>Known for</th></tr></thead>'
+    + '<tbody>'+rows+'</tbody></table></div>';
+}
 // one row of the "what admission conferred" outcomes table (landing)
 function outcomeRow(en, kr, rankEn, rankKr, note, count){
   return '<tr>'
@@ -2369,6 +2513,8 @@ function viewOverview(){
       + '<p class="coverage">The complete ranking of the clans that produced Joseon’s civil officials, '+m.yearMin+' to '+m.yearMax+'. '
         + fmt(m.total)+' officials, '+fmt(feeders.length)+' clans, ranked by the offices they won. '
         + '<a href="#/about">Methodology →</a></p>'
+      + '<p class="gloss">The <span class="kr">문과</span> munkwa was Joseon Korea’s civil-service examination, the route into government office. '
+        + '<a href="#/trends">About the examination →</a></p>'
     + '</div></header>'
     + '<div class="dbl-rule"></div>'
 
@@ -2493,8 +2639,10 @@ function viewAlumni(){
     + '<p class="ph-sub">Graduates of the civil examination whose work outlived the dynasty. '
       + 'The placement shown for each is the one the examination recorded, from first in the realm (장원) to the rank held in a later class.</p></div>'
     + (feat ? alumniHeroHtml(feat) : '')
-    + '<div class="subhead" style="margin-top:34px">The selection</div>'
-    + alumniRollHtml(alumni)
+    + '<div class="subhead" style="margin-top:34px">Ranked by placement</div>'
+    + '<p style="font-size:12.5px; color:var(--ink3); margin:-6px 0 14px; max-width:62ch; line-height:1.55">'
+      + 'The examination ranked every class as it sat. These graduates are ordered by the placement it recorded, from first in the realm down.</p>'
+    + alumniTableHtml(alumni)
     + '<p class="drynote" style="font-style:normal;color:var(--ink3);font-size:13px;max-width:74ch">'
       + 'The record holds <b style="color:var(--ink2);font-weight:600">'+fmt(nJangwon)+'</b> graduates who placed first in the realm and '
       + '<b style="color:var(--ink2);font-weight:600">'+fmt(nSiho)+'</b> granted a posthumous title by the state. '
@@ -2873,6 +3021,14 @@ function viewClan(key){
   var snRom = surnameRom(sn); // romanized surname, or null for the long tail
   var seatH = f ? f.seatH : (members[0]?members[0].bh:'');
   var note = LK.seonggwan[key] || '';
+  var clanFame = (LK.clanFame && LK.clanFame[key]) || ''; // "known for" line, where curated
+  var clanMaxN = DATA.feeders[0].n;                       // leader's count, for the score bar
+  // the band shows the "known for" line; if the longer note opens with the same
+  // sentence, drop the repeat so it is not stated twice on the page.
+  if(clanFame && note){
+    var fameCore = clanFame.replace(/\.$/, '');
+    if(note.indexOf(fameCore) === 0){ note = note.slice(fameCore.length).replace(/^[.\s]+/, ''); }
+  }
 
   // period bars (25-yr) from members
   var periodStart = 1375, periodEnd = 1900, span = 25;
@@ -2926,11 +3082,20 @@ function viewClan(key){
     + '<p class="ph-sub"><span class="kr" style="font-size:19px">'+esc(sn)+' '+esc(seat)+'</span>'
       + ' <span class="kr" style="color:var(--ink3)">'+esc(seatH)+'</span>'
       + ((rom&&snRom)?' &middot; the '+esc(rom)+' '+esc(snRom):'')+'</p>'
-    + (note?'<p class="drynote">'+esc(note)+'</p>':'')
+    // institution-profile header band — mirrors the flagship league row
+    + '<div class="clanhdr">'
+      + (rank?'<div class="chrank"><div class="chrk'+(rank===1?' m1':rank===2?' m2':rank===3?' m3':'')+'">'+rank+'</div>'
+          + '<div class="chrl">of '+fmt(DATA.feeders.length)+'</div></div>':'')
+      + '<div class="chmain">'
+        + '<div class="chscore"><span class="chn">'+fmt(n)+'</span><span class="chnl">officials produced</span></div>'
+        + '<div class="chbar"><span style="width:'+(n/clanMaxN*100).toFixed(1)+'%"></span></div>'
+        + (clanFame?'<div class="chfame">'+esc(clanFame)+'</div>':'')
+      + '</div>'
+    + '</div>'
+
+    + (note?'<p class="drynote" style="margin-top:20px">'+esc(note)+'</p>':'')
 
     + '<div class="statstrip">'
-      + '<div class="ss"><div class="ssl">Total admits</div><div class="ssv">'+fmt(n)+'</div></div>'
-      + (rank?'<div class="ss"><div class="ssl">Rank of '+fmt(DATA.feeders.length)+'</div><div class="ssv">'+rank+'</div></div>':'')
       + '<div class="ss"><div class="ssl">Share of all</div><div class="ssv">'+pct1(pctVal)+'<small>%</small></div></div>'
       + '<div class="ss"><div class="ssl">Span</div><div class="ssv">'+firstY+'<small>–'+lastY+'</small></div></div>'
       + '<div class="ss"><div class="ssl">Valedictorians 장원</div><div class="ssv">'+fmt(jangwonN)+'</div></div>'
@@ -2946,7 +3111,7 @@ function viewClan(key){
       + notableHtml;
   }
 
-  html += '<div class="subhead">All admits</div>'
+  html += '<div class="subhead">All graduates</div>'
     + '<div class="tscroll"><table class="dt"><thead><tr>'
       + '<th class="num">Year</th><th>Name</th><th>Grade</th><th>Examination</th><th>Residence</th></tr></thead>'
       + '<tbody id="clan-body"></tbody></table></div>'
@@ -3029,13 +3194,77 @@ function viewTrends(){
   var lastPeriod = DATA.classByPeriod[DATA.classByPeriod.length-1];
   var firstPeriod = DATA.classByPeriod[0];
 
-  var html =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Trends</div>'
-    + '<h1 class="ph-title serif">By the numbers</h1>'
-    + '<p class="ph-sub">How the class grew: the triennial exam held thirty-three for five centuries while special sittings widened the field.</p></div>'
+  var m = DATA.meta;
+  function tlpos(y){ return ((y - 950) / 950 * 100); }              // 950–1900 timeline axis
+  var p1 = tlpos(m.yearMin).toFixed(1), p2 = tlpos(m.yearMax).toFixed(1), pr = (100 - tlpos(m.yearMax)).toFixed(1);
 
-    // selectivity
-    + '<section style="border-top:1px solid var(--rule); margin-top:22px"><div class="sec-h">'
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>The examination</div>'
+    + '<h1 class="ph-title serif">The examination</h1>'
+    + '<p class="ph-sub">The <span class="kr">문과</span> munkwa was the higher civil-service examination of Joseon Korea: a written test of the Confucian classics, and the main route into government office. '
+      + 'These rankings cover every sitting of the dynasty, '+m.yearMin+' to '+m.yearMax+'.</p></div>'
+
+    // ---- explainer module 1: the examination's own span (958 → 1894) ----
+    + '<div class="exm" style="border-top:0; padding-top:16px">'
+      + '<div class="kick">Introduced 958</div>'
+      + '<h2 class="eh serif">Nearly a thousand years old</h2>'
+      + '<div class="tl">'
+        + '<div class="tl-axis"></div>'
+        + '<div class="tl-cover" style="left:'+p1+'%; right:'+pr+'%"></div>'
+        + '<div class="tl-dot origin" style="left:1%"></div>'
+        + '<div class="tl-yr origin" style="left:0">958</div>'
+        + '<div class="tl-lb" style="left:0">introduced &middot; Goryeo</div>'
+        + '<div class="tl-dot" style="left:'+p1+'%"></div>'
+        + '<div class="tl-yr" style="left:'+p1+'%; transform:translateX(-50%)">'+m.yearMin+'</div>'
+        + '<div class="tl-lb" style="left:'+p1+'%; transform:translateX(-50%)">Joseon&rsquo;s first sitting</div>'
+        + '<div class="tl-dot" style="left:'+p2+'%"></div>'
+        + '<div class="tl-yr" style="right:0; text-align:right">'+m.yearMax+'</div>'
+        + '<div class="tl-lb" style="right:0; text-align:right">the last sitting</div>'
+      + '</div>'
+      + '<p class="ecap">The examination was introduced in Korea in <b>958</b>, on the advice of the official Ssang Gi, and was among the earliest civil-service systems anywhere, predating those of Europe and America by centuries. '
+        + 'Joseon inherited it; these rankings cover its munkwa sittings from <b>'+m.yearMin+'</b> to the last in <b>'+m.yearMax+'</b>.</p>'
+      + exsrc([['/wiki/Gwageo','Gwageo, Wikipedia'],['Northcote','Northcote-Trevelyan Report, 1854'],['Pendleton','Pendleton Act, 1883']])
+    + '</div>'
+
+    // ---- explainer module 2: selectivity ----
+    + '<div class="exm">'
+      + '<div class="kick">Selectivity</div>'
+      + '<h2 class="eh serif">A national field for thirty-three seats</h2>'
+      + '<div class="pull">'
+        + '<div class="pc"><div class="pn">215,417</div><div class="pl">applicants to a single sitting, in 1800</div></div>'
+        + '<div class="pc"><div class="pn">33</div><div class="pl">seats in a standard triennial examination</div></div>'
+        + '<div class="pc hot"><div class="pn">&lt;1<small>%</small></div><div class="pl">effective pass rate at the largest sittings</div></div>'
+      + '</div>'
+      + '<p class="ecap">A celebratory examination in 1800, held for the crown prince&rsquo;s investiture, drew <b>215,417</b> applicants over two days. The regular triennial sitting seated thirty-three from the whole country.</p>'
+      + exsrc([['khan.co.kr','Kyunghyang Shinmun (Hi-story)'],['history.go.kr','National Institute of Korean History']])
+    + '</div>'
+
+    // ---- explainer module 3: merit in principle vs practice ----
+    + '<div class="exm">'
+      + '<div class="kick">Merit in principle</div>'
+      + '<h2 class="eh serif">Who actually passed</h2>'
+      + '<div class="para">'
+        + '<div class="pside"><div class="pk">In principle</div>'
+          + '<div class="pt">Office was won by a written test, open and decided on merit rather than by birth.</div></div>'
+        + '<div class="pside practice"><div class="pk">In practice</div><div class="barwrap">'
+          + '<div class="barrow"><span>The 50 largest of '+fmt(m.distinctSeonggwan)+' clans</span><span class="bn">'+pct1(conc.top50)+'%</span></div>'
+          + '<div class="pbar"><span style="width:'+pct1(conc.top50)+'%"></span></div>'
+          + '<div class="barrow" style="margin-top:14px"><span>The 10 largest clans</span><span class="bn">'+pct1(conc.top10)+'%</span></div>'
+          + '<div class="pbar"><span style="width:'+pct1(conc.top10)+'%"></span></div>'
+        + '</div>'
+        + '<p class="pnote">A handful of aristocratic lineages produced most of those who passed, generation after generation. The clan league ranks exactly that. <a href="#/">See the league &rarr;</a></p></div>'
+      + '</div>'
+      + '<p class="ecap" style="margin-top:24px">Scholarship on the examination&rsquo;s special sittings reaches the same finding: the extra tracks worked to reproduce the standing of families already in power.</p>'
+      + exsrc([['cambridge','Chung & Choi, “Meritocracy with Multiple Rules,” Cambridge']])
+    + '</div>'
+
+    // ---- by the numbers: the existing stats follow ----
+    + '<div class="exm" style="border-top:1px solid var(--rule3); margin-top:14px; padding-bottom:0">'
+      + '<div class="kick" style="color:var(--ink2)">By the numbers</div>'
+      + '<h2 class="eh serif">The record in figures</h2></div>'
+
+    // class size over time
+    + '<section><div class="sec-h">'
       + '<div><div class="kick">Admissions trends</div><h2 class="serif">Class size over time</h2>'
         + '<div class="sub">Students admitted per 25-year period, '+DATA.meta.yearMin+' to '+DATA.meta.yearMax+'.</div></div></div>'
       + '<div class="chartwrap"><svg class="chart" id="tr-chart" viewBox="0 0 1000 230" preserveAspectRatio="none" aria-hidden="true"></svg>'
@@ -3083,6 +3312,10 @@ function viewSearch(rawq){
   var results = [];
   if(q){
     var R = DATA.roster;
+    // the curated graduates carry English names + pen names; let those match too,
+    // so "Yulgok" or "Jeong Yak-yong" finds the record though the roster is Korean.
+    var notableById = {};
+    (LK.notable||[]).forEach(function(x){ notableById[x.id] = x; });
     for(var i=0;i<R.length && results.length<400;i++){
       var r = R[i];
       var hit = false;
@@ -3093,6 +3326,10 @@ function viewSearch(rawq){
       else {
         var rom = (clanRom(r.b)||'').toLowerCase();
         if(rom && rom.indexOf(qLower)!==-1) hit=true;     // seat romanization
+        else if(qLower){
+          var nb = notableById[r.i];                      // curated English name / pen name
+          if(nb && ((nb.en||'').toLowerCase().indexOf(qLower)!==-1 || (nb.ep||'').toLowerCase().indexOf(qLower)!==-1)) hit=true;
+        }
       }
       if(hit) results.push(r);
     }
@@ -3105,7 +3342,7 @@ function viewSearch(rawq){
     + '<h1 class="ph-title serif">Search</h1>'
     + (q
       ? '<p class="ph-sub">Admitted officials matching <b style="color:var(--ink)">“'+esc(q)+'”</b>, by name or clan.</p>'
-      : '<p class="ph-sub">Type a name or a clan in the search box above. Korean (이순신, 전주) or romanized clan (Jeonju) both work.</p>')
+      : '<p class="ph-sub">Type a name or a clan in the search box above. Korean searches the whole record (이황, 전주); English works for clans (Jeonju) and the distinguished graduates (Yulgok).</p>')
     + '</div>';
 
   if(q){
