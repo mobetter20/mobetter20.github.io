@@ -3,8 +3,20 @@
     "purpose": "Korean to English reference data for The Joseon Review, an admissions-and-rankings product about the Joseon civil-service examination (munkwa).",
     "romanization": "Revised Romanization of Korean (Republic of Korea, 2000). No diacritics.",
     "primary_source": "Roster of civil-examination passers (munkwa-bangmok, 문과방목), Academy of Korean Studies, released via data.go.kr. Distinct values for clans, exams, reigns, and grades were read off the 15,151-record dataset.",
-    "english_place_names": "For county-level clan seats no distinct English exonym is in common use, so the 'en' field repeats the romanization. It differs only where a settled English spelling exists."
+    "english_place_names": "For county-level clan seats no distinct English exonym is in common use, so the 'en' field repeats the romanization. It differs only where a settled English spelling exists.",
+    "notable": "Curated distinguished-alumni overlay. Each entry keys a real roster record by id and adds only an English name, an optional pen name (ho), and a one-line achievement. The placement badge (first/second/third in the realm, state-honored, or class year) is read live from the record, not stored here, so it stays true to the data. 'feat' marks the front-page featured graduate."
   },
+  "notable": [
+    {"id":"EXM_MN_6JOa_1439_000728","en":"Sin Suk-ju","ach":"One of the scholars who helped create the Korean alphabet, and a diplomat who could work in several of the region's languages."},
+    {"id":"EXM_MN_6JOa_1447_000842","en":"Seong Sam-mun","ach":"One of the Six Martyred Ministers, put to death for trying to restore the deposed boy-king Danjong."},
+    {"id":"EXM_MN_6JOa_1515_002463","en":"Jo Gwang-jo","ach":"A young idealist who tried to remake the court by Confucian principle, purged at 37 and later enshrined as a sage of the dynasty."},
+    {"id":"EXM_MN_6JOa_1534_002893","en":"Yi Hwang","ep":"Toegye","ach":"The most revered philosopher of the dynasty, whose portrait is on the 1,000-won note."},
+    {"id":"EXM_MN_6JOa_1564_003592","en":"Yi I","ep":"Yulgok","feat":1,"ach":"The Neo-Confucian philosopher whose portrait is on the 5,000-won note. He placed first in nine separate examinations, more than any other candidate of the dynasty."},
+    {"id":"EXM_MN_6JOa_1566_003655","en":"Yu Seong-ryong","ach":"Chief minister through the Japanese invasions of the 1590s, who recommended Admiral Yi Sun-sin for command and later wrote the war's memoir."},
+    {"id":"EXM_MN_6JOb_1624_005358","en":"Kim Yuk","ach":"The minister who replaced a tangle of separate provincial levies with a single fair tax paid in grain."},
+    {"id":"EXM_MN_6JOc_1789_010943","en":"Jeong Yak-yong","ep":"Dasan","ach":"The reformer who engineered the fortress at Suwon and wrote the dynasty's classic manual of local governance."},
+    {"id":"EXM_MN_6JOc_1819_012015","en":"Kim Jeong-hui","ep":"Chusa","ach":"The master calligrapher whose self-invented script, the Chusa style, still carries his name."}
+  ],
   "clans": {
     "전주": {
       "rom": "Jeonju",
@@ -1260,6 +1272,28 @@
     "이 전의": "A prominent yangban lineage seated at Jeonui, long present among the central officials.",
     "조 풍양": "The Pungyang Jo, the rival consort clan to the Andong Kim during the sedo politics of the early nineteenth century.",
     "신 평산": "The Pyeongsan Sin, founded by the Goryeo general Sin Sung-gyeom, who was granted the seat for service to the dynasty's founder."
+  },
+  "clanFame": {
+    "이 전주": "The royal house of Joseon",
+    "권 안동": "A leading lineage since Goryeo",
+    "윤 파평": "Supplied several Joseon queens",
+    "홍 남양": "A prominent central-official lineage",
+    "김 안동": "Ran the nineteenth-century court",
+    "한 청주": "The source of six queens",
+    "박 밀양": "The principal Park lineage",
+    "김 광산": "Produced the sage Kim Jang-saeng",
+    "이 연안": "Held the highest civil offices",
+    "민 여흥": "The clan of Empress Myeongseong",
+    "강 진주": "A prominent Jinju lineage",
+    "김 경주": "Descended from Silla's kings",
+    "이 한산": "The clan of the scholar Yi Saek",
+    "박 반남": "Senior officials and royal in-laws",
+    "정 동래": "Many chief state councillors",
+    "심 청송": "Supplied Sejong's Queen Soheon",
+    "이 광주": "A prominent early-dynasty lineage",
+    "이 전의": "An old Jeonui lineage of officials",
+    "조 풍양": "Rival in-law clan of the sedo era",
+    "신 평산": "Founded by General Sin Sung-gyeom"
   },
   "exams": {
     "식년시": {

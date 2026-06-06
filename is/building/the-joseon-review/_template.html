@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Joseon Review: admissions, rankings, and class profiles of the Joseon civil examination</title>
+<title>Joseon Examination Rankings | The Joseon Review</title>
 <meta name="description" content="The Joseon civil service examination, ranked and profiled. 15,151 admitted officials across 800 sittings, 1393 to 1894, by the numbers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,20 +12,21 @@
 <style>
   /* ============ palette (warm ink + gray ramp; navy reserved) ============ */
   :root{
-    /* warm ivory ground; panels are barely-there warm tints, used sparingly */
-    --bg:#f6f2e9; --panel:#fbf8f1; --panel2:#efeadd;
-    /* warm near-black ink, then a warm-gray ramp for everything de-emphasized */
-    --ink:#1f1b15; --ink2:#5c564c; --ink3:#8b8579;
-    /* navy accent (owner's choice), deepened; reserved for the single most
-       important element per view. accent-bg is the low-alpha magnitude-bar fill */
-    --accent:#20384f; --accent2:#345878; --accent-bg:rgba(32,56,79,.10);
-    /* muted gold — seal + hairline accents only, never a fill or type run */
-    --gold:#9a7b3f;
-    /* warm hairline ramp: rule (low-contrast hairlines) -> rule2 (header
+    /* dark ground (owner's choice); panels are barely-lighter dark tints */
+    --bg:#17181c; --panel:#1e2025; --panel2:#262931;
+    /* light ink, then a mid-gray ramp for everything de-emphasized */
+    --ink:#e9e7e0; --ink2:#a8a59c; --ink3:#74726b;
+    /* luminous steel-blue accent, readable on dark: seal, magnitude bars, chart,
+       the single most important figure per view. accent-bg is its low-alpha fill.
+       links keep a table-link underline for affordance against the dark ground. */
+    --accent:#7aa0cc; --accent2:#9bbbe0; --accent-bg:rgba(122,160,204,.16);
+    /* brightened gold — the one warm note: seal honors, laurel + badge hairlines */
+    --gold:#c7a868;
+    /* dark hairline ramp: rule (low-contrast hairlines) -> rule2 (header
        underlines) -> rule3 (engraved-letterhead heavy line) */
-    --rule:#e2dcce; --rule2:#d2cbb9; --rule3:#c4bca6;
-    /* faint warm full-row hover tint */
-    --hover:rgba(31,27,21,.035);
+    --rule:#2a2d34; --rule2:#373b43; --rule3:#474c56;
+    /* faint light full-row hover tint on the dark ground */
+    --hover:rgba(255,255,255,.05);
   }
 
   *{box-sizing:border-box}
@@ -48,7 +49,7 @@
   .kick{font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3)}
 
   /* ============ sticky header / global nav ============ */
-  .topbar{position:sticky; top:0; z-index:40; background:rgba(246,242,233,.92); backdrop-filter:saturate(140%) blur(8px);
+  .topbar{position:sticky; top:0; z-index:40; background:rgba(23,24,28,.92); backdrop-filter:saturate(140%) blur(8px);
     border-bottom:1px solid var(--rule2)}
   .topbar-in{max-width:1060px; margin:0 auto; padding:11px 30px; display:flex; align-items:center; gap:20px}
   .brand{display:flex; align-items:center; gap:11px; text-decoration:none; flex-shrink:0}
@@ -136,6 +137,21 @@
   .pct{font-size:13px; color:var(--ink2); width:54px; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .league-foot{font-size:12.5px; color:var(--ink3); padding:15px 12px 2px; line-height:1.55}
   .league-foot b{color:var(--ink2); font-weight:600; font-style:normal}
+
+  /* edition masthead (overview) — product header */
+  .mast.edition .coverage{margin:13px 0 0; font-size:15px; color:var(--ink2); max-width:66ch; line-height:1.55}
+  .mast.edition .coverage a{color:var(--accent); font-weight:600; text-decoration:underline; text-decoration-color:var(--rule3); text-underline-offset:2px}
+  .mast.edition .coverage a:hover{text-decoration-color:var(--accent2)}
+
+  /* flagship clan league (overview): rank medals, a score bar under the figure,
+     a valedictorian figure, and the humanizer "known for" column */
+  .clanleague .rk.m1{color:var(--gold)}
+  .clanleague .rk.m2{color:#9a958a}
+  .clanleague .rk.m3{color:#a8814e}
+  .clanleague td.num .adm{display:block}
+  .clanleague .lbar{width:120px; height:6px; margin:6px 0 0 auto}
+  .clanleague td.jwn{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:16px; color:var(--ink2)}
+  .clanleague .knownfor{font-size:13px; color:var(--ink2); line-height:1.45; max-width:32ch}
 
   /* ============ concentration callout ============ */
   .conc{display:flex; gap:52px; padding:46px 0 48px; border-bottom:1px solid var(--rule); flex-wrap:wrap}
@@ -237,6 +253,12 @@
   .dt .rnk{color:var(--ink2); font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .dt .laur-dot{display:inline-block; font-size:11px; color:var(--gold); font-weight:700; margin-left:6px; letter-spacing:.4px}
   .dt .grd .gkr{font-family:"Noto Serif KR",serif; font-size:12px; color:var(--ink3); margin-left:5px}
+  /* monochrome link affordance: under graphite the accent no longer differs from
+     ink by hue, so in-content navigable links carry a faint hairline underline */
+  .dt .clan,.frow .fv a,.league-foot a{text-decoration:underline; text-decoration-color:var(--rule3);
+    text-decoration-thickness:1px; text-underline-offset:2px}
+  .league-foot a{color:var(--accent)}
+  .dt .clan:hover,.frow .fv a:hover,.league-foot a:hover{text-decoration-color:var(--accent2)}
 
   /* person profile — heavy boxed card reduced to a restrained hairline frame
      on ivory (no panel fill, near-square corners) */
@@ -364,6 +386,32 @@
   .notable a .natag{font-size:10px; letter-spacing:.6px; text-transform:uppercase; color:var(--gold); font-weight:700}
   .subhead{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:17px; color:var(--ink); margin:30px 0 14px; letter-spacing:-.01em}
 
+  /* featured first-in-the-realm hero — extends .laurel (gold hairline + crest) */
+  .laurel.hero{align-items:flex-start; padding:30px 0 30px 26px; margin-top:30px}
+  .laurel.hero .lcrest{width:54px; height:54px; margin-top:3px}
+  .laurel.hero .lname{font-size:34px}
+  .laurel.hero .lname .lh{font-size:21px}
+  .laurel .lep{font-style:italic; color:var(--ink2); font-weight:500; font-size:.62em; margin-left:9px}
+  .laurel .lach{font-size:14px; color:var(--ink2); margin-top:11px; line-height:1.55; max-width:60ch}
+  /* bridge caption under the hero, into the alumni roll */
+  .bridge{font-size:13px; color:var(--ink3); margin:16px 0 6px; line-height:1.6; max-width:66ch}
+  .bridge a{color:var(--accent); text-decoration:none; font-weight:600}
+  .bridge a:hover{text-decoration:underline}
+
+  /* distinguished-alumni roll — name + real placement badge over an achievement line */
+  .alumni{margin-top:8px; border-top:1px solid var(--rule3)}
+  .arow{display:block; padding:17px 6px; border-bottom:1px solid var(--rule); text-decoration:none; color:inherit}
+  .arow:last-child{border-bottom:0}
+  .arow:hover{background:var(--hover)}
+  .arow .atop{display:flex; align-items:baseline; gap:14px; justify-content:space-between}
+  .arow .anm{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:20px; color:var(--ink); letter-spacing:-.01em; line-height:1.12}
+  .arow .anm .aep{font-style:italic; color:var(--ink2); font-weight:500; font-size:16px; margin-left:7px}
+  .arow .anm .akr{font-family:"Noto Serif KR",serif; font-size:14px; color:var(--ink3); margin-left:9px; font-weight:500}
+  .arow .abadge{flex-shrink:0; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:var(--gold); white-space:nowrap; text-align:right; padding-top:4px}
+  .arow .abadge.plain{color:var(--ink3); font-weight:600}
+  .arow .abadge .kr{letter-spacing:.02em}
+  .arow .aach{font-size:13.5px; color:var(--ink2); margin-top:6px; line-height:1.55; max-width:74ch}
+
   /* note line (clan dry note, etc.) */
   .drynote{font-size:14px; color:var(--ink2); line-height:1.6; margin:14px 0 0; max-width:66ch; font-style:italic}
 
@@ -396,6 +444,8 @@
     .profile-top{padding:28px 22px 24px} .profile-body{padding:6px 22px 24px} .profile .pname{font-size:38px}
     .frow{flex-direction:column; gap:4px} .frow .fl{flex-basis:auto}
     .laurel{gap:14px; padding:18px} .laurel .lcrest{display:none} .laurel .lgo{display:none}
+    .laurel.hero{padding:20px 0 20px 18px} .laurel.hero .lname{font-size:27px} .laurel.hero .lname .lh{font-size:18px}
+    .arow .atop{flex-wrap:wrap; gap:4px 12px} .arow .abadge{text-align:left; padding-top:0}
     .barcell{width:auto; min-width:120px}
     /* tables -> horizontal scroll on small screens */
     .tscroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0 -18px; padding:0 18px}
@@ -422,10 +472,10 @@
       <span class="bname">The Joseon Review</span>
     </a>
     <nav class="nav" id="nav" aria-label="Sections">
-      <a href="#/" data-route="">Overview</a>
-      <a href="#/cohorts" data-route="cohorts">Cohorts</a>
-      <a href="#/feeders" data-route="feeders">Feeders</a>
-      <a href="#/trends" data-route="trends">Trends</a>
+      <a href="#/" data-route="">Clans</a>
+      <a href="#/alumni" data-route="alumni">Graduates</a>
+      <a href="#/cohorts" data-route="cohorts">Classes</a>
+      <a href="#/trends" data-route="trends">By the numbers</a>
     </nav>
     <form class="search" id="searchform" role="search" autocomplete="off">
       <input type="text" id="searchbox" name="q" placeholder="Search a name or clan" aria-label="Search admitted officials by name or clan">
@@ -682,57 +732,134 @@ function pager(container, items, renderRow, chunk){
   return btnWrap;
 }
 
+/* ---------- distinguished alumni (curated overlay in LK.notable) ----------
+   The badge is read live from the record so it always states the real result:
+   first/second/third in the realm, else the state-granted posthumous title,
+   else the plain class year. The achievement text is the only editorial part. */
+function alumniBadge(p){
+  if(p.z===1 || p.hon==='jangwon')    return {t:'First in the realm',  rom:'장원',        gold:true};
+  if(p.hon==='aweon')                 return {t:'Second in the realm', rom:'아원',        gold:true};
+  if(p.hon==='tamhwarang')            return {t:'Third in the realm',  rom:'탐화랑',      gold:true};
+  if(p.sh)                            return {t:'State-honored',       rom:'시호 '+p.sh,  gold:true};
+  return {t:'Class of '+p.y, rom:'', gold:false};
+}
+function alumniResolved(){
+  // [{meta,p}] for each curated entry whose record resolves, in LK.notable order
+  var by = personById(), out = [];
+  (LK.notable||[]).forEach(function(m){ var p = by[m.id]; if(p) out.push({meta:m, p:p}); });
+  return out;
+}
+function alumniFeatured(list){
+  for(var i=0;i<list.length;i++){ if(list[i].meta.feat) return list[i]; }
+  return list[0] || null;
+}
+function alumniRowHtml(meta, p){
+  var b = alumniBadge(p);
+  var ep = meta.ep ? '<span class="aep">'+esc(meta.ep)+'</span>' : '';
+  var badge = '<span class="abadge'+(b.gold?'':' plain')+'">'+esc(b.t)
+    + (b.rom?' <span class="kr">'+esc(b.rom)+'</span>':'')+'</span>';
+  return '<a class="arow" href="#/person/'+encodeURIComponent(p.i)+'">'
+    + '<div class="atop"><div class="anm">'+esc(meta.en)+ep
+      + '<span class="akr kr">'+esc(p.n)+' '+esc(p.h)+'</span></div>'+badge+'</div>'
+    + '<div class="aach">'+esc(meta.ach)+'</div></a>';
+}
+function alumniRollHtml(list){
+  return '<div class="alumni">'
+    + list.map(function(x){ return alumniRowHtml(x.meta, x.p); }).join('')
+    + '</div>';
+}
+function alumniHeroHtml(x){
+  // featured #1 placement — the rankings house leading with its number one
+  var p = x.p, meta = x.meta, b = alumniBadge(p);
+  var ep = meta.ep ? '<span class="lep">'+esc(meta.ep)+'</span>' : '';
+  return '<a class="laurel hero" href="#/person/'+encodeURIComponent(p.i)+'">'
+    + crestSvg('lcrest')
+    + '<div><div class="lk">'+esc(b.t)+(b.rom?' &middot; '+esc(b.rom):'')+' &middot; '+p.y+'</div>'
+      + '<div class="lname">'+esc(meta.en)+ep+'<span class="lh kr">'+esc(p.n)+' '+esc(p.h)+'</span></div>'
+      + '<div class="lach">'+esc(meta.ach)+'</div></div>'
+    + '<span class="lgo">View admit &rarr;</span></a>';
+}
+// one row of the "what admission conferred" outcomes table (landing)
+function outcomeRow(en, kr, rankEn, rankKr, note, count){
+  return '<tr>'
+    + '<td><span class="nm">'+esc(en)+'</span> <span class="nh kr">'+esc(kr)+'</span></td>'
+    + '<td>'+esc(rankEn)+' <span class="nh kr" style="color:var(--ink3)">'+esc(rankKr)+'</span>'
+      + (note?'<span class="muted" style="display:block;font-size:12px;margin-top:2px">'+esc(note)+'</span>':'')+'</td>'
+    + '<td class="num rnk">'+esc(count)+'</td>';
+}
+
 /* =========================================================================
    VIEW 1 — Overview (#/)
    ========================================================================= */
 function viewOverview(){
   var m = DATA.meta, conc = DATA.concentration.bySeonggwan;
-  var top10 = DATA.feeders.slice(0,10);
-  var maxN = top10[0].n;
+  var feeders = DATA.feeders;
+  var maxN = feeders[0].n;
   var siknyeon = DATA.examTypes[0]; // 식년시
   var special = 100 - siknyeon.pct;
-  var royalNote = LK.seonggwan['이 전주'] || '';
+  var alumni = alumniResolved();
+  var top = feeders.slice(0, 25);
 
-  var leagueRows = top10.map(function(c){
+  function medal(rank){ return rank===1?' m1':rank===2?' m2':rank===3?' m3':''; }
+  var leagueRows = top.map(function(c){
     var lbl = clanLabel(c.sn, c.seat);
-    var note = (c.key==='이 전주') ? 'seat of the royal house' : '';
-    return '<tr><td class="rk">'+c.rank+'</td>'
+    var fame = (LK.clanFame && LK.clanFame[c.key]) || '';
+    return '<tr>'
+      + '<td class="rk'+medal(c.rank)+'">'+c.rank+'</td>'
       + '<td class="inst"><a class="row-lnk" href="#/clan/'+encodeURIComponent(c.key)+'">'
-        + '<span class="seat kr">'+esc(lbl.ko)+'</span>'+(lbl.rom?'<span class="rom">'+esc(lbl.rom)+'</span>':'')
-        + (note?'<div class="note">'+note+'</div>':'')
-      + '</a></td>'
-      + '<td class="num"><span class="adm">'+fmt(c.n)+'</span></td>'
-      + '<td class="barcell"><div style="display:flex;align-items:center;gap:12px">'
-        + '<div class="bar" style="flex:1"><span style="width:'+(c.n/maxN*100).toFixed(1)+'%"></span></div>'
-        + '<div class="pct">'+pct1(c.pct)+'%</div></div></td></tr>';
+        + '<span class="seat kr">'+esc(lbl.ko)+'</span>'+(lbl.rom?'<span class="rom">'+esc(lbl.rom)+'</span>':'')+'</a></td>'
+      + '<td class="num"><span class="adm">'+fmt(c.n)+'</span>'
+        + '<div class="bar lbar"><span style="width:'+(c.n/maxN*100).toFixed(1)+'%"></span></div></td>'
+      + '<td class="num jwn">'+(c.jangwon||0)+'</td>'
+      + '<td class="knownfor">'+esc(fame)+'</td>'
+      + '</tr>';
   }).join('');
 
   var html =
-    '<header class="mast">'
+    // edition masthead — the rankings-product header
+    '<header class="mast edition">'
     + crestSvg('seal')
     + '<div class="mast-tx">'
-      + '<div class="kick">Admissions &middot; Rankings &middot; Class profiles &middot; Est. 1393</div>'
-      + '<h1 class="serif">The Joseon Review</h1>'
-      + '<p class="dek">The 500-year national examination that chose Joseon’s officials, ranked and profiled from the surviving record of all 15,151 who passed.</p>'
-      + '<p class="whatis">Every figure here is real. The records are the full roster of Joseon civil-service graduates held by the Academy of Korean Studies; only the framing as a rankings institution is new.</p>'
-      + '<div class="estbar"><span class="est">Established '+m.yearMin+'</span>'
-        + '<span class="kick" style="letter-spacing:.12em">Final class '+m.yearMax+'</span></div>'
+      + '<div class="kick">The Joseon Review</div>'
+      + '<h1 class="serif">Joseon Examination Rankings</h1>'
+      + '<p class="coverage">The complete ranking of the clans that produced Joseon’s civil officials, '+m.yearMin+' to '+m.yearMax+'. '
+        + fmt(m.total)+' officials, '+fmt(feeders.length)+' clans, ranked by the offices they won. '
+        + '<a href="#/about">Methodology →</a></p>'
     + '</div></header>'
     + '<div class="dbl-rule"></div>'
 
-    // marquee
+    // stat bar
     + '<div class="marquee">'
       + '<div class="mq"><div class="ml">Acceptance rate</div><div class="mv serif">&lt;1<small>%</small>'
         + '<sup><a href="#/about" aria-label="Acceptance-rate methodology">*</a></sup></div></div>'
-      + '<div class="mq"><div class="ml">Admitted, '+m.yearMin+'–'+m.yearMax+'</div><div class="mv serif">'+fmt(m.total)+'</div></div>'
-      + '<div class="mq"><div class="ml">Examinations held</div><div class="mv serif">'+fmt(m.sittings)+'</div></div>'
-      + '<div class="mq"><div class="ml">Median age at admission</div><div class="mv serif">'+m.medianAge+'</div></div>'
+      + '<div class="mq"><div class="ml">Officials ranked</div><div class="mv serif">'+fmt(m.total)+'</div></div>'
+      + '<div class="mq"><div class="ml">Clans ranked</div><div class="mv serif">'+fmt(feeders.length)+'</div></div>'
+      + '<div class="mq"><div class="ml">Examinations</div><div class="mv serif">'+fmt(m.sittings)+'</div></div>'
     + '</div>'
 
-    // selectivity chart
+    // flagship: the clan league
     + '<section><div class="sec-h">'
-      + '<div><div class="kick">Selectivity</div><h2 class="serif">Class size by generation</h2>'
-        + '<div class="sub">Five centuries of the examination, read from the record of all 15,151 who passed.</div></div>'
+      + '<div><div class="kick">The ranking</div><h2 class="serif">Clans by officials produced</h2>'
+        + '<div class="sub">Every clan seat (성관) ranked by the officials it placed across five centuries. Top twenty-five shown.</div></div>'
+      + '<a class="seemore" href="#/feeders">All '+fmt(feeders.length)+' clans</a></div>'
+      + '<div class="tscroll"><table class="league clanleague"><thead><tr>'
+        + '<th>Rank</th><th>Clan</th><th class="num">Officials</th><th class="num">Valedictorians</th><th>Known for</th></tr></thead>'
+        + '<tbody>'+leagueRows+'</tbody></table></div>'
+      + '<div class="league-foot">Ranked by a single transparent figure: officials produced. The leader, <b>이 전주 (Yi of Jeonju)</b>, is the royal house itself.</div>'
+    + '</section>'
+
+    // distinguished graduates — people, threaded through the product
+    + '<section><div class="sec-h">'
+      + '<div><div class="kick">Distinguished graduates</div><h2 class="serif">Notable graduates</h2>'
+        + '<div class="sub">The graduates whose work outlived the dynasty, with the placement the examination recorded for each.</div></div>'
+      + '<a class="seemore" href="#/alumni">All graduates</a></div>'
+      + alumniRollHtml(alumni)
+    + '</section>'
+
+    // by the numbers — selectivity
+    + '<section><div class="sec-h">'
+      + '<div><div class="kick">By the numbers</div><h2 class="serif">Class size by generation</h2>'
+        + '<div class="sub">Officials admitted per 25-year period, '+m.yearMin+' to '+m.yearMax+'.</div></div>'
       + '<a class="seemore" href="#/trends">Full trends</a></div>'
       + '<div class="chartwrap"><svg class="chart" id="ov-chart" viewBox="0 0 1000 210" preserveAspectRatio="none" aria-hidden="true"></svg>'
         + '<div class="xlabels"><span>1393</span><span>1500</span><span>1600</span><span>1700</span><span>1800</span><span>1894</span></div></div>'
@@ -740,30 +867,36 @@ function viewOverview(){
         + fmt(DATA.classByPeriod[DATA.classByPeriod.length-1].n)+'</b>, the largest of any generation.</div>'
     + '</section>'
 
-    // feeders league
-    + '<section><div class="sec-h">'
-      + '<div><div class="kick">Feeders</div><h2 class="serif">Most-represented clans</h2>'
-        + '<div class="sub">The clan seats that produced the most officials, ranked across the full five centuries.</div></div>'
-      + '<a class="seemore" href="#/feeders">All '+fmt(DATA.feeders.length)+' clans</a></div>'
-      + '<table class="league"><thead><tr><th>Rank</th><th>Clan</th><th class="num">Admits</th><th>Share of all admits</th></tr></thead>'
-        + '<tbody>'+leagueRows+'</tbody></table>'
-      + '<div class="league-foot">The most-represented clan, <b>이 전주 (Yi of Jeonju)</b>, is the royal house itself. '
-        + esc(royalNote)+'</div>'
-    + '</section>'
-
     // concentration callout
     + '<div class="conc">'
       + '<div class="cstat"><div class="cnum serif">'+pct1(conc.top10)+'%</div>'
-        + '<div class="ctx">of every student ever admitted came from the <b>top ten</b> clans.</div></div>'
+        + '<div class="ctx">of every official ever admitted came from the <b>top ten</b> clans.</div></div>'
       + '<div class="cstat"><div class="cnum serif">'+pct1(conc.top50)+'%</div>'
-        + '<div class="ctx">came from the <b>top fifty</b>, out of '+fmt(m.distinctSeonggwan)+' clans in the realm.</div></div>'
+        + '<div class="ctx">came from the <b>top fifty</b>, out of '+fmt(feeders.length)+' clans.</div></div>'
       + '<div class="cstat"><div class="cnum serif">5</div>'
         + '<div class="ctx">centuries over which the same names recur at the top of the table.</div></div>'
     + '</div>'
 
+    // outcomes — what admission conferred
+    + '<section><div class="sec-h">'
+      + '<div><div class="kick">Outcomes</div><h2 class="serif">What admission conferred</h2>'
+        + '<div class="sub">Passing was an appointment. Where a graduate placed set the rank at which a civil-service career began.</div></div></div>'
+      + '<div class="tscroll"><table class="dt"><thead><tr>'
+        + '<th>Placement</th><th>Entered service at</th><th class="num">In a standard class of 33</th></tr></thead>'
+        + '<tbody>'
+          + outcomeRow('First in the realm','장원','Junior 6th rank','종6품','the highest start of the class','1')
+          + outcomeRow('First Class','갑과','Senior 7th rank','정7품','the rest of the top three','2')
+          + outcomeRow('Second Class','을과','Senior 8th rank','정8품','','7')
+          + outcomeRow('Third Class','병과','Senior 9th rank','정9품','the bulk of every class','23')
+        + '</tbody></table></div>'
+      + '<div class="league-foot">The service ran eighteen ranks, from senior first (<span class="kr">정1품</span>), the chief state councillor, '
+        + 'down to junior ninth. The literary examination was the only route to its senior offices. '
+        + '<a href="#/about">How this is sourced</a>.</div>'
+    + '</section>'
+
     // admissions tracks
     + '<div class="tracks"><div class="sec-h" style="border:0">'
-      + '<div><div class="kick">Admissions tracks</div><h2 class="serif">How students were admitted</h2></div>'
+      + '<div><div class="kick">Admissions tracks</div><h2 class="serif">How officials were admitted</h2></div>'
       + '<a class="seemore" href="#/trends">Breakdown</a></div>'
       + '<div class="trk std"><div class="trk-top"><span class="tn">Standard triennial examination (식년시)</span>'
         + '<span class="tp">'+pct1(siknyeon.pct)+'%</span></div><div class="trk-bar"><span style="width:'+pct1(siknyeon.pct)+'%"></span></div></div>'
@@ -800,6 +933,36 @@ function drawArea(id, vals, emphasizeLast){
 }
 
 /* =========================================================================
+   VIEW 1b — Distinguished alumni (#/alumni)
+   ========================================================================= */
+function viewAlumni(){
+  var alumni = alumniResolved();
+  var feat = alumniFeatured(alumni);
+  // institution-wide notability counts, for the closing note (cheap over 15k)
+  var nJangwon = 0, nSiho = 0, R = DATA.roster;
+  for(var i=0;i<R.length;i++){ if(R[i].z===1) nJangwon++; if(R[i].sh) nSiho++; }
+
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Graduates</div>'
+    + '<div class="kick">Distinguished graduates</div>'
+    + '<h1 class="ph-title serif">Notable graduates</h1>'
+    + '<p class="ph-sub">Graduates of the civil examination whose work outlived the dynasty. '
+      + 'The placement shown for each is the one the examination recorded, from first in the realm (장원) to the rank held in a later class.</p></div>'
+    + (feat ? alumniHeroHtml(feat) : '')
+    + '<div class="subhead" style="margin-top:34px">The selection</div>'
+    + alumniRollHtml(alumni)
+    + '<p class="drynote" style="font-style:normal;color:var(--ink3);font-size:13px;max-width:74ch">'
+      + 'The record holds <b style="color:var(--ink2);font-weight:600">'+fmt(nJangwon)+'</b> graduates who placed first in the realm and '
+      + '<b style="color:var(--ink2);font-weight:600">'+fmt(nSiho)+'</b> granted a posthumous title by the state. '
+      + 'The names above are a curated selection of those still widely remembered, each linked to its admit record. '
+      + 'The rest are reachable through <a href="#/cohorts" style="color:var(--accent);font-weight:500">Cohorts</a>, '
+      + '<a href="#/feeders" style="color:var(--accent);font-weight:500">Feeders</a>, and the search box.</p>'
+    + footerHtml();
+  app.innerHTML = html;
+  pageTop();
+}
+
+/* =========================================================================
    VIEW 2 — Cohort index (#/cohorts)
    ========================================================================= */
 var _cohortState = { reign:'', q:'' };
@@ -815,7 +978,7 @@ function viewCohorts(){
     + '</div>';
 
   var html =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Overview</a><span class="sep">/</span>Cohorts</div>'
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Classes</div>'
     + '<h1 class="ph-title serif">The classes</h1>'
     + '<p class="ph-sub">Every sitting of the civil examination, '+DATA.meta.yearMin+' to '+DATA.meta.yearMax+', grouped by reign. '
       + fmt(DATA.meta.sittings)+' classes in all.</p></div>'
@@ -932,8 +1095,8 @@ function viewCohort(id){
     : '<span class="muted">No clan with more than one admit</span>';
 
   var html =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Overview</a><span class="sep">/</span>'
-      + '<a href="#/cohorts">Cohorts</a><span class="sep">/</span>Class of '+c.y+'</div>'
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>'
+      + '<a href="#/cohorts">Classes</a><span class="sep">/</span>Class of '+c.y+'</div>'
     + '<div class="kick">'+esc(typeLabel)+' &middot; reign of '+esc(kingRom(c.king))+'</div>'
     + '<h1 class="ph-title serif">Class of '+c.y+'</h1>'
     + '<p class="ph-sub">'+esc(examEnName(c.name))+' <span class="kr">('+esc(c.name)+')</span>'
@@ -1032,7 +1195,7 @@ function viewPerson(id){
     ;
 
   var html =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Overview</a><span class="sep">/</span>'
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>'
       + '<a href="#/cohort/'+encodeURIComponent(p.y+'-'+p.e)+'">Class of '+p.y+'</a><span class="sep">/</span>'+esc(p.n)+'</div></div>'
     + '<div class="profile">'
       + '<div class="profile-top">'+crestSvg('profile-crest')
@@ -1070,7 +1233,7 @@ function viewFeeders(){
   var maxN = DATA.feeders[0].n;
 
   var html =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Overview</a><span class="sep">/</span>Feeders</div>'
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Feeders</div>'
     + '<h1 class="ph-title serif">The feeder clans</h1>'
     + '<p class="ph-sub">Every clan seat (성관) that produced an official, ranked by total admits across the dynasty. '
       + fmt(DATA.feeders.length)+' clans in all.</p></div>'
@@ -1212,7 +1375,7 @@ function viewClan(key){
   });
 
   var html =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Overview</a><span class="sep">/</span>'
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>'
       + '<a href="#/feeders">Feeders</a><span class="sep">/</span>'+esc(sn)+' '+esc(seat)+'</div>'
     + '<div class="kick">Clan profile &middot; 성관</div>'
     + '<h1 class="ph-title serif">'+esc(snRom||sn)+' of '+esc(rom||seat)+'</h1>'
@@ -1234,7 +1397,7 @@ function viewClan(key){
     + '<div class="periodx"><span>1375</span><span>1500</span><span>1600</span><span>1700</span><span>1800</span><span>1899</span></div>';
 
   if(notableHtml){
-    html += '<div class="subhead">Notable alumni</div>'
+    html += '<div class="subhead">Notable graduates</div>'
       + '<p style="font-size:12.5px;color:var(--ink3);margin:-6px 0 12px">Valedictorians (장원) and holders of a posthumous title (시호).</p>'
       + notableHtml;
   }
@@ -1323,7 +1486,7 @@ function viewTrends(){
   var firstPeriod = DATA.classByPeriod[0];
 
   var html =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Overview</a><span class="sep">/</span>Trends</div>'
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Trends</div>'
     + '<h1 class="ph-title serif">By the numbers</h1>'
     + '<p class="ph-sub">How the class grew: the triennial exam held thirty-three for five centuries while special sittings widened the field.</p></div>'
 
@@ -1394,7 +1557,7 @@ function viewSearch(rawq){
   var shown = results.slice(0,100);
 
   var html =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Overview</a><span class="sep">/</span>Search</div>'
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Search</div>'
     + '<h1 class="ph-title serif">Search</h1>'
     + (q
       ? '<p class="ph-sub">Admitted officials matching <b style="color:var(--ink)">“'+esc(q)+'”</b>, by name or clan.</p>'
@@ -1445,7 +1608,7 @@ function viewAbout(){
     return '<a href="'+esc(s.url)+'" rel="noopener">'+esc(s.label)+'</a>';
   }).join('');
   var html =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Overview</a><span class="sep">/</span>Methodology</div>'
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Methodology</div>'
     + '<h1 class="ph-title serif">Methodology</h1>'
     + '<p class="ph-sub">'+esc(LK.cited.headline)+'</p></div>'
     + '<div class="about-body" style="margin-top:26px;max-width:74ch;font-size:14.5px">'
@@ -1467,7 +1630,7 @@ function viewAbout(){
 /* ---------- not-found ---------- */
 function notFound(msg){
   app.innerHTML =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Overview</a></div>'
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a></div>'
     + '<h1 class="ph-title serif">Not found</h1></div>'
     + '<div class="empty"><span class="ekr">無</span>'+esc(msg||'That page does not exist.')+' '
       + '<a href="#/">Return to the overview</a>.</div>'
@@ -1492,6 +1655,7 @@ function dispatch(){
   var head = parts[0];
   var tail = decodeURIComponent(parts.slice(1).join('/'));
   switch(head){
+    case 'alumni':  setActiveNav('alumni');  return viewAlumni();
     case 'cohorts': setActiveNav('cohorts'); return viewCohorts();
     case 'cohort':  setActiveNav('cohorts'); return viewCohort(tail);
     case 'feeders': setActiveNav('feeders'); return viewFeeders();
