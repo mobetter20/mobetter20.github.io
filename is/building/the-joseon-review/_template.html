@@ -19,7 +19,9 @@
     /* luminous steel-blue accent, readable on dark: seal, magnitude bars, chart,
        the single most important figure per view. accent-bg is its low-alpha fill.
        links keep a table-link underline for affordance against the dark ground. */
-    --accent:#7aa0cc; --accent2:#9bbbe0; --accent-bg:rgba(122,160,204,.16);
+    --accent:#d24a36; --accent2:#e2735b; --accent-bg:rgba(210,74,54,.16);
+    /* the seal/logo is the institution's stamp: a deep oxblood mark, glyphs in ivory */
+    --seal:#7f2531; --seal-ink:#ece4d6;
     /* brightened gold — the one warm note: seal honors, laurel + badge hairlines */
     --gold:#c7a868;
     /* dark hairline ramp: rule (low-contrast hairlines) -> rule2 (header
@@ -65,7 +67,7 @@
     border-radius:3px; padding:7px 11px 7px 33px; width:172px; transition:width .18s ease, border-color .15s;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='6' cy='6' r='4.3' fill='none' stroke='%2374726b' stroke-width='1.4'/%3E%3Cline x1='9.4' y1='9.4' x2='13' y2='13' stroke='%2374726b' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")}
   .search input:focus{outline:none; border-color:var(--accent2); width:212px}
-  .search input:focus{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='6' cy='6' r='4.3' fill='none' stroke='%239bbbe0' stroke-width='1.4'/%3E%3Cline x1='9.4' y1='9.4' x2='13' y2='13' stroke='%239bbbe0' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")}
+  .search input:focus{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='6' cy='6' r='4.3' fill='none' stroke='%23e2735b' stroke-width='1.4'/%3E%3Cline x1='9.4' y1='9.4' x2='13' y2='13' stroke='%23e2735b' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")}
   .search input::placeholder{color:var(--ink3)}
   .navtoggle{display:none}
 
@@ -555,9 +557,9 @@
   <div class="topbar-in">
     <a class="brand" href="#/" aria-label="The Joseon Review, home">
       <svg class="bseal" viewBox="0 0 100 100" aria-hidden="true">
-        <rect x="4" y="4" width="92" height="92" rx="16" fill="var(--accent)"/>
-        <text x="50" y="45" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--bg)">文</text>
-        <text x="50" y="84" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--bg)">科</text>
+        <rect x="4" y="4" width="92" height="92" rx="16" fill="var(--seal)"/>
+        <text x="50" y="45" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--seal-ink)">文</text>
+        <text x="50" y="84" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--seal-ink)">科</text>
       </svg>
       <span class="bname">The Joseon Review</span>
     </a>
@@ -766,9 +768,9 @@ function clanCell(rec){
 }
 function crestSvg(cls){
   return '<svg class="'+cls+'" viewBox="0 0 100 100" aria-hidden="true">'
-    + '<rect x="4" y="4" width="92" height="92" rx="16" fill="var(--accent)"/>'
-    + '<text x="50" y="45" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--bg)">文</text>'
-    + '<text x="50" y="84" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--bg)">科</text>'
+    + '<rect x="4" y="4" width="92" height="92" rx="16" fill="var(--seal)"/>'
+    + '<text x="50" y="45" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--seal-ink)">文</text>'
+    + '<text x="50" y="84" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--seal-ink)">科</text>'
     + '</svg>';
 }
 function footerHtml(){
