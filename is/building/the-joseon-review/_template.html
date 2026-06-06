@@ -7,14 +7,25 @@
 <meta name="description" content="The Joseon civil service examination, ranked and profiled. 15,151 admitted officials across 800 sittings, 1393 to 1894, by the numbers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
 <script src="/analytics.js" defer></script>
 <style>
-  /* ============ palette (navy only) ============ */
+  /* ============ palette (warm ink + gray ramp; navy reserved) ============ */
   :root{
-    --bg:#f3f3f0; --panel:#fbfbf9; --panel2:#f4f4f1; --ink:#191c22; --ink2:#535965; --ink3:#7e838f;
-    --accent:#22405f; --accent2:#345878; --accent-bg:rgba(34,64,95,.09); --gold:#917638;
-    --rule:#e1e0da; --rule2:#d2d2cb;
+    /* warm ivory ground; panels are barely-there warm tints, used sparingly */
+    --bg:#f6f2e9; --panel:#fbf8f1; --panel2:#efeadd;
+    /* warm near-black ink, then a warm-gray ramp for everything de-emphasized */
+    --ink:#1f1b15; --ink2:#5c564c; --ink3:#8b8579;
+    /* navy accent (owner's choice), deepened; reserved for the single most
+       important element per view. accent-bg is the low-alpha magnitude-bar fill */
+    --accent:#20384f; --accent2:#345878; --accent-bg:rgba(32,56,79,.10);
+    /* muted gold — seal + hairline accents only, never a fill or type run */
+    --gold:#9a7b3f;
+    /* warm hairline ramp: rule (low-contrast hairlines) -> rule2 (header
+       underlines) -> rule3 (engraved-letterhead heavy line) */
+    --rule:#e2dcce; --rule2:#d2cbb9; --rule3:#c4bca6;
+    /* faint warm full-row hover tint */
+    --hover:rgba(31,27,21,.035);
   }
 
   *{box-sizing:border-box}
@@ -26,57 +37,67 @@
     -webkit-font-smoothing:antialiased; letter-spacing:.1px;
   }
   a{color:inherit}
-  .serif{font-family:"Playfair Display",Georgia,serif}
-  .kr{font-family:"Noto Serif KR","Playfair Display",serif}
-  .tnum{font-variant-numeric:tabular-nums}
-  .wrap{max-width:1060px; margin:0 auto; padding:30px 30px 80px}
-  .kick{font-size:11px; font-weight:600; letter-spacing:2.6px; text-transform:uppercase; color:var(--ink3)}
+  /* Source Serif 4 — institutional display serif, clean upright J, ships
+     tabular + lining figures. Tight tracking applied per-element at large sizes. */
+  .serif{font-family:"Source Serif 4",Georgia,serif}
+  .kr{font-family:"Noto Serif KR","Source Serif 4",serif}
+  /* every figure run: lining + tabular so columns align and numerals sit on the cap line */
+  .tnum,.serif{font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .wrap{max-width:1060px; margin:0 auto; padding:30px 30px 96px}
+  /* shared eyebrow/kicker: uppercase, tracked, small, muted-gray, medium weight */
+  .kick{font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3)}
 
   /* ============ sticky header / global nav ============ */
-  .topbar{position:sticky; top:0; z-index:40; background:rgba(243,243,240,.92); backdrop-filter:saturate(140%) blur(8px);
+  .topbar{position:sticky; top:0; z-index:40; background:rgba(246,242,233,.92); backdrop-filter:saturate(140%) blur(8px);
     border-bottom:1px solid var(--rule2)}
   .topbar-in{max-width:1060px; margin:0 auto; padding:11px 30px; display:flex; align-items:center; gap:20px}
   .brand{display:flex; align-items:center; gap:11px; text-decoration:none; flex-shrink:0}
   .brand .bseal{width:30px; height:30px; flex-shrink:0}
-  .brand .bname{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:22px; letter-spacing:-.3px; color:var(--ink); line-height:1}
+  .brand .bname{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:22px; letter-spacing:-.01em; color:var(--ink); line-height:1}
   .nav{display:flex; align-items:center; gap:5px; margin-left:auto}
-  .nav a{font-size:13px; font-weight:500; color:var(--ink2); text-decoration:none; padding:7px 11px; border-radius:7px; letter-spacing:.2px; white-space:nowrap}
+  .nav a{font-size:13px; font-weight:500; color:var(--ink2); text-decoration:none; padding:7px 11px; border-radius:3px; letter-spacing:.2px; white-space:nowrap}
   .nav a:hover{background:var(--panel2); color:var(--ink)}
+  /* active section is the one reserved navy moment in the chrome */
   .nav a[aria-current="page"]{color:var(--accent); background:var(--accent-bg); font-weight:600}
   .search{display:flex; align-items:center; gap:0; flex-shrink:0}
   .search input{font-family:inherit; font-size:13px; color:var(--ink); background:var(--panel); border:1px solid var(--rule2);
-    border-radius:7px; padding:7px 11px; width:160px; transition:width .18s ease, border-color .15s}
+    border-radius:3px; padding:7px 11px; width:160px; transition:width .18s ease, border-color .15s}
   .search input:focus{outline:none; border-color:var(--accent2); width:200px}
   .search input::placeholder{color:var(--ink3)}
   .navtoggle{display:none}
 
   /* ============ masthead ============ */
-  .mast{display:flex; align-items:flex-start; gap:22px; padding-top:16px}
+  .mast{display:flex; align-items:flex-start; gap:22px; padding-top:18px}
   .seal{flex-shrink:0; width:66px; height:66px; margin-top:5px}
   .mast-tx{flex:1; min-width:0}
-  .mast h1{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:54px; line-height:.98;
-    letter-spacing:-.5px; margin:7px 0 0; color:var(--ink)}
-  .mast .dek{margin:11px 0 0; font-size:16px; color:var(--ink2); max-width:46ch}
-  .estbar{display:flex; align-items:baseline; gap:14px; margin-top:5px; flex-wrap:wrap}
-  .estbar .est{font-size:11px; letter-spacing:1.4px; text-transform:uppercase; color:var(--accent); font-weight:600}
-  .dbl-rule{height:0; border-top:3px double var(--rule2); margin:30px 0 0}
+  .mast h1{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:54px; line-height:1.0;
+    letter-spacing:-.01em; margin:9px 0 0; color:var(--ink)}
+  .mast .dek{margin:13px 0 0; font-size:16px; color:var(--ink2); max-width:52ch; line-height:1.5}
+  /* "what this is" line — muted, sits under the dek */
+  .mast .whatis{margin:11px 0 0; font-size:13px; color:var(--ink3); max-width:60ch; line-height:1.55}
+  .estbar{display:flex; align-items:baseline; gap:14px; margin-top:14px; flex-wrap:wrap}
+  .estbar .est{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  /* engraved-letterhead double rule: one hairline + one heavier line */
+  .dbl-rule{height:0; border-top:1px solid var(--rule3); box-shadow:0 3px 0 -2px var(--rule); margin:34px 0 0}
 
   /* ============ marquee stats ============ */
   .marquee{display:grid; grid-template-columns:repeat(4,1fr); margin:0; border-bottom:1px solid var(--rule)}
-  .mq{padding:26px 22px 24px; border-left:1px solid var(--rule)}
+  .mq{padding:28px 24px 26px; border-left:1px solid var(--rule)}
   .mq:first-child{border-left:0; padding-left:2px}
-  .mq .ml{font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink3); font-weight:600; line-height:1.4}
-  .mq .mv{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:42px; line-height:1; margin-top:13px; color:var(--ink); letter-spacing:-1px}
+  .mq .ml{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600; line-height:1.4}
+  .mq .mv{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:42px; line-height:1; margin-top:14px; color:var(--ink); letter-spacing:-.01em;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .mq .mv sup{font-size:18px; color:var(--accent); font-weight:600; top:-1.1em}
   .mq .mv sup a{text-decoration:none; color:inherit}
   .mq .mv sup a:hover{text-decoration:underline}
   .mq .mv small{font-size:15px; color:var(--ink3); font-weight:500; letter-spacing:0}
 
   /* ============ section scaffold ============ */
-  section{padding:38px 0 4px; border-bottom:1px solid var(--rule)}
-  .sec-h{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:22px}
-  .sec-h h2{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:25px; margin:6px 0 0; letter-spacing:-.2px}
-  .sec-h .sub{font-size:13px; color:var(--ink2); margin-top:3px}
+  /* major section gap ~88px on desktop; whitespace dominates */
+  section{padding:52px 0 8px; border-bottom:1px solid var(--rule)}
+  .sec-h{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:26px}
+  .sec-h h2{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:25px; margin:8px 0 0; letter-spacing:-.01em}
+  .sec-h .sub{font-size:13px; color:var(--ink2); margin-top:5px}
   .sec-note{font-size:12.5px; color:var(--ink3); text-align:right; max-width:30ch; line-height:1.5; flex-shrink:0}
   .seemore{font-size:12px; font-weight:600; letter-spacing:.3px; color:var(--accent); text-decoration:none; white-space:nowrap}
   .seemore:hover{text-decoration:underline}
@@ -85,48 +106,59 @@
   /* ============ selectivity chart ============ */
   .chartwrap{margin:6px 0 30px}
   .chart{display:block; width:100%; height:auto}
-  .xlabels{display:flex; justify-content:space-between; font-size:11px; color:var(--ink3); letter-spacing:.5px; margin-top:7px}
+  .xlabels{display:flex; justify-content:space-between; font-size:11px; color:var(--ink3); letter-spacing:.5px; margin-top:7px;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .chart-cap{font-size:13px; color:var(--ink2); margin:14px 0 4px; max-width:64ch}
 
   /* ============ league table ============ */
   table.league{width:100%; border-collapse:collapse; margin-bottom:8px}
-  .league th{font-size:10.5px; letter-spacing:1.4px; text-transform:uppercase; color:var(--ink3); font-weight:600;
-    text-align:left; padding:0 12px 12px; border-bottom:1px solid var(--rule2)}
-  .league th.num,.league td.num{text-align:right; font-variant-numeric:tabular-nums}
-  .league td{padding:14px 12px; border-bottom:1px solid var(--rule); vertical-align:middle}
-  .league tr:hover td{background:var(--panel2)}
+  /* header: uppercase tracked small-caps muted gray, one heavier hairline beneath */
+  .league th{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600;
+    text-align:left; padding:0 12px 12px; border-bottom:1px solid var(--rule3)}
+  .league th.num,.league td.num{text-align:right; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  /* generous vertical row padding; horizontal hairline between rows only */
+  .league td{padding:15px 12px; border-bottom:1px solid var(--rule); vertical-align:middle}
+  /* single faint full-row warm tint on hover, nothing else */
+  .league tr:hover td{background:var(--hover)}
   .league a.row-lnk{text-decoration:none; color:inherit; display:block}
-  .rk{font-family:"Playfair Display",Georgia,serif; font-size:20px; color:var(--ink3); width:38px; font-weight:500; font-variant-numeric:tabular-nums}
+  /* rank numeral is the row anchor: larger, serif, deep neutral */
+  .rk{font-family:"Source Serif 4",Georgia,serif; font-size:23px; color:var(--ink2); width:42px; font-weight:500;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .inst .seat{font-family:"Noto Serif KR",serif; font-size:18px; font-weight:500; color:var(--ink)}
   .inst .rom{font-size:13px; color:var(--ink2); margin-left:7px}
-  .inst .note{font-size:12px; color:var(--accent); margin-top:2px; font-style:italic}
-  .adm{font-family:"Playfair Display",Georgia,serif; font-size:19px; font-weight:600; color:var(--ink)}
+  .inst .note{font-size:12px; color:var(--ink3); margin-top:2px; font-style:italic}
+  .adm{font-family:"Source Serif 4",Georgia,serif; font-size:19px; font-weight:600; color:var(--ink);
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .barcell{width:230px}
-  .bar{height:9px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
+  /* thin magnitude bar, navy at low alpha so the column self-sorts visually */
+  .bar{height:7px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
   .bar span{display:block; height:100%; background:var(--accent); border-radius:2px}
-  .pct{font-size:13px; color:var(--ink2); font-variant-numeric:tabular-nums; width:54px}
-  .league-foot{font-size:12.5px; color:var(--ink3); padding:13px 12px 2px; line-height:1.55}
+  .pct{font-size:13px; color:var(--ink2); width:54px; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .league-foot{font-size:12.5px; color:var(--ink3); padding:15px 12px 2px; line-height:1.55}
   .league-foot b{color:var(--ink2); font-weight:600; font-style:normal}
 
   /* ============ concentration callout ============ */
-  .conc{display:flex; gap:46px; padding:34px 0 36px; border-bottom:1px solid var(--rule); flex-wrap:wrap}
+  .conc{display:flex; gap:52px; padding:46px 0 48px; border-bottom:1px solid var(--rule); flex-wrap:wrap}
   .conc .cstat{flex:0 0 auto}
-  .conc .cnum{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:50px; line-height:1; color:var(--accent); letter-spacing:-1.5px}
-  .conc .ctx{font-size:13.5px; color:var(--ink2); margin-top:9px; max-width:24ch; line-height:1.5}
+  /* the figure is the one navy moment here; the gloss stays neutral */
+  .conc .cnum{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:50px; line-height:1; color:var(--accent); letter-spacing:-.01em;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .conc .ctx{font-size:13.5px; color:var(--ink2); margin-top:11px; max-width:24ch; line-height:1.5}
   .conc .ctx b{color:var(--ink); font-weight:600}
 
   /* ============ admissions tracks ============ */
-  .tracks{padding:34px 0 38px; border-bottom:1px solid var(--rule)}
-  .trk{margin-bottom:17px}
+  .tracks{padding:46px 0 50px; border-bottom:1px solid var(--rule)}
+  .trk{margin-bottom:20px}
   .trk:last-child{margin-bottom:0}
-  .trk-top{display:flex; justify-content:space-between; align-items:baseline; gap:14px; font-size:14px; margin-bottom:7px}
+  .trk-top{display:flex; justify-content:space-between; align-items:baseline; gap:14px; font-size:14px; margin-bottom:8px}
   .trk-top .tn{color:var(--ink); font-weight:500}
-  .trk-top .tp{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:17px; color:var(--ink); flex-shrink:0; font-variant-numeric:tabular-nums}
-  .trk-bar{height:13px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
+  .trk-top .tp{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:17px; color:var(--ink); flex-shrink:0;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .trk-bar{height:11px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
   .trk-bar span{display:block; height:100%; border-radius:2px}
   .trk.std .trk-bar span{background:var(--accent2)}
   .trk.spc .trk-bar span{background:var(--accent)}
-  .trk-cap{font-size:12.5px; color:var(--ink3); margin-top:16px; line-height:1.55; max-width:66ch}
+  .trk-cap{font-size:12.5px; color:var(--ink3); margin-top:18px; line-height:1.55; max-width:66ch}
 
   /* ============ footer / colophon ============ */
   footer{padding:30px 0 0}
@@ -141,75 +173,86 @@
   .colophon a:hover{text-decoration:underline}
 
   /* ============ generic view chrome (shared across deeper views) ============ */
-  .pagehead{padding-top:20px}
-  .crumb{font-size:12px; letter-spacing:.3px; color:var(--ink3); margin-bottom:14px}
+  .pagehead{padding-top:24px}
+  .crumb{font-size:12px; letter-spacing:.3px; color:var(--ink3); margin-bottom:16px}
   .crumb a{color:var(--accent); text-decoration:none; font-weight:500}
   .crumb a:hover{text-decoration:underline}
   .crumb .sep{margin:0 8px; color:var(--rule2)}
-  .ph-title{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:40px; line-height:1.02; letter-spacing:-.5px; margin:6px 0 0; color:var(--ink)}
-  .ph-sub{font-size:15px; color:var(--ink2); margin:11px 0 0; max-width:60ch}
+  .ph-title{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:40px; line-height:1.04; letter-spacing:-.01em; margin:6px 0 0; color:var(--ink)}
+  .ph-sub{font-size:15px; color:var(--ink2); margin:13px 0 0; max-width:60ch; line-height:1.55}
   .ph-sub .kr{font-size:16px}
 
-  /* stat strip (cohort / clan headers) */
-  .statstrip{display:flex; flex-wrap:wrap; gap:0; border:1px solid var(--rule); border-radius:10px; overflow:hidden; margin:26px 0 0; background:var(--panel)}
-  .statstrip .ss{flex:1 1 0; min-width:130px; padding:18px 20px; border-left:1px solid var(--rule)}
-  .statstrip .ss:first-child{border-left:0}
-  .statstrip .ssl{font-size:10px; letter-spacing:1.3px; text-transform:uppercase; color:var(--ink3); font-weight:600}
-  .statstrip .ssv{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:28px; line-height:1.05; margin-top:9px; color:var(--ink); letter-spacing:-.5px; font-variant-numeric:tabular-nums}
+  /* stat strip (cohort / clan headers) — boxed card replaced by whitespace +
+     a single top hairline; cells divided by thin vertical hairlines only */
+  .statstrip{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--rule3); margin:30px 0 0}
+  .statstrip .ss{flex:1 1 0; min-width:130px; padding:20px 22px 6px; border-left:1px solid var(--rule)}
+  .statstrip .ss:first-child{border-left:0; padding-left:2px}
+  .statstrip .ssl{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  .statstrip .ssv{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:28px; line-height:1.05; margin-top:9px; color:var(--ink); letter-spacing:-.01em;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .statstrip .ssv small{font-size:14px; color:var(--ink3); font-weight:500; letter-spacing:0}
   .statstrip .ssv a{text-decoration:none; color:var(--accent)}
   .statstrip .ssv a:hover{text-decoration:underline}
   .statstrip .ssv .kr{font-size:24px}
 
-  /* valedictorian / highlight card */
-  .laurel{display:flex; align-items:center; gap:22px; margin:26px 0 0; padding:22px 26px; border:1px solid var(--rule2);
-    border-left:4px solid var(--gold); border-radius:10px; background:var(--panel); text-decoration:none; color:inherit}
-  .laurel:hover{background:var(--panel2)}
+  /* valedictorian / highlight — boxed card replaced by whitespace + a top
+     hairline and a thin gold hairline accent on the left (gold as hairline only) */
+  .laurel{display:flex; align-items:center; gap:22px; margin:24px 0 0; padding:22px 0 22px 22px;
+    border-top:1px solid var(--rule); border-left:2px solid var(--gold); text-decoration:none; color:inherit}
+  .laurel:hover{background:var(--hover)}
   .laurel .lcrest{flex-shrink:0; width:46px; height:46px}
-  .laurel .lk{font-size:10px; letter-spacing:1.4px; text-transform:uppercase; color:var(--gold); font-weight:700}
-  .laurel .lname{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:27px; line-height:1.05; margin-top:5px; color:var(--ink); letter-spacing:-.3px}
+  .laurel .lk{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); font-weight:600}
+  .laurel .lname{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:27px; line-height:1.05; margin-top:5px; color:var(--ink); letter-spacing:-.01em}
   .laurel .lname .lh{font-family:"Noto Serif KR",serif; font-size:19px; color:var(--ink2); font-weight:500; margin-left:9px}
   .laurel .lmeta{font-size:13px; color:var(--ink2); margin-top:5px}
   .laurel .lgo{margin-left:auto; color:var(--accent); font-size:13px; font-weight:600; white-space:nowrap}
 
-  /* grade breakdown chips */
+  /* grade breakdown chips — near-square, hairline only (no pill, no fill) */
   .gradechips{display:flex; flex-wrap:wrap; gap:9px; margin-top:6px}
-  .gchip{display:inline-flex; align-items:baseline; gap:7px; font-size:13px; color:var(--ink2); background:var(--panel2);
-    border:1px solid var(--rule); border-radius:20px; padding:5px 13px}
-  .gchip b{font-family:"Playfair Display",Georgia,serif; font-size:15px; color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums}
+  .gchip{display:inline-flex; align-items:baseline; gap:7px; font-size:13px; color:var(--ink2); background:transparent;
+    border:1px solid var(--rule2); border-radius:3px; padding:6px 13px}
+  .gchip b{font-family:"Source Serif 4",Georgia,serif; font-size:15px; color:var(--ink); font-weight:600;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .gchip .gkr{font-family:"Noto Serif KR",serif; color:var(--ink3); font-size:12px}
 
   /* roster / list tables */
   .tscroll{overflow-x:auto; -webkit-overflow-scrolling:touch} /* table keeps its scroll inside its own box at every width */
   table.dt{width:100%; border-collapse:collapse; margin:8px 0}
-  .dt th{font-size:10.5px; letter-spacing:1.3px; text-transform:uppercase; color:var(--ink3); font-weight:600;
-    text-align:left; padding:0 12px 11px; border-bottom:1px solid var(--rule2); white-space:nowrap}
-  .dt th.num,.dt td.num{text-align:right; font-variant-numeric:tabular-nums}
-  .dt td{padding:12px; border-bottom:1px solid var(--rule); vertical-align:middle}
-  .dt tbody tr:hover td{background:var(--panel2)}
+  /* header: uppercase tracked muted gray, one heavier hairline beneath */
+  .dt th{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600;
+    text-align:left; padding:0 12px 12px; border-bottom:1px solid var(--rule3); white-space:nowrap}
+  .dt th.num,.dt td.num{text-align:right; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  /* generous vertical row padding; horizontal hairline between rows only */
+  .dt td{padding:14px 12px; border-bottom:1px solid var(--rule); vertical-align:middle}
+  /* single faint full-row warm tint on hover */
+  .dt tbody tr:hover td{background:var(--hover)}
   .dt a{text-decoration:none; color:inherit}
   .dt .nm{font-weight:500; color:var(--ink)}
   .dt .nm .nh{font-family:"Noto Serif KR",serif; color:var(--ink3); font-size:13px; margin-left:7px; font-weight:500}
+  /* clan reference: navy is reserved, but the clan link is a key navigational
+     target across the rosters, so it keeps the accent */
   .dt .clan{color:var(--accent); font-weight:500}
   .dt .clan .ck{font-family:"Noto Serif KR",serif; color:var(--ink3); font-weight:500; font-size:13px; margin-left:5px}
   .dt .muted{color:var(--ink3)}
-  .dt .rnk{font-variant-numeric:tabular-nums; color:var(--ink2)}
+  .dt .rnk{color:var(--ink2); font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .dt .laur-dot{display:inline-block; font-size:11px; color:var(--gold); font-weight:700; margin-left:6px; letter-spacing:.4px}
   .dt .grd .gkr{font-family:"Noto Serif KR",serif; font-size:12px; color:var(--ink3); margin-left:5px}
 
-  /* person profile card */
-  .profile{max-width:640px; margin:30px auto 0; border:1px solid var(--rule2); border-radius:12px; background:var(--panel); overflow:hidden}
-  .profile-top{padding:34px 36px 28px; border-bottom:1px solid var(--rule); text-align:center}
+  /* person profile — heavy boxed card reduced to a restrained hairline frame
+     on ivory (no panel fill, near-square corners) */
+  .profile{max-width:640px; margin:34px auto 0; border:1px solid var(--rule2); border-radius:3px; overflow:hidden}
+  .profile-top{padding:36px 36px 30px; border-bottom:1px solid var(--rule3); text-align:center}
   .profile-crest{width:54px; height:54px; margin:0 auto 16px}
-  .profile .pkick{font-size:10.5px; letter-spacing:1.6px; text-transform:uppercase; color:var(--ink3); font-weight:600}
-  .profile .pname{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:46px; line-height:1; margin:12px 0 0; letter-spacing:-.5px; color:var(--ink)}
+  .profile .pkick{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  .profile .pname{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:46px; line-height:1; margin:12px 0 0; letter-spacing:-.01em; color:var(--ink)}
   .profile .phanja{font-family:"Noto Serif KR",serif; font-size:26px; color:var(--ink2); margin-top:10px; font-weight:500}
-  .profile .pbadge{display:inline-block; margin-top:16px; font-size:11px; letter-spacing:1.3px; text-transform:uppercase;
-    font-weight:700; color:var(--gold); border:1px solid var(--gold); border-radius:20px; padding:5px 15px}
+  /* posthumous badge: near-square, gold hairline */
+  .profile .pbadge{display:inline-block; margin-top:16px; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    font-weight:600; color:var(--gold); border:1px solid var(--gold); border-radius:3px; padding:5px 15px}
   .profile-body{padding:8px 36px 30px}
   .frow{display:flex; gap:18px; padding:15px 0; border-bottom:1px solid var(--rule); align-items:baseline}
   .frow:last-child{border-bottom:0}
-  .frow .fl{flex:0 0 132px; font-size:11px; letter-spacing:1.1px; text-transform:uppercase; color:var(--ink3); font-weight:600; padding-top:2px}
+  .frow .fl{flex:0 0 132px; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600; padding-top:2px}
   .frow .fv{flex:1; font-size:15.5px; color:var(--ink)}
   .frow .fv .kr{font-family:"Noto Serif KR",serif}
   .frow .fv a{color:var(--accent); text-decoration:none; font-weight:500}
@@ -218,7 +261,7 @@
   .altnames{display:flex; gap:0; flex-wrap:wrap; border-top:1px solid var(--rule); margin-top:0}
   .altnames .an{flex:1 1 0; min-width:33%; padding:13px 0; text-align:center; border-left:1px solid var(--rule)}
   .altnames .an:first-child{border-left:0}
-  .altnames .anl{font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  .altnames .anl{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
   .altnames .anv{font-family:"Noto Serif KR",serif; font-size:18px; color:var(--ink); margin-top:5px; font-weight:500}
   .altnames .anv .anr{display:block; font-family:"Inter",sans-serif; font-size:11px; color:var(--ink3); margin-top:2px; letter-spacing:.3px}
 
@@ -227,72 +270,78 @@
   .stepwrap{margin-top:4px}
   .step{display:flex; align-items:center; gap:14px; margin-bottom:13px}
   .step .sl{flex:0 0 92px; font-size:12px; color:var(--ink2); font-weight:500}
-  .step .sbar{flex:1; height:11px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
+  .step .sbar{flex:1; height:9px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
   .step .sbar span{display:block; height:100%; background:var(--accent2); border-radius:2px}
-  .step .sv{flex:0 0 56px; text-align:right; font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:16px; color:var(--ink); font-variant-numeric:tabular-nums}
+  .step .sv{flex:0 0 56px; text-align:right; font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:16px; color:var(--ink);
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .histwrap{margin-top:6px}
   .hist{display:flex; align-items:flex-end; gap:1px; height:150px; border-bottom:1px solid var(--rule2)}
   .hist .hb{flex:1 1 0; background:var(--accent-bg); border-radius:1px 1px 0 0; min-width:0; position:relative}
   .hist .hb.hi{background:var(--accent)}
-  .histx{display:flex; justify-content:space-between; font-size:11px; color:var(--ink3); margin-top:7px; letter-spacing:.4px}
+  .histx{display:flex; justify-content:space-between; font-size:11px; color:var(--ink3); margin-top:7px; letter-spacing:.4px;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .histcap{font-size:12.5px; color:var(--ink3); margin-top:12px; line-height:1.55}
   .barlist{margin-top:4px}
-  .blrow{margin-bottom:14px}
+  .blrow{margin-bottom:16px}
   .blrow .bltop{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:6px; font-size:13.5px}
   .blrow .bln{color:var(--ink); font-weight:500}
   .blrow .bln .blk{font-family:"Noto Serif KR",serif; color:var(--ink3); font-size:12px; margin-left:6px; font-weight:500}
   .blrow .blg{font-size:12px; color:var(--ink3); margin-top:2px; max-width:62ch}
-  .blrow .blp{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:16px; color:var(--ink); flex-shrink:0; font-variant-numeric:tabular-nums}
-  .blrow .blbar{height:11px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
+  .blrow .blp{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:16px; color:var(--ink); flex-shrink:0;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .blrow .blbar{height:9px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
   .blrow .blbar span{display:block; height:100%; background:var(--accent); border-radius:2px}
 
   /* mini period bars (clan profile) */
   .periodbars{display:flex; align-items:flex-end; gap:3px; height:96px; margin-top:6px; border-bottom:1px solid var(--rule2)}
   .periodbars .pbcol{flex:1 1 0; background:var(--accent-bg); border-radius:1px 1px 0 0; min-width:0}
   .periodbars .pbcol.on{background:var(--accent)}
-  .periodx{display:flex; justify-content:space-between; font-size:11px; color:var(--ink3); margin-top:7px}
+  .periodx{display:flex; justify-content:space-between; font-size:11px; color:var(--ink3); margin-top:7px;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
 
   /* filter / control bar */
-  .controls{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:24px 0 4px}
+  .controls{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:28px 0 4px}
   .controls .ctlsearch{position:relative; flex:1 1 240px; min-width:200px}
   .controls input[type=text]{font-family:inherit; font-size:14px; color:var(--ink); background:var(--panel); border:1px solid var(--rule2);
-    border-radius:8px; padding:9px 13px; width:100%}
+    border-radius:3px; padding:9px 13px; width:100%}
   .controls input[type=text]:focus{outline:none; border-color:var(--accent2)}
   .controls input::placeholder{color:var(--ink3)}
   .controls select{font-family:inherit; font-size:13px; color:var(--ink); background:var(--panel); border:1px solid var(--rule2);
-    border-radius:8px; padding:9px 30px 9px 13px; -webkit-appearance:none; appearance:none; cursor:pointer;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%237e838f'/></svg>");
+    border-radius:3px; padding:9px 30px 9px 13px; -webkit-appearance:none; appearance:none; cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%238b8579'/></svg>");
     background-repeat:no-repeat; background-position:right 12px center}
   .controls select:focus{outline:none; border-color:var(--accent2)}
   .chipfilter{display:flex; flex-wrap:wrap; gap:6px}
-  .chipfilter button{font-family:inherit; font-size:12px; font-weight:500; color:var(--ink2); background:var(--panel);
-    border:1px solid var(--rule2); border-radius:20px; padding:6px 13px; cursor:pointer; white-space:nowrap}
+  .chipfilter button{font-family:inherit; font-size:12px; font-weight:500; color:var(--ink2); background:transparent;
+    border:1px solid var(--rule2); border-radius:3px; padding:6px 13px; cursor:pointer; white-space:nowrap}
   .chipfilter button:hover{border-color:var(--accent2); color:var(--ink)}
-  .chipfilter button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
-  .resultcount{font-size:12.5px; color:var(--ink3); margin:18px 0 2px; letter-spacing:.2px}
-  .resultcount b{color:var(--ink2); font-weight:600; font-variant-numeric:tabular-nums}
+  /* active filter is one of the reserved navy moments */
+  .chipfilter button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--bg); font-weight:600}
+  .resultcount{font-size:12.5px; color:var(--ink3); margin:20px 0 2px; letter-spacing:.2px}
+  .resultcount b{color:var(--ink2); font-weight:600; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
 
   /* cohort index: king groups */
-  .kgroup{padding:30px 0 6px; border-bottom:1px solid var(--rule)}
+  .kgroup{padding:38px 0 8px; border-bottom:1px solid var(--rule)}
   .kgroup:last-of-type{border-bottom:0}
   .khead{display:flex; align-items:baseline; gap:14px; margin-bottom:6px}
-  .khead .kname{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:23px; letter-spacing:-.2px; color:var(--ink)}
+  .khead .kname{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:23px; letter-spacing:-.01em; color:var(--ink)}
   .khead .kname .kkr{font-family:"Noto Serif KR",serif; font-size:16px; color:var(--ink3); margin-left:9px; font-weight:500}
-  .khead .kreign{font-size:12px; color:var(--ink3); letter-spacing:.4px; font-variant-numeric:tabular-nums}
+  .khead .kreign{font-size:12px; color:var(--ink3); letter-spacing:.4px; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
   .khead .kn{margin-left:auto; font-size:12px; color:var(--ink3); letter-spacing:.3px}
-  .khead .kn b{font-family:"Playfair Display",Georgia,serif; color:var(--ink2); font-size:15px; font-weight:600; font-variant-numeric:tabular-nums}
+  .khead .kn b{font-family:"Source Serif 4",Georgia,serif; color:var(--ink2); font-size:15px; font-weight:600;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
 
-  /* show-more */
+  /* show-more — near-square, hairline only (no panel fill) */
   .showmore{display:block; width:100%; font-family:inherit; font-size:13px; font-weight:600; letter-spacing:.3px; color:var(--accent);
-    background:var(--panel); border:1px solid var(--rule2); border-radius:9px; padding:13px; cursor:pointer; margin-top:14px}
-  .showmore:hover{background:var(--panel2); border-color:var(--accent2)}
+    background:transparent; border:1px solid var(--rule2); border-radius:3px; padding:13px; cursor:pointer; margin-top:16px}
+  .showmore:hover{background:var(--hover); border-color:var(--accent2)}
 
-  /* methodology / about disclosure */
-  .about{margin:26px 0 0; border:1px solid var(--rule); border-radius:10px; background:var(--panel); overflow:hidden}
+  /* methodology / about disclosure — near-square hairline frame, no fill */
+  .about{margin:30px 0 0; border:1px solid var(--rule); border-radius:3px; overflow:hidden}
   .about > summary{list-style:none; cursor:pointer; padding:16px 22px; font-size:13px; font-weight:600; letter-spacing:.4px;
     color:var(--ink); display:flex; align-items:center; gap:10px}
   .about > summary::-webkit-details-marker{display:none}
-  .about > summary .akick{font-size:10.5px; letter-spacing:1.4px; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  .about > summary .akick{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
   .about > summary .achev{margin-left:auto; color:var(--ink3); transition:transform .18s}
   .about[open] > summary .achev{transform:rotate(180deg)}
   .about-body{padding:4px 22px 22px; font-size:13.5px; color:var(--ink2); line-height:1.65; max-width:74ch}
@@ -306,14 +355,14 @@
   .empty .ekr{font-family:"Noto Serif KR",serif; font-size:34px; color:var(--rule2); display:block; margin-bottom:14px}
   .empty a{color:var(--accent); text-decoration:none; font-weight:600}
 
-  /* notable alumni list */
+  /* notable alumni list — near-square, hairline only */
   .notable{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
   .notable a{display:inline-flex; align-items:baseline; gap:7px; font-size:13.5px; color:var(--ink); text-decoration:none;
-    background:var(--panel2); border:1px solid var(--rule); border-radius:7px; padding:7px 13px}
-  .notable a:hover{border-color:var(--accent2); background:var(--panel)}
+    background:transparent; border:1px solid var(--rule2); border-radius:3px; padding:7px 13px}
+  .notable a:hover{border-color:var(--accent2); background:var(--hover)}
   .notable a .nak{font-family:"Noto Serif KR",serif; font-size:12px; color:var(--ink3)}
   .notable a .natag{font-size:10px; letter-spacing:.6px; text-transform:uppercase; color:var(--gold); font-weight:700}
-  .subhead{font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:17px; color:var(--ink); margin:26px 0 12px; letter-spacing:-.1px}
+  .subhead{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:17px; color:var(--ink); margin:30px 0 14px; letter-spacing:-.01em}
 
   /* note line (clan dry note, etc.) */
   .drynote{font-size:14px; color:var(--ink2); line-height:1.6; margin:14px 0 0; max-width:66ch; font-style:italic}
@@ -662,11 +711,12 @@ function viewOverview(){
     '<header class="mast">'
     + crestSvg('seal')
     + '<div class="mast-tx">'
-      + '<div class="kick">Admissions &middot; Rankings &middot; Class profiles</div>'
+      + '<div class="kick">Admissions &middot; Rankings &middot; Class profiles &middot; Est. 1393</div>'
       + '<h1 class="serif">The Joseon Review</h1>'
-      + '<p class="dek">The Joseon Civil Service Examination, ranked and profiled. The realm’s most selective path to office, by the numbers.</p>'
+      + '<p class="dek">The 500-year national examination that chose Joseon’s officials, ranked and profiled from the surviving record of all 15,151 who passed.</p>'
+      + '<p class="whatis">Every figure here is real. The records are the full roster of Joseon civil-service graduates held by the Academy of Korean Studies; only the framing as a rankings institution is new.</p>'
       + '<div class="estbar"><span class="est">Established '+m.yearMin+'</span>'
-        + '<span class="kick" style="letter-spacing:1.4px">Final class '+m.yearMax+'</span></div>'
+        + '<span class="kick" style="letter-spacing:.12em">Final class '+m.yearMax+'</span></div>'
     + '</div></header>'
     + '<div class="dbl-rule"></div>'
 
@@ -682,7 +732,7 @@ function viewOverview(){
     // selectivity chart
     + '<section><div class="sec-h">'
       + '<div><div class="kick">Selectivity</div><h2 class="serif">Class size by generation</h2>'
-        + '<div class="sub">Students admitted to the civil examination, per 25-year period.</div></div>'
+        + '<div class="sub">Five centuries of the examination, read from the record of all 15,151 who passed.</div></div>'
       + '<a class="seemore" href="#/trends">Full trends</a></div>'
       + '<div class="chartwrap"><svg class="chart" id="ov-chart" viewBox="0 0 1000 210" preserveAspectRatio="none" aria-hidden="true"></svg>'
         + '<div class="xlabels"><span>1393</span><span>1500</span><span>1600</span><span>1700</span><span>1800</span><span>1894</span></div></div>'
@@ -693,7 +743,7 @@ function viewOverview(){
     // feeders league
     + '<section><div class="sec-h">'
       + '<div><div class="kick">Feeders</div><h2 class="serif">Most-represented clans</h2>'
-        + '<div class="sub">Clan seats (성관) ranked by total students admitted, '+m.yearMin+' to '+m.yearMax+'.</div></div>'
+        + '<div class="sub">The clan seats that produced the most officials, ranked across the full five centuries.</div></div>'
       + '<a class="seemore" href="#/feeders">All '+fmt(DATA.feeders.length)+' clans</a></div>'
       + '<table class="league"><thead><tr><th>Rank</th><th>Clan</th><th class="num">Admits</th><th>Share of all admits</th></tr></thead>'
         + '<tbody>'+leagueRows+'</tbody></table>'
@@ -887,7 +937,8 @@ function viewCohort(id){
     + '<div class="kick">'+esc(typeLabel)+' &middot; reign of '+esc(kingRom(c.king))+'</div>'
     + '<h1 class="ph-title serif">Class of '+c.y+'</h1>'
     + '<p class="ph-sub">'+esc(examEnName(c.name))+' <span class="kr">('+esc(c.name)+')</span>'
-      + (ex&&ex.gloss?'. '+esc(ex.gloss):'')+'</p>'
+      + (ex&&ex.gloss?'. '+esc(ex.gloss)+' ':'. ')
+      + 'The officials admitted in this sitting, listed by grade, as the realm recorded them.</p>'
 
     // stat strip
     + '<div class="statstrip">'
@@ -1274,8 +1325,7 @@ function viewTrends(){
   var html =
     '<div class="pagehead"><div class="crumb"><a href="#/">Overview</a><span class="sep">/</span>Trends</div>'
     + '<h1 class="ph-title serif">By the numbers</h1>'
-    + '<p class="ph-sub">Five centuries of admissions, read from '+fmt(DATA.meta.total)+' records across '
-      + fmt(DATA.meta.sittings)+' sittings.</p></div>'
+    + '<p class="ph-sub">How the class grew: the triennial exam held thirty-three for five centuries while special sittings widened the field.</p></div>'
 
     // selectivity
     + '<section style="border-top:1px solid var(--rule); margin-top:22px"><div class="sec-h">'
