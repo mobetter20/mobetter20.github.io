@@ -24,7 +24,7 @@ SRC = HERE / "_raw" / "munkwa.xml"
 OUT = HERE / "data.json"
 
 GENERATED = "2026-06-06"
-SOURCE = ("한국학중앙연구원 (Academy of Korean Studies) — 조선조문과급제자, "
+SOURCE = ("한국학중앙연구원 (Academy of Korean Studies), 조선조문과급제자, "
           "data.go.kr dataset 15052752")
 
 # Compound (2-character) Korean surnames: take two chars for the surname.

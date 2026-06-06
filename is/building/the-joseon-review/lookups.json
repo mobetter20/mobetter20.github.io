@@ -5,149 +5,1240 @@
     "primary_source": "Roster of civil-examination passers (munkwa-bangmok, 문과방목), Academy of Korean Studies, released via data.go.kr. Distinct values for clans, exams, reigns, and grades were read off the 15,151-record dataset.",
     "english_place_names": "For county-level clan seats no distinct English exonym is in common use, so the 'en' field repeats the romanization. It differs only where a settled English spelling exists."
   },
-
   "clans": {
-    "전주": {"rom": "Jeonju", "en": "Jeonju"},
-    "경주": {"rom": "Gyeongju", "en": "Gyeongju"},
-    "연안": {"rom": "Yeonan", "en": "Yeonan"},
-    "안동": {"rom": "Andong", "en": "Andong"},
-    "청주": {"rom": "Cheongju", "en": "Cheongju"},
-    "파평": {"rom": "Papyeong", "en": "Papyeong"},
-    "밀양": {"rom": "Miryang", "en": "Miryang"},
-    "남양": {"rom": "Namyang", "en": "Namyang"},
-    "광산": {"rom": "Gwangsan", "en": "Gwangsan"},
-    "진주": {"rom": "Jinju", "en": "Jinju"},
-    "광주": {"rom": "Gwangju", "en": "Gwangju"},
-    "창녕": {"rom": "Changnyeong", "en": "Changnyeong"},
-    "여흥": {"rom": "Yeoheung", "en": "Yeoheung"},
-    "해주": {"rom": "Haeju", "en": "Haeju"},
-    "풍산": {"rom": "Pungsan", "en": "Pungsan"},
-    "청송": {"rom": "Cheongsong", "en": "Cheongsong"},
-    "한산": {"rom": "Hansan", "en": "Hansan"},
-    "반남": {"rom": "Bannam", "en": "Bannam"},
-    "동래": {"rom": "Dongnae", "en": "Dongnae"},
-    "평산": {"rom": "Pyeongsan", "en": "Pyeongsan"},
-    "전의": {"rom": "Jeonui", "en": "Jeonui"},
-    "풍양": {"rom": "Pungyang", "en": "Pungyang"},
-    "풍천": {"rom": "Pungcheon", "en": "Pungcheon"},
-    "나주": {"rom": "Naju", "en": "Naju"},
-    "의령": {"rom": "Uiryeong", "en": "Uiryeong"},
-    "고령": {"rom": "Goryeong", "en": "Goryeong"},
-    "강릉": {"rom": "Gangneung", "en": "Gangneung"},
-    "김해": {"rom": "Gimhae", "en": "Gimhae"},
-    "대구": {"rom": "Daegu", "en": "Daegu"},
-    "문화": {"rom": "Munhwa", "en": "Munhwa"},
-    "남원": {"rom": "Namwon", "en": "Namwon"},
-    "해평": {"rom": "Haepyeong", "en": "Haepyeong"},
-    "순흥": {"rom": "Sunheung", "en": "Sunheung"},
-    "양주": {"rom": "Yangju", "en": "Yangju"},
-    "영일": {"rom": "Yeongil", "en": "Yeongil"},
-    "덕수": {"rom": "Deoksu", "en": "Deoksu"},
-    "여주": {"rom": "Yeoju", "en": "Yeoju"},
-    "창원": {"rom": "Changwon", "en": "Changwon"},
-    "함양": {"rom": "Hamyang", "en": "Hamyang"},
-    "원주": {"rom": "Wonju", "en": "Wonju"},
-    "양천": {"rom": "Yangcheon", "en": "Yangcheon"},
-    "여산": {"rom": "Yeosan", "en": "Yeosan"},
-    "청풍": {"rom": "Cheongpung", "en": "Cheongpung"},
-    "의성": {"rom": "Uiseong", "en": "Uiseong"},
-    "성주": {"rom": "Seongju", "en": "Seongju"},
-    "진양": {"rom": "Jinyang", "en": "Jinyang"},
-    "수원": {"rom": "Suwon", "en": "Suwon"},
-    "한양": {"rom": "Hanyang", "en": "Hanyang"},
-    "순천": {"rom": "Suncheon", "en": "Suncheon"},
-    "기계": {"rom": "Gigye", "en": "Gigye"},
-    "용인": {"rom": "Yongin", "en": "Yongin"},
-    "함평": {"rom": "Hampyeong", "en": "Hampyeong"},
-    "은진": {"rom": "Eunjin", "en": "Eunjin"},
-    "선산": {"rom": "Seonsan", "en": "Seonsan"},
-    "초계": {"rom": "Chogye", "en": "Chogye"},
-    "배천": {"rom": "Baecheon", "en": "Baecheon"},
-    "충주": {"rom": "Chungju", "en": "Chungju"},
-    "상산": {"rom": "Sangsan", "en": "Sangsan"},
-    "하동": {"rom": "Hadong", "en": "Hadong"},
-    "단양": {"rom": "Danyang", "en": "Danyang"},
-    "진성": {"rom": "Jinseong", "en": "Jinseong"},
-    "고성": {"rom": "Goseong", "en": "Goseong"},
-    "능성": {"rom": "Neungseong", "en": "Neungseong"},
-    "인동": {"rom": "Indong", "en": "Indong"},
-    "함안": {"rom": "Haman", "en": "Haman"},
-    "온양": {"rom": "Onyang", "en": "Onyang"},
-    "장흥": {"rom": "Jangheung", "en": "Jangheung"},
-    "우봉": {"rom": "Ubong", "en": "Ubong"},
-    "벽진": {"rom": "Byeokjin", "en": "Byeokjin"},
-    "예안": {"rom": "Yean", "en": "Yean"},
-    "영산": {"rom": "Yeongsan", "en": "Yeongsan"},
-    "제주": {"rom": "Jeju", "en": "Jeju"},
-    "장수": {"rom": "Jangsu", "en": "Jangsu"},
-    "영천": {"rom": "Yeongcheon", "en": "Yeongcheon"},
-    "진천": {"rom": "Jincheon", "en": "Jincheon"},
-    "평강": {"rom": "Pyeonggang", "en": "Pyeonggang"},
-    "남평": {"rom": "Nampyeong", "en": "Nampyeong"},
-    "성산": {"rom": "Seongsan", "en": "Seongsan"},
-    "임천": {"rom": "Imcheon", "en": "Imcheon"},
-    "죽산": {"rom": "Juksan", "en": "Juksan"},
-    "양성": {"rom": "Yangseong", "en": "Yangseong"},
-    "개성": {"rom": "Gaeseong", "en": "Gaeseong"},
-    "거창": {"rom": "Geochang", "en": "Geochang"},
-    "평해": {"rom": "Pyeonghae", "en": "Pyeonghae"},
-    "현풍": {"rom": "Hyeonpung", "en": "Hyeonpung"},
-    "보성": {"rom": "Boseong", "en": "Boseong"},
-    "삭녕": {"rom": "Sangnyeong", "en": "Sangnyeong"},
-    "수안": {"rom": "Suan", "en": "Suan"},
-    "사천": {"rom": "Sacheon", "en": "Sacheon"},
-    "동복": {"rom": "Dongbok", "en": "Dongbok"},
-    "부평": {"rom": "Bupyeong", "en": "Bupyeong"},
-    "평양": {"rom": "Pyeongyang", "en": "Pyongyang"},
-    "인천": {"rom": "Incheon", "en": "Incheon"},
-    "언양": {"rom": "Eonyang", "en": "Eonyang"},
-    "영월": {"rom": "Yeongwol", "en": "Yeongwol"},
-    "영양": {"rom": "Yeongyang", "en": "Yeongyang"},
-    "부령": {"rom": "Buryeong", "en": "Buryeong"},
-    "평창": {"rom": "Pyeongchang", "en": "Pyeongchang"},
-    "행주": {"rom": "Haengju", "en": "Haengju"},
-    "칠원": {"rom": "Chirwon", "en": "Chirwon"},
-    "화순": {"rom": "Hwasun", "en": "Hwasun"},
-    "공주": {"rom": "Gongju", "en": "Gongju"},
-    "강화": {"rom": "Ganghwa", "en": "Ganghwa"},
-    "순창": {"rom": "Sunchang", "en": "Sunchang"},
-    "신천": {"rom": "Sincheon", "en": "Sincheon"},
-    "울산": {"rom": "Ulsan", "en": "Ulsan"},
-    "고흥": {"rom": "Goheung", "en": "Goheung"},
-    "함종": {"rom": "Hamjong", "en": "Hamjong"},
-    "이천": {"rom": "Icheon", "en": "Icheon"},
-    "무안": {"rom": "Muan", "en": "Muan"},
-    "홍주": {"rom": "Hongju", "en": "Hongju"},
-    "봉화": {"rom": "Bonghwa", "en": "Bonghwa"},
-    "신창": {"rom": "Sinchang", "en": "Sinchang"},
-    "상주": {"rom": "Sangju", "en": "Sangju"},
-    "평택": {"rom": "Pyeongtaek", "en": "Pyeongtaek"},
-    "삼척": {"rom": "Samcheok", "en": "Samcheok"},
-    "무송": {"rom": "Musong", "en": "Musong"},
-    "교하": {"rom": "Gyoha", "en": "Gyoha"},
-    "해남": {"rom": "Haenam", "en": "Haenam"},
-    "야로": {"rom": "Yaro", "en": "Yaro"},
-    "덕산": {"rom": "Deoksan", "en": "Deoksan"},
-    "영광": {"rom": "Yeonggwang", "en": "Yeonggwang"},
-    "함열": {"rom": "Hamyeol", "en": "Hamyeol"},
-    "탐진": {"rom": "Tamjin", "en": "Tamjin"},
-    "담양": {"rom": "Damyang", "en": "Damyang"},
-    "신평": {"rom": "Sinpyeong", "en": "Sinpyeong"},
-    "안정": {"rom": "Anjeong", "en": "Anjeong"},
-    "황주": {"rom": "Hwangju", "en": "Hwangju"},
-    "하양": {"rom": "Hayang", "en": "Hayang"},
-    "재령": {"rom": "Jaeryeong", "en": "Jaeryeong"},
-    "흥해": {"rom": "Heunghae", "en": "Heunghae"},
-    "우계": {"rom": "Ugye", "en": "Ugye"},
-    "서산": {"rom": "Seosan", "en": "Seosan"},
-    "흥덕": {"rom": "Heungdeok", "en": "Heungdeok"},
-    "여양": {"rom": "Yeoyang", "en": "Yeoyang"},
-    "안산": {"rom": "Ansan", "en": "Ansan"},
-    "예천": {"rom": "Yecheon", "en": "Yecheon"},
-    "합천": {"rom": "Hapcheon", "en": "Hapcheon"},
-    "곡산": {"rom": "Goksan", "en": "Goksan"}
+    "전주": {
+      "rom": "Jeonju",
+      "en": "Jeonju"
+    },
+    "경주": {
+      "rom": "Gyeongju",
+      "en": "Gyeongju"
+    },
+    "연안": {
+      "rom": "Yeonan",
+      "en": "Yeonan"
+    },
+    "안동": {
+      "rom": "Andong",
+      "en": "Andong"
+    },
+    "청주": {
+      "rom": "Cheongju",
+      "en": "Cheongju"
+    },
+    "파평": {
+      "rom": "Papyeong",
+      "en": "Papyeong"
+    },
+    "밀양": {
+      "rom": "Miryang",
+      "en": "Miryang"
+    },
+    "남양": {
+      "rom": "Namyang",
+      "en": "Namyang"
+    },
+    "광산": {
+      "rom": "Gwangsan",
+      "en": "Gwangsan"
+    },
+    "진주": {
+      "rom": "Jinju",
+      "en": "Jinju"
+    },
+    "광주": {
+      "rom": "Gwangju",
+      "en": "Gwangju"
+    },
+    "창녕": {
+      "rom": "Changnyeong",
+      "en": "Changnyeong"
+    },
+    "여흥": {
+      "rom": "Yeoheung",
+      "en": "Yeoheung"
+    },
+    "해주": {
+      "rom": "Haeju",
+      "en": "Haeju"
+    },
+    "풍산": {
+      "rom": "Pungsan",
+      "en": "Pungsan"
+    },
+    "청송": {
+      "rom": "Cheongsong",
+      "en": "Cheongsong"
+    },
+    "한산": {
+      "rom": "Hansan",
+      "en": "Hansan"
+    },
+    "반남": {
+      "rom": "Bannam",
+      "en": "Bannam"
+    },
+    "동래": {
+      "rom": "Dongnae",
+      "en": "Dongnae"
+    },
+    "평산": {
+      "rom": "Pyeongsan",
+      "en": "Pyeongsan"
+    },
+    "전의": {
+      "rom": "Jeonui",
+      "en": "Jeonui"
+    },
+    "풍양": {
+      "rom": "Pungyang",
+      "en": "Pungyang"
+    },
+    "풍천": {
+      "rom": "Pungcheon",
+      "en": "Pungcheon"
+    },
+    "나주": {
+      "rom": "Naju",
+      "en": "Naju"
+    },
+    "의령": {
+      "rom": "Uiryeong",
+      "en": "Uiryeong"
+    },
+    "고령": {
+      "rom": "Goryeong",
+      "en": "Goryeong"
+    },
+    "강릉": {
+      "rom": "Gangneung",
+      "en": "Gangneung"
+    },
+    "김해": {
+      "rom": "Gimhae",
+      "en": "Gimhae"
+    },
+    "대구": {
+      "rom": "Daegu",
+      "en": "Daegu"
+    },
+    "문화": {
+      "rom": "Munhwa",
+      "en": "Munhwa"
+    },
+    "남원": {
+      "rom": "Namwon",
+      "en": "Namwon"
+    },
+    "해평": {
+      "rom": "Haepyeong",
+      "en": "Haepyeong"
+    },
+    "순흥": {
+      "rom": "Sunheung",
+      "en": "Sunheung"
+    },
+    "양주": {
+      "rom": "Yangju",
+      "en": "Yangju"
+    },
+    "영일": {
+      "rom": "Yeongil",
+      "en": "Yeongil"
+    },
+    "덕수": {
+      "rom": "Deoksu",
+      "en": "Deoksu"
+    },
+    "여주": {
+      "rom": "Yeoju",
+      "en": "Yeoju"
+    },
+    "창원": {
+      "rom": "Changwon",
+      "en": "Changwon"
+    },
+    "함양": {
+      "rom": "Hamyang",
+      "en": "Hamyang"
+    },
+    "원주": {
+      "rom": "Wonju",
+      "en": "Wonju"
+    },
+    "양천": {
+      "rom": "Yangcheon",
+      "en": "Yangcheon"
+    },
+    "여산": {
+      "rom": "Yeosan",
+      "en": "Yeosan"
+    },
+    "청풍": {
+      "rom": "Cheongpung",
+      "en": "Cheongpung"
+    },
+    "의성": {
+      "rom": "Uiseong",
+      "en": "Uiseong"
+    },
+    "성주": {
+      "rom": "Seongju",
+      "en": "Seongju"
+    },
+    "진양": {
+      "rom": "Jinyang",
+      "en": "Jinyang"
+    },
+    "수원": {
+      "rom": "Suwon",
+      "en": "Suwon"
+    },
+    "한양": {
+      "rom": "Hanyang",
+      "en": "Hanyang"
+    },
+    "순천": {
+      "rom": "Suncheon",
+      "en": "Suncheon"
+    },
+    "기계": {
+      "rom": "Gigye",
+      "en": "Gigye"
+    },
+    "용인": {
+      "rom": "Yongin",
+      "en": "Yongin"
+    },
+    "함평": {
+      "rom": "Hampyeong",
+      "en": "Hampyeong"
+    },
+    "은진": {
+      "rom": "Eunjin",
+      "en": "Eunjin"
+    },
+    "선산": {
+      "rom": "Seonsan",
+      "en": "Seonsan"
+    },
+    "초계": {
+      "rom": "Chogye",
+      "en": "Chogye"
+    },
+    "배천": {
+      "rom": "Baecheon",
+      "en": "Baecheon"
+    },
+    "충주": {
+      "rom": "Chungju",
+      "en": "Chungju"
+    },
+    "상산": {
+      "rom": "Sangsan",
+      "en": "Sangsan"
+    },
+    "하동": {
+      "rom": "Hadong",
+      "en": "Hadong"
+    },
+    "단양": {
+      "rom": "Danyang",
+      "en": "Danyang"
+    },
+    "진성": {
+      "rom": "Jinseong",
+      "en": "Jinseong"
+    },
+    "고성": {
+      "rom": "Goseong",
+      "en": "Goseong"
+    },
+    "능성": {
+      "rom": "Neungseong",
+      "en": "Neungseong"
+    },
+    "인동": {
+      "rom": "Indong",
+      "en": "Indong"
+    },
+    "함안": {
+      "rom": "Haman",
+      "en": "Haman"
+    },
+    "온양": {
+      "rom": "Onyang",
+      "en": "Onyang"
+    },
+    "장흥": {
+      "rom": "Jangheung",
+      "en": "Jangheung"
+    },
+    "우봉": {
+      "rom": "Ubong",
+      "en": "Ubong"
+    },
+    "벽진": {
+      "rom": "Byeokjin",
+      "en": "Byeokjin"
+    },
+    "예안": {
+      "rom": "Yean",
+      "en": "Yean"
+    },
+    "영산": {
+      "rom": "Yeongsan",
+      "en": "Yeongsan"
+    },
+    "제주": {
+      "rom": "Jeju",
+      "en": "Jeju"
+    },
+    "장수": {
+      "rom": "Jangsu",
+      "en": "Jangsu"
+    },
+    "영천": {
+      "rom": "Yeongcheon",
+      "en": "Yeongcheon"
+    },
+    "진천": {
+      "rom": "Jincheon",
+      "en": "Jincheon"
+    },
+    "평강": {
+      "rom": "Pyeonggang",
+      "en": "Pyeonggang"
+    },
+    "남평": {
+      "rom": "Nampyeong",
+      "en": "Nampyeong"
+    },
+    "성산": {
+      "rom": "Seongsan",
+      "en": "Seongsan"
+    },
+    "임천": {
+      "rom": "Imcheon",
+      "en": "Imcheon"
+    },
+    "죽산": {
+      "rom": "Juksan",
+      "en": "Juksan"
+    },
+    "양성": {
+      "rom": "Yangseong",
+      "en": "Yangseong"
+    },
+    "개성": {
+      "rom": "Gaeseong",
+      "en": "Gaeseong"
+    },
+    "거창": {
+      "rom": "Geochang",
+      "en": "Geochang"
+    },
+    "평해": {
+      "rom": "Pyeonghae",
+      "en": "Pyeonghae"
+    },
+    "현풍": {
+      "rom": "Hyeonpung",
+      "en": "Hyeonpung"
+    },
+    "보성": {
+      "rom": "Boseong",
+      "en": "Boseong"
+    },
+    "삭녕": {
+      "rom": "Sangnyeong",
+      "en": "Sangnyeong"
+    },
+    "수안": {
+      "rom": "Suan",
+      "en": "Suan"
+    },
+    "사천": {
+      "rom": "Sacheon",
+      "en": "Sacheon"
+    },
+    "동복": {
+      "rom": "Dongbok",
+      "en": "Dongbok"
+    },
+    "부평": {
+      "rom": "Bupyeong",
+      "en": "Bupyeong"
+    },
+    "평양": {
+      "rom": "Pyeongyang",
+      "en": "Pyongyang"
+    },
+    "인천": {
+      "rom": "Incheon",
+      "en": "Incheon"
+    },
+    "언양": {
+      "rom": "Eonyang",
+      "en": "Eonyang"
+    },
+    "영월": {
+      "rom": "Yeongwol",
+      "en": "Yeongwol"
+    },
+    "영양": {
+      "rom": "Yeongyang",
+      "en": "Yeongyang"
+    },
+    "부령": {
+      "rom": "Buryeong",
+      "en": "Buryeong"
+    },
+    "평창": {
+      "rom": "Pyeongchang",
+      "en": "Pyeongchang"
+    },
+    "행주": {
+      "rom": "Haengju",
+      "en": "Haengju"
+    },
+    "칠원": {
+      "rom": "Chirwon",
+      "en": "Chirwon"
+    },
+    "화순": {
+      "rom": "Hwasun",
+      "en": "Hwasun"
+    },
+    "공주": {
+      "rom": "Gongju",
+      "en": "Gongju"
+    },
+    "강화": {
+      "rom": "Ganghwa",
+      "en": "Ganghwa"
+    },
+    "순창": {
+      "rom": "Sunchang",
+      "en": "Sunchang"
+    },
+    "신천": {
+      "rom": "Sincheon",
+      "en": "Sincheon"
+    },
+    "울산": {
+      "rom": "Ulsan",
+      "en": "Ulsan"
+    },
+    "고흥": {
+      "rom": "Goheung",
+      "en": "Goheung"
+    },
+    "함종": {
+      "rom": "Hamjong",
+      "en": "Hamjong"
+    },
+    "이천": {
+      "rom": "Icheon",
+      "en": "Icheon"
+    },
+    "무안": {
+      "rom": "Muan",
+      "en": "Muan"
+    },
+    "홍주": {
+      "rom": "Hongju",
+      "en": "Hongju"
+    },
+    "봉화": {
+      "rom": "Bonghwa",
+      "en": "Bonghwa"
+    },
+    "신창": {
+      "rom": "Sinchang",
+      "en": "Sinchang"
+    },
+    "상주": {
+      "rom": "Sangju",
+      "en": "Sangju"
+    },
+    "평택": {
+      "rom": "Pyeongtaek",
+      "en": "Pyeongtaek"
+    },
+    "삼척": {
+      "rom": "Samcheok",
+      "en": "Samcheok"
+    },
+    "무송": {
+      "rom": "Musong",
+      "en": "Musong"
+    },
+    "교하": {
+      "rom": "Gyoha",
+      "en": "Gyoha"
+    },
+    "해남": {
+      "rom": "Haenam",
+      "en": "Haenam"
+    },
+    "야로": {
+      "rom": "Yaro",
+      "en": "Yaro"
+    },
+    "덕산": {
+      "rom": "Deoksan",
+      "en": "Deoksan"
+    },
+    "영광": {
+      "rom": "Yeonggwang",
+      "en": "Yeonggwang"
+    },
+    "함열": {
+      "rom": "Hamyeol",
+      "en": "Hamyeol"
+    },
+    "탐진": {
+      "rom": "Tamjin",
+      "en": "Tamjin"
+    },
+    "담양": {
+      "rom": "Damyang",
+      "en": "Damyang"
+    },
+    "신평": {
+      "rom": "Sinpyeong",
+      "en": "Sinpyeong"
+    },
+    "안정": {
+      "rom": "Anjeong",
+      "en": "Anjeong"
+    },
+    "황주": {
+      "rom": "Hwangju",
+      "en": "Hwangju"
+    },
+    "하양": {
+      "rom": "Hayang",
+      "en": "Hayang"
+    },
+    "재령": {
+      "rom": "Jaeryeong",
+      "en": "Jaeryeong"
+    },
+    "흥해": {
+      "rom": "Heunghae",
+      "en": "Heunghae"
+    },
+    "우계": {
+      "rom": "Ugye",
+      "en": "Ugye"
+    },
+    "서산": {
+      "rom": "Seosan",
+      "en": "Seosan"
+    },
+    "흥덕": {
+      "rom": "Heungdeok",
+      "en": "Heungdeok"
+    },
+    "여양": {
+      "rom": "Yeoyang",
+      "en": "Yeoyang"
+    },
+    "안산": {
+      "rom": "Ansan",
+      "en": "Ansan"
+    },
+    "예천": {
+      "rom": "Yecheon",
+      "en": "Yecheon"
+    },
+    "합천": {
+      "rom": "Hapcheon",
+      "en": "Hapcheon"
+    },
+    "곡산": {
+      "rom": "Goksan",
+      "en": "Goksan"
+    },
+    "가성": {
+      "rom": "Gaseong",
+      "en": "Gaseong"
+    },
+    "가평": {
+      "rom": "Gapyeong",
+      "en": "Gapyeong"
+    },
+    "가흥": {
+      "rom": "Gaheung",
+      "en": "Gaheung"
+    },
+    "간성": {
+      "rom": "Ganseong",
+      "en": "Ganseong"
+    },
+    "감천": {
+      "rom": "Gamcheon",
+      "en": "Gamcheon"
+    },
+    "강동": {
+      "rom": "Gangdong",
+      "en": "Gangdong"
+    },
+    "강양": {
+      "rom": "Gangyang",
+      "en": "Gangyang"
+    },
+    "강진": {
+      "rom": "Gangjin",
+      "en": "Gangjin"
+    },
+    "강흥": {
+      "rom": "Gangheung",
+      "en": "Gangheung"
+    },
+    "개령": {
+      "rom": "Gaeryeong",
+      "en": "Gaeryeong"
+    },
+    "거제": {
+      "rom": "Geoje",
+      "en": "Geoje"
+    },
+    "결성": {
+      "rom": "Gyeolseong",
+      "en": "Gyeolseong"
+    },
+    "경산": {
+      "rom": "Gyeongsan",
+      "en": "Gyeongsan"
+    },
+    "계림": {
+      "rom": "Gyerim",
+      "en": "Gyerim"
+    },
+    "고부": {
+      "rom": "Gobu",
+      "en": "Gobu"
+    },
+    "고산": {
+      "rom": "Gosan",
+      "en": "Gosan"
+    },
+    "고양": {
+      "rom": "Goyang",
+      "en": "Goyang"
+    },
+    "고창": {
+      "rom": "Gochang",
+      "en": "Gochang"
+    },
+    "곡부": {
+      "rom": "Gokbu",
+      "en": "Gokbu"
+    },
+    "곡성": {
+      "rom": "Gokseong",
+      "en": "Gokseong"
+    },
+    "곤양": {
+      "rom": "Gonyang",
+      "en": "Gonyang"
+    },
+    "공산": {
+      "rom": "Gongsan",
+      "en": "Gongsan"
+    },
+    "과천": {
+      "rom": "Gwacheon",
+      "en": "Gwacheon"
+    },
+    "광양": {
+      "rom": "Gwangyang",
+      "en": "Gwangyang"
+    },
+    "광평": {
+      "rom": "Gwangpyeong",
+      "en": "Gwangpyeong"
+    },
+    "괴산": {
+      "rom": "Goesan",
+      "en": "Goesan"
+    },
+    "교동": {
+      "rom": "Gyodong",
+      "en": "Gyodong"
+    },
+    "구례": {
+      "rom": "Gurye",
+      "en": "Gurye"
+    },
+    "군위": {
+      "rom": "Gunwi",
+      "en": "Gunwi"
+    },
+    "금산": {
+      "rom": "Geumsan",
+      "en": "Geumsan"
+    },
+    "금성": {
+      "rom": "Geumseong",
+      "en": "Geumseong"
+    },
+    "금천": {
+      "rom": "Geumcheon",
+      "en": "Geumcheon"
+    },
+    "기장": {
+      "rom": "Gijang",
+      "en": "Gijang"
+    },
+    "김녕": {
+      "rom": "Gimnyeong",
+      "en": "Gimnyeong"
+    },
+    "김포": {
+      "rom": "Gimpo",
+      "en": "Gimpo"
+    },
+    "낙안": {
+      "rom": "Nagan",
+      "en": "Nagan"
+    },
+    "남포": {
+      "rom": "Nampo",
+      "en": "Nampo"
+    },
+    "남해": {
+      "rom": "Namhae",
+      "en": "Namhae"
+    },
+    "낭산": {
+      "rom": "Nangsan",
+      "en": "Nangsan"
+    },
+    "낭주": {
+      "rom": "Nangju",
+      "en": "Nangju"
+    },
+    "능주": {
+      "rom": "Neungju",
+      "en": "Neungju"
+    },
+    "단성": {
+      "rom": "Danseong",
+      "en": "Danseong"
+    },
+    "달성": {
+      "rom": "Dalseong",
+      "en": "Dalseong"
+    },
+    "당악": {
+      "rom": "Dangak",
+      "en": "Dangak"
+    },
+    "당진": {
+      "rom": "Dangjin",
+      "en": "Dangjin"
+    },
+    "대흥": {
+      "rom": "Daeheung",
+      "en": "Daeheung"
+    },
+    "덕은": {
+      "rom": "Deogeun",
+      "en": "Deogeun"
+    },
+    "도강": {
+      "rom": "Dogang",
+      "en": "Dogang"
+    },
+    "동성": {
+      "rom": "Dongseong",
+      "en": "Dongseong"
+    },
+    "동주": {
+      "rom": "Dongju",
+      "en": "Dongju"
+    },
+    "만경": {
+      "rom": "Mangyeong",
+      "en": "Mangyeong"
+    },
+    "면천": {
+      "rom": "Myeoncheon",
+      "en": "Myeoncheon"
+    },
+    "목천": {
+      "rom": "Mokcheon",
+      "en": "Mokcheon"
+    },
+    "문경": {
+      "rom": "Mungyeong",
+      "en": "Mungyeong"
+    },
+    "문의": {
+      "rom": "Munui",
+      "en": "Munui"
+    },
+    "보령": {
+      "rom": "Boryeong",
+      "en": "Boryeong"
+    },
+    "복성": {
+      "rom": "Bokseong",
+      "en": "Bokseong"
+    },
+    "봉산": {
+      "rom": "Bongsan",
+      "en": "Bongsan"
+    },
+    "부계": {
+      "rom": "Bugye",
+      "en": "Bugye"
+    },
+    "부안": {
+      "rom": "Buan",
+      "en": "Buan"
+    },
+    "부여": {
+      "rom": "Buyeo",
+      "en": "Buyeo"
+    },
+    "부유": {
+      "rom": "Buyu",
+      "en": "Buyu"
+    },
+    "분성": {
+      "rom": "Bunseong",
+      "en": "Bunseong"
+    },
+    "비안": {
+      "rom": "Bian",
+      "en": "Bian"
+    },
+    "삼가": {
+      "rom": "Samga",
+      "en": "Samga"
+    },
+    "상원": {
+      "rom": "Sangwon",
+      "en": "Sangwon"
+    },
+    "서천": {
+      "rom": "Seocheon",
+      "en": "Seocheon"
+    },
+    "서촉": {
+      "rom": "Seochok",
+      "en": "Seochok"
+    },
+    "서택": {
+      "rom": "Seotaek",
+      "en": "Seotaek"
+    },
+    "서하": {
+      "rom": "Seoha",
+      "en": "Seoha"
+    },
+    "서흥": {
+      "rom": "Seoheung",
+      "en": "Seoheung"
+    },
+    "설성": {
+      "rom": "Seolseong",
+      "en": "Seolseong"
+    },
+    "송화": {
+      "rom": "Songhwa",
+      "en": "Songhwa"
+    },
+    "수성": {
+      "rom": "Suseong",
+      "en": "Suseong"
+    },
+    "수주": {
+      "rom": "Suju",
+      "en": "Suju"
+    },
+    "시흥": {
+      "rom": "Siheung",
+      "en": "Siheung"
+    },
+    "신녕": {
+      "rom": "Sillyeong",
+      "en": "Sillyeong"
+    },
+    "신안": {
+      "rom": "Sinan",
+      "en": "Sinan"
+    },
+    "아산": {
+      "rom": "Asan",
+      "en": "Asan"
+    },
+    "아주": {
+      "rom": "Aju",
+      "en": "Aju"
+    },
+    "안강": {
+      "rom": "Angang",
+      "en": "Angang"
+    },
+    "안성": {
+      "rom": "Anseong",
+      "en": "Anseong"
+    },
+    "안악": {
+      "rom": "Anak",
+      "en": "Anak"
+    },
+    "안의": {
+      "rom": "Anui",
+      "en": "Anui"
+    },
+    "양산": {
+      "rom": "Yangsan",
+      "en": "Yangsan"
+    },
+    "여릉": {
+      "rom": "Yeoreung",
+      "en": "Yeoreung"
+    },
+    "연기": {
+      "rom": "Yeongi",
+      "en": "Yeongi"
+    },
+    "연산": {
+      "rom": "Yeonsan",
+      "en": "Yeonsan"
+    },
+    "연일": {
+      "rom": "Yeonil",
+      "en": "Yeonil"
+    },
+    "연주": {
+      "rom": "Yeonju",
+      "en": "Yeonju"
+    },
+    "연풍": {
+      "rom": "Yeonpung",
+      "en": "Yeonpung"
+    },
+    "염주": {
+      "rom": "Yeomju",
+      "en": "Yeomju"
+    },
+    "영덕": {
+      "rom": "Yeongdeok",
+      "en": "Yeongdeok"
+    },
+    "영동": {
+      "rom": "Yeongdong",
+      "en": "Yeongdong"
+    },
+    "영변": {
+      "rom": "Yeongbyeon",
+      "en": "Yeongbyeon"
+    },
+    "영성": {
+      "rom": "Yeongseong",
+      "en": "Yeongseong"
+    },
+    "영순": {
+      "rom": "Yeongsun",
+      "en": "Yeongsun"
+    },
+    "영암": {
+      "rom": "Yeongam",
+      "en": "Yeongam"
+    },
+    "영해": {
+      "rom": "Yeonghae",
+      "en": "Yeonghae"
+    },
+    "영흥": {
+      "rom": "Yeongheung",
+      "en": "Yeongheung"
+    },
+    "예산": {
+      "rom": "Yesan",
+      "en": "Yesan"
+    },
+    "옥야": {
+      "rom": "Ogya",
+      "en": "Ogya"
+    },
+    "옥천": {
+      "rom": "Okcheon",
+      "en": "Okcheon"
+    },
+    "옹진": {
+      "rom": "Ongjin",
+      "en": "Ongjin"
+    },
+    "용궁": {
+      "rom": "Yonggung",
+      "en": "Yonggung"
+    },
+    "용성": {
+      "rom": "Yongseong",
+      "en": "Yongseong"
+    },
+    "용안": {
+      "rom": "Yongan",
+      "en": "Yongan"
+    },
+    "우주": {
+      "rom": "Uju",
+      "en": "Uju"
+    },
+    "울진": {
+      "rom": "Uljin",
+      "en": "Uljin"
+    },
+    "웅천": {
+      "rom": "Ungcheon",
+      "en": "Ungcheon"
+    },
+    "은풍": {
+      "rom": "Eunpung",
+      "en": "Eunpung"
+    },
+    "음성": {
+      "rom": "Eumseong",
+      "en": "Eumseong"
+    },
+    "의주": {
+      "rom": "Uiju",
+      "en": "Uiju"
+    },
+    "의흥": {
+      "rom": "Uiheung",
+      "en": "Uiheung"
+    },
+    "이산": {
+      "rom": "Isan",
+      "en": "Isan"
+    },
+    "익산": {
+      "rom": "Iksan",
+      "en": "Iksan"
+    },
+    "임강": {
+      "rom": "Imgang",
+      "en": "Imgang"
+    },
+    "임실": {
+      "rom": "Imsil",
+      "en": "Imsil"
+    },
+    "임진": {
+      "rom": "Imjin",
+      "en": "Imjin"
+    },
+    "장기": {
+      "rom": "Janggi",
+      "en": "Janggi"
+    },
+    "장성": {
+      "rom": "Jangseong",
+      "en": "Jangseong"
+    },
+    "장연": {
+      "rom": "Jangyeon",
+      "en": "Jangyeon"
+    },
+    "적성": {
+      "rom": "Jeokseong",
+      "en": "Jeokseong"
+    },
+    "정산": {
+      "rom": "Jeongsan",
+      "en": "Jeongsan"
+    },
+    "정선": {
+      "rom": "Jeongseon",
+      "en": "Jeongseon"
+    },
+    "정주": {
+      "rom": "Jeongju",
+      "en": "Jeongju"
+    },
+    "제남": {
+      "rom": "Jenam",
+      "en": "Jenam"
+    },
+    "제안": {
+      "rom": "Jean",
+      "en": "Jean"
+    },
+    "조양": {
+      "rom": "Joyang",
+      "en": "Joyang"
+    },
+    "주천": {
+      "rom": "Jucheon",
+      "en": "Jucheon"
+    },
+    "중화": {
+      "rom": "Junghwa",
+      "en": "Junghwa"
+    },
+    "지곡": {
+      "rom": "Jigok",
+      "en": "Jigok"
+    },
+    "지례": {
+      "rom": "Jirye",
+      "en": "Jirye"
+    },
+    "직산": {
+      "rom": "Jiksan",
+      "en": "Jiksan"
+    },
+    "진도": {
+      "rom": "Jindo",
+      "en": "Jindo"
+    },
+    "진산": {
+      "rom": "Jinsan",
+      "en": "Jinsan"
+    },
+    "진안": {
+      "rom": "Jinan",
+      "en": "Jinan"
+    },
+    "진원": {
+      "rom": "Jinwon",
+      "en": "Jinwon"
+    },
+    "진위": {
+      "rom": "Jinwi",
+      "en": "Jinwi"
+    },
+    "차성": {
+      "rom": "Chaseong",
+      "en": "Chaseong"
+    },
+    "천녕": {
+      "rom": "Cheollyeong",
+      "en": "Cheollyeong"
+    },
+    "천안": {
+      "rom": "Cheonan",
+      "en": "Cheonan"
+    },
+    "청도": {
+      "rom": "Cheongdo",
+      "en": "Cheongdo"
+    },
+    "청산": {
+      "rom": "Cheongsan",
+      "en": "Cheongsan"
+    },
+    "청안": {
+      "rom": "Cheongan",
+      "en": "Cheongan"
+    },
+    "청해": {
+      "rom": "Cheonghae",
+      "en": "Cheonghae"
+    },
+    "춘천": {
+      "rom": "Chuncheon",
+      "en": "Chuncheon"
+    },
+    "태안": {
+      "rom": "Taean",
+      "en": "Taean"
+    },
+    "태원": {
+      "rom": "Taewon",
+      "en": "Taewon"
+    },
+    "태인": {
+      "rom": "Taein",
+      "en": "Taein"
+    },
+    "통진": {
+      "rom": "Tongjin",
+      "en": "Tongjin"
+    },
+    "통천": {
+      "rom": "Tongcheon",
+      "en": "Tongcheon"
+    },
+    "풍기": {
+      "rom": "Punggi",
+      "en": "Punggi"
+    },
+    "하빈": {
+      "rom": "Habin",
+      "en": "Habin"
+    },
+    "하음": {
+      "rom": "Haeum",
+      "en": "Haeum"
+    },
+    "함창": {
+      "rom": "Hamchang",
+      "en": "Hamchang"
+    },
+    "함흥": {
+      "rom": "Hamheung",
+      "en": "Hamheung"
+    },
+    "합포": {
+      "rom": "Happo",
+      "en": "Happo"
+    },
+    "항주": {
+      "rom": "Hangju",
+      "en": "Hangju"
+    },
+    "해미": {
+      "rom": "Haemi",
+      "en": "Haemi"
+    },
+    "해풍": {
+      "rom": "Haepung",
+      "en": "Haepung"
+    },
+    "홍양": {
+      "rom": "Hongyang",
+      "en": "Hongyang"
+    },
+    "화산": {
+      "rom": "Hwasan",
+      "en": "Hwasan"
+    },
+    "화원": {
+      "rom": "Hwawon",
+      "en": "Hwawon"
+    },
+    "회덕": {
+      "rom": "Hoedeok",
+      "en": "Hoedeok"
+    },
+    "회인": {
+      "rom": "Hoein",
+      "en": "Hoein"
+    },
+    "횡성": {
+      "rom": "Hoengseong",
+      "en": "Hoengseong"
+    },
+    "흥양": {
+      "rom": "Heungyang",
+      "en": "Heungyang"
+    },
+    "희천": {
+      "rom": "Huicheon",
+      "en": "Huicheon"
+    }
   },
-
   "seonggwan": {
     "이 전주": "The royal house of Joseon. The Jeonju Yi were the reigning dynasty, descended from the founder Yi Seong-gye, and the seat appears more often than any other in the rosters.",
     "권 안동": "A leading yangban lineage of the Andong Kwon. The clan name was granted by the founder of Goryeo, and the family supplied officials throughout the dynasty.",
@@ -170,80 +1261,250 @@
     "조 풍양": "The Pungyang Jo, the rival consort clan to the Andong Kim during the sedo politics of the early nineteenth century.",
     "신 평산": "The Pyeongsan Sin, founded by the Goryeo general Sin Sung-gyeom, who was granted the seat for service to the dynasty's founder."
   },
-
   "exams": {
-    "식년시": {"en": "Triennial examination", "gloss": "The regular sitting held every three years, the meritocratic core of the system, seating thirty-three nationally."},
-    "증광시": {"en": "Augmented examination", "gloss": "An extra sitting called to mark a national celebration such as a royal accession."},
-    "별시": {"en": "Special examination", "gloss": "An irregular sitting called as the state required, outside the triennial cycle."},
-    "정시": {"en": "Court-yard examination", "gloss": "A special sitting held in the palace court yard on a designated occasion."},
-    "알성시": {"en": "Shrine-visit examination", "gloss": "Held when the king visited the Confucian shrine at the royal academy."},
-    "중시": {"en": "Re-examination", "gloss": "A higher sitting open to officials already in service, used to mark them for advancement."},
-    "외방별시": {"en": "Provincial special examination", "gloss": "A special sitting held in a province rather than the capital, often as a regional favour."},
-    "춘당대시": {"en": "Chundangdae examination", "gloss": "A special sitting held at the Chundangdae terrace in the palace garden."},
-    "친시": {"en": "Royally-presided examination", "gloss": "A sitting the king attended and judged in person."},
-    "기로과": {"en": "Elders' examination", "gloss": "A special sitting reserved for elderly candidates and officials."},
-    "발영시": {"en": "Balyeong examination", "gloss": "A one-off special sitting held under King Sejo in 1466 to draw out talent already in office."},
-    "현량과": {"en": "Recommendation examination", "gloss": "A recommendation-based sitting introduced by the reformer Jo Gwangjo, selecting by reputation rather than written test."},
-    "등준시": {"en": "Deungjun examination", "gloss": "An occasional special sitting for serving officials, held to identify men of distinction."},
-    "탁영시": {"en": "Takyeong examination", "gloss": "A rare special sitting held to mark a particular court occasion."},
-    "개시": {"en": "Capital district examination", "gloss": "A special sitting held for the capital and its surrounding districts."},
-    "충량과": {"en": "Loyal-subject examination", "gloss": "A special sitting honouring the descendants of officials remembered for loyalty."},
-    "탕평정시": {"en": "Tangpyeong court-yard examination", "gloss": "A court-yard sitting tied to the tangpyeong policy of balancing the political factions."},
-    "구현과": {"en": "Talent-seeking examination", "gloss": "A special sitting named for its purpose of seeking out worthy men."},
-    "식희과": {"en": "Sikhui examination", "gloss": "A rare special sitting held on a designated court occasion."},
-    "진현시": {"en": "Worthy-presenting examination", "gloss": "A rare special sitting named for presenting able candidates to the throne."}
-  },
-
-  "kings": {
-    "태조": {"rom": "Taejo", "reign": "1392-1398"},
-    "정종": {"rom": "Jeongjong", "reign": "1398-1400"},
-    "태종": {"rom": "Taejong", "reign": "1400-1418"},
-    "세종": {"rom": "Sejong", "reign": "1418-1450"},
-    "문종": {"rom": "Munjong", "reign": "1450-1452"},
-    "단종": {"rom": "Danjong", "reign": "1452-1455"},
-    "세조": {"rom": "Sejo", "reign": "1455-1468"},
-    "예종": {"rom": "Yejong", "reign": "1468-1469"},
-    "성종": {"rom": "Seongjong", "reign": "1469-1494"},
-    "연산군": {"rom": "Yeonsangun", "reign": "1494-1506"},
-    "중종": {"rom": "Jungjong", "reign": "1506-1544"},
-    "인종": {"rom": "Injong", "reign": "1544-1545"},
-    "명종": {"rom": "Myeongjong", "reign": "1545-1567"},
-    "선조": {"rom": "Seonjo", "reign": "1567-1608"},
-    "광해군": {"rom": "Gwanghaegun", "reign": "1608-1623"},
-    "인조": {"rom": "Injo", "reign": "1623-1649"},
-    "효종": {"rom": "Hyojong", "reign": "1649-1659"},
-    "현종": {"rom": "Hyeonjong", "reign": "1659-1674"},
-    "숙종": {"rom": "Sukjong", "reign": "1674-1720"},
-    "경종": {"rom": "Gyeongjong", "reign": "1720-1724"},
-    "영조": {"rom": "Yeongjo", "reign": "1724-1776"},
-    "정조": {"rom": "Jeongjo", "reign": "1776-1800"},
-    "순조": {"rom": "Sunjo", "reign": "1800-1834"},
-    "헌종": {"rom": "Heonjong", "reign": "1834-1849"},
-    "철종": {"rom": "Cheoljong", "reign": "1849-1864"},
-    "고종": {"rom": "Gojong", "reign": "1864-1907"}
-  },
-
-  "grades": {
-    "갑과": {"en": "First Class", "gloss": "The top three passers, headed by the valedictorian, who took the highest starting ranks."},
-    "을과": {"en": "Second Class", "gloss": "The next seven passers in the standard triennial sitting."},
-    "병과": {"en": "Third Class", "gloss": "The remaining twenty-three passers, the bulk of each class."},
-    "정과": {"en": "Fourth Class", "gloss": "A lower pass grade carried over from the Goryeo system, recorded in some early rosters."},
-    "동진사": {"en": "Associate Graduate", "gloss": "The lowest Goryeo-era grade, ranked below the third class and noted in some early rosters."},
-    "ranks": {
-      "장원": {"rom": "jangwon", "gloss": "First place, the valedictorian, who entered service at the highest starting rank of the class."},
-      "아원": {"rom": "aweon", "gloss": "Second place in the First Class, also called bangan."},
-      "탐화랑": {"rom": "tamhwarang", "gloss": "Third place in the First Class, also called tamhwa."}
+    "식년시": {
+      "en": "Triennial examination",
+      "gloss": "The regular sitting held every three years, the meritocratic core of the system, seating thirty-three nationally."
+    },
+    "증광시": {
+      "en": "Augmented examination",
+      "gloss": "An extra sitting called to mark a national celebration such as a royal accession."
+    },
+    "별시": {
+      "en": "Special examination",
+      "gloss": "An irregular sitting called as the state required, outside the triennial cycle."
+    },
+    "정시": {
+      "en": "Court-yard examination",
+      "gloss": "A special sitting held in the palace court yard on a designated occasion."
+    },
+    "알성시": {
+      "en": "Shrine-visit examination",
+      "gloss": "Held when the king visited the Confucian shrine at the royal academy."
+    },
+    "중시": {
+      "en": "Re-examination",
+      "gloss": "A higher sitting open to officials already in service, used to mark them for advancement."
+    },
+    "외방별시": {
+      "en": "Provincial special examination",
+      "gloss": "A special sitting held in a province rather than the capital, often as a regional favour."
+    },
+    "춘당대시": {
+      "en": "Chundangdae examination",
+      "gloss": "A special sitting held at the Chundangdae terrace in the palace garden."
+    },
+    "친시": {
+      "en": "Royally-presided examination",
+      "gloss": "A sitting the king attended and judged in person."
+    },
+    "기로과": {
+      "en": "Elders' examination",
+      "gloss": "A special sitting reserved for elderly candidates and officials."
+    },
+    "발영시": {
+      "en": "Balyeong examination",
+      "gloss": "A one-off special sitting held under King Sejo in 1466 to draw out talent already in office."
+    },
+    "현량과": {
+      "en": "Recommendation examination",
+      "gloss": "A recommendation-based sitting introduced by the reformer Jo Gwangjo, selecting by reputation rather than written test."
+    },
+    "등준시": {
+      "en": "Deungjun examination",
+      "gloss": "An occasional special sitting for serving officials, held to identify men of distinction."
+    },
+    "탁영시": {
+      "en": "Takyeong examination",
+      "gloss": "A rare special sitting held to mark a particular court occasion."
+    },
+    "개시": {
+      "en": "Capital district examination",
+      "gloss": "A special sitting held for the capital and its surrounding districts."
+    },
+    "충량과": {
+      "en": "Loyal-subject examination",
+      "gloss": "A special sitting honouring the descendants of officials remembered for loyalty."
+    },
+    "탕평정시": {
+      "en": "Tangpyeong court-yard examination",
+      "gloss": "A court-yard sitting tied to the tangpyeong policy of balancing the political factions."
+    },
+    "구현과": {
+      "en": "Talent-seeking examination",
+      "gloss": "A special sitting named for its purpose of seeking out worthy men."
+    },
+    "식희과": {
+      "en": "Sikhui examination",
+      "gloss": "A rare special sitting held on a designated court occasion."
+    },
+    "진현시": {
+      "en": "Worthy-presenting examination",
+      "gloss": "A rare special sitting named for presenting able candidates to the throne."
     }
   },
-
+  "kings": {
+    "태조": {
+      "rom": "Taejo",
+      "reign": "1392-1398"
+    },
+    "정종": {
+      "rom": "Jeongjong",
+      "reign": "1398-1400"
+    },
+    "태종": {
+      "rom": "Taejong",
+      "reign": "1400-1418"
+    },
+    "세종": {
+      "rom": "Sejong",
+      "reign": "1418-1450"
+    },
+    "문종": {
+      "rom": "Munjong",
+      "reign": "1450-1452"
+    },
+    "단종": {
+      "rom": "Danjong",
+      "reign": "1452-1455"
+    },
+    "세조": {
+      "rom": "Sejo",
+      "reign": "1455-1468"
+    },
+    "예종": {
+      "rom": "Yejong",
+      "reign": "1468-1469"
+    },
+    "성종": {
+      "rom": "Seongjong",
+      "reign": "1469-1494"
+    },
+    "연산군": {
+      "rom": "Yeonsangun",
+      "reign": "1494-1506"
+    },
+    "중종": {
+      "rom": "Jungjong",
+      "reign": "1506-1544"
+    },
+    "인종": {
+      "rom": "Injong",
+      "reign": "1544-1545"
+    },
+    "명종": {
+      "rom": "Myeongjong",
+      "reign": "1545-1567"
+    },
+    "선조": {
+      "rom": "Seonjo",
+      "reign": "1567-1608"
+    },
+    "광해군": {
+      "rom": "Gwanghaegun",
+      "reign": "1608-1623"
+    },
+    "인조": {
+      "rom": "Injo",
+      "reign": "1623-1649"
+    },
+    "효종": {
+      "rom": "Hyojong",
+      "reign": "1649-1659"
+    },
+    "현종": {
+      "rom": "Hyeonjong",
+      "reign": "1659-1674"
+    },
+    "숙종": {
+      "rom": "Sukjong",
+      "reign": "1674-1720"
+    },
+    "경종": {
+      "rom": "Gyeongjong",
+      "reign": "1720-1724"
+    },
+    "영조": {
+      "rom": "Yeongjo",
+      "reign": "1724-1776"
+    },
+    "정조": {
+      "rom": "Jeongjo",
+      "reign": "1776-1800"
+    },
+    "순조": {
+      "rom": "Sunjo",
+      "reign": "1800-1834"
+    },
+    "헌종": {
+      "rom": "Heonjong",
+      "reign": "1834-1849"
+    },
+    "철종": {
+      "rom": "Cheoljong",
+      "reign": "1849-1864"
+    },
+    "고종": {
+      "rom": "Gojong",
+      "reign": "1864-1907"
+    }
+  },
+  "grades": {
+    "갑과": {
+      "en": "First Class",
+      "gloss": "The top three passers, headed by the valedictorian, who took the highest starting ranks."
+    },
+    "을과": {
+      "en": "Second Class",
+      "gloss": "The next seven passers in the standard triennial sitting."
+    },
+    "병과": {
+      "en": "Third Class",
+      "gloss": "The remaining twenty-three passers, the bulk of each class."
+    },
+    "정과": {
+      "en": "Fourth Class",
+      "gloss": "A lower pass grade carried over from the Goryeo system, recorded in some early rosters."
+    },
+    "동진사": {
+      "en": "Associate Graduate",
+      "gloss": "The lowest Goryeo-era grade, ranked below the third class and noted in some early rosters."
+    },
+    "ranks": {
+      "장원": {
+        "rom": "jangwon",
+        "gloss": "First place, the valedictorian, who entered service at the highest starting rank of the class."
+      },
+      "아원": {
+        "rom": "aweon",
+        "gloss": "Second place in the First Class, also called bangan."
+      },
+      "탐화랑": {
+        "rom": "tamhwarang",
+        "gloss": "Third place in the First Class, also called tamhwa."
+      }
+    }
+  },
   "cited": {
     "headline": "Effective pass rate under one percent. The triennial examination seated thirty-three from a national field, while the largest documented sittings drew more than two hundred thousand applicants.",
     "detail": "The regular triennial examination (siknyeonsi) seated thirty-three passers nationally, narrowed from a nationwide preliminary quota of 240 down to thirty-three at the final palace stage. Applicant totals were not centrally kept, but surviving records show the scale. A single celebratory examination in 1800, held for the crown prince's investiture, drew 215,417 applicants over two days, with 111,838 sitting on the first day. Against thirty-three seats, the effective pass rate at a sitting of that size was a small fraction of one percent. The under-one-percent figure is an estimate read from the fixed seat count and the largest documented applicant figures, since no continuous applicant register survives.",
     "sources": [
-      {"label": "Gwageo (Korean civil service examination), Wikipedia", "url": "https://en.wikipedia.org/wiki/Gwageo"},
-      {"label": "Lee Ki-hwan, 'The 50,000-to-1 contest: the secret of the Joseon examinations,' Kyunghyang Shinmun (Hi-story), 22 Nov 2021", "url": "https://www.khan.co.kr/article/202111220603001"},
-      {"label": "Munkwa pass grades and number of passers, National Institute of Korean History (우리역사넷)", "url": "https://contents.history.go.kr/mobile/nh/view.do?levelId=nh_013_0050_0020_0050"},
-      {"label": "Chung & Choi, 'Meritocracy with Multiple Rules: How Special Civil Service Examinations Reproduced Privilege in Joseon Korea,' Social Science History, Cambridge", "url": "https://www.cambridge.org/core/journals/social-science-history/article/meritocracy-with-multiple-rules-how-special-civil-service-examinations-reproduced-privilege-in-joseon-korea/C50217F504E4DEBE3981E09572226FB7"}
+      {
+        "label": "Gwageo (Korean civil service examination), Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Gwageo"
+      },
+      {
+        "label": "Lee Ki-hwan, 'The 50,000-to-1 contest: the secret of the Joseon examinations,' Kyunghyang Shinmun (Hi-story), 22 Nov 2021",
+        "url": "https://www.khan.co.kr/article/202111220603001"
+      },
+      {
+        "label": "Munkwa pass grades and number of passers, National Institute of Korean History (우리역사넷)",
+        "url": "https://contents.history.go.kr/mobile/nh/view.do?levelId=nh_013_0050_0020_0050"
+      },
+      {
+        "label": "Chung & Choi, 'Meritocracy with Multiple Rules: How Special Civil Service Examinations Reproduced Privilege in Joseon Korea,' Social Science History, Cambridge",
+        "url": "https://www.cambridge.org/core/journals/social-science-history/article/meritocracy-with-multiple-rules-how-special-civil-service-examinations-reproduced-privilege-in-joseon-korea/C50217F504E4DEBE3981E09572226FB7"
+      }
     ]
   }
 }
