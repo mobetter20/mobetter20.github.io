@@ -594,7 +594,7 @@
     {"id":"EXM_MN_6JOa_1447_000842","en":"Seong Sam-mun","ach":"One of the Six Martyred Ministers, put to death for trying to restore the deposed boy-king Danjong."},
     {"id":"EXM_MN_6JOa_1515_002463","en":"Jo Gwang-jo","ach":"A young idealist who tried to remake the court by Confucian principle, purged at 37 and later enshrined as a sage of the dynasty."},
     {"id":"EXM_MN_6JOa_1534_002893","en":"Yi Hwang","ep":"Toegye","ach":"The most revered philosopher of the dynasty, whose portrait is on the 1,000-won note."},
-    {"id":"EXM_MN_6JOa_1564_003592","en":"Yi I","ep":"Yulgok","feat":1,"ach":"The Neo-Confucian philosopher whose portrait is on the 5,000-won note. He placed first in nine separate examinations, more than any other candidate of the dynasty."},
+    {"id":"EXM_MN_6JOa_1564_003592","en":"Yi I","ep":"Yulgok","feat":1,"ach":"He placed first in nine separate examinations, more than any other candidate of the dynasty. A Neo-Confucian philosopher, his portrait is on the 5,000-won note."},
     {"id":"EXM_MN_6JOa_1566_003655","en":"Yu Seong-ryong","ach":"Chief minister through the Japanese invasions of the 1590s, who recommended Admiral Yi Sun-sin for command and later wrote the war's memoir."},
     {"id":"EXM_MN_6JOb_1624_005358","en":"Kim Yuk","ach":"The minister who replaced a tangle of separate provincial levies with a single fair tax paid in grain."},
     {"id":"EXM_MN_6JOc_1789_010943","en":"Jeong Yak-yong","ep":"Dasan","ach":"The reformer who engineered the fortress at Suwon and wrote the dynasty's classic manual of local governance."},
@@ -2517,7 +2517,7 @@ function viewOverview(){
       + '<div class="kick">The Joseon Review</div>'
       + '<h1 class="serif">Joseon Examination Rankings</h1>'
       + '<p class="coverage">The complete ranking of the clans that produced Joseon’s civil officials, '+m.yearMin+' to '+m.yearMax+'. '
-        + fmt(m.total)+' officials, '+fmt(feeders.length)+' clans, ranked by the offices they won. '
+        + fmt(m.total)+' officials, '+fmt(feeders.length)+' clans, ranked by the number each produced. '
         + '<a href="#/about">Methodology →</a></p>'
       + '<p class="gloss">The <span class="kr">문과</span> munkwa was Joseon Korea’s civil-service examination, the route into government office. '
         + '<a href="#/trends">About the examination →</a></p>'
@@ -2536,7 +2536,7 @@ function viewOverview(){
     // flagship: the clan league
     + '<section><div class="sec-h">'
       + '<div><div class="kick">The ranking</div><h2 class="serif">Clans by officials produced</h2>'
-        + '<div class="sub">Every clan seat (성관) ranked by the officials it placed across five centuries. Top twenty-five shown.</div></div>'
+        + '<div class="sub">Every clan seat (성관) ranked by the number of officials it produced, across five centuries. Top twenty-five shown.</div></div>'
       + '<a class="seemore" href="#/feeders">All '+fmt(feeders.length)+' clans</a></div>'
       + '<div class="tscroll"><table class="league clanleague"><thead><tr>'
         + '<th>Rank</th><th>Clan</th><th class="num">Officials</th><th class="num">Valedictorians</th><th>Known for</th></tr></thead>'
@@ -2546,8 +2546,8 @@ function viewOverview(){
 
     // distinguished graduates — people, threaded through the product
     + '<section><div class="sec-h">'
-      + '<div><div class="kick">Distinguished graduates</div><h2 class="serif">Notable graduates</h2>'
-        + '<div class="sub">The graduates whose work outlived the dynasty, with the placement the examination recorded for each.</div></div>'
+      + '<div><div class="kick">Distinguished graduates</div><h2 class="serif">Their work outlived the dynasty</h2>'
+        + '<div class="sub">Shown with the placement the examination recorded for each.</div></div>'
       + '<a class="seemore" href="#/alumni">All graduates</a></div>'
       + alumniRollHtml((function(){ var f=alumniFeatured(alumni); return (f?[f]:[]).concat(alumni.filter(function(x){return x!==f;})).slice(0,4); })())
     + '</section>'
@@ -2641,13 +2641,11 @@ function viewAlumni(){
   var html =
     '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Graduates</div>'
     + '<div class="kick">Distinguished graduates</div>'
-    + '<h1 class="ph-title serif">Notable graduates</h1>'
-    + '<p class="ph-sub">Graduates of the civil examination whose work outlived the dynasty. '
+    + '<h1 class="ph-title serif">Their work outlived the dynasty</h1>'
+    + '<p class="ph-sub">'
       + 'The placement shown for each is the one the examination recorded, from first in the realm (장원) to the rank held in a later class.</p></div>'
     + (feat ? alumniHeroHtml(feat) : '')
     + '<div class="subhead" style="margin-top:34px">Ordered by placement</div>'
-    + '<p style="font-size:12.5px; color:var(--ink3); margin:-6px 0 14px; max-width:62ch; line-height:1.55">'
-      + 'The examination recorded a placement for every class. These graduates are listed by the placement it gave them, from first in the realm down.</p>'
     + alumniTableHtml(alumni.filter(function(x){ return x !== feat; }))
     + '<p class="drynote" style="font-style:normal;color:var(--ink3);font-size:13px;max-width:74ch">'
       + 'The record holds <b style="color:var(--ink2);font-weight:600">'+fmt(nJangwon)+'</b> graduates who placed first in the realm and '
@@ -3229,7 +3227,7 @@ function viewTrends(){
         + '<div class="tl-yr" style="right:0; text-align:right">'+m.yearMax+'</div>'
         + '<div class="tl-lb" style="right:0; text-align:right">the last sitting</div>'
       + '</div>'
-      + '<p class="ecap">The examination was introduced in Korea in <b>958</b>, on the advice of the official Ssang Gi, and was among the earliest civil-service systems anywhere, predating those of Europe and America by centuries. '
+      + '<p class="ecap">The examination was introduced in Korea in <b>958</b>, on the advice of the official Ssang Gi, and was one of the earliest civil-service systems anywhere, in use nearly nine centuries before competitive examinations reached Europe and America. '
         + 'Joseon inherited it; these rankings cover its munkwa sittings from <b>'+m.yearMin+'</b> to the last in <b>'+m.yearMax+'</b>.</p>'
       + exsrc([['/wiki/Gwageo','Gwageo, Wikipedia'],['Northcote','Northcote-Trevelyan Report, 1854'],['Pendleton','Pendleton Act, 1883']])
     + '</div>'
@@ -3237,7 +3235,7 @@ function viewTrends(){
     // ---- explainer module 2: selectivity ----
     + '<div class="exm">'
       + '<div class="kick">Selectivity</div>'
-      + '<h2 class="eh serif">A national field for thirty-three seats</h2>'
+      + '<h2 class="eh serif">Thirty-three seats for the whole country</h2>'
       + '<div class="pull">'
         + '<div class="pc"><div class="pn">215,417</div><div class="pl">applicants to one celebratory sitting, 1800</div></div>'
         + '<div class="pc"><div class="pn">33</div><div class="pl">seats in a standard triennial examination</div></div>'
@@ -3249,12 +3247,12 @@ function viewTrends(){
 
     // ---- explainer module 3: merit in principle vs practice ----
     + '<div class="exm">'
-      + '<div class="kick">Merit in principle</div>'
+      + '<div class="kick">Meritocracy</div>'
       + '<h2 class="eh serif">Who actually passed</h2>'
       + '<div class="para">'
-        + '<div class="pside"><div class="pk">In principle</div>'
+        + '<div class="pside"><div class="pk">The design</div>'
           + '<div class="pt">Office was won by a written test, open and decided on merit rather than by birth.</div></div>'
-        + '<div class="pside practice"><div class="pk">In practice</div><div class="barwrap">'
+        + '<div class="pside practice"><div class="pk">The record</div><div class="barwrap">'
           + '<div class="barrow"><span>The 50 largest of '+fmt(m.distinctSeonggwan)+' clans</span><span class="bn">'+pct1(conc.top50)+'%</span></div>'
           + '<div class="pbar"><span style="width:'+pct1(conc.top50)+'%"></span></div>'
           + '<div class="barrow" style="margin-top:14px"><span>The 10 largest clans</span><span class="bn">'+pct1(conc.top10)+'%</span></div>'
