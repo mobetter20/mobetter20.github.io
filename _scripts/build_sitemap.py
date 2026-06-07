@@ -46,6 +46,10 @@ COO_ISSUES_DIR = "is/writing/bird-coo/issues"
 
 def is_excluded(rel_posix: str) -> bool:
     """True if the relative POSIX path should be left out of the sitemap."""
+    # Jekyll never serves a file or directory whose name starts with "_", so it
+    # must not be advertised in the sitemap (e.g. is/.../_template.html -> 404).
+    if any(part.startswith("_") for part in rel_posix.split("/")):
+        return True
     guarded = f"/{rel_posix}/"
     if any(frag in guarded for frag in EXCLUDE_DIRS):
         return True
