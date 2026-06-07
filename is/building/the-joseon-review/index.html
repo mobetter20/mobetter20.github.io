@@ -428,8 +428,8 @@
   .exm .eh{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:23px; letter-spacing:-.01em; margin:6px 0 0; color:var(--ink)}
   .exm .ecap{font-size:13px; color:var(--ink3); margin:16px 0 2px; line-height:1.6; max-width:72ch}
   .exm .ecap b{color:var(--ink2); font-weight:600; font-style:normal}
-  .exsrc{margin-top:9px; font-size:11.5px; color:var(--ink3)}
-  .exsrc a{color:var(--ink2); text-decoration:underline; text-decoration-color:var(--rule3); text-underline-offset:2px; margin-right:14px; white-space:nowrap}
+  .exsrc{display:flex; flex-wrap:wrap; gap:5px 14px; margin-top:9px; font-size:11.5px; color:var(--ink3)}
+  .exsrc a{color:var(--ink2); text-decoration:underline; text-decoration-color:var(--rule3); text-underline-offset:2px; white-space:nowrap}
   .exsrc a:hover{text-decoration-color:var(--accent2)}
 
   /* explainer module 1 — the examination's own span, 958 to 1894 */
@@ -516,8 +516,8 @@
     .wrap{padding:24px 18px 70px}
     .topbar-in{padding:10px 18px; gap:12px}
     .nav a{padding:6px 9px}
-    .search input{width:130px}
-    .search input:focus{width:150px}
+    .search input{width:148px}
+    .search input:focus{width:166px}
     .marquee{grid-template-columns:repeat(2,1fr)}
     .mq{border-top:1px solid var(--rule); padding:20px 16px} .mq:nth-child(-n+2){border-top:0} .mq:nth-child(odd){border-left:0; padding-left:2px}
     .mast{gap:16px} .mast h1{font-size:38px} .seal{width:54px;height:54px}
@@ -571,7 +571,7 @@
       <a href="#/trends" data-route="trends">Exams</a>
     </nav>
     <form class="search" id="searchform" role="search" autocomplete="off">
-      <input type="text" id="searchbox" name="q" placeholder="Search a name or clan" aria-label="Search admitted officials by name or clan">
+      <input type="text" id="searchbox" name="q" placeholder="Name or clan" aria-label="Search admitted officials by name or clan">
     </form>
   </div>
 </div>
@@ -2448,6 +2448,10 @@ function alumniPlacementRank(p){
 }
 // the curated graduates as a ranked table mirroring the clan league; the placement
 // the record holds is the rank (no invented 1..n popularity order).
+function notableEn(id){
+  if(!notableEn._m){ notableEn._m = {}; (LK.notable||[]).forEach(function(x){ notableEn._m[x.id] = x; }); }
+  return notableEn._m[id] || null;
+}
 function alumniTableHtml(list){
   var sorted = list.slice().sort(function(a,b){
     var ra = alumniPlacementRank(a.p), rb = alumniPlacementRank(b.p);
@@ -2545,7 +2549,7 @@ function viewOverview(){
       + '<div><div class="kick">Distinguished graduates</div><h2 class="serif">Notable graduates</h2>'
         + '<div class="sub">The graduates whose work outlived the dynasty, with the placement the examination recorded for each.</div></div>'
       + '<a class="seemore" href="#/alumni">All graduates</a></div>'
-      + alumniRollHtml(alumni)
+      + alumniRollHtml((function(){ var f=alumniFeatured(alumni); return (f?[f]:[]).concat(alumni.filter(function(x){return x!==f;})).slice(0,4); })())
     + '</section>'
 
     // by the numbers — selectivity
@@ -2641,16 +2645,16 @@ function viewAlumni(){
     + '<p class="ph-sub">Graduates of the civil examination whose work outlived the dynasty. '
       + 'The placement shown for each is the one the examination recorded, from first in the realm (장원) to the rank held in a later class.</p></div>'
     + (feat ? alumniHeroHtml(feat) : '')
-    + '<div class="subhead" style="margin-top:34px">Ranked by placement</div>'
+    + '<div class="subhead" style="margin-top:34px">Ordered by placement</div>'
     + '<p style="font-size:12.5px; color:var(--ink3); margin:-6px 0 14px; max-width:62ch; line-height:1.55">'
-      + 'The examination ranked every class as it sat. These graduates are ordered by the placement it recorded, from first in the realm down.</p>'
-    + alumniTableHtml(alumni)
+      + 'The examination recorded a placement for every class. These graduates are listed by the placement it gave them, from first in the realm down.</p>'
+    + alumniTableHtml(alumni.filter(function(x){ return x !== feat; }))
     + '<p class="drynote" style="font-style:normal;color:var(--ink3);font-size:13px;max-width:74ch">'
       + 'The record holds <b style="color:var(--ink2);font-weight:600">'+fmt(nJangwon)+'</b> graduates who placed first in the realm and '
       + '<b style="color:var(--ink2);font-weight:600">'+fmt(nSiho)+'</b> granted a posthumous title by the state. '
       + 'The names above are a curated selection of those still widely remembered, each linked to its admit record. '
-      + 'The rest are reachable through <a href="#/cohorts" style="color:var(--accent);font-weight:500">Cohorts</a>, '
-      + '<a href="#/feeders" style="color:var(--accent);font-weight:500">Feeders</a>, and the search box.</p>'
+      + 'The rest are reachable through <a href="#/cohorts" style="color:var(--accent);font-weight:500">Classes</a>, '
+      + '<a href="#/feeders" style="color:var(--accent);font-weight:500">Clans</a>, and the search box.</p>'
     + footerHtml();
   app.innerHTML = html;
   pageTop();
@@ -2725,7 +2729,7 @@ function renderCohortGroups(){
       + '<span class="kreign">'+esc(kingReign(k))+'</span>'
       + '<span class="kn"><b>'+fmt(list.length)+'</b> '+(list.length===1?'sitting':'sittings')+'</span></div>'
       + '<div class="tscroll"><table class="dt"><thead><tr>'
-        + '<th>Class</th><th>Examination</th><th class="num">Admitted</th><th class="num">장원</th></tr></thead>'
+        + '<th>Class</th><th>Examination</th><th class="num">Admitted</th><th class="num">Valedictorian 장원</th></tr></thead>'
         + '<tbody></tbody></table></div>';
     var tb = grp.querySelector('tbody');
     list.forEach(function(c){
@@ -2847,7 +2851,7 @@ function personRowForCohort(r){
   var badge = honBadge(r.hon);
   tr.innerHTML =
     '<td class="num rnk">'+(r.rk!=null?r.rk:'·')+'</td>'
-    + '<td><a href="#/person/'+encodeURIComponent(r.i)+'"><span class="nm">'+esc(r.n)
+    + '<td><a href="#/person/'+encodeURIComponent(r.i)+'"><span class="nm">'+(notableEn(r.i)?esc(notableEn(r.i).en)+' ':'')+esc(r.n)
       + '<span class="nh kr">'+esc(r.h)+'</span></span>'
       + (badge&&r.hon!=='jangwon'?'':'') + '</a></td>'
     + '<td>'+clanCell(r)+'</td>'
@@ -2866,6 +2870,7 @@ function viewPerson(id){
   var ex = examEn(p.e);
   var badge = honBadge(p.hon);
   var clanRomTxt = clanRom(p.b);
+  var nbP = notableEn(id); // curated English name/pen name, where present
 
   // alt-name fields (자 / 호 / 시호)
   var alts = [];
@@ -2894,8 +2899,9 @@ function viewPerson(id){
     + '<div class="profile">'
       + '<div class="profile-top">'+crestSvg('profile-crest')
         + '<div class="pkick">Admitted &middot; '+p.y+'</div>'
-        + '<div class="pname serif">'+esc(p.n)+'</div>'
-        + '<div class="phanja kr">'+esc(p.h)+'</div>'
+        + '<div class="pname serif">'+(nbP?esc(nbP.en):esc(p.n))+'</div>'
+        + '<div class="phanja kr">'+(nbP?esc(p.n)+' '+esc(p.h):esc(p.h))+'</div>'
+        + (nbP&&nbP.ep?'<div style="font-style:italic;color:var(--ink2);font-size:15px;margin-top:8px">'+esc(nbP.ep)+'</div>':'')
         + (badge?'<div class="pbadge">'+esc(badge.t)+'</div>':'')
       + '</div>'
       + '<div class="profile-body">'
@@ -2927,8 +2933,8 @@ function viewFeeders(){
   var maxN = DATA.feeders[0].n;
 
   var html =
-    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Feeders</div>'
-    + '<h1 class="ph-title serif">The feeder clans</h1>'
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>All clans</div>'
+    + '<h1 class="ph-title serif">The clans</h1>'
     + '<p class="ph-sub">Every clan seat (성관) that produced an official, ranked by total admits across the dynasty. '
       + fmt(DATA.feeders.length)+' clans in all.</p></div>'
 
@@ -2947,7 +2953,7 @@ function viewFeeders(){
     + '</div>'
     + '<div class="resultcount" id="feeder-count"></div>'
     + '<div class="tscroll"><table class="dt"><thead><tr>'
-      + '<th class="num">Rank</th><th>Clan</th><th class="num">Admits</th><th>Share</th><th class="num">장원</th></tr></thead>'
+      + '<th class="num">Rank</th><th>Clan</th><th class="num">Admits</th><th>Share</th><th class="num">Valedictorian 장원</th></tr></thead>'
       + '<tbody id="feeder-body"></tbody></table></div>'
     + '<div id="feeder-more"></div>'
     + footerHtml();
@@ -3078,7 +3084,7 @@ function viewClan(key){
 
   var html =
     '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>'
-      + '<a href="#/feeders">Feeders</a><span class="sep">/</span>'+esc(sn)+' '+esc(seat)+'</div>'
+      + '<a href="#/feeders">All clans</a><span class="sep">/</span>'+esc(sn)+' '+esc(seat)+'</div>'
     + '<div class="kick">Clan profile &middot; 성관</div>'
     + '<h1 class="ph-title serif">'+esc(snRom||sn)+' of '+esc(rom||seat)+'</h1>'
     + '<p class="ph-sub"><span class="kr" style="font-size:19px">'+esc(sn)+' '+esc(seat)+'</span>'
@@ -3128,7 +3134,7 @@ function viewClan(key){
     var tr = el('tr');
     tr.innerHTML =
       '<td class="num rnk">'+r.y+'</td>'
-      + '<td><a href="#/person/'+encodeURIComponent(r.i)+'"><span class="nm">'+esc(r.n)
+      + '<td><a href="#/person/'+encodeURIComponent(r.i)+'"><span class="nm">'+(notableEn(r.i)?esc(notableEn(r.i).en)+' ':'')+esc(r.n)
         + '<span class="nh kr">'+esc(r.h)+'</span></span></a></td>'
       + '<td class="grd">'+esc(gradeEn(r.g))+'<span class="gkr kr">'+esc(r.g)+'</span>'
         + (badge?'<span class="laur-dot">'+esc(badge.rom)+'</span>':'')+'</td>'
@@ -3233,7 +3239,7 @@ function viewTrends(){
       + '<div class="kick">Selectivity</div>'
       + '<h2 class="eh serif">A national field for thirty-three seats</h2>'
       + '<div class="pull">'
-        + '<div class="pc"><div class="pn">215,417</div><div class="pl">applicants to a single sitting, in 1800</div></div>'
+        + '<div class="pc"><div class="pn">215,417</div><div class="pl">applicants to one celebratory sitting, 1800</div></div>'
         + '<div class="pc"><div class="pn">33</div><div class="pl">seats in a standard triennial examination</div></div>'
         + '<div class="pc hot"><div class="pn">&lt;1<small>%</small></div><div class="pl">effective pass rate at the largest sittings</div></div>'
       + '</div>'
@@ -3254,9 +3260,9 @@ function viewTrends(){
           + '<div class="barrow" style="margin-top:14px"><span>The 10 largest clans</span><span class="bn">'+pct1(conc.top10)+'%</span></div>'
           + '<div class="pbar"><span style="width:'+pct1(conc.top10)+'%"></span></div>'
         + '</div>'
-        + '<p class="pnote">A handful of aristocratic lineages produced most of those who passed, generation after generation. The clan league ranks exactly that. <a href="#/">See the league &rarr;</a></p></div>'
+        + '<p class="pnote">A small number of lineages produced most of those who passed, generation after generation. The clan league ranks exactly that. <a href="#/">See the league &rarr;</a></p></div>'
       + '</div>'
-      + '<p class="ecap" style="margin-top:24px">Scholarship on the examination&rsquo;s special sittings reaches the same finding: the extra tracks worked to reproduce the standing of families already in power.</p>'
+      + '<p class="ecap" style="margin-top:24px">Scholarship on the examination&rsquo;s special sittings has reached the same conclusion.</p>'
       + exsrc([['cambridge','Chung & Choi, “Meritocracy with Multiple Rules,” Cambridge']])
     + '</div>'
 
@@ -3268,7 +3274,7 @@ function viewTrends(){
     // class size over time
     + '<section><div class="sec-h">'
       + '<div><div class="kick">Admissions trends</div><h2 class="serif">Class size over time</h2>'
-        + '<div class="sub">Students admitted per 25-year period, '+DATA.meta.yearMin+' to '+DATA.meta.yearMax+'.</div></div></div>'
+        + '<div class="sub">Officials admitted per 25-year period, '+DATA.meta.yearMin+' to '+DATA.meta.yearMax+'.</div></div></div>'
       + '<div class="chartwrap"><svg class="chart" id="tr-chart" viewBox="0 0 1000 230" preserveAspectRatio="none" aria-hidden="true"></svg>'
         + '<div class="xlabels"><span>1393</span><span>1450</span><span>1500</span><span>1600</span><span>1700</span><span>1800</span><span>1894</span></div></div>'
       + '<div class="chart-cap">The triennial sitting held its thirty-three for five centuries. The growth is in the special sittings: the final 25-year period seated <b>'
@@ -3277,7 +3283,7 @@ function viewTrends(){
 
     // exam types
     + '<section><div class="sec-h">'
-      + '<div><div class="kick">Admissions tracks</div><h2 class="serif">How students were admitted</h2>'
+      + '<div><div class="kick">Admissions tracks</div><h2 class="serif">How officials were admitted</h2>'
         + '<div class="sub">Share of all admits by type of sitting.</div></div></div>'
       + '<div class="barlist">'+examBars+'</div>'
       + '<div class="trk-cap">The triennial examination (식년시) was the meritocratic core, seating thirty-three nationally. '
@@ -3370,7 +3376,7 @@ function viewSearch(rawq){
       var badge = honBadge(r.hon);
       var tr = el('tr');
       tr.innerHTML =
-        '<td><a href="#/person/'+encodeURIComponent(r.i)+'"><span class="nm">'+esc(r.n)
+        '<td><a href="#/person/'+encodeURIComponent(r.i)+'"><span class="nm">'+(notableEn(r.i)?esc(notableEn(r.i).en)+' ':'')+esc(r.n)
           + '<span class="nh kr">'+esc(r.h)+'</span></span></a></td>'
         + '<td>'+clanCell(r)+'</td>'
         + '<td class="num"><a href="#/cohort/'+encodeURIComponent(r.y+'-'+r.e)+'">'+r.y+'</a></td>'
@@ -3441,8 +3447,8 @@ function dispatch(){
     case 'alumni':  setActiveNav('alumni');  return viewAlumni();
     case 'cohorts': setActiveNav('cohorts'); return viewCohorts();
     case 'cohort':  setActiveNav('cohorts'); return viewCohort(tail);
-    case 'feeders': setActiveNav('feeders'); return viewFeeders();
-    case 'clan':    setActiveNav('feeders'); return viewClan(tail);
+    case 'feeders': setActiveNav(''); return viewFeeders();
+    case 'clan':    setActiveNav(''); return viewClan(tail);
     case 'trends':  setActiveNav('trends');  return viewTrends();
     case 'person':  setActiveNav('');        return viewPerson(tail);
     case 'search':  setActiveNav('');        return viewSearch(tail);
