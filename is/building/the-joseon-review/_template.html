@@ -994,7 +994,7 @@ function viewOverview(){
 
     // distinguished graduates — people, threaded through the product
     + '<section><div class="sec-h">'
-      + '<div><div class="kick">Distinguished graduates</div><h2 class="serif">Their work outlived the dynasty</h2>'
+      + '<div><div class="kick">Distinguished graduates</div><h2 class="serif">Where the famous placed</h2>'
         + '<div class="sub">Shown with the placement the examination recorded for each.</div></div>'
       + '<a class="seemore" href="#/alumni">All graduates</a></div>'
       + alumniRollHtml((function(){ var f=alumniFeatured(alumni); return (f?[f]:[]).concat(alumni.filter(function(x){return x!==f;})).slice(0,4); })())
@@ -1089,7 +1089,7 @@ function viewAlumni(){
   var html =
     '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Graduates</div>'
     + '<div class="kick">Distinguished graduates</div>'
-    + '<h1 class="ph-title serif">Their work outlived the dynasty</h1>'
+    + '<h1 class="ph-title serif">Where the famous placed</h1>'
     + '<p class="ph-sub">'
       + 'The placement shown for each is the one the examination recorded, from first in the realm (장원) to the rank held in a later class.</p></div>'
     + (feat ? alumniHeroHtml(feat) : '')
