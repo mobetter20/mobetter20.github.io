@@ -1,0 +1,8 @@
+# GitHub Pages (Jekyll) config.
+# Only purpose: stop serving repo-internal docs at public URLs. These are
+# agent/dev instruction files, not site content, and were reachable at
+# ajin.im/CLAUDE.md and ajin.im/AGENTS.md (HTTP 200) before this exclude.
+# Everything else builds on Jekyll defaults (no Gemfile / vendor in this repo).
+exclude:
+  - CLAUDE.md
+  - AGENTS.md
