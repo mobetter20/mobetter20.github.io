@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>the sky over Seoul · 1778–1907 — a Joseon weather diary</title>
+<meta name="description" content="130 years of real daily weather over Joseon Seoul (1778–1907), kept by the royal Bureau of Astronomy (관상감) — with the days history broke through, leveled in the same even hand. Every record real.">
+<meta property="og:title" content="the sky over Seoul · 1778–1907">
+<meta property="og:description" content="130 years of real Joseon Seoul weather, kept daily by the royal Bureau of Astronomy — and the days the world remembers, leveled in the same hand.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="/img/a3.png">
+<link rel="apple-touch-icon" href="/img/a3.png">
+<script src="/analytics.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#120d0a; --fg:#ece3d2; --dim:#998b76; --faint:#6b6051;
+  --accent:#dd9a4e; --accent2:#c9743a;
+  --rule:rgba(236,227,210,.15); --hover:rgba(221,154,78,.06);
+  --serif:'EB Garamond','Noto Serif KR',Georgia,serif;
+  --cjk:'Noto Serif KR',serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+}
+html{-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--fg);font-family:var(--serif);line-height:1.5;
+  padding:56px 24px 90px;min-height:100vh;position:relative;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(120% 75% at 50% -12%, rgba(221,154,78,.10), transparent 60%)}
+.site{max-width:600px;margin:0 auto;position:relative;z-index:1}
+
+/* mock banner */
+.mockbar{max-width:600px;margin:0 auto 30px;text-align:center;font-family:var(--mono);font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);border:1px dashed rgba(201,116,58,.4);
+  padding:7px 10px;border-radius:3px}
+
+/* masthead — orientation leads, bright + visible */
+.masthead{text-align:center;margin-bottom:34px}
+.masthead-orient{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--fg);letter-spacing:.01em;line-height:1.4}
+.accentline{width:34px;height:1px;background:var(--accent);margin:18px auto 0;opacity:.7}
+
+/* card — compacter than the column version so the diary is near the fold */
+.card{text-align:center;padding:10px 0 4px;min-height:250px}
+.dateline{text-align:center;margin-bottom:26px}
+.todayhook{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:13px}
+.bigdate{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(34px,9vw,46px);color:var(--fg);line-height:1.05;letter-spacing:.005em}
+.intro{text-align:center;max-width:48ch;margin:4px auto 0;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--faint);line-height:1.75}
+.intro .kr{font-family:var(--cjk)}
+.colophon a{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule);transition:.15s}
+.colophon a:hover{color:var(--accent);border-color:var(--accent)}
+.sky{margin:6px 0 14px;line-height:1.05}
+.glyph{font-family:var(--cjk);font-weight:400;color:var(--fg);
+  font-size:clamp(48px,11vw,80px);display:block;letter-spacing:.04em}
+.glyph.small{font-size:clamp(36px,8vw,56px)}
+.glyph.empty{color:var(--faint);font-weight:300}
+.gloss{font-family:var(--serif);font-style:italic;font-size:clamp(18px,4vw,24px);color:var(--accent);display:block;margin-top:10px}
+.gloss .ko{font-family:var(--cjk);font-style:normal;color:var(--fg);font-size:.82em;margin-right:.5em;letter-spacing:.02em}
+.amount{font-family:var(--mono);font-size:14px;letter-spacing:.06em;color:var(--accent);margin-top:16px}
+.amount .kr{font-family:var(--cjk)}
+.event{margin:26px auto 0;max-width:42ch;padding-top:17px;border-top:1px solid var(--rule);font-family:var(--serif);font-size:16.5px;font-style:italic;color:var(--fg);opacity:.94;line-height:1.55}
+.event .tag{display:block;margin-top:8px;font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2)}
+.event .tag .kr{font-family:var(--cjk);letter-spacing:.05em}
+
+/* controls */
+.controls{text-align:center;margin:34px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.09em;color:var(--dim);text-transform:uppercase}
+.step{display:flex;justify-content:center;gap:30px;align-items:baseline}
+.step a{color:var(--dim);text-decoration:none;cursor:pointer;transition:.15s}
+.step a:hover{color:var(--accent)}
+.walk{display:block;margin-top:8px;font-size:10px;letter-spacing:.2em;opacity:.55}
+.jump{display:inline-block;margin-top:22px;color:var(--dim);cursor:pointer;border-bottom:1px solid var(--rule);padding-bottom:3px;transition:.15s;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.jump:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ===== THE DIARY STRIP — consecutive real days, weather leveled, events flat ===== */
+.diary{margin:48px auto 0;max-width:460px}
+.diary-head{text-align:center;margin-bottom:20px}
+.diary-head .big{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.diary-head .big .kr{font-family:var(--cjk);text-transform:none;letter-spacing:.08em}
+.diary-head .range{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--dim);margin-top:7px;text-transform:uppercase}
+#strip{list-style:none}
+.d{display:grid;grid-template-columns:78px 1fr auto;gap:12px;align-items:baseline;
+  padding:5px 8px;border-bottom:1px dotted var(--rule);cursor:pointer;transition:.12s;font-size:15px}
+.d:hover{background:var(--hover)}
+.d.on{background:var(--hover)}
+.d.on .date{color:var(--accent)}
+.d .date{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--dim);white-space:nowrap}
+.d .body{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.d .body .g{font-family:var(--cjk);color:var(--fg)}
+.d .body .e{font-style:italic;color:var(--dim);font-size:12.5px}
+/* the event — SAME flat register as the weather. no bigger, no colour. that evenness is the point. */
+.d .body .evt{color:var(--fg);opacity:.92;font-size:14px}
+.d .body .evt .em{color:var(--dim);margin:0 .5em 0 .35em}
+.d .amt{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.03em;white-space:nowrap}
+.d.dry .amt{color:var(--faint)}
+.d.silent{opacity:.4}
+.d.silent .body .g{font-family:var(--mono);color:var(--faint)}
+.diary-foot{text-align:center;margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--dim);line-height:2}
+
+/* colophon */
+.colophon{max-width:600px;margin:64px auto 0;padding-top:24px;border-top:1px solid var(--rule);text-align:center;font-family:var(--mono);font-size:10.5px;line-height:2.1;letter-spacing:.03em;color:var(--dim)}
+.colophon .kr{font-family:var(--cjk)}
+.colophon .made{color:var(--fg);opacity:.8}
+.loading{text-align:center;color:var(--dim);font-family:var(--mono);font-size:13px;padding:80px 0}
+</style>
+</head>
+<body>
+<main class="site">
+  <header class="masthead">
+    <div class="masthead-orient">the royal weather diary of Seoul · 1778–1907</div>
+    <div class="accentline"></div>
+  </header>
+
+  <section class="card" id="card"><div class="loading">reading the diary…</div></section>
+
+  <div class="controls" id="controls" style="display:none">
+    <div class="step">
+      <a id="prev">←&nbsp;<span id="prev-lbl"></span></a>
+      <a id="next"><span id="next-lbl"></span>&nbsp;→</a>
+    </div>
+    <span class="jump" id="jump">jump to the next event →</span>
+  </div>
+
+  <section class="diary" id="diary">
+    <div class="diary-head">
+      <div class="range" id="diary-range"></div>
+    </div>
+    <ul id="strip"></ul>
+  </section>
+
+  <footer class="colophon" id="colophon" style="display:none">
+    kept by the <span class="kr">관상감</span> · the Bureau of Astronomy<br>
+    sky from the <a href="https://en.wikipedia.org/wiki/Seungjeongwon_ilgi" target="_blank" rel="noopener"><span class="kr">승정원일기</span></a>, 1778–1907 — among Earth's longest daily weather records<br>
+    rain by the <a href="https://en.wikipedia.org/wiki/Cheugugi" target="_blank" rel="noopener"><span class="kr">측우기</span></a>, the world's first rain gauge · every reading real<br>
+    digitised by <a href="https://zenodo.org/records/8382243" target="_blank" rel="noopener">Lyu et al. 2024</a> &amp; <a href="https://zenodo.org/records/11076768" target="_blank" rel="noopener">Lee et al. 2024</a> (CC-BY) · <a href="/"><span class="made">made by ajin.im</span></a>
+  </footer>
+</main>
+
+<script>
+const MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const STEM='甲乙丙丁戊己庚辛壬癸', BR='子丑寅卯辰巳午未申酉戌亥';
+const GLOSS={1:['맑음','clear'],2:['갬','fair'],3:['흐림','overcast'],4:['비','rain'],5:['비 끝 갬','rain, then clear'],6:['진눈깨비','sleet'],7:['눈','snow'],8:['우박','hail'],9:['바람','wind'],10:['안개','fog'],0:['','']};
+
+// events load from _data/events.json — 91 real, sourced, cross-checked events (no fabrication).
+let EVMAP={}, EVDATES=[];
+const ekey=(y,m,d)=>y*10000+m*100+d;
+function loadEvents(list){
+  EVMAP={}; EVDATES=[];
+  for(const [y,m,d,label,tag] of list){
+    const k=y+'-'+m+'-'+d;
+    if(!EVMAP[k]){EVMAP[k]=[];EVDATES.push([y,m,d]);}
+    EVMAP[k].push({label,tag});
+  }
+  EVDATES.sort((p,q)=>ekey(...p)-ekey(...q));
+}
+
+let DATA=null, hy=1895, cm=10, cd=8;
+const RANGE=10;  // days each side of the centre day
+const pad=n=>String(n).padStart(2,'0');
+const ganzhiYr=y=>STEM[((y-4)%10+10)%10]+BR[((y-4)%12+12)%12];
+function ganzhi(y,m,d){let yr=y;const l=DATA&&DATA.meta.lny[y];if(l&&(m<l[0]||(m===l[0]&&d<l[1])))yr=y-1;return ganzhiYr(yr)+'년';}
+function cell(m,d,y){const a=DATA.days[pad(m)+'-'+pad(d)];if(!a)return 0;const c=a[y-DATA.meta.y0];return c===undefined?0:c;}
+function evtsFor(y,m,d){return EVMAP[y+'-'+m+'-'+d]||null;}
+function isToday(){if(!DATA)return false;const t=new Date();const ty=Math.min(Math.max(t.getFullYear()-234,DATA.meta.y0),DATA.meta.y1);return hy===ty&&cm===t.getMonth()+1&&cd===t.getDate();}
+
+function renderCard(){
+  const c=cell(cm,cd,hy);
+  const hook=isToday()?`<div class="todayhook">today, 234 years ago</div>`:'';
+  const dateStr=`${hook}<span class="bigdate">${cd} ${MON[cm-1]} ${hy}</span>`;
+  let body;
+  if(c===0){
+    body=`<div class="dateline">${dateStr}</div>
+      <div class="sky"><span class="glyph empty">○</span>
+      <span class="gloss"><span class="ko">기록 없음</span><i>the diary is silent today</i></span></div>`;
+  }else{
+    const [cat,mm,wi]=c;
+    const hanja=wi>=0?DATA.wx[wi]:'';
+    let [ko,en]=GLOSS[cat]||['',''];
+    if(hanja.length>=3){ko='';en='';}
+    const sizeCls=hanja.length>=4?'glyph small':'glyph';
+    let amt='';
+    if(mm!=null){amt=`<div class="amount"><span class="kr">측우기</span> · ${mm} mm</div>`;}
+    body=`<div class="dateline">${dateStr}</div>
+      <div class="sky"><span class="${sizeCls}">${hanja||'·'}</span>
+      <span class="gloss"><span class="ko">${ko}</span><i>${en}</i></span></div>
+      ${amt}`;
+  }
+  const es=evtsFor(hy,cm,cd);
+  if(es){for(const e of es){const tg=e.tag?`<span class="kr">〔${e.tag}〕</span> `:'';body+=`<div class="event">${e.label}<span class="tag">${tg}${hy}</span></div>`;}}
+  document.getElementById('card').innerHTML=body;
+}
+
+function renderControls(){
+  const dP=new Date(hy,cm-1,cd); dP.setDate(dP.getDate()-1);
+  const dN=new Date(hy,cm-1,cd); dN.setDate(dN.getDate()+1);
+  document.getElementById('prev-lbl').textContent=`${dP.getDate()} ${MONS[dP.getMonth()]}`;
+  document.getElementById('next-lbl').textContent=`${dN.getDate()} ${MONS[dN.getMonth()]}`;
+}
+
+function renderStrip(){
+  const ul=document.getElementById('strip'); ul.innerHTML='';
+  const base=new Date(hy,cm-1,cd);
+  let first=null,last=null,events=0;
+  for(let off=-RANGE;off<=RANGE;off++){
+    const dt=new Date(base); dt.setDate(dt.getDate()+off);
+    const y=dt.getFullYear(), m=dt.getMonth()+1, d=dt.getDate();
+    if(y<DATA.meta.y0||y>DATA.meta.y1) continue;
+    if(first===null)first=dt; last=dt;
+    const c=cell(m,d,y);
+    const li=document.createElement('li'); li.className='d';
+    let g,e,amt;
+    if(c===0){li.classList.add('silent');g='○';e='no record';amt='·';}
+    else{const [cat,mm,wi]=c; g=wi>=0?DATA.wx[wi]:'·'; e=(GLOSS[cat]||['',''])[1];
+      if(mm!=null){amt=`${mm} mm`;}else{li.classList.add('dry');amt='·';}}
+    if(off===0) li.classList.add('on');
+    const es=evtsFor(y,m,d);
+    const evtxt=es?es.map(e=>`<span class="evt"><span class="em">—</span>${e.label}</span>`).join(''):'';
+    if(es)events+=es.length;
+    const dateLbl=`${pad(d)} ${MONS[m-1]} ${y}`;
+    li.innerHTML=`<span class="date">${dateLbl}</span><span class="body"><span class="g">${g}</span><span class="e">${e}</span>${evtxt}</span><span class="amt">${amt}</span>`;
+    li.onclick=()=>{hy=y;cm=m;cd=d;renderAll();};
+    ul.appendChild(li);
+  }
+  const f=first,l=last;
+  document.getElementById('diary-range').textContent=`${f.getDate()} ${MONS[f.getMonth()]} – ${l.getDate()} ${MONS[l.getMonth()]} ${l.getFullYear()}`;
+}
+
+function renderAll(){renderCard();renderControls();renderStrip();}
+function step(delta){
+  const dt=new Date(hy,cm-1,cd); dt.setDate(dt.getDate()+delta);
+  hy=dt.getFullYear();cm=dt.getMonth()+1;cd=dt.getDate();
+  if(hy<DATA.meta.y0){hy=DATA.meta.y1;} if(hy>DATA.meta.y1){hy=DATA.meta.y0;}
+  renderAll();
+}
+function jumpEvent(){
+  const cur=ekey(hy,cm,cd);
+  const nx=EVDATES.find(e=>ekey(...e)>cur)||EVDATES[0];
+  [hy,cm,cd]=nx; renderAll();
+}
+
+Promise.all([
+  fetch('./_data/forecast_data.json').then(r=>r.json()),
+  fetch('./_data/events.json').then(r=>r.json()).catch(()=>[])
+]).then(([d,evs])=>{
+  DATA=d; loadEvents(evs);
+  // today-as-door: open on today's calendar date, 234 years back (a neutral entry, not an "on this day" hook)
+  const t=new Date();
+  hy=Math.min(Math.max(t.getFullYear()-234,d.meta.y0),d.meta.y1);
+  cm=t.getMonth()+1; cd=t.getDate();
+  document.getElementById('controls').style.display='';
+  document.getElementById('colophon').style.display='';
+  renderAll();
+  document.getElementById('prev').onclick=()=>step(-1);
+  document.getElementById('next').onclick=()=>step(1);
+  document.getElementById('jump').onclick=()=>jumpEvent();
+}).catch(e=>{document.getElementById('card').innerHTML='<div class="loading">data load failed: '+e+'</div>';});
+</script>
+</body>
+</html>
