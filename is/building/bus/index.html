@@ -6,10 +6,10 @@
 <link rel="icon" type="image/png" href="/img/a3.png">
 <link rel="apple-touch-icon" href="/img/a3.png">
 <title>instrument bus</title>
-<meta name="description" content="A console of diagnostic instruments for interior conditions. Sort the bus by what it'll cost you, how close to the bone, or what people actually open.">
+<meta name="description" content="Self-service diagnostics for the interior. Each instrument runs on one feeling and returns a result.">
 <meta property="og:site_name" content="ajin.im">
 <meta property="og:title" content="interior-conditions // instrument bus">
-<meta property="og:description" content="A console of diagnostic instruments for interior conditions.">
+<meta property="og:description" content="Self-service diagnostics for the interior. Each instrument runs on one feeling and returns a result.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ajin.im/is/building/bus/">
 <meta name="twitter:card" content="summary">
@@ -29,11 +29,23 @@
     background-image:radial-gradient(820px 460px at 84% -14%, #2a1d10 0%, transparent 60%);
   }
   main{max-width:760px; margin:0 auto}
-  .bar{display:flex; align-items:baseline; justify-content:space-between; gap:1rem;
+
+  /* masthead: title device + live-state pill */
+  .bar{display:flex; align-items:baseline; justify-content:space-between; gap:.8rem; flex-wrap:wrap;
     border-bottom:1px solid var(--line); padding-bottom:.55rem}
   .bar h1{font-size:.74rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; margin:0; color:var(--ac)}
-  .bar .stat{font-size:.66rem; letter-spacing:.12em; color:var(--tx3); text-transform:uppercase; white-space:nowrap}
-  .tag{font-size:.74rem; color:var(--tx2); margin:.7rem 0 0}
+  .statpill{display:inline-flex; align-items:center; gap:.45rem; font-size:.62rem; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tx2); white-space:nowrap;
+    border:1px solid color-mix(in srgb,var(--ac) 30%, var(--line2));
+    background:color-mix(in srgb,var(--ac) 8%, var(--panel)); border-radius:999px; padding:.26rem .62rem}
+  .statpill .pdot{width:.42rem; height:.42rem; border-radius:50%; background:var(--ac);
+    box-shadow:0 0 0 0 rgba(127,224,168,.5); animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(127,224,168,.5)} 70%{box-shadow:0 0 0 6px rgba(127,224,168,0)} 100%{box-shadow:0 0 0 0 rgba(127,224,168,0)}}
+
+  /* the console addressing you */
+  .orient{font-size:.79rem; color:var(--tx2); line-height:1.55; max-width:64ch; margin:1rem 0 .15rem;
+    border-left:2px solid color-mix(in srgb,var(--ac) 55%, transparent); padding-left:.75rem}
+
   .lens{display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; padding:1.1rem 0 1rem; font-size:.7rem}
   .lens .lead{color:var(--tx3); text-transform:uppercase; letter-spacing:.12em; margin-right:.15rem}
   .lens button{font:inherit; font-size:.7rem; color:var(--tx2); cursor:pointer; white-space:nowrap;
@@ -42,35 +54,59 @@
   .lens button:hover{color:var(--tx); border-color:var(--tx3)}
   .lens button:focus-visible{outline:2px solid color-mix(in srgb,var(--ac) 60%, transparent); outline-offset:2px}
   .lens button[aria-pressed="true"]{color:var(--ac); border-color:color-mix(in srgb,var(--ac) 55%, transparent); background:color-mix(in srgb,var(--ac) 13%, var(--panel))}
+
   .board{list-style:none; margin:0; padding:0}
-  .row{display:grid; grid-template-columns:auto 9.5rem 1fr auto auto; align-items:center; gap:.75rem;
-    padding:.62rem .35rem; border-bottom:1px solid var(--line); text-decoration:none; color:inherit}
+  .row{display:grid; grid-template-columns:auto 9.5rem 1fr auto auto auto; align-items:center; gap:.75rem;
+    grid-template-areas:"d n s k v r"; padding:.62rem .35rem; border-bottom:1px solid var(--line);
+    text-decoration:none; color:inherit}
   a.row:hover{background:#1d1812}
   .row.staged{opacity:.62}
-  .dot{width:.5rem; height:.5rem; border-radius:50%; background:var(--ac); box-shadow:0 0 6px color-mix(in srgb,var(--ac) 55%, transparent)}
+  .dot{grid-area:d; width:.5rem; height:.5rem; border-radius:50%; background:var(--ac); box-shadow:0 0 6px color-mix(in srgb,var(--ac) 55%, transparent)}
   .dot.q{background:var(--quiet); box-shadow:0 0 6px color-mix(in srgb,var(--quiet) 55%, transparent)}
   .dot.s{background:transparent; border:1px solid var(--stage); box-shadow:none}
-  .nm{font-weight:600; color:var(--tx)}
+  .nm{grid-area:n; font-weight:600; color:var(--tx)}
   .row.staged .nm{color:var(--tx2)}
-  .ds{color:var(--tx2); font-size:.78rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  .right{font-size:.74rem; min-width:6.5ch; text-align:right; color:var(--ac)}
+  .ds{grid-area:s; color:var(--tx2); font-size:.78rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .spark{grid-area:k; display:inline-flex}
+  .right{grid-area:v; font-size:.74rem; min-width:6.5ch; text-align:right; color:var(--ac); justify-self:end}
   .right .u{color:var(--tx3)}
   .right.s{color:var(--stage); letter-spacing:.08em; text-transform:uppercase; font-size:.64rem}
-  footer{margin-top:2.4rem; padding-top:1rem; border-top:1px solid var(--line);
-    display:flex; justify-content:space-between; align-items:baseline; gap:1rem; font-size:.7rem}
+  /* every live instrument is runnable; staging rows carry no run affordance */
+  .run{grid-area:r; justify-self:end; font-size:.66rem; letter-spacing:.04em; white-space:nowrap;
+    color:color-mix(in srgb,var(--ac) 72%, transparent); transition:color .15s}
+  a.row:hover .run{color:var(--ac)}
+
+  /* standing system-state line + anchors */
+  .statusbar{margin-top:1.7rem; border-top:1px solid var(--line); padding-top:.95rem;
+    display:flex; align-items:center; gap:.55rem; font-size:.67rem; color:var(--tx2)}
+  .statusbar .sd{width:.46rem; height:.46rem; border-radius:50%; background:var(--ac); flex-shrink:0;
+    box-shadow:0 0 0 0 rgba(127,224,168,.5); animation:pulse 2.4s infinite}
+  footer{margin-top:.9rem; display:flex; justify-content:space-between; align-items:baseline; gap:1rem; font-size:.7rem}
   footer a{color:var(--tx3); text-decoration:none}
   footer a:hover{color:var(--tx2)}
-  .note{margin-top:1.1rem; font-size:.64rem; color:var(--tx3)}
+
+  @media(max-width:560px){
+    .row{grid-template-columns:auto 1fr auto auto; grid-template-areas:"d n v r" "d s s s";
+      gap:.18rem .55rem; padding:.7rem .15rem}
+    .spark{display:none}
+    .nm{align-self:end}
+    .ds{white-space:normal; font-size:.73rem; padding-top:.12rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .statpill .pdot,.statusbar .sd{animation:none}
+  }
 </style>
 </head>
 <body>
 <main>
-  <div class="bar"><h1>interior&#8203;-conditions // instrument bus</h1><span class="stat" id="stat">9 live · 2 staging</span></div>
+  <div class="bar"><h1>interior&#8203;-conditions // instrument bus</h1><span class="statpill"><span class="pdot"></span><span id="statcount">9 live · 2 staging</span></span></div>
 
-  <div class="lens" id="lens"><span class="lead">sort&nbsp;—</span></div>
+  <p class="orient">Self-service diagnostics for the interior. Each instrument runs on one feeling and returns a result. Pick one to run.</p>
+
+  <div class="lens" id="lens"><span class="lead">sort&nbsp;·</span></div>
   <ol class="board" id="board"></ol>
 
-  <p class="note">Sort the bus by any reading. "Open rate" is illustrative for now — the counter just started.</p>
+  <div class="statusbar"><span class="sd"></span>All instruments in service. Each run is local; nothing is saved.</div>
   <footer>
     <a href="/is/building/">&larr; building</a>
     <a href="/">made by ajin.im</a>
@@ -98,7 +134,7 @@
     var h=hash(seed),w=58,hgt=15,n=14,p=[];
     for(var i=0;i<n;i++){h^=h<<13;h>>>=0;h^=h>>17;h^=h<<5;h>>>=0;p.push((h%1000)/1000);}
     var d="";for(var j=0;j<n;j++){var x=(j/(n-1))*w,y=hgt-p[j]*(hgt-2)-1;d+=(j?"L":"M")+x.toFixed(1)+" "+y.toFixed(1)+" ";}
-    return '<svg width="'+w+'" height="'+hgt+'" viewBox="0 0 '+w+' '+hgt+'" style="color:var(--ac)"><path d="'+d+'" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>';
+    return '<svg class="spark" width="'+w+'" height="'+hgt+'" viewBox="0 0 '+w+' '+hgt+'" style="color:var(--ac)"><path d="'+d+'" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>';
   }
   var lensWrap=document.getElementById("lens");
   LENS.forEach(function(L){var b=document.createElement("button");b.textContent=L.l;b.setAttribute("aria-pressed",L.k===cur?"true":"false");
@@ -110,21 +146,21 @@
     sorted.forEach(function(it){
       var li=document.createElement("li");
       if(it.status==="staging"){
-        var right='<span class="right s">staging</span>';
         li.innerHTML='<div class="row staged"><span class="dot s"></span><span class="nm">'+it.name+'</span>'+
-          '<span class="ds">'+it.desc+'</span><span></span>'+right+'</div>';
+          '<span class="ds">'+it.desc+'</span><span class="right s">staging</span></div>';
       } else {
         var v=cur==="opens"?(it.s.opens+' <span class="u">op</span>'):(it.s[cur]+' <span class="u">/10</span>');
         var tgt=it.ext?' target="_blank" rel="noreferrer noopener"':'';
         var dotcls=it.s.opens<20?"dot q":"dot";
         li.innerHTML='<a class="row" href="'+it.href+'"'+tgt+'><span class="'+dotcls+'"></span>'+
           '<span class="nm">'+it.name+'</span>'+
-          '<span class="ds">'+it.desc+'</span>'+spark(it.name+cur)+'<span class="right">'+v+'</span></a>';
+          '<span class="ds">'+it.desc+'</span>'+spark(it.name+cur)+
+          '<span class="right">'+v+'</span><span class="run">run &#9656;</span></a>';
       }
       ol.appendChild(li);
     });
   }
-  document.getElementById("stat").textContent =
+  document.getElementById("statcount").textContent =
     INST.filter(function(x){return x.status === "live";}).length + " live · " +
     INST.filter(function(x){return x.status === "staging";}).length + " staging";
   paint();
