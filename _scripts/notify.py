@@ -22,12 +22,13 @@ CLI (for testing):
 
 from __future__ import annotations
 
+import os
 import smtplib
 import subprocess
 import sys
 from email.message import EmailMessage
 
-EMAIL_TO = "thelaughingmanslastact@gmail.com"
+EMAIL_TO = os.environ.get("NOTIFY_EMAIL", "")  # set NOTIFY_EMAIL to receive notifications; empty = email skipped, banner still fires
 EMAIL_FROM = EMAIL_TO
 GMAIL_PW_SERVICE = "mobetter-stats-gmail-app-pw"
 GMAIL_PW_ACCOUNT = "default"
@@ -44,6 +45,8 @@ def keychain_get(service: str, account: str = "default") -> str | None:
 
 
 def send_email(subject: str, body: str) -> tuple[bool, str]:
+    if not EMAIL_TO:
+        return False, "no recipient (set NOTIFY_EMAIL)"
     pw = keychain_get(GMAIL_PW_SERVICE, GMAIL_PW_ACCOUNT)
     if not pw:
         return False, "no keychain password (skipped)"
