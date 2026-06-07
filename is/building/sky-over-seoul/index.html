@@ -143,7 +143,7 @@ const MONS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','D
 const STEM='甲乙丙丁戊己庚辛壬癸', BR='子丑寅卯辰巳午未申酉戌亥';
 const GLOSS={1:['맑음','clear'],2:['갬','fair'],3:['흐림','overcast'],4:['비','rain'],5:['비 끝 갬','rain, then clear'],6:['진눈깨비','sleet'],7:['눈','snow'],8:['우박','hail'],9:['바람','wind'],10:['안개','fog'],0:['','']};
 
-// events load from _data/events.json — 91 real, sourced, cross-checked events (no fabrication).
+// events load from data/events.json — 108 real, sourced, cross-checked events (no fabrication).
 let EVMAP={}, EVDATES=[];
 const ekey=(y,m,d)=>y*10000+m*100+d;
 function loadEvents(list){
@@ -241,8 +241,8 @@ function jumpEvent(){
 }
 
 Promise.all([
-  fetch('./_data/forecast_data.json').then(r=>r.json()),
-  fetch('./_data/events.json').then(r=>r.json()).catch(()=>[])
+  fetch('./data/forecast_data.json').then(r=>r.json()),
+  fetch('./data/events.json').then(r=>r.json()).catch(()=>[])
 ]).then(([d,evs])=>{
   DATA=d; loadEvents(evs);
   // today-as-door: open on today's calendar date, 234 years back (a neutral entry, not an "on this day" hook)
