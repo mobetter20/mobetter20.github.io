@@ -1,0 +1,1928 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joseon Examination Rankings | The Joseon Review</title>
+<meta name="description" content="The Joseon civil service examination, ranked and profiled. 15,151 admitted officials across 800 sittings, 1393 to 1894, by the numbers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
+<script src="/analytics.js" defer></script>
+<style>
+  /* ============ palette (warm ink + gray ramp; navy reserved) ============ */
+  :root{
+    /* dark ground (owner's choice); panels are barely-lighter dark tints */
+    --bg:#17181c; --panel:#1e2025; --panel2:#262931;
+    /* light ink, then a mid-gray ramp for everything de-emphasized */
+    --ink:#e9e7e0; --ink2:#a8a59c; --ink3:#74726b;
+    /* luminous steel-blue accent, readable on dark: seal, magnitude bars, chart,
+       the single most important figure per view. accent-bg is its low-alpha fill.
+       links keep a table-link underline for affordance against the dark ground. */
+    --accent:#d24a36; --accent2:#e2735b; --accent-bg:rgba(210,74,54,.16);
+    /* the seal/logo is the institution's stamp: a deep oxblood mark, glyphs in ivory */
+    --seal:#7f2531; --seal-ink:#ece4d6;
+    /* brightened gold — the one warm note: seal honors, laurel + badge hairlines */
+    --gold:#c7a868;
+    /* dark hairline ramp: rule (low-contrast hairlines) -> rule2 (header
+       underlines) -> rule3 (engraved-letterhead heavy line) */
+    --rule:#2a2d34; --rule2:#373b43; --rule3:#474c56;
+    /* faint light full-row hover tint on the dark ground */
+    --hover:rgba(255,255,255,.05);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif; font-size:15px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; letter-spacing:.1px;
+  }
+  a{color:inherit}
+  /* Source Serif 4 — institutional display serif, clean upright J, ships
+     tabular + lining figures. Tight tracking applied per-element at large sizes. */
+  .serif{font-family:"Source Serif 4",Georgia,serif}
+  .kr{font-family:"Noto Serif KR","Source Serif 4",serif}
+  /* every figure run: lining + tabular so columns align and numerals sit on the cap line */
+  .tnum,.serif{font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .wrap{max-width:1060px; margin:0 auto; padding:30px 30px 96px}
+  /* shared eyebrow/kicker: uppercase, tracked, small, muted-gray, medium weight */
+  .kick{font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3)}
+
+  /* ============ sticky header / global nav ============ */
+  .topbar{position:sticky; top:0; z-index:40; background:rgba(23,24,28,.92); backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:1px solid var(--rule2)}
+  .topbar-in{max-width:1060px; margin:0 auto; padding:11px 30px; display:flex; align-items:center; gap:20px}
+  .brand{display:flex; align-items:center; gap:11px; text-decoration:none; flex-shrink:0}
+  .brand .bseal{width:30px; height:30px; flex-shrink:0}
+  .brand .bname{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:22px; letter-spacing:-.01em; color:var(--ink); line-height:1}
+  .nav{display:flex; align-items:center; gap:5px; margin-left:auto}
+  .nav a{font-size:13px; font-weight:500; color:var(--ink2); text-decoration:none; padding:7px 11px; border-radius:3px; letter-spacing:.2px; white-space:nowrap}
+  .nav a:hover{background:var(--panel2); color:var(--ink)}
+  /* active section is the one reserved navy moment in the chrome */
+  .nav a[aria-current="page"]{color:var(--accent); background:var(--accent-bg); font-weight:600}
+  .search{display:flex; align-items:center; gap:0; flex-shrink:0}
+  .search input{font-family:inherit; font-size:13px; color:var(--ink); background:var(--panel) no-repeat left 11px center; border:1px solid var(--rule2);
+    border-radius:3px; padding:7px 11px 7px 33px; width:172px; transition:width .18s ease, border-color .15s;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='6' cy='6' r='4.3' fill='none' stroke='%2374726b' stroke-width='1.4'/%3E%3Cline x1='9.4' y1='9.4' x2='13' y2='13' stroke='%2374726b' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")}
+  .search input:focus{outline:none; border-color:var(--accent2); width:212px}
+  .search input:focus{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='6' cy='6' r='4.3' fill='none' stroke='%23e2735b' stroke-width='1.4'/%3E%3Cline x1='9.4' y1='9.4' x2='13' y2='13' stroke='%23e2735b' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E")}
+  .search input::placeholder{color:var(--ink3)}
+  .navtoggle{display:none}
+
+  /* ============ masthead ============ */
+  .mast{display:flex; align-items:flex-start; gap:22px; padding-top:18px}
+  .seal{flex-shrink:0; width:66px; height:66px; margin-top:5px}
+  .mast-tx{flex:1; min-width:0}
+  .mast h1{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:54px; line-height:1.0;
+    letter-spacing:-.01em; margin:9px 0 0; color:var(--ink)}
+  .mast .dek{margin:13px 0 0; font-size:16px; color:var(--ink2); max-width:52ch; line-height:1.5}
+  /* "what this is" line — muted, sits under the dek */
+  .mast .whatis{margin:11px 0 0; font-size:13px; color:var(--ink3); max-width:60ch; line-height:1.55}
+  .estbar{display:flex; align-items:baseline; gap:14px; margin-top:14px; flex-wrap:wrap}
+  .estbar .est{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  /* engraved-letterhead double rule: one hairline + one heavier line */
+  .dbl-rule{height:0; border-top:1px solid var(--rule3); box-shadow:0 3px 0 -2px var(--rule); margin:34px 0 0}
+
+  /* ============ marquee stats ============ */
+  .marquee{display:grid; grid-template-columns:repeat(4,1fr); margin:0; border-bottom:1px solid var(--rule)}
+  .mq{padding:28px 24px 26px; border-left:1px solid var(--rule)}
+  .mq:first-child{border-left:0; padding-left:2px}
+  .mq .ml{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600; line-height:1.4}
+  .mq .mv{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:42px; line-height:1; margin-top:14px; color:var(--ink); letter-spacing:-.01em;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .mq .mv sup{font-size:18px; color:var(--accent); font-weight:600; top:-1.1em}
+  .mq .mv sup a{text-decoration:none; color:inherit}
+  .mq .mv sup a:hover{text-decoration:underline}
+  .mq .mv small{font-size:15px; color:var(--ink3); font-weight:500; letter-spacing:0}
+
+  /* ============ section scaffold ============ */
+  /* major section gap ~88px on desktop; whitespace dominates */
+  section{padding:52px 0 8px; border-bottom:1px solid var(--rule)}
+  .sec-h{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:26px}
+  .sec-h h2{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:25px; margin:8px 0 0; letter-spacing:-.01em}
+  .sec-h .sub{font-size:13px; color:var(--ink2); margin-top:5px}
+  .sec-note{font-size:12.5px; color:var(--ink3); text-align:right; max-width:30ch; line-height:1.5; flex-shrink:0}
+  .seemore{font-size:12px; font-weight:600; letter-spacing:.3px; color:var(--accent); text-decoration:none; white-space:nowrap}
+  .seemore:hover{text-decoration:underline}
+  .seemore::after{content:" \2192"}
+
+  /* ============ selectivity chart ============ */
+  .chartwrap{margin:6px 0 30px}
+  .chart{display:block; width:100%; height:auto}
+  .xlabels{display:flex; justify-content:space-between; font-size:11px; color:var(--ink3); letter-spacing:.5px; margin-top:7px;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .chart-cap{font-size:13px; color:var(--ink2); margin:14px 0 4px; max-width:64ch}
+
+  /* ============ league table ============ */
+  table.league{width:100%; border-collapse:collapse; margin-bottom:8px}
+  /* header: uppercase tracked small-caps muted gray, one heavier hairline beneath */
+  .league th{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600;
+    text-align:left; padding:0 12px 12px; border-bottom:1px solid var(--rule3)}
+  .league th.num,.league td.num{text-align:right; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  /* generous vertical row padding; horizontal hairline between rows only */
+  .league td{padding:15px 12px; border-bottom:1px solid var(--rule); vertical-align:middle}
+  /* single faint full-row warm tint on hover, nothing else */
+  .league tr:hover td{background:var(--hover)}
+  .league a.row-lnk{text-decoration:none; color:inherit; display:block}
+  /* rank numeral is the row anchor: larger, serif, deep neutral */
+  .rk{font-family:"Source Serif 4",Georgia,serif; font-size:23px; color:var(--ink2); width:42px; font-weight:500;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .inst .seat{font-family:"Noto Serif KR",serif; font-size:18px; font-weight:500; color:var(--ink)}
+  .inst .rom{font-size:13px; color:var(--ink2); margin-left:7px}
+  .inst .note{font-size:12px; color:var(--ink3); margin-top:2px; font-style:italic}
+  .adm{font-family:"Source Serif 4",Georgia,serif; font-size:19px; font-weight:600; color:var(--ink);
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .barcell{width:230px}
+  /* thin magnitude bar, navy at low alpha so the column self-sorts visually */
+  .bar{height:7px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
+  .bar span{display:block; height:100%; background:var(--accent); border-radius:2px}
+  .pct{font-size:13px; color:var(--ink2); width:54px; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .league-foot{font-size:12.5px; color:var(--ink3); padding:15px 12px 2px; line-height:1.55}
+  .league-foot b{color:var(--ink2); font-weight:600; font-style:normal}
+
+  /* edition masthead (overview) — product header */
+  .mast.edition .coverage{margin:13px 0 0; font-size:15px; color:var(--ink2); max-width:66ch; line-height:1.55}
+  .mast.edition .coverage a{color:var(--accent); font-weight:600; text-decoration:underline; text-decoration-color:var(--rule3); text-underline-offset:2px}
+  .mast.edition .coverage a:hover{text-decoration-color:var(--accent2)}
+
+  /* flagship clan league (overview): rank medals, a score bar under the figure,
+     a valedictorian figure, and the humanizer "known for" column */
+  .clanleague .rk.m1{color:var(--gold)}
+  .clanleague .rk.m2{color:#9a958a}
+  .clanleague .rk.m3{color:#a8814e}
+  .clanleague td.num .adm{display:block}
+  .clanleague .lbar{width:120px; height:6px; margin:6px 0 0 auto}
+  .clanleague td.jwn{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:16px; color:var(--ink2)}
+  .clanleague .knownfor{font-size:13px; color:var(--ink2); line-height:1.45; max-width:32ch}
+
+  /* ============ concentration callout ============ */
+  .conc{display:flex; gap:52px; padding:46px 0 48px; border-bottom:1px solid var(--rule); flex-wrap:wrap}
+  .conc .cstat{flex:0 0 auto}
+  /* the figure is the one navy moment here; the gloss stays neutral */
+  .conc .cnum{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:50px; line-height:1; color:var(--accent); letter-spacing:-.01em;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .conc .ctx{font-size:13.5px; color:var(--ink2); margin-top:11px; max-width:24ch; line-height:1.5}
+  .conc .ctx b{color:var(--ink); font-weight:600}
+
+  /* ============ admissions tracks ============ */
+  .tracks{padding:46px 0 50px; border-bottom:1px solid var(--rule)}
+  .trk{margin-bottom:20px}
+  .trk:last-child{margin-bottom:0}
+  .trk-top{display:flex; justify-content:space-between; align-items:baseline; gap:14px; font-size:14px; margin-bottom:8px}
+  .trk-top .tn{color:var(--ink); font-weight:500}
+  .trk-top .tp{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:17px; color:var(--ink); flex-shrink:0;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .trk-bar{height:11px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
+  .trk-bar span{display:block; height:100%; border-radius:2px}
+  .trk.std .trk-bar span{background:var(--accent2)}
+  .trk.spc .trk-bar span{background:var(--accent)}
+  .trk-cap{font-size:12.5px; color:var(--ink3); margin-top:18px; line-height:1.55; max-width:66ch}
+
+  /* ============ footer / colophon ============ */
+  footer{padding:30px 0 0}
+  .src{font-size:12.5px; color:var(--ink2); line-height:1.6; max-width:74ch}
+  .src b{color:var(--ink); font-weight:600}
+  .src a{color:var(--accent); text-decoration:none}
+  .src a:hover{text-decoration:underline}
+  .src .srclist{display:block; margin-top:9px; color:var(--ink3)}
+  .src .srclist a{color:var(--ink2)}
+  .colophon{margin-top:18px; font-size:12.5px; color:var(--ink3); letter-spacing:.3px}
+  .colophon a{color:var(--accent); text-decoration:none; font-weight:600}
+  .colophon a:hover{text-decoration:underline}
+
+  /* ============ generic view chrome (shared across deeper views) ============ */
+  .pagehead{padding-top:24px}
+  .crumb{font-size:12px; letter-spacing:.3px; color:var(--ink3); margin-bottom:16px}
+  .crumb a{color:var(--accent); text-decoration:none; font-weight:500}
+  .crumb a:hover{text-decoration:underline}
+  .crumb .sep{margin:0 8px; color:var(--rule2)}
+  .ph-title{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:40px; line-height:1.04; letter-spacing:-.01em; margin:6px 0 0; color:var(--ink)}
+  .ph-sub{font-size:15px; color:var(--ink2); margin:13px 0 0; max-width:60ch; line-height:1.55}
+  .ph-sub .kr{font-size:16px}
+
+  /* stat strip (cohort / clan headers) — boxed card replaced by whitespace +
+     a single top hairline; cells divided by thin vertical hairlines only */
+  .statstrip{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--rule3); margin:30px 0 0}
+  .statstrip .ss{flex:1 1 0; min-width:130px; padding:20px 22px 6px; border-left:1px solid var(--rule)}
+  .statstrip .ss:first-child{border-left:0; padding-left:2px}
+  .statstrip .ssl{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  .statstrip .ssv{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:28px; line-height:1.05; margin-top:9px; color:var(--ink); letter-spacing:-.01em;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .statstrip .ssv small{font-size:14px; color:var(--ink3); font-weight:500; letter-spacing:0}
+  .statstrip .ssv a{text-decoration:none; color:var(--accent)}
+  .statstrip .ssv a:hover{text-decoration:underline}
+  .statstrip .ssv .kr{font-size:24px}
+
+  /* valedictorian / highlight — boxed card replaced by whitespace + a top
+     hairline and a thin gold hairline accent on the left (gold as hairline only) */
+  .laurel{display:flex; align-items:center; gap:22px; margin:24px 0 0; padding:22px 0 22px 22px;
+    border-top:1px solid var(--rule); border-left:2px solid var(--gold); text-decoration:none; color:inherit}
+  .laurel:hover{background:var(--hover)}
+  .laurel .lcrest{flex-shrink:0; width:46px; height:46px}
+  .laurel .lk{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); font-weight:600}
+  .laurel .lname{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:27px; line-height:1.05; margin-top:5px; color:var(--ink); letter-spacing:-.01em}
+  .laurel .lname .lh{font-family:"Noto Serif KR",serif; font-size:19px; color:var(--ink2); font-weight:500; margin-left:9px}
+  .laurel .lmeta{font-size:13px; color:var(--ink2); margin-top:5px}
+  .laurel .lgo{margin-left:auto; color:var(--accent); font-size:13px; font-weight:600; white-space:nowrap}
+
+  /* grade breakdown chips — near-square, hairline only (no pill, no fill) */
+  .gradechips{display:flex; flex-wrap:wrap; gap:9px; margin-top:6px}
+  .gchip{display:inline-flex; align-items:baseline; gap:7px; font-size:13px; color:var(--ink2); background:transparent;
+    border:1px solid var(--rule2); border-radius:3px; padding:6px 13px}
+  .gchip b{font-family:"Source Serif 4",Georgia,serif; font-size:15px; color:var(--ink); font-weight:600;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .gchip .gkr{font-family:"Noto Serif KR",serif; color:var(--ink3); font-size:12px}
+
+  /* roster / list tables */
+  .tscroll{overflow-x:auto; -webkit-overflow-scrolling:touch} /* table keeps its scroll inside its own box at every width */
+  table.dt{width:100%; border-collapse:collapse; margin:8px 0}
+  /* header: uppercase tracked muted gray, one heavier hairline beneath */
+  .dt th{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600;
+    text-align:left; padding:0 12px 12px; border-bottom:1px solid var(--rule3); white-space:nowrap}
+  .dt th.num,.dt td.num{text-align:right; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  /* generous vertical row padding; horizontal hairline between rows only */
+  .dt td{padding:14px 12px; border-bottom:1px solid var(--rule); vertical-align:middle}
+  /* single faint full-row warm tint on hover */
+  .dt tbody tr:hover td{background:var(--hover)}
+  .dt a{text-decoration:none; color:inherit}
+  .dt .nm{font-weight:500; color:var(--ink)}
+  .dt .nm .nh{font-family:"Noto Serif KR",serif; color:var(--ink3); font-size:13px; margin-left:7px; font-weight:500}
+  /* clan reference: navy is reserved, but the clan link is a key navigational
+     target across the rosters, so it keeps the accent */
+  .dt .clan{color:var(--accent); font-weight:500}
+  .dt .clan .ck{font-family:"Noto Serif KR",serif; color:var(--ink3); font-weight:500; font-size:13px; margin-left:5px}
+  .dt .muted{color:var(--ink3)}
+  .dt .rnk{color:var(--ink2); font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .dt .laur-dot{display:inline-block; font-size:11px; color:var(--gold); font-weight:700; margin-left:6px; letter-spacing:.4px}
+  .dt .grd .gkr{font-family:"Noto Serif KR",serif; font-size:12px; color:var(--ink3); margin-left:5px}
+  /* monochrome link affordance: under graphite the accent no longer differs from
+     ink by hue, so in-content navigable links carry a faint hairline underline */
+  .dt .clan,.frow .fv a,.league-foot a{text-decoration:underline; text-decoration-color:var(--rule3);
+    text-decoration-thickness:1px; text-underline-offset:2px}
+  .league-foot a{color:var(--accent)}
+  .dt .clan:hover,.frow .fv a:hover,.league-foot a:hover{text-decoration-color:var(--accent2)}
+
+  /* person profile — heavy boxed card reduced to a restrained hairline frame
+     on ivory (no panel fill, near-square corners) */
+  .profile{max-width:640px; margin:34px auto 0; border:1px solid var(--rule2); border-radius:3px; overflow:hidden}
+  .profile-top{padding:36px 36px 30px; border-bottom:1px solid var(--rule3); text-align:center}
+  .profile-crest{width:54px; height:54px; margin:0 auto 16px}
+  .profile .pkick{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  .profile .pname{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:46px; line-height:1; margin:12px 0 0; letter-spacing:-.01em; color:var(--ink)}
+  .profile .phanja{font-family:"Noto Serif KR",serif; font-size:26px; color:var(--ink2); margin-top:10px; font-weight:500}
+  /* posthumous badge: near-square, gold hairline */
+  .profile .pbadge{display:inline-block; margin-top:16px; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    font-weight:600; color:var(--gold); border:1px solid var(--gold); border-radius:3px; padding:5px 15px}
+  .profile-body{padding:8px 36px 30px}
+  .frow{display:flex; gap:18px; padding:15px 0; border-bottom:1px solid var(--rule); align-items:baseline}
+  .frow:last-child{border-bottom:0}
+  .frow .fl{flex:0 0 132px; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600; padding-top:2px}
+  .frow .fv{flex:1; font-size:15.5px; color:var(--ink)}
+  .frow .fv .kr{font-family:"Noto Serif KR",serif}
+  .frow .fv a{color:var(--accent); text-decoration:none; font-weight:500}
+  .frow .fv a:hover{text-decoration:underline}
+  .frow .fv .fsub{display:block; font-size:13px; color:var(--ink3); margin-top:3px}
+  .altnames{display:flex; gap:0; flex-wrap:wrap; border-top:1px solid var(--rule); margin-top:0}
+  .altnames .an{flex:1 1 0; min-width:33%; padding:13px 0; text-align:center; border-left:1px solid var(--rule)}
+  .altnames .an:first-child{border-left:0}
+  .altnames .anl{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  .altnames .anv{font-family:"Noto Serif KR",serif; font-size:18px; color:var(--ink); margin-top:5px; font-weight:500}
+  .altnames .anv .anr{display:block; font-family:"Inter",sans-serif; font-size:11px; color:var(--ink3); margin-top:2px; letter-spacing:.3px}
+
+  /* trends: stepped concentration + histogram + exam-type bars */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:42px}
+  .stepwrap{margin-top:4px}
+  .step{display:flex; align-items:center; gap:14px; margin-bottom:13px}
+  .step .sl{flex:0 0 92px; font-size:12px; color:var(--ink2); font-weight:500}
+  .step .sbar{flex:1; height:9px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
+  .step .sbar span{display:block; height:100%; background:var(--accent2); border-radius:2px}
+  .step .sv{flex:0 0 56px; text-align:right; font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:16px; color:var(--ink);
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .histwrap{margin-top:6px}
+  .hist{display:flex; align-items:flex-end; gap:1px; height:150px; border-bottom:1px solid var(--rule2)}
+  .hist .hb{flex:1 1 0; background:var(--accent-bg); border-radius:1px 1px 0 0; min-width:0; position:relative}
+  .hist .hb.hi{background:var(--accent)}
+  .histx{display:flex; justify-content:space-between; font-size:11px; color:var(--ink3); margin-top:7px; letter-spacing:.4px;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .histcap{font-size:12.5px; color:var(--ink3); margin-top:12px; line-height:1.55}
+  .barlist{margin-top:4px}
+  .blrow{margin-bottom:16px}
+  .blrow .bltop{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:6px; font-size:13.5px}
+  .blrow .bln{color:var(--ink); font-weight:500}
+  .blrow .bln .blk{font-family:"Noto Serif KR",serif; color:var(--ink3); font-size:12px; margin-left:6px; font-weight:500}
+  .blrow .blg{font-size:12px; color:var(--ink3); margin-top:2px; max-width:62ch}
+  .blrow .blp{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:16px; color:var(--ink); flex-shrink:0;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .blrow .blbar{height:9px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
+  .blrow .blbar span{display:block; height:100%; background:var(--accent); border-radius:2px}
+
+  /* mini period bars (clan profile) */
+  .periodbars{display:flex; align-items:flex-end; gap:3px; height:96px; margin-top:6px; border-bottom:1px solid var(--rule2)}
+  .periodbars .pbcol{flex:1 1 0; background:var(--accent-bg); border-radius:1px 1px 0 0; min-width:0}
+  .periodbars .pbcol.on{background:var(--accent)}
+  .periodx{display:flex; justify-content:space-between; font-size:11px; color:var(--ink3); margin-top:7px;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+
+  /* filter / control bar */
+  .controls{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:28px 0 4px}
+  .controls .ctlsearch{position:relative; flex:1 1 240px; min-width:200px}
+  .controls input[type=text]{font-family:inherit; font-size:14px; color:var(--ink); background:var(--panel); border:1px solid var(--rule2);
+    border-radius:3px; padding:9px 13px; width:100%}
+  .controls input[type=text]:focus{outline:none; border-color:var(--accent2)}
+  .controls input::placeholder{color:var(--ink3)}
+  .controls select{font-family:inherit; font-size:13px; color:var(--ink); background:var(--panel); border:1px solid var(--rule2);
+    border-radius:3px; padding:9px 30px 9px 13px; -webkit-appearance:none; appearance:none; cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%238b8579'/></svg>");
+    background-repeat:no-repeat; background-position:right 12px center}
+  .controls select:focus{outline:none; border-color:var(--accent2)}
+  .chipfilter{display:flex; flex-wrap:wrap; gap:6px}
+  .chipfilter button{font-family:inherit; font-size:12px; font-weight:500; color:var(--ink2); background:transparent;
+    border:1px solid var(--rule2); border-radius:3px; padding:6px 13px; cursor:pointer; white-space:nowrap}
+  .chipfilter button:hover{border-color:var(--accent2); color:var(--ink)}
+  /* active filter is one of the reserved navy moments */
+  .chipfilter button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--bg); font-weight:600}
+  .resultcount{font-size:12.5px; color:var(--ink3); margin:20px 0 2px; letter-spacing:.2px}
+  .resultcount b{color:var(--ink2); font-weight:600; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+
+  /* cohort index: king groups */
+  .kgroup{padding:38px 0 8px; border-bottom:1px solid var(--rule)}
+  .kgroup:last-of-type{border-bottom:0}
+  .khead{display:flex; align-items:baseline; gap:14px; margin-bottom:6px}
+  .khead .kname{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:23px; letter-spacing:-.01em; color:var(--ink)}
+  .khead .kname .kkr{font-family:"Noto Serif KR",serif; font-size:16px; color:var(--ink3); margin-left:9px; font-weight:500}
+  .khead .kreign{font-size:12px; color:var(--ink3); letter-spacing:.4px; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .khead .kn{margin-left:auto; font-size:12px; color:var(--ink3); letter-spacing:.3px}
+  .khead .kn b{font-family:"Source Serif 4",Georgia,serif; color:var(--ink2); font-size:15px; font-weight:600;
+    font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+
+  /* show-more — near-square, hairline only (no panel fill) */
+  .showmore{display:block; width:100%; font-family:inherit; font-size:13px; font-weight:600; letter-spacing:.3px; color:var(--accent);
+    background:transparent; border:1px solid var(--rule2); border-radius:3px; padding:13px; cursor:pointer; margin-top:16px}
+  .showmore:hover{background:var(--hover); border-color:var(--accent2)}
+
+  /* methodology / about disclosure — near-square hairline frame, no fill */
+  .about{margin:30px 0 0; border:1px solid var(--rule); border-radius:3px; overflow:hidden}
+  .about > summary{list-style:none; cursor:pointer; padding:16px 22px; font-size:13px; font-weight:600; letter-spacing:.4px;
+    color:var(--ink); display:flex; align-items:center; gap:10px}
+  .about > summary::-webkit-details-marker{display:none}
+  .about > summary .akick{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  .about > summary .achev{margin-left:auto; color:var(--ink3); transition:transform .18s}
+  .about[open] > summary .achev{transform:rotate(180deg)}
+  .about-body{padding:4px 22px 22px; font-size:13.5px; color:var(--ink2); line-height:1.65; max-width:74ch}
+  .about-body p{margin:0 0 12px}
+  .about-body .srclist{margin-top:6px; font-size:12.5px; color:var(--ink3)}
+  .about-body .srclist a{color:var(--ink2); text-decoration:none; display:block; padding:3px 0}
+  .about-body .srclist a:hover{text-decoration:underline}
+
+  /* empty state */
+  .empty{padding:60px 20px; text-align:center; color:var(--ink3); font-size:15px}
+  .empty .ekr{font-family:"Noto Serif KR",serif; font-size:34px; color:var(--rule2); display:block; margin-bottom:14px}
+  .empty a{color:var(--accent); text-decoration:none; font-weight:600}
+
+  /* notable alumni list — near-square, hairline only */
+  .notable{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+  .notable a{display:inline-flex; align-items:baseline; gap:7px; font-size:13.5px; color:var(--ink); text-decoration:none;
+    background:transparent; border:1px solid var(--rule2); border-radius:3px; padding:7px 13px}
+  .notable a:hover{border-color:var(--accent2); background:var(--hover)}
+  .notable a .nak{font-family:"Noto Serif KR",serif; font-size:12px; color:var(--ink3)}
+  .notable a .natag{font-size:10px; letter-spacing:.6px; text-transform:uppercase; color:var(--gold); font-weight:700}
+  .subhead{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:17px; color:var(--ink); margin:30px 0 14px; letter-spacing:-.01em}
+
+  /* featured first-in-the-realm hero — extends .laurel (gold hairline + crest) */
+  .laurel.hero{align-items:flex-start; padding:30px 0 30px 26px; margin-top:30px}
+  .laurel.hero .lcrest{width:54px; height:54px; margin-top:3px}
+  .laurel.hero .lname{font-size:34px}
+  .laurel.hero .lname .lh{font-size:21px}
+  .laurel .lep{font-style:italic; color:var(--ink2); font-weight:500; font-size:.62em; margin-left:9px}
+  .laurel .lach{font-size:14px; color:var(--ink2); margin-top:11px; line-height:1.55; max-width:60ch}
+  /* bridge caption under the hero, into the alumni roll */
+  .bridge{font-size:13px; color:var(--ink3); margin:16px 0 6px; line-height:1.6; max-width:66ch}
+  .bridge a{color:var(--accent); text-decoration:none; font-weight:600}
+  .bridge a:hover{text-decoration:underline}
+
+  /* distinguished-alumni roll — name + real placement badge over an achievement line */
+  .alumni{margin-top:8px; border-top:1px solid var(--rule3)}
+  .arow{display:block; padding:17px 6px; border-bottom:1px solid var(--rule); text-decoration:none; color:inherit}
+  .arow:last-child{border-bottom:0}
+  .arow:hover{background:var(--hover)}
+  .arow .atop{display:flex; align-items:baseline; gap:14px; justify-content:space-between}
+  .arow .anm{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:20px; color:var(--ink); letter-spacing:-.01em; line-height:1.12}
+  .arow .anm .aep{font-style:italic; color:var(--ink2); font-weight:500; font-size:16px; margin-left:7px}
+  .arow .anm .akr{font-family:"Noto Serif KR",serif; font-size:14px; color:var(--ink3); margin-left:9px; font-weight:500}
+  .arow .abadge{flex-shrink:0; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:var(--gold); white-space:nowrap; text-align:right; padding-top:4px}
+  .arow .abadge.plain{color:var(--ink3); font-weight:600}
+  .arow .abadge .kr{letter-spacing:.02em}
+  .arow .aach{font-size:13.5px; color:var(--ink2); margin-top:6px; line-height:1.55; max-width:74ch}
+
+  /* note line (clan dry note, etc.) */
+  .drynote{font-size:14px; color:var(--ink2); line-height:1.6; margin:14px 0 0; max-width:66ch; font-style:italic}
+
+  /* ============ examination explainer (the renamed "By the numbers" tab) ============
+     each remarkable fact is set the way the rest of the site sets facts: a timeline,
+     pull-figures, a magnitude bar — not a paragraph. */
+  .exm{padding:36px 0 6px; border-top:1px solid var(--rule)}
+  .exm:first-of-type{border-top:0; padding-top:18px}
+  .exm .eh{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:23px; letter-spacing:-.01em; margin:6px 0 0; color:var(--ink)}
+  .exm .ecap{font-size:13px; color:var(--ink3); margin:16px 0 2px; line-height:1.6; max-width:72ch}
+  .exm .ecap b{color:var(--ink2); font-weight:600; font-style:normal}
+  .exsrc{display:flex; flex-wrap:wrap; gap:5px 14px; margin-top:9px; font-size:11.5px; color:var(--ink3)}
+  .exsrc a{color:var(--ink2); text-decoration:underline; text-decoration-color:var(--rule3); text-underline-offset:2px; white-space:nowrap}
+  .exsrc a:hover{text-decoration-color:var(--accent2)}
+
+  /* explainer module 1 — the examination's own span, 958 to 1894 */
+  .tl{position:relative; height:122px; margin:30px 0 2px}
+  .tl-axis{position:absolute; left:0; right:0; top:80px; height:2px; background:var(--rule2)}
+  .tl-cover{position:absolute; top:80px; height:2px; background:var(--accent2)}
+  .tl-dot{position:absolute; top:80px; width:12px; height:12px; border-radius:50%; background:var(--accent); border:3px solid var(--bg); box-shadow:0 0 0 1px var(--accent); transform:translate(-50%,-50%)}
+  .tl-dot.origin{width:15px; height:15px; background:var(--gold); box-shadow:0 0 0 1px var(--gold), 0 0 16px 2px rgba(199,168,104,.4)}
+  .tl-yr{position:absolute; top:34px; font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:28px; color:var(--ink); line-height:1; letter-spacing:-.01em; white-space:nowrap; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .tl-yr.origin{color:var(--gold); font-size:34px; top:30px}
+  .tl-lb{position:absolute; top:100px; font-size:11.5px; color:var(--ink3); letter-spacing:.03em; white-space:nowrap}
+
+  /* explainer module 2 — selectivity pull-figures */
+  .pull{display:grid; grid-template-columns:repeat(3,1fr); margin:26px 0 0; border-top:1px solid var(--rule2); border-bottom:1px solid var(--rule2)}
+  .pull .pc{padding:24px 24px 22px; border-left:1px solid var(--rule)}
+  .pull .pc:first-child{border-left:0; padding-left:2px}
+  .pull .pn{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:44px; line-height:1; color:var(--ink); letter-spacing:-.01em; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .pull .pc.hot .pn{color:var(--accent)}
+  .pull .pn small{font-size:18px; color:var(--ink3); font-weight:500}
+  .pull .pl{font-size:12.5px; color:var(--ink2); margin-top:12px; line-height:1.5; max-width:26ch}
+
+  /* explainer module 3 — merit in principle vs practice (.pbar avoids the league .bar) */
+  .para{display:grid; grid-template-columns:1fr 1.5fr; gap:34px; margin-top:28px; align-items:start}
+  .para .pside .pk{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600}
+  .para .pside .pt{font-size:14.5px; color:var(--ink); margin-top:10px; line-height:1.55}
+  .para .pside.practice .pk{color:var(--accent2)}
+  .para .barwrap{margin-top:16px}
+  .para .barrow{display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin-bottom:9px; font-size:13px; color:var(--ink2)}
+  .para .barrow .bn{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:17px; color:var(--ink); font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .para .pbar{height:11px; background:var(--accent-bg); border-radius:2px; overflow:hidden}
+  .para .pbar span{display:block; height:100%; background:var(--accent); border-radius:2px}
+  .para .pnote{font-size:12.5px; color:var(--ink3); margin-top:16px; line-height:1.6; max-width:46ch}
+  .para .pnote a{color:var(--accent); text-decoration:none; font-weight:600}
+  .para .pnote a:hover{text-decoration:underline}
+
+  /* ============ graduates leaderboard table (Graduates tab) ============
+     mirrors the clan league: the placement the examination recorded is the rank. */
+  table.gradleague{width:100%; border-collapse:collapse}
+  .gradleague th{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600; text-align:left; padding:0 12px 12px; border-bottom:1px solid var(--rule3); white-space:nowrap}
+  .gradleague td{padding:16px 12px; border-bottom:1px solid var(--rule); vertical-align:top}
+  .gradleague tr:hover td{background:var(--hover)}
+  .gradleague a{text-decoration:none; color:inherit; display:block}
+  .gradleague .gp{width:160px}
+  .gradleague .gbadge{font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; color:var(--gold); line-height:1.3}
+  .gradleague .gbadge.plain{color:var(--ink3); font-weight:600}
+  .gradleague .gbadge .kr{display:block; font-family:"Noto Serif KR",serif; font-size:12px; letter-spacing:.02em; margin-top:3px; color:var(--ink3); font-weight:500}
+  .gradleague .gnm{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:20px; color:var(--ink); letter-spacing:-.01em; line-height:1.1}
+  .gradleague .gnm .gep{font-style:italic; color:var(--ink2); font-weight:500; font-size:16px; margin-left:7px}
+  .gradleague .gnm .gkr{display:block; font-family:"Noto Serif KR",serif; font-size:13px; color:var(--ink3); margin-top:5px; font-weight:500}
+  .gradleague .gcl{font-family:"Source Serif 4",Georgia,serif; font-size:17px; color:var(--ink2); white-space:nowrap; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .gradleague .gkf{font-size:13px; color:var(--ink2); line-height:1.5; max-width:46ch}
+
+  /* ============ clan profile header band (mirrors the league row) ============ */
+  .clanhdr{display:flex; align-items:flex-start; gap:24px; margin-top:26px; padding-top:24px; border-top:1px solid var(--rule3)}
+  .clanhdr .chrank{flex:0 0 auto; text-align:center; min-width:60px}
+  .clanhdr .chrk{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:42px; line-height:1; color:var(--ink2); letter-spacing:-.01em; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .clanhdr .chrk.m1{color:var(--gold)} .clanhdr .chrk.m2{color:#9a958a} .clanhdr .chrk.m3{color:#a8814e}
+  .clanhdr .chrl{font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:600; margin-top:7px}
+  .clanhdr .chmain{flex:1; min-width:0}
+  .clanhdr .chscore{display:flex; align-items:baseline; gap:12px}
+  .clanhdr .chn{font-family:"Source Serif 4",Georgia,serif; font-weight:600; font-size:38px; line-height:1; color:var(--ink); letter-spacing:-.01em; font-variant-numeric:lining-nums tabular-nums; font-feature-settings:"tnum" 1,"lnum" 1}
+  .clanhdr .chnl{font-size:12.5px; color:var(--ink2); letter-spacing:.02em}
+  .clanhdr .chbar{height:7px; background:var(--accent-bg); border-radius:2px; overflow:hidden; margin:14px 0 0; max-width:400px}
+  .clanhdr .chbar span{display:block; height:100%; background:var(--accent); border-radius:2px}
+  .clanhdr .chfame{font-size:14px; color:var(--ink2); margin-top:14px; line-height:1.5; max-width:54ch}
+
+  /* landing gloss — first-timer anchor under the masthead coverage */
+  .mast.edition .gloss{margin:12px 0 0; font-size:13px; color:var(--ink3); max-width:62ch; line-height:1.55}
+  .mast.edition .gloss .kr{color:var(--ink2)}
+  .mast.edition .gloss a{color:var(--accent); font-weight:600; text-decoration:none; white-space:nowrap}
+  .mast.edition .gloss a:hover{text-decoration:underline}
+
+  /* ============ responsive ============ */
+  @media (max-width:860px){
+    .grid2{grid-template-columns:1fr; gap:30px}
+    /* header: nav drops to its own row before the single row would crowd the search box */
+    .topbar-in{flex-wrap:wrap; row-gap:8px}
+    .brand{order:1}
+    .search{order:2; margin-left:auto}
+    .nav{order:3; width:100%; margin-left:0; overflow-x:auto; gap:2px; -webkit-overflow-scrolling:touch; padding-bottom:2px}
+    .nav a{padding:6px 10px}
+  }
+  @media (max-width:720px){
+    .wrap{padding:24px 18px 70px}
+    .topbar-in{padding:10px 18px; gap:12px}
+    .nav a{padding:6px 9px}
+    .search input{width:148px}
+    .search input:focus{width:166px}
+    .marquee{grid-template-columns:repeat(2,1fr)}
+    .mq{border-top:1px solid var(--rule); padding:20px 16px} .mq:nth-child(-n+2){border-top:0} .mq:nth-child(odd){border-left:0; padding-left:2px}
+    .mast{gap:16px} .mast h1{font-size:38px} .seal{width:54px;height:54px}
+    .mast .dek{font-size:15px}
+    .ph-title{font-size:32px}
+    .conc{gap:24px} .conc .cnum{font-size:40px}
+    .sec-h{flex-direction:column; align-items:flex-start; gap:8px} .sec-note{text-align:left}
+    .statstrip .ss{flex-basis:50%; min-width:50%; border-left:0; border-top:1px solid var(--rule)}
+    .statstrip .ss:nth-child(odd){border-right:1px solid var(--rule)}
+    .statstrip .ss:nth-child(-n+2){border-top:0}
+    .profile-top{padding:28px 22px 24px} .profile-body{padding:6px 22px 24px} .profile .pname{font-size:38px}
+    .frow{flex-direction:column; gap:4px} .frow .fl{flex-basis:auto}
+    .laurel{gap:14px; padding:18px} .laurel .lcrest{display:none} .laurel .lgo{display:none}
+    .laurel.hero{padding:20px 0 20px 18px} .laurel.hero .lname{font-size:27px} .laurel.hero .lname .lh{font-size:18px}
+    .arow .atop{flex-wrap:wrap; gap:4px 12px} .arow .abadge{text-align:left; padding-top:0}
+    .barcell{width:auto; min-width:120px}
+    /* tables -> horizontal scroll on small screens */
+    .tscroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0 -18px; padding:0 18px}
+    .tscroll table{min-width:560px}
+    .khead{flex-wrap:wrap; gap:6px 12px} .khead .kn{margin-left:0; width:100%}
+    /* explainer + new components */
+    .exm .eh{font-size:21px}
+    .tl{height:74px} .tl-yr{font-size:21px} .tl-yr.origin{font-size:24px; top:34px} .tl-lb{display:none}
+    .pull{grid-template-columns:1fr} .pull .pc{border-left:0; border-top:1px solid var(--rule); padding-left:2px} .pull .pc:first-child{border-top:0}
+    .para{grid-template-columns:1fr; gap:22px}
+    .clanhdr{gap:16px} .clanhdr .chn{font-size:32px} .clanhdr .chrk{font-size:36px}
+  }
+  @media (max-width:430px){
+    .mast h1{font-size:32px}
+    .mq .mv{font-size:34px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ sticky global header ============ -->
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#/" aria-label="The Joseon Review, home">
+      <svg class="bseal" viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="4" y="4" width="92" height="92" rx="16" fill="var(--seal)"/>
+        <text x="50" y="45" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--seal-ink)">文</text>
+        <text x="50" y="84" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--seal-ink)">科</text>
+      </svg>
+      <span class="bname">The Joseon Review</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Sections">
+      <a href="#/" data-route="">Clans</a>
+      <a href="#/alumni" data-route="alumni">Graduates</a>
+      <a href="#/cohorts" data-route="cohorts">Classes</a>
+      <a href="#/trends" data-route="trends">Exams</a>
+    </nav>
+    <form class="search" id="searchform" role="search" autocomplete="off">
+      <input type="text" id="searchbox" name="q" placeholder="Name or clan" aria-label="Search admitted officials by name or clan">
+    </form>
+  </div>
+</div>
+
+<!-- ============ app mount ============ -->
+<main class="wrap" id="app" aria-live="polite"></main>
+
+<!-- ============ data (inlined by build.py) ============ -->
+<script type="application/json" id="data"><!--DATA--></script>
+<script type="application/json" id="lookups"><!--LOOKUPS--></script>
+
+<script>
+"use strict";
+(function(){
+/* =========================================================================
+   The Joseon Review — hash-routed single-page app.
+   Data is inlined above and parsed once. View-indexes (roster by cohort,
+   roster by clan) are built once on first need. Large lists render
+   incrementally via a shared "show more" pager so no view blocks.
+   ========================================================================= */
+
+var DATA = JSON.parse(document.getElementById('data').textContent);
+var LK   = JSON.parse(document.getElementById('lookups').textContent);
+var app  = document.getElementById('app');
+
+/* ---------- small helpers ---------- */
+function el(tag, attrs, html){
+  var n = document.createElement(tag);
+  if(attrs) for(var k in attrs){ if(attrs[k]!=null) n.setAttribute(k, attrs[k]); }
+  if(html!=null) n.innerHTML = html;
+  return n;
+}
+function esc(s){
+  if(s==null) return '';
+  return String(s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+function fmt(n){ return (n==null?'':Number(n).toLocaleString('en-US')); }
+function pct1(n){ return (n==null?'':Number(n).toFixed(1)); }
+function pageTop(){ window.scrollTo(0,0); }
+
+/* ---------- lookup resolvers ---------- */
+var EXAM_BASES = Object.keys(LK.exams).sort(function(a,b){ return b.length-a.length; });
+function clanRom(seat){
+  var c = LK.clans[seat];
+  return c ? c.rom : null;
+}
+// Common Korean surnames in the conventional romanization used for personal
+// names (the established forms, which differ from a literal RR of the syllable
+// — e.g. 이 = Yi, 박 = Park, 최 = Choi). Covers ~96% of admits; the long tail
+// falls back to the Hangul, never to a fabricated spelling. Lets the clan
+// header read "Yi of Jeonju" rather than "이 of Jeonju".
+var SURNAME_ROM = {
+  '이':'Yi','김':'Kim','박':'Park','정':'Jeong','조':'Jo','윤':'Yun','유':'Yu',
+  '홍':'Hong','최':'Choi','권':'Kwon','신':'Sin','한':'Han','임':'Im','송':'Song',
+  '강':'Kang','민':'Min','안':'An','심':'Sim','오':'O','남':'Nam','서':'Seo',
+  '황':'Hwang','장':'Jang','성':'Seong','허':'Heo','노':'No','양':'Yang','백':'Baek',
+  '손':'Son','고':'Go','전':'Jeon','채':'Chae','구':'Gu','원':'Won','문':'Mun',
+  '곽':'Gwak','변':'Byeon','여':'Yeo','나':'Na','배':'Bae','우':'U','주':'Ju',
+  '엄':'Eom','어':'Eo','류':'Ryu','연':'Yeon','표':'Pyo','마':'Ma','진':'Jin',
+  '하':'Ha','방':'Bang','지':'Ji','반':'Ban','선':'Seon','설':'Seol','소':'So'
+};
+function surnameRom(sn){ return SURNAME_ROM[sn] || null; }
+// Canonical clan label, shared by both league tables so distinct clans at the
+// same seat stay distinct (안동 권씨 vs 안동 김씨). Korean form "전주 이씨"
+// (seat + surname + 씨); romanized "Yi of Jeonju" when the surname is known,
+// else the seat romanization alone.
+function clanLabel(sn, seat){
+  var sr = surnameRom(sn), cr = clanRom(seat);
+  return { ko: seat+' '+sn+'씨', rom: (sr&&cr) ? sr+' of '+cr : (cr||'') };
+}
+function examEn(name){
+  if(LK.exams[name]) return LK.exams[name];
+  // fallbacks: strip trailing digits, then try a known base as suffix
+  var stripped = name.replace(/[0-9]+$/, '');
+  if(LK.exams[stripped]) return LK.exams[stripped];
+  for(var i=0;i<EXAM_BASES.length;i++){
+    var b = EXAM_BASES[i];
+    if(stripped.length>b.length && stripped.slice(-b.length)===b){
+      var base = LK.exams[b];
+      return { en: base.en, gloss: base.gloss };
+    }
+  }
+  return null;
+}
+function examEnName(name){
+  var e = examEn(name);
+  return e ? e.en : name; // graceful: show Hangul name if no English exists
+}
+function kingRom(k){ var r = LK.kings[k]; return r ? r.rom : k; }
+function kingReign(k){ var r = LK.kings[k]; return r ? r.reign : ''; }
+function gradeEn(g){ var x = LK.grades[g]; return x ? x.en : g; }
+// Standing of a grade tier, for ordering a class top-down. The source rk is
+// numbered WITHIN each grade (갑과 #1, 을과 #1, 병과 #1 all exist), so a class
+// is ordered by tier first, then rk within tier.
+var GRADE_TIER = {'갑과':0,'을과':1,'병과':2,'정과':3,'동진사':4};
+function gradeTier(g){
+  if(g in GRADE_TIER) return GRADE_TIER[g];
+  if(g.indexOf('갑과')===0) return 0;
+  if(g.indexOf('을과')===0) return 1;
+  if(g.indexOf('병과')===0) return 2;
+  if(g.indexOf('정과')===0) return 3;
+  if(g.indexOf('동진사')!==-1) return 4;
+  return 5; // numeric-only grades (1등/2등/3등 …) sit after the named tiers
+}
+function honBadge(hon){
+  if(hon==='jangwon')   return {t:'Valedictorian', rom:'장원'};
+  if(hon==='aweon')     return {t:'Second place',  rom:'아원'};
+  if(hon==='tamhwarang')return {t:'Third place',   rom:'탐화랑'};
+  return null;
+}
+
+/* ---------- one-time view indexes ---------- */
+var _rosterByCohort=null, _rosterByClan=null, _personById=null, _feederByKey=null, _cohortById=null;
+function rosterByCohort(){
+  if(_rosterByCohort) return _rosterByCohort;
+  var m = {};
+  var R = DATA.roster;
+  for(var i=0;i<R.length;i++){
+    var r = R[i];
+    var id = r.y + '-' + r.e;
+    (m[id] || (m[id]=[])).push(r);
+  }
+  _rosterByCohort = m; return m;
+}
+function rosterByClan(){
+  if(_rosterByClan) return _rosterByClan;
+  var m = {};
+  var R = DATA.roster;
+  for(var i=0;i<R.length;i++){
+    var r = R[i];
+    (m[r.bk] || (m[r.bk]=[])).push(r);
+  }
+  _rosterByClan = m; return m;
+}
+function personById(){
+  if(_personById) return _personById;
+  var m = {};
+  var R = DATA.roster;
+  for(var i=0;i<R.length;i++){ m[R[i].i]=R[i]; }
+  _personById = m; return m;
+}
+function feederByKey(){
+  if(_feederByKey) return _feederByKey;
+  var m = {};
+  for(var i=0;i<DATA.feeders.length;i++){ m[DATA.feeders[i].key]=DATA.feeders[i]; }
+  _feederByKey = m; return m;
+}
+function cohortById(){
+  if(_cohortById) return _cohortById;
+  var m = {};
+  for(var i=0;i<DATA.cohorts.length;i++){ m[DATA.cohorts[i].id]=DATA.cohorts[i]; }
+  _cohortById = m; return m;
+}
+function median(nums){
+  if(!nums.length) return null;
+  var a = nums.slice().sort(function(x,y){return x-y;});
+  var mid = Math.floor(a.length/2);
+  return a.length%2 ? a[mid] : Math.round((a[mid-1]+a[mid])/2);
+}
+
+/* ---------- shared fragments ---------- */
+// "미상" (未詳) is the record value for an unknown clan seat. 277 admits carry
+// it; they have no 성관 key (bk), are not in the feeder league, and have no
+// clan page — so they render as plain text, never as a link.
+function isUnknownSeat(seat){ return !seat || seat==='미상'; }
+function clanLink(key, opts){
+  opts = opts || {};
+  if(key==null){ return '<span class="muted">Clan unrecorded</span>'; }
+  var parts = key.split(' ');
+  var sn = parts[0], seat = parts.slice(1).join(' ');
+  if(isUnknownSeat(seat)){
+    return '<span class="clan" style="color:var(--ink3)">'+esc(sn)+' 미상</span>';
+  }
+  var rom = clanRom(seat);
+  var label;
+  if(rom){
+    // "Yi of Jeonju" style with surname in Hangul kept compact
+    label = '<span class="clan">'+esc(sn)+' '+esc(seat)
+          + (opts.rom!==false ? ' <span style="color:var(--ink3);font-style:italic">'+esc(rom)+'</span>' : '')
+          + '</span>';
+  } else {
+    label = '<span class="clan">'+esc(sn)+' '+esc(seat)+'</span>';
+  }
+  return '<a href="#/clan/'+encodeURIComponent(key)+'">'+label+'</a>';
+}
+// Clan reference built from a roster record. Falls back to surname + 미상 when
+// the record has no 성관 key (unknown seat), so views never throw on bk.
+function clanCell(rec){
+  if(rec.bk!=null) return clanLink(rec.bk);
+  var sn = rec.s || '';
+  return '<span class="clan" style="color:var(--ink3)">'+esc(sn)
+    + (rec.b?' '+esc(rec.b):'')+'</span>';
+}
+function crestSvg(cls){
+  return '<svg class="'+cls+'" viewBox="0 0 100 100" aria-hidden="true">'
+    + '<rect x="4" y="4" width="92" height="92" rx="16" fill="var(--seal)"/>'
+    + '<text x="50" y="45" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--seal-ink)">文</text>'
+    + '<text x="50" y="84" text-anchor="middle" font-family="Noto Serif KR, serif" font-weight="700" font-size="36" fill="var(--seal-ink)">科</text>'
+    + '</svg>';
+}
+function footerHtml(){
+  var srcs = LK.cited.sources.map(function(s){
+    return '<a href="'+esc(s.url)+'" rel="noopener">'+esc(s.label)+'</a>';
+  }).join(' &nbsp;·&nbsp; ');
+  return '<footer>'
+    + '<p class="src"><b>Source.</b> '+esc(DATA.meta.source)+'. '
+    + 'Every name, rank, and result is a matter of record. Applicant totals were not centrally kept; the acceptance rate is read from surviving seat-and-field figures. '
+    + '<a href="#/about">Methodology</a>.'
+    + '<span class="srclist">Sources: '+srcs+'</span></p>'
+    + '<p class="colophon">made by <a href="https://ajin.im" rel="noopener">ajin.im</a></p>'
+    + '</footer>';
+}
+function aboutDisclosure(open){
+  var srcs = LK.cited.sources.map(function(s){
+    return '<a href="'+esc(s.url)+'" rel="noopener">'+esc(s.label)+'</a>';
+  }).join('');
+  return '<details class="about" id="about"'+(open?' open':'')+'>'
+    + '<summary><span class="akick">Methodology</span> '
+    + '<span style="color:var(--ink2);font-weight:500">How the acceptance rate is estimated</span>'
+    + '<span class="achev" aria-hidden="true">▾</span></summary>'
+    + '<div class="about-body"><p>'+esc(LK.cited.detail)+'</p>'
+    + '<div class="srclist">'+srcs+'</div></div>'
+    + '</details>';
+}
+// incremental pager: renders rows into a tbody/container in chunks
+function pager(container, items, renderRow, chunk){
+  chunk = chunk || 120;
+  var shown = 0;
+  var btnWrap = el('div');
+  function frag(to){
+    var f = document.createDocumentFragment();
+    for(var i=shown;i<to;i++){ f.appendChild(renderRow(items[i], i)); }
+    return f;
+  }
+  function more(){
+    var to = Math.min(shown+chunk, items.length);
+    container.appendChild(frag(to));
+    shown = to;
+    if(shown>=items.length){ btnWrap.innerHTML=''; }
+    else {
+      btnWrap.innerHTML='';
+      var b = el('button',{class:'showmore',type:'button'},
+        'Show more &nbsp;·&nbsp; '+fmt(items.length-shown)+' remaining');
+      b.addEventListener('click', more);
+      btnWrap.appendChild(b);
+    }
+  }
+  more();
+  return btnWrap;
+}
+
+/* ---------- distinguished alumni (curated overlay in LK.notable) ----------
+   The badge is read live from the record so it always states the real result:
+   first/second/third in the realm, else the state-granted posthumous title,
+   else the plain class year. The achievement text is the only editorial part. */
+function alumniBadge(p){
+  if(p.z===1 || p.hon==='jangwon')    return {t:'First in the realm',  rom:'장원',        gold:true};
+  if(p.hon==='aweon')                 return {t:'Second in the realm', rom:'아원',        gold:true};
+  if(p.hon==='tamhwarang')            return {t:'Third in the realm',  rom:'탐화랑',      gold:true};
+  if(p.sh)                            return {t:'State-honored',       rom:'시호 '+p.sh,  gold:true};
+  return {t:'Class of '+p.y, rom:'', gold:false};
+}
+function alumniResolved(){
+  // [{meta,p}] for each curated entry whose record resolves, in LK.notable order
+  var by = personById(), out = [];
+  (LK.notable||[]).forEach(function(m){ var p = by[m.id]; if(p) out.push({meta:m, p:p}); });
+  return out;
+}
+function alumniFeatured(list){
+  for(var i=0;i<list.length;i++){ if(list[i].meta.feat) return list[i]; }
+  return list[0] || null;
+}
+function alumniRowHtml(meta, p){
+  var b = alumniBadge(p);
+  var ep = meta.ep ? '<span class="aep">'+esc(meta.ep)+'</span>' : '';
+  var badge = '<span class="abadge'+(b.gold?'':' plain')+'">'+esc(b.t)
+    + (b.rom?' <span class="kr">'+esc(b.rom)+'</span>':'')+'</span>';
+  return '<a class="arow" href="#/person/'+encodeURIComponent(p.i)+'">'
+    + '<div class="atop"><div class="anm">'+esc(meta.en)+ep
+      + '<span class="akr kr">'+esc(p.n)+' '+esc(p.h)+'</span></div>'+badge+'</div>'
+    + '<div class="aach">'+esc(meta.ach)+'</div></a>';
+}
+function alumniRollHtml(list){
+  return '<div class="alumni">'
+    + list.map(function(x){ return alumniRowHtml(x.meta, x.p); }).join('')
+    + '</div>';
+}
+function alumniHeroHtml(x){
+  // featured #1 placement — the rankings house leading with its number one
+  var p = x.p, meta = x.meta, b = alumniBadge(p);
+  var ep = meta.ep ? '<span class="lep">'+esc(meta.ep)+'</span>' : '';
+  return '<a class="laurel hero" href="#/person/'+encodeURIComponent(p.i)+'">'
+    + crestSvg('lcrest')
+    + '<div><div class="lk">'+esc(b.t)+(b.rom?' &middot; '+esc(b.rom):'')+' &middot; '+p.y+'</div>'
+      + '<div class="lname">'+esc(meta.en)+ep+'<span class="lh kr">'+esc(p.n)+' '+esc(p.h)+'</span></div>'
+      + '<div class="lach">'+esc(meta.ach)+'</div></div>'
+    + '<span class="lgo">View admit &rarr;</span></a>';
+}
+// resolve a cited source by a stable URL fragment, so inline source links stay
+// correct even if lookups.json reorders its sources array.
+function srcByUrl(frag){
+  var s = (LK.cited && LK.cited.sources) || [];
+  for(var i=0;i<s.length;i++){ if(s[i].url.indexOf(frag)!==-1) return s[i]; }
+  return null;
+}
+// a row of short inline source links from [urlFragment, shortLabel] pairs
+function exsrc(pairs){
+  return '<div class="exsrc">' + pairs.map(function(p){
+    var s = srcByUrl(p[0]);
+    return s ? '<a href="'+esc(s.url)+'" rel="noopener">'+esc(p[1])+'</a>' : '';
+  }).join('') + '</div>';
+}
+// placement tier for ordering the graduates leaderboard: the examination's own
+// verdict (first/second/third in the realm, then state-honored, then class year).
+function alumniPlacementRank(p){
+  if(p.z===1 || p.hon==='jangwon') return 0;
+  if(p.hon==='aweon') return 1;
+  if(p.hon==='tamhwarang') return 2;
+  if(p.sh) return 3;
+  return 4;
+}
+// the curated graduates as a ranked table mirroring the clan league; the placement
+// the record holds is the rank (no invented 1..n popularity order).
+function notableEn(id){
+  if(!notableEn._m){ notableEn._m = {}; (LK.notable||[]).forEach(function(x){ notableEn._m[x.id] = x; }); }
+  return notableEn._m[id] || null;
+}
+function alumniTableHtml(list){
+  var sorted = list.slice().sort(function(a,b){
+    var ra = alumniPlacementRank(a.p), rb = alumniPlacementRank(b.p);
+    if(ra!==rb) return ra-rb;
+    return a.p.y - b.p.y;
+  });
+  var rows = sorted.map(function(x){
+    var p = x.p, meta = x.meta, b = alumniBadge(p);
+    var ep = meta.ep ? '<span class="gep">'+esc(meta.ep)+'</span>' : '';
+    var badge = '<span class="gbadge'+(b.gold?'':' plain')+'">'+esc(b.t)
+      + (b.rom?'<span class="kr">'+esc(b.rom)+'</span>':'')+'</span>';
+    return '<tr><td class="gp">'+badge+'</td>'
+      + '<td><a href="#/person/'+encodeURIComponent(p.i)+'"><span class="gnm">'+esc(meta.en)+ep
+        + '<span class="gkr">'+esc(p.n)+' '+esc(p.h)+'</span></span></a></td>'
+      + '<td class="gcl">'+p.y+'</td>'
+      + '<td class="gkf">'+esc(meta.ach)+'</td></tr>';
+  }).join('');
+  return '<div class="tscroll"><table class="gradleague"><thead><tr>'
+    + '<th>Placement</th><th>Graduate</th><th>Class</th><th>Known for</th></tr></thead>'
+    + '<tbody>'+rows+'</tbody></table></div>';
+}
+// one row of the "what admission conferred" outcomes table (landing)
+function outcomeRow(en, kr, rankEn, rankKr, note, count){
+  return '<tr>'
+    + '<td><span class="nm">'+esc(en)+'</span> <span class="nh kr">'+esc(kr)+'</span></td>'
+    + '<td>'+esc(rankEn)+' <span class="nh kr" style="color:var(--ink3)">'+esc(rankKr)+'</span>'
+      + (note?'<span class="muted" style="display:block;font-size:12px;margin-top:2px">'+esc(note)+'</span>':'')+'</td>'
+    + '<td class="num rnk">'+esc(count)+'</td>';
+}
+
+/* =========================================================================
+   VIEW 1 — Overview (#/)
+   ========================================================================= */
+function viewOverview(){
+  var m = DATA.meta, conc = DATA.concentration.bySeonggwan;
+  var feeders = DATA.feeders;
+  var maxN = feeders[0].n;
+  var siknyeon = DATA.examTypes[0]; // 식년시
+  var special = 100 - siknyeon.pct;
+  var alumni = alumniResolved();
+  var top = feeders.slice(0, 25);
+
+  function medal(rank){ return rank===1?' m1':rank===2?' m2':rank===3?' m3':''; }
+  var leagueRows = top.map(function(c){
+    var lbl = clanLabel(c.sn, c.seat);
+    var fame = (LK.clanFame && LK.clanFame[c.key]) || '';
+    return '<tr>'
+      + '<td class="rk'+medal(c.rank)+'">'+c.rank+'</td>'
+      + '<td class="inst"><a class="row-lnk" href="#/clan/'+encodeURIComponent(c.key)+'">'
+        + '<span class="seat kr">'+esc(lbl.ko)+'</span>'+(lbl.rom?'<span class="rom">'+esc(lbl.rom)+'</span>':'')+'</a></td>'
+      + '<td class="num"><span class="adm">'+fmt(c.n)+'</span>'
+        + '<div class="bar lbar"><span style="width:'+(c.n/maxN*100).toFixed(1)+'%"></span></div></td>'
+      + '<td class="num jwn">'+(c.jangwon||0)+'</td>'
+      + '<td class="knownfor">'+esc(fame)+'</td>'
+      + '</tr>';
+  }).join('');
+
+  var html =
+    // edition masthead — the rankings-product header
+    '<header class="mast edition">'
+    + crestSvg('seal')
+    + '<div class="mast-tx">'
+      + '<div class="kick">The Joseon Review</div>'
+      + '<h1 class="serif">Joseon Examination Rankings</h1>'
+      + '<p class="coverage">The complete ranking of the clans that produced Joseon’s civil officials, '+m.yearMin+' to '+m.yearMax+'. '
+        + fmt(m.total)+' officials, '+fmt(feeders.length)+' clans, ranked by the number each produced. '
+        + '<a href="#/about">Methodology →</a></p>'
+      + '<p class="gloss">The <span class="kr">문과</span> munkwa was Joseon Korea’s civil-service examination, the route into government office. '
+        + '<a href="#/trends">About the examination →</a></p>'
+    + '</div></header>'
+    + '<div class="dbl-rule"></div>'
+
+    // stat bar
+    + '<div class="marquee">'
+      + '<div class="mq"><div class="ml">Acceptance rate</div><div class="mv serif">&lt;1<small>%</small>'
+        + '<sup><a href="#/about" aria-label="Acceptance-rate methodology">*</a></sup></div></div>'
+      + '<div class="mq"><div class="ml">Officials ranked</div><div class="mv serif">'+fmt(m.total)+'</div></div>'
+      + '<div class="mq"><div class="ml">Clans ranked</div><div class="mv serif">'+fmt(feeders.length)+'</div></div>'
+      + '<div class="mq"><div class="ml">Examinations</div><div class="mv serif">'+fmt(m.sittings)+'</div></div>'
+    + '</div>'
+
+    // flagship: the clan league
+    + '<section><div class="sec-h">'
+      + '<div><div class="kick">The ranking</div><h2 class="serif">Clans by officials produced</h2>'
+        + '<div class="sub">Every clan seat (성관) ranked by the number of officials it produced, across five centuries. Top twenty-five shown.</div></div>'
+      + '<a class="seemore" href="#/feeders">All '+fmt(feeders.length)+' clans</a></div>'
+      + '<div class="tscroll"><table class="league clanleague"><thead><tr>'
+        + '<th>Rank</th><th>Clan</th><th class="num">Officials</th><th class="num">Valedictorians</th><th>Known for</th></tr></thead>'
+        + '<tbody>'+leagueRows+'</tbody></table></div>'
+      + '<div class="league-foot">Ranked by a single transparent figure: officials produced. The leader, <b>이 전주 (Yi of Jeonju)</b>, is the royal house itself.</div>'
+    + '</section>'
+
+    // distinguished graduates — people, threaded through the product
+    + '<section><div class="sec-h">'
+      + '<div><div class="kick">Distinguished graduates</div><h2 class="serif">Their work outlived the dynasty</h2>'
+        + '<div class="sub">Shown with the placement the examination recorded for each.</div></div>'
+      + '<a class="seemore" href="#/alumni">All graduates</a></div>'
+      + alumniRollHtml((function(){ var f=alumniFeatured(alumni); return (f?[f]:[]).concat(alumni.filter(function(x){return x!==f;})).slice(0,4); })())
+    + '</section>'
+
+    // by the numbers — selectivity
+    + '<section><div class="sec-h">'
+      + '<div><div class="kick">By the numbers</div><h2 class="serif">Class size by generation</h2>'
+        + '<div class="sub">Officials admitted per 25-year period, '+m.yearMin+' to '+m.yearMax+'.</div></div>'
+      + '<a class="seemore" href="#/trends">Full trends</a></div>'
+      + '<div class="chartwrap"><svg class="chart" id="ov-chart" viewBox="0 0 1000 210" preserveAspectRatio="none" aria-hidden="true"></svg>'
+        + '<div class="xlabels"><span>1393</span><span>1500</span><span>1600</span><span>1700</span><span>1800</span><span>1894</span></div></div>'
+      + '<div class="chart-cap">Admissions widened in the dynasty’s final century as special sittings multiplied. The last 25-year period seated <b>'
+        + fmt(DATA.classByPeriod[DATA.classByPeriod.length-1].n)+'</b>, the largest of any generation.</div>'
+    + '</section>'
+
+    // concentration callout
+    + '<div class="conc">'
+      + '<div class="cstat"><div class="cnum serif">'+pct1(conc.top10)+'%</div>'
+        + '<div class="ctx">of every official ever admitted came from the <b>top ten</b> clans.</div></div>'
+      + '<div class="cstat"><div class="cnum serif">'+pct1(conc.top50)+'%</div>'
+        + '<div class="ctx">came from the <b>top fifty</b>, out of '+fmt(feeders.length)+' clans.</div></div>'
+      + '<div class="cstat"><div class="cnum serif">5</div>'
+        + '<div class="ctx">centuries over which the same names recur at the top of the table.</div></div>'
+    + '</div>'
+
+    // outcomes — what admission conferred
+    + '<section><div class="sec-h">'
+      + '<div><div class="kick">Outcomes</div><h2 class="serif">What admission conferred</h2>'
+        + '<div class="sub">Passing was an appointment. Where a graduate placed set the rank at which a civil-service career began.</div></div></div>'
+      + '<div class="tscroll"><table class="dt"><thead><tr>'
+        + '<th>Placement</th><th>Entered service at</th><th class="num">In a standard class of 33</th></tr></thead>'
+        + '<tbody>'
+          + outcomeRow('First in the realm','장원','Junior 6th rank','종6품','the highest start of the class','1')
+          + outcomeRow('First Class','갑과','Senior 7th rank','정7품','the rest of the top three','2')
+          + outcomeRow('Second Class','을과','Senior 8th rank','정8품','','7')
+          + outcomeRow('Third Class','병과','Senior 9th rank','정9품','the bulk of every class','23')
+        + '</tbody></table></div>'
+      + '<div class="league-foot">The service ran eighteen ranks, from senior first (<span class="kr">정1품</span>), the chief state councillor, '
+        + 'down to junior ninth. The literary examination was the only route to its senior offices. '
+        + '<a href="#/about">How this is sourced</a>.</div>'
+    + '</section>'
+
+    // admissions tracks
+    + '<div class="tracks"><div class="sec-h" style="border:0">'
+      + '<div><div class="kick">Admissions tracks</div><h2 class="serif">How officials were admitted</h2></div>'
+      + '<a class="seemore" href="#/trends">Breakdown</a></div>'
+      + '<div class="trk std"><div class="trk-top"><span class="tn">Standard triennial examination (식년시)</span>'
+        + '<span class="tp">'+pct1(siknyeon.pct)+'%</span></div><div class="trk-bar"><span style="width:'+pct1(siknyeon.pct)+'%"></span></div></div>'
+      + '<div class="trk spc"><div class="trk-top"><span class="tn">Special sittings (증광시, 정시, 별시, 알성시 …)</span>'
+        + '<span class="tp">'+pct1(special)+'%</span></div><div class="trk-bar"><span style="width:'+pct1(special)+'%"></span></div></div>'
+      + '<div class="trk-cap">The standard triennial examination seated thirty-three from a national field. Special sittings were called to mark royal occasions, and over the dynasty they admitted the majority.</div>'
+    + '</div>'
+
+    + aboutDisclosure(false)
+    + footerHtml();
+
+  app.innerHTML = html;
+  drawArea('ov-chart', DATA.classByPeriod.map(function(b){return b.n;}), true);
+  pageTop();
+}
+
+/* selectivity area+line chart (matches mock) */
+function drawArea(id, vals, emphasizeLast){
+  var svg = document.getElementById(id); if(!svg) return;
+  var W=1000, H=210, pad=6, n=vals.length, max=Math.max.apply(null, vals);
+  var x=function(i){ return pad + i*(W-2*pad)/(n-1); };
+  var y=function(v){ return H-8 - v/max*(H-26); };
+  var line='', area='M'+x(0)+','+(H-8);
+  for(var i=0;i<n;i++){ var px=x(i), py=y(vals[i]); line+=(i?'L':'M')+px+','+py+' '; area+='L'+px+','+py+' '; }
+  area += 'L'+x(n-1)+','+(H-8)+'Z';
+  var s = '<path d="'+area+'" fill="var(--accent-bg)"/>'
+    + '<path d="'+line+'" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>'
+    + '<line x1="'+pad+'" y1="'+(H-8)+'" x2="'+(W-pad)+'" y2="'+(H-8)+'" stroke="var(--rule2)" stroke-width="1" vector-effect="non-scaling-stroke"/>';
+  if(emphasizeLast){
+    var lx=x(n-1), ly=y(vals[n-1]);
+    s += '<circle cx="'+lx+'" cy="'+ly+'" r="4" fill="var(--accent)"/>';
+  }
+  svg.innerHTML = s;
+}
+
+/* =========================================================================
+   VIEW 1b — Distinguished alumni (#/alumni)
+   ========================================================================= */
+function viewAlumni(){
+  var alumni = alumniResolved();
+  var feat = alumniFeatured(alumni);
+  // institution-wide notability counts, for the closing note (cheap over 15k)
+  var nJangwon = 0, nSiho = 0, R = DATA.roster;
+  for(var i=0;i<R.length;i++){ if(R[i].z===1) nJangwon++; if(R[i].sh) nSiho++; }
+
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Graduates</div>'
+    + '<div class="kick">Distinguished graduates</div>'
+    + '<h1 class="ph-title serif">Their work outlived the dynasty</h1>'
+    + '<p class="ph-sub">'
+      + 'The placement shown for each is the one the examination recorded, from first in the realm (장원) to the rank held in a later class.</p></div>'
+    + (feat ? alumniHeroHtml(feat) : '')
+    + '<div class="subhead" style="margin-top:34px">Ordered by placement</div>'
+    + alumniTableHtml(alumni.filter(function(x){ return x !== feat; }))
+    + '<p class="drynote" style="font-style:normal;color:var(--ink3);font-size:13px;max-width:74ch">'
+      + 'The record holds <b style="color:var(--ink2);font-weight:600">'+fmt(nJangwon)+'</b> graduates who placed first in the realm and '
+      + '<b style="color:var(--ink2);font-weight:600">'+fmt(nSiho)+'</b> granted a posthumous title by the state. '
+      + 'The names above are a curated selection of those still widely remembered, each linked to its admit record. '
+      + 'The rest are reachable through <a href="#/cohorts" style="color:var(--accent);font-weight:500">Classes</a>, '
+      + '<a href="#/feeders" style="color:var(--accent);font-weight:500">Clans</a>, and the search box.</p>'
+    + footerHtml();
+  app.innerHTML = html;
+  pageTop();
+}
+
+/* =========================================================================
+   VIEW 2 — Cohort index (#/cohorts)
+   ========================================================================= */
+var _cohortState = { reign:'', q:'' };
+function viewCohorts(){
+  var kings = DATA.kings; // chronological, with counts
+  // reign filter chips
+  var chips = '<div class="chipfilter" id="reign-chips">'
+    + '<button data-k="" '+(_cohortState.reign===''?'aria-pressed="true"':'')+'>All reigns</button>'
+    + kings.map(function(k){
+        return '<button data-k="'+esc(k.k)+'" '+(_cohortState.reign===k.k?'aria-pressed="true"':'')+'>'
+          + esc(kingRom(k.k))+'</button>';
+      }).join('')
+    + '</div>';
+
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Classes</div>'
+    + '<h1 class="ph-title serif">The classes</h1>'
+    + '<p class="ph-sub">Every sitting of the civil examination, '+DATA.meta.yearMin+' to '+DATA.meta.yearMax+', grouped by reign. '
+      + fmt(DATA.meta.sittings)+' classes in all.</p></div>'
+    + '<div class="controls">'
+      + '<div class="ctlsearch"><input type="text" id="cohort-q" placeholder="Filter by year (e.g. 1592)" '
+        + 'aria-label="Filter cohorts by year" value="'+esc(_cohortState.q)+'"></div>'
+    + '</div>'
+    + chips
+    + '<div id="cohort-list"></div>'
+    + footerHtml();
+  app.innerHTML = html;
+
+  renderCohortGroups();
+
+  document.getElementById('reign-chips').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    _cohortState.reign = b.getAttribute('data-k');
+    this.querySelectorAll('button').forEach(function(x){ x.removeAttribute('aria-pressed'); });
+    b.setAttribute('aria-pressed','true');
+    renderCohortGroups();
+  });
+  var qbox = document.getElementById('cohort-q');
+  qbox.addEventListener('input', function(){
+    _cohortState.q = qbox.value.trim();
+    renderCohortGroups();
+  });
+  pageTop();
+}
+function renderCohortGroups(){
+  var host = document.getElementById('cohort-list');
+  host.innerHTML='';
+  var q = _cohortState.q;
+  var reign = _cohortState.reign;
+  var byKing = {};
+  for(var i=0;i<DATA.cohorts.length;i++){
+    var c = DATA.cohorts[i];
+    if(reign && c.king!==reign) continue;
+    if(q && String(c.y).indexOf(q)===-1) continue;
+    (byKing[c.king] || (byKing[c.king]=[])).push(c);
+  }
+  var any=false;
+  for(var ki=0; ki<DATA.kings.length; ki++){
+    var k = DATA.kings[ki].k;
+    var list = byKing[k];
+    if(!list || !list.length) continue;
+    any=true;
+    var grp = el('div',{class:'kgroup'});
+    grp.innerHTML =
+      '<div class="khead"><span class="kname">'+esc(kingRom(k))+'<span class="kkr kr">'+esc(k)+'</span></span>'
+      + '<span class="kreign">'+esc(kingReign(k))+'</span>'
+      + '<span class="kn"><b>'+fmt(list.length)+'</b> '+(list.length===1?'sitting':'sittings')+'</span></div>'
+      + '<div class="tscroll"><table class="dt"><thead><tr>'
+        + '<th>Class</th><th>Examination</th><th class="num">Admitted</th><th class="num">Valedictorian 장원</th></tr></thead>'
+        + '<tbody></tbody></table></div>';
+    var tb = grp.querySelector('tbody');
+    list.forEach(function(c){
+      tb.appendChild(cohortRow(c));
+    });
+    host.appendChild(grp);
+  }
+  if(!any){
+    host.appendChild(el('div',{class:'empty'},
+      '<span class="ekr">無</span>No classes match that filter.'));
+  }
+}
+function cohortRow(c){
+  var tr = el('tr');
+  tr.innerHTML =
+    '<td><a href="#/cohort/'+encodeURIComponent(c.id)+'"><span class="nm">Class of '+c.y+'</span></a></td>'
+    + '<td><a href="#/cohort/'+encodeURIComponent(c.id)+'">'+esc(examEnName(c.name))
+      + ' <span class="nh kr">'+esc(c.name)+'</span></a></td>'
+    + '<td class="num"><a href="#/cohort/'+encodeURIComponent(c.id)+'">'+fmt(c.n)+'</a></td>'
+    + '<td class="num"><a href="#/cohort/'+encodeURIComponent(c.id)+'">'
+      + (c.jw ? esc(c.jw.n)+' <span class="nh kr">'+esc(c.jw.h)+'</span>' : '<span class="muted">·</span>')+'</a></td>';
+  return tr;
+}
+
+/* =========================================================================
+   VIEW 3 — One class (#/cohort/{id})
+   ========================================================================= */
+function viewCohort(id){
+  var c = cohortById()[id];
+  if(!c){ return notFound('No class with that identifier.'); }
+  var roster = (rosterByCohort()[id] || []).slice();
+  // sort by class standing: grade tier first, then numeric rank within tier
+  // (rk is per-grade in the source). Records without rk go last in their tier.
+  roster.sort(function(a,b){
+    var ta = gradeTier(a.g), tb = gradeTier(b.g);
+    if(ta!==tb) return ta-tb;
+    var ra = (a.rk==null?1e9:a.rk), rb = (b.rk==null?1e9:b.rk);
+    return ra-rb;
+  });
+  var ages = roster.filter(function(r){return r.age!=null;}).map(function(r){return r.age;});
+  var med = median(ages);
+  var val = roster.filter(function(r){return r.z===1;})[0]
+         || roster.filter(function(r){return r.hon==='jangwon';})[0]
+         || (c.jw ? roster.filter(function(r){return r.n===c.jw.n && r.h===c.jw.h;})[0] : null);
+
+  // grade chips — primary three first, then others in count order
+  var order = ['갑과','을과','병과'];
+  var gentries = Object.keys(c.grades).sort(function(a,b){
+    var ia=order.indexOf(a), ib=order.indexOf(b);
+    if(ia!==-1||ib!==-1){ if(ia===-1) return 1; if(ib===-1) return -1; return ia-ib; }
+    return c.grades[b]-c.grades[a];
+  });
+  var gradeChips = gentries.map(function(g){
+    return '<span class="gchip"><b>'+fmt(c.grades[g])+'</b> '+esc(gradeEn(g))
+      + ' <span class="gkr kr">'+esc(g)+'</span></span>';
+  }).join('');
+
+  var ex = examEn(c.name);
+  var typeLabel = (c.type==='정기시') ? 'Regular sitting' : 'Special sitting';
+  var topFeederHtml = c.topFeeder ? clanLink(c.topFeeder)
+    : '<span class="muted">No clan with more than one admit</span>';
+
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>'
+      + '<a href="#/cohorts">Classes</a><span class="sep">/</span>Class of '+c.y+'</div>'
+    + '<div class="kick">'+esc(typeLabel)+' &middot; reign of '+esc(kingRom(c.king))+'</div>'
+    + '<h1 class="ph-title serif">Class of '+c.y+'</h1>'
+    + '<p class="ph-sub">'+esc(examEnName(c.name))+' <span class="kr">('+esc(c.name)+')</span>'
+      + (ex&&ex.gloss?'. '+esc(ex.gloss)+' ':'. ')
+      + 'The officials admitted in this sitting, listed by grade, as the realm recorded them.</p>'
+
+    // stat strip
+    + '<div class="statstrip">'
+      + '<div class="ss"><div class="ssl">Admitted</div><div class="ssv">'+fmt(c.n)+'</div></div>'
+      + '<div class="ss"><div class="ssl">Median age</div><div class="ssv">'
+        + (med!=null?med:'<small>Unrecorded</small>')+'</div></div>'
+      + '<div class="ss" style="flex:2 1 220px"><div class="ssl">Top feeder</div>'
+        + '<div class="ssv" style="font-size:20px">'+topFeederHtml+'</div></div>'
+    + '</div>'
+
+    // grade breakdown
+    + '<div class="subhead">Grade breakdown</div>'
+    + '<div class="gradechips">'+gradeChips+'</div>';
+
+  // valedictorian card
+  if(val){
+    var vb = honBadge(val.hon) || {t:'Valedictorian', rom:'장원'};
+    html += '<a class="laurel" href="#/person/'+encodeURIComponent(val.i)+'">'
+      + crestSvg('lcrest')
+      + '<div><div class="lk">First place &middot; 장원</div>'
+        + '<div class="lname">'+esc(val.n)+'<span class="lh">'+esc(val.h)+'</span></div>'
+        + '<div class="lmeta">'+esc(gradeEn(val.g))+(val.rk?', rank '+val.rk:'')
+          + ' &middot; '+(clanRom(val.b)?esc(clanRom(val.b))+' clan':esc(val.b||val.bk||''))+'</div></div>'
+      + '<span class="lgo">View admit →</span></a>';
+  } else if(c.jw){
+    html += '<div class="laurel" style="cursor:default">'
+      + crestSvg('lcrest')
+      + '<div><div class="lk">First place &middot; 장원</div>'
+        + '<div class="lname">'+esc(c.jw.n)+'<span class="lh">'+esc(c.jw.h)+'</span></div></div></div>';
+  }
+
+  // roster table
+  html += '<div class="subhead">Admitted roster</div>'
+    + '<div class="tscroll"><table class="dt"><thead><tr>'
+      + '<th class="num">Rank</th><th>Name</th><th>Clan</th><th>Grade</th><th>Residence</th></tr></thead>'
+      + '<tbody id="cohort-roster"></tbody></table></div>';
+
+  html += footerHtml();
+  app.innerHTML = html;
+
+  var tb = document.getElementById('cohort-roster');
+  // cohorts are <=300 rows; render all at once (fast), but use pager for safety
+  var pagerBtn = pager(tb, roster, personRowForCohort, 200);
+  tb.parentNode.parentNode.appendChild(pagerBtn);
+  pageTop();
+}
+function personRowForCohort(r){
+  var tr = el('tr');
+  var badge = honBadge(r.hon);
+  tr.innerHTML =
+    '<td class="num rnk">'+(r.rk!=null?r.rk:'·')+'</td>'
+    + '<td><a href="#/person/'+encodeURIComponent(r.i)+'"><span class="nm">'+(notableEn(r.i)?esc(notableEn(r.i).en)+' ':'')+esc(r.n)
+      + '<span class="nh kr">'+esc(r.h)+'</span></span>'
+      + (badge&&r.hon!=='jangwon'?'':'') + '</a></td>'
+    + '<td>'+clanCell(r)+'</td>'
+    + '<td class="grd">'+esc(gradeEn(r.g))+'<span class="gkr kr">'+esc(r.g)+'</span>'
+      + (badge?'<span class="laur-dot">'+esc(badge.rom)+'</span>':'')+'</td>'
+    + '<td>'+(r.r?'<span class="kr">'+esc(r.r)+'</span>':'<span class="muted">·</span>')+'</td>';
+  return tr;
+}
+
+/* =========================================================================
+   VIEW 4 — Admit profile (#/person/{id})
+   ========================================================================= */
+function viewPerson(id){
+  var p = personById()[id];
+  if(!p){ return notFound('No admit with that identifier.'); }
+  var ex = examEn(p.e);
+  var badge = honBadge(p.hon);
+  var clanRomTxt = clanRom(p.b);
+  var nbP = notableEn(id); // curated English name/pen name, where present
+
+  // alt-name fields (자 / 호 / 시호)
+  var alts = [];
+  if(p.ja) alts.push({l:'Courtesy name 자', v:p.ja});
+  if(p.ho) alts.push({l:'Pen name 호', v:p.ho});
+  if(p.sh) alts.push({l:'Posthumous 시호', v:p.sh});
+  var altHtml = '';
+  if(alts.length){
+    altHtml = '<div class="altnames">'+alts.map(function(a){
+      return '<div class="an"><div class="anl">'+esc(a.l)+'</div>'
+        + '<div class="anv kr">'+esc(a.v)+'</div></div>';
+    }).join('')+'</div>';
+  }
+
+  var resultLine = esc(gradeEn(p.g))
+    + (p.rk!=null?', rank '+p.rk:'')
+    + (badge?' <span style="color:var(--gold);font-weight:600">('+esc(badge.t)+')</span>':'');
+
+  var examLine = 'Class of '+p.y+', '+esc(examEnName(p.e))
+    + (ex&&ex.gloss?' <span class="fsub">'+esc(ex.gloss)+'</span>':'')
+    ;
+
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>'
+      + '<a href="#/cohort/'+encodeURIComponent(p.y+'-'+p.e)+'">Class of '+p.y+'</a><span class="sep">/</span>'+esc(p.n)+'</div></div>'
+    + '<div class="profile">'
+      + '<div class="profile-top">'+crestSvg('profile-crest')
+        + '<div class="pkick">Admitted &middot; '+p.y+'</div>'
+        + '<div class="pname serif">'+(nbP?esc(nbP.en):esc(p.n))+'</div>'
+        + '<div class="phanja kr">'+(nbP?esc(p.n)+' '+esc(p.h):esc(p.h))+'</div>'
+        + (nbP&&nbP.ep?'<div style="font-style:italic;color:var(--ink2);font-size:15px;margin-top:8px">'+esc(nbP.ep)+'</div>':'')
+        + (badge?'<div class="pbadge">'+esc(badge.t)+'</div>':'')
+      + '</div>'
+      + '<div class="profile-body">'
+        + '<div class="frow"><div class="fl">Clan 성관</div><div class="fv">'
+          + clanCell(p) + (p.bk!=null ? ' <span class="kr" style="color:var(--ink3)">'+esc(p.bh)+'</span>' : '') + '</div></div>'
+        + '<div class="frow"><div class="fl">Residence</div><div class="fv">'
+          + (p.r?'<span class="kr">'+esc(p.r)+'</span>':'<span style="color:var(--ink3)">Unknown</span>')+'</div></div>'
+        + '<div class="frow"><div class="fl">Age at admission</div><div class="fv">'
+          + (p.age!=null?p.age+(p.by?' <span class="fsub">born '+p.by+'</span>':''):'<span style="color:var(--ink3)">Unrecorded</span>')+'</div></div>'
+        + '<div class="frow"><div class="fl">Result</div><div class="fv">'+resultLine+'</div></div>'
+        + '<div class="frow"><div class="fl">Examination</div><div class="fv">'+examLine+'</div></div>'
+        + '<div class="frow"><div class="fl">Reign</div><div class="fv">'+esc(kingRom(p.k))
+          + ' <span class="kr" style="color:var(--ink3)">'+esc(p.k)+'</span>'
+          + (kingReign(p.k)?' <span class="fsub">'+esc(kingReign(p.k))+'</span>':'')+'</div></div>'
+      + '</div>'
+      + altHtml
+    + '</div>'
+    + footerHtml();
+  app.innerHTML = html;
+  pageTop();
+}
+
+/* =========================================================================
+   VIEW 5 — Feeders (#/feeders)
+   ========================================================================= */
+var _feederState = { q:'' };
+function viewFeeders(){
+  var conc = DATA.concentration.bySeonggwan;
+  var maxN = DATA.feeders[0].n;
+
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>All clans</div>'
+    + '<h1 class="ph-title serif">The clans</h1>'
+    + '<p class="ph-sub">Every clan seat (성관) that produced an official, ranked by total admits across the dynasty. '
+      + fmt(DATA.feeders.length)+' clans in all.</p></div>'
+
+    + '<div class="conc" style="border-top:1px solid var(--rule); margin-top:24px">'
+      + '<div class="cstat"><div class="cnum serif">'+pct1(conc.top10)+'%</div>'
+        + '<div class="ctx">of all admits came from the <b>top ten</b> clans.</div></div>'
+      + '<div class="cstat"><div class="cnum serif">'+pct1(conc.top50)+'%</div>'
+        + '<div class="ctx">from the <b>top fifty</b>, out of '+fmt(DATA.meta.distinctSeonggwan)+'.</div></div>'
+      + '<div class="cstat"><div class="cnum serif">'+pct1(conc.top100)+'%</div>'
+        + '<div class="ctx">from the <b>top hundred</b> clans.</div></div>'
+    + '</div>'
+
+    + '<div class="controls">'
+      + '<div class="ctlsearch"><input type="text" id="feeder-q" placeholder="Filter clans (Jeonju, 전주, Yi …)" '
+        + 'aria-label="Filter clans" value="'+esc(_feederState.q)+'"></div>'
+    + '</div>'
+    + '<div class="resultcount" id="feeder-count"></div>'
+    + '<div class="tscroll"><table class="dt"><thead><tr>'
+      + '<th class="num">Rank</th><th>Clan</th><th class="num">Admits</th><th>Share</th><th class="num">Valedictorian 장원</th></tr></thead>'
+      + '<tbody id="feeder-body"></tbody></table></div>'
+    + '<div id="feeder-more"></div>'
+    + footerHtml();
+  app.innerHTML = html;
+
+  renderFeeders();
+  var qbox = document.getElementById('feeder-q');
+  qbox.addEventListener('input', function(){
+    _feederState.q = qbox.value.trim();
+    renderFeeders();
+  });
+  pageTop();
+}
+function feederMatches(f, q){
+  if(!q) return true;
+  q = q.toLowerCase();
+  if(f.key.indexOf(q)!==-1) return true;          // hangul key
+  if(f.seat.indexOf(q)!==-1) return true;         // hangul seat
+  if(f.sn.indexOf(q)!==-1) return true;           // hangul surname
+  var rom = (clanRom(f.seat)||'').toLowerCase();
+  if(rom.indexOf(q)!==-1) return true;            // romanized seat
+  return false;
+}
+function renderFeeders(){
+  var maxN = DATA.feeders[0].n;
+  var q = _feederState.q;
+  var list = q ? DATA.feeders.filter(function(f){return feederMatches(f,q);}) : DATA.feeders;
+  var body = document.getElementById('feeder-body');
+  var moreHost = document.getElementById('feeder-more');
+  body.innerHTML=''; moreHost.innerHTML='';
+  document.getElementById('feeder-count').innerHTML =
+    '<b>'+fmt(list.length)+'</b> '+(list.length===1?'clan':'clans')+(q?' matching “'+esc(q)+'”':'');
+  if(!list.length){
+    moreHost.appendChild(el('div',{class:'empty'},'<span class="ekr">無</span>No clans match that filter.'));
+    return;
+  }
+  var btn = pager(body, list, function(f){
+    var lbl = clanLabel(f.sn, f.seat);
+    var tr = el('tr');
+    tr.innerHTML =
+      '<td class="num rnk">'+f.rank+'</td>'
+      + '<td><a href="#/clan/'+encodeURIComponent(f.key)+'"><span class="clan" style="color:var(--accent);font-weight:500">'
+        + esc(lbl.ko)+'</span>'
+        + (lbl.rom?' <span style="color:var(--ink3);font-style:italic;font-size:13px">'+esc(lbl.rom)+'</span>':'')+'</a></td>'
+      + '<td class="num"><a href="#/clan/'+encodeURIComponent(f.key)+'"><span class="adm" style="font-size:16px">'+fmt(f.n)+'</span></a></td>'
+      + '<td class="barcell"><div style="display:flex;align-items:center;gap:12px">'
+        + '<div class="bar" style="flex:1"><span style="width:'+(f.n/maxN*100).toFixed(1)+'%"></span></div>'
+        + '<div class="pct">'+pct1(f.pct)+'%</div></div></td>'
+      + '<td class="num rnk">'+(f.jangwon||0)+'</td>';
+    return tr;
+  }, 120);
+  moreHost.appendChild(btn);
+}
+
+/* =========================================================================
+   VIEW 6 — Clan profile (#/clan/{key})
+   ========================================================================= */
+function viewClan(key){
+  var f = feederByKey()[key];
+  var members = (rosterByClan()[key] || []).slice();
+  if(!f && !members.length){ return notFound('No clan with that identifier.'); }
+  // fall back to deriving stats if not in feeders (shouldn't happen, but safe)
+  var rank = f ? f.rank : null;
+  var n = f ? f.n : members.length;
+  var pctVal = f ? f.pct : (members.length/DATA.meta.total*100);
+  var firstY = f ? f.firstYear : Math.min.apply(null, members.map(function(r){return r.y;}));
+  var lastY  = f ? f.lastYear  : Math.max.apply(null, members.map(function(r){return r.y;}));
+  var jangwonN = f ? f.jangwon : members.filter(function(r){return r.z===1;}).length;
+
+  var parts = key.split(' ');
+  var sn = parts[0], seat = parts.slice(1).join(' ');
+  var rom = clanRom(seat) || '';
+  var snRom = surnameRom(sn); // romanized surname, or null for the long tail
+  var seatH = f ? f.seatH : (members[0]?members[0].bh:'');
+  var note = LK.seonggwan[key] || '';
+  var clanFame = (LK.clanFame && LK.clanFame[key]) || ''; // "known for" line, where curated
+  var clanMaxN = DATA.feeders[0].n;                       // leader's count, for the score bar
+  // the band shows the "known for" line; if the longer note opens with the same
+  // sentence, drop the repeat so it is not stated twice on the page.
+  if(clanFame && note){
+    var fameCore = clanFame.replace(/\.$/, '');
+    if(note.indexOf(fameCore) === 0){ note = note.slice(fameCore.length).replace(/^[.\s]+/, ''); }
+  }
+
+  // period bars (25-yr) from members
+  var periodStart = 1375, periodEnd = 1900, span = 25;
+  var nBuckets = (periodEnd-periodStart)/span; // 21
+  var pb = new Array(nBuckets).fill(0);
+  for(var i=0;i<members.length;i++){
+    var idx = Math.floor((members[i].y - periodStart)/span);
+    if(idx>=0 && idx<nBuckets) pb[idx]++;
+  }
+  var pbMax = Math.max.apply(null, pb) || 1;
+  var pbHtml = pb.map(function(v){
+    var h = v ? Math.max(3, v/pbMax*100) : 0;
+    return '<div class="pbcol'+(v?' on':'')+'" style="height:'+h+'%" title="'+(periodStart+0)+'"></div>';
+  });
+  // recompute heights with proper labels via closure (need start years)
+  pbHtml = pb.map(function(v,k){
+    var h = v ? Math.max(3, Math.round(v/pbMax*100)) : 0;
+    var yr = periodStart + k*span;
+    return '<div class="pbcol'+(v?' on':'')+'" style="height:'+h+'%" title="'+yr+'–'+(yr+span-1)+': '+v+'"></div>';
+  }).join('');
+
+  // notable alumni: valedictorians (z===1) and 시호-holders, dedup, sorted by year
+  var notableSeen = {};
+  var notable = [];
+  members.forEach(function(r){
+    var tag = r.z===1 ? 'jangwon' : (r.sh ? 'sihogc' : null);
+    if(!tag) return;
+    if(notableSeen[r.i]) return;
+    notableSeen[r.i]=1;
+    notable.push(r);
+  });
+  notable.sort(function(a,b){ return a.y-b.y; });
+  var notableHtml = notable.length ? '<div class="notable">'+notable.slice(0,60).map(function(r){
+    var tag = r.z===1 ? '장원' : '시호';
+    return '<a href="#/person/'+encodeURIComponent(r.i)+'">'+esc(r.n)
+      + '<span class="nak kr">'+esc(r.h)+'</span><span class="natag">'+tag+'</span></a>';
+  }).join('')+'</div>' : '';
+
+  // full admit list sorted by year then rank
+  var membersSorted = members.slice().sort(function(a,b){
+    if(a.y!==b.y) return a.y-b.y;
+    var ra=(a.rk==null?1e9:a.rk), rb=(b.rk==null?1e9:b.rk);
+    return ra-rb;
+  });
+
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>'
+      + '<a href="#/feeders">All clans</a><span class="sep">/</span>'+esc(sn)+' '+esc(seat)+'</div>'
+    + '<div class="kick">Clan profile &middot; 성관</div>'
+    + '<h1 class="ph-title serif">'+esc(snRom||sn)+' of '+esc(rom||seat)+'</h1>'
+    + '<p class="ph-sub"><span class="kr" style="font-size:19px">'+esc(sn)+' '+esc(seat)+'</span>'
+      + ' <span class="kr" style="color:var(--ink3)">'+esc(seatH)+'</span>'
+      + ((rom&&snRom)?' &middot; the '+esc(rom)+' '+esc(snRom):'')+'</p>'
+    // institution-profile header band — mirrors the flagship league row
+    + '<div class="clanhdr">'
+      + (rank?'<div class="chrank"><div class="chrk'+(rank===1?' m1':rank===2?' m2':rank===3?' m3':'')+'">'+rank+'</div>'
+          + '<div class="chrl">of '+fmt(DATA.feeders.length)+'</div></div>':'')
+      + '<div class="chmain">'
+        + '<div class="chscore"><span class="chn">'+fmt(n)+'</span><span class="chnl">officials produced</span></div>'
+        + '<div class="chbar"><span style="width:'+(n/clanMaxN*100).toFixed(1)+'%"></span></div>'
+        + (clanFame?'<div class="chfame">'+esc(clanFame)+'</div>':'')
+      + '</div>'
+    + '</div>'
+
+    + (note?'<p class="drynote" style="margin-top:20px">'+esc(note)+'</p>':'')
+
+    + '<div class="statstrip">'
+      + '<div class="ss"><div class="ssl">Share of all</div><div class="ssv">'+pct1(pctVal)+'<small>%</small></div></div>'
+      + '<div class="ss"><div class="ssl">Span</div><div class="ssv">'+firstY+'<small>–'+lastY+'</small></div></div>'
+      + '<div class="ss"><div class="ssl">Valedictorians 장원</div><div class="ssv">'+fmt(jangwonN)+'</div></div>'
+    + '</div>'
+
+    + '<div class="subhead">Admits by generation</div>'
+    + '<div class="periodbars">'+pbHtml+'</div>'
+    + '<div class="periodx"><span>1375</span><span>1500</span><span>1600</span><span>1700</span><span>1800</span><span>1899</span></div>';
+
+  if(notableHtml){
+    html += '<div class="subhead">Notable graduates</div>'
+      + '<p style="font-size:12.5px;color:var(--ink3);margin:-6px 0 12px">Valedictorians (장원) and holders of a posthumous title (시호).</p>'
+      + notableHtml;
+  }
+
+  html += '<div class="subhead">All graduates</div>'
+    + '<div class="tscroll"><table class="dt"><thead><tr>'
+      + '<th class="num">Year</th><th>Name</th><th>Grade</th><th>Examination</th><th>Residence</th></tr></thead>'
+      + '<tbody id="clan-body"></tbody></table></div>'
+    + '<div id="clan-more"></div>'
+    + footerHtml();
+  app.innerHTML = html;
+
+  var body = document.getElementById('clan-body');
+  var moreHost = document.getElementById('clan-more');
+  var btn = pager(body, membersSorted, function(r){
+    var badge = honBadge(r.hon);
+    var tr = el('tr');
+    tr.innerHTML =
+      '<td class="num rnk">'+r.y+'</td>'
+      + '<td><a href="#/person/'+encodeURIComponent(r.i)+'"><span class="nm">'+(notableEn(r.i)?esc(notableEn(r.i).en)+' ':'')+esc(r.n)
+        + '<span class="nh kr">'+esc(r.h)+'</span></span></a></td>'
+      + '<td class="grd">'+esc(gradeEn(r.g))+'<span class="gkr kr">'+esc(r.g)+'</span>'
+        + (badge?'<span class="laur-dot">'+esc(badge.rom)+'</span>':'')+'</td>'
+      + '<td>'+esc(examEnName(r.e))+' <span class="nh kr" style="color:var(--ink3)">'+esc(r.e)+'</span></td>'
+      + '<td>'+(r.r?'<span class="kr">'+esc(r.r)+'</span>':'<span class="muted">·</span>')+'</td>';
+    return tr;
+  }, 120);
+  moreHost.appendChild(btn);
+  pageTop();
+}
+
+/* =========================================================================
+   VIEW 7 — Trends (#/trends)
+   ========================================================================= */
+function viewTrends(){
+  var conc = DATA.concentration.bySeonggwan;
+  var ad = DATA.ageDist;
+  // Merge digit-suffixed variants (정시2 → 정시, 별시2 → 별시) so each type of
+  // sitting appears once in the breakdown.
+  var examMerged = (function(){
+    var m = {}, order = [];
+    DATA.examTypes.forEach(function(e){
+      var base = e.name.replace(/[0-9]+$/, '');
+      if(!m[base]){ m[base] = {name:base, n:0, pct:0}; order.push(base); }
+      m[base].n += e.n; m[base].pct += e.pct;
+    });
+    return order.map(function(b){ return m[b]; }).sort(function(a,b){ return b.n-a.n; });
+  })();
+  // top exam types (cap to those >=0.5%, min 6), with English + gloss
+  var topExams = examMerged.filter(function(e){ return e.pct>=0.5; });
+  if(topExams.length<6) topExams = examMerged.slice(0,8);
+  var exMax = topExams[0].pct;
+  var examBars = topExams.map(function(e){
+    var en = examEn(e.name);
+    return '<div class="blrow"><div class="bltop">'
+      + '<div><span class="bln">'+esc(en?en.en:e.name)+'<span class="blk kr">'+esc(e.name)+'</span></span>'
+        + (en&&en.gloss?'<div class="blg">'+esc(en.gloss)+'</div>':'')+'</div>'
+      + '<span class="blp">'+pct1(e.pct)+'%</span></div>'
+      + '<div class="blbar"><span style="width:'+(e.pct/exMax*100).toFixed(1)+'%"></span></div></div>';
+  }).join('');
+
+  // concentration stepped display
+  var concRows = [
+    ['Top 5 clans', conc.top5],
+    ['Top 10', conc.top10],
+    ['Top 20', conc.top20],
+    ['Top 50', conc.top50],
+    ['Top 100', conc.top100]
+  ];
+  var stepHtml = concRows.map(function(r){
+    return '<div class="step"><div class="sl">'+esc(r[0])+'</div>'
+      + '<div class="sbar"><span style="width:'+pct1(r[1])+'%"></span></div>'
+      + '<div class="sv">'+pct1(r[1])+'%</div></div>';
+  }).join('');
+
+  // age histogram
+  var hist = ad.hist;
+  var hmax = Math.max.apply(null, hist.map(function(h){return h.n;}));
+  var histHtml = hist.map(function(h){
+    var hi = (h.age===ad.median);
+    return '<div class="hb'+(hi?' hi':'')+'" style="height:'+Math.max(1, h.n/hmax*100).toFixed(1)+'%" '
+      + 'title="age '+h.age+': '+fmt(h.n)+'"></div>';
+  }).join('');
+
+  var lastPeriod = DATA.classByPeriod[DATA.classByPeriod.length-1];
+  var firstPeriod = DATA.classByPeriod[0];
+
+  var m = DATA.meta;
+  function tlpos(y){ return ((y - 950) / 950 * 100); }              // 950–1900 timeline axis
+  var p1 = tlpos(m.yearMin).toFixed(1), p2 = tlpos(m.yearMax).toFixed(1), pr = (100 - tlpos(m.yearMax)).toFixed(1);
+
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>The examination</div>'
+    + '<h1 class="ph-title serif">The examination</h1>'
+    + '<p class="ph-sub">The <span class="kr">문과</span> munkwa was the higher civil-service examination of Joseon Korea: a written test of the Confucian classics, and the main route into government office. '
+      + 'These rankings cover every sitting of the dynasty, '+m.yearMin+' to '+m.yearMax+'.</p></div>'
+
+    // ---- explainer module 1: the examination's own span (958 → 1894) ----
+    + '<div class="exm" style="border-top:0; padding-top:16px">'
+      + '<div class="kick">Introduced 958</div>'
+      + '<h2 class="eh serif">Nearly a thousand years old</h2>'
+      + '<div class="tl">'
+        + '<div class="tl-axis"></div>'
+        + '<div class="tl-cover" style="left:'+p1+'%; right:'+pr+'%"></div>'
+        + '<div class="tl-dot origin" style="left:1%"></div>'
+        + '<div class="tl-yr origin" style="left:0">958</div>'
+        + '<div class="tl-lb" style="left:0">introduced &middot; Goryeo</div>'
+        + '<div class="tl-dot" style="left:'+p1+'%"></div>'
+        + '<div class="tl-yr" style="left:'+p1+'%; transform:translateX(-50%)">'+m.yearMin+'</div>'
+        + '<div class="tl-lb" style="left:'+p1+'%; transform:translateX(-50%)">Joseon&rsquo;s first sitting</div>'
+        + '<div class="tl-dot" style="left:'+p2+'%"></div>'
+        + '<div class="tl-yr" style="right:0; text-align:right">'+m.yearMax+'</div>'
+        + '<div class="tl-lb" style="right:0; text-align:right">the last sitting</div>'
+      + '</div>'
+      + '<p class="ecap">The examination was introduced in Korea in <b>958</b>, on the advice of the official Ssang Gi, and was one of the earliest civil-service systems anywhere, in use nearly nine centuries before competitive examinations reached Europe and America. '
+        + 'Joseon inherited it; these rankings cover its munkwa sittings from <b>'+m.yearMin+'</b> to the last in <b>'+m.yearMax+'</b>.</p>'
+      + exsrc([['/wiki/Gwageo','Gwageo, Wikipedia'],['Northcote','Northcote-Trevelyan Report, 1854'],['Pendleton','Pendleton Act, 1883']])
+    + '</div>'
+
+    // ---- explainer module 2: selectivity ----
+    + '<div class="exm">'
+      + '<div class="kick">Selectivity</div>'
+      + '<h2 class="eh serif">Thirty-three seats for the whole country</h2>'
+      + '<div class="pull">'
+        + '<div class="pc"><div class="pn">215,417</div><div class="pl">applicants to one celebratory sitting, 1800</div></div>'
+        + '<div class="pc"><div class="pn">33</div><div class="pl">seats in a standard triennial examination</div></div>'
+        + '<div class="pc hot"><div class="pn">&lt;1<small>%</small></div><div class="pl">effective pass rate at the largest sittings</div></div>'
+      + '</div>'
+      + '<p class="ecap">A celebratory examination in 1800, held for the crown prince&rsquo;s investiture, drew <b>215,417</b> applicants over two days. The regular triennial sitting seated thirty-three from the whole country.</p>'
+      + exsrc([['khan.co.kr','Kyunghyang Shinmun (Hi-story)'],['history.go.kr','National Institute of Korean History']])
+    + '</div>'
+
+    // ---- explainer module 3: merit in principle vs practice ----
+    + '<div class="exm">'
+      + '<div class="kick">Meritocracy</div>'
+      + '<h2 class="eh serif">Who actually passed</h2>'
+      + '<div class="para">'
+        + '<div class="pside"><div class="pk">The design</div>'
+          + '<div class="pt">Office was won by a written test, open and decided on merit rather than by birth.</div></div>'
+        + '<div class="pside practice"><div class="pk">The record</div><div class="barwrap">'
+          + '<div class="barrow"><span>The 50 largest of '+fmt(m.distinctSeonggwan)+' clans</span><span class="bn">'+pct1(conc.top50)+'%</span></div>'
+          + '<div class="pbar"><span style="width:'+pct1(conc.top50)+'%"></span></div>'
+          + '<div class="barrow" style="margin-top:14px"><span>The 10 largest clans</span><span class="bn">'+pct1(conc.top10)+'%</span></div>'
+          + '<div class="pbar"><span style="width:'+pct1(conc.top10)+'%"></span></div>'
+        + '</div>'
+        + '<p class="pnote">A small number of lineages produced most of those who passed, generation after generation. The clan league ranks exactly that. <a href="#/">See the league &rarr;</a></p></div>'
+      + '</div>'
+      + '<p class="ecap" style="margin-top:24px">Scholarship on the examination&rsquo;s special sittings has reached the same conclusion.</p>'
+      + exsrc([['cambridge','Chung & Choi, “Meritocracy with Multiple Rules,” Cambridge']])
+    + '</div>'
+
+    // ---- by the numbers: the existing stats follow ----
+    + '<div class="exm" style="border-top:1px solid var(--rule3); margin-top:14px; padding-bottom:0">'
+      + '<div class="kick" style="color:var(--ink2)">By the numbers</div>'
+      + '<h2 class="eh serif">The record in figures</h2></div>'
+
+    // class size over time
+    + '<section><div class="sec-h">'
+      + '<div><div class="kick">Admissions trends</div><h2 class="serif">Class size over time</h2>'
+        + '<div class="sub">Officials admitted per 25-year period, '+DATA.meta.yearMin+' to '+DATA.meta.yearMax+'.</div></div></div>'
+      + '<div class="chartwrap"><svg class="chart" id="tr-chart" viewBox="0 0 1000 230" preserveAspectRatio="none" aria-hidden="true"></svg>'
+        + '<div class="xlabels"><span>1393</span><span>1450</span><span>1500</span><span>1600</span><span>1700</span><span>1800</span><span>1894</span></div></div>'
+      + '<div class="chart-cap">The triennial sitting held its thirty-three for five centuries. The growth is in the special sittings: the final 25-year period seated <b>'
+        + fmt(lastPeriod.n)+'</b>, against <b>'+fmt(firstPeriod.n)+'</b> in the first.</div>'
+    + '</section>'
+
+    // exam types
+    + '<section><div class="sec-h">'
+      + '<div><div class="kick">Admissions tracks</div><h2 class="serif">How officials were admitted</h2>'
+        + '<div class="sub">Share of all admits by type of sitting.</div></div></div>'
+      + '<div class="barlist">'+examBars+'</div>'
+      + '<div class="trk-cap">The triennial examination (식년시) was the meritocratic core, seating thirty-three nationally. '
+        + 'The special sittings, called for royal occasions, together admitted the majority.</div>'
+    + '</section>'
+
+    // concentration + age, side by side
+    + '<section style="border-bottom:0"><div class="grid2">'
+      + '<div><div class="sec-h" style="border:0;margin-bottom:18px"><div><div class="kick">Concentration</div>'
+        + '<h2 class="serif">Share held by the top clans</h2></div></div>'
+        + '<div class="stepwrap">'+stepHtml+'</div>'
+        + '<div class="histcap">Out of '+fmt(DATA.meta.distinctSeonggwan)+' clans that produced an official, the top hundred account for '
+          + pct1(conc.top100)+' percent of all admits.</div></div>'
+      + '<div><div class="sec-h" style="border:0;margin-bottom:18px"><div><div class="kick">Age at admission</div>'
+        + '<h2 class="serif">When officials passed</h2></div></div>'
+        + '<div class="histwrap"><div class="hist">'+histHtml+'</div>'
+        + '<div class="histx"><span>12</span><span>median '+ad.median+'</span><span>85</span></div></div>'
+        + '<div class="histcap">Median age '+ad.median+', mean '+ad.mean+'. The youngest recorded admit was '+ad.min
+          + ', the oldest '+ad.max+'. Read from '+fmt(DATA.meta.ageN)+' admits whose birth year survives.</div></div>'
+    + '</div></section>'
+
+    + footerHtml();
+  app.innerHTML = html;
+  drawArea('tr-chart', DATA.classByPeriod.map(function(b){return b.n;}), true);
+  pageTop();
+}
+
+/* =========================================================================
+   VIEW 8 — Search (#/search/{q})
+   ========================================================================= */
+function viewSearch(rawq){
+  var q = (rawq||'').trim();
+  var qLower = q.toLowerCase();
+  var results = [];
+  if(q){
+    var R = DATA.roster;
+    // the curated graduates carry English names + pen names; let those match too,
+    // so "Yulgok" or "Jeong Yak-yong" finds the record though the roster is Korean.
+    var notableById = {};
+    (LK.notable||[]).forEach(function(x){ notableById[x.id] = x; });
+    for(var i=0;i<R.length && results.length<400;i++){
+      var r = R[i];
+      var hit = false;
+      if(r.n && r.n.indexOf(q)!==-1) hit=true;            // hangul name
+      else if(r.h && r.h.indexOf(q)!==-1) hit=true;       // hanja
+      else if(r.b && r.b.indexOf(q)!==-1) hit=true;       // seat hangul
+      else if(r.s && r.s.indexOf(q)!==-1) hit=true;       // surname hangul
+      else {
+        var rom = (clanRom(r.b)||'').toLowerCase();
+        if(rom && rom.indexOf(qLower)!==-1) hit=true;     // seat romanization
+        else if(qLower){
+          var nb = notableById[r.i];                      // curated English name / pen name
+          if(nb && ((nb.en||'').toLowerCase().indexOf(qLower)!==-1 || (nb.ep||'').toLowerCase().indexOf(qLower)!==-1)) hit=true;
+        }
+      }
+      if(hit) results.push(r);
+    }
+  }
+  var capped = results.length>100;
+  var shown = results.slice(0,100);
+
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Search</div>'
+    + '<h1 class="ph-title serif">Search</h1>'
+    + (q
+      ? '<p class="ph-sub">Admitted officials matching <b style="color:var(--ink)">“'+esc(q)+'”</b>, by name or clan.</p>'
+      : '<p class="ph-sub">Type a name or a clan in the search box above. Korean searches the whole record (이황, 전주); English works for clans (Jeonju) and the distinguished graduates (Yulgok).</p>')
+    + '</div>';
+
+  if(q){
+    html += '<div class="resultcount"><b>'+fmt(results.length)+(capped?'+':'')+'</b> '
+      + (results.length===1?'admit':'admits')+' found'
+      + (capped?' &middot; showing the first 100':'')+'</div>';
+    if(shown.length){
+      html += '<div class="tscroll"><table class="dt"><thead><tr>'
+        + '<th>Name</th><th>Clan</th><th class="num">Class</th><th>Grade</th></tr></thead>'
+        + '<tbody id="search-body"></tbody></table></div>';
+    } else {
+      html += '<div class="empty"><span class="ekr">無</span>No admits match “'+esc(q)+'”. '
+        + '<a href="#/feeders">Browse clans</a> instead.</div>';
+    }
+  }
+  html += footerHtml();
+  app.innerHTML = html;
+
+  if(shown.length){
+    var tb = document.getElementById('search-body');
+    var f = document.createDocumentFragment();
+    shown.forEach(function(r){
+      var badge = honBadge(r.hon);
+      var tr = el('tr');
+      tr.innerHTML =
+        '<td><a href="#/person/'+encodeURIComponent(r.i)+'"><span class="nm">'+(notableEn(r.i)?esc(notableEn(r.i).en)+' ':'')+esc(r.n)
+          + '<span class="nh kr">'+esc(r.h)+'</span></span></a></td>'
+        + '<td>'+clanCell(r)+'</td>'
+        + '<td class="num"><a href="#/cohort/'+encodeURIComponent(r.y+'-'+r.e)+'">'+r.y+'</a></td>'
+        + '<td class="grd">'+esc(gradeEn(r.g))+'<span class="gkr kr">'+esc(r.g)+'</span>'
+          + (badge?'<span class="laur-dot">'+esc(badge.rom)+'</span>':'')+'</td>';
+      f.appendChild(tr);
+    });
+    tb.appendChild(f);
+  }
+  pageTop();
+}
+
+/* =========================================================================
+   ABOUT (#/about) — full methodology page
+   ========================================================================= */
+function viewAbout(){
+  var srcs = LK.cited.sources.map(function(s){
+    return '<a href="'+esc(s.url)+'" rel="noopener">'+esc(s.label)+'</a>';
+  }).join('');
+  var html =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a><span class="sep">/</span>Methodology</div>'
+    + '<h1 class="ph-title serif">Methodology</h1>'
+    + '<p class="ph-sub">'+esc(LK.cited.headline)+'</p></div>'
+    + '<div class="about-body" style="margin-top:26px;max-width:74ch;font-size:14.5px">'
+      + '<p>'+esc(LK.cited.detail)+'</p>'
+      + '<p style="color:var(--ink2)"><b style="color:var(--ink)">On the figures.</b> '
+        + 'Every name, rank, clan, grade, and result shown across this site is drawn from the surviving roster of '
+        + 'civil-examination passers. '+esc(DATA.meta.total.toLocaleString())+' admits across '+esc(DATA.meta.sittings.toLocaleString())
+        + ' sittings, '+DATA.meta.yearMin+' to '+DATA.meta.yearMax+'. Ages are recorded for '+esc(DATA.meta.ageN.toLocaleString())
+        + ' of them, where a birth year survives. Residences and alternate names appear where the record carries them, and are marked unknown where it does not.</p>'
+      + '<div class="subhead" style="margin-top:24px">Sources</div>'
+      + '<div class="srclist">'+srcs+'</div>'
+    + '</div>'
+    + '<p style="margin-top:30px"><a href="#/" class="seemore">Back to the overview</a></p>'
+    + footerHtml();
+  app.innerHTML = html;
+  pageTop();
+}
+
+/* ---------- not-found ---------- */
+function notFound(msg){
+  app.innerHTML =
+    '<div class="pagehead"><div class="crumb"><a href="#/">Clans</a></div>'
+    + '<h1 class="ph-title serif">Not found</h1></div>'
+    + '<div class="empty"><span class="ekr">無</span>'+esc(msg||'That page does not exist.')+' '
+      + '<a href="#/">Return to the overview</a>.</div>'
+    + footerHtml();
+  pageTop();
+}
+
+/* =========================================================================
+   ROUTER
+   ========================================================================= */
+function setActiveNav(route){
+  var links = document.querySelectorAll('#nav a');
+  links.forEach(function(a){
+    if(a.getAttribute('data-route')===route) a.setAttribute('aria-current','page');
+    else a.removeAttribute('aria-current');
+  });
+}
+function dispatch(){
+  var h = location.hash.replace(/^#/, '');
+  if(!h || h==='/'){ setActiveNav(''); return viewOverview(); }
+  var parts = h.split('/').filter(Boolean); // e.g. ['cohort','1393-...']
+  var head = parts[0];
+  var tail = decodeURIComponent(parts.slice(1).join('/'));
+  switch(head){
+    case 'alumni':  setActiveNav('alumni');  return viewAlumni();
+    case 'cohorts': setActiveNav('cohorts'); return viewCohorts();
+    case 'cohort':  setActiveNav('cohorts'); return viewCohort(tail);
+    case 'feeders': setActiveNav(''); return viewFeeders();
+    case 'clan':    setActiveNav(''); return viewClan(tail);
+    case 'trends':  setActiveNav('trends');  return viewTrends();
+    case 'person':  setActiveNav('');        return viewPerson(tail);
+    case 'search':  setActiveNav('');        return viewSearch(tail);
+    case 'about':   setActiveNav('');        return viewAbout();
+    default:        setActiveNav('');        return notFound();
+  }
+}
+function route(){
+  // A render error must never leave a stale page; degrade to a visible notice.
+  try { dispatch(); }
+  catch(err){
+    if(window.console&&console.error) console.error('Joseon Review route error:', err);
+    notFound('Something went wrong rendering that page.');
+  }
+}
+window.addEventListener('hashchange', route);
+
+/* search submit -> route */
+document.getElementById('searchform').addEventListener('submit', function(e){
+  e.preventDefault();
+  var q = document.getElementById('searchbox').value.trim();
+  if(q) location.hash = '#/search/'+encodeURIComponent(q);
+});
+
+/* boot */
+route();
+
+})();
+</script>
+</body>
+</html>
