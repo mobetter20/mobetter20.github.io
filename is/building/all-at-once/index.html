@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All At Once · what was happening everywhere, at the same time</title>
+<meta name="description" content="An interactive timeline of world history: every major civilization on its own track, five millennia at a glance. Slide across any year to see what was happening everywhere at the same time. Korea, China, Greece &amp; Rome, Egypt, and more.">
+<link rel="canonical" href="https://ajin.im/is/building/all-at-once/">
+<meta property="og:site_name" content="ajin.im">
+<meta property="og:title" content="All At Once · what was happening everywhere, at the same time">
+<meta property="og:description" content="Every major civilization on one timeline. Slide across any year to see what was happening everywhere at the same time.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ajin.im/is/building/all-at-once/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="All At Once · what was happening everywhere at once">
+<meta name="twitter:description" content="Every major civilization on one timeline. Slide across any year to see what was happening everywhere at the same time.">
+<link rel="icon" type="image/png" href="/img/a3.png">
+<link rel="apple-touch-icon" href="/img/a3.png">
+<script src="/analytics.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#120f1c; --bg2:#191427; --panel:#1d1830; --panel2:#241d3c;
+    --line:#332a4d; --ink:#efeaff; --mut:#a99fc9; --dim:#6f6593;
+    --gutter:120px; --headH:40px; --subH:52px; --gap:6px;
+    --disp:'Archivo Black',sans-serif; --mono:'DM Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--mono);font-size:13px;-webkit-font-smoothing:antialiased}
+  body{position:relative;overflow-x:hidden;background:linear-gradient(180deg,#181226,#120f1c 38%)}
+  .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.04;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  .wrap{max-width:1480px;margin:0 auto;padding:22px 18px 60px}
+  h1{font-family:var(--disp);font-weight:400;font-size:38px;letter-spacing:1.5px;margin:0;line-height:1;
+    background:linear-gradient(90deg,#ff5fa8,#ffc733,#19d6c0,#9b6bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tag{color:var(--mut);font-size:12.5px;margin:8px 0 0;max-width:760px;line-height:1.45}
+
+  .fact{margin:13px 0 0;background:linear-gradient(90deg,var(--panel),var(--panel2));
+    border:1px solid var(--line);border-radius:13px;padding:9px 14px;display:flex;align-items:center;gap:11px;cursor:pointer;transition:.15s}
+  .fact:hover{border-color:#5a4f80}
+  .fact .em{font-size:18px;flex:0 0 auto}
+  .fact .tx{flex:1;font-size:12.5px;line-height:1.4}
+  .fact .tx b{color:#ffd34d;font-family:var(--disp);font-weight:400;letter-spacing:.5px;text-transform:uppercase;font-size:10px;margin-right:8px}
+  .fact .go{color:var(--dim);font-size:17px;flex:0 0 auto}
+
+  .controls{display:flex;flex-wrap:wrap;gap:9px 13px;align-items:center;margin:11px 0 8px}
+  .seg{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  .seg button{font-family:var(--mono);background:none;border:0;color:var(--mut);padding:7px 12px;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px;transition:.12s}
+  .seg button:hover{color:var(--ink)}
+  .seg button.on{background:#322954;color:#fff;box-shadow:inset 0 0 0 1px #5a4f80}
+  .btn{font-family:var(--mono);background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:7px 13px;border-radius:11px;cursor:pointer;font-size:12px;transition:.12s}
+  .btn:hover{border-color:#6a5e98;background:var(--panel2)}
+  .btn.dice{background:linear-gradient(135deg,#ff5fa8,#ff9a3d);border:0;color:#1a0f1e;font-weight:500}
+  .zoom{display:flex;align-items:center;gap:8px;color:var(--dim);font-size:11px}
+  .zoom input{accent-color:#ff5fa8;width:118px}
+  .status{margin-left:auto;font-size:11.5px;color:var(--dim)}
+  .live{cursor:pointer;border:1px solid var(--line);border-radius:20px;padding:4px 11px;color:var(--mut);white-space:nowrap}
+  .live.locked{color:#ffd34d;border-color:#5a4a12}
+  .live:hover{border-color:#6a5e98}
+
+  .chips{display:flex;gap:7px;margin:2px 0 12px;overflow-x:auto;padding-bottom:3px;scrollbar-width:thin}
+  .chips::-webkit-scrollbar{height:6px}
+  .chips::-webkit-scrollbar-thumb{background:#322954;border-radius:6px}
+  .chip{font-family:var(--mono);font-size:12px;display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:20px;flex:0 0 auto;
+    border:1px solid var(--line);background:var(--panel);color:var(--dim);cursor:pointer;transition:.12s;user-select:none;white-space:nowrap}
+  .chip .dot{width:9px;height:9px;border-radius:50%}
+  .chip.on{color:#fff;border-color:transparent}
+
+  .readout{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:11px 14px;margin-bottom:11px}
+  .ro-year{font-family:var(--disp);font-weight:400;font-size:23px;letter-spacing:1px;line-height:1;margin-bottom:9px;display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
+  .ro-year .sub{font-family:var(--mono);font-size:11px;color:var(--dim);font-weight:400;letter-spacing:0}
+  .ro-strip{display:flex;flex-wrap:wrap;gap:7px}
+  .ro-c{display:flex;align-items:center;gap:7px;background:var(--panel2);border-left:3px solid;border-radius:8px;padding:6px 10px;font-size:12px}
+  .ro-c .e{font-size:14px}
+  .ro-c .nm{color:var(--mut)}
+  .ro-c .er{color:#fff}
+
+  .frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:rgba(18,15,28,.6);
+    display:grid;grid-template-columns:var(--gutter) 1fr;grid-template-rows:var(--headH) auto}
+  #corner{grid-row:1;grid-column:1;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:9px;letter-spacing:1px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#1d1830}
+  #topbar{grid-row:1;grid-column:2;overflow:hidden;position:relative;border-bottom:1px solid var(--line);background:#1d1830}
+  #ruler{position:relative;height:var(--headH)}
+  .tick{position:absolute;top:0;height:var(--headH);display:flex;align-items:center;color:var(--dim);font-size:10px;transform:translateX(-50%);white-space:nowrap}
+  .tick.maj{color:#9b8fc4}
+  #rmark{position:absolute;top:0;height:var(--headH);width:2px;background:#fff;transform:translateX(-1px);z-index:5}
+  #rmark span{position:absolute;top:7px;left:5px;background:#fff;color:#160f22;font-size:11px;font-weight:500;padding:1px 7px;border-radius:6px;white-space:nowrap}
+  #leftbar{grid-row:2;grid-column:1;overflow:hidden;position:relative;border-right:1px solid var(--line);background:#191426}
+  .llab{position:absolute;left:0;width:var(--gutter);display:flex;flex-direction:column;justify-content:center;gap:2px;padding:0 11px;border-bottom:1px solid #241d3c;border-right:3px solid}
+  .llab .le{font-size:15px}
+  .llab .ln{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.2px;line-height:1.05}
+  #body{grid-row:2;grid-column:2;overflow:auto;position:relative;scrollbar-color:#6a5e98 #221b35}
+  #body::-webkit-scrollbar{width:12px;height:15px}
+  #body::-webkit-scrollbar-track{background:#221b35;border-radius:10px}
+  #body::-webkit-scrollbar-thumb{background:#6a5e98;border-radius:10px;border:3px solid #221b35}
+  #body::-webkit-scrollbar-thumb:hover{background:#8a7cc4}
+  #canvas{position:relative;cursor:crosshair}
+  .gl{position:absolute;top:0;bottom:0;width:1px;background:#221b35}
+  .gl.maj{background:#2e2647}
+  .route{position:absolute;height:4px;border-radius:4px;opacity:.18;left:0}
+
+  .blk{position:absolute;border-radius:9px;overflow:hidden;cursor:pointer;display:flex;align-items:center;gap:5px;
+    padding:0 9px;font-size:11px;line-height:1.05;border:1px solid rgba(0,0,0,.2);
+    transition:opacity .14s, box-shadow .12s, filter .14s;will-change:opacity}
+  .blk .be{font-size:13px;flex:0 0 auto}
+  .blk .bn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+  .blk.fg{background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.22) 0 6px,transparent 6px 13px)}
+  .blk.ap{border:2px dashed rgba(255,255,255,.45)}
+  .blk.hot{box-shadow:0 0 0 2px #fff;z-index:4}
+  .blk.cold{opacity:.26;filter:saturate(.35)}
+  .blk:hover{box-shadow:0 0 0 2px #fff;z-index:5}
+
+  .pt{position:absolute;display:flex;align-items:center;gap:6px;z-index:3;cursor:pointer;white-space:nowrap;transform:translateY(-50%)}
+  .pt i{width:12px;height:12px;border-radius:3px;transform:rotate(45deg);flex:0 0 auto}
+  .pt span{font-size:11px;background:rgba(18,15,28,.8);padding:1px 6px;border-radius:6px}
+
+  .beam{position:absolute;top:0;z-index:7;pointer-events:none}
+  .beam .ln{position:absolute;top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 8px rgba(255,255,255,.6)}
+  .beam .band{position:absolute;top:0;bottom:0;background:rgba(255,255,255,.06);border-left:2px solid #fff;border-right:2px solid #fff}
+
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:11px;color:var(--dim);font-size:11px;align-items:center}
+  .legend .sw{width:20px;height:11px;border-radius:3px;display:inline-block;vertical-align:middle;margin-right:5px}
+  .legend .sw.fg{background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.4) 0 4px,transparent 4px 8px),linear-gradient(#888,#888)}
+  .legend .sw.ap{border:2px dashed #999;height:9px}
+  .note{color:var(--dim);font-size:11px;margin-top:8px;line-height:1.5;max-width:820px}
+  .colophon{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.03em;color:var(--dim)}
+  .colophon a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--line);transition:.15s}
+  .colophon a:hover{color:var(--mut);border-color:var(--mut)}
+  @media (hover:none){ #live{display:none} }
+  @media (max-width:640px){
+    body{padding:16px 12px 36px}
+    h1{font-size:22px;letter-spacing:.4px}
+    .sub{font-size:12px}
+    :root{--gutter:104px}
+    .seg button{padding:9px 11px}
+    .btn{padding:9px 13px}
+    .chip{padding:8px 12px}
+    .zoom input{width:100px}
+    .ro-year{font-size:20px}
+    .llab .ln{font-size:10.5px}
+    .legend{font-size:10.5px;gap:12px}
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="wrap">
+  <h1>ALL&nbsp;AT&nbsp;ONCE</h1>
+  <p class="tag">Each colored line is a place, each block an era. Move the white beam across time to see what was happening everywhere at once. Tap or hover any era for the story.</p>
+
+  <div class="fact" id="fact">
+    <span class="em">💡</span>
+    <span class="tx"><b>did you know</b><span id="factText"></span></span>
+    <span class="go">›</span>
+  </div>
+
+  <div class="controls">
+    <div class="seg" id="lvSeg">
+      <button data-lv="1">🔭 Eras</button>
+      <button data-lv="2" class="on">🚉 Dynasties</button>
+      <button data-lv="3">🔬 Nerd mode</button>
+    </div>
+    <div class="zoom">zoom <input type="range" id="zoom" min="0.18" max="2.2" step="0.01" value="0.6"></div>
+    <button class="btn dice" id="dice">🎲 Surprise me</button>
+    <div class="status"><span class="live" id="live">live ▶ (hovering)</span></div>
+  </div>
+
+  <div class="chips" id="chips"></div>
+
+  <div class="readout">
+    <div class="ro-year"><span id="roYear">100 CE</span><span class="sub" id="roHint">tap a year or an era to read across that moment</span></div>
+    <div class="ro-strip" id="roStrip"></div>
+  </div>
+
+  <div class="frame">
+    <div id="corner">YEAR ▸</div>
+    <div id="topbar"><div id="ruler"></div></div>
+    <div id="leftbar"></div>
+    <div id="body"><div id="canvas"></div></div>
+  </div>
+
+  <div class="legend">
+    <span><span class="sw fg"></span>under foreign rule</span>
+    <span><span class="sw ap"></span>legendary / approximate dates</span>
+    <span style="color:var(--mut)">◆ = tech &amp; ideas milestones</span>
+  </div>
+  <p class="note">Dates are simplified for placement, not precision: rising and falling empires overlap in reality, and deep-antiquity dates (Gojoseon, Xia, the Vedas, Stonehenge) are legendary or contested. Tap or hover any era for the real story.</p>
+  <footer class="colophon"><a href="/">made by ajin.im</a></footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const isTouch=window.matchMedia('(pointer: coarse)').matches;
+
+const COLS=[
+ {k:'KR',name:'Korea',emo:'🏯',col:'#1ed79b',on:true},
+ {k:'CN',name:'China',emo:'🐉',col:'#ff3b4d',on:true},
+ {k:'GR',name:'Greece & Rome',emo:'🏛️',col:'#d65bff',on:true},
+ {k:'EG',name:'Egypt',emo:'🔺',col:'#ffc733',on:true},
+ {k:'ME',name:'Middle East',emo:'🏺',col:'#16b8d6',on:false},
+ {k:'IN',name:'India',emo:'🐘',col:'#ff8a1e',on:false},
+ {k:'UK',name:'Britain',emo:'👑',col:'#4f7bff',on:false},
+ {k:'FR',name:'France',emo:'⚜️',col:'#9b6bff',on:false},
+ {k:'JP',name:'Japan',emo:'⛩️',col:'#ff5fa8',on:false},
+ {k:'MX',name:'Mesoamerica',emo:'🗿',col:'#00c2a0',on:false},
+ {k:'TECH',name:'Tech & Ideas',emo:'💡',col:'#c6e91a',on:false},
+];
+const COL=Object.fromEntries(COLS.map(c=>[c.k,c]));
+
+const D=[];
+function B(c,lv,n,emo,s,e,o,x){D.push(Object.assign({c,lv,n,emo,s,e,o,ln:0,of:1,fg:0,ap:0,pt:0},x||{}));}
+
+// KOREA
+B('KR',[1],'Ancient Korea','🏺',-2333,668,'Gojoseon, then a 700-year three-way kingdom brawl');
+B('KR',[1],'United & Medieval','👑',668,1392,'Silla unites it, Goryeo names it');
+B('KR',[1],'Joseon','📜',1392,1897,'500 years of scholars, hats and kimchi');
+B('KR',[1],'Modern Korea','🌆',1897,2000,'empire, occupation, division, K-everything');
+B('KR',[2,3],'Gojoseon','🐻',-2333,-108,'founded (so legend says) by a bear-woman\u2019s son',{ap:1});
+B('KR',[2],'Three Kingdoms','⚔️',-57,668,'Goguryeo vs Baekje vs Silla, 700-year grudge match');
+B('KR',[2],'Unified Silla','👑',668,935,'Silla wins; gold crowns everywhere');
+B('KR',[2,3],'Goryeo','🍵',918,1392,'celadon, Buddhism, and the name \u201cKorea\u201d');
+B('KR',[2,3],'Joseon','📜',1392,1897,'Confucian scholars + Hangul, the coolest alphabet made');
+B('KR',[2,3],'Colonial','\u26d3\ufe0f',1910,1945,'occupied by Japan. not a great time.',{fg:1});
+B('KR',[2,3],'Two Koreas','🌆',1948,2000,'one goes K-pop, the other goes nuclear');
+B('KR',[3],'Goguryeo','🐎',-37,668,'the big tough northern one',{ln:0,of:3});
+B('KR',[3],'Baekje','🌊',-18,660,'the artsy, seafaring southwest one',{ln:1,of:3});
+B('KR',[3],'Silla','👑',-57,935,'the underdog that united Korea in 668',{ln:2,of:3});
+B('KR',[3],'Balhae','❄️',698,926,'Goguryeo\u2019s successor, way up north',{ln:1,of:3});
+B('KR',[3],'Korean Empire','🎌',1897,1910,'a brief imperial glow-up before the lights go out');
+
+// CHINA
+B('CN',[1],'Ancient China','🏺',-2070,-221,'Xia, Shang, Zhou: bronze, oracle bones, philosophers');
+B('CN',[1],'Imperial China','🐉',-221,1912,'2,000+ years of emperors and dynasties');
+B('CN',[1],'Modern China','🌆',1912,2000,'republic, then People\u2019s Republic');
+B('CN',[2],'Xia\u2013Shang','🥉',-2070,-1046,'bronze-age origins (Xia is semi-legendary)',{ap:1});
+B('CN',[2,3],'Zhou','📿',-1046,-256,'Confucius and Laozi; the \u201cMandate of Heaven\u201d');
+B('CN',[2],'Qin\u2013Han','🐉',-221,220,'first empire, then the classical golden age');
+B('CN',[2],'Era of Division','⚔️',220,589,'Three Kingdoms and centuries of split');
+B('CN',[2],'Sui\u2013Tang','🌸',581,907,'reunified and gloriously cosmopolitan');
+B('CN',[2,3],'Song','🧭',960,1279,'gunpowder, printing, paper-money boom',{of:2});
+B('CN',[2,3],'Yuan','🐎',1271,1368,'Kublai Khan; Marco Polo\u2019s China',{fg:1});
+B('CN',[2,3],'Ming','🏯',1368,1644,'the Forbidden City and treasure fleets');
+B('CN',[2,3],'Qing','🐲',1644,1912,'the last dynasty (Manchu rulers)',{fg:1});
+B('CN',[2],'Republic / PRC','🌆',1912,2000,'the emperors are gone; modern China');
+B('CN',[3],'Xia','🥉',-2070,-1600,'semi-legendary first dynasty',{ap:1});
+B('CN',[3],'Shang','🦴',-1600,-1046,'oracle bones and ritual bronzes');
+B('CN',[3],'Qin','🔥',-221,-206,'the First Emperor standardizes everything');
+B('CN',[3],'Han','🐉',-206,220,'classical golden age, the contemporary of Rome');
+B('CN',[3],'Wei','🗡️',220,266,'northern kingdom of the Three',{ln:0,of:3});
+B('CN',[3],'Shu','🏔️',221,263,'Liu Bei\u2019s southwest kingdom',{ln:1,of:3});
+B('CN',[3],'Wu','🌊',222,280,'the southeastern kingdom',{ln:2,of:3});
+B('CN',[3],'Jin','⚔️',266,420,'briefly reunites China, then shatters');
+B('CN',[3],'North & South','☯️',420,589,'rival northern and southern courts');
+B('CN',[3],'Sui','🚧',581,618,'reunifies China; digs the Grand Canal');
+B('CN',[3],'Tang','🌸',618,907,'the cosmopolitan high point');
+B('CN',[3],'Five Dynasties','🎲',907,960,'a messy 53-year interlude');
+B('CN',[3],'Liao','🏹',916,1125,'Khitan empire ruling the north',{ln:1,of:2,fg:1});
+B('CN',[3],'Jin (Jurchen)','🐴',1125,1234,'pushed the Song south, crushed by Mongols',{ln:1,of:2,fg:1});
+B('CN',[3],'Republic','🎌',1912,1949,'after the emperors fall');
+B('CN',[3],'People\u2019s Republic','🌟',1949,2000,'the PRC');
+
+// GREECE & ROME
+B('GR',[1],'Ancient Greece','🏺',-2000,-323,'Minoans to Alexander the Great');
+B('GR',[1],'Roman World','🏛️',-509,476,'from a republic to a vast empire');
+B('GR',[1],'Byzantium','✝️',330,1453,'Rome\u2019s 1,000-year encore in the east');
+B('GR',[2],'Minoan / Mycenaean','🐂',-2000,-1100,'Bronze-Age Aegean palaces',{ap:1});
+B('GR',[2],'Greek City-States','🏺',-800,-323,'Athens, Sparta, democracy, philosophy');
+B('GR',[2,3],'Hellenistic','🌍',-323,-31,'Alexander\u2019s empire splits among his generals');
+B('GR',[2,3],'Roman Republic','⚔️',-509,-27,'SPQR; Caesar; conquering the Mediterranean');
+B('GR',[2,3],'Roman Empire','🦅',-27,476,'Augustus to the fall of the West');
+B('GR',[2,3],'Byzantine Empire','✝️',330,1453,'eastern Rome; Constantinople until 1453');
+B('GR',[3],'Roman Kingdom','👑',-753,-509,'Rome\u2019s seven legendary kings',{ap:1});
+B('GR',[3],'Archaic Greece','🏺',-800,-480,'colonies, the alphabet, the first Olympics');
+B('GR',[3],'Classical Greece','🏛️',-480,-323,'the 5th-century golden age');
+
+// EGYPT
+B('EG',[1],'Pharaonic Egypt','🔺',-3100,-332,'3,000 years of pharaohs and pyramids');
+B('EG',[1],'Greco-Roman Egypt','🏛️',-332,641,'Greeks then Romans rule the Nile');
+B('EG',[1],'Islamic Egypt','🕌',641,2000,'from the Arab conquest to today');
+B('EG',[2,3],'Old Kingdom','🔺',-2686,-2181,'the great pyramid age (Giza, c.2560 BCE)');
+B('EG',[2,3],'Middle Kingdom','🏞️',-2055,-1650,'reunification and classical literature');
+B('EG',[2,3],'New Kingdom','👑',-1550,-1069,'Hatshepsut, Tut, Ramesses \u2014 empire at its peak');
+B('EG',[2,3],'Late Period','🐊',-1069,-332,'decline; Nubian and Persian rulers');
+B('EG',[2,3],'Ptolemaic','🏛️',-305,-30,'Greek pharaohs; ends with Cleopatra');
+B('EG',[2,3],'Roman / Byzantine','🦅',-30,641,'Rome\u2019s breadbasket');
+B('EG',[2],'Arab / Islamic','☪️',641,2000,'caliphates, sultans, modern Egypt');
+B('EG',[3],'Early Dynastic','🏺',-3100,-2686,'Upper and Lower Egypt united');
+B('EG',[3],'Islamic (to Mamluks)','☪️',641,1517,'Arab, Fatimid and Mamluk rule');
+B('EG',[3],'Ottoman Egypt','🌙',1517,1914,'a province of the Ottoman Empire',{fg:1});
+B('EG',[3],'Modern Egypt','🏙️',1914,2000,'monarchy, then republic');
+
+// MIDDLE EAST
+B('ME',[1],'Mesopotamia','🏺',-3000,-539,'Sumer, Babylon, Assyria: the first cities');
+B('ME',[1],'Persian Empires','🦁',-539,651,'Achaemenids to Sasanians');
+B('ME',[1],'Islamic World','🕌',632,1922,'caliphates and the Ottomans');
+B('ME',[2],'Sumer & Akkad','📜',-3000,-2000,'first cities, first writing, first empire');
+B('ME',[2],'Babylon & Assyria','🦁',-1894,-539,'Hammurabi\u2019s laws; mighty Assyria');
+B('ME',[2,3],'Achaemenid Persia','👑',-539,-330,'the first Persian superpower (Cyrus, Darius)');
+B('ME',[2],'Parthia & Sasanians','🏹',-247,651,'Rome\u2019s eastern rivals for ~900 years');
+B('ME',[2],'Caliphates','🕌',632,1258,'Islam\u2019s explosive rise; Baghdad\u2019s golden age');
+B('ME',[2,3],'Ottoman Empire','🌙',1299,1922,'three continents, 600 years');
+B('ME',[3],'Sumer','🏺',-3000,-2334,'the world\u2019s first cities, in clay');
+B('ME',[3],'Akkadian Empire','📜',-2334,-2154,'Sargon builds arguably the first empire');
+B('ME',[3],'Babylon','🦁',-1894,-1595,'Hammurabi\u2019s law code, c.1754 BCE');
+B('ME',[3],'Neo-Assyria','🏹',-911,-609,'the terrifying war machine of its age');
+B('ME',[3],'Neo-Babylon','🌃',-626,-539,'Nebuchadnezzar; the Hanging Gardens');
+B('ME',[3],'Seleucid','🌍',-312,-247,'Greek rule after Alexander',{fg:1});
+B('ME',[3],'Parthia','🐎',-247,224,'horse archers who humbled Rome');
+B('ME',[3],'Sasanian Persia','🔥',224,651,'the last great pre-Islamic Persian empire');
+B('ME',[3],'Rashidun','🕌',632,661,'the first caliphate after Muhammad');
+B('ME',[3],'Umayyad','🌙',661,750,'Spain to Central Asia in one lifetime');
+B('ME',[3],'Abbasid','📚',750,1258,'golden age of science; sacked by Mongols 1258');
+B('ME',[3],'Mongol Ilkhanate','🐎',1256,1335,'the Mongols take Persia',{fg:1});
+
+// INDIA
+B('IN',[1],'Ancient India','🕉️',-3300,-185,'Indus cities, the Vedas, the Maurya empire');
+B('IN',[1],'Classical & Medieval','🛕',-185,1206,'Gupta golden age and many kingdoms');
+B('IN',[1],'Sultanates & Mughals','🕌',1206,1858,'Muslim empires of the north',{fg:1});
+B('IN',[1],'Modern India','🏙️',1858,2000,'British rule, then independence');
+B('IN',[2,3],'Indus Valley','🏺',-3300,-1300,'Harappa: planned cities and plumbing');
+B('IN',[2,3],'Vedic Age','🔥',-1300,-500,'the Vedas; the roots of Hinduism',{ap:1});
+B('IN',[2,3],'Maurya','🦁',-322,-185,'first pan-Indian empire; Ashoka the Great');
+B('IN',[2,3],'Gupta','🪷',320,550,'golden age; mathematicians invent zero',{of:2});
+B('IN',[2,3],'Regional Kingdoms','🛕',550,1206,'no single ruler; many powers rise and fall',{of:2});
+B('IN',[2,3],'Delhi Sultanate','🕌',1206,1526,'Muslim dynasties rule the north',{of:2,fg:1});
+B('IN',[2,3],'Mughal Empire','🕌',1526,1857,'the Taj Mahal and immense wealth',{fg:1});
+B('IN',[2,3],'British Raj','👑',1858,1947,'the \u201cjewel in the crown\u201d',{fg:1});
+B('IN',[2,3],'India & Pakistan','🏙️',1947,2000,'independence and partition');
+B('IN',[3],'Mahajanapadas','🗣️',-500,-322,'16 kingdoms; the era of the Buddha');
+B('IN',[3],'Kushan','🐎',30,375,'Central-Asian rulers; Silk Road & Gandhara art',{ln:1,of:2});
+B('IN',[3],'Chola','🌶️',848,1279,'a Tamil sea empire reaching Southeast Asia',{ln:1,of:2});
+
+// BRITAIN
+B('UK',[1],'Ancient Britain','🗿',-2500,43,'Stonehenge and Celtic tribes',{ap:1});
+B('UK',[1],'Roman & Medieval','🏰',43,1485,'Romans, Saxons, Normans, knights');
+B('UK',[1],'Modern Britain','👑',1485,2000,'Tudors to today; empire and beyond');
+B('UK',[2,3],'Celtic Britain','🗿',-800,43,'Iron-Age Celts (Stonehenge is far older)',{ap:1});
+B('UK',[2,3],'Roman Britain','🦅',43,410,'Britannia, a province of Rome');
+B('UK',[2,3],'Anglo-Saxon','⚔️',410,1066,'Saxon kingdoms, Vikings, King Alfred',{of:2});
+B('UK',[2,3],'Norman / Plantagenet','🏰',1066,1485,'1066, castles, Magna Carta (1215)');
+B('UK',[2,3],'Tudor','🌹',1485,1603,'Henry VIII and Elizabeth I');
+B('UK',[2,3],'Stuart','⚜️',1603,1714,'civil war and a beheaded king');
+B('UK',[2,3],'Georgian','🎩',1714,1837,'empire and industry take off');
+B('UK',[2,3],'Victorian \u2192 Modern','🚂',1837,2000,'a world-spanning empire, then two world wars');
+B('UK',[3],'Viking Danelaw','🪓',865,954,'when Vikings ruled much of England',{ln:1,of:2,fg:1});
+
+// FRANCE
+B('FR',[1],'Roman Gaul','🦅',-58,481,'Caesar conquers Gaul');
+B('FR',[1],'Medieval France','🏰',481,1589,'Franks, Charlemagne, knights');
+B('FR',[1],'Modern France','⚜️',1589,2000,'the Sun King to the république');
+B('FR',[2,3],'Roman Gaul','🦅',-58,481,'part of the Roman Empire');
+B('FR',[2,3],'Merovingian','👑',481,751,'the Franks fill the void Rome left');
+B('FR',[2,3],'Carolingian','🗡️',751,987,'Charlemagne, crowned emperor in 800');
+B('FR',[2,3],'Capetian','🏰',987,1328,'a royal line that lasted 300+ years');
+B('FR',[2,3],'Valois','🌹',1328,1589,'the Hundred Years\u2019 War; Joan of Arc');
+B('FR',[2,3],'Bourbon','⚜️',1589,1792,'Louis XIV and the glory of Versailles');
+B('FR',[2,3],'Republic & Napoleon','🗽',1792,2000,'revolution, an emperor, then republics');
+
+// JAPAN
+B('JP',[1],'Ancient Japan','🌾',-300,710,'first rice villages to the first capital');
+B('JP',[1],'Classical & Feudal','⛩️',710,1603,'courtly Heian to centuries of samurai war');
+B('JP',[1],'Edo & Modern','🗾',1603,2000,'shogun peace, then rapid modernization');
+B('JP',[2,3],'Yayoi / Kofun','🌾',-300,538,'rice farming and giant burial mounds',{ap:1});
+B('JP',[2,3],'Asuka / Nara','🏯',538,794,'Buddhism arrives; the first capitals');
+B('JP',[2,3],'Heian','🎴',794,1185,'courtly elegance; The Tale of Genji');
+B('JP',[2,3],'Kamakura','⚔️',1185,1333,'the first shogunate; samurai rule begins');
+B('JP',[2,3],'Muromachi','🏵️',1336,1573,'\u201cwarring states\u201d chaos');
+B('JP',[2,3],'Azuchi-Momoyama','🏯',1573,1603,'warlords reunify the islands');
+B('JP',[2,3],'Edo','🗾',1603,1868,'250 years of isolation and peace');
+B('JP',[2,3],'Meiji \u2192 Modern','🚄',1868,2000,'breakneck modernization, empire, postwar boom');
+
+// MESOAMERICA
+B('MX',[1],'Pre-Classic','🌽',-1500,250,'Olmec heads and the earliest villages');
+B('MX',[1],'Classic / Post-Classic','🗿',250,1521,'Maya, Aztecs and great pyramids');
+B('MX',[1],'Colonial \u2192 Modern','⛪',1521,2000,'the Spanish conquest onward',{fg:1});
+B('MX',[2,3],'Olmec','🗿',-1500,-400,'the \u201cmother culture\u201d; colossal stone heads');
+B('MX',[2,3],'Maya (Classic)','🔢',250,900,'math, astronomy, writing, towering pyramids',{of:2});
+B('MX',[2,3],'Toltec','🪶',900,1150,'a warrior culture centered on Tula');
+B('MX',[2,3],'Aztec','🦅',1325,1521,'Tenochtitlan; the last great empire');
+B('MX',[2,3],'Spanish Mexico','⛪',1521,1821,'conquest and colony',{fg:1});
+B('MX',[2,3],'Modern Mexico','🏙️',1821,2000,'independence onward');
+B('MX',[3],'Teotihuacan','🌖',100,550,'the giant pyramid-city near modern Mexico City',{ln:1,of:2});
+
+// TECH & IDEAS
+function T(n,emo,y,o){B('TECH',[1,2,3],n,emo,y,y,o,{pt:1});}
+T('The Wheel','🛞',-3500,'wheeled vehicles appear in Mesopotamia');
+T('Bronze','⚒️',-3300,'the Bronze Age begins');
+T('Writing','✍️',-3200,'cuneiform and hieroglyphs are invented');
+T('Iron','🗡️',-1200,'the Iron Age spreads');
+T('Coins','🪙',-600,'the first coins, minted in Lydia');
+T('Paper','📜',105,'paper is invented in Han China');
+T('Gunpowder','🧨',850,'discovered by alchemists in Tang China');
+T('Printing','🖨️',1040,'movable type in China; Gutenberg c.1450');
+T('Telescope','🔭',1608,'the telescope opens the scientific revolution');
+T('Steam','🚂',1769,'Watt\u2019s engine ignites the Industrial Revolution');
+T('Light Bulb','💡',1879,'practical electric light');
+T('Flight','✈️',1903,'the Wright brothers fly');
+T('Internet','🌐',1983,'TCP/IP \u2014 the internet is born');
+
+const FACTS=[
+ {t:'Korea was printing books with movable metal type (the Jikji, 1377) about 80 years before Gutenberg.',y:1377},
+ {t:'Korea\u2019s Three Kingdoms were still going strong when the Western Roman Empire collapsed in 476.',y:476},
+ {t:'Goryeo \u2014 the dynasty that gave us the word \u201cKorea\u201d \u2014 overlapped the entire era of the Crusades.',y:1150},
+ {t:'Cleopatra lived closer in time to the Moon landing than to the building of the Great Pyramid.',y:-30},
+ {t:'Woolly mammoths were still alive (on a remote island) when the Egyptian pyramids were being built.',y:-2560},
+ {t:'Oxford was already teaching students when the Aztec capital was only just being founded in 1325.',y:1325},
+ {t:'When the Buddha and Confucius were alive (~500 BCE), Rome was still a small republic.',y:-500},
+ {t:'The Ottoman Empire still existed during World War I.',y:1914},
+ {t:'China\u2019s Tang dynasty and Korea\u2019s Unified Silla were cosmopolitan neighbours around 700 CE.',y:700},
+ {t:'Egypt\u2019s pyramids were already ~2,500 years old when Cleopatra was born \u2014 ancient history to her, too.',y:-69},
+];
+
+const Y0=-3000,Y1=2000,SPAN=Y1-Y0;
+const GUT=120, HEAD=40, SUBH=52, GAP=6;
+let level=2, ppx=0.6, mode='lockY', beamYr=100, spanS=0, spanE=0;
+let visible=new Set(COLS.filter(c=>c.on).map(c=>c.k));
+const body=$('#body'), topbar=$('#topbar'), leftbar=$('#leftbar'), canvas=$('#canvas'), ruler=$('#ruler');
+let beamEl=null, blockEls=[], chipRefs={}, lanePos={};
+
+function yl(y){y=Math.round(y);if(y<0)return Math.abs(y)+' BCE';if(y===0)return '1 BCE';return y+' CE';}
+function X(yr){return (yr-Y0)*ppx;}
+function readable(hex){const n=parseInt(hex.slice(1),16);const r=n>>16&255,g=n>>8&255,b=n&255;return (0.299*r+0.587*g+0.114*b)/255>0.6?'#160f22':'#fff';}
+function clampY(y){return Math.max(Y0,Math.min(Y1,Math.round(y)))}
+function overlap(a,b,c,d){return a<=d&&c<=b}
+
+(function(){
+  const wrap=$('#chips');
+  COLS.forEach(c=>{
+    const el=document.createElement('div');
+    el.className='chip'+(visible.has(c.k)?' on':'');
+    el.innerHTML=`<span class="dot" style="background:${c.col}"></span>${c.emo} ${c.name}`;
+    if(visible.has(c.k)){el.style.background=c.col;el.style.color=readable(c.col)}
+    el.onclick=()=>{
+      if(visible.has(c.k)){if(visible.size<=1)return;visible.delete(c.k);el.className='chip';el.style.background='';el.style.color=''}
+      else{visible.add(c.k);el.className='chip on';el.style.background=c.col;el.style.color=readable(c.col)}
+      render();
+    };
+    wrap.appendChild(el);
+  });
+})();
+
+function maxOf(ck){
+  let m=1;D.filter(d=>d.c===ck&&d.lv.includes(level)&&!d.pt).forEach(d=>{const of=(level===3?d.of:1);if(of>m)m=of});
+  return m;
+}
+
+function render(){
+  const vis=COLS.filter(c=>visible.has(c.k));
+  const canvasW=SPAN*ppx;
+
+  lanePos={};let top=0;
+  vis.forEach(c=>{const h=SUBH*maxOf(c.k);lanePos[c.k]={top,h};top+=h;});
+  const lanesH=top;
+
+  ruler.style.width=canvasW+'px';
+  canvas.style.width=canvasW+'px';canvas.style.height=lanesH+'px';
+
+  ruler.innerHTML='';canvas.innerHTML='';blockEls=[];
+  const steps=[50,100,200,250,500,1000];let step=steps.find(s=>s*ppx>=70)||1000;
+  for(let y=Math.ceil(Y0/step)*step;y<=Y1;y+=step){
+    const maj=(y%1000===0)||y===0;
+    const t=document.createElement('div');t.className='tick'+(maj?' maj':'');t.style.left=X(y)+'px';t.textContent=yl(y);ruler.appendChild(t);
+    const g=document.createElement('div');g.className='gl'+(maj?' maj':'');g.style.left=X(y)+'px';canvas.appendChild(g);
+  }
+  const rm=document.createElement('div');rm.id='rmark';rm.innerHTML='<span></span>';ruler.appendChild(rm);
+
+  leftbar.innerHTML='';
+  vis.forEach(c=>{
+    const lp=lanePos[c.k];
+    const lab=document.createElement('div');lab.className='llab';
+    lab.style.cssText=`top:${lp.top}px;height:${lp.h}px;border-right-color:${c.col}`;
+    lab.innerHTML=`<span class="le">${c.emo}</span><span class="ln" style="color:${c.col}">${c.name}</span>`;
+    leftbar.appendChild(lab);
+
+    const route=document.createElement('div');route.className='route';
+    route.style.cssText=`top:${lp.top+lp.h/2-2}px;width:${canvasW}px;background:${c.col}`;
+    canvas.appendChild(route);
+
+    const items=D.filter(d=>d.c===c.k&&d.lv.includes(level));
+    items.forEach(d=>{
+      if(d.pt){
+        const cy=lp.top+lp.h/2;
+        const p=document.createElement('div');p.className='pt';p.style.left=X(d.s)+'px';p.style.top=cy+'px';p.style.color=c.col;
+        p.innerHTML=`<i style="background:${c.col}"></i><span>${d.emo} ${d.n}</span>`;
+        bindBlock(p,d,c);canvas.appendChild(p);blockEls.push({el:p,d});return;
+      }
+      const of=(level===3?d.of:1), ln=(level===3?d.ln:0);
+      const x=X(d.s), w=Math.max(3,(d.e-d.s)*ppx)-2;
+      const bt=lp.top+ln*SUBH, bh=SUBH-GAP;
+      const b=document.createElement('div');
+      b.className='blk'+(d.fg?' fg':'')+(d.ap?' ap':'');
+      b.style.cssText=`left:${x}px;width:${w}px;top:${bt+3}px;height:${bh}px;background:${c.col};color:${readable(c.col)}`;
+      if(w>=44)b.innerHTML=`<span class="be">${d.emo}</span><span class="bn">${d.n}</span>`;
+      else if(w>=15)b.innerHTML=`<span class="be">${d.emo}</span>`;
+      bindBlock(b,d,c);canvas.appendChild(b);blockEls.push({el:b,d});
+    });
+  });
+
+  beamEl=document.createElement('div');beamEl.className='beam';beamEl.style.height=lanesH+'px';
+  beamEl.innerHTML='<div class="band" style="display:none"></div><div class="ln"></div>';
+  canvas.appendChild(beamEl);
+
+  const viewH=Math.min(Math.round(innerHeight*0.62), lanesH+14);
+  body.style.height=viewH+'px';leftbar.style.height=viewH+'px';
+
+  buildReadoutShell(vis);
+  applyBeam();
+}
+
+function bindBlock(el,d,c){
+  el.addEventListener('mouseenter',ev=>showTip(ev,d,c));
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',hideTip);
+  el.addEventListener('click',ev=>{
+    ev.stopPropagation();
+    if(isTouch){mode='lockSpan';spanS=d.s;spanE=d.e;beamYr=Math.round((d.s+d.e)/2);updateLive();applyBeam();showTip(ev,d,c);return;}
+    if(mode==='lockSpan'&&spanS===d.s&&spanE===d.e){goLive();}
+    else{mode='lockSpan';spanS=d.s;spanE=d.e;beamYr=Math.round((d.s+d.e)/2);updateLive();applyBeam();}
+  });
+}
+
+function applyBeam(){
+  if(!beamEl)return;
+  const span=(mode==='lockSpan');
+  const ln=beamEl.querySelector('.ln'), band=beamEl.querySelector('.band'), rm=$('#rmark');
+  if(span){
+    band.style.display='block';band.style.left=X(spanS)+'px';band.style.width=(X(spanE)-X(spanS))+'px';
+    ln.style.display='none';
+    if(rm){rm.style.left=X(spanS)+'px';rm.querySelector('span').textContent=yl(spanS)+' \u2013 '+yl(spanE);}
+  }else{
+    band.style.display='none';ln.style.display='block';ln.style.left=X(beamYr)+'px';
+    if(rm){rm.style.left=X(beamYr)+'px';rm.querySelector('span').textContent=yl(beamYr);}
+  }
+  const refYr=span?Math.round((spanS+spanE)/2):beamYr;
+  blockEls.forEach(({el,d})=>{
+    if(d.pt){const hot=span?overlap(d.s,d.s,spanS,spanE):Math.abs(d.s-beamYr)<=Math.max(18,24/ppx);
+      el.classList.remove('hot');el.style.opacity=hot?'1':'.45';return;}
+    const hot=span?overlap(d.s,d.e,spanS,spanE):(d.s<=beamYr&&beamYr<=d.e);
+    el.classList.toggle('hot',hot);el.classList.toggle('cold',!hot);
+  });
+  updateReadout(refYr,span);
+}
+
+function buildReadoutShell(vis){
+  const strip=$('#roStrip');strip.innerHTML='';chipRefs={};
+  vis.forEach(c=>{
+    const el=document.createElement('div');el.className='ro-c';el.style.borderLeftColor=c.col;
+    el.innerHTML=`<span class="e">${c.emo}</span><span class="nm">${c.name}:</span> <span class="er"></span>`;
+    strip.appendChild(el);chipRefs[c.k]=el.querySelector('.er');
+  });
+}
+function eraAt(ck,yr){
+  const items=D.filter(d=>d.c===ck&&d.lv.includes(level));
+  if(ck==='TECH'){let best=null,bd=1e9;items.forEach(d=>{const dd=Math.abs(d.s-yr);if(dd<bd){bd=dd;best=d}});
+    return best&&bd<=180?('\u2248 '+best.n+' ('+yl(best.s)+')'):'\u2014';}
+  const act=items.filter(d=>!d.pt&&d.s<=yr&&yr<=d.e);
+  return act.length?act.map(d=>d.n).join(' \u00b7 '):'\u2014';
+}
+function updateReadout(yr,span){
+  $('#roYear').textContent=span?(yl(spanS)+' \u2013 '+yl(spanE)):yl(beamYr);
+  Object.keys(chipRefs).forEach(k=>chipRefs[k].textContent=eraAt(k,yr));
+}
+
+let tipEl=null;
+function tip(){if(!tipEl){tipEl=document.createElement('div');tipEl.style.cssText='position:fixed;z-index:60;max-width:290px;background:#0c0814;border:1px solid var(--line);border-radius:11px;padding:10px 12px;pointer-events:none;box-shadow:0 12px 40px #000a;display:none;font-family:var(--mono)';document.body.appendChild(tipEl)}return tipEl}
+function showTip(ev,d,c){
+  const range=d.pt?yl(d.s):(yl(d.s)+' \u2013 '+yl(d.e));
+  const flags=(d.fg?'<span style="color:#ff9ec4">\u26d3 foreign rule</span>  ':'')+(d.ap?'<span style="color:#ffd34d">~ legendary / approx</span>':'');
+  tip().innerHTML=`<div style="font-family:var(--disp);font-weight:400;font-size:14px;color:${c.col}">${d.emo} ${d.n}</div>
+    <div style="color:var(--mut);font-size:11px;margin:3px 0 5px">${range} &nbsp;<span style="color:var(--dim)">${c.name}</span></div>
+    <div style="color:#d9d2f0;font-size:12px;line-height:1.45">${d.o}</div>${flags?'<div style="margin-top:6px;font-size:10px">'+flags+'</div>':''}`;
+  tip().style.display='block';moveTip(ev);
+}
+function moveTip(ev){const t=tip();let x=ev.clientX+15,y=ev.clientY+15;const r=t.getBoundingClientRect();if(x+r.width>innerWidth-8)x=ev.clientX-r.width-15;if(y+r.height>innerHeight-8)y=ev.clientY-r.height-15;t.style.left=x+'px';t.style.top=y+'px';}
+function hideTip(){if(tipEl)tipEl.style.display='none';}
+
+function goLive(){mode='follow';updateLive();applyBeam();}
+function updateLive(){
+  const el=$('#live');
+  if(mode==='follow'){el.textContent='live ▶ (hovering)';el.classList.remove('locked');$('#roHint').textContent='the beam follows your cursor';}
+  else{el.textContent='📍 locked — click for live';el.classList.add('locked');$('#roHint').textContent='tap or click anywhere to move the beam';}
+}
+$('#live').onclick=()=>{ if(mode==='follow'){mode='lockY';} else {goLive();return;} updateLive();applyBeam(); };
+
+body.addEventListener('mousemove',e=>{
+  if(mode!=='follow')return;
+  const r=canvas.getBoundingClientRect();
+  const cx=e.clientX-r.left;
+  if(cx<0||cx>canvas.clientWidth)return;
+  beamYr=clampY(Y0+cx/ppx);applyBeam();
+});
+canvas.addEventListener('click',e=>{
+  const r=canvas.getBoundingClientRect();
+  beamYr=clampY(Y0+(e.clientX-r.left)/ppx);
+  mode='lockY';updateLive();applyBeam();
+  if(isTouch)hideTip();
+});
+body.addEventListener('scroll',()=>{topbar.scrollLeft=body.scrollLeft;leftbar.scrollTop=body.scrollTop;});
+// let a normal mouse wheel move through time (sideways) when there's nothing to scroll vertically
+body.addEventListener('wheel',e=>{
+  if(body.scrollHeight>body.clientHeight)return;        // vertical overflow exists: keep normal vertical scroll
+  if(Math.abs(e.deltaX)>Math.abs(e.deltaY))return;      // horizontal trackpad gesture: let the browser handle it
+  if(!e.deltaY)return;
+  body.scrollLeft+=e.deltaY*(e.deltaMode===1?16:1);
+  e.preventDefault();
+},{passive:false});
+
+$('#lvSeg').querySelectorAll('button').forEach(btn=>{
+  btn.onclick=()=>{$('#lvSeg').querySelectorAll('button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');level=+btn.dataset.lv;render();};
+});
+$('#zoom').oninput=e=>{
+  const center=Y0+(body.scrollLeft+body.clientWidth/2)/ppx;
+  ppx=parseFloat(e.target.value);render();
+  body.scrollLeft=Math.max(0,X(center)-body.clientWidth/2);
+};
+$('#dice').onclick=()=>{
+  beamYr=clampY(Y0+Math.random()*SPAN);mode='lockY';updateLive();applyBeam();
+  body.scrollTo({left:Math.max(0,X(beamYr)-body.clientWidth/2),behavior:'smooth'});
+};
+
+let fi=Math.floor(Math.random()*FACTS.length);
+function showFact(){$('#factText').textContent=FACTS[fi].t;}
+$('#fact').onclick=()=>{
+  const y=FACTS[fi].y;beamYr=clampY(y);mode='lockY';updateLive();applyBeam();
+  body.scrollTo({left:Math.max(0,X(y)-body.clientWidth/2),behavior:'smooth'});
+  fi=(fi+1)%FACTS.length;showFact();
+};
+setInterval(()=>{fi=(fi+1)%FACTS.length;showFact();},9000);
+showFact();
+
+window.addEventListener('resize',()=>{const c=Y0+(body.scrollLeft+body.clientWidth/2)/ppx;render();body.scrollLeft=Math.max(0,X(c)-body.clientWidth/2);});
+render();updateLive();
+body.scrollLeft=Math.max(0,X(beamYr)-body.clientWidth/2);
+})();
+</script>
+</body>
+</html>
