@@ -23,15 +23,9 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 WRITES_ROOT = REPO_ROOT / "writes"
 
 # Hand-built essays the generator does not render. They live at /writes/<slug>/.
-BESPOKE_ESSAYS = [
-    {
-        "slug": "every-few-years",
-        "title": "Every Few Years, The Country Goes Off",
-        "order": 0.5,
-        "date": "2026",
-        "excerpt": "I am Korean. I grew up inside these explosions. Four cases — and a pattern that keeps repeating.",
-    },
-]
+# (every-few-years moved to seoulcrushing.com/every-few-years/ on 2026-06-08;
+# /writes/ + /wrote/every-few-years/ are now redirect stubs.)
+BESPOKE_ESSAYS: list[dict] = []
 
 NOTE_HTML = '# a running log of thoughts. the comedy years &rarr; <a href="/wrote/">ajin.im/wrote</a>'
 
