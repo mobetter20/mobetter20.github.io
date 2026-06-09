@@ -1,7 +1,7 @@
 {
-  "last_polled_utc": "2026-06-09T22:55:40Z",
+  "last_polled_utc": "2026-06-09T23:27:10Z",
   "canary_now": {
-    "seven_day_used_pct": 3.0,
+    "seven_day_used_pct": 5.0,
     "seven_day_resets_at": "2026-06-11T22:59:59Z"
   },
   "verdict_override": null,
