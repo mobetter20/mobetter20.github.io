@@ -51,7 +51,9 @@ a:hover{color:var(--accent);border-color:var(--accent)}
 
 pre{background:var(--codebg);border:1px solid var(--rule);border-radius:4px;
   padding:12px 14px;overflow-x:auto;font-size:11.5px;line-height:1.55;color:var(--fg);margin:10px 0 6px}
-.os{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:14px}
+.os{display:flex;align-items:center;justify-content:space-between;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:14px}
+.copybtn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:lowercase;color:var(--dim);background:transparent;border:1px solid var(--rule);border-radius:3px;padding:3px 9px;cursor:pointer;transition:.15s}
+.copybtn:hover{color:var(--accent);border-color:var(--accent)}
 
 .reset{border-bottom:1px solid var(--rule);padding:12px 0}
 .reset-head{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;font-size:13px}
@@ -94,14 +96,14 @@ pre{background:var(--codebg);border:1px solid var(--rule);border-radius:4px;
   <section>
     <div class="label">check your own account</div>
     <p>the canary cannot see your account, and resets are sometimes cohort-scoped. check yours from a terminal. the command reads your own local claude code token and asks anthropic directly.</p>
-    <div class="os">macos</div>
-    <pre>TOKEN=$(security find-generic-password -s "Claude Code-credentials" -w |
+    <div class="os">macos <button class="copybtn" data-copy="cmd-mac" type="button">copy</button></div>
+    <pre id="cmd-mac">TOKEN=$(security find-generic-password -s "Claude Code-credentials" -w |
   python3 -c "import sys,json;print(json.load(sys.stdin)['claudeAiOauth']['accessToken'])")
 curl -s https://api.anthropic.com/api/oauth/usage \
   -H "Authorization: Bearer $TOKEN" -H "anthropic-beta: oauth-2025-04-20" \
   | python3 -m json.tool</pre>
-    <div class="os">linux / wsl</div>
-    <pre>TOKEN=$(python3 -c "import json,os;print(json.load(open(os.path.expanduser(
+    <div class="os">linux / wsl <button class="copybtn" data-copy="cmd-linux" type="button">copy</button></div>
+    <pre id="cmd-linux">TOKEN=$(python3 -c "import json,os;print(json.load(open(os.path.expanduser(
   '~/.claude/.credentials.json')))['claudeAiOauth']['accessToken'])")
 curl -s https://api.anthropic.com/api/oauth/usage \
   -H "Authorization: Bearer $TOKEN" -H "anthropic-beta: oauth-2025-04-20" \
@@ -122,7 +124,7 @@ curl -s https://api.anthropic.com/api/oauth/usage \
     <p>incident context comes from the <a href="https://status.claude.com" rel="noopener">claude status page</a>. the resets themselves do not appear in its incident text.</p>
   </section>
 
-  <div class="colophon">made by <a href="/" target="_self">ajin.im</a> · the canary is a real max account · endpoint is undocumented and may drift (made with extra usage from usage reset.)</div>
+  <div class="colophon">made by <a href="/" target="_self">ajin.im</a>, with the extra usage from the jun 9 reset · the canary is a real max account · endpoint is undocumented and may drift</div>
 
 </div>
 
@@ -153,7 +155,7 @@ curl -s https://api.anthropic.com/api/oauth/usage \
 
     var html = '';
     if (verdict === 'yes') {
-      html = 'the canary’s weekly counter went <strong>' + esc(lr.from_pct) + '% to ' + esc(lr.to_pct) + '%</strong> ' + esc(lr.bracket) + '. the week’s window did not move.';
+      html = 'the canary’s weekly counter went <strong>' + esc(lr.from_pct) + '% to ' + esc(lr.to_pct) + '%</strong> ' + esc(lr.bracket) + ' (' + ago(lr.detected_utc) + '). the week’s window did not move.';
       html += lr.announced
         ? ' <span class="quiet">anthropic announced this one.</span>'
         : ' <span class="quiet">not announced. they often aren’t.</span>';
@@ -189,6 +191,26 @@ curl -s https://api.anthropic.com/api/oauth/usage \
   }).catch(function(){
     document.getElementById('verdict').textContent = '?';
     document.getElementById('answer').textContent = 'could not load the canary’s state. the answer is in ./state.json; the page just reads it.';
+  });
+
+  function copyText(t, b){
+    function legacy(v){
+      var ta = document.createElement('textarea'); ta.value = v;
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch(e){}
+      document.body.removeChild(ta); return ok;
+    }
+    function done(ok){ b.textContent = ok ? 'copied' : 'copy failed'; setTimeout(function(){ b.textContent = 'copy'; }, 1500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(function(){ done(true); }, function(){ done(legacy(t)); });
+    } else { done(legacy(t)); }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.copybtn'), function(b){
+    b.addEventListener('click', function(){
+      var p = document.getElementById(b.getAttribute('data-copy'));
+      if (p) copyText(p.textContent, b);
+    });
   });
 })();
 </script>
