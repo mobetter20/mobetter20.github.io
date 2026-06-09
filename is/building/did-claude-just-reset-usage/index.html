@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>did claude just reset usage?</title>
-<meta name="description" content="A canary for Anthropic's quiet usage-limit resets. One heavy reference account, polled every 30 minutes. Compact answers: yes or no, with receipts.">
+<meta name="description" content="A canary for Anthropic's quiet usage-limit resets. One reference account, polled every 30 minutes. Answers yes or no.">
 <meta property="og:title" content="did claude just reset usage?">
-<meta property="og:description" content="A canary for Anthropic's quiet usage-limit resets. Yes or no, with receipts.">
+<meta property="og:description" content="A canary for Anthropic's quiet usage-limit resets. Answers yes or no.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/png" href="/img/a3.png">
@@ -87,7 +87,7 @@ pre{background:var(--codebg);border:1px solid var(--rule);border-radius:4px;
 
   <section>
     <div class="label">what this is</div>
-    <p>anthropic sometimes zeroes pro/max usage counters mid-week. usually it is quiet compensation after an incident or a metering bug. sometimes it gets a post on x. usually it does not, and there is no in-app notice, no email, nothing in the status-page incident text.</p>
+    <p>anthropic sometimes zeroes pro/max usage counters mid-week. usually it is quiet compensation after an incident or a metering bug. sometimes it gets a post on x. often it does not. either way there is no in-app notice, no email, nothing in the status-page incident text.</p>
     <p>this page watches <strong>one heavy reference account</strong> (the canary), whose official meter is polled every ~30 minutes, and answers from that. a mid-week reset looks like this: used% plunges to zero while the week keeps elapsing and the reset date stays put.</p>
   </section>
 
@@ -156,7 +156,7 @@ curl -s https://api.anthropic.com/api/oauth/usage \
       html = 'the canary’s weekly counter went <strong>' + esc(lr.from_pct) + '% to ' + esc(lr.to_pct) + '%</strong> ' + esc(lr.bracket) + '. the week’s window did not move.';
       html += lr.announced
         ? ' <span class="quiet">anthropic announced this one.</span>'
-        : ' <span class="quiet">not announced. they usually don’t.</span>';
+        : ' <span class="quiet">not announced. they often aren’t.</span>';
       if (lr.suspected_trigger) html += '<br><span class="quiet">suspected trigger: ' + esc(lr.suspected_trigger) + '.</span>';
     } else if (verdict === 'probably') {
       html = esc(s.watching_note || 'an incident just resolved. the canary is watching.');
