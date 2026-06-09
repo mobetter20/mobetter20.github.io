@@ -107,22 +107,22 @@ curl -s https://api.anthropic.com/api/oauth/usage \
   -H "Authorization: Bearer $TOKEN" -H "anthropic-beta: oauth-2025-04-20" \
   | python3 -m json.tool</pre>
     <p>read <strong>seven_day.utilization</strong>. if it sits far below where your week's work should have it, and <strong>seven_day.resets_at</strong> has not moved, your counter was reset too.</p>
-    <p>never paste your token into a website. including this one. that is why this is a terminal command.</p>
+    <p>never paste your token into a website.</p>
   </section>
 
   <section>
     <div class="label">resets the canary has seen</div>
     <div id="resets"></div>
-    <p style="margin-top:14px">people file these as bugs (<a href="https://github.com/anthropics/claude-code/issues/52497" rel="noopener">claude-code #52497</a>, <a href="https://github.com/anthropics/claude-code/issues/49616" rel="noopener">#49616</a>). it is not a bug. it is a gift with no card.</p>
+    <p style="margin-top:14px">people file these as bugs (<a href="https://github.com/anthropics/claude-code/issues/52497" rel="noopener">claude-code #52497</a>, <a href="https://github.com/anthropics/claude-code/issues/49616" rel="noopener">#49616</a>). it is not a bug.</p>
   </section>
 
   <section>
     <div class="label">signatures, for the skeptical</div>
     <p>a <strong>compensation reset</strong> drops used% while elapsed time and resets_at stay put. the <strong>normal weekly roll</strong> zeroes both together. a <strong>re-anchor</strong> moves the window itself. a single weird reading between two normal ones is metering flicker, and does not count.</p>
-    <p>incident context, when there is any, comes from the <a href="https://status.claude.com" rel="noopener">claude status page</a>. the status page documents the breakage. the apology has yet to appear in one.</p>
+    <p>incident context comes from the <a href="https://status.claude.com" rel="noopener">claude status page</a>. the resets themselves do not appear in its incident text.</p>
   </section>
 
-  <div class="colophon">made by <a href="/" target="_self">ajin.im</a> · the canary is a real max account · endpoint is undocumented and may drift</div>
+  <div class="colophon">made by <a href="/" target="_self">ajin.im</a> · the canary is a real max account · endpoint is undocumented and may drift (made with extra usage from usage reset.)</div>
 
 </div>
 
