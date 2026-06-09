@@ -1,0 +1,48 @@
+{
+  "last_polled_utc": "2026-06-09T22:55:40Z",
+  "canary_now": {
+    "seven_day_used_pct": 3.0,
+    "seven_day_resets_at": "2026-06-11T22:59:59Z"
+  },
+  "verdict_override": null,
+  "watching_note": null,
+  "last_reset": {
+    "detected_utc": "2026-06-09T22:13:00Z",
+    "bracket": "between 22:06 and 22:13 UTC, Jun 9",
+    "from_pct": 77,
+    "to_pct": 0,
+    "window": "unchanged",
+    "announced": false,
+    "suspected_trigger": "Claude Opus 4.6 elevated-errors incident, resolved 22:10 UTC"
+  },
+  "resets": [
+    {
+      "date": "2026-06-09",
+      "counter": "77% → 0%",
+      "window": "unchanged",
+      "announced": "no",
+      "note": "minutes after an Opus 4.6 incident resolved"
+    },
+    {
+      "date": "2026-06-01",
+      "counter": "19% → 2%",
+      "window": "unchanged",
+      "announced": "yes",
+      "note": "Opus 4.8 metering bug burned quotas; all Pro/Max reset"
+    },
+    {
+      "date": "2026-05-28",
+      "counter": "37% → 0%",
+      "window": "re-anchored",
+      "announced": "no",
+      "note": "coincided with a billing-system incident"
+    },
+    {
+      "date": "2026-05-15",
+      "counter": "10% → 0%",
+      "window": "unchanged",
+      "announced": "yes",
+      "note": "courtesy reset for everyone, posted on X"
+    }
+  ]
+}
