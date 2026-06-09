@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>did claude just reset usage?</title>
+<meta name="description" content="A canary for Anthropic's quiet usage-limit resets. One heavy reference account, polled every 30 minutes. Compact answers: yes or no, with receipts.">
+<meta property="og:title" content="did claude just reset usage?">
+<meta property="og:description" content="A canary for Anthropic's quiet usage-limit resets. Yes or no, with receipts.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="/img/a3.png">
+<link rel="apple-touch-icon" href="/img/a3.png">
+<script src="/analytics.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#14100c; --fg:#e8e0d0; --dim:#9a8c77; --faint:#6b6051;
+  --accent:#dd9a4e; --rule:rgba(232,224,208,.14); --codebg:rgba(232,224,208,.05);
+  --mono:'DM Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+html{-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--fg);font-family:var(--mono);line-height:1.6;
+  padding:52px 22px 80px;min-height:100vh}
+.site{max-width:580px;margin:0 auto}
+
+h1{font-size:clamp(22px,5.6vw,30px);font-weight:500;letter-spacing:.01em;line-height:1.25}
+.sub{margin-top:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+.verdict{margin:44px 0 10px;font-size:clamp(64px,19vw,110px);font-weight:500;line-height:1;letter-spacing:.02em}
+.verdict.yes{color:var(--accent)}
+.verdict.no{color:var(--dim)}
+.verdict.probably{color:var(--accent);opacity:.75}
+
+.answer{font-size:13.5px;color:var(--fg);max-width:52ch}
+.answer .quiet{color:var(--dim)}
+.canaryline{margin-top:18px;font-size:11px;letter-spacing:.06em;color:var(--faint)}
+.stale{margin-top:8px;font-size:11px;color:var(--accent);opacity:.8}
+
+section{margin-top:52px}
+.label{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
+  border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:16px}
+p{font-size:13px;color:var(--dim);max-width:56ch}
+p+p{margin-top:10px}
+p strong{color:var(--fg);font-weight:500}
+a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--rule);transition:.15s}
+a:hover{color:var(--accent);border-color:var(--accent)}
+
+pre{background:var(--codebg);border:1px solid var(--rule);border-radius:4px;
+  padding:12px 14px;overflow-x:auto;font-size:11.5px;line-height:1.55;color:var(--fg);margin:10px 0 6px}
+.os{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:14px}
+
+.reset{border-bottom:1px solid var(--rule);padding:12px 0}
+.reset-head{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;font-size:13px}
+.reset-date{color:var(--fg)}
+.reset-counter{color:var(--accent)}
+.reset-tag{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.reset-tag.unannounced{color:var(--accent);opacity:.85}
+.reset-note{margin-top:4px;font-size:12px;color:var(--dim)}
+
+.colophon{margin-top:64px;font-size:11px;letter-spacing:.08em;color:var(--faint)}
+.colophon a{color:inherit;border-color:var(--rule)}
+
+@media (max-width:480px){
+  body{padding:40px 18px 64px}
+  .verdict{margin-top:36px}
+}
+</style>
+</head>
+<body>
+<div class="site">
+
+  <header>
+    <h1>did claude just reset usage?</h1>
+    <div class="sub">a canary for anthropic's quiet quota resets</div>
+  </header>
+
+  <div class="verdict" id="verdict">…</div>
+  <div class="answer" id="answer">
+    <noscript>this page needs javascript to read the canary's latest state. last known reset: Jun 9, 2026, weekly counter 77% to 0%, window unchanged, not announced.</noscript>
+  </div>
+  <div class="canaryline" id="canaryline"></div>
+  <div class="stale" id="stale" style="display:none"></div>
+
+  <section>
+    <div class="label">what this is</div>
+    <p>anthropic sometimes zeroes pro/max usage counters mid-week. usually it is quiet compensation after an incident or a metering bug. sometimes it gets a post on x. usually it does not, and there is no in-app notice, no email, nothing in the status-page incident text.</p>
+    <p>this page watches <strong>one heavy reference account</strong> (the canary), whose official meter is polled every ~30 minutes, and answers from that. a mid-week reset looks like this: used% plunges to zero while the week keeps elapsing and the reset date stays put.</p>
+  </section>
+
+  <section>
+    <div class="label">check your own account</div>
+    <p>the canary cannot see your account, and resets are sometimes cohort-scoped. check yours from a terminal. the command reads your own local claude code token and asks anthropic directly.</p>
+    <div class="os">macos</div>
+    <pre>TOKEN=$(security find-generic-password -s "Claude Code-credentials" -w |
+  python3 -c "import sys,json;print(json.load(sys.stdin)['claudeAiOauth']['accessToken'])")
+curl -s https://api.anthropic.com/api/oauth/usage \
+  -H "Authorization: Bearer $TOKEN" -H "anthropic-beta: oauth-2025-04-20" \
+  | python3 -m json.tool</pre>
+    <div class="os">linux / wsl</div>
+    <pre>TOKEN=$(python3 -c "import json,os;print(json.load(open(os.path.expanduser(
+  '~/.claude/.credentials.json')))['claudeAiOauth']['accessToken'])")
+curl -s https://api.anthropic.com/api/oauth/usage \
+  -H "Authorization: Bearer $TOKEN" -H "anthropic-beta: oauth-2025-04-20" \
+  | python3 -m json.tool</pre>
+    <p>read <strong>seven_day.utilization</strong>. if it sits far below where your week's work should have it, and <strong>seven_day.resets_at</strong> has not moved, your counter was reset too.</p>
+    <p>never paste your token into a website. including this one. that is why this is a terminal command.</p>
+  </section>
+
+  <section>
+    <div class="label">resets the canary has seen</div>
+    <div id="resets"></div>
+    <p style="margin-top:14px">people file these as bugs (<a href="https://github.com/anthropics/claude-code/issues/52497" rel="noopener">claude-code #52497</a>, <a href="https://github.com/anthropics/claude-code/issues/49616" rel="noopener">#49616</a>). it is not a bug. it is a gift with no card.</p>
+  </section>
+
+  <section>
+    <div class="label">signatures, for the skeptical</div>
+    <p>a <strong>compensation reset</strong> drops used% while elapsed time and resets_at stay put. the <strong>normal weekly roll</strong> zeroes both together. a <strong>re-anchor</strong> moves the window itself. a single weird reading between two normal ones is metering flicker, and does not count.</p>
+    <p>incident context, when there is any, comes from the <a href="https://status.claude.com" rel="noopener">claude status page</a>. the status page documents the breakage. the apology has yet to appear in one.</p>
+  </section>
+
+  <div class="colophon">made by <a href="/" target="_self">ajin.im</a> · the canary is a real max account · endpoint is undocumented and may drift</div>
+
+</div>
+
+<script>
+(function(){
+  var HOUR = 3600e3;
+  function esc(s){var d=document.createElement('span');d.textContent=s==null?'':String(s);return d.innerHTML}
+  function ago(iso){
+    var ms = Date.now() - new Date(iso).getTime();
+    if (ms < 0) ms = 0;
+    var h = ms / HOUR;
+    if (h < 1) return Math.max(1, Math.round(ms/60000)) + 'm ago';
+    if (h < 48) return Math.round(h) + 'h ago';
+    return Math.round(h/24) + 'd ago';
+  }
+  function elapsedPct(resetsAtIso){
+    var end = new Date(resetsAtIso).getTime(), start = end - 7*24*HOUR;
+    return Math.min(100, Math.max(0, Math.round((Date.now()-start)/(end-start)*100)));
+  }
+  fetch('./state.json', {cache:'no-store'}).then(function(r){return r.json()}).then(function(s){
+    var v = document.getElementById('verdict'), a = document.getElementById('answer');
+    var lr = s.last_reset;
+    var hoursSince = (Date.now() - new Date(lr.detected_utc).getTime()) / HOUR;
+    var verdict = s.verdict_override || (hoursSince < 48 ? 'yes' : 'no');
+
+    v.textContent = verdict.toUpperCase() + '.';
+    v.className = 'verdict ' + verdict;
+
+    var html = '';
+    if (verdict === 'yes') {
+      html = 'the canary’s weekly counter went <strong>' + esc(lr.from_pct) + '% to ' + esc(lr.to_pct) + '%</strong> ' + esc(lr.bracket) + '. the week’s window did not move.';
+      html += lr.announced
+        ? ' <span class="quiet">anthropic announced this one.</span>'
+        : ' <span class="quiet">not announced. they usually don’t.</span>';
+      if (lr.suspected_trigger) html += '<br><span class="quiet">suspected trigger: ' + esc(lr.suspected_trigger) + '.</span>';
+    } else if (verdict === 'probably') {
+      html = esc(s.watching_note || 'an incident just resolved. the canary is watching.');
+    } else {
+      html = 'nothing detected right now. <span class="quiet">last reset: ' + esc(lr.bracket) + ' (' + ago(lr.detected_utc) + '), ' + esc(lr.from_pct) + '% to ' + esc(lr.to_pct) + '%' + (lr.announced ? ', announced' : ', never announced') + '.</span>';
+    }
+    a.innerHTML = html;
+
+    var cn = s.canary_now || {};
+    if (cn.seven_day_used_pct != null && cn.seven_day_resets_at) {
+      document.getElementById('canaryline').textContent =
+        'canary now: ' + cn.seven_day_used_pct + '% used / ' + elapsedPct(cn.seven_day_resets_at) + '% of the week elapsed · polled ' + ago(s.last_polled_utc);
+    }
+    var staleH = (Date.now() - new Date(s.last_polled_utc).getTime()) / HOUR;
+    if (staleH > 36) {
+      var st = document.getElementById('stale');
+      st.style.display = '';
+      st.textContent = 'the canary has been asleep since ' + s.last_polled_utc.slice(0,16).replace('T',' ') + ' utc. verdict may lag.';
+    }
+
+    var rows = (s.resets || []).map(function(r){
+      return '<div class="reset"><div class="reset-head">' +
+        '<span class="reset-date">' + esc(r.date) + '</span>' +
+        '<span class="reset-counter">' + esc(r.counter) + '</span>' +
+        '<span class="reset-tag">window ' + esc(r.window) + '</span>' +
+        '<span class="reset-tag' + (r.announced === 'no' ? ' unannounced' : '') + '">' + (r.announced === 'no' ? 'never announced' : 'announced') + '</span>' +
+        '</div><div class="reset-note">' + esc(r.note) + '</div></div>';
+    }).join('');
+    document.getElementById('resets').innerHTML = rows;
+  }).catch(function(){
+    document.getElementById('verdict').textContent = '?';
+    document.getElementById('answer').textContent = 'could not load the canary’s state. the answer is in ./state.json; the page just reads it.';
+  });
+})();
+</script>
+</body>
+</html>
