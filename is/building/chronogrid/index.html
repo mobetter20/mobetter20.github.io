@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#13101e">
+<meta name="robots" content="noindex"><!-- test deploy: unlisted, remove at real ship (deployed copy only; source lives in ~/Downloads/chronogrid) -->
+<title>Chronogrid: a history placement game</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#13101e;--panel:#1d1830;--panel2:#241d3c;--line:#332a4d;--ink:#efeaff;--mut:#a99fc9;--dim:#6f6593;
+    --cols:7;--cell:64px;--disp:'Archivo Black',sans-serif;--mono:'DM Mono',ui-monospace,monospace;}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:linear-gradient(180deg,#181226,#13101e 40%);color:var(--ink);font-family:var(--mono);font-size:13px;
+    -webkit-font-smoothing:antialiased;padding:20px 16px 50px;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+  .wrap{max-width:516px;margin:0 auto}
+  h1{font-family:var(--disp);font-size:28px;letter-spacing:1px;margin:0;width:max-content;
+    background:linear-gradient(90deg,#6db1ff,#9b6bff,#ffce3a,#ff8a4f);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--mut);font-size:12.5px;margin:6px 0 0;line-height:1.5;max-width:700px}
+  .sub b{color:#efeaff;font-weight:500}
+  .bar{display:flex;flex-wrap:wrap;align-items:center;gap:9px 14px;margin:14px 0 0}
+  .bardiv{border-left:1px solid var(--line);align-self:stretch}
+  .hint{background:rgba(109,177,255,.07);border-left:3px solid rgba(109,177,255,.5);color:#c9d8f2;border-radius:0 9px 9px 0;padding:7px 12px 7px 14px;margin:6px 0 0;font-size:12px;text-align:left;line-height:1.4;
+    overflow:hidden;max-height:90px;transition:opacity .3s,max-height .35s ease .05s,margin .35s ease .05s,padding .35s ease .05s}
+  .hint.gone{opacity:0;max-height:0;padding-top:0;padding-bottom:0;margin-top:0}
+  .stat{font-size:11.5px;color:var(--mut);letter-spacing:.3px}
+  .stat b{font-family:var(--disp);font-weight:400;font-size:17px;color:#ffce3a;letter-spacing:.5px;margin-left:5px;vertical-align:-1px}
+  .stat.sw b{color:#16b8d6}.stat.bg b{color:#9b6bff;font-size:15px}
+  .btn{font-family:var(--mono);background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:7px 12px;border-radius:9px;
+    cursor:pointer;font-size:12px;transition:.12s;touch-action:manipulation}
+  .btn:hover{border-color:#6a5e98;background:var(--panel2)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .seg .btn{border:0;border-radius:0;padding:7px 11px;background:transparent}
+  .seg .btn.on{background:#3a2f63;color:#fff}
+  .boardcol{display:flex;flex-direction:column;width:max-content;max-width:100%;margin:8px auto 0}
+  .axis{display:grid;grid-template-columns:repeat(var(--cols),var(--cell));gap:5px;padding:0 7px;margin-bottom:3px}
+  .axis .yr{font-size:8px;color:var(--dim);text-align:center;letter-spacing:0;line-height:1;overflow:hidden;white-space:nowrap}
+  .axis .arrow{grid-column:1/-1;display:flex;justify-content:space-between;color:var(--mut);font-size:11px;margin-top:1px;letter-spacing:.5px}
+  .boardwrap{overflow:auto;border:1px solid var(--line);border-radius:14px;padding:7px;
+    background:linear-gradient(90deg,rgba(80,120,220,.13),rgba(120,90,200,.06) 45%,rgba(220,150,70,.14))}
+  .board{display:grid;grid-template-columns:repeat(var(--cols),var(--cell));grid-auto-rows:var(--cell);gap:5px}
+  .cell{border-radius:9px;background:rgba(34,27,53,.78);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+    text-align:center;overflow:hidden;user-select:none;border:1px solid #2a2342;touch-action:manipulation}
+  .cell.empty.legal{outline:2px dashed #fff;outline-offset:-3px;background:rgba(58,48,96,.85);cursor:pointer}
+  .cell.empty.legal:hover{background:#473a73}
+  .cell.filled{border:1px solid rgba(0,0,0,.22);box-shadow:inset 0 0 0 2px rgba(0,0,0,.28);cursor:pointer}
+  .cell .e{font-size:22px;line-height:1}
+  .cell .n{font-size:12px;line-height:1.1;padding:0 3px;font-weight:600;max-height:30px;overflow:hidden}
+  .cell.flash{animation:fl .3s ease-out}
+  button.cell,button.htile{appearance:none;-webkit-appearance:none;font:inherit;margin:0}
+  .cell:focus-visible,.htile:focus-visible{outline:2px solid #6db1ff;outline-offset:1px}
+  @keyframes fl{0%{box-shadow:0 0 0 3px #fff,0 0 22px #fff;transform:scale(1.09)}100%{box-shadow:0 0 0 0 #fff0;transform:scale(1)}}
+
+  .side{flex:1;min-width:236px}
+  .hand{display:flex;gap:9px;margin:13px 0 10px}
+  .htile{flex:1;aspect-ratio:1/1;border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    cursor:pointer;text-align:center;border:2px solid transparent;transition:.12s;color:#160f22;user-select:none;touch-action:manipulation;padding:2px}
+  .htile.empty{background:rgba(34,27,53,.5)!important;border:1px dashed var(--line)}
+  .htile.sel{outline:3px solid #fff;outline-offset:2px}
+  .htile.dead{filter:grayscale(.62) brightness(.66)}
+  .htile .e{font-size:30px;line-height:1}
+  .htile .n{font-size:13px;font-weight:600;padding:0 6px;line-height:1.12;min-height:2.24em;display:flex;align-items:center;justify-content:center;overflow-wrap:anywhere}
+  .htile .yr{font-size:11px;opacity:.82;padding:0 2px;line-height:1.2}
+  .acts{display:flex;gap:8px;margin-bottom:10px}
+  .acts .btn{flex:1}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:12px;line-height:1.5;color:var(--mut)}
+  .panel h3{margin:0 0 5px;font-family:var(--disp);font-weight:400;font-size:12px;letter-spacing:.4px;color:var(--ink)}
+  .panel .row{margin:3px 0}.panel .k{color:var(--dim)}
+  .panel .sk{display:flex;gap:9px;margin:4px 0;color:var(--dim);line-height:1.45}
+  .panel .sk b{flex:0 0 76px;color:var(--mut);font-weight:500}
+  .toast{position:fixed;left:50%;top:12px;transform:translateX(-50%);background:#fff;color:#160f22;font-weight:500;
+    padding:8px 15px;border-radius:10px;box-shadow:0 6px 24px #0008;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:30;max-width:92vw;text-align:center}
+  .toast.show{opacity:1}
+  .over{position:fixed;inset:0;background:rgba(10,7,18,.84);display:none;align-items:center;justify-content:center;z-index:40;padding:20px}
+  .over.show{display:flex}
+  .over .box{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 30px;text-align:center;max-width:340px}
+  .over h2{font-family:var(--disp);font-weight:400;font-size:20px;margin:0 0 6px;letter-spacing:.5px}
+  .over .fs{font-family:var(--disp);font-weight:400;font-size:40px;color:#ffce3a;margin:8px 0 4px}
+  .brk{margin:8px auto 12px;max-width:240px;font-size:12px}
+  .brow{display:flex;justify-content:space-between;color:var(--mut);padding:4px 2px;border-bottom:1px solid var(--line)}
+  .brow b{color:var(--ink);font-weight:500;font-family:var(--mono)}
+  .brow.bc{border-bottom:0;margin-top:5px}
+  .brow.bc,.brow.bc b{color:#16d6a0}
+  .over p{color:var(--mut);font-size:12.5px;margin:4px 0 16px;line-height:1.5}
+  .stat.cx{background:transparent;border:0;cursor:pointer;font-family:var(--mono);letter-spacing:.3px;padding:0;
+    text-decoration:underline dotted rgba(22,214,160,.55);text-underline-offset:3px}
+  .stat.cx b{font-family:var(--disp);font-weight:400;font-size:15px;color:#16d6a0;letter-spacing:.5px;margin-left:5px;vertical-align:-1px}
+  .stat.cx:hover b{filter:brightness(1.18)}
+  .creveal{position:fixed;left:50%;top:54px;transform:translateX(-50%) translateY(-8px);width:360px;max-width:92vw;
+    background:#262040;border:1px solid rgba(22,214,160,.4);border-radius:13px;padding:11px 14px;box-shadow:0 10px 34px #000a;
+    opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:36}
+  .creveal.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .creveal .ct{font-size:12.5px;color:#fff;font-weight:500;display:flex;align-items:center;gap:6px;line-height:1.25}
+  .creveal .cf{color:var(--mut);font-size:11px;line-height:1.45;margin-top:4px}
+  .creveal .cmore{color:#16d6a0;font-size:10.5px;margin-top:6px;cursor:pointer;pointer-events:auto;display:inline-block}
+  .arcbox{max-width:380px;width:92vw;text-align:left}
+  .arcbox h2{text-align:center}
+  #arclist{max-height:46vh;overflow:auto;margin:4px 0 14px}
+  .arcrow{display:flex;gap:8px;align-items:flex-start;margin:9px 0;line-height:1.4}
+  .arcrow .ilk{font-size:15px;line-height:1.1;flex:0 0 auto}
+  .arcrow .iln{display:block;color:var(--ink);font-weight:500;font-size:12px}
+  .arcrow .ilf{display:block;color:var(--dim);font-size:11px;margin-top:2px}
+  .arcempty{color:var(--mut);font-size:12px;text-align:center;padding:18px 6px;line-height:1.5}
+  /* short + wide screens: board and hand side-by-side so the hand is not stranded below the fold (e.g. 1280x800, 1080x625) */
+  @media (min-width:760px) and (max-height:860px){
+    .wrap{max-width:920px}
+    .play{display:flex;gap:22px;align-items:flex-start}
+    .boardcol{margin:6px 0 0;flex:0 0 auto;max-width:none}
+    .side2{flex:1;min-width:236px;max-width:430px}
+  }
+  /* very short screens (e.g. landscape phones): shrink the board + trim the masthead so it fits the height */
+  @media (max-height:560px){
+    :root{--cell:clamp(38px,8vh,58px)}
+    .sub{display:none}
+    h1{font-size:18px}
+  }
+  @media (max-width:680px){
+    body{padding:14px 10px 40px}h1{font-size:20px}.bardiv{display:none}
+    :root{--cell:clamp(38px,12vw,60px)}
+    .cell .e{font-size:18px}.cell .n{font-size:7px;line-height:1.1;max-height:17px;padding:0 1px;font-weight:600;overflow-wrap:anywhere}
+    .side{min-width:0;width:100%}.boardcol{width:100%}
+    .htile .e{font-size:26px}.htile .n{font-size:12px}.htile .yr{font-size:10px}.stat b{font-size:15px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Chronogrid</h1>
+  <p class="sub">A history placement puzzle. Place each tile next to one it <b>shares history with</b>: the same age, or what came next in its line.</p>
+
+  <div class="bar">
+    <span class="seg"><button class="btn" id="modeScored" title="Finite bag: placed and cleared tiles are spent; the run ends when nothing fits">Scored</button><button class="btn" id="modeZen" title="Endless chapters: when the board locks, a fresh one begins">Zen</button></span>
+    <span class="seg"><button class="btn" id="diffLearner" title="Show exact years on tiles">Dates</button><button class="btn" id="diffStandard" title="Show the era band only; reason by age, not arithmetic">Era</button><button class="btn" id="diffNerd" title="Name and region only, no era hint (legal cells still glow)">Blind</button></span>
+    <button class="btn" id="newBtn">New</button>
+    <span class="bardiv"></span>
+    <span class="stat">SCORE <b id="score">0</b></span>
+    <span class="stat sw">SWAPS <b id="swaps">3</b></span>
+    <span class="stat bg">BAG <b id="bag">0</b></span>
+    <button class="stat cx" id="connBtn" title="Connections you've lit. Tap to view them all">CONNECTIONS <b id="connN">0</b></button>
+  </div>
+
+  <div class="hint" id="hint"></div>
+  <div class="play">
+  <div class="boardcol">
+    <div class="axis" id="axis"></div>
+    <div class="boardwrap"><div class="board" id="board"></div></div>
+  </div>
+  <div class="side2">
+  <div class="hand" id="hand"></div>
+  <div class="acts">
+    <button class="btn" id="swapBtn">↻ Swap selected</button>
+    <button class="btn" id="redrawBtn">⟳ Redraw hand</button>
+  </div>
+  <div class="panel" id="info"></div>
+  <div class="panel" id="scorehelp" style="margin-top:10px">
+    <h3>Scoring</h3>
+    <div class="sk"><b>Chain</b><span>3+ of a region's line touching: clears off the board</span></div>
+    <div class="sk"><b>Cluster</b><span>5+ touching tiles alive in the same year: clears too</span></div>
+    <div class="sk"><b>+5</b><span>each matched neighbour</span></div>
+    <div class="sk"><b>+100</b><span>per chain tile</span></div>
+    <div class="sk"><b>+40</b><span>per cluster tile</span></div>
+    <div class="sk"><b>+10</b><span>ordering: older left of newer in its line</span></div>
+    <div class="sk"><b>+20</b><span>a turn that lights a connection with both tiles on the board</span></div>
+    <h3 style="margin:10px 0 5px">Modes</h3>
+    <div class="sk"><b>Scored</b><span>finite bag, spent tiles are gone, the run ends when nothing fits</span></div>
+    <div class="sk"><b>Zen</b><span>endless chapters, a locked board starts a fresh one</span></div>
+    <div class="sk"><b>Difficulty</b><span>Dates / Era / Blind: how much age info tiles show</span></div>
+    <div class="sk"><b>Matching</b><span>always by real years; era names are only a rough guide</span></div>
+    <div class="sk"><b>Bag</b><span>tiles left this run (∞ in Zen)</span></div>
+    <div class="sk"><b>Swaps</b><span>trade a selected tile for a fresh one</span></div>
+  </div>
+  </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="creveal" id="creveal" role="status" aria-live="polite"></div>
+<div class="over" id="archive"><div class="box arcbox">
+  <h2>Connections lit</h2>
+  <div style="color:var(--dim);font-size:10.5px;text-align:center;margin:0 0 6px">🔗 lit with both tiles on board · ✨ partner placed earlier</div>
+  <div id="arclist"></div>
+  <button class="btn" id="arcClose">Close</button>
+</div></div>
+<div class="over" id="over"><div class="box">
+  <h2 id="overTitle">No moves left</h2>
+  <div class="fs" id="finalScore">0</div>
+  <div class="brk" id="overBreak"></div>
+  <p id="overMsg">The bag is spent and nothing else fits the board. That's the run.</p>
+  <button class="btn" id="againBtn">Play again</button>
+</div></div>
+<div class="over" id="chapter"><div class="box">
+  <h2 id="chTitle">Chapter complete</h2>
+  <div class="fs" id="chScore">0</div>
+  <p id="chMsg"></p>
+  <button class="btn" id="nextBtn">Start next chapter →</button>
+</div></div>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+
+/* ============================== DATA (inlined) ==============================
+ * Source: entities.seed.json (seed-0.1), with WHEEL removed per DECISIONS.md #4
+ * (degree 0, unplaceable, no links). Writing kept. contemporary + succession are
+ * auto-derived below; only influence relations are authored (unused in P1, ready
+ * for P2). Swap this whole const for a larger dataset later — no code reads names
+ * or counts directly. */
+const DATA = {
+  "version":"seed-0.1 (wheel-dropped)",
+  "regions":{
+    "CN":{"name":"China","color":"#ff3b4d"},
+    "KR":{"name":"Korea","color":"#2ee06a"},
+    "JP":{"name":"Japan","color":"#ff4fa3"},
+    "IN":{"name":"India","color":"#ff8a1e"},
+    "EG":{"name":"Egypt","color":"#ffc733"},
+    "ME":{"name":"Middle East","color":"#16b8d6"},
+    "UK":{"name":"Britain","color":"#4f7bff"},
+    "EU":{"name":"Greece & Rome","color":"#9b6bff"},
+    "MX":{"name":"Mesoamerica","color":"#00c2a0"},
+    "INV":{"name":"Invention","color":"#c6e91a"}
+  },
+  "entities":[
+    {"id":"qin","name":"Qin","region":"CN","type":"polity","start":-221,"end":-206,"emoji":"🔥"},
+    {"id":"han","name":"Han","region":"CN","type":"polity","start":-206,"end":220,"emoji":"🐉","relations":[
+      {"type":"origin","target":"paper","fact":"Cai Lun refined papermaking at the Han court around 105 CE."},
+      {"type":"contact","target":"roman_empire","fact":"Han China and Rome exchanged silk along the Silk Road through Parthian intermediaries."}]},
+    {"id":"three_kingdoms_cn","name":"Three Kingdoms","region":"CN","type":"polity","start":220,"end":280,"emoji":"⚔️"},
+    {"id":"jin_cn","name":"Jin","region":"CN","type":"polity","start":266,"end":420,"emoji":"🗡️"},
+    {"id":"tang","name":"Tang","region":"CN","type":"polity","start":618,"end":907,"emoji":"🌸","relations":[
+      {"type":"origin","target":"gunpowder","fact":"Tang-era Chinese alchemists first formulated gunpowder around the 9th century."}]},
+    {"id":"song","name":"Song","region":"CN","type":"polity","start":960,"end":1279,"emoji":"🧭","relations":[
+      {"type":"origin","target":"printing","fact":"Bi Sheng developed movable-type printing under the Song around 1040."}]},
+    {"id":"ming","name":"Ming","region":"CN","type":"polity","start":1368,"end":1644,"emoji":"🏯"},
+    {"id":"qing","name":"Qing","region":"CN","type":"polity","start":1644,"end":1912,"emoji":"🐲"},
+
+    {"id":"gojoseon","name":"Gojoseon","region":"KR","type":"polity","start":-2333,"end":-108,"emoji":"🐻"},
+    {"id":"three_kingdoms_kr","name":"Three Kingdoms","region":"KR","type":"polity","start":-57,"end":668,"emoji":"🏯"},
+    {"id":"unified_silla","name":"Unified Silla","region":"KR","type":"polity","start":668,"end":935,"emoji":"👑"},
+    {"id":"goryeo","name":"Goryeo","region":"KR","type":"polity","start":918,"end":1392,"emoji":"🍵","relations":[
+      {"type":"advances","target":"printing","fact":"Goryeo Korea cast the world's first metal movable type around 1234."}]},
+    {"id":"joseon","name":"Joseon","region":"KR","type":"polity","start":1392,"end":1897,"emoji":"📜"},
+
+    {"id":"yayoi_kofun","name":"Yayoi–Kofun","region":"JP","type":"polity","start":-300,"end":538,"emoji":"🌾"},
+    {"id":"asuka_nara","name":"Asuka–Nara","region":"JP","type":"polity","start":538,"end":794,"emoji":"🏯"},
+    {"id":"heian","name":"Heian","region":"JP","type":"polity","start":794,"end":1185,"emoji":"🎴"},
+    {"id":"kamakura","name":"Kamakura","region":"JP","type":"polity","start":1185,"end":1333,"emoji":"⚔️"},
+    {"id":"edo","name":"Edo","region":"JP","type":"polity","start":1603,"end":1868,"emoji":"🗾"},
+    {"id":"meiji","name":"Meiji","region":"JP","type":"polity","start":1868,"end":2000,"emoji":"🚄","relations":[
+      {"type":"adopts","target":"steam","fact":"Meiji Japan industrialized with steam railways and factories after 1868."}]},
+
+    {"id":"indus","name":"Indus Valley","region":"IN","type":"polity","start":-3300,"end":-1300,"emoji":"🏺"},
+    {"id":"maurya","name":"Maurya","region":"IN","type":"polity","start":-322,"end":-185,"emoji":"🦁"},
+    {"id":"gupta","name":"Gupta","region":"IN","type":"polity","start":320,"end":550,"emoji":"🪷"},
+    {"id":"delhi_sultanate","name":"Delhi Sultanate","region":"IN","type":"polity","start":1206,"end":1526,"emoji":"🕌"},
+    {"id":"mughal","name":"Mughal","region":"IN","type":"polity","start":1526,"end":1858,"emoji":"🕌","relations":[
+      {"type":"adopts","target":"gunpowder","fact":"Babur's gunpowder artillery won the Battle of Panipat in 1526, founding the Mughal Empire."}]},
+    {"id":"british_raj","name":"British Raj","region":"IN","type":"polity","start":1858,"end":1947,"emoji":"👑"},
+
+    {"id":"old_kingdom","name":"Old Kingdom","region":"EG","type":"polity","start":-2686,"end":-2181,"emoji":"🔺"},
+    {"id":"middle_kingdom","name":"Middle Kingdom","region":"EG","type":"polity","start":-2055,"end":-1650,"emoji":"🏞️"},
+    {"id":"new_kingdom","name":"New Kingdom","region":"EG","type":"polity","start":-1550,"end":-1069,"emoji":"👑"},
+    {"id":"ptolemaic","name":"Ptolemaic Egypt","region":"EG","type":"polity","start":-305,"end":-30,"emoji":"🏛️"},
+    {"id":"roman_egypt","name":"Roman Egypt","region":"EG","type":"polity","start":-30,"end":641,"emoji":"🦅"},
+    {"id":"islamic_egypt","name":"Islamic Egypt","region":"EG","type":"polity","start":641,"end":1517,"emoji":"☪️"},
+
+    {"id":"sumer","name":"Sumer","region":"ME","type":"polity","start":-3000,"end":-2000,"emoji":"🏺","relations":[
+      {"type":"origin","target":"writing","fact":"Cuneiform, among the earliest known writing systems, emerged in Sumer around 3200 BCE."}]},
+    {"id":"achaemenid","name":"Achaemenid","region":"ME","type":"polity","start":-550,"end":-330,"emoji":"👑","relations":[
+      {"type":"spreads","target":"coins","fact":"The Achaemenids spread coined money across their empire after absorbing Lydia, where coinage began around 600 BCE."},
+      {"type":"conflict","target":"greeks","fact":"The Greco-Persian Wars of the early 5th century BCE set the Achaemenid Empire against the Greek city-states."}]},
+    {"id":"parthia","name":"Parthia","region":"ME","type":"polity","start":-247,"end":224,"emoji":"🏹"},
+    {"id":"sasanian","name":"Sasanian","region":"ME","type":"polity","start":224,"end":651,"emoji":"🔥"},
+    {"id":"abbasid","name":"Abbasid","region":"ME","type":"polity","start":750,"end":1258,"emoji":"📚","relations":[
+      {"type":"adopts","target":"paper","fact":"Papermaking spread into the Islamic world after the Battle of Talas in 751."}]},
+    {"id":"ottoman","name":"Ottoman","region":"ME","type":"polity","start":1299,"end":1922,"emoji":"🌙","relations":[
+      {"type":"conquers","target":"byzantium","fact":"Ottoman cannon took Constantinople in 1453, ending the Byzantine Empire."},
+      {"type":"adopts","target":"gunpowder","fact":"Ottoman gunpowder artillery breached the walls of Constantinople in 1453."}]},
+
+    {"id":"celtic_britain","name":"Celtic Britain","region":"UK","type":"polity","start":-800,"end":43,"emoji":"🗿"},
+    {"id":"roman_britain","name":"Roman Britain","region":"UK","type":"polity","start":43,"end":410,"emoji":"🦅"},
+    {"id":"anglo_saxon","name":"Anglo-Saxon","region":"UK","type":"polity","start":410,"end":1066,"emoji":"⚔️"},
+    {"id":"norman","name":"Norman","region":"UK","type":"polity","start":1066,"end":1485,"emoji":"🏰"},
+    {"id":"tudor","name":"Tudor","region":"UK","type":"polity","start":1485,"end":1603,"emoji":"🌹","relations":[
+      {"type":"adopts","target":"printing","fact":"Printing presses spread across Tudor England through the 16th century."}]},
+    {"id":"modern_britain","name":"Modern Britain","region":"UK","type":"polity","start":1714,"end":2000,"emoji":"🎩","relations":[
+      {"type":"origin","target":"steam","fact":"The steam engine drove Britain's Industrial Revolution from the late 18th century."}]},
+
+    {"id":"greeks","name":"Greeks","region":"EU","type":"polity","start":-800,"end":-323,"emoji":"🏺"},
+    {"id":"roman_republic","name":"Roman Republic","region":"EU","type":"polity","start":-509,"end":-27,"emoji":"🏛️"},
+    {"id":"roman_empire","name":"Roman Empire","region":"EU","type":"polity","start":-27,"end":476,"emoji":"🦅"},
+    {"id":"byzantium","name":"Byzantium","region":"EU","type":"polity","start":330,"end":1453,"emoji":"✝️","relations":[
+      {"type":"adopts","target":"paper","fact":"Paper reached Byzantine and European hands through the Islamic Mediterranean by the 11th century."}]},
+
+    {"id":"olmec","name":"Olmec","region":"MX","type":"polity","start":-1500,"end":-400,"emoji":"🗿"},
+    {"id":"maya","name":"Maya","region":"MX","type":"polity","start":250,"end":900,"emoji":"🔢"},
+    {"id":"toltec","name":"Toltec","region":"MX","type":"polity","start":900,"end":1150,"emoji":"🪶"},
+    {"id":"aztec","name":"Aztec","region":"MX","type":"polity","start":1325,"end":1521,"emoji":"🦅"},
+    {"id":"spanish_mexico","name":"Spanish Mexico","region":"MX","type":"polity","start":1521,"end":1821,"emoji":"⛪"},
+
+    {"id":"writing","name":"Writing","region":"INV","type":"invention","start":-3200,"end":-3200,"emoji":"✍️"},
+    {"id":"iron","name":"Iron","region":"INV","type":"invention","start":-1200,"end":-1200,"emoji":"⚒️"},
+    {"id":"coins","name":"Coins","region":"INV","type":"invention","start":-600,"end":-600,"emoji":"🪙"},
+    {"id":"paper","name":"Paper","region":"INV","type":"invention","start":105,"end":105,"emoji":"📃"},
+    {"id":"gunpowder","name":"Gunpowder","region":"INV","type":"invention","start":850,"end":850,"emoji":"🧨"},
+    {"id":"printing","name":"Printing","region":"INV","type":"invention","start":1040,"end":1040,"emoji":"🖨️"},
+    {"id":"steam","name":"Steam","region":"INV","type":"invention","start":1769,"end":1769,"emoji":"🚂"}
+  ]
+};
+
+/* ============================== derivation ============================== */
+const REG = DATA.regions;
+const ENT = DATA.entities;
+const byId = {}; ENT.forEach(e=>byId[e.id]=e);
+
+// per-region seq index by (start, end, id) — deterministic even with ties
+(function deriveSeq(){
+  const g={};
+  ENT.filter(e=>e.type==='polity').forEach(e=>{ (g[e.region]=g[e.region]||[]).push(e); });
+  Object.keys(g).forEach(rg=>{
+    g[rg].sort((a,b)=> a.start-b.start || a.end-b.end || (a.id<b.id?-1:1));
+    g[rg].forEach((e,i)=>{ e.seq=i; });
+  });
+})();
+
+const isInv = e => e.type==='invention';
+const mid   = e => isInv(e) ? e.start : (e.start+e.end)/2;
+const contemporary = (a,b) => a.start<=b.end && b.start<=a.end;
+const succession   = (a,b) => a.region===b.region && a.type==='polity' && b.type==='polity'
+                              && a.seq!=null && b.seq!=null && Math.abs(a.seq-b.seq)===1;
+const match = (a,b) => succession(a,b) || contemporary(a,b);
+
+// match-degree (placeability) — for the opener guard + future data-hygiene
+ENT.forEach(e=>{ e._deg = ENT.reduce((n,o)=> n + (o!==e && match(e,o) ? 1 : 0), 0); });
+
+/* ============================== P2: influence links ==============================
+ * Authored `relations` -> a deduped link graph with STABLE ids (source|target|type),
+ * indexed by entity. Influence is scoring/reveal only — it never touches placement. */
+const LINKS=[], linksByEntity={}; const _linkSeen=new Set();
+ENT.forEach(e=>{ (e.relations||[]).forEach(r=>{
+  const id=e.id+'|'+r.target+'|'+r.type;
+  if(_linkSeen.has(id) || !byId[r.target]) return;        // dedup exact authored duplicates; skip dangling targets
+  _linkSeen.add(id);
+  const link={id, source:e.id, target:r.target, type:r.type, fact:r.fact};
+  LINKS.push(link);
+  (linksByEntity[e.id]=linksByEntity[e.id]||[]).push(link);
+  (linksByEntity[r.target]=linksByEntity[r.target]||[]).push(link);
+}); });
+
+// chronology axis bounds (midyears across the whole pool)
+const MID_MIN = Math.min(...ENT.map(mid)), MID_MAX = Math.max(...ENT.map(mid));
+const colYear = c => MID_MIN + (c+0.5)/COLS*(MID_MAX-MID_MIN);
+
+/* ============================== tunables / state ============================== */
+let ROWS=6, COLS=7, CHAIN=3, CLUSTER=5, START_SWAPS=3, ERA_SCALE=500;
+const DIRS=[[1,0],[-1,0],[0,1],[0,-1]];
+const inb=(r,c)=> r>=0&&r<ROWS&&c>=0&&c<COLS;
+
+let MODE='scored';                 // 'scored' (finite bag) | 'zen' (endless)
+let DIFF='standard';               // 'learner'=dates | 'standard'=era band | 'nerd'=blind (decision 6: default standard)
+let grid, hand, bag, sel, inspect, score, swaps, placed, over, lock, flashing,
+    orderedLedger, everPlaced, STATS, firedLinks, inflog, discovered, chapter, chapterStart;
+let gen = 0;                                 // run-generation token: invalidates stale clear callbacks across reset/mode-switch
+const TEST = ()=> !!window.__TL_TEST;   // synchronous clears for headless tests
+
+/* ============================== draw ============================== */
+function onBoardEnts(){ const a=[]; for(const row of grid) for(const id of row) if(id) a.push(byId[id]); return a; }
+function onBoardIds(){ const s=new Set(); for(const row of grid) for(const id of row) if(id) s.add(id); return s; }
+
+// ids eligible to be drawn right now (decision 3: never a live duplicate)
+function drawablePool(){
+  if(MODE==='scored') return bag.slice();
+  const inHand=new Set(hand.filter(Boolean)), onB=onBoardIds();
+  return ENT.filter(e=>e._deg>=1).map(e=>e.id).filter(id=> !inHand.has(id) && !onB.has(id));   // degree-guard: never deal an unplaceable (deg-0) tile
+}
+function weightFor(id, onB){
+  if(!onB.length) return 1;
+  const m=mid(byId[id]); let d=Infinity;
+  for(const p of onB){ const dd=Math.abs(m-mid(p)); if(dd<d)d=dd; }
+  return 1/(1+d/ERA_SCALE);                 // no invention boost (decision 4)
+}
+function pickWeighted(ids, opener){
+  const onB=onBoardEnts();
+  if(opener && !onB.length){ const f=ids.filter(id=> byId[id]._deg>=2); if(f.length) ids=f; }   // opener guard: no fragile (deg<2) first tile (e.g. Writing)
+  if(!ids.length) return null;
+  if(!onB.length) return ids[Math.random()*ids.length|0];
+  const ws=ids.map(id=>weightFor(id,onB));
+  let sum=ws.reduce((a,b)=>a+b,0), x=Math.random()*sum;
+  for(let i=0;i<ids.length;i++){ x-=ws[i]; if(x<=0) return ids[i]; }
+  return ids[ids.length-1];
+}
+function drawId(opener){
+  const pool=drawablePool();
+  const id=pickWeighted(pool, !!opener);
+  if(id==null) return null;                 // bag empty (scored)
+  if(MODE==='scored'){ const i=bag.indexOf(id); if(i>=0) bag.splice(i,1); }
+  return id;
+}
+function returnToBag(id){ if(MODE==='scored' && id!=null) bag.push(id); }
+
+/* ============================== legality ============================== */
+function occNeighbors(r,c){
+  const o=[];
+  for(const [dr,dc] of DIRS){ const nr=r+dr,nc=c+dc;
+    if(inb(nr,nc)&&grid[nr][nc]) o.push({r:nr,c:nc,e:byId[grid[nr][nc]]}); }
+  return o;
+}
+function legalCell(id,r,c){
+  if(grid[r][c]) return false;
+  if(placed===0) return true;               // first tile: anywhere
+  const nb=occNeighbors(r,c);
+  if(!nb.length) return false;
+  const e=byId[id];
+  return nb.every(n=> match(e,n.e));         // strict: every neighbour must match
+}
+function legalCells(id){ const out=[]; for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++) if(legalCell(id,r,c)) out.push(r+','+c); return out; }
+function canPlace(id){ if(id==null) return false; for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++) if(legalCell(id,r,c)) return true; return false; }
+
+// board is "live" if anything in hand OR the draw pool can still be placed
+function boardLive(){
+  for(const id of hand) if(canPlace(id)) return true;
+  return drawablePool().some(canPlace);
+}
+
+/* ============================== flood / clears ============================== */
+function flood(sr,sc,rel){                  // rel: 'succ' | 'cont'
+  const seen=new Set([sr+','+sc]), q=[[sr,sc]], out=[[sr,sc]];
+  while(q.length){ const [r,c]=q.pop(); const e=byId[grid[r][c]];
+    for(const [dr,dc] of DIRS){ const nr=r+dr,nc=c+dc,k=nr+','+nc;
+      if(inb(nr,nc)&&grid[nr][nc]&&!seen.has(k)){
+        const ne=byId[grid[nr][nc]];
+        const ok = rel==='succ' ? succession(e,ne) : contemporary(e,ne);
+        if(ok){ seen.add(k); q.push([nr,nc]); out.push([nr,nc]); }
+      }
+    }
+  }
+  return out;
+}
+function floodCommon(sr,sc){                 // CLUSTER: the LARGEST board-connected set including the seed whose spans share one common year.
+  // Order-independent fix (replaces the greedy running-intersection, which could miss a larger cluster or return
+  // different sizes for the same tiles depending on traversal order). For each year the seed could anchor, flood the
+  // connected component of tiles containing that year; keep the biggest, with a deterministic tie-break (lowest year).
+  const e0=byId[grid[sr][sc]];
+  const cand=new Set([e0.start]);            // a common interval is always witnessed at some member's start; only starts inside the seed's own span can include the seed
+  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
+    const id=grid[r][c]; if(!id) continue; const s=byId[id].start;
+    if(s>=e0.start && s<=e0.end) cand.add(s);
+  }
+  let best=[[sr,sc]], bestY=e0.start;
+  for(const Y of cand){
+    const seen=new Set([sr+','+sc]), q=[[sr,sc]], out=[[sr,sc]];
+    while(q.length){ const [r,c]=q.pop();
+      for(const [dr,dc] of DIRS){ const nr=r+dr,nc=c+dc,k=nr+','+nc;
+        if(inb(nr,nc)&&grid[nr][nc]&&!seen.has(k)){
+          const ne=byId[grid[nr][nc]];
+          if(ne.start<=Y && Y<=ne.end){ seen.add(k); q.push([nr,nc]); out.push([nr,nc]); }
+        }
+      }
+    }
+    if(out.length>best.length || (out.length===best.length && Y<bestY)){ best=out; bestY=Y; }
+  }
+  return best;
+}
+
+/* ============================== a turn ============================== */
+// P2 influence: fire links touching the placed tile, BEFORE clears. Live (partner on board now) outranks
+// discovered (partner placed earlier, since gone). One fire per link per run; reveal-only, except a single
+// capped +20 on any turn that creates a live link (no per-link multiplication — avoids the passive flood).
+function fireInfluence(placedId){
+  const links=linksByEntity[placedId]; if(!links) return {bonus:0,fired:[]};
+  const onB=onBoardIds(); let liveTurn=false; const fired=[];
+  for(const link of links){
+    if(firedLinks.has(link.id)) continue;
+    const partner = link.source===placedId ? link.target : link.source;
+    if(partner===placedId) continue;
+    let kind=null;
+    if(onB.has(partner)){ kind='live'; liveTurn=true; }
+    else if(everPlaced.has(partner)){ kind='discovered'; }
+    if(kind){ firedLinks.add(link.id); inflog.push({source:link.source,target:link.target,kind,fact:link.fact}); if(!discovered.has(link.id)) discovered.set(link.id,{source:link.source,target:link.target,fact:link.fact,kind}); fired.push({source:link.source,target:link.target,fact:link.fact,kind}); }
+  }
+  if(!fired.length) return {bonus:0,fired:[]};
+  STATS.links += fired.length;
+  const bonus = liveTurn?20:0; STATS.influence += bonus;
+  return { bonus, fired };   // reveal (live + discovered) is surfaced by showConnReveal; live still scores +20
+}
+function placeAt(id,r,c,slot){
+  if(lock||over||!legalCell(id,r,c)) return;
+  const e=byId[id];
+  grid[r][c]=id; placed++; everPlaced.add(id); inspect=null; sel=null;
+
+  const nbs=occNeighbors(r,c);
+  let gain = 5 * nbs.filter(n=>match(e,n.e)).length;          // placement points
+  STATS.placementPoints += gain;                              // ledger: attribute before other sources are added
+  const inf = fireInfluence(id); gain += inf.bonus;           // P2 influence — fires before clears (capped +20/live-turn)
+
+  // ordering bonus: +10 per NEW succession edge laid older→left, once per pair per run
+  for(const n of nbs){
+    if(succession(e,n.e)){
+      const olderC = (e.start<=n.e.start) ? c   : n.c;
+      const newerC = (e.start<=n.e.start) ? n.c : c;
+      if(olderC < newerC){
+        const key = [e.id,n.e.id].sort().join('|');
+        if(!orderedLedger.has(key)){ orderedLedger.add(key); gain+=10; STATS.orderingPoints+=10; }
+      }
+    }
+  }
+
+  // both-floods INDEPENDENT for clearing; overlap SCORED ONCE (chain rate wins)
+  const chainCells = flood(r,c,'succ'), clusterCells = floodCommon(r,c);
+  const chainFires = chainCells.length>=CHAIN, clusterFires = clusterCells.length>=CLUSTER;
+  const chainSet=new Set(chainCells.map(k=>k.join(','))), clusterSet=new Set(clusterCells.map(k=>k.join(',')));
+  const cleared=new Set(); const msgs=[];
+  if(chainFires){
+    chainSet.forEach(k=>cleared.add(k));
+    gain += 100*chainSet.size; STATS.chains++; STATS.chainPoints += 100*chainSet.size;
+    msgs.push('⚡ Chain ×'+chainSet.size+'  +'+(100*chainSet.size));
+  }
+  if(clusterFires){
+    clusterSet.forEach(k=>cleared.add(k));
+    let n=0; clusterSet.forEach(k=>{ if(!(chainFires && chainSet.has(k))) n++; });   // single-count
+    gain += 40*n; STATS.clusters++; STATS.clusterPoints += 40*n;
+    msgs.push('🌍 Cluster ×'+clusterSet.size+'  +'+(40*n));
+  }
+  score += gain;
+  if(!TEST() && inf.fired.length) showConnReveal(inf.fired);   // non-blocking batched reveal (live + discovered); score toast is separate
+
+  if(cleared.size){
+    STATS.cleared += cleared.size;
+    if(TEST()){ finishTurn(cleared,slot); }
+    else {
+      lock=true; flashing=cleared; render(); toast(msgs.join('     '));
+      const myGen=gen;
+      setTimeout(()=>{ if(myGen===gen) finishTurn(cleared,slot); }, 320);   // drop stale clears after reset/mode-switch
+    }
+  } else {
+    const t = gain?'+'+gain:''; if(t) toast(t);
+    hand[slot]=drawId(false); ensureLiveHand(true);
+    if(!TEST()) render();
+    checkOver();
+  }
+}
+function finishTurn(cleared,slot){
+  cleared.forEach(k=>{ const [rr,cc]=k.split(',').map(Number); grid[rr][cc]=null; placed--; });
+  // scored: cleared tiles are consumed (not returned). zen: they re-enter the pool by being off-board.
+  flashing=new Set(); lock=false;
+  hand[slot]=drawId(false); ensureLiveHand(true);
+  if(!TEST()) render();
+  checkOver();
+}
+
+// dead-hand-proof: if no hand tile is placeable but the board is still live,
+// inject a guaranteed-placeable witness from the pool directly (no re-roll loop)
+function ensureLiveHand(announce){
+  if(hand.some(canPlace)) return;
+  if(!boardLive()) return;                  // truly dead -> checkOver ends it
+  const witness = drawablePool().find(canPlace);
+  if(witness==null) return;
+  let slot = hand.findIndex(id=> id==null);
+  if(slot<0) slot = hand.findIndex(id=> !canPlace(id));
+  if(slot<0) slot = 0;
+  returnToBag(hand[slot]);
+  if(MODE==='scored'){ const i=bag.indexOf(witness); if(i>=0) bag.splice(i,1); }
+  hand[slot]=witness;
+  if(announce && !TEST()){ const g=gen; setTimeout(()=>{ if(g===gen) toast('✨ New tile added to your hand'); }, 1600); }
+}
+function checkOver(){
+  if(over || boardLive()) return;
+  if(MODE==='zen') endChapter();                 // Zen: a locked board ends the CHAPTER, not the game
+  else { over=true; if(!TEST()) showOver(); }
+}
+// Zen "Endless chapters": when the board locks, snapshot the chapter, then auto-advance (headless) or show its summary.
+function endChapter(){
+  if(TEST()){ startNextChapter(); return; }
+  lock=true; showChapter();                       // freeze input behind the summary modal until "Start next chapter"
+}
+function startNextChapter(){
+  chapter++;
+  grid=Array.from({length:ROWS},()=>Array(COLS).fill(null));
+  placed=0; swaps=START_SWAPS; sel=null; inspect=null; lock=false; flashing=new Set();
+  orderedLedger=new Set(); everPlaced=new Set(); firedLinks=new Set(); gen++;   // fresh board; re-light connections each chapter
+  chapterStart={score, chains:STATS.chains, clusters:STATS.clusters, links:STATS.links, cleared:STATS.cleared};
+  hand=[null,null,null];
+  for(let i=0;i<3;i++) hand[i]=drawId(true);      // fresh openers; cumulative score / STATS / inflog all preserved
+  ensureLiveHand();
+  $('#creveal').classList.remove('show');         // a lingering reveal card must not ride into the new chapter
+  hideChapter(); if(!TEST()) render();
+}
+
+/* ============================== actions ============================== */
+function doSwap(){
+  if(swaps<=0 || sel==null || !hand[sel] || over || lock) return;
+  const old=hand[sel]; hand[sel]=drawId(false); returnToBag(old);   // draw before returning so a swap can't hand back the same tile
+  swaps--; sel=null;
+  ensureLiveHand(true); render(); checkOver();
+}
+function redrawHand(){                       // free fallback valve — ZEN ONLY (Scored liveness is guaranteed by dead-hand-proof; a free redraw would let you fish the finite bag)
+  if(over||lock||MODE==='scored') return;
+  const opener = placed===0;
+  for(let i=0;i<hand.length;i++){ returnToBag(hand[i]); hand[i]=null; }
+  for(let i=0;i<hand.length;i++) hand[i]=drawId(opener);
+  sel=null; ensureLiveHand(); render(); checkOver();
+}
+
+/* ============================== order ratio (acceptance metric) ============================== */
+function orderRatio(){
+  let ord=0, inv=0;
+  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
+    const id=grid[r][c]; if(!id) continue; const e=byId[id];
+    for(const [dr,dc] of [[0,1],[1,0]]){    // right + down only (each edge once)
+      const nr=r+dr,nc=c+dc; if(!inb(nr,nc)||!grid[nr][nc]) continue;
+      const ne=byId[grid[nr][nc]];
+      if(succession(e,ne)){
+        const oc = e.start<=ne.start ? c : nc, nc2 = e.start<=ne.start ? nc : c;
+        if(oc<nc2) ord++; else if(oc>nc2) inv++;   // equal column = vertical, excluded
+      }
+    }
+  }
+  return (ord+inv) ? ord/(ord+inv) : null;
+}
+
+/* ============================== reset ============================== */
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.random()*(i+1)|0; [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function reset(){
+  grid=Array.from({length:ROWS},()=>Array(COLS).fill(null));
+  placed=0; score=0; swaps=START_SWAPS; sel=null; inspect=null; over=false; lock=false;
+  flashing=new Set(); orderedLedger=new Set(); everPlaced=new Set(); gen++;
+  STATS={chains:0,clusters:0,cleared:0,influence:0,links:0,placementPoints:0,chainPoints:0,clusterPoints:0,orderingPoints:0}; firedLinks=new Set(); inflog=[]; discovered=new Map();
+  chapter=1; chapterStart={score:0,chains:0,clusters:0,links:0,cleared:0};
+  bag = MODE==='scored' ? shuffle(ENT.filter(e=>e._deg>=1).map(e=>e.id)) : null;   // degree-guard at load
+  hand=[null,null,null];
+  for(let i=0;i<3;i++) hand[i]=drawId(true);     // opener guard on
+  ensureLiveHand();
+  $('#creveal').classList.remove('show');        // a lingering reveal card must not ride into a fresh run
+  hideOver(); render();
+}
+
+/* ============================== render ============================== */
+let toastT;
+function toast(m){ if(!m)return; const el=$('#toast'); el.textContent=m; el.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),1500); }
+function readable(hex){ const n=parseInt(hex.slice(1),16),r=n>>16&255,g=n>>8&255,b=n&255; return (0.299*r+0.587*g+0.114*b)/255>0.6?'#160f22':'#fff'; }
+function yl(y){ y=Math.round(y); return y<0 ? Math.abs(y)+' BCE' : y+' CE'; }
+function span(e){ return isInv(e)? yl(e.start) : yl(e.start)+'–'+yl(e.end); }
+// difficulty = date-visibility ladder (decision 6). era band by midyear (deterministic).
+const ERAS=[[-800,'Ancient'],[500,'Classical'],[1500,'Medieval'],[1800,'Early Modern']];
+function eraBand(e){ const y=mid(e); for(const [lim,name] of ERAS) if(y<lim) return name; return 'Modern'; }
+function ageLabel(e){ return DIFF==='learner'?span(e):(DIFF==='standard'?eraBand(e):''); }
+function colTxt(c){ const y=Math.round(colYear(c)/10)*10; return y<0? Math.abs(y)+'B':(y===0?'0':y+''); }
+
+function buildAxis(){
+  document.documentElement.style.setProperty('--cols',COLS);
+  const ax=$('#axis'); ax.innerHTML='';
+  for(let c=0;c<COLS;c++){ const s=document.createElement('div'); s.className='yr'; s.textContent=(DIFF==='learner'?colTxt(c):''); ax.appendChild(s); }
+  const a=document.createElement('div'); a.className='arrow'; a.innerHTML='<span>← older</span><span>newer →</span>'; ax.appendChild(a);
+}
+function render(){
+  $('#score').textContent=score;
+  $('#swaps').textContent=swaps;
+  $('#bag').textContent = MODE==='scored' ? (bag?bag.length:0) : '∞';
+  $('#connN').textContent = discovered ? discovered.size : 0;
+  $('#modeScored').classList.toggle('on',MODE==='scored');
+  $('#modeZen').classList.toggle('on',MODE==='zen');
+  $('#diffLearner').classList.toggle('on',DIFF==='learner');
+  $('#diffStandard').classList.toggle('on',DIFF==='standard');
+  $('#diffNerd').classList.toggle('on',DIFF==='nerd');
+  [['#modeScored',MODE==='scored'],['#modeZen',MODE==='zen'],['#diffLearner',DIFF==='learner'],['#diffStandard',DIFF==='standard'],['#diffNerd',DIFF==='nerd']]
+    .forEach(([s,on])=>$(s).setAttribute('aria-pressed',on));   // the .on class is visual-only; expose toggle state to AT too
+  $('#swapBtn').disabled = swaps<=0||sel==null||over;
+  $('#redrawBtn').style.display = MODE==='zen' ? '' : 'none';   // redraw is Zen-only
+  $('#redrawBtn').disabled = over||lock;
+
+  const legal = (sel!=null && hand[sel]) ? new Set(legalCells(hand[sel])) : new Set();
+  const board=$('#board'); board.innerHTML='';
+  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
+    const key=r+','+c; const id=grid[r][c]; const interactive=!!(id || legal.has(key));
+    const cell=document.createElement(interactive?'button':'div'); if(interactive) cell.type='button';
+    if(id){ const t=byId[id], col=REG[t.region].color;
+      cell.className='cell filled'+(flashing.has(key)?' flash':'');
+      cell.style.background=col; cell.style.color=readable(col);
+      cell.innerHTML='<span class="e">'+t.emoji+'</span><span class="n">'+t.name+'</span>';
+      cell.title=t.name+(ageLabel(t)?'  ('+ageLabel(t)+')':'');
+      cell.setAttribute('aria-label', t.name+', '+REG[t.region].name+(ageLabel(t)?', '+ageLabel(t):''));
+      cell.addEventListener('click',()=>{ if(lock||over)return; inspect=t; sel=null; render(); });
+    } else {
+      cell.className='cell empty'+(legal.has(key)?' legal':'');
+      if(legal.has(key)){ cell.setAttribute('aria-label','Place tile here, row '+(r+1)+' column '+(c+1)); cell.addEventListener('click',()=>{ if(!lock&&sel!=null&&hand[sel]) placeAt(hand[sel],r,c,sel); }); }
+    }
+    board.appendChild(cell);
+  }
+  const handEl=$('#hand'); handEl.innerHTML='';
+  hand.forEach((id,i)=>{
+    if(!id){ const e=document.createElement('div'); e.className='htile empty'; e.innerHTML='<span class="yr" style="opacity:.5">—</span>'; handEl.appendChild(e); return; }
+    const h=document.createElement('button'); h.type='button';
+    const t=byId[id], col=REG[t.region].color, dead=!canPlace(id);
+    h.className='htile'+(sel===i?' sel':'')+(dead?' dead':'');
+    h.style.background=col; h.style.color=readable(col);
+    const al=ageLabel(t), meta=REG[t.region].name+(al?' · '+al:'');   // region always shows; era/date follows the Dates/Era/Blind toggle
+    h.innerHTML='<span class="e">'+t.emoji+'</span><span class="n">'+t.name+'</span><span class="yr">'+meta+'</span>';
+    h.title=t.name+(al?'  ('+al+')':'')+(dead?'  · no legal spot':'');
+    h.setAttribute('aria-label', t.name+', '+meta+(dead?', no legal spot':'')+(sel===i?', selected':''));
+    h.addEventListener('click',()=>{ if(lock||over)return; sel=(sel===i?null:i); inspect=null; render(); });
+    handEl.appendChild(h);
+  });
+  renderInfo(); renderHint();
+}
+function renderInfo(){
+  const p=$('#info');
+  const t = (sel!=null && hand[sel]) ? byId[hand[sel]] : inspect;
+  if(!t){ p.innerHTML='<h3>How to play</h3>'
+      +'<div class="row">1 · Tap a tile in your hand.</div>'
+      +'<div class="row">2 · Legal cells glow, tap one to place.</div>'
+      +'<div class="row">3 · A tile may touch only tiles it <b style="color:var(--mut);font-weight:500">matches</b>: the same age, or one step along its region\'s line.</div>'; return; }
+  const n = (sel!=null && hand[sel]) ? legalCells(t.id).length : null;
+  const al=ageLabel(t);
+  let lineRow='';
+  if(t.type==='polity'){                      // the region's line, one step each way: what "one step along its line" means for THIS tile
+    const prev=ENT.find(o=>o.type==='polity'&&o.region===t.region&&o.seq===t.seq-1);
+    const next=ENT.find(o=>o.type==='polity'&&o.region===t.region&&o.seq===t.seq+1);
+    if(prev||next) lineRow='<div class="row"><span class="k">line:</span> '
+      +(prev?prev.name+' → ':'')+'<b style="color:var(--mut);font-weight:500">'+t.name+'</b>'+(next?' → '+next.name:'')+'</div>';
+  }
+  p.innerHTML='<h3>'+t.emoji+' '+t.name+'</h3>'
+    +(al?'<div class="row"><span class="k">'+(DIFF==='learner'?'when':'era')+':</span> '+al+'</div>':'')
+    +'<div class="row"><span class="k">region:</span> '+REG[t.region].name+'</div>'
+    +lineRow
+    +(n!=null ? '<div class="row"><span class="k">legal spots:</span> '+n+(n?'':(MODE==='zen'?' (swap or redraw)':' (swap to continue)'))+'</div>'
+              : '<div class="row" style="color:var(--dim)">tap a hand tile to place</div>');
+}
+function renderHint(){
+  const el=$('#hint'); if(!el) return;
+  // gate on total placements (everPlaced), not tiles-on-board (placed): a board-emptying clear must not resurrect the tutorial
+  if(over || everPlaced.size>1){ el.classList.add('gone'); el.setAttribute('aria-hidden','true'); return; }
+  el.classList.remove('gone'); el.removeAttribute('aria-hidden');
+  el.textContent = everPlaced.size===0
+    ? 'Tap a tile in your hand, then tap a glowing cell to place it.'
+    : 'First tile placed. Grayed tiles have no legal spot right now: play on or swap one.';
+}
+function showOver(){
+  $('#finalScore').textContent=score;
+  const L=STATS, rows=[['Clusters',L.clusterPoints||0],['Chains',L.chainPoints||0],['Placement',L.placementPoints||0],['Ordering',L.orderingPoints||0],['Connection bonus',L.influence||0]];
+  let html=rows.filter(r=>r[1]>0).map(r=>'<div class="brow"><span>'+r[0]+'</span><b>+'+r[1]+'</b></div>').join('');
+  const items=[...discovered.values()];
+  html+='<div class="brow bc"><span>Connections lit</span><b>'+items.length+'</b></div>';
+  $('#overBreak').innerHTML=html;
+  const last=items.length?items[items.length-1]:null;   // one standout fact: the latest unique discovery
+  $('#overMsg').innerHTML = last
+    ? '<b style="color:var(--mut);font-weight:500">'+byId[last.source].name+' → '+byId[last.target].name+'</b><br>'+last.fact
+    : (MODE==='scored' ? 'No legal moves remain. That is the run.' : 'Nothing in the pool fits the board any more.');
+  $('#over').classList.add('show');
+}
+function hideOver(){ $('#over').classList.remove('show'); }
+function showChapter(){                       // Zen chapter break: cumulative total as the headline, this chapter's deltas as the recap
+  const d=k=> k==='score' ? score-chapterStart.score : STATS[k]-chapterStart[k];
+  $('#chTitle').textContent='Chapter '+chapter+' complete';
+  $('#chScore').textContent=score;
+  $('#chMsg').textContent='+'+d('score')+' this chapter · '+d('chains')+' chains · '+d('clusters')+' clusters · '+d('links')+' connections lit. The board locked; a fresh one is ready.';
+  $('#chapter').classList.add('show');
+}
+function hideChapter(){ $('#chapter').classList.remove('show'); }
+/* connection reveal (batched, non-blocking) + the archive it links to */
+let crevealT;
+function showConnReveal(fired){
+  const el=$('#creveal'); if(!el||!fired||!fired.length) return;
+  const ord=fired.slice().sort((a,b)=>(a.kind==='live'?0:1)-(b.kind==='live'?0:1));   // lead with a live link if any
+  const f=ord[0], more=fired.length-1;
+  el.innerHTML='<div class="ct">'+(f.kind==='live'?'🔗':'✨')+' '+byId[f.source].name+' → '+byId[f.target].name+'</div>'
+    +'<div class="cf">'+f.fact+'</div>'
+    +'<div class="cmore" id="crevealMore">'+(more>0?('+'+more+' more · '):'')+'View all ('+discovered.size+')</div>';
+  $('#crevealMore').onclick=openArchive;
+  el.classList.add('show'); clearTimeout(crevealT); crevealT=setTimeout(()=>el.classList.remove('show'),4500);
+}
+function openArchive(){
+  const items=[...discovered.values()];
+  $('#arclist').innerHTML = items.length
+    ? items.map(x=>'<div class="arcrow"><span class="ilk">'+(x.kind==='live'?'🔗':'✨')+'</span><div>'
+        +'<span class="iln">'+byId[x.source].name+' → '+byId[x.target].name+'</span>'
+        +'<span class="ilf">'+x.fact+'</span></div></div>').join('')
+    : '<div class="arcempty">No connections lit yet. Place tiles that share a real historical thread and they will appear here.</div>';
+  $('#archive').classList.add('show');
+}
+function closeArchive(){ $('#archive').classList.remove('show'); }
+
+/* ============================== wiring ============================== */
+$('#swapBtn').addEventListener('click',doSwap);
+$('#redrawBtn').addEventListener('click',redrawHand);
+$('#newBtn').addEventListener('click',reset);
+$('#connBtn').addEventListener('click',openArchive);
+$('#arcClose').addEventListener('click',closeArchive);
+$('#archive').addEventListener('click',e=>{ if(e.target.id==='archive') closeArchive(); });
+$('#againBtn').addEventListener('click',reset);
+$('#nextBtn').addEventListener('click',startNextChapter);
+$('#modeScored').addEventListener('click',()=>{ if(MODE!=='scored'){ MODE='scored'; reset(); } });
+$('#modeZen').addEventListener('click',()=>{ if(MODE!=='zen'){ MODE='zen'; reset(); } });
+$('#diffLearner').addEventListener('click',()=>{ DIFF='learner'; buildAxis(); render(); });
+$('#diffStandard').addEventListener('click',()=>{ DIFF='standard'; buildAxis(); render(); });
+$('#diffNerd').addEventListener('click',()=>{ DIFF='nerd'; buildAxis(); render(); });
+
+/* ============================== test handle (headless verification) ==============================
+ * Greedy self-play: place the first placeable hand tile in its first legal cell,
+ * lean on ensureLiveHand, run until the board is dead. Used by preview_eval. */
+function simulate(maxTurns){
+  reset(); window.__TL_TEST=true; let turns=0;   // self-contained: each simulate() starts fresh
+  while(!over && turns<maxTurns){
+    let moved=false;
+    for(let s=0;s<hand.length;s++){
+      const id=hand[s]; if(!canPlace(id)) continue;
+      const cells=legalCells(id); if(!cells.length) continue;
+      const [r,c]=cells[0].split(',').map(Number);
+      placeAt(id,r,c,s); moved=true; break;
+    }
+    if(!moved){ ensureLiveHand(); if(!hand.some(canPlace)){ checkOver(); if(over||!hand.some(canPlace)) break; } }   // zen advances the chapter and keeps going; scored sets over and stops
+    turns++;
+  }
+  window.__TL_TEST=false;
+  return { turns, score, placed, over, bagLeft: bag?bag.length:null,
+           orderRatio: orderRatio(), stats: Object.assign({},STATS) };
+}
+// probe A — chain scoring: the UK succession run clears as a 5-chain (+515). Under common-year clustering
+// it is NOT also a cluster (the five share no common year), so single-count is moot here — chain path only.
+function _clearProbe(){
+  MODE='scored'; reset();
+  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++) grid[r][c]=null;
+  placed=0; score=0; orderedLedger=new Set();
+  const line=['celtic_britain','roman_britain','anglo_saxon','norman','tudor'];
+  for(let i=0;i<4;i++){ grid[0][i]=line[i]; placed++; }
+  hand[0]=line[4];
+  window.__TL_TEST=true; const before=score; placeAt(line[4],0,4,0); window.__TL_TEST=false;
+  const delta=score-before; reset();
+  return { delta, expect:515, breakdown:'chain 100*5=500 + place 5 + order 10; cluster does NOT fire' };
+}
+// probe B — common-year cluster: a transitively-connected but non-coeval line must NOT cluster as one blob.
+// Coins(-600) overlaps Gojoseon(-2333..-108) but NOT New Kingdom(-1550..-1069). Old connectivity grabbed all 3; common-year grabs 2.
+function _clusterProbe(){
+  reset();
+  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++) grid[r][c]=null;
+  grid[0][0]='new_kingdom'; grid[0][1]='gojoseon'; grid[0][2]='coins'; placed=3;
+  const commonYear=floodCommon(0,2).length, oldConnectivity=flood(0,2,'cont').length;
+  reset();
+  return { commonYear, oldConnectivity, expect:'commonYear=2, oldConnectivity=3',
+           note:'Coins shares -600 with Gojoseon only; New Kingdom is connected-but-not-coeval, correctly excluded.' };
+}
+// probe C — cluster order-independence (the floodCommon fix). Five tiles all contain 500 BCE; a sixth (Sumer) does not.
+// Pre-fix, visiting Sumer first narrowed the running intersection and returned size 2. Now both layouts must return 5.
+function _clusterOrderProbe(){
+  const run=pos=>{
+    reset();
+    for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++) grid[r][c]=null;
+    grid[1][1]='gojoseon'; grid[1][2]='greeks'; grid[1][3]='celtic_britain'; grid[1][4]='olmec'; grid[1][5]='achaemenid';
+    grid[pos==='first'?0:5][pos==='first'?1:6]='sumer';   // 'first': directly above the seed, popped early; else isolated
+    placed=7;
+    const size=floodCommon(1,1).length; reset(); return size;
+  };
+  return { sumerAdjacent:run('first'), sumerFar:run('far'), expect:5,
+           note:'both must be 5; the pre-fix running intersection returned 2 when Sumer was visited first' };
+}
+window.__TL = {
+  ENT, byId, REG, match, contemporary, succession, mid, isInv,
+  legalCells, canPlace, boardLive, orderRatio, simulate, reset, clearProbe:_clearProbe, clusterProbe:_clusterProbe, clusterOrderProbe:_clusterOrderProbe, floodCommon,
+  LINKS, linkLog:()=>inflog.slice(), discovered:()=>[...discovered.values()], showConnReveal, openArchive, showOver, render,
+  grid:()=>grid.map(r=>r.slice()),
+  setMode:m=>{ MODE=m; reset(); }, endChapter, startNextChapter,
+  state:()=>({MODE,score,swaps,placed,over,chapter,bagLeft:bag?bag.length:null,
+              hand:hand.slice(),orderRatio:orderRatio(),stats:Object.assign({},STATS)}),
+  derived:()=>ENT.map(e=>({id:e.id,reg:e.region,seq:e.seq,deg:e._deg,mid:mid(e)}))
+};
+
+/* ============================== go ============================== */
+buildAxis();
+reset();
+})();
+</script>
+</body>
+</html>
