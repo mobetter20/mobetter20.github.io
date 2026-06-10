@@ -39,6 +39,8 @@ Treat the apex surfaces as curated teasers, not mirrors of what sits below; surf
 
 `_scripts/build_root.py` generates the stats-driven pages — `index.html` (the root `ajin.im is …` page), `is/running/`, `is/reading/`, `is/learning/` — from `templates/{root,running,reading,learning}.html` + `content/stats.md`. **Edit the templates, never the generated `index.html` files.** Direct edits are overwritten on the next build, and `.github/workflows/rebuild-root-on-stats.yml` rebuilds them automatically whenever a template, `stats.md`, or the script changes. Each generated file carries a `GENERATED FILE — DO NOT EDIT` banner under its doctype as an in-file reminder.
 
+`_scripts/canary/canary_watcher.py` (runtime copy at `~/.local/bin/`, LaunchAgent `com.ajin.canary-watcher`, every 30 min) machine-updates `is/building/did-claude-just-reset-usage/state.json` ON MASTER via `gh api` content PUTs. Hand edits to that file may be overwritten within 30 minutes; the page's `index.html` stays hand-maintained. See `_scripts/canary/README.md`.
+
 `_scripts/build_bird_coo.py` generates all Municipal Coo HTML (index, issues, archive). Manual edits to generated files will be overwritten on next build. Make template changes in the build script.
 
 The script also auto-updates the "From the Municipal Coo" excerpt block on `is/writing/avian-district/index.html`. The block lives between `<!-- COO-EXCERPT-START -->` and `<!-- COO-EXCERPT-END -->` markers — manual edits inside that range will be overwritten on next build. Edit the renderer in `_scripts/build_bird_coo.py` (`render_avian_district_excerpt`) instead.
