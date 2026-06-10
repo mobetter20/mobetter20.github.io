@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#13101e">
 <meta name="robots" content="noindex"><!-- test deploy: unlisted, remove at real ship (deployed copy only; source lives in ~/Downloads/chronogrid) -->
+<meta name="theme-color" content="#13101e">
 <title>Chronogrid: a history placement game</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,7 +63,7 @@
     cursor:pointer;text-align:center;border:2px solid transparent;transition:.12s;color:#160f22;user-select:none;touch-action:manipulation;padding:2px}
   .htile.empty{background:rgba(34,27,53,.5)!important;border:1px dashed var(--line)}
   .htile.sel{outline:3px solid #fff;outline-offset:2px}
-  .htile.dead{filter:grayscale(.62) brightness(.66)}
+  .htile.dead{filter:grayscale(.85) brightness(.6);opacity:.7}
   .htile .e{font-size:30px;line-height:1}
   .htile .n{font-size:13px;font-weight:600;padding:0 6px;line-height:1.12;min-height:2.24em;display:flex;align-items:center;justify-content:center;overflow-wrap:anywhere}
   .htile .yr{font-size:11px;opacity:.82;padding:0 2px;line-height:1.2}
@@ -180,6 +180,7 @@
     <div class="sk"><b>Zen</b><span>endless chapters, a locked board starts a fresh one</span></div>
     <div class="sk"><b>Difficulty</b><span>Dates / Era / Blind: how much age info tiles show</span></div>
     <div class="sk"><b>Matching</b><span>always by real years; era names are only a rough guide</span></div>
+    <div class="sk"><b>Colour</b><span>one colour per region; colour never hints at age</span></div>
     <div class="sk"><b>Bag</b><span>tiles left this run (∞ in Zen)</span></div>
     <div class="sk"><b>Swaps</b><span>trade a selected tile for a fresh one</span></div>
   </div>
@@ -677,6 +678,9 @@ function buildAxis(){
   const a=document.createElement('div'); a.className='arrow'; a.innerHTML='<span>← older</span><span>newer →</span>'; ax.appendChild(a);
 }
 function render(){
+  const _af=document.activeElement; let _rf=null;   // focus restore: innerHTML rebuild below destroys the focused button
+  if(_af&&_af.dataset){ if(_af.dataset.hi!==undefined&&_af.closest('#hand')) _rf={t:'h',k:_af.dataset.hi};
+    else if(_af.dataset.key&&_af.closest('#board')) _rf={t:'b',k:_af.dataset.key}; }
   $('#score').textContent=score;
   $('#swaps').textContent=swaps;
   $('#bag').textContent = MODE==='scored' ? (bag?bag.length:0) : '∞';
@@ -696,7 +700,7 @@ function render(){
   const board=$('#board'); board.innerHTML='';
   for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
     const key=r+','+c; const id=grid[r][c]; const interactive=!!(id || legal.has(key));
-    const cell=document.createElement(interactive?'button':'div'); if(interactive) cell.type='button';
+    const cell=document.createElement(interactive?'button':'div'); if(interactive){ cell.type='button'; cell.dataset.key=key; }
     if(id){ const t=byId[id], col=REG[t.region].color;
       cell.className='cell filled'+(flashing.has(key)?' flash':'');
       cell.style.background=col; cell.style.color=readable(col);
@@ -713,7 +717,7 @@ function render(){
   const handEl=$('#hand'); handEl.innerHTML='';
   hand.forEach((id,i)=>{
     if(!id){ const e=document.createElement('div'); e.className='htile empty'; e.innerHTML='<span class="yr" style="opacity:.5">—</span>'; handEl.appendChild(e); return; }
-    const h=document.createElement('button'); h.type='button';
+    const h=document.createElement('button'); h.type='button'; h.dataset.hi=i;
     const t=byId[id], col=REG[t.region].color, dead=!canPlace(id);
     h.className='htile'+(sel===i?' sel':'')+(dead?' dead':'');
     h.style.background=col; h.style.color=readable(col);
@@ -724,6 +728,8 @@ function render(){
     h.addEventListener('click',()=>{ if(lock||over)return; sel=(sel===i?null:i); inspect=null; render(); });
     handEl.appendChild(h);
   });
+  if(_rf){ const el=document.querySelector(_rf.t==='h'?'#hand [data-hi="'+_rf.k+'"]':'#board [data-key="'+_rf.k+'"]');
+    if(el) el.focus({preventScroll:true}); }
   renderInfo(); renderHint();
 }
 function renderInfo(){
