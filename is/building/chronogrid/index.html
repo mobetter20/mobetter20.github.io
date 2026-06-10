@@ -50,9 +50,10 @@
   .cell.empty.legal:hover{background:#473a73}
   .cell.filled{border:1px solid rgba(0,0,0,.22);box-shadow:inset 0 0 0 2px rgba(0,0,0,.28);cursor:pointer}
   .cell .e{font-size:22px;line-height:1}
-  .cell .n{font-size:12px;line-height:1.1;padding:0 3px;font-weight:600;max-height:30px;overflow:hidden}
+  .cell .n{font-size:12px;line-height:1.1;padding:0 2px;font-weight:600;max-height:40px;overflow:hidden}   /* 3 lines: shy-wrapped long names (Ptole-maic Egypt) need the third; 2px side padding lets 8-char names one-line */
   .cell.flash{animation:fl .3s ease-out}
   button.cell,button.htile{appearance:none;-webkit-appearance:none;font:inherit;margin:0}
+  button.cell{padding:0}   /* kill the UA button padding (1px 6px): it silently shaved 12px off every cell's text box */
   .cell:focus-visible,.htile:focus-visible{outline:2px solid #6db1ff;outline-offset:1px}
   @keyframes fl{0%{box-shadow:0 0 0 3px #fff,0 0 22px #fff;transform:scale(1.09)}100%{box-shadow:0 0 0 0 #fff0;transform:scale(1)}}
 
@@ -125,6 +126,14 @@
     .cell .e{font-size:18px}.cell .n{font-size:7px;line-height:1.1;max-height:17px;padding:0 1px;font-weight:600;overflow-wrap:anywhere}
     .side{min-width:0;width:100%}.boardcol{width:100%}
     .htile .e{font-size:26px}.htile .n{font-size:12px}.htile .yr{font-size:10px}.stat b{font-size:15px}
+  }
+  /* small cells (portrait phones + landscape phones): name-first board tiles. The emoji drops behind the
+     text as a watermark so the name can take the whole cell at a readable size; DM Mono is too wide at
+     these cells, so cell names (only) fall back to the system sans. Desktop keeps the stacked look. */
+  @media (max-width:680px),(max-height:560px){
+    .cell.filled{position:relative;align-items:stretch}
+    .cell.filled .e{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;opacity:.2}
+    .cell.filled .n{position:relative;font-family:-apple-system,system-ui,'Segoe UI',sans-serif;font-size:9px;line-height:1.16;font-weight:600;max-height:42px;padding:0;overflow:hidden;overflow-wrap:break-word;word-break:normal;text-shadow:0 1px 2px rgba(0,0,0,.45)}
   }
 </style>
 </head>
@@ -651,6 +660,16 @@ function eraBand(e){ const y=mid(e); for(const [lim,name] of ERAS) if(y<lim) ret
 function ageLabel(e){ return DIFF==='learner'?span(e):(DIFF==='standard'?eraBand(e):''); }
 function colTxt(c){ const y=Math.round(colYear(c)/10)*10; return y<0? Math.abs(y)+'B':(y===0?'0':y+''); }
 
+// soft-hyphen map for BOARD CELL names only (hand/info/aria show the raw name). \u00AD is invisible
+// unless the word actually breaks, so this is inert on desktop; on small cells it turns the forced
+// mid-word breaks of the 16 over-wide tokens into deliberate hyphenation. Measured at 9px/600 sans
+// against the 36px (landscape) and 41px (portrait) cell text boxes.
+const SHY={'Achaemenid':'Achae\u00ADmenid','Gojoseon':'Gojo\u00ADseon','Sasanian':'Sasa\u00ADnian',
+  'Kamakura':'Kama\u00ADkura','Ptolemaic Egypt':'Ptole\u00ADmaic Egypt','Byzantium':'Byzan\u00ADtium',
+  'Gunpowder':'Gun\u00ADpowder','Three Kingdoms':'Three King\u00ADdoms','Delhi Sultanate':'Delhi Sulta\u00ADnate',
+  'Roman Republic':'Roman Repub\u00ADlic','Old Kingdom':'Old King\u00ADdom','Middle Kingdom':'Middle King\u00ADdom',
+  'New Kingdom':'New King\u00ADdom','Abbasid':'Abba\u00ADsid','Ottoman':'Otto\u00ADman','Norman':'Nor\u00ADman',
+  'Spanish Mexico':'Span\u00ADish Mexico','Printing':'Print\u00ADing'};
 function buildAxis(){
   document.documentElement.style.setProperty('--cols',COLS);
   const ax=$('#axis'); ax.innerHTML='';
@@ -681,7 +700,7 @@ function render(){
     if(id){ const t=byId[id], col=REG[t.region].color;
       cell.className='cell filled'+(flashing.has(key)?' flash':'');
       cell.style.background=col; cell.style.color=readable(col);
-      cell.innerHTML='<span class="e">'+t.emoji+'</span><span class="n">'+t.name+'</span>';
+      cell.innerHTML='<span class="e">'+t.emoji+'</span><span class="n">'+(SHY[t.name]||t.name)+'</span>';
       cell.title=t.name+(ageLabel(t)?'  ('+ageLabel(t)+')':'');
       cell.setAttribute('aria-label', t.name+', '+REG[t.region].name+(ageLabel(t)?', '+ageLabel(t):''));
       cell.addEventListener('click',()=>{ if(lock||over)return; inspect=t; sel=null; render(); });
