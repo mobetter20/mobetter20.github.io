@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-EXPORT_ROOT = Path("/Users/ajin/Documents/New project/personal/ajin.im:is:writing/archive/wrote")
+EXPORT_ROOT = Path.home() / "Documents/New project/personal/ajin.im:is:writing/archive/wrote"
 COMEDY_ROOT = REPO_ROOT / "is" / "writing" / "comedy"
 
 PILOT_POSTS = [

@@ -11,7 +11,7 @@ import writes_common
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ESSAY_ROOT = REPO_ROOT / "is" / "writing" / "essays"
 SOURCE_ROOT = ESSAY_ROOT / "_src"
-EXPORT_ROOT = Path("/Users/ajin/Documents/New project/personal/ajin.im:is:writing/archive/essay")
+EXPORT_ROOT = Path.home() / "Documents/New project/personal/ajin.im:is:writing/archive/essay"
 WROTE_ROOT = REPO_ROOT / "wrote"
 WRITES_ROOT = REPO_ROOT / "writes"
 
