@@ -1,7 +1,7 @@
 # Bird-Universe Linking Rules
 
 This document is workspace guidance for the bird-related sites under
-`/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/`.
+`is/writing/`.
 It lives in the committed dev tooling at `_scripts/bird-universe/` and is not
 served as part of the published site output.
 
@@ -10,16 +10,16 @@ served as part of the published site output.
 These rules apply only when touching the Avian Municipal District / bird-universe
 cluster:
 
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/avian-district/`
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/bird-coo/`
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/bird-docket/`
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/karen-hawk/`
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/nest-court/`
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/nest-court-proceedings/`
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/nest-court-proceedings-pigeon/`
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/nest-court-proceedings-starling/`
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/perch-chat/`
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/secondnest/`
+- `is/writing/avian-district/`
+- `is/writing/bird-coo/`
+- `is/writing/bird-docket/`
+- `is/writing/karen-hawk/`
+- `is/writing/nest-court/`
+- `is/writing/nest-court-proceedings/`
+- `is/writing/nest-court-proceedings-pigeon/`
+- `is/writing/nest-court-proceedings-starling/`
+- `is/writing/perch-chat/`
+- `is/writing/secondnest/`
 
 Do not apply these rules to unrelated comedy, essays, or other writing projects.
 
@@ -96,7 +96,7 @@ Before adding a new bird-universe site:
    - `meta_directory`
    - `listed_only`
 2. Add or update the registry:
-   `/Users/ajin/Documents/New project/personal/mobetter20.github.io/_scripts/bird-universe/bird_universe_registry.json`
+   `_scripts/bird-universe/bird_universe_registry.json`
 3. Decide whether it belongs in:
    - the future `avian-district` official directory
    - the `bird-docket` meta directory
@@ -115,8 +115,8 @@ Current target migration:
 
 Known migration watchpoints:
 
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/index.html`
-- `/Users/ajin/Documents/New project/personal/mobetter20.github.io/is/writing/secondnest/index.html`
+- `is/writing/index.html`
+- `is/writing/secondnest/index.html`
 
 ## What Is Committed vs Local
 
@@ -135,9 +135,9 @@ Genuinely local / per-machine:
 ## Enforcement
 
 - The effective guardrail is the checker:
-  `/Users/ajin/Documents/New project/personal/mobetter20.github.io/_scripts/bird-universe/check_bird_universe_links.py`
+  `_scripts/bird-universe/check_bird_universe_links.py`
 - Push-time enforcement happens through the local Git hook at:
-  `/Users/ajin/Documents/New project/personal/mobetter20.github.io/.git/hooks/pre-push`
+  `.git/hooks/pre-push`
 - `publish.sh` is not the safety model. Treat it as an optional local helper.
 - If this repo is recloned or `.git` is replaced, the local hook and local
   excludes must be recreated.

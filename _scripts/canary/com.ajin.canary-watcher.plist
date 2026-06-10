@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Documentation copy. Runtime lives at ~/.local/bin/ (see _scripts/canary/README.md).
+     LaunchAgent requires absolute paths; the /Users/ajin/... paths below are intentional. -->
 <plist version="1.0">
 <dict>
   <key>Label</key>
