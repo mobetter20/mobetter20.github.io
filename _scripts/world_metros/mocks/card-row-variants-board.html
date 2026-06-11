@@ -1,0 +1,151 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>world-metros mock: card stat variants (D20)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0a0d; color:#e8e8e3; display:flex; align-items:flex-start;
+       justify-content:center; min-height:100vh; padding:24px 0;
+       font-family:-apple-system,'Helvetica Neue','Segoe UI',Arial,sans-serif; }
+.board { width:1280px; background:#131318; outline:1px solid #26262c;
+         box-shadow:0 1px 18px rgba(0,0,0,.6); }
+header { display:flex; align-items:baseline; gap:20px; padding:14px 22px 11px;
+         border-bottom:1px solid #26262c; background:#15151a; }
+.wordmark { font-size:15px; font-weight:700; letter-spacing:.24em;
+            color:#f2f2ee; }
+.wordmark em { font-style:normal; color:#7fb0e8; }
+.mockbadge { margin-left:auto; font-family:'DM Mono',monospace; font-size:9px;
+             letter-spacing:.14em; color:#e08040; border:1px solid #e0804066;
+             padding:3px 7px; border-radius:2px; white-space:nowrap; }
+.intro { padding:9px 22px; font-size:11px; color:#8a8a85; background:#15151a;
+         border-bottom:1px solid #26262c; line-height:1.5; }
+.intro b { color:#e8e8e3; font-weight:600; }
+.seclabel { padding:16px 22px 10px; font-family:'DM Mono',monospace;
+            font-size:10px; letter-spacing:.2em; color:#7fb0e8; }
+.row { display:flex; gap:26px; justify-content:center; align-items:flex-start;
+       padding:6px 22px 10px; }
+.cap { font-family:'DM Mono',monospace; font-size:8.5px; color:#8a8a85;
+       letter-spacing:.1em; text-align:center; line-height:1.6;
+       padding:0 22px 6px; }
+.cap b { color:#e8e8e3; font-weight:700; }
+
+.statlist { display:flex; gap:26px; margin:4px 22px 6px; padding:13px 18px;
+            background:#15151a; border:1px solid #26262c; font-size:11px;
+            line-height:1.6; }
+.statlist .col { flex:1; }
+.statlist .k { font-family:'DM Mono',monospace; font-size:8px;
+               letter-spacing:.18em; color:#7fb0e8; text-transform:uppercase;
+               display:block; margin-bottom:4px; }
+.statlist .was { color:#8a8a85; }
+.statlist .now { color:#e8e8e3; font-weight:600; }
+.statlist .why { color:#8a8a85; font-size:10.5px; }
+.statlist .out { text-decoration:line-through; color:#55555e; }
+.statlist .in { color:#7fb0e8; font-weight:700; }
+
+.mcard { width:270px; height:392px; border-radius:12px; padding:16px 14px 11px;
+         display:flex; flex-direction:column; flex:none; overflow:hidden;
+         position:relative; background:#1b1b21; border:1px solid #32323a;
+         box-shadow:0 4px 16px rgba(0,0,0,.55); color:#f2f2ee; }
+.mtop { display:flex; justify-content:space-between; align-items:flex-start;
+        gap:8px; }
+.mname { font-size:20px; font-weight:800; letter-spacing:.08em;
+         text-transform:uppercase; }
+.mepi { font-family:'DM Mono',monospace; font-size:8.5px; letter-spacing:.22em;
+        color:#7fb0e8; text-transform:uppercase; margin-top:4px; }
+.mno { font-family:'DM Mono',monospace; font-size:9px; color:#8a8a85;
+       padding-top:4px; }
+.pills { display:flex; flex-wrap:wrap; gap:4px; margin-top:12px;
+         min-height:18px; }
+.pills i { font-style:normal; font-family:'DM Mono',monospace; font-size:9px;
+           font-weight:500; color:#fff; padding:2.5px 7px; border-radius:999px;
+           letter-spacing:.02em; }
+.rk { font-family:'DM Mono',monospace; font-size:7px; letter-spacing:.08em;
+      text-transform:uppercase; text-align:center; border-radius:999px;
+      padding:2.5px 0; width:34px; border:1px solid #43434c; color:#9a9a94;
+      flex:none; }
+.rk1 { background:#0052a4; border-color:#0052a4; color:#fff; font-weight:500; }
+.rkp { border-style:dashed; border-color:#3a3a42; color:#55555e; }
+.mfoot { margin-top:auto; font-family:'DM Mono',monospace; font-size:6.5px;
+         color:#5e5e66; line-height:1.5; padding-top:8px; }
+
+/* V1 big ledger */
+.v1block { margin-top:13px; border-top:1px solid #32323a; }
+.v1row { display:flex; align-items:center; gap:9px; padding:9px 1px;
+         border-bottom:1px solid #232329; }
+.v1lab { font-family:'DM Mono',monospace; font-size:8.5px;
+         letter-spacing:.14em; color:#8a8a85; text-transform:uppercase; }
+.v1val { margin-left:auto; font-family:'DM Mono',monospace; font-size:19px;
+         font-weight:500; letter-spacing:-.01em; white-space:nowrap; }
+.v1val small { font-size:9px; color:#8a8a85; letter-spacing:.06em; }
+.v1pipe { margin-left:auto; font-family:'DM Mono',monospace; font-size:7px;
+          color:#55555e; }
+.v1row.pipe .v1lab { color:#4a4a52; }
+
+/* V2 stat tiles */
+.tiles { margin-top:13px; display:grid; grid-template-columns:1fr 1fr;
+         gap:8px; }
+.tile { position:relative; background:#1f1f26; border:1px solid #2c2c34;
+        border-radius:8px; padding:12px 10px 9px; }
+.tile .tchip { position:absolute; top:7px; right:7px; width:30px;
+               font-size:6.5px; padding:2px 0; }
+.tval { font-family:'DM Mono',monospace; font-size:18px; font-weight:500;
+        margin-top:6px; white-space:nowrap; }
+.tval small { font-size:8.5px; color:#8a8a85; letter-spacing:.06em; }
+.tval.tvp { color:#55555e; font-size:12px; }
+.tlab { font-family:'DM Mono',monospace; font-size:7px; letter-spacing:.14em;
+        color:#8a8a85; text-transform:uppercase; margin-top:4px; }
+.tile.pipe { border-style:dashed; background:transparent; }
+.tile.pipe .tlab { color:#4a4a52; }
+
+/* V3 hero stat */
+.hero { margin-top:13px; border:1px solid #32323a; border-radius:8px;
+        background:#1f1f26; padding:13px 12px 11px; position:relative; }
+.hero .hchip { position:absolute; top:9px; right:9px; }
+.hval { font-family:'DM Mono',monospace; font-size:30px; font-weight:500;
+        letter-spacing:-.02em; line-height:1; }
+.hval small { font-size:11px; color:#8a8a85; letter-spacing:.06em; }
+.hlab { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.2em;
+        color:#7fb0e8; text-transform:uppercase; margin-top:6px; }
+.v3block { margin-top:9px; }
+.v3row { display:flex; align-items:center; gap:9px; padding:6.5px 1px;
+         border-bottom:1px solid #232329; }
+.v3lab { font-family:'DM Mono',monospace; font-size:7.5px;
+         letter-spacing:.12em; color:#8a8a85; text-transform:uppercase; }
+.v3val { margin-left:auto; font-family:'DM Mono',monospace; font-size:12px;
+         font-weight:500; white-space:nowrap; }
+.v3pipe { margin-left:auto; font-family:'DM Mono',monospace; font-size:7px;
+          color:#55555e; }
+.v3row.pipe .v3lab { color:#4a4a52; }
+
+footer { display:flex; justify-content:space-between; gap:20px;
+         padding:9px 22px; border-top:1px solid #26262c; margin-top:16px;
+         font-family:'DM Mono',monospace; font-size:9px; color:#8a8a85;
+         background:#15151a; }
+</style></head><body><div class="board">
+<header><div class="wordmark">WORLD METROS <em>ATLAS</em></div>
+<span class="mockbadge">STAT VARIANTS · D20 · APPROVAL ARTIFACT</span></header>
+<div class="intro"><b>the D20 question:</b> ground C is settled; are the
+comparison items optimal, and how should they present? One content proposal
+(the strip below) and three presentations of the same card, big letters
+first. Pick a variant or name elements to merge; confirm or veto the stat
+swap.</div>
+<div class="seclabel">THE STAT LIST · ONE SWAP PROPOSED</div>
+<div class="statlist"><div class="col"><span class="k">was</span><span class="was">opened · <span class="out">lines</span> · stations · span · route-km · ridership</span></div><div class="col"><span class="k">proposed (D20)</span><span class="now">opened · stations · span · <span class="in">density</span> · route-km · ridership</span></div><div class="col" style="flex:1.6"><span class="k">why</span><span class="why">three size stats let big systems sweep; the pills already show every line, so the row restated the card’s most visible device. Density is computed from data in hand, restores winner spread, and makes Paris’s mesh playable.</span></div></div>
+<div class="seclabel">V1 · BIG LEDGER · JUMBO NUMERALS, NO TRACKS</div>
+<div class="row"><div class="mcard"><div class="mtop"><div><div class="mname">seoul</div><div class="mepi">the sprawl</div></div><div class="mno">03/12</div></div><div class="pills"><i style="background:#00a23f">2</i><i style="background:#ed6c00">3</i><i style="background:#009bce">4</i><i style="background:#794698">5</i><i style="background:#7c4932">6</i><i style="background:#6e7e31">7</i><i style="background:#d11d70">8</i><i style="background:#a49d87">9</i></div><div class="v1block"><div class="v1row"><span class="rk">3rd</span><span class="v1lab">opened</span><span class="v1val">1974</span></div><div class="v1row"><span class="rk rk1">1st</span><span class="v1lab">stations</span><span class="v1val">607</span></div><div class="v1row"><span class="rk rk1">1st</span><span class="v1lab">span</span><span class="v1val">57.7<small> km</small></span></div><div class="v1row"><span class="rk">3rd</span><span class="v1lab">density</span><span class="v1val">0.27<small> st/km²</small></span></div><div class="v1row pipe"><span class="rk rkp">···</span><span class="v1lab">route-km</span><span class="v1pipe">pipeline · dated</span></div><div class="v1row pipe"><span class="rk rkp">···</span><span class="v1lab">ridership</span><span class="v1pipe">pipeline · dated</span></div></div><div class="mfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></div><div class="mcard"><div class="mtop"><div><div class="mname">paris</div><div class="mepi">the mesh</div></div><div class="mno">09/12</div></div><div class="pills"><i style="background:#ffbe00">1</i><i style="background:#0055c8">2</i><i style="background:#6e6e00">3</i><i style="background:#a0006e">4</i><i style="background:#ff7f32">5</i><i style="background:#82dc73">6</i><i style="background:#ff82b4">7</i><i style="background:#d282be">8</i><i style="background:#b6bd00">9</i><i style="background:#dc9600">10</i><i style="background:#6e491e">11</i><i style="background:#00643c">12</i><i style="background:#82c8e6">13</i><i style="background:#640082">14</i><i style="background:#82c8e6">3bis</i><i style="background:#82dc73">7bis</i></div><div class="v1block"><div class="v1row"><span class="rk rk1">1st</span><span class="v1lab">opened</span><span class="v1val">1900</span></div><div class="v1row"><span class="rk">2nd</span><span class="v1lab">stations</span><span class="v1val">501</span></div><div class="v1row"><span class="rk">3rd</span><span class="v1lab">span</span><span class="v1val">24.1<small> km</small></span></div><div class="v1row"><span class="rk rk1">1st</span><span class="v1lab">density</span><span class="v1val">1.12<small> st/km²</small></span></div><div class="v1row pipe"><span class="rk rkp">···</span><span class="v1lab">route-km</span><span class="v1pipe">pipeline · dated</span></div><div class="v1row pipe"><span class="rk rkp">···</span><span class="v1lab">ridership</span><span class="v1pipe">pipeline · dated</span></div></div><div class="mfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></div><div class="mcard"><div class="mtop"><div><div class="mname">tokyo</div><div class="mepi">the two crews</div></div><div class="mno">02/12</div></div><div class="pills"><i style="background:#e85298">A</i><i style="background:#00bb85">C</i><i style="background:#b6007a">E</i><i style="background:#9c5e31">F</i><i style="background:#ff9500">G</i><i style="background:#b5b5ac">H</i><i style="background:#0079c2">I</i><i style="background:#f62e36">M</i><i style="background:#00ac9b">N</i><i style="background:#6cbb5a">S</i><i style="background:#009bbf">T</i><i style="background:#c1a470">Y</i><i style="background:#8f76d6">Z</i></div><div class="v1block"><div class="v1row"><span class="rk">2nd</span><span class="v1lab">opened</span><span class="v1val">1927</span></div><div class="v1row"><span class="rk">3rd</span><span class="v1lab">stations</span><span class="v1val">391</span></div><div class="v1row"><span class="rk">2nd</span><span class="v1lab">span</span><span class="v1val">32.6<small> km</small></span></div><div class="v1row"><span class="rk">2nd</span><span class="v1lab">density</span><span class="v1val">0.55<small> st/km²</small></span></div><div class="v1row pipe"><span class="rk rkp">···</span><span class="v1lab">route-km</span><span class="v1pipe">pipeline · dated</span></div><div class="v1row pipe"><span class="rk rkp">···</span><span class="v1lab">ridership</span><span class="v1pipe">pipeline · dated</span></div></div><div class="mfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></div></div>
+<div class="cap"><b>V1</b> maximum legibility · the rank tag alone carries
+relative strength · quietest of the three</div>
+<div class="seclabel">V2 · STAT TILES · THE PLAYER-MAT GRID</div>
+<div class="row"><div class="mcard"><div class="mtop"><div><div class="mname">seoul</div><div class="mepi">the sprawl</div></div><div class="mno">03/12</div></div><div class="pills"><i style="background:#00a23f">2</i><i style="background:#ed6c00">3</i><i style="background:#009bce">4</i><i style="background:#794698">5</i><i style="background:#7c4932">6</i><i style="background:#6e7e31">7</i><i style="background:#d11d70">8</i><i style="background:#a49d87">9</i></div><div class="tiles"><div class="tile"><span class="rk tchip">3rd</span><div class="tval">1974</div><div class="tlab">opened</div></div><div class="tile"><span class="rk rk1 tchip">1st</span><div class="tval">607</div><div class="tlab">stations</div></div><div class="tile"><span class="rk rk1 tchip">1st</span><div class="tval">57.7<small> km</small></div><div class="tlab">span</div></div><div class="tile"><span class="rk tchip">3rd</span><div class="tval">0.27<small> st/km²</small></div><div class="tlab">density</div></div><div class="tile pipe"><span class="rk rkp tchip">···</span><div class="tval tvp">soon</div><div class="tlab">route-km</div></div><div class="tile pipe"><span class="rk rkp tchip">···</span><div class="tval tvp">soon</div><div class="tlab">ridership</div></div></div><div class="mfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></div><div class="mcard"><div class="mtop"><div><div class="mname">paris</div><div class="mepi">the mesh</div></div><div class="mno">09/12</div></div><div class="pills"><i style="background:#ffbe00">1</i><i style="background:#0055c8">2</i><i style="background:#6e6e00">3</i><i style="background:#a0006e">4</i><i style="background:#ff7f32">5</i><i style="background:#82dc73">6</i><i style="background:#ff82b4">7</i><i style="background:#d282be">8</i><i style="background:#b6bd00">9</i><i style="background:#dc9600">10</i><i style="background:#6e491e">11</i><i style="background:#00643c">12</i><i style="background:#82c8e6">13</i><i style="background:#640082">14</i><i style="background:#82c8e6">3bis</i><i style="background:#82dc73">7bis</i></div><div class="tiles"><div class="tile"><span class="rk rk1 tchip">1st</span><div class="tval">1900</div><div class="tlab">opened</div></div><div class="tile"><span class="rk tchip">2nd</span><div class="tval">501</div><div class="tlab">stations</div></div><div class="tile"><span class="rk tchip">3rd</span><div class="tval">24.1<small> km</small></div><div class="tlab">span</div></div><div class="tile"><span class="rk rk1 tchip">1st</span><div class="tval">1.12<small> st/km²</small></div><div class="tlab">density</div></div><div class="tile pipe"><span class="rk rkp tchip">···</span><div class="tval tvp">soon</div><div class="tlab">route-km</div></div><div class="tile pipe"><span class="rk rkp tchip">···</span><div class="tval tvp">soon</div><div class="tlab">ridership</div></div></div><div class="mfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></div><div class="mcard"><div class="mtop"><div><div class="mname">tokyo</div><div class="mepi">the two crews</div></div><div class="mno">02/12</div></div><div class="pills"><i style="background:#e85298">A</i><i style="background:#00bb85">C</i><i style="background:#b6007a">E</i><i style="background:#9c5e31">F</i><i style="background:#ff9500">G</i><i style="background:#b5b5ac">H</i><i style="background:#0079c2">I</i><i style="background:#f62e36">M</i><i style="background:#00ac9b">N</i><i style="background:#6cbb5a">S</i><i style="background:#009bbf">T</i><i style="background:#c1a470">Y</i><i style="background:#8f76d6">Z</i></div><div class="tiles"><div class="tile"><span class="rk tchip">2nd</span><div class="tval">1927</div><div class="tlab">opened</div></div><div class="tile"><span class="rk tchip">3rd</span><div class="tval">391</div><div class="tlab">stations</div></div><div class="tile"><span class="rk tchip">2nd</span><div class="tval">32.6<small> km</small></div><div class="tlab">span</div></div><div class="tile"><span class="rk tchip">2nd</span><div class="tval">0.55<small> st/km²</small></div><div class="tlab">density</div></div><div class="tile pipe"><span class="rk rkp tchip">···</span><div class="tval tvp">soon</div><div class="tlab">route-km</div></div><div class="tile pipe"><span class="rk rkp tchip">···</span><div class="tval tvp">soon</div><div class="tlab">ridership</div></div></div><div class="mfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></div></div>
+<div class="cap"><b>V2</b> most board-game · tiles give every stat equal
+weight · pipeline tiles read as empty slots waiting to fill</div>
+<div class="seclabel">V3 · HERO STAT · THE SIGNATURE NUMBER</div>
+<div class="row"><div class="mcard"><div class="mtop"><div><div class="mname">seoul</div><div class="mepi">the sprawl</div></div><div class="mno">03/12</div></div><div class="pills"><i style="background:#00a23f">2</i><i style="background:#ed6c00">3</i><i style="background:#009bce">4</i><i style="background:#794698">5</i><i style="background:#7c4932">6</i><i style="background:#6e7e31">7</i><i style="background:#d11d70">8</i><i style="background:#a49d87">9</i></div><div class="hero"><span class="rk rk1 hchip">1st</span><div class="hval">57.7<small> km</small></div><div class="hlab">span</div></div><div class="v3block"><div class="v3row"><span class="rk">3rd</span><span class="v3lab">opened</span><span class="v3val">1974</span></div><div class="v3row"><span class="rk rk1">1st</span><span class="v3lab">stations</span><span class="v3val">607</span></div><div class="v3row"><span class="rk">3rd</span><span class="v3lab">density</span><span class="v3val">0.27 st/km²</span></div><div class="v3row pipe"><span class="rk rkp">···</span><span class="v3lab">route-km</span><span class="v3pipe">pipeline · dated</span></div><div class="v3row pipe"><span class="rk rkp">···</span><span class="v3lab">ridership</span><span class="v3pipe">pipeline · dated</span></div></div><div class="mfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></div><div class="mcard"><div class="mtop"><div><div class="mname">paris</div><div class="mepi">the mesh</div></div><div class="mno">09/12</div></div><div class="pills"><i style="background:#ffbe00">1</i><i style="background:#0055c8">2</i><i style="background:#6e6e00">3</i><i style="background:#a0006e">4</i><i style="background:#ff7f32">5</i><i style="background:#82dc73">6</i><i style="background:#ff82b4">7</i><i style="background:#d282be">8</i><i style="background:#b6bd00">9</i><i style="background:#dc9600">10</i><i style="background:#6e491e">11</i><i style="background:#00643c">12</i><i style="background:#82c8e6">13</i><i style="background:#640082">14</i><i style="background:#82c8e6">3bis</i><i style="background:#82dc73">7bis</i></div><div class="hero"><span class="rk rk1 hchip">1st</span><div class="hval">1.12<small> st/km²</small></div><div class="hlab">density</div></div><div class="v3block"><div class="v3row"><span class="rk rk1">1st</span><span class="v3lab">opened</span><span class="v3val">1900</span></div><div class="v3row"><span class="rk">2nd</span><span class="v3lab">stations</span><span class="v3val">501</span></div><div class="v3row"><span class="rk">3rd</span><span class="v3lab">span</span><span class="v3val">24.1 km</span></div><div class="v3row pipe"><span class="rk rkp">···</span><span class="v3lab">route-km</span><span class="v3pipe">pipeline · dated</span></div><div class="v3row pipe"><span class="rk rkp">···</span><span class="v3lab">ridership</span><span class="v3pipe">pipeline · dated</span></div></div><div class="mfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></div><div class="mcard"><div class="mtop"><div><div class="mname">tokyo</div><div class="mepi">the two crews</div></div><div class="mno">02/12</div></div><div class="pills"><i style="background:#e85298">A</i><i style="background:#00bb85">C</i><i style="background:#b6007a">E</i><i style="background:#9c5e31">F</i><i style="background:#ff9500">G</i><i style="background:#b5b5ac">H</i><i style="background:#0079c2">I</i><i style="background:#f62e36">M</i><i style="background:#00ac9b">N</i><i style="background:#6cbb5a">S</i><i style="background:#009bbf">T</i><i style="background:#c1a470">Y</i><i style="background:#8f76d6">Z</i></div><div class="hero"><span class="rk hchip">2nd</span><div class="hval">1927</div><div class="hlab">opened</div></div><div class="v3block"><div class="v3row"><span class="rk">3rd</span><span class="v3lab">stations</span><span class="v3val">391</span></div><div class="v3row"><span class="rk">2nd</span><span class="v3lab">span</span><span class="v3val">32.6 km</span></div><div class="v3row"><span class="rk">2nd</span><span class="v3lab">density</span><span class="v3val">0.55 st/km²</span></div><div class="v3row pipe"><span class="rk rkp">···</span><span class="v3lab">route-km</span><span class="v3pipe">pipeline · dated</span></div><div class="v3row pipe"><span class="rk rkp">···</span><span class="v3lab">ridership</span><span class="v3pipe">pipeline · dated</span></div></div><div class="mfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></div></div>
+<div class="cap"><b>V3</b> strongest per-card identity (epithet-aligned hero)
+· honest weakness shown: Tokyo holds no crown in the live deck of three, so
+its hero falls back to its best rank</div>
+<footer><span>stats © OpenStreetMap contributors · ODbL · OSM snapshot
+2026-06-11 · ranks: live deck of three, full deck at pipeline · density:
+bbox basis in mocks, hull basis at pipeline · opened years: operator
+histories, dated sourcing at pipeline</span>
+<span>made by ajin.im</span></footer>
+</div></body></html>

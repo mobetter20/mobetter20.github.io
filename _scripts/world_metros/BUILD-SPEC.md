@@ -57,9 +57,12 @@ game. Trading cards with footnotes.
 | route-km | reported, dated, sourced (almanac grade) | more |
 | ridership | reported annual, dated, sourced (almanac grade) | more |
 
-Ranks and track positions are computed across the full deck of 12 at pipeline
-stage (the mocks footnote "live deck of 3" until then); win directions are
-fixed above and explained on Method. Interchange share remains a candidate
+D20 proposes swapping `lines` for `density` (stations per km² of network
+extent; more wins): the pills already carry line count, and density restores
+winner spread. Pending owner confirm at the D20 gate; the table updates on
+ratification. Ranks and track positions are computed across the full deck of
+12 at pipeline stage (the mocks footnote "live deck of 3" until then); win
+directions are fixed above and explained on Method. Interchange share remains a candidate
 seventh stat if the pipeline resolves it cleanly per the lens definition.
 Missing evidence renders **Unknown** and excludes that stat from battles for
 that card; never shown as zero.
