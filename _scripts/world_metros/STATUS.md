@@ -42,21 +42,20 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/confident-margulis-10e
   records the prototype scope (three cities: Seoul, Paris, Tokyo; diagram +
   true-shape modes; Seoul×Paris shape pair; stubs for Rankings/Method).
 
-## Current gate — owner verdict on the live coded prototype (D8 gate 2),
-## now bundled with the D13 consistency fork (A / B / C)
+## Current gate — owner verdict on the atlas-page wall board (D15)
 
-Bake-off verdict landed (2026-06-12): all three candidates usable, none is
-hero-grade; owner wants the UI reconsidered with the map demoted. **D15
-(PROPOSED)** records the atlas-page proposal: same-scale silhouette wall as
-the landing hero, city dossiers as the dwell surface, maps as figures,
-Explore canvas + Commons diagram demoted to per-city secondary views,
-embeds at most a small "locate it" element. Owner pick pending:
-wall (rec) · rankings-first · dossier-first. If wall: next step is the
-landing-board mock (3 real cities + 9 placeholders; no roster scale-up
-before the D8 prototype approval). Earlier bake-off context: board at
-`mocks/bakeoff-board.html` (D14); octolinear local pipeline stays prepped
-(`mocks/loom_convert.py`) should the schematic ever be wanted as a dossier
-figure.
+**D15 RATIFIED 2026-06-12 (pick: wall).** The atlas-page direction is locked:
+same-scale silhouette wall as the landing hero, city dossiers as the dwell
+surface, maps as figures, the Explore canvas + Commons diagrams demoted to
+per-city secondary views. The approval board is BUILT:
+`mocks/wall-board.html` (`mocks/build_wall_board.py`) — the wall with
+Seoul/Tokyo/Paris real silhouettes at one shared scale + 9 labeled
+placeholders (D8 gate: no roster scale-up yet), plus the Seoul dossier
+example (content hero, round-2 geo figure, demoted view links). Owner verdict
+on this board green-lights rebuilding the live prototype page into the
+atlas-page IA. Earlier bake-off context: `mocks/bakeoff-board.html` (D14);
+octolinear local pipeline stays prepped (`mocks/loom_convert.py`) should the
+schematic ever be wanted as a dossier figure.
 
 The coded prototype is BUILT (this session, branch
 `claude/confident-margulis-10e030`): real page at `/is/building/world-metros/`
@@ -71,11 +70,14 @@ Geometry: `build_page_geometry.py` emits per-city JSON (Seoul 48 KB / Paris 19 K
 `tokyo` + `tokyo_-_toei` networks, refs filtered to Metro+Toei, the `Al`
 through-service excluded.
 
-## Next exact action (after prototype approval)
+## Next exact action (after wall-board approval)
 
-Scale to the remaining 9 roster cities (D3): per-city diagram assets per
-DIAGRAM-LEDGER, per-city True Shape JSON with frozen scope rules
-(DATA-CONTRACT — Seoul L1 is the hard one), Rankings + Method built for real.
+Rebuild the live soft-launched page into the atlas-page IA (D15): wall
+landing from the existing shape JSONs, Seoul/Tokyo/Paris dossiers, demoted
+map views, pair compare kept. Only then scale to the remaining 9 roster
+cities (D3): per-city shape JSON with frozen scope rules (DATA-CONTRACT —
+Seoul L1 is the hard one), diagram assets per DIAGRAM-LEDGER as dossier
+exhibits, Rankings + Method built for real.
 
 ## Blockers
 
