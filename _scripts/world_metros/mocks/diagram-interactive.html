@@ -1,0 +1,171 @@
+<!doctype html>
+<!-- INTERACTIVITY SPIKE (D11): proves the CC-licensed Commons diagram can be
+     pan/zoomed and station-tapped. Hand-written, not generated; loads
+     assets/seoul-diagram.svg inline and drives its viewBox. Not the product. -->
+<html><head><meta charset="utf-8">
+<title>world-metros spike — interactive diagram</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#e8e8e3; font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+       color:#17171c; display:flex; align-items:center; justify-content:center;
+       min-height:100vh; }
+.board { width:1280px; height:800px; background:#f7f7f4; outline:1px solid #d8d8d2;
+         display:flex; flex-direction:column; box-shadow:0 1px 14px rgba(20,20,28,.10); }
+header { display:flex; align-items:baseline; gap:20px; padding:14px 22px 11px;
+         border-bottom:1px solid #d8d8d2; background:#fff; flex:none; }
+.wordmark { font-size:15px; font-weight:700; letter-spacing:.24em; }
+.wordmark em { font-style:normal; color:#0052a4; }
+.spikebadge { margin-left:auto; font-family:'DM Mono',monospace; font-size:9px;
+              letter-spacing:.14em; color:#d96629; border:1px solid #d9662966;
+              padding:3px 7px; border-radius:2px; background:#fff; white-space:nowrap; }
+.hint { padding:8px 22px; font-size:11px; color:#8a8a85; background:#fff;
+        border-bottom:1px solid #d8d8d2; flex:none; }
+.hint b { color:#17171c; font-weight:600; }
+#map { flex:1; position:relative; background:#fff; margin:14px; min-height:0;
+       border:1px solid #d8d8d2; overflow:hidden; cursor:grab; }
+#map svg { width:100%; height:100%; display:block; touch-action:none; }
+#map.dragging { cursor:grabbing; }
+.ctl { position:absolute; top:10px; right:10px; display:flex; gap:6px; z-index:3; }
+.ctl button { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.08em;
+              border:1px solid #d8d8d2; background:#fff; color:#17171c;
+              padding:6px 10px; border-radius:3px; cursor:pointer; }
+#toast { position:absolute; left:50%; bottom:16px; transform:translateX(-50%);
+         background:#17171c; color:#f7f7f4; font-size:12px; padding:9px 16px;
+         border-radius:4px; opacity:0; transition:opacity .18s; z-index:3;
+         max-width:80%; text-align:center; }
+#toast b { color:#f99d1b; font-weight:600; }
+footer { display:flex; justify-content:space-between; padding:9px 22px; flex:none;
+         border-top:1px solid #d8d8d2; font-family:'DM Mono',monospace; font-size:9px;
+         color:#8a8a85; background:#fff; }
+</style></head>
+<body>
+<div class="board">
+  <header>
+    <div class="wordmark">WORLD METROS <em>ATLAS</em></div>
+    <span class="spikebadge">INTERACTIVITY SPIKE · DIAGRAM MODE</span>
+  </header>
+  <div class="hint"><b>drag</b> to pan · <b>scroll / pinch</b> to zoom · <b>tap a station name</b> for its info hook · the diagram is the CC-licensed Commons recreation, untouched</div>
+  <div id="map"><div class="ctl">
+      <button id="zin">+</button><button id="zout">−</button><button id="reset">RESET</button>
+    </div><div id="toast"></div></div>
+  <footer><span>diagram: Satellizer / Wikimedia Commons (CC BY-SA 4.0)</span>
+          <span>made by ajin.im</span></footer>
+</div>
+<script>
+const map = document.getElementById('map');
+const toastEl = document.getElementById('toast');
+let toastTimer = null;
+function toast(html) {
+  toastEl.innerHTML = html;
+  toastEl.style.opacity = 1;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.style.opacity = 0, 6000);
+}
+fetch('assets/seoul-diagram.svg').then(r => r.text()).then(txt => {
+  map.insertAdjacentHTML('beforeend', txt);
+  const svg = map.querySelector('svg');
+  const vb0 = svg.viewBox.baseVal;
+  const home = { x: vb0.x, y: vb0.y, w: vb0.width, h: vb0.height };
+  let vb = { ...home };
+  const apply = () => svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+
+  function zoomAt(cx, cy, f) {
+    const r = svg.getBoundingClientRect();
+    const mx = vb.x + (cx - r.left) / r.width * vb.w;
+    const my = vb.y + (cy - r.top) / r.height * vb.h;
+    vb = { x: mx - (mx - vb.x) * f, y: my - (my - vb.y) * f, w: vb.w * f, h: vb.h * f };
+    apply();
+  }
+  svg.addEventListener('wheel', e => {
+    e.preventDefault();
+    zoomAt(e.clientX, e.clientY, e.deltaY > 0 ? 1.18 : 1 / 1.18);
+  }, { passive: false });
+
+  // pointer pan + two-finger pinch
+  const pts = new Map();
+  let lastMid = null, lastDist = null;
+  svg.addEventListener('pointerdown', e => {
+    svg.setPointerCapture(e.pointerId);
+    pts.set(e.pointerId, [e.clientX, e.clientY]);
+    lastMid = null; lastDist = null;
+    map.classList.add('dragging');
+  });
+  svg.addEventListener('pointermove', e => {
+    if (!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId, [e.clientX, e.clientY]);
+    const r = svg.getBoundingClientRect();
+    const ps = [...pts.values()];
+    if (ps.length === 1) {
+      if (lastMid) {
+        vb.x -= (ps[0][0] - lastMid[0]) / r.width * vb.w;
+        vb.y -= (ps[0][1] - lastMid[1]) / r.height * vb.h;
+        apply();
+      }
+      lastMid = ps[0];
+    } else if (ps.length === 2) {
+      const mid = [(ps[0][0] + ps[1][0]) / 2, (ps[0][1] + ps[1][1]) / 2];
+      const dist = Math.hypot(ps[0][0] - ps[1][0], ps[0][1] - ps[1][1]);
+      if (lastDist) zoomAt(mid[0], mid[1], lastDist / dist);
+      if (lastMid) {
+        vb.x -= (mid[0] - lastMid[0]) / r.width * vb.w;
+        vb.y -= (mid[1] - lastMid[1]) / r.height * vb.h;
+        apply();
+      }
+      lastMid = mid; lastDist = dist;
+    }
+  });
+  ['pointerup', 'pointercancel'].forEach(t => svg.addEventListener(t, e => {
+    pts.delete(e.pointerId);
+    lastMid = null; lastDist = null;
+    if (!pts.size) map.classList.remove('dragging');
+  }));
+
+  // station tap: any text label is addressable
+  let lastHit = null;
+  svg.addEventListener('click', e => {
+    const t = e.target.closest('text');
+    if (!t) return;
+    const name = t.textContent.trim().replace(/\s+/g, ' ');
+    if (lastHit) lastHit.style.fill = '';
+    t.style.fill = '#d96629';
+    lastHit = t;
+    toast(`<b>${name}</b> — label hit registered; the prototype wires this to the station's data card`);
+  });
+
+  document.getElementById('zin').onclick = () => {
+    const r = svg.getBoundingClientRect();
+    zoomAt(r.left + r.width / 2, r.top + r.height / 2, 1 / 1.4);
+  };
+  document.getElementById('zout').onclick = () => {
+    const r = svg.getBoundingClientRect();
+    zoomAt(r.left + r.width / 2, r.top + r.height / 2, 1.4);
+  };
+  document.getElementById('reset').onclick = () => { vb = { ...home }; apply(); };
+
+  // test hook
+  window.__demo = {
+    zoomTo(name, w = 1400) {
+      const t = [...svg.querySelectorAll('text')].find(x => x.textContent.includes(name));
+      if (!t) return false;
+      // getBBox() is local to the label's transform group — convert via screen
+      // space instead: element rect -> current viewBox coordinates
+      const er = t.getBoundingClientRect();
+      const sr = svg.getBoundingClientRect();
+      const cx = vb.x + ((er.left + er.right) / 2 - sr.left) / sr.width * vb.w;
+      const cy = vb.y + ((er.top + er.bottom) / 2 - sr.top) / sr.height * vb.h;
+      vb = { x: cx - w / 2, y: cy - w * 0.31, w: w, h: w * 0.62 };
+      apply();
+      return true;
+    },
+    tap(name) {
+      const t = [...svg.querySelectorAll('text')].find(x => x.textContent.includes(name));
+      if (!t) return false;
+      t.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      return true;
+    },
+    ready: true,
+  };
+});
+</script>
+</body></html>
