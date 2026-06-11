@@ -76,9 +76,11 @@ def ranks_for(meta, city):
 
 
 def pills(meta, city):
+    lines = meta["cities"][city]["lines"]
     segs = "".join(f'<i style="background:{l["color"]}">{l["ref"]}</i>'
-                   for l in meta["cities"][city]["lines"])
-    return f'<div class="pills">{segs}</div>'
+                   for l in lines)
+    compact = " compact" if len(lines) > 12 else ""
+    return f'<div class="pills{compact}">{segs}</div>'
 
 
 def head(meta, city):
@@ -199,26 +201,28 @@ header { display:flex; align-items:baseline; gap:20px; padding:14px 22px 11px;
 .statlist .out { text-decoration:line-through; color:#55555e; }
 .statlist .in { color:#7fb0e8; font-weight:700; }
 
-.mcard { width:270px; height:392px; border-radius:12px; padding:16px 14px 11px;
+.mcard { width:270px; height:420px; border-radius:12px; padding:16px 14px 11px;
          display:flex; flex-direction:column; flex:none; overflow:hidden;
          position:relative; background:#1b1b21; border:1px solid #32323a;
          box-shadow:0 4px 16px rgba(0,0,0,.55); color:#f2f2ee; }
 .mtop { display:flex; justify-content:space-between; align-items:flex-start;
         gap:8px; }
-.mname { font-size:20px; font-weight:800; letter-spacing:.08em;
+.mname { font-size:28px; font-weight:800; letter-spacing:.04em;
          text-transform:uppercase; }
-.mepi { font-family:'DM Mono',monospace; font-size:8.5px; letter-spacing:.22em;
+.mepi { font-family:'DM Mono',monospace; font-size:9.5px; letter-spacing:.22em;
         color:#7fb0e8; text-transform:uppercase; margin-top:4px; }
-.mno { font-family:'DM Mono',monospace; font-size:9px; color:#8a8a85;
-       padding-top:4px; }
+.mno { font-family:'DM Mono',monospace; font-size:9px; color:#6a6a72;
+       padding-top:6px; }
 .pills { display:flex; flex-wrap:wrap; gap:4px; margin-top:12px;
          min-height:18px; }
-.pills i { font-style:normal; font-family:'DM Mono',monospace; font-size:9px;
-           font-weight:500; color:#fff; padding:2.5px 7px; border-radius:999px;
+.pills i { font-style:normal; font-family:'DM Mono',monospace; font-size:9.5px;
+           font-weight:500; color:#fff; padding:3px 8px; border-radius:999px;
            letter-spacing:.02em; }
-.rk { font-family:'DM Mono',monospace; font-size:7px; letter-spacing:.08em;
+.pills.compact { gap:3px; }
+.pills.compact i { font-size:8px; padding:2px 5.5px; }
+.rk { font-family:'DM Mono',monospace; font-size:7.5px; letter-spacing:.08em;
       text-transform:uppercase; text-align:center; border-radius:999px;
-      padding:2.5px 0; width:34px; border:1px solid #43434c; color:#9a9a94;
+      padding:3px 0; width:38px; border:1px solid #43434c; color:#9a9a94;
       flex:none; }
 .rk1 { background:#0052a4; border-color:#0052a4; color:#fff; font-weight:500; }
 .rkp { border-style:dashed; border-color:#3a3a42; color:#55555e; }
@@ -227,52 +231,54 @@ header { display:flex; align-items:baseline; gap:20px; padding:14px 22px 11px;
 
 /* V1 big ledger */
 .v1block { margin-top:13px; border-top:1px solid #32323a; }
-.v1row { display:flex; align-items:center; gap:9px; padding:9px 1px;
+.v1row { display:flex; align-items:center; gap:10px; padding:10px 1px;
          border-bottom:1px solid #232329; }
-.v1lab { font-family:'DM Mono',monospace; font-size:8.5px;
-         letter-spacing:.14em; color:#8a8a85; text-transform:uppercase; }
-.v1val { margin-left:auto; font-family:'DM Mono',monospace; font-size:19px;
+.v1lab { font-size:11.5px; font-weight:700; letter-spacing:.05em;
+         color:#e3e3de; text-transform:uppercase; }
+.v1val { margin-left:auto; font-family:'DM Mono',monospace; font-size:20px;
          font-weight:500; letter-spacing:-.01em; white-space:nowrap; }
 .v1val small { font-size:9px; color:#8a8a85; letter-spacing:.06em; }
 .v1pipe { margin-left:auto; font-family:'DM Mono',monospace; font-size:7px;
           color:#55555e; }
-.v1row.pipe .v1lab { color:#4a4a52; }
+.v1row.pipe .v1lab { color:#6a6a72; }
+.v1row.pipe { border-bottom-style:dashed; border-bottom-color:#2c2c34; }
 
 /* V2 stat tiles */
 .tiles { margin-top:13px; display:grid; grid-template-columns:1fr 1fr;
          gap:8px; }
 .tile { position:relative; background:#1f1f26; border:1px solid #2c2c34;
         border-radius:8px; padding:12px 10px 9px; }
-.tile .tchip { position:absolute; top:7px; right:7px; width:30px;
+.tile .tchip { position:absolute; bottom:8px; right:8px; width:30px;
                font-size:6.5px; padding:2px 0; }
-.tval { font-family:'DM Mono',monospace; font-size:18px; font-weight:500;
-        margin-top:6px; white-space:nowrap; }
+.tval { font-family:'DM Mono',monospace; font-size:20px; font-weight:500;
+        margin-top:2px; white-space:nowrap; }
 .tval small { font-size:8.5px; color:#8a8a85; letter-spacing:.06em; }
 .tval.tvp { color:#55555e; font-size:12px; }
-.tlab { font-family:'DM Mono',monospace; font-size:7px; letter-spacing:.14em;
-        color:#8a8a85; text-transform:uppercase; margin-top:4px; }
+.tlab { font-size:9.5px; font-weight:700; letter-spacing:.06em;
+        color:#e3e3de; text-transform:uppercase; margin-top:5px; }
 .tile.pipe { border-style:dashed; background:transparent; }
-.tile.pipe .tlab { color:#4a4a52; }
+.tile.pipe .tlab { color:#6a6a72; }
 
 /* V3 hero stat */
 .hero { margin-top:13px; border:1px solid #32323a; border-radius:8px;
         background:#1f1f26; padding:13px 12px 11px; position:relative; }
 .hero .hchip { position:absolute; top:9px; right:9px; }
-.hval { font-family:'DM Mono',monospace; font-size:30px; font-weight:500;
+.hval { font-family:'DM Mono',monospace; font-size:34px; font-weight:500;
         letter-spacing:-.02em; line-height:1; }
 .hval small { font-size:11px; color:#8a8a85; letter-spacing:.06em; }
-.hlab { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.2em;
-        color:#7fb0e8; text-transform:uppercase; margin-top:6px; }
+.hlab { font-size:10.5px; font-weight:700; letter-spacing:.08em;
+        color:#e3e3de; text-transform:uppercase; margin-top:7px; }
 .v3block { margin-top:9px; }
-.v3row { display:flex; align-items:center; gap:9px; padding:6.5px 1px;
+.v3row { display:flex; align-items:center; gap:10px; padding:8.5px 1px;
          border-bottom:1px solid #232329; }
-.v3lab { font-family:'DM Mono',monospace; font-size:7.5px;
-         letter-spacing:.12em; color:#8a8a85; text-transform:uppercase; }
-.v3val { margin-left:auto; font-family:'DM Mono',monospace; font-size:12px;
+.v3lab { font-size:10px; font-weight:700; letter-spacing:.05em;
+         color:#e3e3de; text-transform:uppercase; }
+.v3val { margin-left:auto; font-family:'DM Mono',monospace; font-size:13px;
          font-weight:500; white-space:nowrap; }
 .v3pipe { margin-left:auto; font-family:'DM Mono',monospace; font-size:7px;
           color:#55555e; }
-.v3row.pipe .v3lab { color:#4a4a52; }
+.v3row.pipe .v3lab { color:#6a6a72; }
+.v3row.pipe { border-bottom-style:dashed; border-bottom-color:#2c2c34; }
 
 footer { display:flex; justify-content:space-between; gap:20px;
          padding:9px 22px; border-top:1px solid #26262c; margin-top:16px;
@@ -307,7 +313,10 @@ def main():
 <style>{CSS}</style></head><body><div class="board">
 <header><div class="wordmark">WORLD METROS <em>ATLAS</em></div>
 <span class="mockbadge">STAT VARIANTS · D20 · APPROVAL ARTIFACT</span></header>
-<div class="intro"><b>the D20 question:</b> ground C is settled; are the
+<div class="intro"><b>the D20 question (board r2):</b> label hierarchy fixed
+after owner flag: stat names now lead each row in bold near-white (you pick a
+stat by its name; it cannot be the quietest thing on the card). Ground C is
+settled; are the
 comparison items optimal, and how should they present? One content proposal
 (the strip below) and three presentations of the same card, big letters
 first. Pick a variant or name elements to merge; confirm or veto the stat

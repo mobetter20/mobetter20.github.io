@@ -391,3 +391,12 @@ card look; multiple mock versions welcomed).**
     its best rank), five compact rows below.
 - Gate: owner picks V1 / V2 / V3 (or elements to merge) AND confirms or
   vetoes the lines→density swap. Then the live-page rebuild starts.
+*Revision (2026-06-12, board r2/r3):* owner flagged the label hierarchy
+(stats big, headers small and hard to read; bring a UX/game-asset designer
+eye). Type pass applied: stat labels lead each row in bold near-white sans
+(11.5px; you pick a stat by its name), city name 28px, jumbo values kept.
+A designer-critique agent then reviewed the screenshots; adopted: Paris/Tokyo
+pill compaction above 12 lines (every ref kept, no overflow hiding), V2 rank
+chip to tile bottom-right, dashed treatment so pending rows read as slots not
+broken data, quieter deck number. Rejected: re-dimming labels (contradicts
+the owner's flag; game hierarchy wants stat names scannable first).
