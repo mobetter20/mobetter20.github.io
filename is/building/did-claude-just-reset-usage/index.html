@@ -37,6 +37,7 @@ h1{font-size:clamp(22px,5.6vw,30px);font-weight:500;letter-spacing:.01em;line-he
 
 .answer{font-size:13.5px;color:var(--fg);max-width:52ch}
 .answer .quiet{color:var(--dim)}
+.definition{margin-top:10px;font-size:11px;color:var(--faint)}
 .canaryline{margin-top:18px;font-size:11px;letter-spacing:.06em;color:var(--faint)}
 .stale{margin-top:8px;font-size:11px;color:var(--accent);opacity:.8}
 
@@ -84,6 +85,7 @@ pre{background:var(--codebg);border:1px solid var(--rule);border-radius:4px;
   <div class="answer" id="answer">
     <noscript>this page needs javascript to read the canary's latest state. last known reset: Jun 9, 2026, weekly counter 77% to 0%, window unchanged, not announced.</noscript>
   </div>
+  <div class="definition" id="definition" data-hours="48">on this page, “just” means a reset detected within the past 48 hours.</div>
   <div class="canaryline" id="canaryline"></div>
   <div class="stale" id="stale" style="display:none"></div>
 
@@ -131,6 +133,7 @@ curl -s https://api.anthropic.com/api/oauth/usage \
 <script>
 (function(){
   var HOUR = 3600e3;
+  var JUST_HOURS = Number(document.getElementById('definition').dataset.hours);
   function esc(s){var d=document.createElement('span');d.textContent=s==null?'':String(s);return d.innerHTML}
   function ago(iso){
     var ms = Date.now() - new Date(iso).getTime();
@@ -148,7 +151,7 @@ curl -s https://api.anthropic.com/api/oauth/usage \
     var v = document.getElementById('verdict'), a = document.getElementById('answer');
     var lr = s.last_reset;
     var hoursSince = (Date.now() - new Date(lr.detected_utc).getTime()) / HOUR;
-    var verdict = s.verdict_override || (hoursSince < 48 ? 'yes' : 'no');
+    var verdict = s.verdict_override || (hoursSince < JUST_HOURS ? 'yes' : 'no');
 
     v.textContent = verdict.toUpperCase() + '.';
     v.className = 'verdict ' + verdict;
