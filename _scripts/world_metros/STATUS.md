@@ -45,18 +45,18 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/confident-margulis-10e
 ## Current gate — owner verdict on the live coded prototype (D8 gate 2),
 ## now bundled with the D13 consistency fork (A / B / C)
 
-At the gate the owner raised the diagram-consistency question (the chosen
-Commons files are a style patchwork), judged the round-1 geo dress clumsy
-outside Tokyo, and locked a map-first bake-off (D14). The verdict board is
-built: `mocks/bakeoff-board.html` — per city (Seoul/Tokyo/Paris), three
-candidates side by side: (1) polished geographic (ours, round-2: smoothing +
-casing + water), (2) consistent octolinear schematic (LOOM; demo-render
-evidence, local pipeline prepped in `mocks/loom_convert.py`, docker build one
-admin click away), (3) the familiar Commons diagram (the shipped prototype's
-patchwork, as reference). Owner verdict on the board picks the Explore map
-direction and resolves D13; Shape keeps true geometry regardless. Note:
-candidates 1 and 2 still have no station-name labels; the diagrams are the
-only name-bearing view today.
+Bake-off verdict landed (2026-06-12): all three candidates usable, none is
+hero-grade; owner wants the UI reconsidered with the map demoted. **D15
+(PROPOSED)** records the atlas-page proposal: same-scale silhouette wall as
+the landing hero, city dossiers as the dwell surface, maps as figures,
+Explore canvas + Commons diagram demoted to per-city secondary views,
+embeds at most a small "locate it" element. Owner pick pending:
+wall (rec) · rankings-first · dossier-first. If wall: next step is the
+landing-board mock (3 real cities + 9 placeholders; no roster scale-up
+before the D8 prototype approval). Earlier bake-off context: board at
+`mocks/bakeoff-board.html` (D14); octolinear local pipeline stays prepped
+(`mocks/loom_convert.py`) should the schematic ever be wanted as a dossier
+figure.
 
 The coded prototype is BUILT (this session, branch
 `claude/confident-margulis-10e030`): real page at `/is/building/world-metros/`

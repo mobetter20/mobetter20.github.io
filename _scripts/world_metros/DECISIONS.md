@@ -196,3 +196,37 @@ today (the diagrams remain the only name-bearing view); the schematic's station
 clustering relies on `topo` name-merging of per-line OSM stop nodes. Owner
 verdict on the board picks the Explore direction; Shape keeps true geometry
 regardless.
+
+## 2026-06-12
+
+**D15 · Hero flip: atlas-page IA, map demoted from hero to figure — PROPOSED
+2026-06-12 (owner verdict on the D14 board).**
+Owner on the bake-off: all three candidates usable but none is the polished
+main visual they imagined; willing to reconsider the UI — map less prominent,
+other content the hero, maps small/sparing, possibly an embedded map if legal.
+Assessment: the imagined polish is operator/Apple-grade designed cartography
+(copyright-walled or a large design investment); but our geometry already
+reads as finished at SMALL sizes (the same-scale-poster genre is minimalist
+silhouettes). Proposal:
+- **Landing hero = same-scale silhouette wall** — all 12 networks as small
+  dark true-shape silhouettes, one shared px-per-km, north-up, name + one
+  number each. The site's thesis in one screen; built directly from the
+  existing shape JSONs.
+- **City dossier** as the dwell surface: why-stories, dated facts, almanac,
+  line-palette strip; a medium map as a *figure* (round-2 geo dress works at
+  that size), expandable on demand.
+- **Demotions, not deletions**: the interactive Explore canvas and the Commons
+  diagram become per-city secondary views (the diagram stays the name-bearing
+  "map riders see" exhibit, D11 obligation kept); the synced pair view becomes
+  "compare any two" reached from dossiers; Rankings rows carry tiny
+  silhouettes.
+- **Embeds** (owner asked): legal via Google embed API or Leaflet + tile
+  provider with attribution (raw osm.org tiles policy-discouraged), but
+  generic-by-construction; at most a small "locate it" element in a dossier,
+  never a hero.
+Alternatives offered: rankings-first (table as front page) or dossier-first
+(no thesis image). Recommendation: silhouette wall. If ratified, next step is
+a landing-board mock with the 3 live cities real + 9 placeholders (D8 gate
+discipline: no roster scale-up before prototype approval). Resolves D13 by
+superseding the "Explore default" question: in this IA the diagram/true-shape
+toggle lives one level down, where patchwork inconsistency stops mattering.
