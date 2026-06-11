@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+<!-- GENERATED FILE - DO NOT EDIT. Built by _scripts/world_metros/build_metro_cards.py; edit the script and re-run. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex"><!-- soft launch: unlisted until the D8 gate-2 verdict -->
-<meta name="theme-color" content="#f7f7f4">
-<title>World Metros Atlas</title>
-<meta name="description" content="An interactive atlas of the world's defining metro systems: the familiar diagrams, and their true shapes at one shared scale.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23f7f7f4'/%3E%3Cpath d='M14 58 H 86' stroke='%230052a4' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='58' r='15' fill='%23ffffff' stroke='%2317171c' stroke-width='8'/%3E%3C/svg%3E">
+<meta name="robots" content="noindex"><!-- soft launch: unlisted until the owner verdict gate -->
+<meta name="theme-color" content="#0f0f12">
+<title>Metro Match</title>
+<meta name="description" content="A collectible card deck for the world's defining metro systems. Twelve cities, six honest stats, a battle and a daily guess. Trading cards with footnotes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231b1b21'/%3E%3Crect x='22' y='18' width='10' height='64' rx='5' fill='%2300a23f'/%3E%3Crect x='38' y='18' width='10' height='64' rx='5' fill='%23ffbe00'/%3E%3Crect x='54' y='18' width='10' height='64' rx='5' fill='%23f62e36'/%3E%3Crect x='70' y='18' width='10' height='64' rx='5' fill='%230052a4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -15,101 +16,170 @@
 <script src="/analytics.js" defer></script>
 </head>
 <body>
-<div class="atlas">
+<div class="table">
 
   <header>
-    <h1 class="wordmark">WORLD METROS <em>ATLAS</em></h1>
+    <h1 class="wordmark">METRO <em>MATCH</em></h1>
     <nav role="tablist" aria-label="Views" id="tabs">
-      <button role="tab" id="tab-explore" aria-controls="panel-explore" aria-selected="true">EXPLORE</button>
-      <button role="tab" id="tab-shape" aria-controls="panel-shape" aria-selected="false" tabindex="-1">SHAPE</button>
-      <button role="tab" id="tab-rankings" aria-controls="panel-rankings" aria-selected="false" tabindex="-1">RANKINGS</button>
-      <button role="tab" id="tab-method" aria-controls="panel-method" aria-selected="false" tabindex="-1">METHOD</button>
+      <button type="button" role="tab" id="tab-deck" aria-controls="panel-deck" aria-selected="true">THE DECK</button>
+      <button type="button" role="tab" id="tab-battle" aria-controls="panel-battle" aria-selected="false" tabindex="-1">THE BATTLE</button>
+      <button type="button" role="tab" id="tab-daily" aria-controls="panel-daily" aria-selected="false" tabindex="-1">THE DAILY</button>
+      <button type="button" role="tab" id="tab-method" aria-controls="panel-method" aria-selected="false" tabindex="-1">METHOD</button>
     </nav>
-    <span class="protobadge">PROTOTYPE · 3 OF 12 CITIES</span>
+    <span class="livebadge">3 OF 12 LIVE</span>
   </header>
 
   <main>
 
-    <section id="panel-explore" role="tabpanel" aria-labelledby="tab-explore">
-      <div class="citystrip" id="citystrip" role="group" aria-label="City"></div>
-      <div class="explore">
-        <div class="mappanel">
-          <div class="maphead">
-            <div class="maplabel" id="map-label"></div>
-            <div class="mapsub" id="map-sub"></div>
-          </div>
-          <div class="modetoggle" role="group" aria-label="Map mode">
-            <button id="mode-diagram" aria-pressed="true">DIAGRAM</button>
-            <button id="mode-shape" aria-pressed="false">TRUE SHAPE</button>
-          </div>
-          <div class="mapviewport" id="explore-map" tabindex="0" role="application"
-               aria-label="Metro map. Drag or use arrow keys to pan, scroll or plus and minus keys to zoom."></div>
-          <div class="maptools">
-            <button id="zoom-in" aria-label="Zoom in">+</button>
-            <button id="zoom-out" aria-label="Zoom out">−</button>
-            <button id="zoom-reset" aria-label="Reset view">⌖</button>
-          </div>
-          <div class="scalebar" id="explore-scalebar" hidden><span class="bar"></span><span class="km"></span></div>
-          <div class="maphint" id="map-hint"></div>
-          <div class="mapnote" id="map-note" hidden>labels not tappable on this diagram</div>
-          <div class="stationchip" id="station-chip" hidden></div>
-          <div class="maploading" id="map-loading" hidden>loading…</div>
-        </div>
-        <aside class="citycard" id="citycard" aria-live="polite"></aside>
-      </div>
+    <section id="panel-deck" role="tabpanel" aria-labelledby="tab-deck">
+      <p class="intro">A collectible card deck for the world&rsquo;s defining
+      metro systems. Every city is one card, honest dated data is the
+      content, and comparison is the game: flip a card for its lore side,
+      then take the deck into the battle or the daily.
+      <b>Trading cards with footnotes.</b></p>
+      <div class="deckgrid"><div class="cardunit"><div class="card csoon" aria-label="shanghai, card 01 of 12, in the pipeline"><div class="chead"><div class="cid"><div class="cname">shanghai</div></div><div class="cno">01/12</div></div><div class="soonmid"><span class="soonchip">SOON</span></div><div class="cfoot">diagram sourced · CC BY-SA 4.0</div></div><span class="flipbtn ghost" aria-hidden="true">IN THE PIPELINE</span></div><div class="cardunit"><div class="flipbox" data-city="tokyo"><div class="flipinner"><div class="face"><article class="card cfront" aria-label="tokyo, the two crews, card 02 of 12"><div class="chead"><div class="cid"><div class="cname">tokyo</div><div class="cepi">the two crews</div></div><div class="cno">02/12</div></div><div class="cpills compact"><i style="background:#e85298">A</i><i style="background:#00bb85">C</i><i style="background:#b6007a">E</i><i style="background:#9c5e31">F</i><i style="background:#ff9500">G</i><i style="background:#b5b5ac">H</i><i style="background:#0079c2">I</i><i style="background:#f62e36">M</i><i style="background:#00ac9b">N</i><i style="background:#6cbb5a">S</i><i style="background:#009bbf">T</i><i style="background:#c1a470">Y</i><i style="background:#8f76d6">Z</i><span class="ctag">13 lines · Metro + Toei</span></div><div class="cledger"><div class="crow" data-stat="opened"><span class="crk">2nd</span><span class="clab">opened</span><span class="cval">1927</span></div><div class="crow" data-stat="stations"><span class="crk">3rd</span><span class="clab">stations</span><span class="cval">391</span></div><div class="crow" data-stat="span"><span class="crk">2nd</span><span class="clab">span</span><span class="cval">32.6<small> km</small></span></div><div class="crow" data-stat="density"><span class="crk">2nd</span><span class="clab">density</span><span class="cval">0.55<small> st/km²</small></span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">route-km</span><span class="cpipetext">pipeline · dated</span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">ridership</span><span class="cpipetext">pipeline · dated</span></div></div><div class="cfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></article></div><div class="face backface" aria-hidden="true"><article class="card cback" aria-label="tokyo lore side"><div class="lart"><img data-src="assets/tokyo-diagram.svg" alt="Tokyo Metro + Toei network diagram, a Wikimedia Commons recreation of the map riders see"></div><div class="lband"><div class="lname">tokyo</div><div class="lsys">Tokyo Metro + Toei</div><div class="lflavor">Thirteen lines, two operators, one grid.</div><div class="lfacts"><div class="lfact">Two operators share one grid: Tokyo Metro runs nine lines, Toei runs four.</div><div class="lfact">G is for Ginza: Asia&rsquo;s first metro line, opened 1927.</div><div class="lfact">Through-running trains continue onto suburban railways, so the map riders see stretches far beyond these 13 lines.</div></div><div class="lcredit">“Tokyo Subway Linemap” by Yveltal, Wikimedia Commons, CC BY-SA 4.0</div></div></article></div></div></div><button type="button" class="flipbtn" data-city="tokyo" aria-pressed="false">FLIP · LORE SIDE</button></div><div class="cardunit"><div class="flipbox" data-city="seoul"><div class="flipinner"><div class="face"><article class="card cfront" aria-label="seoul, the sprawl, card 03 of 12"><div class="chead"><div class="cid"><div class="cname">seoul</div><div class="cepi">the sprawl</div></div><div class="cno">03/12</div></div><div class="cpills"><i style="background:#00a23f">2</i><i style="background:#ed6c00">3</i><i style="background:#009bce">4</i><i style="background:#794698">5</i><i style="background:#7c4932">6</i><i style="background:#6e7e31">7</i><i style="background:#d11d70">8</i><i style="background:#a49d87">9</i><span class="ctag">8 lines · 2–9 shown</span></div><div class="cledger"><div class="crow" data-stat="opened"><span class="crk">3rd</span><span class="clab">opened</span><span class="cval">1974</span></div><div class="crow" data-stat="stations"><span class="crk crk1">1st</span><span class="clab">stations</span><span class="cval">607</span></div><div class="crow" data-stat="span"><span class="crk crk1">1st</span><span class="clab">span</span><span class="cval">57.7<small> km</small></span></div><div class="crow" data-stat="density"><span class="crk">3rd</span><span class="clab">density</span><span class="cval">0.27<small> st/km²</small></span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">route-km</span><span class="cpipetext">pipeline · dated</span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">ridership</span><span class="cpipetext">pipeline · dated</span></div></div><div class="cfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></article></div><div class="face backface" aria-hidden="true"><article class="card cback" aria-label="seoul lore side"><div class="lart"><img data-src="assets/seoul-diagram.svg" alt="Seoul Metropolitan Subway network diagram, a Wikimedia Commons recreation of the map riders see"></div><div class="lband"><div class="lname">seoul</div><div class="lsys">Seoul Metropolitan Subway</div><div class="lflavor">58 km between its furthest stations, the deck’s longest reach.</div><div class="lfacts"><div class="lfact">Line 2 is a 48 km loop around the city; trains circle it all day.</div><div class="lfact">Many stations double as underground arcades; a few anchor whole malls.</div><div class="lfact">Trains run far past the city limits on shared track; where this card stops counting is the scope question Method footnotes.</div></div><div class="lcredit">“Seoul Metropolitan Subway network map” by Satellizer, Wikimedia Commons, CC BY-SA 4.0<div class="lcaveat">diagram dated 2023, future lines as then planned</div></div></div></article></div></div></div><button type="button" class="flipbtn" data-city="seoul" aria-pressed="false">FLIP · LORE SIDE</button></div><div class="cardunit"><div class="card csoon" aria-label="hong kong, card 04 of 12, in the pipeline"><div class="chead"><div class="cid"><div class="cname">hong kong</div></div><div class="cno">04/12</div></div><div class="soonmid"><span class="soonchip">SOON</span></div><div class="cfoot">diagram sourced · public domain</div></div><span class="flipbtn ghost" aria-hidden="true">IN THE PIPELINE</span></div><div class="cardunit"><div class="card csoon" aria-label="singapore, card 05 of 12, in the pipeline"><div class="chead"><div class="cid"><div class="cname">singapore</div></div><div class="cno">05/12</div></div><div class="soonmid"><span class="soonchip">SOON</span></div><div class="cfoot">diagram sourced · CC BY-SA 3.0</div></div><span class="flipbtn ghost" aria-hidden="true">IN THE PIPELINE</span></div><div class="cardunit"><div class="card csoon" aria-label="delhi, card 06 of 12, in the pipeline"><div class="chead"><div class="cid"><div class="cname">delhi</div></div><div class="cno">06/12</div></div><div class="soonmid"><span class="soonchip">SOON</span></div><div class="cfoot">diagram sourced · CC BY-SA 4.0</div></div><span class="flipbtn ghost" aria-hidden="true">IN THE PIPELINE</span></div><div class="cardunit"><div class="card csoon" aria-label="moscow, card 07 of 12, in the pipeline"><div class="chead"><div class="cid"><div class="cname">moscow</div></div><div class="cno">07/12</div></div><div class="soonmid"><span class="soonchip">SOON</span></div><div class="cfoot">diagram sourced · CC BY-SA 4.0</div></div><span class="flipbtn ghost" aria-hidden="true">IN THE PIPELINE</span></div><div class="cardunit"><div class="card csoon" aria-label="london, card 08 of 12, in the pipeline"><div class="chead"><div class="cid"><div class="cname">london</div></div><div class="cno">08/12</div></div><div class="soonmid"><span class="soonchip">SOON</span></div><div class="cfoot">diagram sourced · CC BY-SA 4.0</div></div><span class="flipbtn ghost" aria-hidden="true">IN THE PIPELINE</span></div><div class="cardunit"><div class="flipbox" data-city="paris"><div class="flipinner"><div class="face"><article class="card cfront" aria-label="paris, the mesh, card 09 of 12"><div class="chead"><div class="cid"><div class="cname">paris</div><div class="cepi">the mesh</div></div><div class="cno">09/12</div></div><div class="cpills compact"><i style="background:#ffbe00">1</i><i style="background:#0055c8">2</i><i style="background:#6e6e00">3</i><i style="background:#a0006e">4</i><i style="background:#ff7f32">5</i><i style="background:#82dc73">6</i><i style="background:#ff82b4">7</i><i style="background:#d282be">8</i><i style="background:#b6bd00">9</i><i style="background:#dc9600">10</i><i style="background:#6e491e">11</i><i style="background:#00643c">12</i><i style="background:#82c8e6">13</i><i style="background:#640082">14</i><i style="background:#82c8e6">3bis</i><i style="background:#82dc73">7bis</i><span class="ctag">16 lines · full Métro</span></div><div class="cledger"><div class="crow" data-stat="opened"><span class="crk crk1">1st</span><span class="clab">opened</span><span class="cval">1900</span></div><div class="crow" data-stat="stations"><span class="crk">2nd</span><span class="clab">stations</span><span class="cval">501</span></div><div class="crow" data-stat="span"><span class="crk">3rd</span><span class="clab">span</span><span class="cval">24.1<small> km</small></span></div><div class="crow" data-stat="density"><span class="crk crk1">1st</span><span class="clab">density</span><span class="cval">1.12<small> st/km²</small></span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">route-km</span><span class="cpipetext">pipeline · dated</span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">ridership</span><span class="cpipetext">pipeline · dated</span></div></div><div class="cfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></article></div><div class="face backface" aria-hidden="true"><article class="card cback" aria-label="paris lore side"><div class="lart"><img data-src="assets/paris-diagram.svg" alt="Métro de Paris network diagram, a Wikimedia Commons recreation of the map riders see"></div><div class="lband"><div class="lname">paris</div><div class="lsys">Métro de Paris</div><div class="lflavor">1.1 stations per square km, the deck’s tightest grid.</div><div class="lfacts"><div class="lfact">Opened for the 1900 World&rsquo;s Fair; Line 1 still runs the route it opened with.</div><div class="lfact">In central Paris you are rarely more than 500 m from a Métro entrance.</div><div class="lfact">Lines 1, 4 and 14 run with no driver at all.</div></div><div class="lcredit">“Carte Métro de Paris” by Rigil, Wikimedia Commons, CC BY 3.0</div></div></article></div></div></div><button type="button" class="flipbtn" data-city="paris" aria-pressed="false">FLIP · LORE SIDE</button></div><div class="cardunit"><div class="card csoon" aria-label="new york, card 10 of 12, in the pipeline"><div class="chead"><div class="cid"><div class="cname">new york</div></div><div class="cno">10/12</div></div><div class="soonmid"><span class="soonchip">SOON</span></div><div class="cfoot">diagram sourced · CC BY-SA 3.0</div></div><span class="flipbtn ghost" aria-hidden="true">IN THE PIPELINE</span></div><div class="cardunit"><div class="card csoon" aria-label="mexico city, card 11 of 12, in the pipeline"><div class="chead"><div class="cid"><div class="cname">mexico city</div></div><div class="cno">11/12</div></div><div class="soonmid"><span class="soonchip">SOON</span></div><div class="cfoot">diagram sourced · CC BY-SA 4.0</div></div><span class="flipbtn ghost" aria-hidden="true">IN THE PIPELINE</span></div><div class="cardunit"><div class="card csoon" aria-label="cairo, card 12 of 12, in the pipeline"><div class="chead"><div class="cid"><div class="cname">cairo</div></div><div class="cno">12/12</div></div><div class="soonmid"><span class="soonchip">SOON</span></div><div class="cfoot">diagram sourced · CC0</div></div><span class="flipbtn ghost" aria-hidden="true">IN THE PIPELINE</span></div></div>
     </section>
 
-    <section id="panel-shape" role="tabpanel" aria-labelledby="tab-shape" hidden>
-      <div class="pairbar">
-        <span class="pairname">SEOUL</span><span class="vs">×</span><span class="pairname">PARIS</span>
-        <span class="pairnote">one scale · north-up · geography not aligned · shapes only</span>
-        <span class="syncflag">SYNC ZOOM</span>
+    <section id="panel-battle" role="tabpanel" aria-labelledby="tab-battle" hidden>
+      
+    <div class="arena">
+      <div class="bcol">
+        <div class="bcap">YOU · PICK A STAT</div>
+        <div class="bslot" id="you-slot"><div class="bcardwrap" id="you-seoul" hidden><article class="card cfront" aria-label="seoul, the sprawl, card 03 of 12"><div class="chead"><div class="cid"><div class="cname">seoul</div><div class="cepi">the sprawl</div></div><div class="cno">03/12</div></div><div class="cpills"><i style="background:#00a23f">2</i><i style="background:#ed6c00">3</i><i style="background:#009bce">4</i><i style="background:#794698">5</i><i style="background:#7c4932">6</i><i style="background:#6e7e31">7</i><i style="background:#d11d70">8</i><i style="background:#a49d87">9</i><span class="ctag">8 lines · 2–9 shown</span></div><div class="cledger"><button type="button" class="crow" data-stat="opened"><span class="crk">3rd</span><span class="clab">opened</span><span class="cval">1974</span></button><button type="button" class="crow" data-stat="stations"><span class="crk crk1">1st</span><span class="clab">stations</span><span class="cval">607</span></button><button type="button" class="crow" data-stat="span"><span class="crk crk1">1st</span><span class="clab">span</span><span class="cval">57.7<small> km</small></span></button><button type="button" class="crow" data-stat="density"><span class="crk">3rd</span><span class="clab">density</span><span class="cval">0.27<small> st/km²</small></span></button><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">route-km</span><span class="cpipetext">pipeline · dated</span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">ridership</span><span class="cpipetext">pipeline · dated</span></div></div><div class="cfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></article></div><div class="bcardwrap" id="you-paris" hidden><article class="card cfront" aria-label="paris, the mesh, card 09 of 12"><div class="chead"><div class="cid"><div class="cname">paris</div><div class="cepi">the mesh</div></div><div class="cno">09/12</div></div><div class="cpills compact"><i style="background:#ffbe00">1</i><i style="background:#0055c8">2</i><i style="background:#6e6e00">3</i><i style="background:#a0006e">4</i><i style="background:#ff7f32">5</i><i style="background:#82dc73">6</i><i style="background:#ff82b4">7</i><i style="background:#d282be">8</i><i style="background:#b6bd00">9</i><i style="background:#dc9600">10</i><i style="background:#6e491e">11</i><i style="background:#00643c">12</i><i style="background:#82c8e6">13</i><i style="background:#640082">14</i><i style="background:#82c8e6">3bis</i><i style="background:#82dc73">7bis</i><span class="ctag">16 lines · full Métro</span></div><div class="cledger"><button type="button" class="crow" data-stat="opened"><span class="crk crk1">1st</span><span class="clab">opened</span><span class="cval">1900</span></button><button type="button" class="crow" data-stat="stations"><span class="crk">2nd</span><span class="clab">stations</span><span class="cval">501</span></button><button type="button" class="crow" data-stat="span"><span class="crk">3rd</span><span class="clab">span</span><span class="cval">24.1<small> km</small></span></button><button type="button" class="crow" data-stat="density"><span class="crk crk1">1st</span><span class="clab">density</span><span class="cval">1.12<small> st/km²</small></span></button><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">route-km</span><span class="cpipetext">pipeline · dated</span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">ridership</span><span class="cpipetext">pipeline · dated</span></div></div><div class="cfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></article></div><div class="bcardwrap" id="you-tokyo" hidden><article class="card cfront" aria-label="tokyo, the two crews, card 02 of 12"><div class="chead"><div class="cid"><div class="cname">tokyo</div><div class="cepi">the two crews</div></div><div class="cno">02/12</div></div><div class="cpills compact"><i style="background:#e85298">A</i><i style="background:#00bb85">C</i><i style="background:#b6007a">E</i><i style="background:#9c5e31">F</i><i style="background:#ff9500">G</i><i style="background:#b5b5ac">H</i><i style="background:#0079c2">I</i><i style="background:#f62e36">M</i><i style="background:#00ac9b">N</i><i style="background:#6cbb5a">S</i><i style="background:#009bbf">T</i><i style="background:#c1a470">Y</i><i style="background:#8f76d6">Z</i><span class="ctag">13 lines · Metro + Toei</span></div><div class="cledger"><button type="button" class="crow" data-stat="opened"><span class="crk">2nd</span><span class="clab">opened</span><span class="cval">1927</span></button><button type="button" class="crow" data-stat="stations"><span class="crk">3rd</span><span class="clab">stations</span><span class="cval">391</span></button><button type="button" class="crow" data-stat="span"><span class="crk">2nd</span><span class="clab">span</span><span class="cval">32.6<small> km</small></span></button><button type="button" class="crow" data-stat="density"><span class="crk">2nd</span><span class="clab">density</span><span class="cval">0.55<small> st/km²</small></span></button><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">route-km</span><span class="cpipetext">pipeline · dated</span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">ridership</span><span class="cpipetext">pipeline · dated</span></div></div><div class="cfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></article></div></div>
       </div>
-      <div class="pair">
-        <div class="mappanel half">
-          <div class="maphead">
-            <div class="maplabel">SEOUL · LINES 2–9</div>
-            <div class="mapsub" id="pane-seoul-sub"></div>
-          </div>
-          <div class="mapviewport" id="pane-seoul" tabindex="0" role="application"
-               aria-label="Seoul network shape. Drag or use arrow keys to pan, scroll or plus and minus keys to zoom. Zoom is synchronized with the Paris panel."></div>
-          <div class="scalebar" id="pane-seoul-scalebar"><span class="bar"></span><span class="km"></span></div>
+      <div class="bmid">
+        <div class="bround" id="b-round">ROUND 1</div>
+        <div class="bprompt" id="b-prompt">pick the stat you think wins</div>
+        <div class="bresult" aria-live="polite">
+          <div class="bcall" id="b-call" hidden></div>
+          <div class="bnums" id="b-nums" hidden></div>
         </div>
-        <div class="mappanel half">
-          <div class="maphead">
-            <div class="maplabel">PARIS · MÉTRO 1–14</div>
-            <div class="mapsub" id="pane-paris-sub"></div>
+        <div class="bscore" id="b-score">you 0 · cpu 0 · first to 3</div>
+        <button type="button" class="bnext" id="b-next" hidden>NEXT ROUND</button>
+        <button type="button" class="bnext" id="b-again" hidden>PLAY AGAIN</button>
+        <div class="bfine">route-km and ridership sit out: a stat without
+        evidence is Unknown, and Unknown never battles.</div>
+      </div>
+      <div class="bcol">
+        <div class="bcap">CPU · FACE DOWN</div>
+        <div class="bslot bflip" id="cpu-slot">
+          <div class="bflipinner" id="cpu-flip">
+            <div class="bface"><div class="card cdeckback" role="img" aria-label="Face-down card: the Metro Match deck back"><div class="pinstripes"><i style="background:#00a23f"></i><i style="background:#ed6c00"></i><i style="background:#009bce"></i><i style="background:#794698"></i><i style="background:#7c4932"></i><i style="background:#6e7e31"></i><i style="background:#d11d70"></i><i style="background:#a49d87"></i><i style="background:#ffbe00"></i><i style="background:#0055c8"></i><i style="background:#6e6e00"></i><i style="background:#a0006e"></i><i style="background:#ff7f32"></i><i style="background:#82dc73"></i><i style="background:#ff82b4"></i><i style="background:#d282be"></i><i style="background:#b6bd00"></i><i style="background:#dc9600"></i><i style="background:#6e491e"></i><i style="background:#00643c"></i><i style="background:#82c8e6"></i><i style="background:#640082"></i><i style="background:#82c8e6"></i><i style="background:#82dc73"></i><i style="background:#e85298"></i><i style="background:#00bb85"></i><i style="background:#b6007a"></i><i style="background:#9c5e31"></i><i style="background:#ff9500"></i><i style="background:#b5b5ac"></i><i style="background:#0079c2"></i><i style="background:#f62e36"></i><i style="background:#00ac9b"></i><i style="background:#6cbb5a"></i><i style="background:#009bbf"></i><i style="background:#c1a470"></i><i style="background:#8f76d6"></i></div><div class="backband"><div class="backmark">METRO MATCH</div><div class="backsub">twelve systems · one deck</div></div></div></div>
+            <div class="bface bfaceup" id="cpu-front"><div class="bcardwrap" id="cpu-seoul" hidden><article class="card cfront" aria-label="seoul, the sprawl, card 03 of 12"><div class="chead"><div class="cid"><div class="cname">seoul</div><div class="cepi">the sprawl</div></div><div class="cno">03/12</div></div><div class="cpills"><i style="background:#00a23f">2</i><i style="background:#ed6c00">3</i><i style="background:#009bce">4</i><i style="background:#794698">5</i><i style="background:#7c4932">6</i><i style="background:#6e7e31">7</i><i style="background:#d11d70">8</i><i style="background:#a49d87">9</i><span class="ctag">8 lines · 2–9 shown</span></div><div class="cledger"><div class="crow" data-stat="opened"><span class="crk">3rd</span><span class="clab">opened</span><span class="cval">1974</span></div><div class="crow" data-stat="stations"><span class="crk crk1">1st</span><span class="clab">stations</span><span class="cval">607</span></div><div class="crow" data-stat="span"><span class="crk crk1">1st</span><span class="clab">span</span><span class="cval">57.7<small> km</small></span></div><div class="crow" data-stat="density"><span class="crk">3rd</span><span class="clab">density</span><span class="cval">0.27<small> st/km²</small></span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">route-km</span><span class="cpipetext">pipeline · dated</span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">ridership</span><span class="cpipetext">pipeline · dated</span></div></div><div class="cfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></article></div><div class="bcardwrap" id="cpu-paris" hidden><article class="card cfront" aria-label="paris, the mesh, card 09 of 12"><div class="chead"><div class="cid"><div class="cname">paris</div><div class="cepi">the mesh</div></div><div class="cno">09/12</div></div><div class="cpills compact"><i style="background:#ffbe00">1</i><i style="background:#0055c8">2</i><i style="background:#6e6e00">3</i><i style="background:#a0006e">4</i><i style="background:#ff7f32">5</i><i style="background:#82dc73">6</i><i style="background:#ff82b4">7</i><i style="background:#d282be">8</i><i style="background:#b6bd00">9</i><i style="background:#dc9600">10</i><i style="background:#6e491e">11</i><i style="background:#00643c">12</i><i style="background:#82c8e6">13</i><i style="background:#640082">14</i><i style="background:#82c8e6">3bis</i><i style="background:#82dc73">7bis</i><span class="ctag">16 lines · full Métro</span></div><div class="cledger"><div class="crow" data-stat="opened"><span class="crk crk1">1st</span><span class="clab">opened</span><span class="cval">1900</span></div><div class="crow" data-stat="stations"><span class="crk">2nd</span><span class="clab">stations</span><span class="cval">501</span></div><div class="crow" data-stat="span"><span class="crk">3rd</span><span class="clab">span</span><span class="cval">24.1<small> km</small></span></div><div class="crow" data-stat="density"><span class="crk crk1">1st</span><span class="clab">density</span><span class="cval">1.12<small> st/km²</small></span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">route-km</span><span class="cpipetext">pipeline · dated</span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">ridership</span><span class="cpipetext">pipeline · dated</span></div></div><div class="cfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></article></div><div class="bcardwrap" id="cpu-tokyo" hidden><article class="card cfront" aria-label="tokyo, the two crews, card 02 of 12"><div class="chead"><div class="cid"><div class="cname">tokyo</div><div class="cepi">the two crews</div></div><div class="cno">02/12</div></div><div class="cpills compact"><i style="background:#e85298">A</i><i style="background:#00bb85">C</i><i style="background:#b6007a">E</i><i style="background:#9c5e31">F</i><i style="background:#ff9500">G</i><i style="background:#b5b5ac">H</i><i style="background:#0079c2">I</i><i style="background:#f62e36">M</i><i style="background:#00ac9b">N</i><i style="background:#6cbb5a">S</i><i style="background:#009bbf">T</i><i style="background:#c1a470">Y</i><i style="background:#8f76d6">Z</i><span class="ctag">13 lines · Metro + Toei</span></div><div class="cledger"><div class="crow" data-stat="opened"><span class="crk">2nd</span><span class="clab">opened</span><span class="cval">1927</span></div><div class="crow" data-stat="stations"><span class="crk">3rd</span><span class="clab">stations</span><span class="cval">391</span></div><div class="crow" data-stat="span"><span class="crk">2nd</span><span class="clab">span</span><span class="cval">32.6<small> km</small></span></div><div class="crow" data-stat="density"><span class="crk">2nd</span><span class="clab">density</span><span class="cval">0.55<small> st/km²</small></span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">route-km</span><span class="cpipetext">pipeline · dated</span></div><div class="crow cpipe"><span class="crk crkp">···</span><span class="clab">ridership</span><span class="cpipetext">pipeline · dated</span></div></div><div class="cfoot">data: OSM snapshot 2026-06-11 · ODbL · ranks: live deck of 3 · density: bbox basis</div></article></div></div>
           </div>
-          <div class="mapviewport" id="pane-paris" tabindex="0" role="application"
-               aria-label="Paris network shape. Drag or use arrow keys to pan, scroll or plus and minus keys to zoom. Zoom is synchronized with the Seoul panel."></div>
-          <div class="scalebar" id="pane-paris-scalebar"><span class="bar"></span><span class="km"></span></div>
         </div>
       </div>
-      <div class="maploading" id="shape-loading" hidden>loading…</div>
+    </div>
     </section>
 
-    <section id="panel-rankings" role="tabpanel" aria-labelledby="tab-rankings" hidden>
-      <div class="stub">
-        <div class="stubtitle">RANKINGS · IN PROGRESS</div>
-        <p>Five honestly-rankable lenses (furthest-stations span, station complexes, customer-facing lines, interchange share, opening chronology) plus a dated table of reported figures. Lands after the prototype gate.</p>
+    <section id="panel-daily" role="tabpanel" aria-labelledby="tab-daily" hidden>
+      
+    <div class="dailybox">
+      <div class="dhead">THE DAILY · <span id="d-date"></span></div>
+      <div class="dq" id="d-q">Which plots more stations?</div>
+      <div class="dchoices">
+        <button type="button" class="dchoice" id="d-a">
+          <span class="dname"></span><span class="dmeta">?</span></button>
+        <span class="dvs">vs</span>
+        <button type="button" class="dchoice" id="d-b">
+          <span class="dname"></span><span class="dmeta">?</span></button>
       </div>
+      <div class="dverdict" id="d-verdict" tabindex="-1" aria-live="polite" hidden></div>
+      <div class="dstreak" id="d-streak"></div>
+      <div class="dnote">one guess a day · the streak lives in this browser ·
+      station counts are plotted from the dated OSM snapshot · live deck of
+      three, the pool deepens as cards land</div>
+    </div>
     </section>
 
     <section id="panel-method" role="tabpanel" aria-labelledby="tab-method" hidden>
-      <div class="stub">
-        <div class="stubtitle">METHOD · IN PROGRESS</div>
-        <p>Scope rules per system, sources and as-of dates, the licensing story behind the diagrams, and why some famous networks are absent. Lands after the prototype gate.</p>
-      </div>
+      
+    <div class="method">
+      <h2>The game</h2>
+      <p><b>The battle.</b> You hold a card face up; the cpu holds one face
+      down. Pick the stat you think wins; the cards compare, and the round
+      goes to the better number. First to three rounds takes the match.</p>
+      <p><b>The daily.</b> One question a day, one guess, and a streak that
+      lives in your browser. Nothing leaves the page.</p>
+      <p><b>Win directions are fixed.</b> Opened wins earlier; stations,
+      span, density, route-km and ridership win larger.</p>
+
+      <h2>The six stats</h2>
+      <table>
+        <tr><th>stat</th><th>what it measures</th><th>wins</th></tr>
+        <tr><td>opened</td><td>earliest regular passenger service within the
+        card&rsquo;s declared scope, from operator histories, dated</td>
+        <td>earlier</td></tr>
+        <tr><td>stations</td><td>station complexes plotted from the frozen
+        snapshot; interchanges counted once</td><td>more</td></tr>
+        <tr><td>span</td><td>the furthest-stations distance: the geodesic
+        between the two stations farthest apart, computed</td><td>more</td></tr>
+        <tr><td>density</td><td>stations per square km of network extent;
+        bounding-box basis today, convex-hull basis when the pipeline
+        lands</td><td>more</td></tr>
+        <tr><td>route-km</td><td>reported route length, dated and sourced
+        (almanac grade; in the pipeline)</td><td>more</td></tr>
+        <tr><td>ridership</td><td>reported annual ridership, dated and
+        sourced (almanac grade; in the pipeline)</td><td>more</td></tr>
+      </table>
+      <p>Ranks are computed across the live deck of 3; the full
+      deck of 12 takes over at the pipeline stage. Missing evidence renders
+      <b>Unknown</b>, never zero, and Unknown sits out battles.</p>
+
+      <h2>Scope: what a card counts</h2>
+      <p>Each card declares its scope as <b>the network its city&rsquo;s own
+      familiar map draws</b>: the rider&rsquo;s network, not one
+      operator&rsquo;s books (ratified 2026-06-12; lands fully at the roster
+      scale-up).</p>
+      <p>Today&rsquo;s three cards: <b>Seoul</b> shows lines 2–9; the full
+      Capital Area network, with its long shared-track corridors, is the
+      pipeline&rsquo;s hard scope question and gets its entry here when
+      frozen. <b>Paris</b> is the Métro proper, lines 1–14 plus 3bis and
+      7bis; RER excluded. <b>Tokyo</b> is Tokyo Metro plus Toei,
+      through-running truncated at the scope boundary.</p>
+      <p>The pills on every card carry a line count and a scope tag, so the
+      card never silently claims completeness.</p>
+
+      <h2>Sources and dates</h2>
+      <p>Geometry and station counts: OpenStreetMap, via the subway
+      preprocessor CDN, snapshot 2026-06-11, ODbL. The page is built
+      offline from committed snapshots; raw GeoJSON never ships here.</p>
+      <p>Opened years: operator histories; per-line dated sourcing arrives
+      with the pipeline. Route-km and annual ridership: reported figures,
+      almanac grade; they appear when they can carry a source and an as-of
+      date, and until then their rows read <b>pipeline</b>, never zero.</p>
+
+      <h2>The diagrams on the backs</h2>
+      <p>The lore side of each card carries the diagram riders actually see,
+      as a Wikimedia Commons recreation, credited on the card:</p>
+      <p class="credit">“Seoul Metropolitan Subway network map” by Satellizer, Wikimedia Commons, CC BY-SA 4.0</p><p class="credit">“Carte Métro de Paris” by Rigil, Wikimedia Commons, CC BY 3.0</p><p class="credit">“Tokyo Subway Linemap” by Yveltal, Wikimedia Commons, CC BY-SA 4.0</p>
+      <p class="credit">Seoul&rsquo;s diagram is dated 2023 and draws future
+      lines as then planned.</p>
+      <p>Official schematic artwork appears nowhere on this site: the major
+      operators enforce copyright on their map artwork, so the
+      long-maintained Commons recreations are the legal route to the
+      familiar map. The nine pipeline cities are already sourced and
+      licence-verified the same way.</p>
+
+      <h2>Why twelve, and why not Beijing</h2>
+      <p>The deck is twelve category-defining systems, not a top-N:
+      Shanghai, Tokyo, Seoul, Hong Kong, Singapore, Delhi, Moscow, London,
+      Paris, New York, Mexico City, Cairo. <b>Beijing stays out
+      deliberately</b>: Shanghai holds the China-mega seat, and a deck of
+      every mega-system would be a different, duller product. Absence is
+      content.</p>
+    </div>
     </section>
 
   </main>
 
   <footer>
-    <span id="attribution">geometry © OpenStreetMap contributors (ODbL)</span>
+    <span>stats © OpenStreetMap contributors · ODbL · OSM snapshot 2026-06-11 · lore diagrams credited on each card</span>
     <a class="made" href="/" target="_self">made by ajin.im</a>
   </footer>
 
 </div>
+<script id="mm-data" type="application/json">{"asOf":"2026-06-11","cities":{"paris":{"disp":{"density":"1.12 st/km²","opened":"1900","span":"24.1 km","stations":"501"},"name":"paris","no":"09","values":{"density":1.1188572659180425,"opened":1900,"span":24.1,"stations":501}},"seoul":{"disp":{"density":"0.27 st/km²","opened":"1974","span":"57.7 km","stations":"607"},"name":"seoul","no":"03","values":{"density":0.26969849648855404,"opened":1974,"span":57.7,"stations":607}},"tokyo":{"disp":{"density":"0.55 st/km²","opened":"1927","span":"32.6 km","stations":"391"},"name":"tokyo","no":"02","values":{"density":0.5455609456945983,"opened":1927,"span":32.6,"stations":391}}},"live":["seoul","paris","tokyo"],"pairs":[["seoul","paris"],["seoul","tokyo"],["paris","tokyo"]],"statOrder":["opened","stations","span","density"],"stats":{"density":{"win":"high"},"opened":{"win":"low"},"span":{"win":"high"},"stations":{"win":"high"}}}</script>
 <script src="app.js" defer></script>
 </body>
 </html>

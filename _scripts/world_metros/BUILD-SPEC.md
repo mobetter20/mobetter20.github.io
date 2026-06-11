@@ -1,4 +1,4 @@
-# BUILD-SPEC — Metro Cards (working name "metro match"; v2 contract, supersedes the atlas)
+# BUILD-SPEC — Metro Match (v2 contract, supersedes the atlas; name ratified D21)
 
 This is the product/acceptance contract for the D17 card pivot, written after
 the premise gate passed (D19: owner "i like it" on the D18 v2 board). The v1
@@ -8,7 +8,7 @@ the owner at D16: *fun and engaging comparison of interesting metro systems,
 in an easy-to-get view*. The four map-hero rounds (D10–D15) established what
 this site will NOT be: a cartography product.
 
-## North-Star (D17, ratified; name pending)
+## North-Star (D17, ratified; named Metro Match at D21)
 
 A collectible card deck for the world's defining metro systems. Every city is
 one designed stat card; honest dated data is the content; comparison is the
@@ -88,11 +88,13 @@ that card; never shown as zero.
 1. **D19 ground pick** — DONE (C: dark card, dark table) + **D20** — DONE
    (V1 big ledger; density swap ratified).
 2. **Live-page rebuild** of `/is/building/world-metros/` as DECK + BATTLE +
-   DAILY + METHOD with the three live cities real, nine cards "soon". Owner
-   verdict on the live page.
-3. **Roster scale-up** to all 12 (D3) with frozen scope rules (Seoul L1 is
-   the hard one), per-line opened-year sourcing, full-deck ranks, lore backs
-   per DIAGRAM-LEDGER. Naming settled by the owner before this ships wide.
+   DAILY + METHOD with the three live cities real, nine cards "soon" —
+   BUILT 2026-06-12 (D21; `build_metro_cards.py`). Owner verdict on the
+   live page is the open gate.
+3. **Roster scale-up** to all 12 (D3) with frozen scope rules under
+   rider-scope B (D21; Seoul L1 is the hard one), per-line opened-year
+   sourcing, full-deck ranks, lore backs per DIAGRAM-LEDGER. Naming is
+   settled (Metro Match, D21).
 
 ## Soft-launch conditions (repo norm, unchanged)
 
