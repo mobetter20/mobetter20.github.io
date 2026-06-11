@@ -90,15 +90,24 @@ _Last updated: 2026-06-12 (Claude session, branch `worktree-metro-cards-d17`)._
   the same session: BUILD-SPEC.md rewritten around the D17 North-Star + D18
   card grammar; README first paragraph updated to the card vision.
 
-## Current gate: owner pick on the D19 ground fork (A / B / C)
+- D19 ground fork resolved (2026-06-12): owner picked **C**, dark card on
+  dark table. Owner then asked to confirm the comparison items (content and
+  design): big letters, legible, strong brand identity, board-game card
+  look, multiple versions welcome. Recorded as **D20**: stat-list review
+  (PROPOSED: swap `lines` for `density`; pills already carry line count;
+  winner spread improves; Paris's mesh becomes playable) + three
+  stat-presentation variants in treatment C.
 
-The gate artifact is `mocks/card-dark-board.html`: the same Seoul card three
-ways on ground swatches (A white-on-light reference, B white card on a dark
-table, C dark card on a dark table: the recommendation), then the fan, the
-flip and the battle restaged in the recommended dark treatment. The pick
-settles the visual ground before the live-page rebuild.
+## Current gate: owner verdict on the D20 board (variant pick + stat-list confirm)
 
-## Next exact action (after the D19 ground pick)
+The gate artifact is `mocks/card-row-variants-board.html`: the proposed
+stat-list strip (was / proposed / why), then each variant as the full
+three-city fan in treatment C: V1 BIG LEDGER (jumbo numerals, no tracks),
+V2 STAT TILES (2×3 player-mat grid), V3 HERO STAT (signature number +
+compact rows). Owner picks a variant (or elements to merge) and confirms or
+vetoes the lines→density swap.
+
+## Next exact action (after the D20 pick)
 
 Rebuild the live page as the card deck in the picked ground: THE DECK
 (12-card collection, flip cards), THE BATTLE (vs cpu, pick-a-stat, first to

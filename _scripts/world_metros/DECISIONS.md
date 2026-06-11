@@ -355,3 +355,39 @@ Gate artifact: `mocks/card-dark-board.html` (the three-way ground fork on
 swatches, then the fan / flip / battle restaged in the recommended dark
 treatment). Owner pick A / B / C settles the ground before the live-page
 rebuild; naming ("metro match", working) stays open.
+*Resolution (2026-06-12):* owner picked **C** ("i meant c"): dark card, dark
+table. The ground is settled.
+
+**D20 · Stat-list review + row-design variants — RATIFIED 2026-06-12
+(owner-directed at the D19 pick: confirm the comparison items are optimal,
+content AND design; big letters, legible, strong brand identity, board-game
+card look; multiple mock versions welcomed).**
+- **Content (PROPOSED, owner to confirm): swap `lines` for `density`.**
+  The current six (opened, lines, stations, span, route-km, ridership) carry
+  three size-correlated stats; big systems would sweep them, which is poor
+  Top-Trumps balance. `lines` is also already ON the card: the pills carry
+  every ref, so the row spends a slot restating the most visible device.
+  `density` (stations per km² of network extent; bbox basis in mocks, hull
+  basis at pipeline, defined on Method) is computed from data we already
+  hold, is orthogonal to size, and gives Paris its epithet stat: the mesh
+  becomes playable. Proposed six: **opened · stations · span · density ·
+  route-km · ridership**. Live-deck winner spread improves (Seoul: stations
+  + span; Paris: opened + density; full deck projects route-km/ridership to
+  the Shanghai class and opened to London: five-plus distinct winners across
+  six stats). Line count stays visible via the pills and the lore back.
+- **Design: three stat-presentation variants, all in treatment C,** judged
+  by eye on one board (`mocks/card-row-variants-board.html`), each shown as
+  the full three-city fan. Shared across variants: bigger name (20px),
+  bigger pills, the C palette, provenance foot. The variants differ ONLY in
+  how the six stats present:
+  - **V1 · BIG LEDGER** — six rows, jumbo numerals (19px), rank tag + label
+    left, value right; the strength tracks are dropped (the rank tag alone
+    carries relative strength). Maximum legibility.
+  - **V2 · STAT TILES** — a 2×3 grid of tiles, value on top, label under,
+    rank chip in the corner. The board-game player-mat look.
+  - **V3 · HERO STAT** — the city's signature stat blown up as the card's
+    hero number (epithet-aligned: Seoul span, Paris density; Tokyo shows the
+    variant's honest weakness: no crown in the live deck, hero falls back to
+    its best rank), five compact rows below.
+- Gate: owner picks V1 / V2 / V3 (or elements to merge) AND confirms or
+  vetoes the lines→density swap. Then the live-page rebuild starts.
