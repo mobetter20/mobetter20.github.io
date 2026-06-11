@@ -37,6 +37,12 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/confident-margulis-10e
   (third-party-IP carve-out), DMRC (no open license). No city at no-good-option;
   Delhi flagged weakest (2020 base, four named missing openings).
 
+- Coded prototype (D8 gate 2) BUILT and soft-launched 2026-06-11 at
+  https://ajin.im/is/building/world-metros/ (PR #145: Explore diagram +
+  true-shape, Seoul-Paris Shape pair, noindex/unlisted; full verification
+  record in this file's git history). Map-direction mocks followed: bake-off
+  D14 (PR #147), wall D15 (PR #149, rejected at gate).
+
 - D11 RATIFIED 2026-06-11: owner approved the familiar-diagram layer via the
   diagram mock + interactivity spike and by launching the gate-2 build. D12
   records the prototype scope (three cities: Seoul, Paris, Tokyo; diagram +
