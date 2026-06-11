@@ -42,13 +42,16 @@ objective best.
 
 ## Design direction
 
-**Electric Cartography** (working name, from the Codex session; pending the mock gate):
-luminous network geometry on near-black, hard contrast, restrained glow on active
-routes/focus states only. Palette: void `#070A14`, dark tyrian `#12354E`, cerulean
-`#0093A5`, english red `#D96629`, yellow-orange `#F99D1B`, pink `#FFB3F0`, warm text
-`#F2EAD8`. Network lines keep their real (OSM `stroke`) colours; the palette is chrome.
-Bespoke tier: carries its own art; wears only the anchors (a way home, palette
-sympathy, DM Mono if labels appear). No title device.
+**Official-map idiom** (owner-directed 2026-06-11, supersedes Electric Cartography
+— see DECISIONS D10): white paper ground, the operators' real line colours (OSM
+`stroke`), bold solid strokes, white-fill/ink-ring station dots; selecting a line
+greys the rest of the network (the metro-app convention). Chrome: clean sans for
+UI, DM Mono for data/provenance labels, transit-blue accent `#0052a4`, city chips
+as pills, active tab underlined like a route line. The site dresses like the
+artifact it describes. Official map ARTWORK is never embedded (licensing,
+DATA-CONTRACT.md); every city card carries **"the map riders see →"** linking to
+the operator's official diagram, and Method tells the licensing story. Bespoke
+tier: own art, anchors only (way home, palette sympathy, DM Mono labels).
 
 ## Approval gates (in order)
 
