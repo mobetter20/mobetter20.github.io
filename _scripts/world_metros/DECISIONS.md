@@ -232,3 +232,30 @@ superseding the "Explore default" question: in this IA the diagram/true-shape
 toggle lives one level down, where patchwork inconsistency stops mattering.
 *Ratification (2026-06-12):* owner picked the silhouette wall ("wall").
 Next gate artifact: the landing-board mock (wall + one example dossier).
+
+**D16 · Gallery + Duel IA; familiar diagrams promoted to the visual language —
+PROPOSED 2026-06-12 (owner verdict on the D15 wall board: rejected as ugly).**
+Signal across four visual rounds (dark boards rejected at D10; geographic dress
+judged clumsy at D14; octolinear merely usable; silhouette wall rejected at the
+D15 gate): the owner's eye consistently holds only on the real, designed
+diagrams. Decision follows the signal: stop generating the hero visual.
+- **Visual language = the familiar Commons diagrams in uniform frames.** The
+  patchwork objection resolves by the site's own design rule (consistent
+  chrome, free content): identical card frames, the diagram as the artwork.
+  As compared artifacts, per-city style differences are content, not mess.
+  Ledger caveats stop binding: tap-ability and currency notes matter less for
+  exhibits (the already-built interactive viewer opens from the card).
+- **Engagement core = head-to-head + rankings** (the owner's reweighting:
+  "fun and engaging" comparison matters more than map polish). Mechanics
+  ratified for build: the DUEL (tale-of-the-tape: paired bars per lens +
+  almanac fact rows + plain verdict lines + the same-scale silhouette pair
+  demoted to one "true size" row; stable per-pair URLs), SUPERLATIVE CHIPS
+  (1-2 computed awards per city on its gallery card, linking into rankings),
+  PODIUM STORIES (each lens: top-3 podium + spread strip + one surprising
+  fact; sortable almanac below). Deferred to v2: reveal-on-tap guessing.
+  Rejected: brackets/tournaments (gimmick at n=12).
+- **IA**: landing = the 12-card diagram gallery + "compare any two" entry;
+  duel pages; Rankings = lens podiums + almanac; Method unchanged. The wall
+  (D15) is dead as a landing; the geo dress and octolinear pipeline are
+  shelved, kept in mocks/.
+Next gate artifact if ratified: gallery + SEOUL-vs-PARIS duel mock board.

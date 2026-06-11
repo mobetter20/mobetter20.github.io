@@ -42,42 +42,25 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/confident-margulis-10e
   records the prototype scope (three cities: Seoul, Paris, Tokyo; diagram +
   true-shape modes; Seoul×Paris shape pair; stubs for Rankings/Method).
 
-## Current gate — owner verdict on the atlas-page wall board (D15)
+## Current gate — owner verdict on the D16 Gallery + Duel proposal
 
-**D15 RATIFIED 2026-06-12 (pick: wall).** The atlas-page direction is locked:
-same-scale silhouette wall as the landing hero, city dossiers as the dwell
-surface, maps as figures, the Explore canvas + Commons diagrams demoted to
-per-city secondary views. The approval board is BUILT:
-`mocks/wall-board.html` (`mocks/build_wall_board.py`) — the wall with
-Seoul/Tokyo/Paris real silhouettes at one shared scale + 9 labeled
-placeholders (D8 gate: no roster scale-up yet), plus the Seoul dossier
-example (content hero, round-2 geo figure, demoted view links). Owner verdict
-on this board green-lights rebuilding the live prototype page into the
-atlas-page IA. Earlier bake-off context: `mocks/bakeoff-board.html` (D14);
-octolinear local pipeline stays prepped (`mocks/loom_convert.py`) should the
-schematic ever be wanted as a dossier figure.
+The D15 wall board was REJECTED at its gate (owner: ugly). **D16 (PROPOSED)**
+follows the four-round visual signal: the familiar Commons diagrams become the
+site's visual language (uniform gallery frames; consistency from chrome, not
+maps), and the engagement core shifts to head-to-head comparison: duel pages
+with a tale-of-the-tape (paired lens bars, verdict lines, the same-scale pair
+demoted to one "true size" row), superlative chips on gallery cards, podium
+stories per ranking lens. Owner pick pending; if ratified, next gate artifact
+is the gallery + SEOUL-vs-PARIS duel mock board. Prior boards stay in mocks/
+for the record (wall-board.html, bakeoff-board.html, geo-shape-desktop.html).
 
-The coded prototype is BUILT (this session, branch
-`claude/confident-margulis-10e030`): real page at `/is/building/world-metros/`
-(https://ajin.im/is/building/world-metros/ once merged), soft-launch state
-(noindex; the sitemap builder auto-skips noindex pages; no hub card; no teaser),
-official-map idiom per the round-2 boards, scope per D12. Verified: 375/768/1280,
-keyboard tabs + map keys, station tap (Seoul Hongik / Paris Bastille), Tokyo
-degraded treatment, shared px-per-km identical across the Shape pair, sync zoom,
-lazy-load (only meta.json + the Seoul diagram at boot), zero console errors.
-Geometry: `build_page_geometry.py` emits per-city JSON (Seoul 48 KB / Paris 19 KB
-/ Tokyo 22 KB + meta 1.5 KB); Tokyo merges the validator's pre-split
-`tokyo` + `tokyo_-_toei` networks, refs filtered to Metro+Toei, the `Al`
-through-service excluded.
+## Next exact action (after D16 ratification)
 
-## Next exact action (after wall-board approval)
-
-Rebuild the live soft-launched page into the atlas-page IA (D15): wall
-landing from the existing shape JSONs, Seoul/Tokyo/Paris dossiers, demoted
-map views, pair compare kept. Only then scale to the remaining 9 roster
-cities (D3): per-city shape JSON with frozen scope rules (DATA-CONTRACT —
-Seoul L1 is the hard one), diagram assets per DIAGRAM-LEDGER as dossier
-exhibits, Rankings + Method built for real.
+Build the gallery + duel mock board (12 diagram cards with 3 real, one full
+SEOUL vs PARIS duel with tale-of-the-tape). After that gate: rebuild the live
+page into the Gallery + Duel IA, then scale to the remaining 9 roster cities
+(D3) with frozen scope rules (DATA-CONTRACT — Seoul L1 is the hard one),
+diagram assets per DIAGRAM-LEDGER, Rankings podiums + almanac for real.
 
 ## Blockers
 
