@@ -73,22 +73,33 @@ _Last updated: 2026-06-12 (Claude session, branch `worktree-metro-cards-d17`)._
   (premise before spec); D17 carries the draft North-Star. All prior boards
   stay in mocks/ for the record.
 
-## Current gate: owner verdict on the D17 card mock (the premise kill test)
+- D17 round-1 card mock judged (2026-06-12): cards yes, execution no. Owner:
+  the map may not belong on the front at all; more interesting stats instead;
+  polished and minimal like a modern board-game card, optimized for our game,
+  not the baseball/Pokémon lineage; the familiar map maybe on the BACK; a
+  real pivot, not a half-measure reactionary fix. Recorded as **D18
+  (RATIFIED, owner-directed)**: game-first front (deck-rank chips + strength
+  tracks on every stat row, line pills as the identity device, epithets, no
+  map), the familiar diagram moves to the card back (lore side, credited),
+  uniform pinstripe deck back stays the game-hidden state. Round-1 board
+  stays in mocks/ for the record.
 
-The gate artifact is `mocks/card-fan-board.html`: a 3-card fan (Seoul, Paris,
-Tokyo), the card-art fork shown side by side (silhouette window vs diagram
-window, judged by eye), one battle frame (stat picked, winner called), one
-card back. If the cards delight: D17's North-Star replaces BUILD-SPEC's and
-the live page rebuilds as the deck. If they do not: archive with confidence
-(registry to paused/archived), one artifact spent to find out.
+## Current gate: owner verdict on the D18 v2 card board (the premise kill test, round 2)
 
-## Next exact action (after the card-mock gate)
+The gate artifact is `mocks/card-game-board.html`: three v2 fronts (Seoul,
+Paris, Tokyo), the flip exhibit (front / lore back with the credited diagram /
+deck back), the battle restaged on v2 cards, the daily strip. If the v2 cards
+delight: D17's North-Star replaces BUILD-SPEC's and the live page rebuilds as
+the deck. If they do not: archive per D17's premise-gate clause.
 
-If approved: rewrite BUILD-SPEC.md around the D17 North-Star (deck + battle +
-daily; honest dated stats; soft-launch norms unchanged), settle the card-art
-fork and naming, rebuild the live page as the card deck, then scale to the
-remaining 9 roster cities (D3) with frozen scope rules (DATA-CONTRACT: Seoul
-L1 is the hard one) and per-line opened-year sourcing for the stat block.
+## Next exact action (after the v2 card gate)
+
+If approved: rewrite BUILD-SPEC.md around the D17 North-Star with the D18
+card grammar (deck + battle + daily; honest dated stats; soft-launch norms
+unchanged), settle naming, rebuild the live page as the card deck, then scale
+to the remaining 9 roster cities (D3) with frozen scope rules (DATA-CONTRACT:
+Seoul L1 is the hard one), per-line opened-year sourcing, and full-deck rank
+computation for the stat tracks.
 If rejected: archive per D17's premise-gate clause.
 
 ## Blockers
