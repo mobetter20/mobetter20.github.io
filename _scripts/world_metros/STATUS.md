@@ -46,12 +46,17 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/confident-margulis-10e
 ## now bundled with the D13 consistency fork (A / B / C)
 
 At the gate the owner raised the diagram-consistency question (the chosen
-Commons files are a style patchwork). D13 (PROPOSED) records the fork and the
-recommendation; evidence mock built: `mocks/geo-shape-desktop.html`
-(`mocks/build_geo_shape_mock.py` — true geometry over OSM water + ghost rail,
-Seoul / Tokyo / Paris). Owner picks: A keep-as-shipped · B geo-dressed True
-Shape becomes the consistent center, diagrams demoted to exhibit · C drop
-diagrams (loses all station names until a label layer exists; not recommended).
+Commons files are a style patchwork), judged the round-1 geo dress clumsy
+outside Tokyo, and locked a map-first bake-off (D14). The verdict board is
+built: `mocks/bakeoff-board.html` — per city (Seoul/Tokyo/Paris), three
+candidates side by side: (1) polished geographic (ours, round-2: smoothing +
+casing + water), (2) consistent octolinear schematic (LOOM; demo-render
+evidence, local pipeline prepped in `mocks/loom_convert.py`, docker build one
+admin click away), (3) the familiar Commons diagram (the shipped prototype's
+patchwork, as reference). Owner verdict on the board picks the Explore map
+direction and resolves D13; Shape keeps true geometry regardless. Note:
+candidates 1 and 2 still have no station-name labels; the diagrams are the
+only name-bearing view today.
 
 The coded prototype is BUILT (this session, branch
 `claude/confident-margulis-10e030`): real page at `/is/building/world-metros/`

@@ -49,8 +49,34 @@ P = {
     "paper": "#f7f7f4", "panel": "#ffffff", "line": "#d8d8d2",
     "ink": "#17171c", "grey": "#8a8a85", "faint": "#b9b9b2",
     "accent": "#0052a4", "red": "#d96629",
-    "water": "#d9e8f1", "coast": "#c2d8e6", "ghost": "#e4e4df",
+    "water": "#d9e8f1", "coast": "#c2d8e6", "ghost": "#e9e9e4",
 }
+
+
+def chaikin(points, iterations=2, is_closed=False):
+    """Corner-cutting smoothing (the polish pass, bake-off round 2). Open
+    polylines keep their endpoints; closed rings smooth across the seam."""
+    pts = points[:]
+    for _ in range(iterations):
+        if len(pts) < 3:
+            return pts
+        if is_closed:
+            ring = pts[:-1] if pts[0] == pts[-1] else pts
+            out = []
+            for i in range(len(ring)):
+                p, q = ring[i], ring[(i + 1) % len(ring)]
+                out.append((0.75 * p[0] + 0.25 * q[0], 0.75 * p[1] + 0.25 * q[1]))
+                out.append((0.25 * p[0] + 0.75 * q[0], 0.25 * p[1] + 0.75 * q[1]))
+            pts = out + [out[0]]
+        else:
+            out = [pts[0]]
+            for i in range(len(pts) - 1):
+                p, q = pts[i], pts[i + 1]
+                out.append((0.75 * p[0] + 0.25 * q[0], 0.75 * p[1] + 0.25 * q[1]))
+                out.append((0.25 * p[0] + 0.75 * q[0], 0.25 * p[1] + 0.75 * q[1]))
+            out.append(pts[-1])
+            pts = out
+    return pts
 
 CITY_LABELS = {
     "seoul": ("SEOUL", "lines 2–9 · ghost: Korail + suburban lines · Han from OSM water"),
@@ -281,10 +307,12 @@ def extract_water(raw, k, bb):
     proj = lambda run: [bpg.project_pt(lon, lat, k) for lon, lat in run]
 
     def finish(ring, min_km2):
-        """project -> clip -> area-filter -> simplify"""
-        r = sutherland_hodgman(proj(ring), bb)
+        """project -> reduce -> smooth -> clip (clip last so the frame edge
+        stays sharp) -> area-filter"""
+        r = chaikin(bpg.rdp(proj(ring), 0.04), 1, is_closed=True)
+        r = sutherland_hodgman(r, bb)
         if len(r) > 3 and abs(ring_area(r)) >= min_km2:
-            return bpg.rdp(r, 0.03)
+            return r
         return None
 
     polys, coast = [], []
@@ -323,7 +351,9 @@ def extract_water(raw, k, bb):
                 for outer in rings:
                     mine = [hh for hh in holes if point_in_ring(hh[0], outer)]
                     polys.append([outer] + mine)
-    coast = [bpg.rdp(c, 0.03) for c in stitch(coast)]
+    # smooth coastline BEFORE clipping/closure so bbox-border walks stay sharp
+    coast = [chaikin(bpg.rdp(c, 0.04), 1, is_closed=closed(c))
+             for c in stitch(coast)]
     return polys, coast
 
 
@@ -482,8 +512,9 @@ def close_coastline(chains, bb):
 
 # --------------------------------------------------------------------- svg
 
-def svg_panel(city, net, water_polys, coast_water, coast_land, coast_strokes,
-              w, h):
+def svg_map(net, water_polys, coast_water, coast_land, coast_strokes, w, h):
+    """Just the dressed-map <svg> (no panel chrome) -> (svg_str, px_per_km).
+    Shared with the bake-off board generator."""
     x0, y0, x1, y1 = net_bbox(net)
     bb = (x0 - PAD_KM, y0 - PAD_KM, x1 + PAD_KM, y1 + PAD_KM)
     bw, bh = bb[2] - bb[0], bb[3] - bb[1]
@@ -514,31 +545,42 @@ def svg_panel(city, net, water_polys, coast_water, coast_land, coast_strokes,
         d = " ".join(pt(p) for p in c)
         out.append(f'<polyline points="{d}" fill="none" stroke="{P["coast"]}" '
                    f'stroke-width="1.6"/>')
-    # 5. ghost rail
-    out.append(f'<g stroke="{P["ghost"]}" fill="none" stroke-width="1.5" '
+    # 5. ghost rail (thin, recessive)
+    out.append(f'<g stroke="{P["ghost"]}" fill="none" stroke-width="1.2" '
                f'stroke-linecap="round" stroke-linejoin="round">')
     for ps in net["ghosts"]:
-        out.append(f'<polyline points="{" ".join(pt(p) for p in ps)}"/>')
+        out.append(f'<polyline points="{" ".join(pt(p) for p in chaikin(ps, 1))}"/>')
     out.append('</g>')
-    # 6. the network in official colours
+    # 6. the network in official colours, white-cased per line so crossings
+    #    read clean (the designed-map trick the round-1 board lacked)
     for _, color, ps in net["segs"]:
-        out.append(f'<polyline points="{" ".join(pt(p) for p in ps)}" fill="none" '
-                   f'stroke="{color}" stroke-width="2.8" stroke-linecap="round" '
+        d = " ".join(pt(p) for p in chaikin(ps, 2))
+        out.append(f'<polyline points="{d}" fill="none" stroke="{P["panel"]}" '
+                   f'stroke-width="4.4" stroke-linecap="round" '
                    f'stroke-linejoin="round"/>')
-    # 7. stations
-    out.append(f'<g fill="{P["panel"]}" stroke="{P["ink"]}" stroke-width="0.8" '
-               f'opacity="0.92">')
+        out.append(f'<polyline points="{d}" fill="none" stroke="{color}" '
+                   f'stroke-width="2.6" stroke-linecap="round" '
+                   f'stroke-linejoin="round"/>')
+    # 7. stations (small at overview scale)
+    out.append(f'<g fill="{P["panel"]}" stroke="{P["ink"]}" stroke-width="0.7" '
+               f'opacity="0.85">')
     for x, y in net["stations"]:
-        out.append(f'<circle cx="{ox + x * s:.1f}" cy="{oy + y * s:.1f}" r="1.1"/>')
+        out.append(f'<circle cx="{ox + x * s:.1f}" cy="{oy + y * s:.1f}" r="0.95"/>')
     out.append('</g>')
     out.append('</svg>')
+    return "".join(out), s
+
+
+def svg_panel(city, net, water_polys, coast_water, coast_land, coast_strokes,
+              w, h):
+    svg, s = svg_map(net, water_polys, coast_water, coast_land, coast_strokes, w, h)
     label, sub = CITY_LABELS[city]
     bar = 10 * s
     return f"""
 <div class="panel">
   <div class="plabel">{label}</div>
   <div class="psub">{sub}</div>
-  {"".join(out)}
+  {svg}
   <div class="scale"><span class="bar" style="width:{bar:.0f}px"></span><span>10 km</span></div>
 </div>"""
 
@@ -610,7 +652,7 @@ def main():
 <title>world-metros mock — geo-dressed true shape</title>
 <style>{CSS}</style></head><body><div class="board">
 <header><div class="wordmark">WORLD METROS <em>ATLAS</em></div>
-<span class="mockbadge">GEO-SHAPE MOCK · FORK-B EVIDENCE · NOT THE PRODUCT</span></header>
+<span class="mockbadge">GEO-SHAPE MOCK · ROUND 2 POLISH · BAKE-OFF CANDIDATE 1</span></header>
 <div class="intro"><b>the consistency question:</b> our true OSM geometry dressed
 with OSM water + ghosted out-of-scope rail — one style we control, applied
 identically to every city (per-city fit here; the Shape tab keeps its same-scale
