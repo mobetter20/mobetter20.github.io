@@ -259,3 +259,42 @@ diagrams. Decision follows the signal: stop generating the hero visual.
   (D15) is dead as a landing; the geo dress and octolinear pipeline are
   shelved, kept in mocks/.
 Next gate artifact if ratified: gallery + SEOUL-vs-PARIS duel mock board.
+
+**D17 · Hard pivot: METRO CARDS, working name "metro match" — RATIFIED
+2026-06-12 (owner verdict on the D16 board gate: pivot. D16 is not ratified;
+its atlas IA dies, its mechanics survive inside the cards).**
+Owner, on the D16 gallery + duel board: without satisfying map visuals,
+archive the project (or at least the current vision), or pivot hard; floated
+stat cards in the Pokémon / baseball-card genre plus a match game. Assessment
+agreed and the owner confirmed ("pivot"): the card reframe is the first one
+that DISSOLVES the map-hero problem instead of fighting it. A hero-sized map
+promises cartographic polish we cannot license or afford (the D10 to D15
+record); a trading card never makes that promise. Card art is a stamp-sized
+window inside a designed frame, the frame is entirely ours to design, and D15
+already recorded that our geometry reads as finished at small sizes.
+- **Draft North-Star (replaces BUILD-SPEC's if the mock gate passes):** a
+  collectible card deck for the world's defining metro systems. Every city is
+  one designed stat card; honest dated data is the content; comparison is the
+  game. Two modes share the same card object: the BATTLE (pick a stat off
+  your card, beat the opponent's; the D16 duel mechanics reskinned) and a
+  DAILY guess ("which plots more stations?"), which consciously un-defers
+  D16's deferred reveal-on-tap guessing under the new vision.
+- **What survives the pivot:** the five computed lenses become the stat
+  block; meta.json / shape JSONs become card art; DIAGRAM-LEDGER files become
+  "the map riders see" exhibits (card back or detail view); the duel becomes
+  the battle; the honest-data DNA becomes the joke itself: trading cards with
+  footnotes, every stat dated and sourced. The data contracts, scope rules
+  and licensing posture are unchanged.
+- **Trade-dress rule:** our own card idiom in the official-map language
+  (white card, hairline rules, line-colour strip, DM Mono stats, transit-blue
+  accent). No Pokémon / Top Trumps trade dress.
+- **Open forks, judged at the mock gate:** (a) card art: true-shape
+  silhouette vs diagram window, decided by eye on the mock; (b) game depth:
+  battle-only vs battle + daily; (c) naming stays the owner's call ("metro
+  match" is the working title).
+- **Premise gate before any spec rewrite:** ONE static mock board: a 3-card
+  fan (Seoul, Paris, Tokyo), the art fork shown side by side, one battle
+  frame, one card back. If the cards do not delight at mock scale, archive
+  with confidence (registry to paused/archived) having spent one artifact to
+  find out. BUILD-SPEC.md is deliberately NOT rewritten until that gate
+  passes; D17 carries the draft North-Star until then.
