@@ -328,3 +328,30 @@ atlas in miniature). Round 2 designs from the game outward:
 - Gate artifact: `mocks/card-game-board.html` (three v2 fronts, the flip
   exhibit front/back/deck-back, the battle restaged on v2, daily strip
   kept). Round-1 board stays in mocks/ for the record.
+
+**D19 · Premise PASSED; dark ground — RATIFIED 2026-06-12 (owner verdict on
+the D18 v2 board: "i like it", with one directed amendment: a black or other
+dark background might be better; ground treatment fork pending at the D19
+board).**
+The D17 premise kill test is passed: the archive branch is dead, and the
+commissioned follow-through lands with this entry (BUILD-SPEC.md rewritten
+around the D17 North-Star + D18 card grammar; README first paragraph
+updated). The amendment opens one visual fork, deliberately built as an
+exhibit rather than argued in prose ("background" can mean the card face or
+the table it sits on):
+- **A · round-2 reference:** white card on the light ground (as approved).
+- **B · white card, dark table:** cards stay paper-white objects; the page
+  ground goes near-black. The physical-cards-on-a-table read.
+- **C · dark card, dark table (recommendation):** the card face itself goes
+  ink-dark; the operators' line colours and the rank chips do the lighting.
+  The premium game-card read, and the strongest setting for the pills.
+Palette stays in the board's own ink family (cool near-black, not the
+site's warm house dark): ground `#0f0f12`, card `#1b1b21`, hairlines
+`#2e2e36`, light text `#f2f2ee`, transit-blue fills unchanged, light-blue
+text accents on dark. Official-map idiom elements carry over (DM Mono data
+labels, hairline rules, real line colours); D10's white-ground rule was an
+atlas-era rule about maps, and the cards are a different object.
+Gate artifact: `mocks/card-dark-board.html` (the three-way ground fork on
+swatches, then the fan / flip / battle restaged in the recommended dark
+treatment). Owner pick A / B / C settles the ground before the live-page
+rebuild; naming ("metro match", working) stays open.

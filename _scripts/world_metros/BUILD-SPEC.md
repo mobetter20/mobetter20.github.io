@@ -1,79 +1,106 @@
-# BUILD-SPEC — World Metros Atlas (v1, trimmed)
+# BUILD-SPEC — Metro Cards (working name "metro match"; v2 contract, supersedes the atlas)
 
-This is the product/acceptance contract. It descends from the Codex plan of 2026-06-11
-("World Metros Interactive Atlas") with deliberate trims recorded in DECISIONS.md (D2, D5–D7).
-The original user brief is the fixed judge: *"fill my curiosity about interesting metro
-systems in an easy-to-get view — not a complicated site with info scattered around."*
+This is the product/acceptance contract for the D17 card pivot, written after
+the premise gate passed (D19: owner "i like it" on the D18 v2 board). The v1
+atlas contract lives in this file's git history; its data discipline carries
+over unchanged. The original user brief stays the fixed judge, reweighted by
+the owner at D16: *fun and engaging comparison of interesting metro systems,
+in an easy-to-get view*. The four map-hero rounds (D10–D15) established what
+this site will NOT be: a cartography product.
 
-## North-Star (draft — owner to ratify)
+## North-Star (D17, ratified; name pending)
 
-A fast visual atlas for exploring the world's defining metro systems: compare their
-physical forms at a true shared scale, see why each one is interesting, and rank them
-only where a ranking can be honestly defined — without pretending there is one
-objective best.
+A collectible card deck for the world's defining metro systems. Every city is
+one designed stat card; honest dated data is the content; comparison is the
+game. Trading cards with footnotes.
 
-## Views (one URL, four tabs)
+## Surfaces (one URL)
 
-1. **Explore** — one city at a time: interactive pan/zoom map drawn from OSM geometry
-   (real line colours), plus a compact profile card:
-   opened year · reported route-km (dated) · stations · lines · reported annual
-   ridership (dated) · 2–3 curated "why it's interesting" facts.
-2. **Compare / Shape** — the signature view. All systems at one north-up
-   pixels-per-kilometre scale. Pair mode with synchronized zoom; overlay translates
-   network centres only (never rotates/resizes/warps); inline note that geography is
-   not aligned.
-3. **Rankings** — the five computed lenses (defined in DATA-CONTRACT.md), each with a
-   one-paragraph "why this is rankable" explanation, **plus** a clearly-labelled
-   "reported figures" almanac table (route-km, annual ridership) shown as dated,
-   sourced facts — labelled by source basis, never blended with computed lenses.
-4. **Method** — scope rules, definitions, sources, data as-of dates, licences, and a
-   short **"why not X"** section (Beijing, Madrid, Istanbul, …) — absence is content.
+1. **THE DECK** — the landing: all 12 cards (D3 roster), collection grid.
+   Cards flip: **front for play, back for lore** (D18).
+2. **THE BATTLE** — vs cpu, Top-Trumps loop: see your card, pick a stat, beat
+   the hidden opponent card; first to 3. Stable per-pair URLs survive from
+   D16's duel mechanics.
+3. **THE DAILY** — one guess a day ("which plots more stations?"), streak in
+   localStorage. Consciously un-defers D16's reveal-on-tap guessing.
+4. **METHOD** — scope rules, definitions, sources, as-of dates, licences, win
+   directions, and the "why not X" section (Beijing, …). Absence is content.
+   Unchanged role from the atlas contract.
 
-## Explicitly OUT of v1 (do not let these creep back without a DECISIONS entry)
+## Card grammar (D18, ratified)
 
-- The practical-traveller layer: fares / "first ride" / payment / open-loop gates /
-  registration / planner languages / disruption info / integration matrices /
-  accessibility evidence / cleanliness evidence. (D2: it's the crowded travel-utility
-  space, and it drives a freshness treadmill a curiosity site doesn't owe.)
-- Freshness SLA machinery (30/90/180-day tiers, auto-eviction from Compare).
-  Replacement: every fact carries `source + as_of`; refresh is a scripted annual pass.
-- Route planning, live positions, street basemap, official schematic reproduction.
-- Aggregate scores of any kind. No "best metro" number.
+- **Front (play side):** city name + epithet (the sprawl / the mesh / the two
+  crews / …), deck number `NN/12` in roster order, line pills carrying the
+  real refs in the operators' colours (the identity device, rendered purely
+  from OSM data), six stat rows — each with a deck-rank chip (1ST filled,
+  others hollow) and a normalized strength track — and a provenance footnote
+  naming the snapshot and the rank basis. NO map on the front.
+- **Back (lore side):** the city's familiar Commons diagram full-bleed
+  (DIAGRAM-LEDGER file, attribution verbatim, currency caveats where the
+  ledger flags them), name band, one flavor line. The D11 "map riders see"
+  obligation lives here.
+- **Deck back:** uniform pinstripes of every line colour in the deck under
+  the wordmark band; serves as the opponent's hidden card in the battle.
+- **Ground:** dark (D19; exact treatment per the D19 board pick).
+- **Trade dress:** our own card idiom in the official-map language (DM Mono
+  data labels, hairline rules, transit-blue accent). No Pokémon / Top Trumps
+  trade dress. No official map artwork anywhere.
 
-## Design direction
+## Stats (the six rows; definitions are the product)
 
-**Official-map idiom** (owner-directed 2026-06-11, supersedes Electric Cartography
-— see DECISIONS D10): white paper ground, the operators' real line colours (OSM
-`stroke`), bold solid strokes, white-fill/ink-ring station dots; selecting a line
-greys the rest of the network (the metro-app convention). Chrome: clean sans for
-UI, DM Mono for data/provenance labels, transit-blue accent `#0052a4`, city chips
-as pills, active tab underlined like a route line. The site dresses like the
-artifact it describes. Official map ARTWORK is never embedded (licensing,
-DATA-CONTRACT.md); every city card carries **"the map riders see →"** linking to
-the operator's official diagram, and Method tells the licensing story. Bespoke
-tier: own art, anchors only (way home, palette sympathy, DM Mono labels).
+| stat | basis | wins |
+|---|---|---|
+| opened | earliest regular passenger service within declared scope (operator histories, dated) | earlier |
+| lines | customer-facing line identities, not service variants (DATA-CONTRACT) | more |
+| stations | station complexes plotted from the frozen snapshot | more |
+| span | furthest-stations geodesic distance, computed | more |
+| route-km | reported, dated, sourced (almanac grade) | more |
+| ridership | reported annual, dated, sourced (almanac grade) | more |
+
+Ranks and track positions are computed across the full deck of 12 at pipeline
+stage (the mocks footnote "live deck of 3" until then); win directions are
+fixed above and explained on Method. Interchange share remains a candidate
+seventh stat if the pipeline resolves it cleanly per the lens definition.
+Missing evidence renders **Unknown** and excludes that stat from battles for
+that card; never shown as zero.
+
+## Explicitly OUT (do not creep back without a DECISIONS entry)
+
+- The practical-traveller layer (D2) — unchanged.
+- **Aggregate scores.** Rank chips are per-stat; no card carries an overall
+  power number, no "best metro".
+- Brackets / tournaments (rejected at D16; n=12).
+- Accounts, multiplayer, backend anything. Static site; the streak is
+  localStorage.
+- Official schematic artwork (licensing posture unchanged, DATA-CONTRACT.md)
+  and the maps-as-hero IA (D10–D15, judged and closed).
 
 ## Approval gates (in order)
 
-1. **Mock boards** — desktop Explore, desktop Compare/Shape (pair), mobile Explore,
-   built with real Seoul+Paris geometry. Owner approval recorded in DECISIONS.md.
-2. **Coded prototype** — Seoul Explore + Seoul/Paris Shape pair. Second approval.
-3. Scale to the full roster only after both.
+1. **D19 ground pick** (A / B / C board) — settles the visual ground.
+2. **Live-page rebuild** of `/is/building/world-metros/` as DECK + BATTLE +
+   DAILY + METHOD with the three live cities real, nine cards "soon". Owner
+   verdict on the live page.
+3. **Roster scale-up** to all 12 (D3) with frozen scope rules (Seoul L1 is
+   the hard one), per-line opened-year sourcing, full-deck ranks, lore backs
+   per DIAGRAM-LEDGER. Naming settled by the owner before this ships wide.
 
-## Soft-launch conditions (repo norm, chronogrid precedent)
+## Soft-launch conditions (repo norm, unchanged)
 
-`noindex` meta · not in sitemap · no `/is/building` hub card · no home-teaser line.
-Site-wide `/analytics.js` loads as on every page (do not fight the site default).
+`noindex` meta · not in sitemap · no `/is/building` hub card · no home-teaser
+line · site-wide `/analytics.js` loads as on every page. Lifting any of these
+is an owner call after gate 3.
 
-## Acceptance checklist (v1)
+## Acceptance checklist
 
-- Verified at 375 / 768 / 1280 widths (repo CSS rule); keyboard reachable tabs +
-  city switcher; `prefers-reduced-motion` respected (no glow pulse).
-- Per-city geometry lazy-loaded; initial payload stays light (overview index +
-  first city only). Raw OSM GeoJSON is simplified at build time, never shipped raw.
-- ODbL attribution line for OSM data visible on every view; no official schematic
-  imagery anywhere; UITP linked as background reading only, figures not republished.
-- Every displayed fact resolves to `source + as_of` (visible on Method, hover or
-  footnote elsewhere).
-- Build is a deterministic `_scripts/world_metros/build_*.py` run over committed,
-  dated data snapshots (network access only in the refresh step, never the build).
+- Verified at 375 / 768 / 1280 (repo CSS rule); battle and daily fully
+  keyboard-playable; `prefers-reduced-motion` respected (card flips degrade
+  to instant swaps).
+- Per-card lore-back diagrams lazy-load (they are the heavy assets); the deck
+  grid ships light. Raw OSM GeoJSON never ships.
+- ODbL attribution visible on every surface; per-diagram credit rendered with
+  the lore back, verbatim from DIAGRAM-LEDGER.
+- Every displayed stat resolves to `source + as_of` (Method shows the table;
+  card footnotes name snapshot + rank basis).
+- Build stays a deterministic `_scripts/world_metros/build_*.py` run over
+  committed dated snapshots (network only in the refresh step).
