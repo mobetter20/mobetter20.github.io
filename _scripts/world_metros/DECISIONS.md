@@ -90,7 +90,7 @@ on every city card, plus a Method note telling the licensing story. Supersedes
 D7's palette; D7's "lines keep real OSM colours" survives. Boards rebuilt the same
 day (`mocks/`); gate 1 verdict on the round-2 boards pending.
 
-**D11 · Familiar-diagram layer — PROPOSED 2026-06-11 (owner feedback).**
+**D11 · Familiar-diagram layer — RATIFIED 2026-06-11 (proposed and ratified same day).**
 Owner: the familiar rider map was an integral expectation, and its impossibility was
 surfaced too late (a research-table line and a docs rule, never as "you will not see
 the Tube map on this site"). Acknowledged; memory written
@@ -107,3 +107,40 @@ recreation, or official file where a permissive license is verified;every city g
 license-ledger entry + attribution) and "True shape" (ours). Shape comparison stays
 ours. Pending owner ratification; if ratified, first step is a per-city diagram
 sourcing audit (12 cities: file, author, license, currency vs the 2026 network).
+*Ratification (2026-06-11):* owner approved via the diagram-mode mock
+(`mocks/diagram-desktop.html`), the interactivity spike
+(`mocks/diagram-interactive.html`), and by launching the D8-gate-2 prototype build
+with diagram mode in scope. The sourcing audit D11 named as its first step is done
+(DIAGRAM-LEDGER.md — all 12 cities have a verified-license file + fallback).
+
+**D12 · Coded-prototype scope (D8 gate 2) — RATIFIED 2026-06-11 (owner-launched).**
+The gate-2 prototype is a real page at `/is/building/world-metros/`, soft-launched
+from day 1 (noindex meta; the sitemap builder auto-skips noindex pages; no
+`/is/building` hub card; no home-teaser line; `publish.sh` untouched). Vanilla
+HTML/CSS/JS, no framework; official-map-idiom chrome per the round-2 boards (D10).
+Scope:
+- **Three cities live** — Seoul, Paris, Tokyo. The other 9 roster chips render
+  disabled with a "soon" tooltip. Tokyo joins as the deliberate representative of
+  the pan-zoom-only diagram class (DIAGRAM-LEDGER): same pan/zoom, a plain "labels
+  not tappable on this diagram" note, no fake affordances.
+- **Explore** — two modes per D11, DIAGRAM default: inline Commons SVG driven by
+  viewBox (pan/zoom/pinch + station-label tap where interactive-ready; tap shows a
+  station chip with a "data card in next stage" placeholder). TRUE SHAPE: our OSM
+  geometry, emitted at build time as simplified per-city JSON
+  (`_scripts/world_metros/build_page_geometry.py` — raw CDN GeoJSON is never
+  shipped); line-select greys the rest, station dots, scale bar.
+- **Shape** — Seoul × Paris side-by-side at one shared px-per-km, north-up, synced
+  zoom, "geography not aligned — shapes only" note, per-panel span readouts.
+- **Rankings / Method** — honest in-progress stubs; keyboard-reachable tabs.
+- **Attribution** — per-city diagram credit verbatim from DIAGRAM-LEDGER in the
+  footer while that city's diagram shows; "geometry © OpenStreetMap contributors
+  (ODbL)" always; Seoul card carries the ledger's "diagram dated 2023, future lines
+  as then planned" currency note.
+- **Weight** — per-city assets lazy-load on city switch; only Seoul loads initially.
+- **Scope notes** — Tokyo True Shape draws Tokyo Metro + Toei refs only;
+  through-running truncation stays a pipeline-stage matter (like Seoul L1, which
+  keeps lines 2–9 here as in the mocks). Full snapshot/refresh discipline
+  (committed dated `data/` dir) also lands at pipeline stage; the committed
+  per-city JSON, stamped with its OSM as-of date, is the prototype's dated artifact.
+- **Stop at the gate** — no scaling to the remaining 9 cities until owner approval
+  of the live prototype.

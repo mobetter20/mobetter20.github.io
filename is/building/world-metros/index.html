@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><!-- soft launch: unlisted until the D8 gate-2 verdict -->
+<meta name="theme-color" content="#f7f7f4">
+<title>World Metros Atlas</title>
+<meta name="description" content="An interactive atlas of the world's defining metro systems: the familiar diagrams, and their true shapes at one shared scale.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23f7f7f4'/%3E%3Cpath d='M14 58 H 86' stroke='%230052a4' stroke-width='12' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='58' r='15' fill='%23ffffff' stroke='%2317171c' stroke-width='8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+<div class="atlas">
+
+  <header>
+    <h1 class="wordmark">WORLD METROS <em>ATLAS</em></h1>
+    <nav role="tablist" aria-label="Views" id="tabs">
+      <button role="tab" id="tab-explore" aria-controls="panel-explore" aria-selected="true">EXPLORE</button>
+      <button role="tab" id="tab-shape" aria-controls="panel-shape" aria-selected="false" tabindex="-1">SHAPE</button>
+      <button role="tab" id="tab-rankings" aria-controls="panel-rankings" aria-selected="false" tabindex="-1">RANKINGS</button>
+      <button role="tab" id="tab-method" aria-controls="panel-method" aria-selected="false" tabindex="-1">METHOD</button>
+    </nav>
+    <span class="protobadge">PROTOTYPE · 3 OF 12 CITIES</span>
+  </header>
+
+  <main>
+
+    <section id="panel-explore" role="tabpanel" aria-labelledby="tab-explore">
+      <div class="citystrip" id="citystrip" role="group" aria-label="City"></div>
+      <div class="explore">
+        <div class="mappanel">
+          <div class="maphead">
+            <div class="maplabel" id="map-label"></div>
+            <div class="mapsub" id="map-sub"></div>
+          </div>
+          <div class="modetoggle" role="group" aria-label="Map mode">
+            <button id="mode-diagram" aria-pressed="true">DIAGRAM</button>
+            <button id="mode-shape" aria-pressed="false">TRUE SHAPE</button>
+          </div>
+          <div class="mapviewport" id="explore-map" tabindex="0" role="application"
+               aria-label="Metro map. Drag or use arrow keys to pan, scroll or plus and minus keys to zoom."></div>
+          <div class="maptools">
+            <button id="zoom-in" aria-label="Zoom in">+</button>
+            <button id="zoom-out" aria-label="Zoom out">−</button>
+            <button id="zoom-reset" aria-label="Reset view">⌖</button>
+          </div>
+          <div class="scalebar" id="explore-scalebar" hidden><span class="bar"></span><span class="km"></span></div>
+          <div class="maphint" id="map-hint"></div>
+          <div class="mapnote" id="map-note" hidden>labels not tappable on this diagram</div>
+          <div class="stationchip" id="station-chip" hidden></div>
+          <div class="maploading" id="map-loading" hidden>loading…</div>
+        </div>
+        <aside class="citycard" id="citycard" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section id="panel-shape" role="tabpanel" aria-labelledby="tab-shape" hidden>
+      <div class="pairbar">
+        <span class="pairname">SEOUL</span><span class="vs">×</span><span class="pairname">PARIS</span>
+        <span class="pairnote">one scale · north-up · geography not aligned · shapes only</span>
+        <span class="syncflag">SYNC ZOOM</span>
+      </div>
+      <div class="pair">
+        <div class="mappanel half">
+          <div class="maphead">
+            <div class="maplabel">SEOUL · LINES 2–9</div>
+            <div class="mapsub" id="pane-seoul-sub"></div>
+          </div>
+          <div class="mapviewport" id="pane-seoul" tabindex="0" role="application"
+               aria-label="Seoul network shape. Drag or use arrow keys to pan, scroll or plus and minus keys to zoom. Zoom is synchronized with the Paris panel."></div>
+          <div class="scalebar" id="pane-seoul-scalebar"><span class="bar"></span><span class="km"></span></div>
+        </div>
+        <div class="mappanel half">
+          <div class="maphead">
+            <div class="maplabel">PARIS · MÉTRO 1–14</div>
+            <div class="mapsub" id="pane-paris-sub"></div>
+          </div>
+          <div class="mapviewport" id="pane-paris" tabindex="0" role="application"
+               aria-label="Paris network shape. Drag or use arrow keys to pan, scroll or plus and minus keys to zoom. Zoom is synchronized with the Seoul panel."></div>
+          <div class="scalebar" id="pane-paris-scalebar"><span class="bar"></span><span class="km"></span></div>
+        </div>
+      </div>
+      <div class="maploading" id="shape-loading" hidden>loading…</div>
+    </section>
+
+    <section id="panel-rankings" role="tabpanel" aria-labelledby="tab-rankings" hidden>
+      <div class="stub">
+        <div class="stubtitle">RANKINGS · IN PROGRESS</div>
+        <p>Five honestly-rankable lenses (furthest-stations span, station complexes, customer-facing lines, interchange share, opening chronology) plus a dated table of reported figures. Lands after the prototype gate.</p>
+      </div>
+    </section>
+
+    <section id="panel-method" role="tabpanel" aria-labelledby="tab-method" hidden>
+      <div class="stub">
+        <div class="stubtitle">METHOD · IN PROGRESS</div>
+        <p>Scope rules per system, sources and as-of dates, the licensing story behind the diagrams, and why some famous networks are absent. Lands after the prototype gate.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span id="attribution">geometry © OpenStreetMap contributors (ODbL)</span>
+    <a class="made" href="/" target="_self">made by ajin.im</a>
+  </footer>
+
+</div>
+<script src="app.js" defer></script>
+</body>
+</html>
