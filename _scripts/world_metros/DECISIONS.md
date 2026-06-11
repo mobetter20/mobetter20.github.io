@@ -298,3 +298,33 @@ already recorded that our geometry reads as finished at small sizes.
   with confidence (registry to paused/archived) having spent one artifact to
   find out. BUILD-SPEC.md is deliberately NOT rewritten until that gate
   passes; D17 carries the draft North-Star until then.
+
+**D18 · Card v2: game-first front; the map leaves the front — RATIFIED
+2026-06-12 (owner-directed at the D17 card-mock gate; v2 board verdict
+pending).**
+Owner on the round-1 cards: not sure the map belongs on the front at all
+(lots of interesting stats could live there instead); the design should be
+more polished and minimal, like a modern board-game card, optimized for our
+specific game and content rather than the baseball/Pokémon lineage; maybe
+the familiar map belongs on the BACK; and the project should really pivot,
+not ship a half-measure reactionary fix. Acknowledged: round 1 assembled
+atlas parts inside a card frame (silhouette art window + stat rows = the
+atlas in miniature). Round 2 designs from the game outward:
+- **The stat block IS the play surface.** The battle decision is "which of
+  my stats is strong?", so every row carries a deck-rank chip (1ST filled,
+  others hollow) and a normalized strength track, computed across the live
+  deck (full 12 at pipeline; the card footnote names the basis). Win
+  directions defined per stat: opened = earlier wins (seniority); all other
+  lenses = larger wins.
+- **Front for play, back for lore.** Front: city name + epithet (the
+  sprawl / the mesh / the two crews), line pills carrying the real refs in
+  the operators' colours (the identity device, rendered purely from data),
+  six stat rows (opened, lines, stations, span computed live; route-km and
+  ridership ride as pipeline rows with empty tracks), provenance footnote.
+  NO map, no art window. Back: the city's familiar diagram full-bleed with
+  a name band, the flavor line, and the ledger-verbatim credit (the D11
+  "map riders see" obligation moves here). The uniform deck back
+  (pinstripes) remains the game-hidden state.
+- Gate artifact: `mocks/card-game-board.html` (three v2 fronts, the flip
+  exhibit front/back/deck-back, the battle restaged on v2, daily strip
+  kept). Round-1 board stays in mocks/ for the record.
