@@ -1,6 +1,6 @@
 # STATUS — World Metros Atlas
 
-_Last updated: 2026-06-12 (Claude session, branch `claude/modest-hamilton-c468a0`)._
+_Last updated: 2026-06-12 (Claude session, branch `worktree-metro-cards-d17`)._
 
 ## Done
 
@@ -61,26 +61,35 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/modest-hamilton-c468a0
   demoted to one "true size" row. Numbers from the prototype's committed
   meta.json/shape JSONs; no fetches; no JS.
 
-## Current gate: owner verdict on the gallery + duel board (doubles as D16 ratification)
+- D16 judged at its gate (2026-06-12): not ratified. Owner, on the board:
+  without satisfying map visuals, archive the project (or the current vision)
+  or pivot hard; floated stat cards + a match game. Owner confirmed the pivot
+  ("pivot") over archive. Recorded as **D17 (RATIFIED): METRO CARDS**, working
+  name "metro match": every city one designed stat card, comparison as the
+  game (battle + daily guess), our own card idiom, no Pokémon/Top Trumps
+  trade dress. Nearly everything survives: lenses → stat block, shape JSONs →
+  card art, ledger diagrams → "the map riders see" exhibit, duel → battle.
+  BUILD-SPEC rewrite deliberately deferred until the card mock gate passes
+  (premise before spec); D17 carries the draft North-Star. All prior boards
+  stay in mocks/ for the record.
 
-The D15 wall board was REJECTED at its gate (owner: ugly). **D16 (still
-PROPOSED)** follows the four-round visual signal: the familiar Commons diagrams
-become the site's visual language (uniform gallery frames; consistency from
-chrome, not maps), and the engagement core shifts to head-to-head comparison.
-The owner commissioned the D16 gate artifact directly (2026-06-12 session
-brief), so the verdict on `mocks/gallery-duel-board.html` is also the
-ratification call on D16: on approval, flip D16 to RATIFIED in DECISIONS.md
-and proceed; on rejection, record the signal as D17. Prior boards stay in
-mocks/ for the record (wall-board.html, bakeoff-board.html,
-geo-shape-desktop.html).
+## Current gate: owner verdict on the D17 card mock (the premise kill test)
 
-## Next exact action (after the board gate)
+The gate artifact is `mocks/card-fan-board.html`: a 3-card fan (Seoul, Paris,
+Tokyo), the card-art fork shown side by side (silhouette window vs diagram
+window, judged by eye), one battle frame (stat picked, winner called), one
+card back. If the cards delight: D17's North-Star replaces BUILD-SPEC's and
+the live page rebuilds as the deck. If they do not: archive with confidence
+(registry to paused/archived), one artifact spent to find out.
 
-If approved: flip D16 to RATIFIED, rebuild the live page into the Gallery +
-Duel IA (landing gallery, duel pages with stable per-pair URLs, Rankings as
-lens podiums + almanac), then scale to the remaining 9 roster cities (D3) with
-frozen scope rules (DATA-CONTRACT: Seoul L1 is the hard one), diagram assets
-per DIAGRAM-LEDGER, superlative chips + podium stories for real.
+## Next exact action (after the card-mock gate)
+
+If approved: rewrite BUILD-SPEC.md around the D17 North-Star (deck + battle +
+daily; honest dated stats; soft-launch norms unchanged), settle the card-art
+fork and naming, rebuild the live page as the card deck, then scale to the
+remaining 9 roster cities (D3) with frozen scope rules (DATA-CONTRACT: Seoul
+L1 is the hard one) and per-line opened-year sourcing for the stat block.
+If rejected: archive per D17's premise-gate clause.
 
 ## Blockers
 
