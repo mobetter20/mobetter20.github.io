@@ -22,6 +22,11 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/world-metros-mocks`)._
   real Commons Seoul map (Satellizer, CC BY-SA 4.0, bilingual, marks 2026 openings)
   embedded at `mocks/assets/seoul-diagram.svg`, mode toggle + attribution in place.
 
+- Interactivity spike PROVEN on the Commons diagram (`mocks/diagram-interactive.html`):
+  viewBox pan/zoom/pinch + station-label tap (1,847 real text nodes; verified live —
+  zoomTo/tap on "Hongik University"). Caveat: tap-ability requires real <text> nodes;
+  the 12-city diagram audit must grade each file's structure, not just its license.
+
 ## Current gate — owner verdict on (a) round-2 boards and (b) the D11 familiar-diagram proposal
 
 All three forks were ratified 2026-06-11 (D9). The first board round (Electric
