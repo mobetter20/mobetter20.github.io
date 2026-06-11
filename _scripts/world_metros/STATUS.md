@@ -18,6 +18,10 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/world-metros-mocks`)._
   closed-ring handling (Line 2 loop), outlier-aware station filtering, Paris
   stray-fragment guard.
 
+- D11 mock built: `mocks/diagram-desktop.html` — Explore in DIAGRAM mode with the
+  real Commons Seoul map (Satellizer, CC BY-SA 4.0, bilingual, marks 2026 openings)
+  embedded at `mocks/assets/seoul-diagram.svg`, mode toggle + attribution in place.
+
 ## Current gate — owner verdict on (a) round-2 boards and (b) the D11 familiar-diagram proposal
 
 All three forks were ratified 2026-06-11 (D9). The first board round (Electric
