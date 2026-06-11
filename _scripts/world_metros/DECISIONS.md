@@ -442,3 +442,32 @@ session).**
   swaps; console clean; the deck grid ships light (no diagram fetch before
   a flip). Gate: owner verdict on the live page, then roster scale-up
   (BUILD-SPEC gate 3).
+
+**D22 · Live-page polish on owner feedback — RATIFIED 2026-06-12 (owner
+verdict on the D21 live page: three fixes directed, two with owner picks).**
+The owner judged the live page and flagged, with two questions: the empty
+`route-km`/`ridership` rows ("is this data gonna be included?"), the daily
+UX ("small and empty screen"; "what kind of quiz?"), and legibility ("why
+are some text so small"). Resolutions:
+- **Empty rows: hidden until sourced (owner pick).** route-km + ridership
+  leave the card face entirely until they carry scope-matched, dated
+  figures; the card now shows four clean live stats. They return at the
+  roster scale-up (a reported figure must match the card's declared scope,
+  and Seoul's scope is the open freeze). Method still documents the
+  six-stat model. No playability cost: Unknown stats already sat out
+  battles.
+- **Daily: the stat rotates (owner pick).** Same one-guess-a-day cadence,
+  but the question rotates deterministically across the four live stats
+  (opened / stations / span / density), each with its own framing; the
+  reveal shows the contested values. The surface was rebuilt: vertically
+  centered (top-aligned on mobile), bigger, a "today's stat" chip, line
+  pills on each choice card, value-on-reveal. Fixes the marooned-box look.
+- **Legibility pass.** Nothing readable now sits below ~9px; the worst
+  offenders (the lore-back CC attribution and card footnotes at 6.5px)
+  lifted to 9px, the ledger rows given more height, the scope tag moved to
+  its own line so 16 Paris refs never clip. This closes the D20 small-text
+  flag, which the first build only half-fixed (stat labels big, secondary
+  labels still tiny). Lore backs trimmed to two facts each (the spec's
+  2–3) to fit the larger type; the through-running scope point lives on
+  Method. Re-verified 375/768/1280, keyboard, reduced-motion, console
+  clean. Gate unchanged: owner verdict on the revised live page.

@@ -204,6 +204,20 @@ $('b-again').addEventListener('click', () => {
 const DAY_MS = 86400000;
 const STORE_KEY = 'metro-match-daily';
 
+// The question rotates across the live stats, one a day (D21 owner call).
+const DAILY_Q = {
+  opened: 'Which opened earlier?',
+  stations: 'Which plots more stations?',
+  span: 'Which reaches further?',
+  density: 'Which packs stations tighter?',
+};
+const DAILY_VERB = {
+  opened: 'opened earlier',
+  stations: 'plots more stations',
+  span: 'reaches further',
+  density: 'packs them tighter',
+};
+
 function localDateStr(d) {
   return d.getFullYear() + '-' +
     String(d.getMonth() + 1).padStart(2, '0') + '-' +
@@ -216,11 +230,25 @@ function hashStr(s) {
   return h;
 }
 
-function dailyPair(dateStr) {
+// Deterministic per-day challenge: one stat and one pair, from the date.
+function dailyChallenge(dateStr) {
   const h = hashStr(dateStr);
-  const pair = DATA.pairs[h % DATA.pairs.length].slice();
-  if ((h >> 3) % 2) pair.reverse();
-  return pair;
+  const stat = DATA.statOrder[h % DATA.statOrder.length];
+  const pair = DATA.pairs[Math.floor(h / 7) % DATA.pairs.length].slice();
+  if (Math.floor(h / 53) % 2) pair.reverse();
+  return { stat: stat, pair: pair };
+}
+
+function betterCity(stat, x, y) {
+  const low = DATA.stats[stat].win === 'low';
+  const vx = CITIES[x].values[stat];
+  const vy = CITIES[y].values[stat];
+  return (low ? vx < vy : vx > vy) ? x : y;
+}
+
+function pillsHTML(city) {
+  return CITIES[city].lines.map((l) =>
+    '<i style="background:' + l.color + '">' + l.ref + '</i>').join('');
 }
 
 function loadStore() {
@@ -239,14 +267,19 @@ function saveStore(state) {
 
 function renderDaily() {
   const today = localDateStr(new Date());
-  const [a, b] = dailyPair(today);
+  const ch = dailyChallenge(today);
+  const [a, b] = ch.pair;
   $('d-date').textContent = today;
+  $('d-stat').textContent = 'TODAY · ' + ch.stat.toUpperCase();
+  $('d-q').textContent = DAILY_Q[ch.stat];
   const btnA = $('d-a');
   const btnB = $('d-b');
   btnA.dataset.city = a;
   btnB.dataset.city = b;
   btnA.querySelector('.dname').textContent = upper(a);
   btnB.querySelector('.dname').textContent = upper(b);
+  btnA.querySelector('.dpills').innerHTML = pillsHTML(a);
+  btnB.querySelector('.dpills').innerHTML = pillsHTML(b);
 
   const saved = loadStore();
   if (saved && saved.d === today) {
@@ -275,9 +308,9 @@ function guessDaily(pick) {
   const today = localDateStr(new Date());
   const saved = loadStore();
   if (saved && saved.d === today) return; // already played
-  const [a, b] = dailyPair(today);
-  const other = pick === a ? b : a;
-  const correct = CITIES[pick].values.stations > CITIES[other].values.stations;
+  const ch = dailyChallenge(today);
+  const winner = betterCity(ch.stat, ch.pair[0], ch.pair[1]);
+  const correct = pick === winner;
   const base = saved && saved.correct && isYesterday(saved.d, today)
     ? saved.streak : 0;
   const streak = correct ? base + 1 : 0;
@@ -288,21 +321,24 @@ function guessDaily(pick) {
 
 function revealDaily(pick, correct, streak, fromStore) {
   const today = localDateStr(new Date());
-  const [a, b] = dailyPair(today);
-  const winner = CITIES[a].values.stations > CITIES[b].values.stations ? a : b;
+  const ch = dailyChallenge(today);
+  const stat = ch.stat;
+  const winner = betterCity(stat, ch.pair[0], ch.pair[1]);
+  const loser = ch.pair[0] === winner ? ch.pair[1] : ch.pair[0];
   [$('d-a'), $('d-b')].forEach((btn) => {
     const city = btn.dataset.city;
     btn.setAttribute('aria-disabled', 'true');
-    btn.querySelector('.dmeta').textContent =
-      CITIES[city].values.stations + ' plotted';
+    btn.querySelector('.dmeta').textContent = CITIES[city].disp[stat];
     btn.classList.toggle('correct', city === winner);
     btn.classList.toggle('wrongpick', city === pick && city !== winner);
   });
   const v = $('d-verdict');
   v.hidden = false;
   v.innerHTML = (correct ? '<b>Right.</b> ' : '<b>Not this time.</b> ') +
-    upper(winner) + ' plots more stations. ' +
-    (fromStore ? 'You played today; new pair tomorrow.' : 'New pair tomorrow.');
+    upper(winner) + ' ' + DAILY_VERB[stat] + ' (' +
+    CITIES[winner].disp[stat] + ' vs ' + CITIES[loser].disp[stat] + '). ' +
+    (fromStore ? 'You played today; new question tomorrow.'
+      : 'New question tomorrow.');
   $('d-streak').textContent = correct
     ? 'streak ' + streak
     : 'streak resets · back to 0';

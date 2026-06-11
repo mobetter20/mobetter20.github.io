@@ -60,21 +60,19 @@ FLAVOR = {
 
 # 2-3 curated "why it's interesting" facts per lore back (D20 ratified
 # default; the D2 profile-card content, evergreen, no traveller-utility).
+# Two per back: the scope/through-running point lives on Method, not here.
 FACTS = {
     "seoul": [
         "Line 2 is a 48 km loop around the city; trains circle it all day.",
         "Many stations double as underground arcades; a few anchor whole malls.",
-        "Trains run far past the city limits on shared track; where this card stops counting is the scope question Method footnotes.",
     ],
     "paris": [
         "Opened for the 1900 World&rsquo;s Fair; Line 1 still runs the route it opened with.",
         "In central Paris you are rarely more than 500 m from a Métro entrance.",
-        "Lines 1, 4 and 14 run with no driver at all.",
     ],
     "tokyo": [
         "Two operators share one grid: Tokyo Metro runs nine lines, Toei runs four.",
         "G is for Ginza: Asia&rsquo;s first metro line, opened 1927.",
-        "Through-running trains continue onto suburban railways, so the map riders see stretches far beyond these 13 lines.",
     ],
 }
 
@@ -142,8 +140,10 @@ def pills_html(meta, city):
                    for l in lines)
     compact = " compact" if len(lines) > 12 else ""
     tag = f"{len(lines)} lines · {SCOPE_TAG[city]}"
-    return (f'<div class="cpills{compact}">{segs}'
-            f'<span class="ctag">{tag}</span></div>')
+    # tag on its own line below the pills: with 16 refs it would clip if it
+    # rode the wrapping pill row.
+    return (f'<div class="cpills{compact}">{segs}</div>'
+            f'<div class="ctag">{tag}</div>')
 
 
 def card_foot(meta):
@@ -170,10 +170,10 @@ def card_front(meta, stats, city, battle=False):
                         f'data-stat="{s["key"]}">{inner}</button>')
         else:
             rows.append(f'<div class="crow" data-stat="{s["key"]}">{inner}</div>')
-    for key in ("route-km", "ridership"):
-        rows.append(f'<div class="crow cpipe"><span class="crk crkp">···</span>'
-                    f'<span class="clab">{key}</span>'
-                    f'<span class="cpipetext">pipeline · dated</span></div>')
+    # route-km + ridership are hidden until they carry scope-matched, dated
+    # figures (D21 owner call: a reported figure has to match the card's
+    # declared scope, and Seoul's scope is the open freeze). They return at
+    # the roster scale-up; Method still documents them as the six-stat model.
     return (f'<article class="card cfront" '
             f'aria-label="{DISPLAY.get(city, city)}, {EPITHET[city]}, card {deck_no} of 12">'
             f'<div class="chead"><div class="cid">'
@@ -269,8 +269,7 @@ def battle_panel(meta, stats):
         <div class="bscore" id="b-score">you 0 · cpu 0 · first to 3</div>
         <button type="button" class="bnext" id="b-next" hidden>NEXT ROUND</button>
         <button type="button" class="bnext" id="b-again" hidden>PLAY AGAIN</button>
-        <div class="bfine">route-km and ridership sit out: a stat without
-        evidence is Unknown, and Unknown never battles.</div>
+        <div class="bfine">pick the stat you think beats the hidden card</div>
       </div>
       <div class="bcol">
         <div class="bcap">CPU · FACE DOWN</div>
@@ -286,21 +285,29 @@ def battle_panel(meta, stats):
 
 def daily_panel():
     return """
-    <div class="dailybox">
-      <div class="dhead">THE DAILY · <span id="d-date"></span></div>
-      <div class="dq" id="d-q">Which plots more stations?</div>
-      <div class="dchoices">
-        <button type="button" class="dchoice" id="d-a">
-          <span class="dname"></span><span class="dmeta">?</span></button>
-        <span class="dvs">vs</span>
-        <button type="button" class="dchoice" id="d-b">
-          <span class="dname"></span><span class="dmeta">?</span></button>
+    <div class="dailywrap">
+      <div class="dailybox">
+        <div class="dhead">THE DAILY · <span id="d-date"></span></div>
+        <div class="dstat" id="d-stat"></div>
+        <div class="dq" id="d-q">Which plots more stations?</div>
+        <div class="dchoices">
+          <button type="button" class="dchoice" id="d-a">
+            <span class="dname"></span>
+            <span class="dpills" aria-hidden="true"></span>
+            <span class="dmeta">?</span></button>
+          <span class="dvs">vs</span>
+          <button type="button" class="dchoice" id="d-b">
+            <span class="dname"></span>
+            <span class="dpills" aria-hidden="true"></span>
+            <span class="dmeta">?</span></button>
+        </div>
+        <div class="dverdict" id="d-verdict" tabindex="-1" aria-live="polite" hidden></div>
+        <div class="dstreak" id="d-streak"></div>
+        <div class="dnote">one guess a day, and the stat rotates: opened,
+        stations, span, density. The streak lives in this browser; counts
+        are plotted from the dated OSM snapshot. Live deck of three, the
+        pool deepens as cards land.</div>
       </div>
-      <div class="dverdict" id="d-verdict" tabindex="-1" aria-live="polite" hidden></div>
-      <div class="dstreak" id="d-streak"></div>
-      <div class="dnote">one guess a day · the streak lives in this browser ·
-      station counts are plotted from the dated OSM snapshot · live deck of
-      three, the pool deepens as cards land</div>
     </div>"""
 
 
@@ -393,6 +400,7 @@ def data_json(meta, stats):
             "values": {s["key"]: s["values"][c] for s in stats},
             "disp": {s["key"]: (s["disp"][c] + (f' {s["unit"]}' if s["unit"] else ""))
                      for s in stats},
+            "lines": meta["cities"][c]["lines"],
         }
     payload = {
         "asOf": meta["as_of"],
