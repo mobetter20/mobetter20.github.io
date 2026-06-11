@@ -1,6 +1,6 @@
 # STATUS — World Metros Atlas
 
-_Last updated: 2026-06-11 (Claude session, branch `claude/confident-margulis-10e030`)._
+_Last updated: 2026-06-12 (Claude session, branch `claude/modest-hamilton-c468a0`)._
 
 ## Done
 
@@ -48,25 +48,39 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/confident-margulis-10e
   records the prototype scope (three cities: Seoul, Paris, Tokyo; diagram +
   true-shape modes; Seoul×Paris shape pair; stubs for Rankings/Method).
 
-## Current gate — owner verdict on the D16 Gallery + Duel proposal
+- D16 gate artifact built (2026-06-12, owner-commissioned while D16 sat
+  PROPOSED): `mocks/gallery-duel-board.html` (`mocks/build_gallery_duel_board.py`).
+  The 12-card diagram gallery in uniform frames (Seoul/Tokyo/Paris real:
+  embedded Commons diagrams, ledger-verbatim attribution, one computed
+  superlative chip each from meta.json; nine labeled "soon" with their ledger
+  license), a "compare any two" strip, and the SEOUL vs PARIS duel: framed +
+  attributed diagram pair, tale-of-the-tape (opened year, lines drawn, stations
+  plotted, furthest-stations span: paired bars tipping toward the larger value
+  plus a plain verdict line per row; reported route-km and annual ridership as
+  "pipeline · dated at build" placeholders), and the same-scale silhouette pair
+  demoted to one "true size" row. Numbers from the prototype's committed
+  meta.json/shape JSONs; no fetches; no JS.
 
-The D15 wall board was REJECTED at its gate (owner: ugly). **D16 (PROPOSED)**
-follows the four-round visual signal: the familiar Commons diagrams become the
-site's visual language (uniform gallery frames; consistency from chrome, not
-maps), and the engagement core shifts to head-to-head comparison: duel pages
-with a tale-of-the-tape (paired lens bars, verdict lines, the same-scale pair
-demoted to one "true size" row), superlative chips on gallery cards, podium
-stories per ranking lens. Owner pick pending; if ratified, next gate artifact
-is the gallery + SEOUL-vs-PARIS duel mock board. Prior boards stay in mocks/
-for the record (wall-board.html, bakeoff-board.html, geo-shape-desktop.html).
+## Current gate: owner verdict on the gallery + duel board (doubles as D16 ratification)
 
-## Next exact action (after D16 ratification)
+The D15 wall board was REJECTED at its gate (owner: ugly). **D16 (still
+PROPOSED)** follows the four-round visual signal: the familiar Commons diagrams
+become the site's visual language (uniform gallery frames; consistency from
+chrome, not maps), and the engagement core shifts to head-to-head comparison.
+The owner commissioned the D16 gate artifact directly (2026-06-12 session
+brief), so the verdict on `mocks/gallery-duel-board.html` is also the
+ratification call on D16: on approval, flip D16 to RATIFIED in DECISIONS.md
+and proceed; on rejection, record the signal as D17. Prior boards stay in
+mocks/ for the record (wall-board.html, bakeoff-board.html,
+geo-shape-desktop.html).
 
-Build the gallery + duel mock board (12 diagram cards with 3 real, one full
-SEOUL vs PARIS duel with tale-of-the-tape). After that gate: rebuild the live
-page into the Gallery + Duel IA, then scale to the remaining 9 roster cities
-(D3) with frozen scope rules (DATA-CONTRACT — Seoul L1 is the hard one),
-diagram assets per DIAGRAM-LEDGER, Rankings podiums + almanac for real.
+## Next exact action (after the board gate)
+
+If approved: flip D16 to RATIFIED, rebuild the live page into the Gallery +
+Duel IA (landing gallery, duel pages with stable per-pair URLs, Rankings as
+lens podiums + almanac), then scale to the remaining 9 roster cities (D3) with
+frozen scope rules (DATA-CONTRACT: Seoul L1 is the hard one), diagram assets
+per DIAGRAM-LEDGER, superlative chips + podium stories for real.
 
 ## Blockers
 
