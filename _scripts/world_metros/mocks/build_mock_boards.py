@@ -294,6 +294,14 @@ main { flex: 1; display: flex; min-height: 0; }
             z-index: 2; font-family: 'DM Mono', ui-monospace, monospace; }
 .scalebar .bar { height: 3px; background: %(ink)s; display: inline-block;
                  border-radius: 2px; }
+.modetoggle { position: absolute; top: 10px; right: 10px; display: flex; gap: 0;
+              z-index: 2; border: 1px solid %(line)s; border-radius: 3px;
+              overflow: hidden; }
+.modetoggle span { font-size: 9px; letter-spacing: 0.12em; font-weight: 600;
+                   color: %(grey)s; padding: 5px 11px; background: %(panel)s; }
+.modetoggle .on { color: %(panel)s; background: %(accent)s; }
+.diagram { position: absolute; inset: 0; width: 100%%%%; height: 100%%%%;
+           object-fit: contain; padding: 40px 12px 12px; }
 .maptools { position: absolute; top: 10px; right: 10px; display: flex;
             flex-direction: column; gap: 5px; z-index: 2; }
 .maptools span { width: 24px; height: 24px; border: 1px solid %(line)s;
@@ -451,6 +459,24 @@ def main():
             f'{scalebar(shared)}</div>'
             '</main>' + footer_html())
     write_board("shape-desktop.html", body, 1280, 800)
+
+    # ---- board 4: desktop explore, DIAGRAM mode (D11 — the familiar map)
+    dcard = seoul_card(seoul, seoul_span).replace(
+        '<div><dt>the map riders see</dt>',
+        '<div><dt>diagram source</dt><dd><a href="https://commons.wikimedia.org/wiki/'
+        'File:Seoul_Metropolitan_Subway_network_map.svg">Commons · CC BY-SA 4.0</a></dd></div>'
+        '<div><dt>the map riders see</dt>')
+    dfooter = footer_html().replace(
+        '<footer><span>geometry',
+        '<footer><span>diagram: Satellizer / Wikimedia Commons (CC BY-SA 4.0) · geometry')
+    body = (chrome("EXPLORE", "4", total="4") + citystrip() +
+            '<main><div class="mappanel">'
+            '<div class="label">SEOUL · DIAGRAM — THE FAMILIAR MAP</div>'
+            '<div class="sub">community recreation in the official idiom · bilingual · marks 2026 openings</div>'
+            '<div class="modetoggle"><span class="on">DIAGRAM</span><span>TRUE SHAPE</span></div>'
+            '<img class="diagram" src="assets/seoul-diagram.svg" alt="Seoul Metropolitan Subway diagram">'
+            '</div>' + dcard + '</main>' + dfooter)
+    write_board("diagram-desktop.html", body, 1280, 800)
 
     # ---- board 3: mobile explore (375x760, natural height)
     msvg, s3 = svg_network(seoul, 347, 330, highlight="2", station_r=1.0, pad=18,

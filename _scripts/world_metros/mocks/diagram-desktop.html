@@ -1,0 +1,124 @@
+<!doctype html><html><head><meta charset="utf-8"><title>world-metros mock — diagram-desktop.html</title><style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #e8e8e3; color: #17171c; display: flex; align-items: center;
+       justify-content: center; min-height: 100vh;
+       font-family: -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif; }
+.mono { font-family: 'DM Mono', ui-monospace, monospace; }
+.board { width: 1280px; height: 800px; background: #f7f7f4; position: relative;
+         display: flex; flex-direction: column; overflow: hidden;
+         outline: 1px solid #d8d8d2; box-shadow: 0 1px 14px rgba(20,20,28,0.10); }
+.mockbadge { font-family: 'DM Mono', ui-monospace, monospace; font-size: 9px;
+             letter-spacing: 0.14em; color: #d96629; border: 1px solid #d9662966;
+             padding: 3px 7px; border-radius: 2px; background: #ffffff;
+             white-space: nowrap; margin-left: 20px; }
+header { display: flex; align-items: baseline; gap: 26px; flex: none;
+         padding: 16px 22px 12px; border-bottom: 1px solid #d8d8d2;
+         background: #ffffff; }
+.wordmark { font-size: 15px; font-weight: 700; letter-spacing: 0.24em; }
+.wordmark em { font-style: normal; color: #0052a4; }
+nav { display: flex; gap: 22px; margin-left: auto; font-size: 11px;
+      letter-spacing: 0.16em; font-weight: 600; }
+nav span { color: #8a8a85; padding-bottom: 4px; }
+nav .on { color: #17171c; border-bottom: 3px solid #0052a4; }
+.m { height: auto; min-height: 800px; }
+.m header { flex-wrap: wrap; row-gap: 7px; padding: 12px 14px 9px; }
+.m .wordmark { font-size: 13px; letter-spacing: 0.2em; }
+.m .mockbadge { margin-left: auto; font-size: 8px; }
+.m nav { order: 3; margin-left: 0; width: 100%; gap: 16px; font-size: 10px; }
+.m .citystrip { padding: 8px 14px; }
+.citystrip { display: flex; gap: 7px; padding: 10px 22px; flex: none;
+             border-bottom: 1px solid #d8d8d2; flex-wrap: nowrap;
+             overflow: hidden; background: #ffffff; }
+.citystrip span { font-size: 10.5px; letter-spacing: 0.04em; color: #8a8a85;
+                  border: 1px solid #d8d8d2; padding: 3px 9px;
+                  border-radius: 999px; white-space: nowrap; background: #ffffff; }
+.citystrip .on { color: #ffffff; background: #17171c; border-color: #17171c;
+                 font-weight: 600; }
+main { flex: 1; display: flex; min-height: 0; }
+.mappanel { flex: 1; position: relative; background: #ffffff; margin: 14px;
+            border: 1px solid #d8d8d2; min-width: 0; }
+.mappanel .label { position: absolute; top: 10px; left: 12px; font-size: 10px;
+                   letter-spacing: 0.18em; font-weight: 700; color: #17171c;
+                   z-index: 2; }
+.mappanel .sub { position: absolute; top: 26px; left: 12px; font-size: 9.5px;
+                 color: #8a8a85; z-index: 2; }
+.scalebar { position: absolute; bottom: 10px; left: 12px; display: flex;
+            align-items: center; gap: 8px; font-size: 9px; color: #8a8a85;
+            z-index: 2; font-family: 'DM Mono', ui-monospace, monospace; }
+.scalebar .bar { height: 3px; background: #17171c; display: inline-block;
+                 border-radius: 2px; }
+.modetoggle { position: absolute; top: 10px; right: 10px; display: flex; gap: 0;
+              z-index: 2; border: 1px solid #d8d8d2; border-radius: 3px;
+              overflow: hidden; }
+.modetoggle span { font-size: 9px; letter-spacing: 0.12em; font-weight: 600;
+                   color: #8a8a85; padding: 5px 11px; background: #ffffff; }
+.modetoggle .on { color: #ffffff; background: #0052a4; }
+.diagram { position: absolute; inset: 0; width: 100%; height: 100%;
+           object-fit: contain; padding: 40px 12px 12px; }
+.maptools { position: absolute; top: 10px; right: 10px; display: flex;
+            flex-direction: column; gap: 5px; z-index: 2; }
+.maptools span { width: 24px; height: 24px; border: 1px solid #d8d8d2;
+                 color: #8a8a85; display: flex; align-items: center;
+                 justify-content: center; font-size: 13px; background: #ffffff;
+                 border-radius: 3px; }
+aside { width: 336px; margin: 14px 14px 14px 0; border: 1px solid #d8d8d2;
+        background: #ffffff; padding: 18px 18px 14px; display: flex;
+        flex-direction: column; }
+.cityname { font-size: 27px; font-weight: 800; letter-spacing: 0.04em; }
+.cityname small { display: block; font-size: 9.5px; letter-spacing: 0.18em;
+                  color: #0052a4; margin-top: 5px; font-weight: 600; }
+.facts { margin-top: 16px; border-top: 1px solid #d8d8d2;
+         font-family: 'DM Mono', ui-monospace, monospace; }
+.facts div { display: flex; justify-content: space-between; gap: 10px;
+             align-items: baseline; padding: 7px 0;
+             border-bottom: 1px solid #f7f7f4; font-size: 11px; }
+.facts dt { color: #8a8a85; }
+.facts dd { text-align: right; font-weight: 500; }
+.facts .ev { color: #b9b9b2; font-size: 9px; }
+.facts a { color: #0052a4; text-decoration: none; font-weight: 500; }
+.why { margin-top: 14px; font-size: 11.5px; line-height: 1.6; color: #3c3c38; }
+.why b { color: #d96629; font-weight: 700; }
+.why p + p { margin-top: 8px; }
+.lines { margin-top: auto; padding-top: 12px; display: flex; gap: 5px;
+         flex-wrap: wrap; }
+.lines i { font-style: normal; font-size: 9.5px; color: #fff; padding: 2px 0;
+           width: 20px; text-align: center; border-radius: 999px;
+           font-weight: 700; }
+footer { display: flex; justify-content: space-between; padding: 9px 22px;
+         border-top: 1px solid #d8d8d2; font-size: 9px; color: #8a8a85;
+         letter-spacing: 0.05em; flex: none; background: #ffffff;
+         font-family: 'DM Mono', ui-monospace, monospace; }
+.pairbar { display: flex; align-items: center; gap: 14px; padding: 10px 22px;
+           font-size: 11px; letter-spacing: 0.1em; flex: none; font-weight: 700;
+           border-bottom: 1px solid #d8d8d2; background: #ffffff; }
+.pairbar .vs { color: #d96629; font-size: 13px; }
+.pairbar .note { color: #8a8a85; margin-left: 8px; letter-spacing: 0.02em;
+                 font-weight: 400; font-style: italic; font-size: 10px; }
+.pairbar .ctl { margin-left: auto; display: flex; gap: 8px; }
+.pairbar .ctl span { border: 1px solid #d8d8d2; padding: 3px 10px;
+                     color: #8a8a85; font-size: 9px; letter-spacing: 0.12em;
+                     border-radius: 3px; font-weight: 600; }
+.pairbar .ctl .on { color: #ffffff; background: #0052a4;
+                    border-color: #0052a4; }
+</style></head><body><div class="board"><header><div class="wordmark">WORLD METROS <em>ATLAS</em></div><nav><span class="on">EXPLORE</span><span class="">SHAPE</span><span class="">RANKINGS</span><span class="">METHOD</span></nav><span class="mockbadge">MOCK BOARD 4/4 · APPROVAL ARTIFACT</span></header><div class="citystrip"><span class="">shanghai</span><span class="">tokyo</span><span class="on">seoul</span><span class="">hong kong</span><span class="">singapore</span><span class="">delhi</span><span class="">moscow</span><span class="">london</span><span class="">paris</span><span class="">nyc</span><span class="">mexico city</span><span class="">cairo</span></div><main><div class="mappanel"><div class="label">SEOUL · DIAGRAM — THE FAMILIAR MAP</div><div class="sub">community recreation in the official idiom · bilingual · marks 2026 openings</div><div class="modetoggle"><span class="on">DIAGRAM</span><span>TRUE SHAPE</span></div><img class="diagram" src="assets/seoul-diagram.svg" alt="Seoul Metropolitan Subway diagram"></div>
+<aside>
+  <div class="cityname">SEOUL<small>SEOUL METROPOLITAN SUBWAY</small></div>
+  <div class="facts">
+    <div><dt>opened</dt><dd>1974</dd></div>
+    <div><dt>lines drawn</dt><dd>8 <span class="ev">(2–9 · L1 scope: Method)</span></dd></div>
+    <div><dt>stations plotted</dt><dd>607</dd></div>
+    <div><dt>furthest-stations span</dt><dd>58 km <span class="ev">computed</span></dd></div>
+    <div><dt>reported route-km</dt><dd><span class="ev">pipeline · dated at build</span></dd></div>
+    <div><dt>annual ridership</dt><dd><span class="ev">pipeline · dated at build</span></dd></div>
+    <div><dt>diagram source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Seoul_Metropolitan_Subway_network_map.svg">Commons · CC BY-SA 4.0</a></dd></div><div><dt>the map riders see</dt><dd><a href="https://www.seoulmetro.co.kr">official map ↗</a></dd></div>
+  </div>
+  <div class="why">
+    <p><b>why it's here</b> — the densest reach of any metro on earth: the green
+    Line 2 loop orbits the core while seven siblings lace a city of ten million
+    into one grid.</p>
+    <p>Full underground cell coverage, heated winter seats, and a circle line so
+    central that "inside Line 2" is shorthand for downtown.</p>
+  </div>
+  <div class="lines"><i style="background:#00a23f">2</i><i style="background:#ed6c00">3</i><i style="background:#009bce">4</i><i style="background:#794698">5</i><i style="background:#7c4932">6</i><i style="background:#6e7e31">7</i><i style="background:#d11d70">8</i><i style="background:#a49d87">9</i></div>
+</aside></main><footer><span>diagram: Satellizer / Wikimedia Commons (CC BY-SA 4.0) · geometry © OpenStreetMap contributors · ODbL · OSM snapshot 2026-06-11</span><span>made by ajin.im</span></footer></div></body></html>
