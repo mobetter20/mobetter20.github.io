@@ -144,3 +144,28 @@ Scope:
   per-city JSON, stamped with its OSM as-of date, is the prototype's dated artifact.
 - **Stop at the gate** — no scaling to the remaining 9 cities until owner approval
   of the live prototype.
+
+**D13 · Consistent geographic dress for True Shape — PROPOSED 2026-06-11 (owner
+question at gate 2).**
+Owner, on seeing the live prototype: the Commons diagrams are a style patchwork
+(Tokyo's recreation is quasi-geographic; Seoul/Paris are pure schematics), and a
+single consistent style like the Tokyo map would be better; less sure the diagram
+layer should stay. Substantive answer: per-city geographic-style diagrams cannot
+be sourced (don't exist for most cities; same patchwork + license ledger again),
+but OUR true geometry can wear a uniform geographic dress: OSM water polygons +
+coastline (bay closed against the frame; islands punched out) + ghosted
+out-of-scope rail, identical machinery for all 12 cities, one ODbL line for the
+whole thing. Evidence: `mocks/build_geo_shape_mock.py` →
+`mocks/geo-shape-desktop.html` (Seoul / Tokyo / Paris; the Han, Tokyo Bay and the
+Seine all render; built same day). Proposed product change if ratified (option B
+of the gate discussion): the geo-dressed True Shape becomes Explore's default and
+the site's consistent visual center; the Commons diagram mode stays as the
+per-city "the map riders see" exhibit (it remains the only name-bearing view
+until a label layer exists — dropping it entirely, option C, would leave the site
+with no readable station names). Implementation notes for scaling: fetch
+Overpass full geometry (bbox-clipped `out geom` breaks river multipolygon
+assembly), clip rings locally (Sutherland-Hodgman); one outer ring per SVG path
+(nested-outer data quirks cancel to white under a shared evenodd path); closed
+coastline loops: negative shoelace in the y-down projection = island; Paris RER
+is a separate validator network file (affects the ghost layer's reach there).
+Pending owner pick: A (keep as shipped) / B (this) / C (drop diagrams).
