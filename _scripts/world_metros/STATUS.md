@@ -1,6 +1,6 @@
 # STATUS — World Metros Atlas
 
-_Last updated: 2026-06-11 (Claude session, branch `claude/world-metros-scaffold`)._
+_Last updated: 2026-06-11 (Claude session, branch `claude/world-metros-mocks`)._
 
 ## Done
 
@@ -13,21 +13,25 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/world-metros-scaffold`
   GeoJSON (`proof_same_scale.py`). Seoul's through-running scope problem quantified
   (~148 km bbox; L1 = 26 service variants).
 - This doc set + registry stanza (`world-metros-atlas` in `~/projects.md`).
+- Forks ratified (D9); mock boards round 1 built (Electric Cartography), rejected
+  at gate; round 2 rebuilt in the official-map idiom (D10) with fixes: RDP
+  closed-ring handling (Line 2 loop), outlier-aware station filtering, Paris
+  stray-fragment guard.
 
-## Current gate — owner (Ajin) ratification of three forks
+## Current gate — owner verdict on the round-2 mock boards (D8 gate 1)
 
-1. **Scope trim (D2, D5, D6):** kill the practical-traveller layer; almanac table for
-   reported figures; lighter process. → recommendation: yes.
-2. **Roster (D3):** 12 = Codex 10 + Moscow + Hong Kong, Beijing as "why not" entry.
-   → recommendation: yes; owner may prefer strict 10.
-3. **Design (D7):** proceed to mock boards in Electric Cartography. → recommendation: yes.
+All three forks were ratified 2026-06-11 (D9). The first board round (Electric
+Cartography, dark) was rejected by the owner at the gate; direction pivoted to
+the **official-map idiom on white** (D10) and the three boards were rebuilt the
+same day: `mocks/explore-desktop.html`, `mocks/shape-desktop.html`,
+`mocks/explore-mobile.html` (generator: `mocks/build_mock_boards.py`, real
+Seoul + Paris geometry).
 
-## Next exact action (after ratification)
+## Next exact action (after board approval)
 
-Build the three mock approval boards with **real Seoul + Paris geometry** in the
-Electric Cartography direction: desktop Explore, desktop Compare/Shape (pair),
-mobile Explore (375px). Static HTML/SVG, no frontend framework yet. Stop for
-approval; record the verdict in DECISIONS.md.
+Build the coded Seoul Explore + Seoul/Paris Shape prototype (D8 gate 2) in the
+approved direction: real interactivity (pan/zoom, line select, pair sync), still
+only two cities, no scaling to the roster until the second approval.
 
 ## Blockers
 
