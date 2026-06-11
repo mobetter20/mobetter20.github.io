@@ -95,10 +95,11 @@ for full details. Quick reference:
   deferred — single-token names like "Conrad" / "Dennis" collide with
   ordinary English.
 
-## World Metros Atlas (planning)
+## Metro Cards (was: World Metros Atlas)
 
-A planned bespoke page at `/is/building/world-metros/` (no page exists yet).
-Before touching anything metro-related, read `_scripts/world_metros/README.md`
-— reading order, product contract, data contract, and the decision log live
-there. Open forks need owner ratification before frontend work starts (see
-`_scripts/world_metros/STATUS.md`).
+A bespoke build at `/is/building/world-metros/` (soft-launched, noindex; the
+atlas-era prototype is live and gets rebuilt as a card deck per DECISIONS
+D17–D19). Before touching anything metro-related, read
+`_scripts/world_metros/README.md` — reading order, product contract, data
+contract, and the decision log live there. Open forks need owner ratification
+before frontend work starts (see `_scripts/world_metros/STATUS.md`).

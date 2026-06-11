@@ -1,10 +1,15 @@
-# World Metros Atlas — dev docs + tooling
+# Metro Cards (working name "metro match") — dev docs + tooling
 
-A one-URL interactive atlas of ~10–12 category-defining metro systems, eventually at
-`/is/building/world-metros/` (bespoke tier). Signature device: every network drawn from
-real OSM geometry at **one shared scale**, north-up, so physical forms compare honestly.
+A collectible card deck for 12 category-defining metro systems at
+`/is/building/world-metros/` (bespoke tier). Every city is one designed stat
+card (front for play: rank chips + strength tracks; back for lore: the
+familiar Commons diagram, credited); comparison is the game (battle + daily).
+Pivoted from the atlas vision 2026-06-12 (DECISIONS D17–D19) after four
+map-hero rounds died at their gates; the data contracts and licensing posture
+carry over unchanged.
 
-Nothing here is live yet. No page exists under `is/building/world-metros/` yet.
+The atlas-era coded prototype is live (soft-launched, noindex) at the URL;
+it gets rebuilt as the deck after the D19 ground pick.
 
 ## Reading order (mandatory for any agent picking this up)
 

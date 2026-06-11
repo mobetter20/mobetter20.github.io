@@ -84,23 +84,30 @@ _Last updated: 2026-06-12 (Claude session, branch `worktree-metro-cards-d17`)._
   uniform pinstripe deck back stays the game-hidden state. Round-1 board
   stays in mocks/ for the record.
 
-## Current gate: owner verdict on the D18 v2 card board (the premise kill test, round 2)
+- D18 v2 board judged (2026-06-12): **premise PASSED** ("i like it"). The
+  archive branch is dead. One directed amendment: a black or other dark
+  background might be better (D19). The commissioned follow-through landed
+  the same session: BUILD-SPEC.md rewritten around the D17 North-Star + D18
+  card grammar; README first paragraph updated to the card vision.
 
-The gate artifact is `mocks/card-game-board.html`: three v2 fronts (Seoul,
-Paris, Tokyo), the flip exhibit (front / lore back with the credited diagram /
-deck back), the battle restaged on v2 cards, the daily strip. If the v2 cards
-delight: D17's North-Star replaces BUILD-SPEC's and the live page rebuilds as
-the deck. If they do not: archive per D17's premise-gate clause.
+## Current gate: owner pick on the D19 ground fork (A / B / C)
 
-## Next exact action (after the v2 card gate)
+The gate artifact is `mocks/card-dark-board.html`: the same Seoul card three
+ways on ground swatches (A white-on-light reference, B white card on a dark
+table, C dark card on a dark table: the recommendation), then the fan, the
+flip and the battle restaged in the recommended dark treatment. The pick
+settles the visual ground before the live-page rebuild.
 
-If approved: rewrite BUILD-SPEC.md around the D17 North-Star with the D18
-card grammar (deck + battle + daily; honest dated stats; soft-launch norms
-unchanged), settle naming, rebuild the live page as the card deck, then scale
-to the remaining 9 roster cities (D3) with frozen scope rules (DATA-CONTRACT:
-Seoul L1 is the hard one), per-line opened-year sourcing, and full-deck rank
-computation for the stat tracks.
-If rejected: archive per D17's premise-gate clause.
+## Next exact action (after the D19 ground pick)
+
+Rebuild the live page as the card deck in the picked ground: THE DECK
+(12-card collection, flip cards), THE BATTLE (vs cpu, pick-a-stat, first to
+3), THE DAILY (one guess a day, streak), METHOD (scopes, sources, licenses,
+why-not). Then scale to the remaining 9 roster cities (D3) with frozen scope
+rules (DATA-CONTRACT: Seoul L1 is the hard one), per-line opened-year
+sourcing, full-deck rank computation, and the lore backs per DIAGRAM-LEDGER.
+Naming ("metro match", working) stays the owner's call and should be settled
+before the page ships.
 
 ## Blockers
 
