@@ -27,6 +27,16 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/world-metros-mocks`)._
   zoomTo/tap on "Hongik University"). Caveat: tap-ability requires real <text> nodes;
   the 12-city diagram audit must grade each file's structure, not just its license.
 
+- D11 per-city diagram sourcing audit done: `DIAGRAM-LEDGER.md` — all 12 roster
+  cities have a chosen file + fallback; every license verified on the actual Commons
+  page data/wikitext (catch: the "official" CDMX iconographic upload is deletion-
+  nominated over Wyman icon IP — excluded), every structure grade verified by
+  downloading + counting nodes (working-map lineages keep real `<text>`; the
+  print-faithful Shanghai/Tokyo/NYC recreations are outlined → pan-zoom-only).
+  Official-artwork checks: Seoul KOGL Type 3 (ND, static-only), CDMX LGACDMX
+  (third-party-IP carve-out), DMRC (no open license). No city at no-good-option;
+  Delhi flagged weakest (2020 base, four named missing openings).
+
 ## Current gate — owner verdict on (a) round-2 boards and (b) the D11 familiar-diagram proposal
 
 All three forks were ratified 2026-06-11 (D9). The first board round (Electric
