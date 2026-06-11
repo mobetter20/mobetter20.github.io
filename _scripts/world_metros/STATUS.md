@@ -1,6 +1,6 @@
 # STATUS — World Metros Atlas
 
-_Last updated: 2026-06-11 (Claude session, branch `claude/world-metros-mocks`)._
+_Last updated: 2026-06-11 (Claude session, branch `claude/confident-margulis-10e030`)._
 
 ## Done
 
@@ -37,22 +37,33 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/world-metros-mocks`)._
   (third-party-IP carve-out), DMRC (no open license). No city at no-good-option;
   Delhi flagged weakest (2020 base, four named missing openings).
 
-## Current gate — owner verdict on (a) round-2 boards and (b) the D11 familiar-diagram proposal
+- D11 RATIFIED 2026-06-11: owner approved the familiar-diagram layer via the
+  diagram mock + interactivity spike and by launching the gate-2 build. D12
+  records the prototype scope (three cities: Seoul, Paris, Tokyo; diagram +
+  true-shape modes; Seoul×Paris shape pair; stubs for Rankings/Method).
 
-All three forks were ratified 2026-06-11 (D9). The first board round (Electric
-Cartography, dark) was rejected by the owner at the gate; direction pivoted to
-the **official-map idiom on white** (D10) and the three boards were rebuilt the
-same day: `mocks/explore-desktop.html`, `mocks/shape-desktop.html`,
-`mocks/explore-mobile.html` (generator: `mocks/build_mock_boards.py`, real
-Seoul + Paris geometry).
+## Current gate — owner verdict on the live coded prototype (D8 gate 2)
 
-## Next exact action (after board approval)
+The coded prototype is BUILT (this session, branch
+`claude/confident-margulis-10e030`): real page at `/is/building/world-metros/`
+(https://ajin.im/is/building/world-metros/ once merged), soft-launch state
+(noindex; the sitemap builder auto-skips noindex pages; no hub card; no teaser),
+official-map idiom per the round-2 boards, scope per D12. Verified: 375/768/1280,
+keyboard tabs + map keys, station tap (Seoul Hongik / Paris Bastille), Tokyo
+degraded treatment, shared px-per-km identical across the Shape pair, sync zoom,
+lazy-load (only meta.json + the Seoul diagram at boot), zero console errors.
+Geometry: `build_page_geometry.py` emits per-city JSON (Seoul 48 KB / Paris 19 KB
+/ Tokyo 22 KB + meta 1.5 KB); Tokyo merges the validator's pre-split
+`tokyo` + `tokyo_-_toei` networks, refs filtered to Metro+Toei, the `Al`
+through-service excluded.
 
-Build the coded Seoul Explore + Seoul/Paris Shape prototype (D8 gate 2) in the
-approved direction: real interactivity (pan/zoom, line select, pair sync), still
-only two cities, no scaling to the roster until the second approval.
+## Next exact action (after prototype approval)
+
+Scale to the remaining 9 roster cities (D3): per-city diagram assets per
+DIAGRAM-LEDGER, per-city True Shape JSON with frozen scope rules
+(DATA-CONTRACT — Seoul L1 is the hard one), Rankings + Method built for real.
 
 ## Blockers
 
 None. (Seoul L1 scope rule is deliberately deferred to the pipeline stage,
-DATA-CONTRACT.md — it does not block the mock boards.)
+DATA-CONTRACT.md — the prototype keeps the mocks' lines 2–9 scope.)
