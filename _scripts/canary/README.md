@@ -18,6 +18,10 @@ log, and decides:
   `last_polled_utc` + `canary_now` so the page's staleness banner stays
   quiet. GH Pages redeploys in ~40s either way.
 
+The page defines **"just" as a reset detected within the past 48 hours**.
+That public definition and the verdict cutoff share the `data-hours`
+value on `#definition` in the page's `index.html`.
+
 ## The page's state.json is machine-written
 
 `is/building/did-claude-just-reset-usage/state.json` carries a `_note`
