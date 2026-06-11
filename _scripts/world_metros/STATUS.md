@@ -42,7 +42,16 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/confident-margulis-10e
   records the prototype scope (three cities: Seoul, Paris, Tokyo; diagram +
   true-shape modes; Seoul×Paris shape pair; stubs for Rankings/Method).
 
-## Current gate — owner verdict on the live coded prototype (D8 gate 2)
+## Current gate — owner verdict on the live coded prototype (D8 gate 2),
+## now bundled with the D13 consistency fork (A / B / C)
+
+At the gate the owner raised the diagram-consistency question (the chosen
+Commons files are a style patchwork). D13 (PROPOSED) records the fork and the
+recommendation; evidence mock built: `mocks/geo-shape-desktop.html`
+(`mocks/build_geo_shape_mock.py` — true geometry over OSM water + ghost rail,
+Seoul / Tokyo / Paris). Owner picks: A keep-as-shipped · B geo-dressed True
+Shape becomes the consistent center, diagrams demoted to exhibit · C drop
+diagrams (loses all station names until a label layer exists; not recommended).
 
 The coded prototype is BUILT (this session, branch
 `claude/confident-margulis-10e030`): real page at `/is/building/world-metros/`
