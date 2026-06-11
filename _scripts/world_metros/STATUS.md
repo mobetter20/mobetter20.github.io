@@ -120,12 +120,23 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/exciting-shaw-1ae32b`)
   Verified at 375/768/1280, keyboard-playable, reduced-motion respected,
   deck grid ships light (diagrams fetch only on flip).
 
-## Current gate: owner verdict on the live page
+- D22 (2026-06-12): owner reviewed the D21 live page and directed three
+  fixes (two with picks), all shipped the same session. Empty
+  route-km/ridership rows hidden until sourced (card shows four live
+  stats). Daily stat now rotates across opened/stations/span/density with
+  a rebuilt, centered, bigger layout (pills on each choice, value on
+  reveal). Legibility pass: nothing below ~9px, the 6.5px attribution +
+  footnotes lifted, scope tag moved to its own line (no clip at 16 refs),
+  lore backs trimmed to two facts to fit the larger type. Re-verified
+  375/768/1280, keyboard, reduced-motion, console clean.
+
+## Current gate: owner verdict on the revised live page
 
 All design gates, naming and scope are resolved (C ground, V1 ledger,
-density swap, Metro Match, rider-scope B). The deck is live at
+density swap, Metro Match, rider-scope B); the D21 page was then polished
+on owner feedback (D22). The deck is live at
 https://ajin.im/is/building/world-metros/ (still noindex/unlisted). The
-owner judges the live page; that verdict opens or closes gate 3.
+owner judges the revised live page; that verdict opens or closes gate 3.
 
 ## Next exact action (after the owner verdict)
 
