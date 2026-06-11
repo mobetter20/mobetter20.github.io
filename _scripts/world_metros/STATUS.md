@@ -98,14 +98,22 @@ _Last updated: 2026-06-12 (Claude session, branch `worktree-metro-cards-d17`)._
   winner spread improves; Paris's mesh becomes playable) + three
   stat-presentation variants in treatment C.
 
-## Current gate: owner verdict on the D20 board (variant pick + stat-list confirm)
+- D20 resolved (2026-06-12): owner picked **V1 (big ledger)** after the r3
+  type pass (labels lead in bold near-white; designer-critique agent round;
+  its label re-dimming rejected). Density swap confirmed; ratified defaults:
+  line-count + scope tag beside the pills, 2-3 curated facts on lore backs.
+  Still open: per-city declared scope (A operator vs B rider-scope, rec B),
+  due before roster scale-up. BUILD-SPEC updated to the resolved state.
 
-The gate artifact is `mocks/card-row-variants-board.html`: the proposed
-stat-list strip (was / proposed / why), then each variant as the full
-three-city fan in treatment C: V1 BIG LEDGER (jumbo numerals, no tracks),
-V2 STAT TILES (2×3 player-mat grid), V3 HERO STAT (signature number +
-compact rows). Owner picks a variant (or elements to merge) and confirms or
-vetoes the lines→density swap.
+## Current gate: build the live page, then owner verdict on it
+
+All design gates are resolved (C ground, V1 ledger, density swap). Next
+build is the real one: `/is/building/world-metros/` rebuilt as DECK +
+BATTLE + DAILY + METHOD per BUILD-SPEC (three cities real, nine "soon",
+soft-launch norms kept). The rebuild session should ask the owner two
+things before shipping wide: naming ("metro match" working) and the scope
+pick if still unanswered (default: ship with the scope tag, decide before
+scale-up).
 
 ## Next exact action (after the D20 pick)
 

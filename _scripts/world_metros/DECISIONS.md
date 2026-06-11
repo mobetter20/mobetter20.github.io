@@ -400,3 +400,15 @@ pill compaction above 12 lines (every ref kept, no overflow hiding), V2 rank
 chip to tile bottom-right, dashed treatment so pending rows read as slots not
 broken data, quieter deck number. Rejected: re-dimming labels (contradicts
 the owner's flag; game hierarchy wants stat names scannable first).
+*Resolution (2026-06-12):* owner picked **V1 (big ledger)**; the
+lines→density swap is confirmed (owner: line info should live somewhere, but
+not at stat level, that would be redundant). Ratified defaults for the
+rebuild: line count as header metadata beside the pills ("8 lines · 2–9
+shown"), a scope tag so pills never silently claim completeness, and 2-3
+curated "why it's interesting" facts on the lore back (the D2 profile-card
+content finds its home; the traveller-utility layer stays out, D2 holds).
+Still open: per-city declared scope (A operator-proper vs B rider-scope, rec
+B: each card covers the network its own familiar map draws; owner flagged
+Seoul's missing lines), due before roster scale-up, recorded on Method when
+decided. Naming ("metro match") still the owner's call before wide ship.
+Next gate artifact: the live page rebuilt as the deck.

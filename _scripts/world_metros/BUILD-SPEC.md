@@ -32,16 +32,22 @@ game. Trading cards with footnotes.
 - **Front (play side):** city name + epithet (the sprawl / the mesh / the two
   crews / …), deck number `NN/12` in roster order, line pills carrying the
   real refs in the operators' colours (the identity device, rendered purely
-  from OSM data), six stat rows — each with a deck-rank chip (1ST filled,
-  others hollow) and a normalized strength track — and a provenance footnote
-  naming the snapshot and the rank basis. NO map on the front.
+  from OSM data; compact above 12 lines) with a line-count + scope tag beside
+  them ("8 lines · 2–9 shown": pills never silently claim completeness), six
+  stat rows in the **V1 big-ledger presentation** (D20: bold near-white stat
+  label leading each row, jumbo mono value right, deck-rank chip 1ST filled /
+  others hollow; no strength tracks), and a provenance footnote naming the
+  snapshot and the rank basis. NO map on the front.
 - **Back (lore side):** the city's familiar Commons diagram full-bleed
   (DIAGRAM-LEDGER file, attribution verbatim, currency caveats where the
-  ledger flags them), name band, one flavor line. The D11 "map riders see"
+  ledger flags them), name band, one flavor line, and 2-3 curated "why it's
+  interesting" facts (the D2 profile-card content; evergreen, no
+  traveller-utility layer). The D11 "map riders see"
   obligation lives here.
 - **Deck back:** uniform pinstripes of every line colour in the deck under
   the wordmark band; serves as the opponent's hidden card in the battle.
-- **Ground:** dark (D19; exact treatment per the D19 board pick).
+- **Ground:** treatment C (D19, picked): ink-dark card `#1b1b21` on
+  near-black table `#0f0f12`; the line colours do the lighting.
 - **Trade dress:** our own card idiom in the official-map language (DM Mono
   data labels, hairline rules, transit-blue accent). No Pokémon / Top Trumps
   trade dress. No official map artwork anywhere.
@@ -51,16 +57,15 @@ game. Trading cards with footnotes.
 | stat | basis | wins |
 |---|---|---|
 | opened | earliest regular passenger service within declared scope (operator histories, dated) | earlier |
-| lines | customer-facing line identities, not service variants (DATA-CONTRACT) | more |
+| density | stations per km² of network extent (bbox in mocks, hull at pipeline) | more |
 | stations | station complexes plotted from the frozen snapshot | more |
 | span | furthest-stations geodesic distance, computed | more |
 | route-km | reported, dated, sourced (almanac grade) | more |
 | ridership | reported annual, dated, sourced (almanac grade) | more |
 
-D20 proposes swapping `lines` for `density` (stations per km² of network
-extent; more wins): the pills already carry line count, and density restores
-winner spread. Pending owner confirm at the D20 gate; the table updates on
-ratification. Ranks and track positions are computed across the full deck of
+The lines→density swap is D20-ratified (the pills + a header count tag
+carry line identity; density restores winner spread and makes the mesh
+playable). Ranks and track positions are computed across the full deck of
 12 at pipeline stage (the mocks footnote "live deck of 3" until then); win
 directions are fixed above and explained on Method. Interchange share remains a candidate
 seventh stat if the pipeline resolves it cleanly per the lens definition.
@@ -80,7 +85,8 @@ that card; never shown as zero.
 
 ## Approval gates (in order)
 
-1. **D19 ground pick** (A / B / C board) — settles the visual ground.
+1. **D19 ground pick** — DONE (C: dark card, dark table) + **D20** — DONE
+   (V1 big ledger; density swap ratified).
 2. **Live-page rebuild** of `/is/building/world-metros/` as DECK + BATTLE +
    DAILY + METHOD with the three live cities real, nine cards "soon". Owner
    verdict on the live page.
