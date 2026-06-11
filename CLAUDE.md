@@ -94,3 +94,11 @@ for full details. Quick reference:
   with `generate_graph.py`). Character-name linting is intentionally
   deferred — single-token names like "Conrad" / "Dennis" collide with
   ordinary English.
+
+## World Metros Atlas (planning)
+
+A planned bespoke page at `/is/building/world-metros/` (no page exists yet).
+Before touching anything metro-related, read `_scripts/world_metros/README.md`
+— reading order, product contract, data contract, and the decision log live
+there. Open forks need owner ratification before frontend work starts (see
+`_scripts/world_metros/STATUS.md`).
