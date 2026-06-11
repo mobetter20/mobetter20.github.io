@@ -412,3 +412,33 @@ B: each card covers the network its own familiar map draws; owner flagged
 Seoul's missing lines), due before roster scale-up, recorded on Method when
 decided. Naming ("metro match") still the owner's call before wide ship.
 Next gate artifact: the live page rebuilt as the deck.
+
+**D21 · Name and scope ratified; the deck is live — RATIFIED 2026-06-12
+(owner picks at the rebuild session's gate check; build landed the same
+session).**
+- **Name: METRO MATCH** ships (picked over "Metro Cards" and over keeping
+  "World Metros"; the URL stays `/is/building/world-metros/`). The title
+  tag, header wordmark and pinstripe deck back carry it.
+- **Scope: B, rider-scope.** Each card declares the network its city's own
+  familiar map draws, not one operator's books. Binds at the roster
+  scale-up; this build keeps Seoul at lines 2–9 under the ratified scope
+  tag ("8 lines · 2–9 shown"), and Method records the rule plus the Seoul
+  L1 freeze question it defers to the pipeline.
+- **The rebuild (D20's gate artifact) shipped:** `/is/building/world-metros/`
+  is now the card deck. THE DECK: 12 cards in roster order; Seoul, Paris,
+  Tokyo live with flip-to-lore backs (ledger diagrams lazy-load on flip,
+  attribution verbatim, Seoul currency caveat carried); nine dashed "soon"
+  slots naming their verified licences. THE BATTLE: vs cpu, pick a stat off
+  the V1 ledger, first to 3, per-pair hash URLs, the pinstripe deck back as
+  the hidden card; route-km/ridership sit out as Unknown. THE DAILY: one
+  stations guess a day, streak in localStorage. METHOD: game rules, the six
+  stat definitions with win directions, scope rules, sources and as-of
+  dates, the diagram licensing story, why not Beijing. Generator:
+  `_scripts/world_metros/build_metro_cards.py` writes index.html from the
+  committed meta.json (style.css and app.js hand-maintained beside it).
+  Soft-launch norms kept: noindex, no sitemap entry, no hub card, no home
+  teaser; analytics.js loads. Verified at 375/768/1280; battle and daily
+  keyboard-playable; prefers-reduced-motion degrades flips to instant
+  swaps; console clean; the deck grid ships light (no diagram fetch before
+  a flip). Gate: owner verdict on the live page, then roster scale-up
+  (BUILD-SPEC gate 3).
