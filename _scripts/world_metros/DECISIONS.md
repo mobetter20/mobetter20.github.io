@@ -199,8 +199,8 @@ regardless.
 
 ## 2026-06-12
 
-**D15 · Hero flip: atlas-page IA, map demoted from hero to figure — PROPOSED
-2026-06-12 (owner verdict on the D14 board).**
+**D15 · Hero flip: atlas-page IA, map demoted from hero to figure — RATIFIED
+2026-06-12 (owner verdict on the D14 board; pick: silhouette wall).**
 Owner on the bake-off: all three candidates usable but none is the polished
 main visual they imagined; willing to reconsider the UI — map less prominent,
 other content the hero, maps small/sparing, possibly an embedded map if legal.
@@ -230,3 +230,5 @@ a landing-board mock with the 3 live cities real + 9 placeholders (D8 gate
 discipline: no roster scale-up before prototype approval). Resolves D13 by
 superseding the "Explore default" question: in this IA the diagram/true-shape
 toggle lives one level down, where patchwork inconsistency stops mattering.
+*Ratification (2026-06-12):* owner picked the silhouette wall ("wall").
+Next gate artifact: the landing-board mock (wall + one example dossier).
