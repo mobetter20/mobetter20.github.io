@@ -169,3 +169,30 @@ assembly), clip rings locally (Sutherland-Hodgman); one outer ring per SVG path
 coastline loops: negative shoelace in the y-down projection = island; Paris RER
 is a separate validator network file (affects the ghost layer's reach there).
 Pending owner pick: A (keep as shipped) / B (this) / C (drop diagrams).
+
+**D14 · Map bake-off spike — RATIFIED 2026-06-11 (owner: "bake-off"; verdict
+resolves D13).**
+At the gate the owner judged the round-1 geo dress clumsy outside Tokyo and
+asked whether to build the rest of the page first or settle the map first.
+Settled: map first, as a timeboxed bake-off. Evidence built same day,
+`mocks/bakeoff-board.html` (`mocks/build_bakeoff_board.py`) — per city
+(Seoul/Tokyo/Paris) three candidates side by side:
+1. *Polished geographic* (ours): round-2 polish on the geo dress — Chaikin
+   smoothing, per-line white casing, recessive ghost rail, smoothed water
+   (`build_geo_shape_mock.py`, regenerated board committed).
+2. *Consistent schematic*: octolinear (LOOM, Uni Freiburg, GPL-3 tools; output
+   SVGs unencumbered, input stays ODbL). Evidence cells use their global-demo
+   render (basemap hidden; scope wider than ours, styling theirs). The LOCAL
+   pipeline is fully prepped: `mocks/loom_convert.py` parses the validator
+   YAMLs' station-ordered itineraries, batch-resolves stop coords via Overpass,
+   and emits verified line-graph GeoJSON for all three cities
+   (326/271/281 stops); `docker build` of the toolchain is ready but blocked on
+   Docker Desktop's admin prompt on this machine (one password click, then
+   `topo | loom | octi | transitmap -l` per city, seconds each).
+3. *The familiar diagram* (the shipped prototype's Commons recreations) as the
+   patchwork reference.
+Caveats recorded on the board: candidates 1 and 2 both lack station-name labels
+today (the diagrams remain the only name-bearing view); the schematic's station
+clustering relies on `topo` name-merging of per-line OSM stop nodes. Owner
+verdict on the board picks the Explore direction; Shape keeps true geometry
+regardless.
