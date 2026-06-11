@@ -6,6 +6,9 @@
 <meta name="robots" content="noindex"><!-- test deploy: unlisted, remove at real ship (deployed copy only; source lives in ~/Downloads/chronogrid) -->
 <meta name="theme-color" content="#13101e">
 <title>Chronogrid: a history placement game</title>
+<meta name="description" content="A history placement game. Tiles touch only what they match: the same age, or the next step in their line. Chains and clusters clear; hidden connections light up.">
+<meta property="og:title" content="Chronogrid: a history placement game">
+<meta property="og:description" content="A history placement game. Tiles touch only what they match: the same age, or the next step in their line. Chains and clusters clear; hidden connections light up.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,6 +70,8 @@
   .htile .e{font-size:30px;line-height:1}
   .htile .n{font-size:13px;font-weight:600;padding:0 6px;line-height:1.12;min-height:2.24em;display:flex;align-items:center;justify-content:center;overflow-wrap:anywhere}
   .htile .yr{font-size:11px;opacity:.82;padding:0 2px;line-height:1.2}
+  .colo{text-align:center;font-size:11px;color:var(--dim);margin:18px 0 6px}
+  .colo a{color:var(--mut);text-decoration:underline;text-underline-offset:2px}
   .acts{display:flex;gap:8px;margin-bottom:10px}
   .acts .btn{flex:1}
   .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:12px;line-height:1.5;color:var(--mut)}
@@ -136,6 +141,7 @@
     .cell.filled .n{position:relative;font-family:-apple-system,system-ui,'Segoe UI',sans-serif;font-size:9px;line-height:1.16;font-weight:600;max-height:42px;padding:0;overflow:hidden;overflow-wrap:break-word;word-break:normal;text-shadow:0 1px 2px rgba(0,0,0,.45)}
   }
 </style>
+<script src="/analytics.js" defer></script><!-- deployed copy only: source runs from file:// where this would 404 -->
 </head>
 <body>
 <div class="wrap">
@@ -187,6 +193,8 @@
   </div>
   </div>
 </div>
+
+<div class="colo">made by <a href="/" target="_self">ajin.im</a></div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="creveal" id="creveal" role="status" aria-live="polite"></div>
