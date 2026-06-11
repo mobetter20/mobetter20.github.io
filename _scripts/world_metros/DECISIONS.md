@@ -89,3 +89,21 @@ metro apps), plus a "the map riders see" link to the operator's official diagram
 on every city card, plus a Method note telling the licensing story. Supersedes
 D7's palette; D7's "lines keep real OSM colours" survives. Boards rebuilt the same
 day (`mocks/`); gate 1 verdict on the round-2 boards pending.
+
+**D11 · Familiar-diagram layer — PROPOSED 2026-06-11 (owner feedback).**
+Owner: the familiar rider map was an integral expectation, and its impossibility was
+surfaced too late (a research-table line and a docs rule, never as "you will not see
+the Tube map on this site"). Acknowledged; memory written
+(feedback_surface_constraint_consequences). Substantive re-answer — three legal grades:
+(1) official ARTWORK: blocked for verified-enforced operators (TfL; MTA/RATP/Tokyo/
+Moscow hold the same posture); possible per-city exceptions worth an audit (Seoul
+KOGL, CDMX, Delhi GoI — unverified); (2) CC BY-SA Commons RECREATIONS in the official
+idiom: verified available for Seoul (Seoul_Metropolitan_Subway_network_map.svg,
+CC BY-SA 4.0) and even London (the sameboat tube-style map, used on 100+ Wikipedia
+pages) — the realistic route to "the familiar map" as a first-class feature;
+(3) our true-geometry renders (built; powers Shape). Proposed product change: Explore
+gets TWO map modes per city — "Diagram" (default: the familiar schematic; Commons
+recreation, or official file where a permissive license is verified;every city gets a
+license-ledger entry + attribution) and "True shape" (ours). Shape comparison stays
+ours. Pending owner ratification; if ratified, first step is a per-city diagram
+sourcing audit (12 cities: file, author, license, currency vs the 2026 network).

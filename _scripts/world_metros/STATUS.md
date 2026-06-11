@@ -18,7 +18,7 @@ _Last updated: 2026-06-11 (Claude session, branch `claude/world-metros-mocks`)._
   closed-ring handling (Line 2 loop), outlier-aware station filtering, Paris
   stray-fragment guard.
 
-## Current gate — owner verdict on the round-2 mock boards (D8 gate 1)
+## Current gate — owner verdict on (a) round-2 boards and (b) the D11 familiar-diagram proposal
 
 All three forks were ratified 2026-06-11 (D9). The first board round (Electric
 Cartography, dark) was rejected by the owner at the gate; direction pivoted to
