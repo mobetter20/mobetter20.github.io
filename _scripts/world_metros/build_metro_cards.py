@@ -393,25 +393,6 @@ def method_panel(meta, stats):
       familiar map. Twelve of the sixteen backs are already sourced and
       licence-verified this way; Madrid, Copenhagen, Beijing and Guangzhou
       get the same audit before their cards land (their slots say so).</p>
-
-      <h2>Why sixteen</h2>
-      <p>The deck is sixteen systems, each here for a different reason, not
-      a top-N: <b>Tokyo</b> (the integration story: metro, JR and private
-      rail as one ecosystem), <b>Seoul</b> (the strongest daily-use megacity
-      metro), <b>Singapore</b> (the controlled-system model), <b>Hong
-      Kong</b> (reliability and the rail-plus-property model), <b>Paris</b>
-      (the dense core), <b>Shanghai</b> (21st-century scale), <b>Beijing</b>
-      (the capital mega-system, the longest network), <b>London</b> (the
-      original), <b>New York</b> (the 24-hour giant), <b>Madrid</b> (the
-      most network for its size), <b>Moscow</b> (the palace stations),
-      <b>Copenhagen</b> (the small automated counter-example to
-      biggest-equals-best), <b>Delhi</b> (the rapid-growth story outside
-      China), <b>Guangzhou</b> (the Pearl River Delta seat), <b>Mexico
-      City</b> (Latin America&rsquo;s essential workhorse), <b>Cairo</b>
-      (the African pioneer, 1987).</p>
-      <p>Absence is still content: <b>Shenzhen</b> lost the Pearl River
-      Delta seat to Guangzhou; Osaka, S&atilde;o Paulo, Istanbul and Mumbai
-      wait outside the deck.</p>
     </div>"""
 
 
