@@ -7,6 +7,15 @@ Commons file page (machine-readable page data + page wikitext checked for deleti
 templates), and its **interactivity structure** verified by downloading the file and
 counting label nodes. Nothing here edits BUILD-SPEC.md; D11 itself is still PROPOSED._
 
+_Extended 2026-06-12 (gate-3 session): stanzas added for the four D23 newcomers
+(Beijing, Madrid, Copenhagen, Guangzhou) under the same dual discipline: license
+read from the Commons page data (API extmetadata + deletion-category check) and
+structure graded by downloading the file and counting text nodes. The 2026-06-12
+downloads also re-counted the nine previously audited files: every count matched
+this ledger. All sixteen chosen files are now committed at
+`is/building/world-metros/assets/<slug>-diagram.(svg|png)` and ride the card
+lore backs._
+
 ## Structure grades (the criterion the interactivity spike added)
 
 The spike (`mocks/diagram-interactive.html`) proved station-tap works only when labels
@@ -53,9 +62,15 @@ lineage HK/London/Moscow, Satellizer Seoul, Aforl Singapore, Rigil Paris) keep r
 | New York | NYC subway-5.svg | CC BY-SA 3.0 | pan-zoom-only (35 text, bus notes only) | use-with-caveat |
 | Mexico City | Plano del Metro de la Ciudad de México.svg | CC BY-SA 4.0 | pan-zoom-only (33 text, line nos.) | use-with-caveat |
 | Cairo | CairoMetro.svg | CC0 | interactive-ready (151) | use |
+| Beijing | Beijing Subway System Map.svg | CC BY-SA 4.0 | pan-zoom-only (0 text) | use |
+| Madrid | Madrid Metro Map.svg | CC BY-SA 4.0 | pan-zoom-only (0 text) | use |
+| Copenhagen | Copenhagen Metro 2024.svg | CC BY-SA 4.0 | interactive-ready (6,719) | use |
+| Guangzhou | Guangzhou Metro Network.png | CC BY-SA 4.0 | raster-only (PNG 4200px) | use-with-caveat |
+| Osaka | Wide-Area Map of Osaka City Subway.svg | public domain | interactive-ready (308) | use-with-caveat |
+| Istanbul | Istanbul Railway Systems Network Map.svg | CC BY-SA 4.0 | interactive-ready (712) | use |
 
-No city is at **no-good-option**. Seven are clean "use"; the caveats are interactivity
-(four pan-zoom-only) and currency (Delhi, Mexico City).
+No city is at **no-good-option**. The caveats are interactivity (six pan-zoom-only,
+one raster) and currency (Delhi, Mexico City).
 
 ## Official-artwork checks (D11 grade 1 — the rare permissive exceptions)
 
@@ -329,3 +344,133 @@ No city is at **no-good-option**. Seven are clean "use"; the caveats are interac
   ODbL is the wrong license family for artwork).
 - **Verdict:** use — CC0, interactive-ready, current and on-scope for the metro proper.
   The only roster city whose best file is fully public-domain *and* tap-able.
+
+### Beijing · USE (added 2026-06-12, D23 newcomer audit)
+- **Chosen:** https://commons.wikimedia.org/wiki/File:Beijing_Subway_System_Map.svg :
+  SVG, 6.26 MB (6,562,313 B), 2400x2400 canvas, latest revision 2026-05-15.
+- **Author / license:** Painjet, own work. CC BY-SA 4.0 (verified 2026-06-12 via the
+  file page's machine-readable data, extmetadata LicenseShortName plus the page
+  wikitext license template; no deletion or dispute categories).
+- **Attribution string:** "Beijing Subway System Map" by Painjet, Wikimedia Commons,
+  CC BY-SA 4.0.
+- **Structure:** 0 `<text>` / 0 `<tspan>` (counted on the downloaded file 2026-06-12):
+  labels outlined, **pan-zoom-only**.
+- **Currency:** maintained per opening. Revision comments record Line 3 and Line 12
+  added 2024-12-14, Line 16 Lize Shangwuqu Jan 2025, Line 17 middle plus Line 18 plus
+  Line 6 Luyang Dec 2025; last revised 2026-05-15. Current for mid-2026. English
+  station labels; a zh companion file by the same author updates in lockstep.
+- **Fallback:** `File:Beijing Subway System Map zh.svg` (same author and license,
+  Chinese labels, revised in lockstep).
+- **Verdict:** use. The en.wiki network diagram, fully current; no station tap.
+
+### Madrid · USE (added 2026-06-12, D23 newcomer audit)
+- **Chosen:** https://commons.wikimedia.org/wiki/File:Madrid_Metro_Map.svg :
+  SVG, 2.28 MB (2,390,049 B), latest revision 2025-04-30.
+- **Author / license:** Javitomad (original, 2007), maintained by Snooze123 and other
+  Commons users. CC BY-SA 4.0, multi-licensed with older CC BY-SA versions and GFDL
+  (verified 2026-06-12 via the file page's machine-readable data; no deletion flags).
+  An en.wiki Featured Picture, used in the en and es article infoboxes.
+- **Attribution string:** "Madrid Metro Map" by Javitomad and contributors, Wikimedia
+  Commons, CC BY-SA 4.0.
+- **Structure:** 0 `<text>` / 0 `<tspan>` (counted on the downloaded file 2026-06-12):
+  labels outlined, **pan-zoom-only**.
+- **Currency:** revision log tracks the network promptly (Line 3 to El Casar added
+  2025-04-20). Nothing newer opened by mid-2026; current. Spanish labels, official
+  line colours and numbering, the long-standing free recreation of the official plano.
+- **Fallback:** `File:Madrid Metro Map inc ML-4.svg` (same idiom incl. Metro Ligero,
+  CC BY-SA 4.0, frozen Oct 2018: dated); `File:Madrid Metro Map 2019-2023.svg`
+  (projection map, draws planned extensions: wrong kind of map for a current card).
+- **Verdict:** use. Current and canonical; no station tap.
+
+### Copenhagen · USE (added 2026-06-12, D23 newcomer audit)
+- **Chosen:** https://commons.wikimedia.org/wiki/File:Copenhagen_Metro_2024.svg :
+  SVG, 3.46 MB (3,625,421 B), latest revision 2026-01-13.
+- **Author / license:** Tomtom24, own work. CC BY-SA 4.0 (verified 2026-06-12 via the
+  file page's machine-readable data plus wikitext; no deletion flags; the page carries
+  only SVG-validator maintenance notes).
+- **Attribution string:** "Copenhagen Metro 2024" by Tomtom24, Wikimedia Commons,
+  CC BY-SA 4.0.
+- **Structure:** 6,719 `<text>` + 7,079 `<tspan>` (counted on the downloaded file
+  2026-06-12): **interactive-ready**, the richest label set in the ledger (embedded
+  da/en `systemLanguage` switch translations).
+- **Currency:** the M4 Sydhavn extension to Koebenhavn Syd was added 2024-06-22, its
+  opening day; later revisions are label fixes. The metro network is unchanged since;
+  current for mid-2026. Official line colours (M1 green, M2 yellow, M3 red, M4 blue);
+  the standard diagram on en.wiki and da.wiki, own design rather than a copy of the
+  Metroselskabet in-station map.
+- **Fallback:** `File:Copenhagen Metro with City Circle Line map.svg` (closest to the
+  official idiom, CC BY-SA 3.0, but pre-Sydhavn: dated 2019); `File:Copenhagen Metro
+  2020.svg` (same family, historical 2020-2024 state by design).
+- **Verdict:** use. Current, interactive-ready, clean license.
+
+### Guangzhou · USE-WITH-CAVEAT (added 2026-06-12, D23 newcomer audit)
+- **Chosen:** https://commons.wikimedia.org/wiki/File:Guangzhou_Metro_Network.png :
+  PNG raster, 1.82 MB (1,913,352 B), 4200x4200 px, latest revision 2026-02-13.
+- **Author / license:** Alan Fan Pei, own work. CC BY-SA 4.0 (verified 2026-06-12 via
+  the file page's machine-readable data plus wikitext; no deletion flags).
+- **Attribution string:** "Guangzhou Metro Network" by Alan Fan Pei, Wikimedia
+  Commons, CC BY-SA 4.0.
+- **Structure:** **raster-only** (PNG; pan-zoom via CSS transform only, no tap).
+- **Currency:** maintained per opening with English revision comments: Line 11 loop
+  (Dec 2024), the 2025 openings, Line 22 extension (Dec 2025), SYSU South Gate
+  (Jan 2026), Chigang on Line 12 with the Line 8 interchange (Feb 2026). Current for
+  mid-2026; the lead map on the en.wiki Guangzhou Metro article.
+- **Why not the SVGs:** the only current SVG
+  (`File:Guangzhou-Foshan Metro Diagram by Tim.svg`, rev 2026-05-06, CC BY-SA 4.0)
+  carries an in-image author watermark (a Commons `{{watermark}}` maintenance flag)
+  and a personal style with Guangfo-wide scope; the official-idiom SVG
+  (`File:Guangzhou Metro Linemap.svg`, Yveltal family) is frozen at the 2023-01-01
+  network state, roughly ten openings stale, and would contradict the card's own
+  19 line pills. On the fastest-growing network in the deck, currency outranks
+  vector format; revisit the SVGs at the next refresh.
+- **Verdict:** use-with-caveat: current and clean-licensed, but a raster (the only
+  one in the set) and not the in-station idiom.
+
+### Osaka · USE-WITH-CAVEAT (added 2026-06-12, D27 newcomer audit)
+- **Chosen:** https://commons.wikimedia.org/wiki/File:Wide-Area_Map_of_Osaka_City_Subway.svg :
+  SVG, 251 KB (257,364 B), 1052x1052 canvas, latest revision 2011-08-26.
+- **Author / license:** Excl-zoo (User:Excl-zoo), own work. **Public domain**
+  (PD-self; verified 2026-06-12 via the file page's machine-readable data and
+  wikitext; no deletion flags). No attribution required.
+- **Attribution string (courtesy):** "Wide-Area Map of Osaka City Subway" by
+  Excl-zoo, Wikimedia Commons, public domain.
+- **Structure:** 308 `<text>` + 506 `<tspan>` (counted on the downloaded file
+  2026-06-12): **interactive-ready**. All nine Osaka Metro line names verified
+  present in the file (Midosuji, Tanimachi, Yotsubashi, Chuo, Sennichimae,
+  Sakaisuji, Nagahori Tsurumi-ryokuchi, Imazatosuji, and the New Tram).
+- **Currency: stale, the weakest in the set alongside Delhi.** Content c.2006,
+  last touched 2011; drawn in the wide-area (geographic) idiom under the
+  pre-2018 "Osaka Municipal Subway" (大阪市営) branding (verified in-file). All
+  nine lines are present, but the 2024 Midosuji extension to Minoo-kayano and
+  the 2025 Chuo extension to Yumeshima are not drawn (neither 箕面萱野 nor 夢洲
+  appears). Ship with the on-card caveat "diagram c.2011 in the pre-2018
+  Municipal Subway idiom; the 2024 and 2025 extensions not drawn".
+- **Why not a current map:** the diagram agent's full sweep of Category:Osaka
+  Subway maps found NO current, freely-licensed official-idiom Osaka network
+  map on Commons (only this and a 2006 CC BY 2.5 schematic that predates the
+  Imazatosuji line). The 3508px PNG sibling
+  (`File:Wide-Area Map of Osaka City Subway.png`, the en.wiki infobox map, also
+  PD) is the raster fallback. Re-source when a current Osaka schematic appears.
+- **Verdict:** use-with-caveat: PD and interactive-ready with all nine lines,
+  but c.2011 and geographic-not-schematic. Flagged for a re-source at refresh.
+
+### Istanbul · USE (added 2026-06-12, D27 newcomer audit)
+- **Chosen:** https://commons.wikimedia.org/wiki/File:Istanbul_Railway_Systems_Network_Map.svg :
+  SVG, 416 KB (425,508 B), viewBox 5907x4958, latest revision 2026-05-29.
+- **Author / license:** Alikam1896. CC BY-SA 4.0 (`{{self|cc-by-sa-4.0}}`;
+  verified 2026-06-12 via the file page's machine-readable data and wikitext;
+  no deletion flags). The en.wiki Istanbul Metro infobox map.
+- **Attribution string:** "Istanbul Railway Systems Network Map" by Alikam1896,
+  Wikimedia Commons, CC BY-SA 4.0.
+- **Structure:** 712 `<text>` (counted on the downloaded file 2026-06-12):
+  **interactive-ready**. All ten scoped M-lines verified present (M1, M2-M9,
+  M11), in the official "ağ haritası" network-map idiom.
+- **Currency:** the most recently revised Istanbul vector (2026-05-29), so it
+  reflects the 2021-2024 openings (M9, M8, M11 to Istanbul Airport). The image
+  also draws Marmaray and the trams; those are out of the card's STAT scope but
+  fine on the lore image (they are part of the familiar rail map). No caveat.
+- **Fallback:** `File:Istanbul Rapid Transit Map with Metrobüs (schematic).png`
+  (Maximilian Dorrbecker / Chumwa, CC BY-SA 2.5, current, polished schematic
+  raster) or `File:Istanbul Rapid Transit Map (new).svg` (CC BY-SA 4.0, frozen
+  2022).
+- **Verdict:** use: current, clean CC BY-SA 4.0, interactive-ready SVG.

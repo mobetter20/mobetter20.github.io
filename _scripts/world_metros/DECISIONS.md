@@ -536,3 +536,304 @@ real and recorded: fares were cut at D2 over the freshness treadmill;
 themes revive such facts as dated almanac snapshots (source + as-of,
 annual refresh per D6), never as live utility info. Nothing themed
 renders in this build; the generator carries the decision as a comment.
+
+**D25 · Per-city scope freezes (rider-scope B operationalized) · PROPOSED
+2026-06-12 (built into the gate-3 page; the owner verdict at the preview
+gate ratifies).**
+The D21 rider-scope B rule, made operational: a card claims the city's
+metro network AS ITS FAMILIAR MAP DRAWS IT as coequal metro lines; modes
+the map itself marks as distinct products (commuter overlays, trams,
+feeders, people-movers) stay out. The full per-city ref sets live in
+DATA-CONTRACT.md (now frozen) and `build_page_geometry.py`; Method
+carries the prose. The named hard cases close as follows:
+- **Seoul L1 (the long-deferred hard one): IN, whole corridor.** The
+  familiar capital map draws Line 1 end to end as one line, so the card
+  claims it. Seoul's scope is the full capital-region network incl. the
+  Korail K-lines, GTX-A, AREX, light metros and Incheon 1-2 (the owner
+  flagged Seoul's missing lines at D20; this answers it). Two snapshot
+  gaps, declared rather than papered over: Sinbundang's validator export
+  is empty, so plotted counts omit it; same for Beijing's Yizhuang T1
+  tram. Declared scope and reported figures include both; Method says so.
+- **Guangzhou vs Foshan: Guangfo IN, Foshan-proper OUT.** The Guangfo
+  line is drawn coequal on the Guangzhou map and run by the GZ Metro
+  group; Foshan's own lines (F2/F3 in the OSM file) are another system.
+  APM in; trams out; the stray Qingyuan maglev out.
+- **Copenhagen: M1-M4 only.** S-tog is a distinct product.
+- **Madrid: Metro 1-12 + Ramal; Metro Ligero OUT** (ML-branded distinct
+  product on the official plano).
+- **Moscow MCC: IN (supersedes the old exclude note).** The map draws the
+  MCC as coequal line 14; the D-branded MCD diameters stay out.
+- **Hong Kong Airport Express: IN** (drawn coequal on the MTR map);
+  Light Rail out.
+- Identity folds so pills match the rider map: Beijing Batong into 1 and
+  Daxing into 4; NYC rush diamonds into their base services and the three
+  S shuttles as one pill; Moscow 4A into 4; Delhi's Blue branch into Blue.
+Also frozen here, the pipeline-stage stat definitions the cards now use:
+**stations** = named station points within 90 m of an in-scope vertex,
+same-named points merged within 350 m, interchanges once (the old 60 m
+point-grid rule inflated unevenly: NYC plotted 2.9x its official count,
+Copenhagen 1.6x, which would have biased two stats); **density** moves to
+the convex-hull basis (D20's pipeline commitment); **span** is exact over
+hull vertices; **opened** = earliest regular passenger service within the
+declared scope, the system's own dating (Beijing dates itself 1969;
+the public-access-1971 nuance lives in the almanac note).
+
+**D26 · Gate-3 scale-up build: 16 live cards, themes, almanac · PROPOSED
+2026-06-12 (the owner verdict on the preview ratifies; this entry is the
+build record).**
+- **Roster:** all 16 cards live (flip-to-lore, lazy diagrams); the soon
+  slots and the "3 OF 16" badge retire. Card canvas grows 420 to 460 px
+  so the big pill decks (Beijing 27, Seoul 23) and six core rows share
+  the face; the deck grid stays 1/2/4 columns (D23 rev 2).
+- **Dual audit done** for the D23 newcomers: Madrid / Copenhagen /
+  Guangzhou audited GOOD on the OSM validator (DATA-CONTRACT table);
+  DIAGRAM-LEDGER stanzas added for all four with licenses verified on
+  the Commons pages and structure graded on the downloaded files
+  (Copenhagen interactive-ready 6,719 text nodes; Beijing and Madrid
+  pan-zoom-only; Guangzhou raster-only). Guangzhou call recorded in its
+  stanza: on the deck's fastest-growing network, the current clean
+  raster beats a watermarked personal-style SVG and a 2023-frozen
+  official-idiom SVG that would contradict the card's own 19 pills.
+  All 13 missing lore-back diagrams downloaded (serialized, long
+  backoff per the Wikimedia throttle) and committed to assets/.
+- **Themes (D24) ship as CORE / SERVICE / MONEY**, a deck-level switch;
+  the cards re-render rows per theme. SERVICE: best headway, service
+  day, driverless lines. MONEY: fare from (USD-converted, dated),
+  farebox recovery. Every themed figure carries source + as-of on
+  Method; a card missing a themed figure drops that row (the D22
+  hide-not-Unknown pattern). Integration (the third D24 example) is
+  deferred: it lacks three honest, uniformly sourceable numeric stats;
+  revisit when it has them.
+- **Battle and daily stay on the core six**, where every card carries
+  every stat: opened, stations, span, density, and the returning
+  route-km + ridership (scope-matched, dated, sourced almanac rows per
+  the D22 owner call). Battles can now tie at year/figure grain: a dead
+  heat scores nobody and says so. The daily rotates across all six.
+- **Almanac:** per-city opened year + per-line opened years, route-km,
+  annual ridership, and the theme figures, all researched against live
+  pages this session with source + as-of recorded in
+  `_scripts/world_metros/almanac.json` (committed). Known soft spots
+  recorded there as notes: farebox years vary widely by city (Madrid's
+  newest published ratio is 2007); Seoul and Moscow ridership are
+  same-year component sums (Seoul's whole capital network has no single
+  published total, so it is summed from Korea Railroad Statistics 2024 and
+  cross-checks against Seoul Metro's own 2,417.5M for lines 1-8; Moscow is
+  metro plus MCC); Tokyo ridership sums the two operators' published
+  annual actuals (FY2024).
+- **Lore backs:** all 16 carry the ledger diagram (attribution verbatim,
+  currency caveats where flagged), one flavor line, two curated facts;
+  epithets drafted for the 13 new cards (owner reviews at the gate).
+- Method gains the frozen scope table, the theme definitions with win
+  directions, and per-figure source tables; it stays method (no roster
+  editorial, per the D23 revision).
+
+**D27 · Deck grows to EIGHTEEN; grid capped at 3 columns (1/2/3, never 4)
+- RATIFIED 2026-06-12 (owner, design session; supersedes D23 rev 2's
+  1/2/4 lock and its "deck stays 16" line).**
+_Numbering note: the owner labeled this "D25", but the gate-3 build
+session had already appended D25 (per-city scope freezes) and D26 (build
+record) as PROPOSED, and DATA-CONTRACT / STATUS / code comments reference
+them. Recorded as D27 to keep the log append-only; content is the owner's
+verbatim decision._
+Owner: "i do not like 2 cards per row visual i think 3 was much better."
+18 is even at 3-col and 2-col (and 1-col), so rows fill at every width;
+16 only evened at 2-col and 4-col, which forced the 4-col lock the owner
+now reverses.
+- **Roster += Osaka, Istanbul** as 17/18 (the D23 rev-2 bench note
+  pre-picked them over Sao Paulo and Mumbai). Full newcomer pipeline for
+  both: OSM validator audit, DIAGRAM-LEDGER stanza, rider-scope-B scope
+  freeze (Osaka: Osaka Metro proper, through-running truncated at the
+  boundary; Istanbul: the metro/M-lines, with Marmaray and the trams as
+  the scope question), almanac + lore backs + epithet. Taken to live this
+  session where the audits clear; a card whose audit does not clear stays
+  a "diagram audit pending" soon card and the badge counts it out.
+- **Grid: 1 / 2 / 3 columns, no 4-col tier.** style.css media tiers:
+  1 col base, 2 cols from ~612px, 3 cols from ~906px. Verify by DOM probe
+  at 375 / 768 / 1000 / 1280 (1280 now renders 3, not 4).
+- **All count strings 16 -> 18:** DECK_WORD "eighteen", deck-back
+  "eighteen systems · one deck", livebadge, method "full deck of 18",
+  meta description, ORDINAL range, aria labels (auto from len(ROSTER)),
+  README / BUILD-SPEC / STATUS counts.
+- **PRIORITY (owner): Seoul first.** The owner asked when Seoul's lines
+  would be complete. Do the Seoul scope freeze (the L1 / through-running
+  rule, DATA-CONTRACT) and the full rider-network re-extraction FIRST,
+  not last. (Status entering D27: the D25 freeze already takes Seoul as
+  the whole capital network with L1's through-running corridor IN, 23
+  line identities extracted; the known gap is Sinbundang, whose OSM
+  validator export is empty. D27's Seoul-first work closes or documents
+  that gap before the newcomers.)
+
+**D28 · Stat sets recomposed on verified fetchability: PLAY + ALMANAC -
+RATIFIED 2026-06-12 (owner, design session; supersedes D24's CORE /
+SERVICE / MONEY theme trio and the parts of D26/D27 that described it).**
+_Numbering note: the owner labeled this "D26"; D26 (the gate-3 build
+record) and D27 (deck of 18) were already appended this session, so it is
+recorded as D28 to keep the log append-only. Content is the owner's
+verbatim decision, composed from a source-checked menu after flagging
+thin themes and unclear labels._
+- **Two sets, one toggle: PLAY and ALMANAC.** CORE/SERVICE/MONEY die.
+  - PLAY = the ratified six (opened, stations, span, density, route-km,
+    ridership, as they source).
+  - ALMANAC = base fare + driverless lines + interchange share.
+- **Cut from cards entirely:** peak/best headway and service day/hours
+  (no comparable source exists; per-operator timetable archaeology), and
+  farebox recovery (owner did not pick it; the central comparison table
+  is FY2018 Tokyo / 2007 Madrid with ~7 of 18 cities missing). The
+  shipped Tokyo farebox 161.55% was an FY2018 figure at false precision;
+  nothing like it ships again. Famous individual cases (e.g. Paris
+  85-second headways) may surface as lore-back facts where citable. The
+  researched headway/hours/farebox figures stay in almanac.json as
+  sourced reference, but render nowhere on the cards.
+- **ALMANAC definitions (Method records each):**
+  - BASE FARE: adult single minimum fare, USD at ONE dated FX rate for
+    all cards (owner-ratified); the FX date is named in the card foot and
+    Method. Lower wins. 2 decimals.
+  - DRIVERLESS: count of GoA3+ lines within the card's declared scope,
+    from Wikipedia's driverless-train-systems list (cite revision). More
+    wins. Integer; "lines" unit.
+  - INTERCHANGE: share of station complexes served by 2+ counted lines,
+    computed from our own snapshot (the long-planned 7th lens). More
+    wins. Whole percent.
+- **Labels (owner flagged clarity), exact:** BASE FARE, DRIVERLESS,
+  INTERCHANGE. Switcher: two pills, PLAY | ALMANAC; the fine-print
+  trailer leaves the bar (Method carries it).
+- **Battle stays bound to the PLAY set** for now; almanac battling is a
+  later owner call.
+- **Layout fork (judged on the board, not pre-locked):** the three
+  ALMANAC rows must not leave the void the owner flagged on sparse cards.
+  The almanac view ships with a default fuller-row layout, shown on the
+  same board as the pill-density candidates (C1/C2) so both are judged by
+  eye together.
+- Priority order unchanged: Seoul scope freeze first (done at D25/D27);
+  D28 lands with the board round.
+
+**D29 · Pill-density: C2 adaptive band picked; occlusion bug fixed -
+RATIFIED 2026-06-12 (owner on the board: "C2 adaptive band seems pretty
+good").**
+- **Bug fix (unconditional, shipped):** at high pill counts the pills (a
+  flex item in a fixed-height column) were shrunk and overflowed the tag
+  and ledger. Fixed: `.cpills { flex: none }` plus a front-drives-height
+  flip so the card grows, so the line/scope tag is never occluded at any
+  count. Verified deck + battle + 375/768/1000/1280.
+- **C2 ratified, then made UNIVERSAL:** the refs collapse to one thin
+  colour band (the deck-back motif) plus count + scope + "on the map
+  side"; the readable line names live on the lore-back diagram. C2 first
+  shipped as adaptive (band only over 16 lines, pills below). _Revision
+  2026-06-12: the owner rejected the pills/band MIX as inconsistent
+  ("either every city pills or density, not mixed; the mix looks bad")
+  and the band is now EVERY card._ All-pills was the alternative but
+  reintroduces the mega-card density problem this round fixed; all-band
+  is uniform and keeps every card at 487px. This retires pills as the
+  on-front identity device (D18/D20); line identity now reads on the lore
+  diagram for all cards. The BAND_THRESHOLD and the variable-height pill
+  machinery are vestigial (all cards uniform now).
+- **Board fixes folded in:** seam cities (Guangzhou, NYC) added to the
+  judged set; counts render from len(lines) (Seoul reads 24, not the
+  stale 23); the band copy is "on the map side" (the lore back is the
+  diagram, which labels lines its own way, not our refs).
+- **Band made universal (revision, 2026-06-12):** see the C2 bullet above;
+  the owner rejected the pills/band mix, so every card now wears the band.
+- **Head restructure DONE (2026-06-12, owner took the rec):** the core
+  line (count + scope, e.g. "13 lines · Metro + Toei") moves UP to be the
+  card subtitle under the city name; the band drops its tag (no repeat, no
+  clip); the epithet ("the two crews") moves to the lore back as its blue
+  subtitle (replacing the system-name line there; the system name stays in
+  the diagram alt + credit). Card min-height retuned 486 -> 469 so the
+  shorter head leaves no gap above the foot. Verified play/almanac gap 0,
+  battle fit, 375-1280, console clean.
+- **Second set grown to FIVE (2026-06-12):** base fare, driverless,
+  interchange, plus two computed growth stats (new lines opened since
+  2016; newest line year), after the owner asked about update-frequency /
+  profitability. Profitability stays out (it is the cut farebox: 7 of 18
+  missing, incomparable); the forward construction pipeline stays out
+  (freshness trap). A background research chip is out for more candidates.
+- **Still open (owner):** the set NAMES (PLAY / ALMANAC are placeholders
+  the owner dislikes; proposal on the table is SCALE + CHARACTER, or the
+  research-chip menu may reshape the second set first).
+
+**D30 · The daily gets smart: close duels + pick-the-number - RATIFIED
+2026-06-12 (owner flag on a giveaway question: "which plots more
+stations, Hong Kong vs Shanghai... too easy and obvious; the quiz should
+be smarter than this"; forms picked from the owner's own list).**
+- **Two question forms, deterministic per day** (date hash picks stat,
+  form and contestants):
+  - **DUEL**: head-to-head only between CLOSE systems: values within 30
+    percent (12 years for opened), never equal, so no blowouts. Pools are
+    healthy (23 to 40 eligible pairs per stat across the 18). Example
+    dailies: Singapore 243 vs Paris 246 route-km; Moscow 267 vs Delhi 270
+    stations; Singapore 1987 vs Istanbul 1989 opened.
+  - **PICK**: one city, four candidate values; the wrong three are other
+    cities' REAL figures nearest the truth (honest distractors), truth's
+    slot hash-placed. Example: "How many stations does SINGAPORE plot?"
+    176 / 159 / 195 / 135.
+  - Roughly even mix over time (27/33 across a 60-day simulation).
+- **The choice cards drop their pills for the colour band** (consistent
+  with D29's universal band, and ref text no longer leaks network size;
+  with close pairs, stripe count stops correlating with the answer).
+- Battle unchanged (the owner: "battle type is fine"). Streak/localStorage
+  unchanged; the store gains a mode field (an old same-day save without
+  one just lets the player replay once, soft-launch grade).
+- Method's daily paragraph documents both forms. Verified by simulating
+  14 dated challenges (all duels close, all picks well-formed) plus live
+  plays of both forms, 375/1280, console clean.
+- _Revision (2026-06-12, owner review of the bank):_ the date hash gained
+  an avalanche finalizer. Without it, consecutive dates correlated (the
+  same city six pick-days running, exact question repeats a week apart);
+  with it the 30-day simulation interleaves cities and forms cleanly.
+  The full question space is enumerable: 176 eligible duels + 108 pick
+  questions = 284. `mocks/build_daily_bank_board.py` bakes the complete
+  bank plus the literal next-120-day schedule for owner review
+  (`mocks/daily-bank-board.html`), with its Python selection logic
+  parity-checked 30/30 days against the page's real JS. Known property:
+  hash collisions can repeat a question within a week or two (one in the
+  current 30-day window); a no-repeat window is a possible follow-up.
+
+**D31 · Second set recomposed + named: SCALE / CHARACTER - RATIFIED
+2026-06-12 (owner, resolving D29's open naming and the research-chip menu).**
+_Numbering note: D30 (the daily revamp) was appended this session, so the
+research-chip resolution is D31._
+The background research chip from D29 returned a ranked menu (six parallel
+agents verified coverage across all 18 cities against live sources). Owner
+picks, composed from that menu:
+- **Swap, not add (owner): drop `newest line`, add `BIGGEST HUB`.** Newest
+  line was redundant growth with new-lines (both cluster the fast-growers at
+  2024-25); biggest hub is a NEW computed lens, the most counted lines that
+  meet at one station complex. It is free: the per-complex line-sets already
+  drive interchange, so `max(len(rs))` is one line in build_page_geometry.py.
+  All-18, low-freshness (snapshot-grade), spread 2 (Cairo, Delhi, Mexico
+  City, Istanbul) to 9 (NYC), London 6 at King's Cross, Copenhagen 4.
+- **Relabel the interchange-share row `transfer stations`** (owner flagged
+  bare "interchange 22%" as confusing: the percent hid its denominator). The
+  internal stat key stays `interchange`; only the visible label changed.
+  Biggest hub is worded as a line COUNT, never a percent, so the two
+  connectivity stats never blur. Both read NYC high for the same
+  service-sharing reason (Method notes it).
+- **Set NAMES: PLAY -> SCALE, ALMANAC -> CHARACTER** (display text only; the
+  data-set keys stay play/almanac, so app.js and style.css are untouched).
+  CHARACTER (5): base fare, driverless, transfer stations, biggest hub, new
+  lines. Battle and daily stay bound to SCALE (the six).
+- **Cut after research (do not re-propose):** step-free accessibility (11/18,
+  four incompatible definitions), platform screen doors (9-13/18, ten cities
+  mid-rollout = freshness trap), rolling stock (no consistent unit across the
+  18: cars vs trainsets vs vehicles), average/commercial speed (4/18 publish
+  it), busiest single station (10-12/18). Top design speed is comparable but
+  mostly measures "has an airport express", so it stays out. Deepest station
+  passed (15-17/18, wide spread) but the owner declined it. Women-only-car
+  and 24-hour service are lore-fact grade, not stat grade.
+- **Data:** biggest_hub computed from the frozen 2026-06-12 snapshot via the
+  cached validator GeoJSON (no network, no drift: meta.json gains the one
+  field, every other value byte-identical, as_of preserved).
+- **Verified:** regenerated, DOM-probed at 375/768/1280 (1/2/3 columns, no
+  overflow), toggle switches sets, battle stays SCALE-only (no biggest_hub
+  leak), console clean. Open polish: `transfer stations` wraps to two lines
+  on the narrow card (contained, no overlap or card growth, the CHARACTER
+  rows carry the padding for it); `transfers` is a one-word single-line
+  alternative if the owner prefers uniform single-line labels.
+- **Ship state:** built on the gate-3 lineage (this branch fast-forwarded
+  onto it); the whole gate-3 body (D25-D31) is not yet merged to master, so
+  the merge to live is the owner's gate call, not an automatic push.
+- _Revision (2026-06-12, owner):_ the card label is **`transfer`** (not
+  `transfer stations`), which also resolves the two-line wrap; single line
+  at every width. Owner then opened the gate: the whole gate-3 body
+  (D25-D31) is squash-merged to master, so the soft-launched deck-of-18 is
+  now the live page (noindex/unlisted norms unchanged).

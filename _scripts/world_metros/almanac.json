@@ -1,0 +1,1952 @@
+{
+  "_note": "Researched dated figures for build_metro_cards.py. Every value verified against a live page during the 2026-06-12 gate-3 session; source URL + as_of recorded per field. annual_m is millions of rides/yr; route_km is km; fare_usd is the minimum adult single ride converted to USD on fx_as_of; farebox is recovery ratio percent (vintages and scopes vary by city, see notes; null where no figure is published). NO em dashes anywhere. Per D28, the headway/span_h/farebox fields are retained as sourced reference but render nowhere on the cards (cut stats); the rendered ALMANAC set is fare_usd + driverless + interchange (interchange computed in meta.json).",
+  "as_of": "2026-06-12",
+  "fx": {
+    "date": "2026-06-12",
+    "note": "All BASE FARE values converted from the local minimum single fare to USD at one dated FX snapshot (open.er-api.com, 2026-06-12), so the cards compare on one rate. Local fares carry their own as-of date.",
+    "usd_per_unit": {
+      "JPY": 0.00624,
+      "KRW": 0.000656,
+      "SGD": 0.77723,
+      "HKD": 0.12761,
+      "EUR": 1.155084,
+      "CNY": 0.147327,
+      "GBP": 1.338518,
+      "USD": 1.0,
+      "RUB": 0.013852,
+      "DKK": 0.154723,
+      "INR": 0.010452,
+      "MXN": 0.057725,
+      "EGP": 0.019237,
+      "TRY": 0.021636
+    }
+  },
+  "cities": {
+    "tokyo": {
+      "opened": {
+        "year": 1927,
+        "what": "Ginza Line, Asakusa to Ueno, 30 December 1927: the first subway in Asia.",
+        "source": "https://en.wikipedia.org/wiki/Tokyo_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Tokyo_Metro",
+        "lines": [
+          {
+            "line": "Ginza",
+            "year": 1927
+          },
+          {
+            "line": "Marunouchi",
+            "year": 1954
+          },
+          {
+            "line": "Hibiya",
+            "year": 1961
+          },
+          {
+            "line": "Tozai",
+            "year": 1964
+          },
+          {
+            "line": "Chiyoda",
+            "year": 1969
+          },
+          {
+            "line": "Yurakucho",
+            "year": 1974
+          },
+          {
+            "line": "Hanzomon",
+            "year": 1978
+          },
+          {
+            "line": "Namboku",
+            "year": 1991
+          },
+          {
+            "line": "Fukutoshin",
+            "year": 2008
+          },
+          {
+            "line": "Asakusa (Toei)",
+            "year": 1960
+          },
+          {
+            "line": "Mita (Toei)",
+            "year": 1968
+          },
+          {
+            "line": "Shinjuku (Toei)",
+            "year": 1978
+          },
+          {
+            "line": "Oedo (Toei)",
+            "year": 1991
+          }
+        ]
+      },
+      "route_km": {
+        "value": 304,
+        "as_of": "2026",
+        "source": "https://www.jametro.or.jp/japan/",
+        "note": "Tokyo Metro 195 km plus Toei 109 km, per the Japan Subway Association."
+      },
+      "ridership": {
+        "annual_m": 3460,
+        "year": "FY2024",
+        "source": "https://www.tokyometro.jp/lang_en/corporate/ir/library/factbook/pdf/factbook_2025.pdf",
+        "note": "Operator annual actuals, FY2024: Tokyo Metro 2,495.8M (Fact Book 2025) plus Toei 963.9M (Bureau of Transportation settlement)."
+      },
+      "headway": {
+        "value": 1.8,
+        "note": "Marunouchi Line, about 1 min 50 s at peak.",
+        "source": "https://en.wikipedia.org/wiki/Tokyo_Metro_Marunouchi_Line",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 19,
+        "note": "Trains run roughly 05:00 to 24:00.",
+        "source": "https://www.gotokyo.org/en/plan/getting-around/subways/index.html",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 0,
+        "note": "no Metro/Toei subway line is GoA3+; only AGT people-movers.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 1.12,
+        "local": "180 JPY",
+        "note": "Cheapest single, shortest distance band on either operator.",
+        "source": "https://www.gotokyo.org/en/plan/getting-around/subways/index.html",
+        "as_of": "2026",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 161.55,
+        "year": "FY2018",
+        "source": "https://en.wikipedia.org/wiki/Farebox_recovery_ratio",
+        "note": "Tokyo Metro component (Toei FY2018 was 171.46); fares far exceed operating cost."
+      }
+    },
+    "seoul": {
+      "opened": {
+        "year": 1974,
+        "what": "Line 1 opened in 1974, the network's first line.",
+        "source": "https://en.wikipedia.org/wiki/Seoul_Metropolitan_Subway",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Seoul_Metropolitan_Subway",
+        "lines": [
+          {
+            "line": "1",
+            "year": 1974
+          },
+          {
+            "line": "2",
+            "year": 1980
+          },
+          {
+            "line": "3",
+            "year": 1985
+          },
+          {
+            "line": "4",
+            "year": 1985
+          },
+          {
+            "line": "5",
+            "year": 1995
+          },
+          {
+            "line": "6",
+            "year": 2000
+          },
+          {
+            "line": "7",
+            "year": 1996
+          },
+          {
+            "line": "8",
+            "year": 1996
+          },
+          {
+            "line": "9",
+            "year": 2009
+          },
+          {
+            "line": "Gyeongui-Jungang",
+            "year": 2005
+          },
+          {
+            "line": "Suin-Bundang",
+            "year": 1994
+          },
+          {
+            "line": "Gyeongchun",
+            "year": 2010
+          },
+          {
+            "line": "Gyeonggang",
+            "year": 2016
+          },
+          {
+            "line": "Seohae",
+            "year": 2018
+          },
+          {
+            "line": "AREX",
+            "year": 2007
+          },
+          {
+            "line": "GTX-A",
+            "year": 2024
+          },
+          {
+            "line": "Sinbundang",
+            "year": 2011
+          },
+          {
+            "line": "Ui-Sinseol",
+            "year": 2017
+          },
+          {
+            "line": "Sillim",
+            "year": 2022
+          },
+          {
+            "line": "Uijeongbu LRT",
+            "year": 2012
+          },
+          {
+            "line": "Yongin Everline",
+            "year": 2013
+          },
+          {
+            "line": "Gimpo Goldline",
+            "year": 2019
+          },
+          {
+            "line": "Incheon 1",
+            "year": 1999
+          },
+          {
+            "line": "Incheon 2",
+            "year": 2016
+          }
+        ]
+      },
+      "route_km": {
+        "value": 1302,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/Seoul_Metropolitan_Subway",
+        "note": "The full capital-region network as the familiar map draws it, matching the declared scope."
+      },
+      "ridership": {
+        "annual_m": 4420,
+        "year": "2024",
+        "source": "https://railstat.korail.com/statHtml/statHtml.do?orgId=357&tblId=DT_357001_CC00102&conn_path=I2",
+        "note": "Capital-region sum from Korea Railroad Statistics 2024: the national urban-metro and metropolitan-rail totals less the non-capital systems. Per-operator boardings (the standard Korean measure), so a journey across two operators counts once per operator. Seoul Metro's own 2,417.5M for lines 1-8 matches that component exactly."
+      },
+      "headway": {
+        "value": 2.3,
+        "note": "Line 2, about 2 min 18 s at peak.",
+        "source": "https://en.wikipedia.org/wiki/Seoul_Subway_Line_2",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 18.5,
+        "note": "Trains run roughly 05:30 to midnight; varies by line.",
+        "source": "https://english.visitseoul.net/transportation",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 7,
+        "note": "Sinbundang, Ui-Sinseol, Sillim, Uijeongbu LRT, Yongin Everline, Gimpo Goldline, Incheon Line 2, all GoA4.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 1.02,
+        "local": "1,550 KRW",
+        "note": "Base transport-card fare for trips up to 10 km, in effect since 28 June 2025.",
+        "source": "https://www.koreaherald.com/article/10519709",
+        "as_of": "2025-06-28",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 60,
+        "year": "2022",
+        "source": "https://www.koreaherald.com/view.php?ud=20221229000413",
+        "note": "Seoul city statement: fares covered about 60 percent of operating cost before the 2023 and 2025 fare hikes."
+      }
+    },
+    "singapore": {
+      "opened": {
+        "year": 1987,
+        "what": "First North South Line section, five stations, opened 7 November 1987.",
+        "source": "https://en.wikipedia.org/wiki/Mass_Rapid_Transit_(Singapore)",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Mass_Rapid_Transit_(Singapore)",
+        "lines": [
+          {
+            "line": "North South",
+            "year": 1987
+          },
+          {
+            "line": "East West",
+            "year": 1987
+          },
+          {
+            "line": "North East",
+            "year": 2003
+          },
+          {
+            "line": "Circle",
+            "year": 2009
+          },
+          {
+            "line": "Downtown",
+            "year": 2013
+          },
+          {
+            "line": "Thomson-East Coast",
+            "year": 2020
+          }
+        ]
+      },
+      "route_km": {
+        "value": 243,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/Mass_Rapid_Transit_(Singapore)",
+        "note": "MRT heavy metro only; LRT excluded."
+      },
+      "ridership": {
+        "annual_m": 1249,
+        "year": "2024",
+        "source": "https://www.lta.gov.sg/content/dam/ltagov/who_we_are/statistics_and_publications/statistics/pdf/PT_Ridership_Yearly_2015-2024.pdf",
+        "note": "LTA average daily MRT ridership 3.412M, annualized; LRT excluded."
+      },
+      "headway": {
+        "value": 2,
+        "note": "Every 2 to 3 minutes at peak; busiest lines at the low end.",
+        "source": "https://en.wikipedia.org/wiki/Mass_Rapid_Transit_(Singapore)",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 19.5,
+        "note": "MRT runs 05:30 to 01:00 daily.",
+        "source": "https://en.wikipedia.org/wiki/Mass_Rapid_Transit_(Singapore)",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 6,
+        "note": "all six MRT lines GoA4 (NSL/EWL converted 2017-18); LRT out of scope.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 0.99,
+        "local": "S$1.28",
+        "note": "Adult stored-value fare for journeys up to 3.2 km.",
+        "source": "https://www.ptc.gov.sg/fare-regulation/bus-rail/fare-structure",
+        "as_of": "2026-01-28",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 101,
+        "year": "2018",
+        "source": "https://en.wikipedia.org/wiki/Farebox_recovery_ratio",
+        "note": "Operator SMRT, not the whole MRT network; no network-wide ratio published."
+      }
+    },
+    "hong kong": {
+      "opened": {
+        "year": 1979,
+        "what": "The Modified Initial System, now part of the Kwun Tong Line, opened 1 October 1979; the absorbed East Rail corridor dates to 1910.",
+        "source": "https://en.wikipedia.org/wiki/MTR",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/MTR",
+        "lines": [
+          {
+            "line": "East Rail",
+            "year": 1910
+          },
+          {
+            "line": "Kwun Tong",
+            "year": 1979
+          },
+          {
+            "line": "Tsuen Wan",
+            "year": 1982
+          },
+          {
+            "line": "Island",
+            "year": 1985
+          },
+          {
+            "line": "Tung Chung",
+            "year": 1998
+          },
+          {
+            "line": "Airport Express",
+            "year": 1998
+          },
+          {
+            "line": "Tseung Kwan O",
+            "year": 2002
+          },
+          {
+            "line": "Disneyland Resort",
+            "year": 2005
+          },
+          {
+            "line": "South Island",
+            "year": 2016
+          },
+          {
+            "line": "Tuen Ma",
+            "year": 2020
+          }
+        ]
+      },
+      "route_km": {
+        "value": 209,
+        "as_of": "2022-12",
+        "source": "https://en.wikipedia.org/wiki/MTR",
+        "note": "Heavy rail only; the 36 km Light Rail network excluded."
+      },
+      "ridership": {
+        "annual_m": 1714,
+        "year": "2025",
+        "source": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-020-E.pdf",
+        "note": "MTR 2025 patronage: Domestic 1,594.4M plus Cross-boundary 106.7M plus Airport Express 13.3M; Light Rail and bus excluded."
+      },
+      "headway": {
+        "value": 1.9,
+        "note": "Island Line, weekday morning-peak average.",
+        "source": "https://www.mtr.com.hk/en/customer/services/train_service_index.html",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 19,
+        "note": "About 19 hours a day, roughly 05:30 to 01:00.",
+        "source": "https://www.mtr.com.hk/en/corporate/operations/detail_worldclass.html",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 2,
+        "note": "South Island and Disneyland Resort lines (GoA4, attendant aboard).",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 0.51,
+        "local": "HK$4.0",
+        "note": "Cheapest one-stop adult fare, Octopus or single ticket.",
+        "source": "https://opendata.mtr.com.hk/data/mtr_lines_fares.csv",
+        "as_of": "2026",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 106.76,
+        "year": "2021",
+        "source": "https://en.wikipedia.org/wiki/Farebox_recovery_ratio",
+        "note": "Fare revenue over operating cost; excludes MTR's large property income."
+      }
+    },
+    "paris": {
+      "opened": {
+        "year": 1900,
+        "what": "Line 1, Porte Maillot to Porte de Vincennes, opened 19 July 1900 during the World's Fair.",
+        "source": "https://en.wikipedia.org/wiki/Paris_M%C3%A9tro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Paris_M%C3%A9tro",
+        "lines": [
+          {
+            "line": "1",
+            "year": 1900
+          },
+          {
+            "line": "2",
+            "year": 1903
+          },
+          {
+            "line": "3",
+            "year": 1904
+          },
+          {
+            "line": "3bis",
+            "year": 1971
+          },
+          {
+            "line": "4",
+            "year": 1908
+          },
+          {
+            "line": "5",
+            "year": 1906
+          },
+          {
+            "line": "6",
+            "year": 1909
+          },
+          {
+            "line": "7",
+            "year": 1910
+          },
+          {
+            "line": "7bis",
+            "year": 1967
+          },
+          {
+            "line": "8",
+            "year": 1913
+          },
+          {
+            "line": "9",
+            "year": 1922
+          },
+          {
+            "line": "10",
+            "year": 1923
+          },
+          {
+            "line": "11",
+            "year": 1935
+          },
+          {
+            "line": "12",
+            "year": 1910
+          },
+          {
+            "line": "13",
+            "year": 1911
+          },
+          {
+            "line": "14",
+            "year": 1998
+          }
+        ]
+      },
+      "route_km": {
+        "value": 246,
+        "as_of": "2024",
+        "source": "https://en.wikipedia.org/wiki/Paris_M%C3%A9tro",
+        "note": "Metro lines only after the June 2024 extensions; RER excluded."
+      },
+      "ridership": {
+        "annual_m": 1476,
+        "year": "2024",
+        "source": "https://en.wikipedia.org/wiki/Paris_M%C3%A9tro",
+        "note": "Metro network only; RER excluded."
+      },
+      "headway": {
+        "value": 1.4,
+        "note": "Line 14, automated, signalled for an 85 s peak headway.",
+        "source": "https://en.wikipedia.org/wiki/Paris_M%C3%A9tro_Line_14",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 19.8,
+        "note": "About 05:30 to 01:15 on weekdays, later on weekend nights.",
+        "source": "https://en.wikipedia.org/wiki/Paris_M%C3%A9tro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 3,
+        "note": "Lines 1, 4 and 14, GoA4.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 2.36,
+        "local": "EUR 2.04",
+        "note": "Navigo Liberte+ pay-as-you-go single, the cheapest regular metro fare.",
+        "source": "https://www.service-public.gouv.fr/particuliers/actualites/A18679?lang=en",
+        "as_of": "2026-01-01",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 38,
+        "year": "2018",
+        "source": "https://en.wikipedia.org/wiki/Farebox_recovery_ratio",
+        "note": "Ile-de-France Mobilites, all regional modes, not the Metro alone."
+      }
+    },
+    "shanghai": {
+      "opened": {
+        "year": 1993,
+        "what": "First Line 1 section entered service on 28 May 1993; full Line 1 opened April 1995.",
+        "source": "https://en.wikipedia.org/wiki/Shanghai_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Shanghai_Metro",
+        "lines": [
+          {
+            "line": "1",
+            "year": 1993
+          },
+          {
+            "line": "2",
+            "year": 1999
+          },
+          {
+            "line": "3",
+            "year": 2000
+          },
+          {
+            "line": "4",
+            "year": 2005
+          },
+          {
+            "line": "5",
+            "year": 2003
+          },
+          {
+            "line": "6",
+            "year": 2007
+          },
+          {
+            "line": "7",
+            "year": 2009
+          },
+          {
+            "line": "8",
+            "year": 2007
+          },
+          {
+            "line": "9",
+            "year": 2007
+          },
+          {
+            "line": "10",
+            "year": 2010
+          },
+          {
+            "line": "11",
+            "year": 2009
+          },
+          {
+            "line": "12",
+            "year": 2013
+          },
+          {
+            "line": "13",
+            "year": 2012
+          },
+          {
+            "line": "14",
+            "year": 2021
+          },
+          {
+            "line": "15",
+            "year": 2021
+          },
+          {
+            "line": "16",
+            "year": 2013
+          },
+          {
+            "line": "17",
+            "year": 2017
+          },
+          {
+            "line": "18",
+            "year": 2020
+          },
+          {
+            "line": "Pujiang",
+            "year": 2018
+          }
+        ]
+      },
+      "route_km": {
+        "value": 816,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/Shanghai_Metro",
+        "note": "19 lines (1 to 18 plus Pujiang); maglev excluded."
+      },
+      "ridership": {
+        "annual_m": 3661,
+        "year": "2023",
+        "source": "https://en.wikipedia.org/wiki/Shanghai_Metro",
+        "note": "3.661 billion rides in 2023; daily average 10.03M."
+      },
+      "headway": {
+        "value": 1.8,
+        "note": "Line 9, about 1 min 50 s at peak.",
+        "source": "https://en.wikipedia.org/wiki/Shanghai_Metro",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 18,
+        "note": "Most lines run roughly 05:30 to 22:30, later on weekend nights.",
+        "source": "https://en.wikipedia.org/wiki/Shanghai_Metro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 7,
+        "note": "GoA4: 10, 14, 15, 18, Pujiang; GoA3: 5, 17.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 0.44,
+        "local": "CNY 3",
+        "note": "Distance-based: 3 yuan covers the first 6 km.",
+        "source": "https://en.wikipedia.org/wiki/Shanghai_Metro",
+        "as_of": "2026",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": null,
+        "year": null,
+        "source": "https://en.wikipedia.org/wiki/Farebox_recovery_ratio",
+        "note": "No systemwide farebox recovery figure published."
+      }
+    },
+    "beijing": {
+      "opened": {
+        "year": 1969,
+        "what": "First line opened 1 October 1969; ticketed public access from January 1971. The system dates itself from 1969.",
+        "source": "https://en.wikipedia.org/wiki/Beijing_Subway",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Beijing_Subway",
+        "lines": [
+          {
+            "line": "1",
+            "year": 1969
+          },
+          {
+            "line": "2",
+            "year": 1984
+          },
+          {
+            "line": "3",
+            "year": 2024
+          },
+          {
+            "line": "4",
+            "year": 2009
+          },
+          {
+            "line": "5",
+            "year": 2007
+          },
+          {
+            "line": "6",
+            "year": 2012
+          },
+          {
+            "line": "7",
+            "year": 2014
+          },
+          {
+            "line": "8",
+            "year": 2008
+          },
+          {
+            "line": "9",
+            "year": 2011
+          },
+          {
+            "line": "10",
+            "year": 2008
+          },
+          {
+            "line": "11",
+            "year": 2021
+          },
+          {
+            "line": "12",
+            "year": 2024
+          },
+          {
+            "line": "13",
+            "year": 2002
+          },
+          {
+            "line": "14",
+            "year": 2013
+          },
+          {
+            "line": "15",
+            "year": 2010
+          },
+          {
+            "line": "16",
+            "year": 2016
+          },
+          {
+            "line": "17",
+            "year": 2021
+          },
+          {
+            "line": "19",
+            "year": 2021
+          },
+          {
+            "line": "Capital Airport",
+            "year": 2008
+          },
+          {
+            "line": "Daxing Airport",
+            "year": 2019
+          },
+          {
+            "line": "Changping",
+            "year": 2010
+          },
+          {
+            "line": "Fangshan",
+            "year": 2010
+          },
+          {
+            "line": "S1",
+            "year": 2017
+          },
+          {
+            "line": "Xijiao",
+            "year": 2017
+          },
+          {
+            "line": "Yanfang",
+            "year": 2017
+          },
+          {
+            "line": "Yizhuang",
+            "year": 2010
+          }
+        ]
+      },
+      "route_km": {
+        "value": 909,
+        "as_of": "2026-06",
+        "source": "https://en.wikipedia.org/wiki/Beijing_Subway",
+        "note": "The operator's full mapped network incl. both airport expresses, S1 and Xijiao."
+      },
+      "ridership": {
+        "annual_m": 3450,
+        "year": "2023",
+        "source": "https://en.wikipedia.org/wiki/Beijing_Subway",
+        "note": "3.45 billion rides in 2023."
+      },
+      "headway": {
+        "value": 1.7,
+        "note": "Line 4, about 1 min 43 s in the morning peak.",
+        "source": "https://en.wikipedia.org/wiki/Line_4_(Beijing_Subway)",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 18.6,
+        "note": "Most lines run roughly 05:00 to 23:00; varies by line.",
+        "source": "https://www.bjsubway.com/en/",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 8,
+        "note": "GoA4: 3, 11, 12, 17, 19, Yanfang, Daxing Airport; GoA3: Capital Airport Express. (7 if Line 19 and Yanfang count as one.)",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 0.44,
+        "local": "CNY 3",
+        "note": "Distance-based: 3 yuan covers the first 6 km.",
+        "source": "https://www.travelchinaguide.com/cityguides/beijing/transportation/subway.htm",
+        "as_of": "2026-06",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 35.08,
+        "year": "2021",
+        "source": "https://en.wikipedia.org/wiki/Farebox_recovery_ratio",
+        "note": "Under the distance-based fare system."
+      }
+    },
+    "london": {
+      "opened": {
+        "year": 1863,
+        "what": "The Metropolitan Railway opened 10 January 1863, the world's first underground passenger railway.",
+        "source": "https://en.wikipedia.org/wiki/London_Underground",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/London_Underground",
+        "lines": [
+          {
+            "line": "Metropolitan",
+            "year": 1863
+          },
+          {
+            "line": "Hammersmith & City",
+            "year": 1864
+          },
+          {
+            "line": "District",
+            "year": 1868
+          },
+          {
+            "line": "Circle",
+            "year": 1871
+          },
+          {
+            "line": "Northern",
+            "year": 1890
+          },
+          {
+            "line": "Waterloo & City",
+            "year": 1898
+          },
+          {
+            "line": "Central",
+            "year": 1900
+          },
+          {
+            "line": "Bakerloo",
+            "year": 1906
+          },
+          {
+            "line": "Piccadilly",
+            "year": 1906
+          },
+          {
+            "line": "Victoria",
+            "year": 1968
+          },
+          {
+            "line": "Jubilee",
+            "year": 1979
+          }
+        ]
+      },
+      "route_km": {
+        "value": 402,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/London_Underground",
+        "note": "Underground only (11 lines); Elizabeth line, Overground and DLR excluded."
+      },
+      "ridership": {
+        "annual_m": 1181,
+        "year": "2023/24",
+        "source": "https://en.wikipedia.org/wiki/London_Underground",
+        "note": "1.181 billion journeys in TfL year 2023/24, Underground only."
+      },
+      "headway": {
+        "value": 1.7,
+        "note": "Victoria line, about 36 trains an hour, one every 100 s.",
+        "source": "https://en.wikipedia.org/wiki/Victoria_line",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 19,
+        "note": "Weekday span about 05:00 to midnight; the Night Tube runs weekends only.",
+        "source": "https://en.wikipedia.org/wiki/Night_Tube",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 0,
+        "note": "all Underground lines GoA2; the GoA3 DLR is out of scope.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 2.94,
+        "local": "GBP 2.20",
+        "note": "Off-peak pay-as-you-go single, one zone outside Zone 1, from 1 March 2026.",
+        "source": "https://www.timeout.com/london/news/london-tube-fares-are-going-up-in-price-this-week-heres-how-much-more-you-will-pay-in-every-travel-zone-022326",
+        "as_of": "2026-03-01",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 129.5,
+        "year": "2022/23",
+        "source": "https://en.wikipedia.org/wiki/Farebox_recovery_ratio",
+        "note": "Fares exceed direct operating cost."
+      }
+    },
+    "nyc": {
+      "opened": {
+        "year": 1904,
+        "what": "The first underground IRT line opened 27 October 1904; elevated rapid transit ran from 1868 but is not part of today's subway.",
+        "source": "https://en.wikipedia.org/wiki/History_of_the_New_York_City_Subway",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/History_of_the_New_York_City_Subway",
+        "lines": [
+          {
+            "line": "IRT (today 1-7 trunk)",
+            "year": 1904
+          },
+          {
+            "line": "BMT",
+            "year": 1915
+          },
+          {
+            "line": "IND",
+            "year": 1932
+          }
+        ]
+      },
+      "route_km": {
+        "value": 399,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/New_York_City_Subway",
+        "note": "248 route miles, 472 stations; Staten Island Railway and PATH excluded. Revenue track is far longer."
+      },
+      "ridership": {
+        "annual_m": 1300,
+        "year": "2025",
+        "source": "https://www.governor.ny.gov/news/governor-hochul-highlights-record-breaking-year-performance-and-ridership-mta-2025",
+        "note": "Nearly 1.3 billion subway trips in 2025, up 7 percent; subway only."
+      },
+      "headway": {
+        "value": 2,
+        "note": "Peak intervals 2 to 10 min; the CBTC 7 line runs about every 2 min.",
+        "source": "https://en.wikipedia.org/wiki/New_York_City_Subway",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 24,
+        "note": "Genuine 24/7 service every day of the year.",
+        "source": "https://en.wikipedia.org/wiki/New_York_City_Subway",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 0,
+        "note": "the L and 7 run ATO with a train operator (GoA2).",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 3.0,
+        "local": "USD 3.00",
+        "note": "Base OMNY fare from January 2026; a 7-day cap limits spending to USD 35.",
+        "source": "https://ny1.com/nyc/all-boroughs/news/2025/09/30/mta-board-approves-subway-and-bus-fare-hike-for-2026",
+        "as_of": "2026-01",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 24.44,
+        "year": "2020",
+        "source": "https://en.wikipedia.org/wiki/Farebox_recovery_ratio",
+        "note": "MTA NYC Transit, subway and bus combined, a pandemic year."
+      }
+    },
+    "madrid": {
+      "opened": {
+        "year": 1919,
+        "what": "Line 1, Cuatro Caminos to Sol, opened by King Alfonso XIII on 17 October 1919.",
+        "source": "https://en.wikipedia.org/wiki/Madrid_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Madrid_Metro",
+        "lines": [
+          {
+            "line": "1",
+            "year": 1919
+          },
+          {
+            "line": "2",
+            "year": 1924
+          },
+          {
+            "line": "3",
+            "year": 1936
+          },
+          {
+            "line": "4",
+            "year": 1932
+          },
+          {
+            "line": "5",
+            "year": 1961
+          },
+          {
+            "line": "6",
+            "year": 1979
+          },
+          {
+            "line": "7",
+            "year": 1974
+          },
+          {
+            "line": "8",
+            "year": 1998
+          },
+          {
+            "line": "9",
+            "year": 1980
+          },
+          {
+            "line": "10",
+            "year": 1961
+          },
+          {
+            "line": "11",
+            "year": 1998
+          },
+          {
+            "line": "12",
+            "year": 2003
+          },
+          {
+            "line": "Ramal",
+            "year": 1925
+          }
+        ]
+      },
+      "route_km": {
+        "value": 297,
+        "as_of": "2025-09",
+        "source": "https://en.wikipedia.org/wiki/Madrid_Metro",
+        "note": "Metro de Madrid (lines 1 to 12 plus Ramal); the 28 km Metro Ligero excluded."
+      },
+      "ridership": {
+        "annual_m": 715,
+        "year": "2024",
+        "source": "https://www.comunidad.madrid/noticias/2025/01/16/comunidad-madrid-bate-record-historico-usuarios-metro-715-millones-viajes-2024-incremento-8-respecto-ano-anterior",
+        "note": "All-time record 715.2M trips in 2024, up 8 percent; heavy metro only."
+      },
+      "headway": {
+        "value": 2,
+        "note": "Main lines every 2 to 4 minutes in rush hours.",
+        "source": "https://citopendia.es/metro-madrid-guia-practica-lineas-tarifas-horarios-2026/",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 19.5,
+        "note": "Every day from 06:00 to 01:30.",
+        "source": "https://en.wikipedia.org/wiki/Madrid_Metro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 0,
+        "note": "all lines GoA2; the Line 6 conversion is not yet operational.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 1.73,
+        "local": "EUR 1.50",
+        "note": "Zone A single, up to 5 stations.",
+        "source": "https://www.moncloa.com/2026/05/26/metro-madrid-pago-tarjeta-1-junio-3379754/",
+        "as_of": "2026",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 41,
+        "year": "2007",
+        "source": "https://en.wikipedia.org/wiki/Farebox_recovery_ratio",
+        "note": "Most recent Madrid figure in the comparative table; no newer ratio found."
+      }
+    },
+    "moscow": {
+      "opened": {
+        "year": 1935,
+        "what": "First line opened 15 May 1935, 11 km and 13 stations from Sokolniki to Okhotny Ryad.",
+        "source": "https://en.wikipedia.org/wiki/Moscow_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Moscow_Metro",
+        "lines": [
+          {
+            "line": "1",
+            "year": 1935
+          },
+          {
+            "line": "2",
+            "year": 1938
+          },
+          {
+            "line": "3",
+            "year": 1938
+          },
+          {
+            "line": "4",
+            "year": 1958
+          },
+          {
+            "line": "5",
+            "year": 1950
+          },
+          {
+            "line": "6",
+            "year": 1958
+          },
+          {
+            "line": "7",
+            "year": 1966
+          },
+          {
+            "line": "8",
+            "year": 1979
+          },
+          {
+            "line": "8A",
+            "year": 2014
+          },
+          {
+            "line": "9",
+            "year": 1983
+          },
+          {
+            "line": "10",
+            "year": 1995
+          },
+          {
+            "line": "11",
+            "year": 2018
+          },
+          {
+            "line": "12",
+            "year": 2003
+          },
+          {
+            "line": "14 (MCC)",
+            "year": 2016
+          },
+          {
+            "line": "15",
+            "year": 2019
+          },
+          {
+            "line": "16",
+            "year": 2024
+          }
+        ]
+      },
+      "route_km": {
+        "value": 535,
+        "as_of": "2026-01",
+        "source": "https://en.wikipedia.org/wiki/Moscow_Metro",
+        "note": "535.3 km incl. the 54 km MCC ring (line 14); the MCD diameters are excluded."
+      },
+      "ridership": {
+        "annual_m": 2313,
+        "year": "2025",
+        "source": "https://en.wikipedia.org/wiki/Moscow_Metro",
+        "note": "Metro 2,194M plus the MCC's 119M for 2025, matching the scope (metro plus MCC)."
+      },
+      "headway": {
+        "value": 1.5,
+        "note": "About 90 s at rush hour; cut to 80 s in 2023, reported a world first.",
+        "source": "https://en.wikipedia.org/wiki/Moscow_Metro",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 19.6,
+        "note": "First trains about 05:25; all entrances close at 01:00.",
+        "source": "https://en.wikipedia.org/wiki/Moscow_Metro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 0,
+        "note": "no Metro line or the MCC is GoA3+ (only a tram line).",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 1.04,
+        "local": "RUB 75",
+        "note": "One trip on metro or MCC with a Troika card, from January 2026.",
+        "source": "https://msk1.ru/text/transport/2026/01/01/76149552/",
+        "as_of": "2026-01",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": null,
+        "year": null,
+        "source": null,
+        "note": "No recent published farebox recovery ratio found."
+      }
+    },
+    "copenhagen": {
+      "opened": {
+        "year": 2002,
+        "what": "First stretch opened 19 October 2002, fully driverless from day one.",
+        "source": "https://en.wikipedia.org/wiki/Copenhagen_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Copenhagen_Metro",
+        "lines": [
+          {
+            "line": "M1",
+            "year": 2002
+          },
+          {
+            "line": "M2",
+            "year": 2002
+          },
+          {
+            "line": "M3",
+            "year": 2019
+          },
+          {
+            "line": "M4",
+            "year": 2020
+          }
+        ]
+      },
+      "route_km": {
+        "value": 43,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/Copenhagen_Metro",
+        "note": "Metro M1 to M4 only, 44 stations, incl. the June 2024 M4 Sydhavn extension; S-train excluded."
+      },
+      "ridership": {
+        "annual_m": 135,
+        "year": "2025",
+        "source": "https://metroselskabet.dk/da/om-os/om-metroselskabet/passagertal/",
+        "note": "Operator figure: 135M in 2025, up 9M on 2024."
+      },
+      "headway": {
+        "value": 2,
+        "note": "Every 2 min on the M1/M2 shared core at peak.",
+        "source": "https://en.wikipedia.org/wiki/Copenhagen_Metro",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 24,
+        "note": "Round-the-clock every day, at reduced night frequency.",
+        "source": "https://en.wikipedia.org/wiki/Copenhagen_Metro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 4,
+        "note": "all four M-lines GoA4.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 3.71,
+        "local": "DKK 24",
+        "note": "Lowest adult single (2 zones), covering metro, bus and train in the zones.",
+        "source": "https://www.publictransport.dk/tickets/single-tickets",
+        "as_of": "2026",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 93.5,
+        "year": "2023",
+        "source": "https://en.wikipedia.org/wiki/Farebox_recovery_ratio",
+        "note": "Among the highest in the comparative table; profits help repay construction debt."
+      }
+    },
+    "delhi": {
+      "opened": {
+        "year": 2002,
+        "what": "Red Line, Shahdara to Tis Hazari, opened 24 December 2002, public service from 25 December.",
+        "source": "https://en.wikipedia.org/wiki/Delhi_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Delhi_Metro",
+        "lines": [
+          {
+            "line": "Red",
+            "year": 2002
+          },
+          {
+            "line": "Yellow",
+            "year": 2004
+          },
+          {
+            "line": "Blue",
+            "year": 2005
+          },
+          {
+            "line": "Blue branch",
+            "year": 2010
+          },
+          {
+            "line": "Green",
+            "year": 2010
+          },
+          {
+            "line": "Violet",
+            "year": 2010
+          },
+          {
+            "line": "Airport Express",
+            "year": 2011
+          },
+          {
+            "line": "Magenta",
+            "year": 2017
+          },
+          {
+            "line": "Pink",
+            "year": 2018
+          },
+          {
+            "line": "Grey",
+            "year": 2019
+          }
+        ]
+      },
+      "route_km": {
+        "value": 374,
+        "as_of": "2026-03-08",
+        "source": "https://en.wikipedia.org/wiki/Delhi_Metro",
+        "note": "DMRC's 10 lines incl. the Airport Express, after the 8 March 2026 Phase 4 openings; Noida, Gurugram and RRTS excluded."
+      },
+      "ridership": {
+        "annual_m": 2358,
+        "year": "2025",
+        "source": "https://www.psuconnect.in/psu-news/delhi-metro-records-235-8-crore-passenger-journeys-in-2025-remains-india-largest-metro-network",
+        "note": "235.8 crore corridor-wise journeys in 2025; daily average 6.46M."
+      },
+      "headway": {
+        "value": 2.3,
+        "note": "Yellow Line, peak-of-peak 2 min 18 s.",
+        "source": "https://delhimetrorail.com/train-frequency",
+        "as_of": "2026-04-01"
+      },
+      "span_h": {
+        "value": 18.8,
+        "note": "Airport Express from 04:45, regular lines 05:00 to about 23:35.",
+        "source": "https://www.stopie.com/delhi-metro-timings/",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 3,
+        "note": "Magenta, Pink and Grey lines GoA4; the Airport Express is driven.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 0.11,
+        "local": "INR 11",
+        "note": "0 to 2 km slab, first revision since 2017 (effective 25 August 2025); smart cards get 10 percent off.",
+        "source": "https://www.theweek.in/news/india/2025/08/25/delhi-metro-fare-hike-minimum-ticket-price-now-is-11-check-full-details-here.html",
+        "as_of": "2025-08-25",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": null,
+        "year": null,
+        "source": "https://www.storyboard18.com/brand-marketing/delhi-metro-posts-rs-412-8-crore-operating-surplus-in-fy25-as-revenues-rise-to-rs-4600-crore-89264.htm",
+        "note": "Fare-only share not disclosed; FY25 operating revenue beat operating cost by about 110 percent incl. non-fare income."
+      }
+    },
+    "guangzhou": {
+      "opened": {
+        "year": 1997,
+        "what": "Line 1, Xilang to Huangsha, opened 28 June 1997, the fourth metro in mainland China.",
+        "source": "https://en.wikipedia.org/wiki/Guangzhou_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Guangzhou_Metro",
+        "lines": [
+          {
+            "line": "1",
+            "year": 1997
+          },
+          {
+            "line": "2",
+            "year": 2002
+          },
+          {
+            "line": "3",
+            "year": 2005
+          },
+          {
+            "line": "4",
+            "year": 2005
+          },
+          {
+            "line": "5",
+            "year": 2009
+          },
+          {
+            "line": "6",
+            "year": 2013
+          },
+          {
+            "line": "7",
+            "year": 2016
+          },
+          {
+            "line": "8",
+            "year": 2010
+          },
+          {
+            "line": "9",
+            "year": 2017
+          },
+          {
+            "line": "10",
+            "year": 2025
+          },
+          {
+            "line": "11",
+            "year": 2024
+          },
+          {
+            "line": "12",
+            "year": 2025
+          },
+          {
+            "line": "13",
+            "year": 2017
+          },
+          {
+            "line": "14",
+            "year": 2017
+          },
+          {
+            "line": "18",
+            "year": 2021
+          },
+          {
+            "line": "21",
+            "year": 2018
+          },
+          {
+            "line": "22",
+            "year": 2022
+          },
+          {
+            "line": "Guangfo",
+            "year": 2010
+          },
+          {
+            "line": "APM",
+            "year": 2010
+          }
+        ]
+      },
+      "route_km": {
+        "value": 780,
+        "as_of": "2026-05-07",
+        "source": "https://zh.wikipedia.org/wiki/%E5%B9%BF%E5%B7%9E%E5%9C%B0%E9%93%81",
+        "note": "19-line network incl. the Guangfo line and the APM; Foshan's own lines, trams and intercity rail excluded."
+      },
+      "ridership": {
+        "annual_m": 3399,
+        "year": "2025",
+        "source": "https://m.21jingji.com/article/20260609/herald/68dd14233061c8818c4209aa542aca06_zaker.html",
+        "note": "Operator annual report: 3.399 billion rides in 2025; daily average 9.31M."
+      },
+      "headway": {
+        "value": 2,
+        "note": "Line 3 trunk, about 1 min 58 s at peak.",
+        "source": "https://en.wikipedia.org/wiki/Line_3_(Guangzhou_Metro)",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 18,
+        "note": "About 18 hours daily, roughly 06:00 to midnight.",
+        "source": "https://zh.wikipedia.org/wiki/%E5%B9%BF%E5%B7%9E%E5%9C%B0%E9%93%81",
+        "as_of": "2026-05-07"
+      },
+      "driverless": {
+        "value": 4,
+        "note": "Lines 10, 11, 12 and the APM, GoA4; Lines 18/22 not yet listed.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 0.29,
+        "local": "CNY 2",
+        "note": "Distance-based from 2 yuan; the APM is a flat 2 yuan.",
+        "source": "https://zh.wikipedia.org/wiki/%E5%B9%BF%E5%B7%9E%E5%9C%B0%E9%93%81",
+        "as_of": "2026-05-07",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": null,
+        "year": null,
+        "source": "https://m.21jingji.com/article/20260609/herald/68dd14233061c8818c4209aa542aca06_zaker.html",
+        "note": "No fare-revenue-to-cost split published; group finances lean on property."
+      }
+    },
+    "mexico city": {
+      "opened": {
+        "year": 1969,
+        "what": "Line 1, Insurgentes to Zaragoza, opened 4 September 1969.",
+        "source": "https://en.wikipedia.org/wiki/Mexico_City_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Mexico_City_Metro",
+        "lines": [
+          {
+            "line": "1",
+            "year": 1969
+          },
+          {
+            "line": "2",
+            "year": 1970
+          },
+          {
+            "line": "3",
+            "year": 1970
+          },
+          {
+            "line": "4",
+            "year": 1981
+          },
+          {
+            "line": "5",
+            "year": 1981
+          },
+          {
+            "line": "6",
+            "year": 1983
+          },
+          {
+            "line": "7",
+            "year": 1984
+          },
+          {
+            "line": "8",
+            "year": 1994
+          },
+          {
+            "line": "9",
+            "year": 1987
+          },
+          {
+            "line": "A",
+            "year": 1991
+          },
+          {
+            "line": "B",
+            "year": 1999
+          },
+          {
+            "line": "12",
+            "year": 2012
+          }
+        ]
+      },
+      "route_km": {
+        "value": 201,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/Mexico_City_Metro",
+        "note": "Route length in revenue service (STC headlines 226.5 km with maintenance track); Tren Ligero and Suburbano excluded."
+      },
+      "ridership": {
+        "annual_m": 1242,
+        "year": "2025",
+        "source": "https://www.cronica.com.mx/metropoli/2026/01/16/metro-registro-mil-241-millones-de-viajes-en-2025-6-mas-que-en-2024/",
+        "note": "1,241.6M trips in 2025, up 6 percent, lifted by Line 1's full reopening."
+      },
+      "headway": {
+        "value": 2.5,
+        "note": "Line 1 after its rebuild, the city's announced plan.",
+        "source": "https://politica.expansion.mx/cdmx/2025/10/09/remodelacion-linea-1-del-metro-fecha-exacta-conclusion",
+        "as_of": "2025-10"
+      },
+      "span_h": {
+        "value": 19,
+        "note": "All lines 05:00 to midnight on weekdays.",
+        "source": "https://en.wikipedia.org/wiki/Mexico_City_Metro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 0,
+        "note": "all STC lines conventionally driven.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 0.29,
+        "local": "MXN 5.00",
+        "note": "Flat fare held at 5 pesos for 2026; paid by rechargeable card.",
+        "source": "https://www.infobae.com/mexico/2025/12/26/metro-cdmx-clara-brugada-confirma-la-tarifa-para-2026/",
+        "as_of": "2025-12-26",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": null,
+        "year": null,
+        "source": "https://www.infobae.com/mexico/2025/12/26/metro-cdmx-clara-brugada-confirma-la-tarifa-para-2026/",
+        "note": "No official ratio; the city says each trip costs it about 13 pesos against the 5-peso fare."
+      }
+    },
+    "cairo": {
+      "opened": {
+        "year": 1987,
+        "what": "Line 1, Helwan to Ramses Square, opened 27 September 1987 as Africa's first metro; it absorbed the older Helwan and El Marg suburban railways.",
+        "source": "https://en.wikipedia.org/wiki/Cairo_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Cairo_Metro",
+        "lines": [
+          {
+            "line": "1",
+            "year": 1987
+          },
+          {
+            "line": "2",
+            "year": 1996
+          },
+          {
+            "line": "3",
+            "year": 2012
+          }
+        ]
+      },
+      "route_km": {
+        "value": 107,
+        "as_of": "2024-05-15",
+        "source": "https://en.wikipedia.org/wiki/Cairo_Metro",
+        "note": "Lines 1 to 3 only, after Line 3's final phases; LRT and monorail excluded."
+      },
+      "ridership": {
+        "annual_m": 1460,
+        "year": "2023",
+        "source": "https://en.wikipedia.org/wiki/Cairo_Metro",
+        "note": "Approximate; about 5M riders a day. The operator does not publish a clean annual series."
+      },
+      "headway": {
+        "value": 2.7,
+        "note": "Line 2's tightest documented interval (2.7 to 3 min).",
+        "source": "https://en.wikipedia.org/wiki/Cairo_Metro",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 20,
+        "note": "Daily 05:00 to 01:00, extended during Ramadan.",
+        "source": "https://en.wikipedia.org/wiki/Cairo_Metro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 0,
+        "note": "Lines 1-3 driven; the monorail is a separate future system.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 0.19,
+        "local": "EGP 10",
+        "note": "Up to 9 stations, effective 27 March 2026.",
+        "source": "https://egyptianstreets.com/2026/03/27/egypt-raises-train-and-metro-ticket-prices-starting-today/",
+        "as_of": "2026-03-27",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": null,
+        "year": null,
+        "source": "https://egyptianstreets.com/2026/03/27/egypt-raises-train-and-metro-ticket-prices-starting-today/",
+        "note": "No published ratio; the March 2026 fare rise cited rising fuel and maintenance cost."
+      }
+    },
+    "osaka": {
+      "opened": {
+        "year": 1933,
+        "what": "Midosuji Line, Umeda to Shinsaibashi, 1933: Japan's first municipally operated subway.",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "lines": [
+          {
+            "line": "Midosuji (M)",
+            "year": 1933
+          },
+          {
+            "line": "Yotsubashi (Y)",
+            "year": 1942
+          },
+          {
+            "line": "Chuo (C)",
+            "year": 1961
+          },
+          {
+            "line": "Tanimachi (T)",
+            "year": 1967
+          },
+          {
+            "line": "Sennichimae (S)",
+            "year": 1969
+          },
+          {
+            "line": "Sakaisuji (K)",
+            "year": 1969
+          },
+          {
+            "line": "New Tram (P)",
+            "year": 1981
+          },
+          {
+            "line": "Nagahori Tsurumi-ryokuchi (N)",
+            "year": 1990
+          },
+          {
+            "line": "Imazatosuji (I)",
+            "year": 2006
+          }
+        ]
+      },
+      "route_km": {
+        "value": 141,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "note": "Full network incl. the New Tram people-mover (about 133 km for the eight conventional lines)."
+      },
+      "ridership": {
+        "annual_m": 912,
+        "year": "2025",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "note": "No single annual total published; annualized from about 2.5M rides/day in 2025 (FY2013 daily was 2.464M). A derived figure."
+      },
+      "headway": {
+        "value": 2,
+        "note": "Midosuji Line, the Kansai region's busiest, about 2 min at peak.",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": null,
+        "note": "First and last train times were not sourceable on the operator or Wikipedia pages this pass; left unpublished rather than guessed.",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 1,
+        "note": "the New Tram (Nanko Port Town Line), GoA4 since 1991.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 1.19,
+        "local": "190 JPY",
+        "note": "minimum distance-band adult single.",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "as_of": "2026",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 70,
+        "year": "2024",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro_(company)",
+        "note": "operating revenue over cost, company report."
+      }
+    },
+    "istanbul": {
+      "opened": {
+        "year": 1989,
+        "what": "M1, Aksaray to Kocatepe, 1989: the first modern metro line in Istanbul and Turkey.",
+        "source": "https://en.wikipedia.org/wiki/M1_(Istanbul_Metro)",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "lines": [
+          {
+            "line": "M1A",
+            "year": 1989
+          },
+          {
+            "line": "M2",
+            "year": 2000
+          },
+          {
+            "line": "M4",
+            "year": 2012
+          },
+          {
+            "line": "M1B",
+            "year": 2013
+          },
+          {
+            "line": "M3",
+            "year": 2013
+          },
+          {
+            "line": "M6",
+            "year": 2015
+          },
+          {
+            "line": "M5",
+            "year": 2017
+          },
+          {
+            "line": "M7",
+            "year": 2020
+          },
+          {
+            "line": "M9",
+            "year": 2021
+          },
+          {
+            "line": "M8",
+            "year": 2023
+          },
+          {
+            "line": "M11",
+            "year": 2023
+          }
+        ]
+      },
+      "route_km": {
+        "value": 247.7,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "note": "M-lines only; Marmaray, trams and funiculars excluded. The per-line table sums higher because M1A/M1B share a trunk."
+      },
+      "ridership": {
+        "annual_m": 613,
+        "year": "2023",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "note": "Infobox figure (612.9M), explicitly excludes the M11 airport line; no all-line total is published."
+      },
+      "headway": {
+        "value": 3,
+        "note": "peak interval across the network, about 3 min.",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 18,
+        "note": "weekday service roughly 06:00 to 24:00.",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 4,
+        "note": "M5, M7, M8 and M11, GoA3+; M9 is GoA2.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
+      },
+      "fare_usd": {
+        "value": 0.87,
+        "local": "40 TRY",
+        "note": "flat Istanbulkart single; Turkish fares rise often, so the lira figure dates fast.",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "as_of": "2026",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": null,
+        "year": null,
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "note": "No farebox recovery figure published."
+      }
+    }
+  }
+}

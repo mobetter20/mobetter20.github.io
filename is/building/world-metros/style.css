@@ -1,9 +1,10 @@
 /* Metro Match — treatment C (D19): ink-dark card on near-black table;
    the operators' line colours do the lighting. V1 big-ledger rows (D20).
    Cool ink family on purpose: not the site's warm house dark.
-   Round 2 (D21): legibility pass — nothing readable below ~9px; the smallest
-   mono labels floored at 9px, the attribution lifted off 6.5px. Cards carry
-   four live stats (route-km/ridership hidden until sourced). */
+   Legibility floor ~9px (D21/D22 passes). Gate 3: cards grew to 270x460 so
+   the big-pill decks (Beijing 27, Seoul 23) and six core rows fit; the
+   stat ledgers come in three themes (core/service/money) toggled by
+   data-theme on the deck grid; battle cards always show core. */
 
 :root {
   --table: #0f0f12;
@@ -91,8 +92,32 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 }
 .intro b { color: var(--text); font-weight: 600; }
 
-/* Column count is locked to 1 / 2 / 4 (never 3): 16 cards land in even
-   rows at every width. The 3-col band (~906-1200px) would orphan one card. */
+/* theme switch (D24): three stat sets on the same cards */
+.themebar {
+  display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+  padding: 16px 2px 0;
+}
+.themecap {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .2em;
+  color: var(--grey);
+}
+.themebtn {
+  background: none; border: 1px solid var(--edge); border-radius: 999px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+  color: var(--grey); padding: 6px 13px; cursor: pointer;
+}
+.themebtn:hover { color: var(--body); border-color: var(--chipedge); }
+.themebtn[aria-pressed="true"] {
+  background: var(--blue); border-color: var(--blue); color: #fff;
+}
+.themenote {
+  font-family: var(--mono); font-size: 9px; color: var(--faint);
+  letter-spacing: .04em;
+}
+
+/* Column count is locked to 1 / 2 / 3 (never 4): 18 cards land in even
+   rows at every width (18 = 1x18 = 2x9 = 3x6). The owner reversed the old
+   1/2/4 lock at D27 ("3 per row was much better"). */
 .deckgrid {
   display: grid; grid-template-columns: repeat(1, 270px);
   justify-content: center; gap: 30px 26px; padding: 22px 0 8px;
@@ -100,15 +125,20 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 @media (min-width: 612px) {
   .deckgrid { grid-template-columns: repeat(2, 270px); }
 }
-@media (min-width: 1206px) {
-  .deckgrid { grid-template-columns: repeat(4, 270px); }
+@media (min-width: 906px) {
+  .deckgrid { grid-template-columns: repeat(3, 270px); }
 }
 
 .cardunit { display: flex; flex-direction: column; gap: 9px; align-items: center; }
+/* mega-pill cards (Seoul 24, Beijing 27) grow taller than the 486 floor, so
+   rows size to their own card: don't stretch the short cards in a tall row. */
+.deckgrid { align-items: start; }
 
-/* the card object */
+/* the card object. min-height not height: the pills (flex: none below) wrap to
+   full rows and the card grows to fit, so the line-count/scope tag is never
+   occluded at any pill count (pill-density fix). */
 .card {
-  width: 270px; height: 420px; border-radius: 12px;
+  width: 270px; min-height: 469px; border-radius: 12px;
   background: var(--card); border: 1px solid var(--cedge);
   box-shadow: 0 4px 16px rgba(0, 0, 0, .55); color: var(--text);
   padding: 17px 15px 13px; display: flex; flex-direction: column;
@@ -124,11 +154,17 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
   font-family: var(--mono); font-size: 10px; letter-spacing: .2em;
   color: var(--lblue); text-transform: uppercase; margin-top: 5px;
 }
+/* the core line: count + scope, the card subtitle (moved up from the band
+   tag). Data, not flavor, so it reads in soft grey not the blue accent. */
+.csub {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .02em;
+  color: var(--soft); margin-top: 6px; white-space: nowrap;
+}
 .cno { font-family: var(--mono); font-size: 10px; color: var(--dim); padding-top: 6px; }
 
 .cpills {
   display: flex; flex-wrap: wrap; align-items: center; gap: 4px;
-  margin-top: 13px; min-height: 18px;
+  margin-top: 13px; min-height: 18px; flex: none;
 }
 .cpills i {
   font-style: normal; font-family: var(--mono); font-size: 10px;
@@ -136,17 +172,30 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
   letter-spacing: .02em;
 }
 .cpills.compact { gap: 3px; }
-.cpills.compact i { font-size: 8.5px; padding: 2px 6px; }
+.cpills.compact i { font-size: 9px; padding: 2px 5px; }
+/* C2 adaptive band (owner-picked): over 16 lines the refs become one thin
+   strip of the line colours, the deck-back motif; refs read on the lore back. */
+.cband {
+  display: flex; gap: 0; height: 16px; border-radius: 8px;
+  overflow: hidden; margin-top: 13px;
+}
+.cband i { flex: 1; }
 .ctag {
   font-family: var(--mono); font-size: 9px; color: var(--grey);
   letter-spacing: .04em; margin-top: 7px; white-space: nowrap;
 }
 
-.cledger { margin-top: 13px; border-top: 1px solid var(--cedge); }
+.cledger { margin-top: 13px; border-top: 1px solid var(--cedge); display: none; }
+.deckgrid[data-set="play"] .cledger[data-set="play"],
+.deckgrid[data-set="almanac"] .cledger[data-set="almanac"],
+.arena .cledger { display: block; }
 .crow {
   display: flex; align-items: center; gap: 11px; width: 100%;
-  padding: 14px 1px; border-bottom: 1px solid var(--rowline);
+  padding: 10px 1px; border-bottom: 1px solid var(--rowline);
 }
+/* The second set's rows are grown a little so the set (now five) fills the
+   card the six PLAY rows would, no void below (D28/D29). */
+.cl-almanac .crow { padding: 15px 1px; }
 button.crow {
   background: none; border: 0; border-bottom: 1px solid var(--rowline);
   color: inherit; cursor: pointer; text-align: left;
@@ -210,19 +259,20 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 }
 .lcaveat { margin-top: 3px; }
 
-/* flip */
-.flipbox { position: relative; width: 270px; height: 420px; perspective: 1200px; cursor: pointer; }
+/* flip. The front face is in normal flow and drives the box height, so a
+   tall mega-pill front makes the whole card (and the back) grow with it; the
+   back face overlays at the same size. */
+.flipbox { position: relative; width: 270px; perspective: 1200px; cursor: pointer; }
 .flipinner {
-  position: relative; width: 100%; height: 100%;
+  position: relative; width: 100%;
   transform-style: preserve-3d;
   transition: transform .55s cubic-bezier(.2, .7, .3, 1);
 }
 .flipbox.flipped .flipinner { transform: rotateY(180deg); }
-.face {
-  position: absolute; inset: 0;
-  backface-visibility: hidden; -webkit-backface-visibility: hidden;
-}
-.face.backface { transform: rotateY(180deg); }
+.face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.face:not(.backface) { position: relative; }
+.face.backface { position: absolute; inset: 0; transform: rotateY(180deg); }
+.face.backface .card { height: 100%; }
 
 .flipbtn {
   background: none; border: 1px solid var(--edge); border-radius: 999px;
@@ -230,24 +280,6 @@ button.crow[aria-disabled="true"]:hover { background: none; }
   color: var(--grey); padding: 6px 14px; cursor: pointer;
 }
 .flipbtn:hover { color: var(--body); border-color: var(--chipedge); }
-.flipbtn.ghost { border-style: dashed; color: var(--faint); cursor: default; }
-.flipbtn.ghost:hover { color: var(--faint); border-color: var(--edge); }
-
-/* soon cards */
-.csoon {
-  border-style: dashed; border-color: #2c2c34; background: transparent;
-  box-shadow: none;
-}
-.csoon .cname { color: #84848c; font-size: 22px; }
-.csoon .cno { color: var(--faint); }
-.csoon .cfoot { color: #56565e; }
-.soonmid { flex: 1; display: flex; align-items: center; justify-content: center; }
-.soonchip {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .28em;
-  color: var(--faint); border: 1px dashed var(--chipdash);
-  border-radius: 999px; padding: 6px 16px 6px 20px;
-}
-
 /* deck back */
 .cdeckback { padding: 0; }
 .pinstripes {
@@ -275,7 +307,10 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 }
 .bcol { display: flex; flex-direction: column; gap: 11px; align-items: center; }
 .bcap { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--grey); }
-.bslot { width: 270px; height: 420px; position: relative; }
+/* Battle shows one card per side; keep both slots a fixed worst-case height
+   (fits Seoul's 4 pill rows) so the two sides align and nothing clips. */
+.bslot { width: 270px; height: 469px; position: relative; }
+.bslot .card { height: 469px; }
 .bcardwrap { position: absolute; inset: 0; }
 
 .bmid { width: 234px; flex: none; text-align: center; padding-top: 120px; }
@@ -328,6 +363,9 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 }
 .dq { font-size: 22px; font-weight: 800; letter-spacing: .02em; margin-top: 8px; color: var(--text); }
 .dchoices { display: flex; gap: 18px; justify-content: center; align-items: center; margin-top: 26px; }
+/* display:flex above would beat the [hidden] attribute (same trap as
+   #panel-daily below): hide the inactive question form explicitly */
+#d-duel[hidden], #d-mc[hidden] { display: none; }
 .dchoice {
   width: 184px; background: var(--card); border: 1px solid var(--cedge);
   border-radius: 12px; padding: 22px 14px 18px; cursor: pointer;
@@ -341,11 +379,28 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 .dchoice.correct .dmeta { color: var(--goodtext); }
 .dchoice.wrongpick, .dchoice.wrongpick[aria-disabled="true"]:hover { border-color: var(--bad); }
 .dname { font-size: 16px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-.dpills { display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; max-width: 152px; min-height: 16px; }
-.dpills i {
-  font-style: normal; font-family: var(--mono); font-size: 8.5px;
-  font-weight: 500; color: #fff; padding: 2px 5px; border-radius: 999px;
+.dpills {
+  display: flex; gap: 0; width: 152px; max-width: 100%; height: 10px;
+  border-radius: 5px; overflow: hidden;
 }
+.dpills i { flex: 1; }
+/* pick-the-number form (D30): one city, four candidate values */
+.dmc { margin-top: 26px; }
+.dmcband { margin: 0 auto 20px; }
+.dopts {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px; max-width: 420px; margin: 0 auto;
+}
+.dopt {
+  background: var(--card); border: 1px solid var(--cedge);
+  border-radius: 12px; padding: 18px 10px; cursor: pointer;
+  color: var(--text); font-family: var(--mono); font-size: 16px;
+}
+.dopt:hover { border-color: var(--lblue); }
+.dopt[aria-disabled="true"] { cursor: default; }
+.dopt[aria-disabled="true"]:hover { border-color: var(--cedge); }
+.dopt.correct, .dopt.correct[aria-disabled="true"]:hover { border-color: var(--good); color: var(--goodtext); }
+.dopt.wrongpick, .dopt.wrongpick[aria-disabled="true"]:hover { border-color: var(--bad); }
 .dmeta { font-family: var(--mono); font-size: 16px; color: var(--chiptext); }
 .dvs { font-family: var(--mono); font-size: 12px; color: var(--grey); }
 .dverdict { margin-top: 22px; font-size: 14px; color: var(--soft); line-height: 1.6; }
@@ -382,6 +437,17 @@ button.crow[aria-disabled="true"]:hover { background: none; }
   font-size: 11px; letter-spacing: .05em; white-space: nowrap;
 }
 .method .credit { font-family: var(--mono); font-size: 10px; color: var(--grey); line-height: 1.7; margin: 4px 0; }
+.method .asof { font-family: var(--mono); font-size: 9px; color: var(--dim); }
+.method .almtable td { font-size: 11px; }
+.method .almtable a { color: var(--lblue); text-decoration: none; }
+.method .almtable a:hover { text-decoration: underline; }
+.method details { margin: 10px 0; }
+.method summary {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+  color: var(--grey); cursor: pointer; text-transform: uppercase;
+  padding: 4px 0;
+}
+.method summary:hover { color: var(--body); }
 
 /* ---------------------------------------------------------------- footer */
 
