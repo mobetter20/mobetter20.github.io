@@ -225,12 +225,19 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/sweet-wilbur-ff784c`: 
   regenerated and re-verified at the new URL. Committed on the branch;
   NOT published (owner check gates the push).
 
-## Current gate: owner verdict on the deck of 18 (the ship gate)
+- D32 BUILT + SHIPPED (2026-06-12): one flip cycles three faces
+  (SCALE -> CHARACTER -> MAP); the deck-level toggle dies. Owner
+  authorized publish ("u can put it on metromatch... i will be
+  testing"): branch pushed, PR squash-merged; soft-launch norms stay
+  (noindex, no sitemap entry, no hub card, no home teaser) while the
+  owner tests live. D32 in DECISIONS.
 
-One gate left. The deck of 18 (gate 3 + D27) plus the D30 card-IA
-round are built, verified and committed on
-`claude/nervous-lehmann-d7c660` (which contains the wilbur branch's
-head; one branch to ship, not two). Items carried to the review: the
+## Current gate: owner live-testing the shipped deck
+
+The deck of 18 (gate 3 + D27) + D30/D31/D32 are LIVE at
+https://ajin.im/is/building/metro-match/ (still noindex/unlisted; the
+owner is testing). Listing it on /is/building, the sitemap or the home
+teaser is a SEPARATE owner call. Items carried to the live review: the
 15 new epithets (creative calls, incl. Osaka "the merchant" / Istanbul
 "the crossing"); the Istanbul scope call (Marmaray excluded, could be
 pulled in); the notable Seoul-tops-ridership claim (full-capital scope,
@@ -240,16 +247,11 @@ want of a sourced figure).
 
 ## Next exact action
 
-On the owner's yes: push `claude/nervous-lehmann-d7c660` (it contains
-`claude/sweet-wilbur-ff784c`; ship the one branch), open the PR,
-squash-merge WITHOUT `--delete-branch`, then delete the remote branch by
-hand. Then update the `~/projects.md` (`world-metros-atlas`) stanza
-(incl. the new `/is/building/metro-match/` URL, D31), and register
-`build_metro_cards.py` + `build_page_geometry.py` in the untracked
-`publish.sh` in the MAIN checkout (worktrees cannot reach it; this
-STATUS note carries the reminder until then). Lifting any
+Owner tests the live page and reports; fixes land as new rounds on a
+fresh branch (the shipped branch was squash-merged; continuing on it
+needs `git rebase --onto origin/master <old-head>`). Lifting any
 soft-launch norm (index, sitemap, hub card, home teaser) stays a
-SEPARATE owner call after this gate.
+SEPARATE owner call.
 
 ## Blockers
 

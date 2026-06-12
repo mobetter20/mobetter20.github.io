@@ -185,12 +185,11 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
   letter-spacing: .04em; margin-top: 7px; white-space: nowrap;
 }
 
-.cledger { margin-top: 13px; border-top: 1px solid var(--cedge); display: none; }
-.deckgrid[data-set="play"] .cledger[data-set="play"],
-.deckgrid[data-set="almanac"] .cledger[data-set="almanac"],
-.arena .cledger { display: block; }
-/* the set caption on the card (D30): a scrolled deck still names which set
-   is showing. Deck only; battle cards are SCALE-bound and need no caption. */
+/* D32: no deck-level toggle. Each deck face carries exactly one ledger
+   (scale or character), so ledgers simply display; battle stays scale. */
+.cledger { margin-top: 13px; border-top: 1px solid var(--cedge); display: block; }
+/* the set caption on the card (D30/D32): each stat face names its set.
+   Deck only; battle cards are SCALE-bound and need no caption. */
 .deckgrid .cledger::before {
   display: block; font-family: var(--mono); font-size: 9px;
   letter-spacing: .22em; color: var(--lblue); padding: 8px 1px 0;
@@ -268,20 +267,26 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 }
 .lcaveat { margin-top: 3px; }
 
-/* flip. The front face is in normal flow and drives the box height, so a
-   tall mega-pill front makes the whole card (and the back) grow with it; the
-   back face overlays at the same size. */
+/* flip (D32): one gesture cycles three faces, SCALE -> CHARACTER -> MAP.
+   Two physical slots alternate (f-a at even half-turns, f-b at odd, f-b
+   pre-rotated 180deg); app.js accumulates rotation and mounts the next
+   card into whichever slot is hidden before each turn. The f-a slot is in
+   normal flow at load and drives the box height; app.js then locks that
+   height (.locked) so swapping the map card in never changes it. The
+   stash (.facestash) parks the card that is two flips away. */
 .flipbox { position: relative; width: 270px; perspective: 1200px; cursor: pointer; }
 .flipinner {
-  position: relative; width: 100%;
+  position: relative; width: 100%; height: 100%;
   transform-style: preserve-3d;
   transition: transform .55s cubic-bezier(.2, .7, .3, 1);
 }
-.flipbox.flipped .flipinner { transform: rotateY(180deg); }
 .face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-.face:not(.backface) { position: relative; }
-.face.backface { position: absolute; inset: 0; transform: rotateY(180deg); }
-.face.backface .card { height: 100%; }
+.face.f-a { position: relative; }
+.face.f-b { position: absolute; inset: 0; transform: rotateY(180deg); }
+.face.f-b .card { height: 100%; }
+.flipbox.locked .face { position: absolute; inset: 0; }
+.flipbox.locked .face .card { height: 100%; }
+.facestash { display: none; }
 
 .flipbtn {
   background: none; border: 1px solid var(--edge); border-radius: 999px;

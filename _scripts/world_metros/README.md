@@ -3,9 +3,10 @@
 A collectible card deck for 18 metro systems in the owner's ranked order
 (D23) at `/is/building/metro-match/` (bespoke tier; URL moved from
 world-metros at D31, stub redirects; name ratified at
-D21). Every city is one designed stat card (front for play: V1 big-ledger
-rows with deck-rank chips; back for lore: the familiar Commons diagram,
-credited); comparison is the game (battle + daily). Pivoted from the
+D21). Every city is one designed stat card with three faces cycled by a
+single flip (D32): SCALE (the V1 big-ledger six), CHARACTER (the five),
+and the MAP (the familiar Commons diagram, credited); comparison is the
+game (battle + daily). Pivoted from the
 atlas vision 2026-06-12 (DECISIONS D17–D19) after four map-hero rounds
 died at their gates; the data contracts and licensing posture carry over
 unchanged.

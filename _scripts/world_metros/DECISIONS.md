@@ -860,3 +860,38 @@ entries (history is history). The registry stanza gains the new URL at
 ship time. Per the owner's note, NOTHING IS PUBLISHED: the move is
 committed on the branch and rides the same single ship gate (owner
 check before push/PR/merge).
+
+**D32 · One flip cycles three faces: SCALE -> CHARACTER -> MAP -
+RATIFIED 2026-06-12 (owner: "might be better to maybe jsut have three
+flips... jus flip let it go through three faces one by obe"; supersedes
+D30's toggle-plus-flip standing shape; amends D18's two-side grammar).**
+The deck-level SCALE | CHARACTER toggle dies; the card flip is the whole
+interaction. Each flip is a real 180-degree turn: rotation accumulates
+and app.js mounts the next face into whichever slot is hidden before the
+turn (two physical slots, a stash parks the third card), so the cycle
+reads as one continuous gesture. Implementation notes:
+- Generator: deck cards render TWO single-ledger fronts (scale,
+  character; each keeps its D30 set caption) plus the map side in a
+  hidden stash; `theme_switch()` deleted; intro reads "Each card has
+  three faces: scale, character, the map. Flip to cycle them."
+- app.js: cycling flip with height locked at first interaction (the box
+  freezes at the front height, 489px, so the shorter map card cannot
+  collapse it); diagrams still lazy-load, now on the map turn; the flip
+  button names the NEXT face (FLIP - CHARACTER / MAP / SCALE) and stays
+  the keyboard path; aria-hidden tracks the visible slot.
+- style.css: f-a / f-b slot grammar (f-b pre-rotated), .locked absolute
+  faces, .facestash hidden; the old deckgrid[data-set] switching CSS
+  removed (each face carries one ledger); themebar CSS retained only
+  because the round-record mocks reference it.
+- Battle and daily untouched (SCALE-bound; battle cards carry no
+  caption); Method's "second face" wording updated; reduced-motion
+  still degrades to instant swaps (the transition is the only motion).
+- Verified by DOM probe: full cycle x2 incl. wrap, height locked at 489
+  through all faces, captions per face, lazy diagram on the map turn,
+  battle round resolves, daily intact, 375/768/1280 at 1/2/3 columns
+  with no overflow, console clean.
+Ship note, same message: the owner said "u can put it on metromatch.
+but dont list on building page yet. i will be testing": publish
+authorized (push/PR/merge), soft-launch norms STAY (noindex, no
+sitemap, no /is/building hub card, no home teaser) while the owner
+tests live.
