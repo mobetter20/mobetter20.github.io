@@ -796,3 +796,27 @@ reference, baseline TODAY row first:
 Gate: owner picks A (plus a name pair) / B / C; the pick and the edit
 list then build into the live page and Method and re-verify. The
 deck-of-18 ship gate (push/PR/merge) stays the separate pending yes.
+*Resolution (2026-06-12, owner on the board):* **B and C REJECTED** ("the
+ui change u showed me with base fare and driverless etc shoved into
+either front or the back were all ugly and ui wise it basically ruined
+it"); the character info is "interesting and good to have", so it stays
+on the cards and the toggle survives. Three views acknowledged as not
+ideal but stand as the shape, pending A's polish (honest names + set
+caption + binding whisper; name pair still the owner's pick). **The lore
+bar restated by the owner:** facts are fine as long as they are
+factually correct, carry no copyright entanglement, and earn their keep
+by being interesting; number restates are TOLERATED. The round-1 26-edit
+dedup therefore shrinks to the SLIM LIST: 3 must-fixes (Singapore
+"four driverless" is stale, all six MRT lines are GoA4 now; Shanghai
+"five lines driverless" vs the shown 7; Osaka "driverless since 1981" vs
+the source dating GoA4 to 1991, fixed with "automated"), 7 repeat-swaps
+(a back saying the same thing twice wastes a slot: Tokyo, Madrid,
+Moscow, Mexico City flavors; Cairo, Osaka fact 1; Istanbul fact 2), and
+1 optional NYC clarifier (officially-true 472 beside the plotted 504,
+owner's call). The owner also flagged the round-1 edit-list presentation
+as hard to read; the board was rebuilt in place (round 2): A reframed as
+the standing shape, the slim list in a full-width readable form with the
+copyright note (facts not copyrightable, phrasing ours, sources in
+almanac.json, no curated collection copied), B/C/exhibit/tradeoff kept
+as dimmed round-1 records. Open to close the round: the set-name pair
+(SCALE | CHARACTER recommended) and a yes on the slim list.

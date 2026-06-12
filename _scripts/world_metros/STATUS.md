@@ -198,7 +198,17 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/sweet-wilbur-ff784c`: 
   fallback A. Verified by DOM probe (pinning, bfit heights, 9px floor,
   no clips, console clean); D30 in DECISIONS.
 
-## Current gate: owner verdicts on the deck of 18 (D27) and the card-IA board (D30)
+- D30 round-1 verdict taken (2026-06-12): B and C REJECTED (figures
+  shoved onto front or back read as ugly); the character info stays on
+  the cards, the toggle survives, and the owner's lore bar (factually
+  correct + no copyright entanglement + interesting) recalibrated the
+  dedup from 26 edits to a SLIM LIST (3 must-fixes + 7 repeat swaps + 1
+  optional NYC clarifier). Board rebuilt in place as round 2: A reframed
+  as the standing shape, slim list in readable full-width form, B/C/
+  exhibit/tradeoffs dimmed as round-1 records. D30 resolution in
+  DECISIONS.
+
+## Current gate: owner verdicts on the deck of 18 (D27) and the D30 round-2 confirms
 
 Two verdicts pending, independent. (1) The deck of 18 (gate 3 + D27) is
 built, verified and committed on `claude/sweet-wilbur-ff784c`, shown in
@@ -208,9 +218,12 @@ crossing"); the Istanbul scope call (Marmaray excluded, could be pulled
 in); the notable Seoul-tops-ridership claim (full-capital scope, sourced,
 per-operator methodology noted); and Osaka's two soft spots (a c.2011
 diagram with a caveat, and a service-day row that drops for want of a
-sourced figure). (2) The card-IA board (D30): pick A (plus a name pair) /
-B / C; the dedup edit list ships with whichever wins; the live page IA
-does not change before that verdict.
+sourced figure). (2) D30 round 2, two confirms close the round: the
+set-name pair (SCALE | CHARACTER recommended; CORE | CHARACTER and
+SYSTEM | RIDE on the menu) and a yes on the slim edit list (plus the
+optional NYC clarifier call). On those, the rename + caption + whisper +
+slim edits build into the live page and Method and get re-verified. The
+live page IA does not change before then.
 
 ## Next exact action
 

@@ -37,42 +37,39 @@ import build_metro_cards as bmc  # noqa: E402
 CITIES = ["seoul", "tokyo"]  # busy case + reference (brief: Seoul/Beijing + Tokyo)
 
 # ---------------------------------------------------------------- dedup copy
-# The proposed post-dedup lore copy. Rule: a fact or flavor line never
-# restates a number the card shows as a stat (or its subtitle count, or a
-# deck-rank claim); the stories stay, the numbers live in the ledgers.
+# ROUND 2 (owner verdict 2026-06-12). The owner's bar for lore copy:
+# factually correct, no copyright entanglement, interesting on its own.
+# Number restates are TOLERATED under that bar, so the round-1 list of 26
+# shrinks to the slim set below: factual must-fixes plus repeat-swaps
+# (a back that says the same thing twice wastes one of its two slots).
 # Cities absent here keep their current line unchanged.
 
 NEW_FLAVOR = {
+    # repeat-swaps: the flavor duplicated one of the facts
     "tokyo": "Run so tightly that a five-minute delay comes with a certificate.",
-    "seoul": "One network from the mountains north of the city to the Yellow Sea coast.",
-    "singapore": "Spotless, sealed and air-conditioned from gate to gate.",
-    "paris": "Almost nowhere in Paris is more than a few minutes&rsquo; walk from a M&eacute;tro entrance.",
-    "shanghai": "The whole system is younger than many of its riders.",
-    "beijing": "Ring lines inside ring lines, tracking the city&rsquo;s ring roads outward.",
-    "london": "Still called the Tube, after the shape of its deep tunnels.",
     "madrid": "Dug fast and cheap, by a method other cities came to copy.",
     "moscow": "Trains so frequent the platform clock counts up from the last one, not down to the next.",
-    "copenhagen": "The trains drive themselves; the staff ride along with everyone else.",
-    "delhi": "Built at a pace no metro had managed before, and it pays its own way.",
-    "guangzhou": "New lines open here almost every year; the printed maps can barely keep up.",
     "mexico city": "Trains ride on rubber tires, quieter and softer than steel.",
-    "cairo": "Africa&rsquo;s first metro, and still its hardest-working.",
-    "istanbul": "A metro on two continents, with the Bosphorus in between.",
+    # factual must-fix: all six MRT lines are GoA4 since the NSL/EWL
+    # conversions; "four of them" is stale. Minimal edit, structure kept.
+    "singapore": "Six lines, every one of them driverless, none older than 1987.",
 }
 
 NEW_FACTS = {  # only the changed slots; None = keep current
-    "tokyo": [None, "G is for Ginza: the letter marks Asia&rsquo;s first metro line."],
-    "paris": ["Built for the World&rsquo;s Fair; Line 1 still runs the route it opened with.", None],
-    "shanghai": [None, "The newest lines run with no driver aboard at all."],
-    "beijing": ["China&rsquo;s first subway, built as a Cold War defence project; Zhou Enlai rode the first train.", None],
-    "nyc": [None, "The ornate original City Hall station survives as a ghost stop the 6 train still loops through."],
-    "madrid": [None, "Chamber&iacute; station, bypassed in the 1960s, survives as a time-capsule museum of the original metro."],
-    "copenhagen": ["With no cab up front, the front-window seats are the most fought-over on the train.", None],
-    "mexico city": ["Every station has its own pictogram, designed so riders could navigate without reading.", None],
+    # factual must-fixes
+    "shanghai": [None, "Seven lines now run driverless, five of them with no staff aboard at all."],
+    "osaka": ["Midosuji&rsquo;s first stations were built like vaults, with high arched ceilings and chandeliers.",
+              "The New Tram has run as an automated people-mover since 1981."],
+    # repeat-swaps: the fact duplicated the flavor line
     "cairo": ["Line 2 runs beneath the Nile itself, through twin tunnels bored under the riverbed.", None],
-    "osaka": ["Midosuji&rsquo;s first stations were built like vaults, with high arched ceilings and chandeliers.", None],
     "istanbul": [None, "Istanbul has run an underground railway since 1875: the two-stop T&uuml;nel funicular."],
 }
+
+# Flagged, owner's call (factually correct, so it may stand as-is): the NYC
+# fact "Its 472 stations are the most of any single-operator metro in the
+# world" sits on a card whose plotted count reads 504. Optional clarifier:
+NYC_OPTIONAL = ("Officially 472 stations, the most of any single-operator "
+                "metro in the world.")
 
 
 def new_copy(city):
@@ -271,78 +268,73 @@ KCLASS_LABEL = {
 
 # ----------------------------------------------------------------- edit list
 
-EDITS = [
-    # (city, item, old, new, why)
-    ("tokyo", "flavor", "Thirteen lines, two operators, one grid.",
-     NEW_FLAVOR["tokyo"],
-     "the subtitle already counts the lines; the delay certificate is the better story"),
-    ("tokyo", "fact 2", "G is for Ginza: Asia&rsquo;s first metro line, opened 1927.",
-     NEW_FACTS["tokyo"][1], "drop the year; OPENED carries 1927"),
-    ("seoul", "flavor", "146 km between its furthest stations, the deck&rsquo;s longest reach.",
-     NEW_FLAVOR["seoul"], "SPAN and its 1ST chip carry both the number and the claim"),
-    ("singapore", "flavor", "Six lines, four of them driverless, none older than 1987.",
+# The slim list, tiered. (city, item, tier, old, new, why).
+SLIM_EDITS = [
+    ("singapore", "flavor", "MUST FIX",
+     "Six lines, four of them driverless, none older than 1987.",
      NEW_FLAVOR["singapore"],
-     "must change in any candidate: it contradicts DRIVERLESS 6 and restates the count and OPENED"),
-    ("paris", "flavor", "1.35 stations per square km, the deck&rsquo;s tightest grid.",
-     NEW_FLAVOR["paris"], "DENSITY carries the number; the walk claim is the lived version"),
-    ("paris", "fact 1", "Opened for the 1900 World&rsquo;s Fair; Line 1 still runs the route it opened with.",
-     NEW_FACTS["paris"][0], "drop the year; OPENED carries 1900"),
-    ("shanghai", "flavor", "From first train to 800 route-km inside three decades.",
-     NEW_FLAVOR["shanghai"], "ROUTE-KM carries the number; the age story stays"),
-    ("shanghai", "fact 2", "Five lines run driverless, about 169 km of unattended metro.",
+     "stale: all six MRT lines have run GoA4 since the North South / East West conversions "
+     "(2017-18); the card&rsquo;s DRIVERLESS figure says 6. One word changes."),
+    ("shanghai", "fact 2", "MUST FIX",
+     "Five lines run driverless, about 169 km of unattended metro.",
      NEW_FACTS["shanghai"][1],
-     "must change in any candidate: the fact says 5 where the stat says 7"),
-    ("beijing", "flavor", "909 route-km under one operator, the deck&rsquo;s biggest single system.",
-     NEW_FLAVOR["beijing"], "ROUTE-KM carries the number; the ring structure is the better story"),
-    ("beijing", "fact 1", "China&rsquo;s first subway, built as a Cold War defence project; Zhou Enlai rode the first train in 1969.",
-     NEW_FACTS["beijing"][0], "drop the year; OPENED carries 1969"),
-    ("london", "flavor", "Underground since 1863, before anyone else tried.",
-     NEW_FLAVOR["london"], "OPENED and its 1ST chip say it; the Tube name is the lore"),
-    ("nyc", "fact 2", "Its 472 stations are the most of any single-operator metro in the world.",
-     NEW_FACTS["nyc"][1],
-     "472 fights the plotted 504 on the same card; City Hall is the richer story"),
-    ("madrid", "flavor", "172 km of new metro in sixteen years, Europe&rsquo;s great expansion.",
-     NEW_FLAVOR["madrid"], "fact 1 tells the expansion in full; the method story replaces it"),
-    ("madrid", "fact 2", "Chamber&iacute; station, bypassed in the 1960s, survives as a time-capsule museum of the 1919 metro.",
-     NEW_FACTS["madrid"][1], "drop the year; OPENED carries 1919"),
-    ("moscow", "flavor", "Marble, mosaics and a train every 90 seconds.",
+     "the card&rsquo;s DRIVERLESS figure counts 7 (five GoA4 plus two attended GoA3 lines); "
+     "saying five beside it reads as an error. The new line carries both truths."),
+    ("osaka", "fact 2", "MUST FIX",
+     "The New Tram has run as a driverless people-mover since 1981.",
+     NEW_FACTS["osaka"][1],
+     "the source dates full driverless (GoA4) to 1991; the line has been automated since "
+     "1981. &ldquo;Automated&rdquo; is the safely true word."),
+    ("tokyo", "flavor", "REPEAT SWAP",
+     "Thirteen lines, two operators, one grid.",
+     NEW_FLAVOR["tokyo"],
+     "fact 1 already tells the two-operator story (and the subtitle counts the lines); "
+     "the duplicated slot goes to the delay-certificate story instead."),
+    ("madrid", "flavor", "REPEAT SWAP",
+     "172 km of new metro in sixteen years, Europe&rsquo;s great expansion.",
+     NEW_FLAVOR["madrid"],
+     "fact 1 tells the same expansion with the same 172 km; the freed slot goes to the "
+     "Madrid-method story."),
+    ("moscow", "flavor", "REPEAT SWAP",
+     "Marble, mosaics and a train every 90 seconds.",
      NEW_FLAVOR["moscow"],
-     "fact 1 owns the palaces, fact 2 owns the record; the count-up clock is its own story"),
-    ("copenhagen", "flavor", "Four lines, zero drivers, all night.",
-     NEW_FLAVOR["copenhagen"], "the subtitle counts the lines; fact 2 owns the all-night claim"),
-    ("copenhagen", "fact 1", "Every train has run driverless since the first one in 2002.",
-     NEW_FACTS["copenhagen"][0],
-     "&ldquo;every train&rdquo; is DRIVERLESS 4-of-4 and 2002 is OPENED; the front-window seats are the story"),
-    ("delhi", "flavor", "374 route-km in barely two decades, and it pays its own way.",
-     NEW_FLAVOR["delhi"], "ROUTE-KM carries the number; pace and farebox pride stay"),
-    ("guangzhou", "flavor", "From a 5 km starter line in 1997 to 780 km today.",
-     NEW_FLAVOR["guangzhou"], "OPENED and ROUTE-KM carry both numbers; growth stays as the story"),
-    ("mexico city", "flavor", "A pictogram for every station, a 5-peso fare for every ride.",
+     "fact 1 already owns the marble palaces, and the 90 seconds sits oddly beside "
+     "fact 2&rsquo;s 80-second record; the count-up platform clock is its own story."),
+    ("mexico city", "flavor", "REPEAT SWAP",
+     "A pictogram for every station, a 5-peso fare for every ride.",
      NEW_FLAVOR["mexico city"],
-     "the peso figure is BASE FARE&rsquo;s local value; pictograms already lead fact 1; rubber tires are the unused signature"),
-    ("mexico city", "fact 1", "Every station has its own pictogram, a 1969 design for navigating without reading.",
-     NEW_FACTS["mexico city"][0], "drop the year; OPENED carries 1969"),
-    ("cairo", "flavor", "Africa&rsquo;s first metro, opened 1987, still its workhorse.",
-     NEW_FLAVOR["cairo"], "drop the year; OPENED carries 1987"),
-    ("cairo", "fact 1", "Africa&rsquo;s and the Middle East&rsquo;s first metro, opened 1987.",
+     "fact 1 already owns the pictograms; rubber tires are the unused signature. "
+     "(The 5-peso half was fine under your bar; it leaves as a side effect. If you want "
+     "the peso line kept instead, say so and only the pictogram half changes.)"),
+    ("cairo", "fact 1", "REPEAT SWAP",
+     "Africa&rsquo;s and the Middle East&rsquo;s first metro, opened 1987.",
      NEW_FACTS["cairo"][0],
-     "it repeated the flavor and the stat; the Nile tunnels are a new story"),
-    ("osaka", "fact 1", "The Midosuji Line opened in 1933 as Japan&rsquo;s first municipally run subway.",
+     "it repeats the flavor line nearly verbatim, so the back says Africa&rsquo;s-first "
+     "twice; the Nile tunnels are a new story."),
+    ("osaka", "fact 1", "REPEAT SWAP",
+     "The Midosuji Line opened in 1933 as Japan&rsquo;s first municipally run subway.",
      NEW_FACTS["osaka"][0],
-     "the flavor already says oldest municipal and OPENED carries 1933; the vault stations are new"),
-    ("istanbul", "flavor", "A metro on two continents, and one of the world&rsquo;s fastest-growing.",
-     NEW_FLAVOR["istanbul"],
-     "&ldquo;fastest-growing&rdquo; reads against the shown 4th on NEW SINCE &rsquo;16; the continents stay here"),
-    ("istanbul", "fact 2", "Its lines run on both the European and Asian sides of the Bosphorus.",
+     "the flavor directly above already says Japan&rsquo;s oldest municipal subway; the "
+     "vaulted-station story is new."),
+    ("istanbul", "fact 2", "REPEAT SWAP",
+     "Its lines run on both the European and Asian sides of the Bosphorus.",
      NEW_FACTS["istanbul"][1],
-     "the flavor owns the continents now; the 1875 T&uuml;nel is the deeper cut"),
+     "the flavor directly above already says a metro on two continents; the 1875 "
+     "T&uuml;nel is the deeper cut."),
+    ("nyc", "fact 2", "OPTIONAL",
+     "Its 472 stations are the most of any single-operator metro in the world.",
+     NYC_OPTIONAL,
+     "the fact is officially TRUE, so under your bar it may stand; flagged only because "
+     "it sits on a card whose plotted STATIONS reads 504 (Method explains the counting "
+     "difference). The clarifier keeps the claim and softens the clash. Your call."),
 ]
 
 
 # --------------------------------------------------------------------- board
 
-def candidate_section(cid, title, oneliner, note, inner):
-    return (f'<section class="iasec ia-{cid}" id="ia-{cid}">'
+def candidate_section(cid, title, oneliner, note, inner, dead=False):
+    cls = f"iasec ia-{cid}" + (" iadead" if dead else "")
+    return (f'<section class="{cls}" id="ia-{cid}">'
             f'<h2><span class="iatag">{cid.upper()}</span> {title}</h2>'
             f'<p class="iaone">{oneliner}</p>'
             f'<p class="ianote">{note}</p>{inner}</section>')
@@ -392,11 +384,11 @@ def main():
             + cell("FRONT &middot; CHARACTER", bar("SCALE", "CHARACTER", 1,
                    "the battle and the daily play SCALE")
                    + bmc.card_front(meta, stats, c, deck=True), "almanac")
-            + cell("BACK (deduped copy)", back_html(c, flavor, facts), "play")
+            + cell("BACK (slim edits applied)", back_html(c, flavor, facts), "play")
             + '</div></div>')
     names_menu = """
     <div class="ianames">
-      <div class="ianamecap">SET-NAME MENU (A only; B and C need no names in the UI)</div>
+      <div class="ianamecap">SET-NAME MENU &middot; the open pick</div>
       <table class="iatable">
         <tr><th>pair</th><th>for</th><th>against</th></tr>
         <tr><td class="iapick">SCALE &middot; CHARACTER <span class="iarecchip">REC</span></td>
@@ -411,13 +403,17 @@ def main():
       </table>
     </div>"""
     sec_a = candidate_section(
-        "a", "KEEP + RENAME &middot; three views, honest names",
-        "Two front sets and the flip stay; PLAY / ALMANAC become SCALE / CHARACTER "
-        "(menu below); the bar gains a binding whisper; each ledger carries its set "
-        "caption so a scrolled deck still says which set is showing.",
-        "Smallest change. The toggle and the deck-wide scan of the second set both "
-        "survive; the cost is that the card keeps a hidden state, and the lore "
-        "dedup must police both fronts forever.",
+        "a", "THE STANDING SHAPE &middot; keep the toggle, honest names",
+        "Round-2 state: B and C were rejected at the gate (the strips read as "
+        "ugly), and the character info stays on the cards, so the toggle stays. "
+        "What changes: PLAY / ALMANAC become honest names (menu below, SCALE | "
+        "CHARACTER mocked), each ledger carries its set caption so a scrolled "
+        "deck still says which set is showing, and the bar whispers which set "
+        "the game plays.",
+        "Three views remain; the polish makes the third view legible instead of "
+        "hidden. If fewer views ever matters more than on-card figures, the one "
+        "remaining door is moving the second set off the cards to a Method "
+        "table, which reverses D28 and is not recommended.",
         "".join(a_groups) + names_menu)
 
     # ---- B: two surfaces
@@ -434,16 +430,14 @@ def main():
                    "pinned to the live flip height (469px): the strip squeezes the diagram window from 178px to ~125px on Seoul, ~155px on Tokyo; judge that cost here")
             + '</div></div>')
     sec_b = candidate_section(
-        "b", "TWO SURFACES &middot; front for play, back for lore",
+        "b", "TWO SURFACES &middot; REJECTED at the board gate (2026-06-12)",
         "The front toggle dies. The five character stats move to the lore back as a "
         "compact figure strip (small ordinals; 1st keeps the blue chip); the front is "
         "the six play stats the battle and the daily actually use.",
-        "A card has two sides; this uses exactly two. The set-name problem "
-        "dissolves (no toggle to label), and numbers and stories share one surface, "
-        "so the dedup division (figures carry numbers, facts carry stories) polices "
-        "itself. Costs: no deck-wide scan of the second set (Method keeps the full "
-        "table), figure ranks demote to small ordinals, and the diagram window narrows on long-copy backs (Mexico City, the wordiest, drops to ~112px; the alternative lever is letting the flip box size to the taller face, which grows those cards instead).",
-        "".join(b_groups))
+        "Owner verdict: the figures shoved onto the back ruined the card; the "
+        "squeezed diagram window was the visible cost. Kept on the board for the "
+        "record, per the mocks convention.",
+        "".join(b_groups), dead=True)
 
     # ---- C: no modes
     c_groups = []
@@ -458,15 +452,13 @@ def main():
             + cell("BACK (deduped copy)", back_html(c, flavor, facts), "play")
             + '</div></div>')
     sec_c = candidate_section(
-        "c", "NO MODES &middot; everything on the face",
+        "c", "NO MODES &middot; REJECTED at the board gate (2026-06-12)",
         "Both sets render at once: the six as the big ledger, the five as a "
         "fine-print strip above the foot. Nothing toggles; the deck has no hidden "
         "state at all.",
-        "Maximum discoverability (a visitor who never finds a toggle still sees "
-        "everything) and the second set stays deck-scannable. Costs: the V1 "
-        "big-ledger calm dies into an 11-figure face, every card grows, and the "
-        "strip rides into the battle arena too.",
-        "".join(c_groups))
+        "Owner verdict: the figures shoved onto the front ruined the card the "
+        "same way. Kept for the record.",
+        "".join(c_groups), dead=True)
 
     # ---- exhibit: before/after on the worst collision (B vehicle)
     old_mc = back_html("mexico city", bmc.FLAVOR["mexico city"],
@@ -474,7 +466,7 @@ def main():
     nf, nfa = new_copy("mexico city")
     new_mc = back_html("mexico city", nf, nfa, strip_html(stats, "mexico city"))
     exhibit = (
-        '<section class="iasec"><h2>THE DEDUP, BEFORE AND AFTER &middot; the worst collision</h2>'
+        '<section class="iasec iadead"><h2>ROUND-1 EXHIBIT (record) &middot; before/after on the B back</h2>'
         '<p class="ianote">Mexico City on the B back (the adjacency makes it starkest; '
         'the same edits apply under every candidate). Left: today&rsquo;s copy puts '
         'the 5-peso fare in the flavor line while BASE FARE shows the same fare as '
@@ -498,46 +490,57 @@ def main():
     overlap_sec = (
         '<section class="iasec"><h2>THE OVERLAP MAP &middot; all 18 lore backs vs the shown stats</h2>'
         f'<p class="ianote">Every flavor line and fact checked against the eleven '
-        f'stats, the subtitle count and the rank chips: <b>{n_fix} collisions</b> '
-        f'(three of them outright contradictions) and <b>{n_keep} deliberate '
-        f'keeps</b> where a number near a stat is doing real story work. Hong Kong '
-        f'is the model back: zero collisions, and its 1910 fact exists to explain a '
-        f'stat rather than restate it.</p>'
+        f'stats, the subtitle count and the rank chips: <b>{n_fix} overlaps</b> '
+        f'found, <b>{n_keep} deliberate keeps</b>. <b>Round-2 bar (your verdict): '
+        f'a line is fine if it is factually correct, original, and interesting on '
+        f'its own.</b> Under that bar the RESTATES and SUBTITLE rows are tolerated '
+        f'and act no further; only the CONTRADICTS rows (factual) and the '
+        f'REPEATS-ITSELF rows (a wasted slot) feed the slim edit list above. Hong '
+        f'Kong remains the model back: zero overlaps, and its 1910 fact exists to '
+        f'explain a stat rather than restate it.</p>'
         '<table class="iatable iaoverlap"><tr><th>card</th><th>where</th><th>the line</th>'
         '<th>collides with</th><th>class</th><th>note</th></tr>'
         + "".join(rows) + '</table></section>')
 
-    # ---- edit list
+    # ---- the slim edit list (round 2: readable, tiered)
     eitems = []
-    for city, item, old, new, why in EDITS:
+    for city, item, tier, old, new, why in SLIM_EDITS:
+        tcls = {"MUST FIX": "t-must", "REPEAT SWAP": "t-swap",
+                "OPTIONAL": "t-opt"}[tier]
         eitems.append(
-            f'<div class="iaedit"><div class="iaeh">{bmc.DISPLAY.get(city, city).upper()}'
-            f' &middot; {item}</div>'
-            f'<div class="iaeold"><span>OLD</span>{old}</div>'
-            f'<div class="iaenew"><span>NEW</span>{new}</div>'
-            f'<div class="iaewhy">{why}</div></div>')
+            f'<div class="sled"><div class="sledh">'
+            f'<span class="sledtier {tcls}">{tier}</span>'
+            f'<span class="sledcity">{bmc.DISPLAY.get(city, city)}</span>'
+            f'<span class="sleditem">{item}</span></div>'
+            f'<div class="sledold">now&nbsp;&nbsp;&ldquo;{old}&rdquo;</div>'
+            f'<div class="slednew">new&nbsp;&nbsp;&ldquo;{new}&rdquo;</div>'
+            f'<div class="sledwhy">{why}</div></div>')
     edits_sec = (
-        '<section class="iasec"><h2>THE EDIT LIST &middot; 26 edits across 17 cards '
-        '(Hong Kong untouched)</h2>'
-        '<p class="ianote"><b>The list is the same under A, B and C</b>: every '
-        'candidate keeps all eleven numbers somewhere on the card, so a fact that '
-        'restates one is redundant in every IA. What changes is where the collision '
-        'sits: under A the restated number hides behind a toggle; under B the figure '
-        'sits beside the fact (the strip becomes the number, the fact becomes its '
-        'caption); under C everything shares the face. Nothing below is applied '
-        'yet; these ship with whichever candidate wins.</p>'
+        '<section class="iasec" id="ia-edits"><h2>THE SLIM EDIT LIST &middot; '
+        '3 must-fixes + 7 repeat swaps + 1 your-call</h2>'
+        '<p class="ianote"><b>Recalibrated to your bar</b> (factually correct, '
+        'no copyright entanglement, interesting on its own). The round-1 list '
+        'asked for 26 edits; under the bar, a fact restating a stat number is '
+        'fine, so those all drop. What remains: <b>MUST FIX</b> = the line is '
+        'factually wrong or fights the card&rsquo;s own figure; <b>REPEAT '
+        'SWAP</b> = the back says the same thing twice, so one slot is wasted '
+        'and gets a fresh story instead; <b>OPTIONAL</b> = correct as written, '
+        'flagged for your call. On copyright: facts themselves are not '
+        'copyrightable, every line below is phrased by us and verified against '
+        'operator pages or Wikipedia (sources recorded in almanac.json), and no '
+        'curated fact collection was copied. The licensed assets on the backs '
+        'are the diagrams, credited verbatim. Nothing is applied yet.</p>'
         '<p class="ianote"><b>Watch-items for the pending second-set menu</b> (a '
         'separate session is researching candidates): Guangzhou&rsquo;s 160 km/h '
         'fact vs a possible top-speed stat; Moscow&rsquo;s 80-second record vs a '
-        'headway stat; the New York flavor and Copenhagen fact 2 vs an hours stat; '
-        'Osaka&rsquo;s &ldquo;driverless since 1981&rdquo; wording vs its source '
-        'dating GoA4 to 1991. Re-run this dedup pass against the final set before '
-        'it ships.</p>'
-        f'<div class="iaedits">{"".join(eitems)}</div></section>')
+        'headway stat; the New York flavor and Copenhagen fact 2 vs an hours '
+        'stat. If those stats land, the lines beside them get the same '
+        'must-fix/tolerate test.</p>'
+        f'<div class="sleds">{"".join(eitems)}</div></section>')
 
-    # ---- tradeoffs + rec
+    # ---- tradeoffs (round-1 record) + round-2 state
     trade = """
-    <section class="iasec"><h2>TRADEOFFS + RECOMMENDATION</h2>
+    <section class="iasec iadead"><h2>ROUND-1 TRADEOFF TABLE (record)</h2>
     <table class="iatable iatrade">
       <tr><th></th><th>A &middot; keep + rename</th><th>B &middot; two surfaces</th><th>C &middot; no modes</th></tr>
       <tr><td>views per card</td><td>3</td><td class="iapick">2</td><td>2</td></tr>
@@ -552,24 +555,22 @@ def main():
       <tr><td>overlap structure</td><td>edits only; numbers half-hidden</td><td class="iapick">numbers and stories share a surface</td><td>edits only; densest face</td></tr>
       <tr><td>code cost</td><td>S (strings + caption)</td><td>M (front/back restructure, bar removal, Method)</td><td>M (front block + battle variant)</td></tr>
     </table>
-    <div class="iarec">
-      <div class="iarecl">RECOMMENDATION</div>
-      <p><b>B &middot; two surfaces.</b> It answers all three flags at once: three
-      views become a card&rsquo;s natural two; the disliked set names stop existing
-      rather than getting better; and the overlap stops being a policing problem
-      because the figures and the facts share the lore surface (the strip carries
-      the numbers, the facts carry the stories). It also restores the ratified D18
-      grammar, front for play, back for lore: the battle and the daily never used
-      the second set, so it was always lore wearing a play costume. The honest
-      costs sit above: the deck-wide fare scan moves to Method, the figure ranks
-      shrink to ordinals, and the diagram window pays for the strip (178px down
-      to ~125px on the Seoul back; ~112px on wordy Mexico City; judge those
-      two backs above). Fallback if that scan or the bigger diagram matters
-      more: <b>A with SCALE &middot; CHARACTER</b>.</p>
-      <p class="iaverdict"><b>Your verdict:</b> pick A (plus a name pair), B, or C.
-      The dedup edit list ships with any of them; then the pick gets built into the
-      live page and Method and re-verified. The deck-of-18 ship gate (push / PR /
-      merge) stays the separate yes already pending in STATUS.</p>
+    </section>"""
+
+    rec2 = """
+    <section class="iasec"><div class="iarec">
+      <div class="iarecl">ROUND-2 STATE &middot; WHAT IS LEFT TO PICK</div>
+      <p><b>Settled by your verdict:</b> B and C are dead (the strips ruined the
+      card), the character set stays on the cards behind the toggle, and number
+      restates in the lore are tolerated. The standing shape is the section at
+      the top: today&rsquo;s three views with honest names, a set caption on the
+      card, and a binding whisper on the bar.</p>
+      <p class="iaverdict"><b>Two confirms ship the round:</b> (1) the set-name
+      pair, SCALE | CHARACTER recommended, menu above; (2) the slim edit list,
+      3 must-fixes + 7 repeat swaps, plus your call on the optional New York
+      clarifier. On your yes both build into the live page and Method and get
+      re-verified. The deck-of-18 ship gate (push / PR / merge) stays the
+      separate yes already pending in STATUS.</p>
     </div></section>"""
 
     board_css = """
@@ -659,6 +660,24 @@ def main():
   .iaenew span { color: var(--goodtext); }
   .iaewhy { font-family: var(--mono); font-size: 9px; color: var(--grey);
             line-height: 1.55; margin-top: 7px; }
+  /* slim edit list (round 2) */
+  .sleds { margin-top: 16px; max-width: 880px; }
+  .sled { border-bottom: 1px solid var(--edge); padding: 13px 2px 12px; }
+  .sledh { display: flex; align-items: baseline; gap: 10px; }
+  .sledtier { font-family: var(--mono); font-size: 9px; letter-spacing: .08em;
+              border: 1px solid; border-radius: 3px; padding: 2px 7px; white-space: nowrap; }
+  .t-must { color: #e89a9a; border-color: #b85c5c; }
+  .t-swap { color: #d6d68a; border-color: #a8a85c; }
+  .t-opt  { color: var(--grey); border-color: var(--chipedge); }
+  .sledcity { font-size: 13px; font-weight: 700; color: var(--body); text-transform: uppercase; letter-spacing: .05em; }
+  .sleditem { font-family: var(--mono); font-size: 10px; color: var(--grey); }
+  .sledold { font-size: 13px; color: var(--dim); line-height: 1.55; margin-top: 8px; }
+  .slednew { font-size: 13px; color: var(--text); line-height: 1.55; margin-top: 4px; }
+  .sledwhy { font-size: 11.5px; color: var(--grey); line-height: 1.55; margin-top: 6px; max-width: 800px; }
+  /* rejected round-1 sections: kept for the record, dimmed */
+  .iadead { opacity: .55; }
+  .iadead h2 { color: var(--grey); }
+  .iadead .iatag { background: var(--chipedge); }
   /* rec */
   .iarec { border: 1px solid #7fb0e855; border-radius: 10px; padding: 16px 20px;
            margin-top: 20px; background: var(--chrome2); max-width: 860px; }
@@ -682,22 +701,24 @@ def main():
 </head><body>
   <div class="iahead">
     <h1>METRO <em>MATCH</em> &middot; CARD-IA BOARD (D30)</h1>
-    <p>Your flag: the card has three views (play front, almanac front via the
-    deck toggle, lore-back flip) and they may not be the intuitive shape; the
-    almanac figures and the lore copy sometimes say the same thing. This board
-    answers both: three IA candidates on real cards (Seoul the busy case, Tokyo
-    the reference), then the full 18-card overlap map and the dedup edit list
-    that ships with whichever candidate wins. Nothing is applied to the live
-    page yet.</p>
+    <p>ROUND 2, your verdict folded in: B and C (figures shoved onto the back
+    or front) are rejected as ugly and kept below only as the record; the
+    character info stays on the cards; and lore lines are judged by your bar,
+    factually correct + no copyright entanglement + interesting on their own.
+    What is live on this board: the standing shape (the toggle with honest
+    names and small UX polish), the slim edit list it needs (3 must-fixes, 7
+    repeat swaps, 1 your-call), and the overlap map as evidence. Nothing is
+    applied to the live page yet.</p>
   </div>
   {baseline}
   {sec_a}
+  {edits_sec}
+  {overlap_sec}
   {sec_b}
   {sec_c}
   {exhibit}
-  {overlap_sec}
-  {edits_sec}
   {trade}
+  {rec2}
 </body></html>
 """
     out = os.path.join(HERE, "card-ia-board.html")
