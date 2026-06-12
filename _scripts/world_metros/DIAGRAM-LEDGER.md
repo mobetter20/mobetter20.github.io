@@ -66,6 +66,8 @@ lineage HK/London/Moscow, Satellizer Seoul, Aforl Singapore, Rigil Paris) keep r
 | Madrid | Madrid Metro Map.svg | CC BY-SA 4.0 | pan-zoom-only (0 text) | use |
 | Copenhagen | Copenhagen Metro 2024.svg | CC BY-SA 4.0 | interactive-ready (6,719) | use |
 | Guangzhou | Guangzhou Metro Network.png | CC BY-SA 4.0 | raster-only (PNG 4200px) | use-with-caveat |
+| Osaka | Wide-Area Map of Osaka City Subway.svg | public domain | interactive-ready (308) | use-with-caveat |
+| Istanbul | Istanbul Railway Systems Network Map.svg | CC BY-SA 4.0 | interactive-ready (712) | use |
 
 No city is at **no-good-option**. The caveats are interactivity (six pan-zoom-only,
 one raster) and currency (Delhi, Mexico City).
@@ -423,3 +425,52 @@ one raster) and currency (Delhi, Mexico City).
   vector format; revisit the SVGs at the next refresh.
 - **Verdict:** use-with-caveat: current and clean-licensed, but a raster (the only
   one in the set) and not the in-station idiom.
+
+### Osaka · USE-WITH-CAVEAT (added 2026-06-12, D27 newcomer audit)
+- **Chosen:** https://commons.wikimedia.org/wiki/File:Wide-Area_Map_of_Osaka_City_Subway.svg :
+  SVG, 251 KB (257,364 B), 1052x1052 canvas, latest revision 2011-08-26.
+- **Author / license:** Excl-zoo (User:Excl-zoo), own work. **Public domain**
+  (PD-self; verified 2026-06-12 via the file page's machine-readable data and
+  wikitext; no deletion flags). No attribution required.
+- **Attribution string (courtesy):** "Wide-Area Map of Osaka City Subway" by
+  Excl-zoo, Wikimedia Commons, public domain.
+- **Structure:** 308 `<text>` + 506 `<tspan>` (counted on the downloaded file
+  2026-06-12): **interactive-ready**. All nine Osaka Metro line names verified
+  present in the file (Midosuji, Tanimachi, Yotsubashi, Chuo, Sennichimae,
+  Sakaisuji, Nagahori Tsurumi-ryokuchi, Imazatosuji, and the New Tram).
+- **Currency: stale, the weakest in the set alongside Delhi.** Content c.2006,
+  last touched 2011; drawn in the wide-area (geographic) idiom under the
+  pre-2018 "Osaka Municipal Subway" (大阪市営) branding (verified in-file). All
+  nine lines are present, but the 2024 Midosuji extension to Minoo-kayano and
+  the 2025 Chuo extension to Yumeshima are not drawn (neither 箕面萱野 nor 夢洲
+  appears). Ship with the on-card caveat "diagram c.2011 in the pre-2018
+  Municipal Subway idiom; the 2024 and 2025 extensions not drawn".
+- **Why not a current map:** the diagram agent's full sweep of Category:Osaka
+  Subway maps found NO current, freely-licensed official-idiom Osaka network
+  map on Commons (only this and a 2006 CC BY 2.5 schematic that predates the
+  Imazatosuji line). The 3508px PNG sibling
+  (`File:Wide-Area Map of Osaka City Subway.png`, the en.wiki infobox map, also
+  PD) is the raster fallback. Re-source when a current Osaka schematic appears.
+- **Verdict:** use-with-caveat: PD and interactive-ready with all nine lines,
+  but c.2011 and geographic-not-schematic. Flagged for a re-source at refresh.
+
+### Istanbul · USE (added 2026-06-12, D27 newcomer audit)
+- **Chosen:** https://commons.wikimedia.org/wiki/File:Istanbul_Railway_Systems_Network_Map.svg :
+  SVG, 416 KB (425,508 B), viewBox 5907x4958, latest revision 2026-05-29.
+- **Author / license:** Alikam1896. CC BY-SA 4.0 (`{{self|cc-by-sa-4.0}}`;
+  verified 2026-06-12 via the file page's machine-readable data and wikitext;
+  no deletion flags). The en.wiki Istanbul Metro infobox map.
+- **Attribution string:** "Istanbul Railway Systems Network Map" by Alikam1896,
+  Wikimedia Commons, CC BY-SA 4.0.
+- **Structure:** 712 `<text>` (counted on the downloaded file 2026-06-12):
+  **interactive-ready**. All ten scoped M-lines verified present (M1, M2-M9,
+  M11), in the official "ağ haritası" network-map idiom.
+- **Currency:** the most recently revised Istanbul vector (2026-05-29), so it
+  reflects the 2021-2024 openings (M9, M8, M11 to Istanbul Airport). The image
+  also draws Marmaray and the trams; those are out of the card's STAT scope but
+  fine on the lore image (they are part of the familiar rail map). No caveat.
+- **Fallback:** `File:Istanbul Rapid Transit Map with Metrobüs (schematic).png`
+  (Maximilian Dorrbecker / Chumwa, CC BY-SA 2.5, current, polished schematic
+  raster) or `File:Istanbul Rapid Transit Map (new).svg` (CC BY-SA 4.0, frozen
+  2022).
+- **Verdict:** use: current, clean CC BY-SA 4.0, interactive-ready SVG.

@@ -16,9 +16,9 @@ game. Trading cards with footnotes.
 
 ## Surfaces (one URL)
 
-1. **THE DECK** — the landing: all 16 cards (D23: the owner's ranked
-   roster, superseding D3's twelve), collection grid.
-   Cards flip: **front for play, back for lore** (D18).
+1. **THE DECK** — the landing: all 18 cards (D23's ranked 16 + Osaka and
+   Istanbul at D27, superseding D3's twelve), collection grid locked to
+   1/2/3 columns (D27). Cards flip: **front for play, back for lore** (D18).
 2. **THE BATTLE** — vs cpu, Top-Trumps loop: see your card, pick a stat, beat
    the hidden opponent card; first to 3. Stable per-pair URLs survive from
    D16's duel mechanics.
@@ -93,7 +93,7 @@ that card; never shown as zero.
    DAILY + METHOD with the three live cities real, nine cards "soon" —
    BUILT 2026-06-12 (D21; `build_metro_cards.py`). Owner verdict on the
    live page is the open gate.
-3. **Roster scale-up** to all 16 (D23) with frozen scope rules under
+3. **Roster scale-up** to all 16, then 18 (D23 + D27) with frozen scope rules under
    rider-scope B (D21; Seoul L1 is the hard one), the dual audit for the
    four D23 newcomers (OSM validator + DIAGRAM-LEDGER stanzas), per-line
    opened-year sourcing, full-deck ranks, lore backs per DIAGRAM-LEDGER,

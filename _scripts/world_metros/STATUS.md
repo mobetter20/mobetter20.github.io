@@ -166,14 +166,35 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/sweet-wilbur-ff784c`: 
   intact, console clean, no overflow, soft-launch norms kept (noindex, not
   in sitemap, no hub card, no home teaser). D25/D26 in DECISIONS.
 
-## Current gate: owner verdict on the gate-3 page
+- D27 BUILT (2026-06-12, same session, owner design-session pivot): the
+  deck grows to EIGHTEEN. Owner disliked the 2-per-row band and reversed
+  the 1/2/4 grid lock; the grid is now 1/2/3 columns (never 4), and 18 is
+  even at every tier (verified [3,3,3,3,3,3] at 1280, 9x2 at 768, 18x1 at
+  375, no orphan). Osaka (the merchant) and Istanbul (the crossing) join
+  at 17/18 with the full newcomer pipeline: OSM validator GOOD, scopes
+  frozen (Osaka Metro's 9 lines incl. New Tram, JR/monorail out; Istanbul
+  M-lines, Marmaray excluded and flagged for owner confirm), geometry
+  extracted, DIAGRAM-LEDGER stanzas (Osaka PD wide-area SVG with a c.2011
+  caveat, Istanbul current CC BY-SA 4.0 SVG), almanac researched (Osaka
+  ridership annualized, service-hours left null; Istanbul published),
+  lore backs + epithets. PRIORITY done first: Seoul completed: Sinbundang
+  (empty in the validator) pulled from Overpass into a committed
+  supplement, so Seoul now carries all 24 line identities (730 stations).
+  Count strings, deck-back, badge, method all read 18. Re-verified
+  375/768/1000/1280, battle (153 pairs) + daily across 18, console clean,
+  no overflow, soft-launch norms kept. D27 in DECISIONS.
 
-The gate-3 scale-up is built, verified and committed on the branch
-(`claude/sweet-wilbur-ff784c`), and shown to the owner in Arc against the
-local preview. The owner's verdict on this page is the open gate. Two
-items carried to that review: the 13 new epithets (creative calls) and the
-notable Seoul-tops-ridership claim (a consequence of the full-capital
-scope; sourced, with the per-operator-boarding methodology noted).
+## Current gate: owner verdict on the deck of 18 (D27)
+
+The deck of 18 (gate 3 + D27) is built, verified and committed on the
+branch (`claude/sweet-wilbur-ff784c`), and shown to the owner in Arc
+against the local preview. The owner's verdict on this page is the open
+gate. Items carried to that review: the 15 new epithets (creative calls,
+incl. Osaka "the merchant" / Istanbul "the crossing"); the Istanbul scope
+call (Marmaray excluded, could be pulled in); the notable
+Seoul-tops-ridership claim (full-capital scope, sourced, per-operator
+methodology noted); and Osaka's two soft spots (a c.2011 diagram with a
+caveat, and a service-day row that drops for want of a sourced figure).
 
 ## Next exact action
 
