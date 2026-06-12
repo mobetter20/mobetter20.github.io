@@ -77,8 +77,8 @@
       <div class="dailybox">
         <div class="dhead">THE DAILY · <span id="d-date"></span></div>
         <div class="dstat" id="d-stat"></div>
-        <div class="dq" id="d-q">Which plots more stations?</div>
-        <div class="dchoices">
+        <div class="dq" id="d-q"></div>
+        <div class="dchoices" id="d-duel">
           <button type="button" class="dchoice" id="d-a">
             <span class="dname"></span>
             <span class="dpills" aria-hidden="true"></span>
@@ -89,9 +89,18 @@
             <span class="dpills" aria-hidden="true"></span>
             <span class="dmeta">?</span></button>
         </div>
+        <div class="dmc" id="d-mc" hidden>
+          <div class="dpills dmcband" id="d-mc-band" aria-hidden="true"></div>
+          <div class="dopts" role="group" aria-label="Pick the right number">
+            <button type="button" class="dopt"><span class="doptval"></span></button>
+            <button type="button" class="dopt"><span class="doptval"></span></button>
+            <button type="button" class="dopt"><span class="doptval"></span></button>
+            <button type="button" class="dopt"><span class="doptval"></span></button>
+          </div>
+        </div>
         <div class="dverdict" id="d-verdict" tabindex="-1" aria-live="polite" hidden></div>
         <div class="dstreak" id="d-streak"></div>
-        <div class="dnote">the stat rotates daily · the streak lives in
+        <div class="dnote">the question rotates daily · the streak lives in
         this browser</div>
       </div>
     </div>
@@ -106,7 +115,10 @@
       goes to the better number. First to three rounds takes the match. A
       dead heat scores nobody. The battle runs on the PLAY set.</p>
       <p><b>The daily.</b> One question a day, one guess, and a streak that
-      lives in your browser. Nothing leaves the page.</p>
+      lives in your browser. Some days it is a head-to-head between two
+      close systems (never a blowout); some days you pick the right number
+      from four, where the wrong three are other cities&rsquo; real
+      figures. Nothing leaves the page.</p>
       <p><b>Win directions are fixed.</b> Opened and base fare win smaller;
       everything else wins larger.</p>
 

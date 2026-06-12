@@ -376,11 +376,28 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 .dchoice.correct .dmeta { color: var(--goodtext); }
 .dchoice.wrongpick, .dchoice.wrongpick[aria-disabled="true"]:hover { border-color: var(--bad); }
 .dname { font-size: 16px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-.dpills { display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; max-width: 152px; min-height: 16px; }
-.dpills i {
-  font-style: normal; font-family: var(--mono); font-size: 8.5px;
-  font-weight: 500; color: #fff; padding: 2px 5px; border-radius: 999px;
+.dpills {
+  display: flex; gap: 0; width: 152px; max-width: 100%; height: 10px;
+  border-radius: 5px; overflow: hidden;
 }
+.dpills i { flex: 1; }
+/* pick-the-number form (D30): one city, four candidate values */
+.dmc { margin-top: 26px; }
+.dmcband { margin: 0 auto 20px; }
+.dopts {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px; max-width: 420px; margin: 0 auto;
+}
+.dopt {
+  background: var(--card); border: 1px solid var(--cedge);
+  border-radius: 12px; padding: 18px 10px; cursor: pointer;
+  color: var(--text); font-family: var(--mono); font-size: 16px;
+}
+.dopt:hover { border-color: var(--lblue); }
+.dopt[aria-disabled="true"] { cursor: default; }
+.dopt[aria-disabled="true"]:hover { border-color: var(--cedge); }
+.dopt.correct, .dopt.correct[aria-disabled="true"]:hover { border-color: var(--good); color: var(--goodtext); }
+.dopt.wrongpick, .dopt.wrongpick[aria-disabled="true"]:hover { border-color: var(--bad); }
 .dmeta { font-family: var(--mono); font-size: 16px; color: var(--chiptext); }
 .dvs { font-family: var(--mono); font-size: 12px; color: var(--grey); }
 .dverdict { margin-top: 22px; font-size: 14px; color: var(--soft); line-height: 1.6; }

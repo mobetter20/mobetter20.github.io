@@ -227,8 +227,12 @@ $('b-again').addEventListener('click', () => {
 const DAY_MS = 86400000;
 const STORE_KEY = 'metro-match-daily';
 
-// The question rotates across the live stats, one a day (D21 owner call).
-const DAILY_Q = {
+/* Two question forms, picked deterministically per day (D30, owner flag:
+   "which plots more stations, HK vs Shanghai" was a giveaway):
+   DUEL: head-to-head between two CLOSE systems only, never a blowout.
+   PICK: one city, four candidate values; the wrong three are other
+   cities' real figures nearest the truth. */
+const DUEL_Q = {
   opened: 'Which opened earlier?',
   stations: 'Which plots more stations?',
   span: 'Which reaches further?',
@@ -236,13 +240,29 @@ const DAILY_Q = {
   routekm: 'Which reports more route-km?',
   ridership: 'Which carries more riders a year?',
 };
-const DAILY_VERB = {
+const DUEL_VERB = {
   opened: 'opened earlier',
   stations: 'plots more stations',
   span: 'reaches further',
   density: 'packs them tighter',
   routekm: 'reports more route-km',
   ridership: 'carries more riders',
+};
+const PICK_Q = {
+  opened: 'When did %C% open?',
+  stations: 'How many stations does %C% plot?',
+  span: 'How far apart are %C%\u2019s furthest stations?',
+  density: 'How many stations per square km does %C% pack?',
+  routekm: 'How many route-km does %C% report?',
+  ridership: 'How many rides a year does %C% report?',
+};
+const PICK_LEAD = {
+  opened: 'opened in',
+  stations: 'plots',
+  span: 'spans',
+  density: 'packs',
+  routekm: 'reports',
+  ridership: 'reports',
 };
 
 function localDateStr(d) {
@@ -257,13 +277,50 @@ function hashStr(s) {
   return h;
 }
 
-// Deterministic per-day challenge: one stat and one pair, from the date.
+// a duel is only fair when the values are close: within 30 percent, or
+// twelve years for opened, and never equal
+function isClose(stat, a, b) {
+  if (a === b) return false;
+  if (stat === 'opened') return Math.abs(a - b) <= 12;
+  return Math.max(a, b) / Math.min(a, b) <= 1.3;
+}
+
+function closePairs(stat) {
+  return DATA.pairs.filter((p) =>
+    isClose(stat, CITIES[p[0]].values[stat], CITIES[p[1]].values[stat]));
+}
+
+function dispFor(stat, value) {
+  for (const c of LIVE) {
+    if (CITIES[c].values[stat] === value) return CITIES[c].disp[stat];
+  }
+  return String(value);
+}
+
+// Deterministic per-day challenge: the stat, the form and the contestants
+// all derive from the date.
 function dailyChallenge(dateStr) {
   const h = hashStr(dateStr);
   const stat = DATA.statOrder[h % DATA.statOrder.length];
-  const pair = DATA.pairs[Math.floor(h / 7) % DATA.pairs.length].slice();
-  if (Math.floor(h / 53) % 2) pair.reverse();
-  return { stat: stat, pair: pair };
+  if (Math.floor(h / 11) % 2 === 0) {
+    const pool = closePairs(stat);
+    if (pool.length) {
+      const pair = pool[Math.floor(h / 7) % pool.length].slice();
+      if (Math.floor(h / 53) % 2) pair.reverse();
+      return { mode: 'duel', stat: stat, pair: pair };
+    }
+  }
+  const city = LIVE[Math.floor(h / 13) % LIVE.length];
+  const truth = CITIES[city].values[stat];
+  const others = [];
+  LIVE.forEach((c) => {
+    const v = CITIES[c].values[stat];
+    if (v !== truth && others.indexOf(v) === -1) others.push(v);
+  });
+  others.sort((x, y) => Math.abs(x - truth) - Math.abs(y - truth));
+  const values = others.slice(0, 3);
+  values.splice(Math.floor(h / 29) % 4, 0, truth);
+  return { mode: 'pick', stat: stat, city: city, values: values, truth: truth };
 }
 
 function betterCity(stat, x, y) {
@@ -273,9 +330,13 @@ function betterCity(stat, x, y) {
   return (low ? vx < vy : vx > vy) ? x : y;
 }
 
-function pillsHTML(city) {
+function bandHTML(city) {
   return CITIES[city].lines.map((l) =>
-    '<i style="background:' + l.color + '">' + l.ref + '</i>').join('');
+    '<i style="background:' + l.color + '"></i>').join('');
+}
+
+function pickButtons() {
+  return Array.from(document.querySelectorAll('#d-mc .dopt'));
 }
 
 function loadStore() {
@@ -295,33 +356,45 @@ function saveStore(state) {
 function renderDaily() {
   const today = localDateStr(new Date());
   const ch = dailyChallenge(today);
-  const [a, b] = ch.pair;
   $('d-date').textContent = today;
-  $('d-stat').textContent = 'TODAY · ' + ch.stat.toUpperCase();
-  $('d-q').textContent = DAILY_Q[ch.stat];
-  const btnA = $('d-a');
-  const btnB = $('d-b');
-  btnA.dataset.city = a;
-  btnB.dataset.city = b;
-  btnA.querySelector('.dname').textContent = upper(a);
-  btnB.querySelector('.dname').textContent = upper(b);
-  btnA.querySelector('.dpills').innerHTML = pillsHTML(a);
-  btnB.querySelector('.dpills').innerHTML = pillsHTML(b);
-
+  $('d-stat').textContent = 'TODAY \u00b7 ' + ch.stat.toUpperCase();
+  $('d-duel').hidden = ch.mode !== 'duel';
+  $('d-mc').hidden = ch.mode !== 'pick';
+  if (ch.mode === 'duel') {
+    $('d-q').textContent = DUEL_Q[ch.stat];
+    const btnA = $('d-a');
+    const btnB = $('d-b');
+    btnA.dataset.city = ch.pair[0];
+    btnB.dataset.city = ch.pair[1];
+    btnA.querySelector('.dname').textContent = upper(ch.pair[0]);
+    btnB.querySelector('.dname').textContent = upper(ch.pair[1]);
+    btnA.querySelector('.dpills').innerHTML = bandHTML(ch.pair[0]);
+    btnB.querySelector('.dpills').innerHTML = bandHTML(ch.pair[1]);
+  } else {
+    $('d-q').textContent = PICK_Q[ch.stat].replace('%C%', upper(ch.city));
+    $('d-mc-band').innerHTML = bandHTML(ch.city);
+    pickButtons().forEach((btn, i) => {
+      btn.querySelector('.doptval').textContent = dispFor(ch.stat, ch.values[i]);
+    });
+  }
   const saved = loadStore();
-  if (saved && saved.d === today) {
+  if (saved && saved.d === today && saved.mode === ch.mode) {
     revealDaily(saved.pick, saved.correct, saved.streak, true);
   } else {
-    [btnA, btnB].forEach((btn) => {
+    [$('d-a'), $('d-b')].forEach((btn) => {
       btn.removeAttribute('aria-disabled');
       btn.classList.remove('correct', 'wrongpick');
       btn.querySelector('.dmeta').textContent = '?';
+    });
+    pickButtons().forEach((btn) => {
+      btn.removeAttribute('aria-disabled');
+      btn.classList.remove('correct', 'wrongpick');
     });
     $('d-verdict').hidden = true;
     const streak = saved && saved.correct &&
       isYesterday(saved.d, today) ? saved.streak : 0;
     $('d-streak').textContent = streak > 0
-      ? 'streak ' + streak + ' · play to keep it'
+      ? 'streak ' + streak + ' \u00b7 play to keep it'
       : 'one guess, once a day';
   }
 }
@@ -334,14 +407,15 @@ function isYesterday(dateStr, todayStr) {
 function guessDaily(pick) {
   const today = localDateStr(new Date());
   const saved = loadStore();
-  if (saved && saved.d === today) return; // already played
+  if (saved && saved.d === today && saved.mode) return; // already played
   const ch = dailyChallenge(today);
-  const winner = betterCity(ch.stat, ch.pair[0], ch.pair[1]);
-  const correct = pick === winner;
+  const correct = ch.mode === 'duel'
+    ? pick === betterCity(ch.stat, ch.pair[0], ch.pair[1])
+    : ch.values[pick] === ch.truth;
   const base = saved && saved.correct && isYesterday(saved.d, today)
     ? saved.streak : 0;
   const streak = correct ? base + 1 : 0;
-  saveStore({ d: today, pick: pick, correct: correct, streak: streak });
+  saveStore({ d: today, mode: ch.mode, pick: pick, correct: correct, streak: streak });
   revealDaily(pick, correct, streak, false);
   $('d-verdict').focus();
 }
@@ -349,32 +423,51 @@ function guessDaily(pick) {
 function revealDaily(pick, correct, streak, fromStore) {
   const today = localDateStr(new Date());
   const ch = dailyChallenge(today);
-  const stat = ch.stat;
-  const winner = betterCity(stat, ch.pair[0], ch.pair[1]);
-  const loser = ch.pair[0] === winner ? ch.pair[1] : ch.pair[0];
-  [$('d-a'), $('d-b')].forEach((btn) => {
-    const city = btn.dataset.city;
-    btn.setAttribute('aria-disabled', 'true');
-    btn.querySelector('.dmeta').textContent = CITIES[city].disp[stat];
-    btn.classList.toggle('correct', city === winner);
-    btn.classList.toggle('wrongpick', city === pick && city !== winner);
-  });
   const v = $('d-verdict');
+  const tail = fromStore
+    ? 'You played today; new question tomorrow.'
+    : 'New question tomorrow.';
+  if (ch.mode === 'duel') {
+    const winner = betterCity(ch.stat, ch.pair[0], ch.pair[1]);
+    const loser = ch.pair[0] === winner ? ch.pair[1] : ch.pair[0];
+    [$('d-a'), $('d-b')].forEach((btn) => {
+      const city = btn.dataset.city;
+      btn.setAttribute('aria-disabled', 'true');
+      btn.querySelector('.dmeta').textContent = CITIES[city].disp[ch.stat];
+      btn.classList.toggle('correct', city === winner);
+      btn.classList.toggle('wrongpick', city === pick && city !== winner);
+    });
+    v.innerHTML = (correct ? '<b>Right.</b> ' : '<b>Not this time.</b> ') +
+      upper(winner) + ' ' + DUEL_VERB[ch.stat] + ' (' +
+      CITIES[winner].disp[ch.stat] + ' vs ' + CITIES[loser].disp[ch.stat] +
+      '). ' + tail;
+  } else {
+    pickButtons().forEach((btn, i) => {
+      btn.setAttribute('aria-disabled', 'true');
+      btn.classList.toggle('correct', ch.values[i] === ch.truth);
+      btn.classList.toggle('wrongpick', i === pick && ch.values[i] !== ch.truth);
+    });
+    v.innerHTML = (correct ? '<b>Right.</b> ' : '<b>Not this time.</b> ') +
+      upper(ch.city) + ' ' + PICK_LEAD[ch.stat] + ' ' +
+      dispFor(ch.stat, ch.truth) + '. ' + tail;
+  }
   v.hidden = false;
-  v.innerHTML = (correct ? '<b>Right.</b> ' : '<b>Not this time.</b> ') +
-    upper(winner) + ' ' + DAILY_VERB[stat] + ' (' +
-    CITIES[winner].disp[stat] + ' vs ' + CITIES[loser].disp[stat] + '). ' +
-    (fromStore ? 'You played today; new question tomorrow.'
-      : 'New question tomorrow.');
   $('d-streak').textContent = correct
     ? 'streak ' + streak
-    : 'streak resets · back to 0';
+    : 'streak resets \u00b7 back to 0';
 }
 
 [$('d-a'), $('d-b')].forEach((btn) => {
   btn.addEventListener('click', () => {
     if (btn.getAttribute('aria-disabled') === 'true') return;
     guessDaily(btn.dataset.city);
+  });
+});
+
+pickButtons().forEach((btn, i) => {
+  btn.addEventListener('click', () => {
+    if (btn.getAttribute('aria-disabled') === 'true') return;
+    guessDaily(i);
   });
 });
 

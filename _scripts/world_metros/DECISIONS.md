@@ -750,3 +750,29 @@ good").**
 - **Still open (owner):** the set NAMES (PLAY / ALMANAC are placeholders
   the owner dislikes; proposal on the table is SCALE + CHARACTER, or the
   research-chip menu may reshape the second set first).
+
+**D30 · The daily gets smart: close duels + pick-the-number - RATIFIED
+2026-06-12 (owner flag on a giveaway question: "which plots more
+stations, Hong Kong vs Shanghai... too easy and obvious; the quiz should
+be smarter than this"; forms picked from the owner's own list).**
+- **Two question forms, deterministic per day** (date hash picks stat,
+  form and contestants):
+  - **DUEL**: head-to-head only between CLOSE systems: values within 30
+    percent (12 years for opened), never equal, so no blowouts. Pools are
+    healthy (23 to 40 eligible pairs per stat across the 18). Example
+    dailies: Singapore 243 vs Paris 246 route-km; Moscow 267 vs Delhi 270
+    stations; Singapore 1987 vs Istanbul 1989 opened.
+  - **PICK**: one city, four candidate values; the wrong three are other
+    cities' REAL figures nearest the truth (honest distractors), truth's
+    slot hash-placed. Example: "How many stations does SINGAPORE plot?"
+    176 / 159 / 195 / 135.
+  - Roughly even mix over time (27/33 across a 60-day simulation).
+- **The choice cards drop their pills for the colour band** (consistent
+  with D29's universal band, and ref text no longer leaks network size;
+  with close pairs, stripe count stops correlating with the answer).
+- Battle unchanged (the owner: "battle type is fine"). Streak/localStorage
+  unchanged; the store gains a mode field (an old same-day save without
+  one just lets the player replay once, soft-launch grade).
+- Method's daily paragraph documents both forms. Verified by simulating
+  14 dated challenges (all duels close, all picks well-formed) plus live
+  plays of both forms, 375/1280, console clean.
