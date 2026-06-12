@@ -345,10 +345,10 @@
         "as_of": "2026"
       },
       "driverless": {
-        "value": 6,
-        "note": "all six MRT lines GoA4 (NSL/EWL converted 2017-18); LRT out of scope.",
+        "value": 4,
+        "note": "NEL, CCL, DTL and TEL run GoA4 (driverless). NSL and EWL keep train captains after their 2017-18 resignalling (GoA2). LRT out of scope.",
         "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
-        "as_of": "2026-06-08 (oldid 1358345659)"
+        "as_of": "2026-06-13"
       },
       "fare_usd": {
         "value": 0.99,
@@ -367,10 +367,10 @@
     },
     "hong kong": {
       "opened": {
-        "year": 1979,
-        "what": "The Modified Initial System, now part of the Kwun Tong Line, opened 1 October 1979; the absorbed East Rail corridor dates to 1910.",
-        "source": "https://en.wikipedia.org/wiki/MTR",
-        "as_of": "2026"
+        "year": 1910,
+        "what": "Earliest passenger service in scope: the East Rail corridor (the former Kowloon-Canton Railway British Section) opened 1 October 1910. The MTR's own urban network followed in 1979; the rider map draws both as coequal lines.",
+        "source": "https://en.wikipedia.org/wiki/East_Rail_line",
+        "as_of": "2026-06-13"
       },
       "lines_opened": {
         "source": "https://en.wikipedia.org/wiki/MTR",
@@ -418,10 +418,10 @@
         ]
       },
       "route_km": {
-        "value": 209,
-        "as_of": "2022-12",
+        "value": 271,
+        "as_of": "2026-06-13",
         "source": "https://en.wikipedia.org/wiki/MTR",
-        "note": "Heavy rail only; the 36 km Light Rail network excluded."
+        "note": "MTR heavy rail (incl. East Rail and Tuen Ma); Light Rail excluded."
       },
       "ridership": {
         "annual_m": 1714,
@@ -1427,10 +1427,10 @@
         "as_of": "2026"
       },
       "driverless": {
-        "value": 3,
-        "note": "Magenta, Pink and Grey lines GoA4; the Airport Express is driven.",
+        "value": 2,
+        "note": "Magenta and Pink lines run GoA4 (driverless). The Grey Line and the Airport Express are driven.",
         "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
-        "as_of": "2026-06-08 (oldid 1358345659)"
+        "as_of": "2026-06-13"
       },
       "fare_usd": {
         "value": 0.11,
@@ -1719,7 +1719,7 @@
         "annual_m": 1460,
         "year": "2023",
         "source": "https://en.wikipedia.org/wiki/Cairo_Metro",
-        "note": "Approximate; about 5M riders a day. The operator does not publish a clean annual series."
+        "note": "Approximate; about 4 million riders a day. The operator does not publish a clean annual series."
       },
       "headway": {
         "value": 2.7,

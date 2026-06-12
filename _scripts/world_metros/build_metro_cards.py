@@ -455,17 +455,19 @@ def method_scope_rows():
                  "OpenStreetMap supplement, fetched 2026-06-12).",
         "singapore": "MRT lines only; the LRT feeders are a distinct product "
                      "on the LTA map.",
-        "hong kong": "MTR heavy rail incl. the Airport Express and the "
-                     "Disneyland Resort line; Light Rail is the map's "
-                     "district inset, not the metro.",
+        "hong kong": "MTR heavy rail incl. the East Rail and Tuen Ma lines, "
+                     "the Airport Express and the Disneyland Resort line; "
+                     "Light Rail is the map's district inset, not the metro. "
+                     "East Rail carries the scope's earliest passenger "
+                     "service, 1910, which sets the opened year.",
         "paris": "Métro 1-14 plus 3bis and 7bis; RER excluded (it is not "
                  "the Métro map).",
         "shanghai": "Metro lines 1-18 plus the Pujiang line; the maglev is "
                     "a separate product even on the official map.",
-        "beijing": "The operator's full mapped network: 19 numbered lines, "
-                   "the named suburban lines, S1, Xijiao and both airport "
-                   "expresses; Batong rides as Line 1 and Daxing as Line 4, "
-                   "as the map draws them.",
+        "beijing": "The full mapped network (run by several operators): 19 "
+                   "numbered lines, the named suburban lines, S1, Xijiao and "
+                   "both airport expresses; Batong rides as Line 1 and Daxing "
+                   "as Line 4, as the map draws them.",
         "london": "Underground's 11 lines only; the Elizabeth line, "
                   "Overground and DLR are distinct products in the Tube "
                   "map's own grammar.",
@@ -560,19 +562,23 @@ def method_panel(meta, alm, stats):
       lives in your browser. Some days it is a head-to-head between two
       close systems (never a blowout); some days you pick the right number
       from four, where the wrong three are other cities&rsquo; real
-      figures. Nothing leaves the page.</p>
+      figures. Your guess and streak never leave this browser.</p>
       <p><b>Win directions are fixed.</b> Opened and base fare win smaller;
       everything else wins larger.</p>
 
       <h2>SCALE: the six</h2>
       <table>
         <tr><th>stat</th><th>what it measures</th><th>wins</th></tr>
-        <tr><td>opened</td><td>earliest regular passenger service within the
-        card&rsquo;s declared scope, the system&rsquo;s own dating, from
-        operator histories</td><td>earlier</td></tr>
+        <tr><td>opened</td><td>earliest passenger service within the
+        card&rsquo;s declared scope, the system&rsquo;s own inaugural dating
+        (where first public access came later, the almanac notes it), from
+        Wikipedia and operator histories</td><td>earlier</td></tr>
         <tr><td>stations</td><td>station complexes counted from the frozen
         snapshot: named stations, same-name platforms merged within 350 m,
-        interchanges counted once</td><td>more</td></tr>
+        interchanges counted once. This plotted count runs a little above
+        operators&rsquo; official station tallies (long interchange corridors
+        are not always merged into one); the method is uniform across all 18,
+        so the comparison stays fair</td><td>more</td></tr>
         <tr><td>span</td><td>the furthest-stations distance: the geodesic
         between the two stations farthest apart</td><td>more</td></tr>
         <tr><td>density</td><td>stations per square km of network extent,
@@ -623,8 +629,9 @@ def method_panel(meta, alm, stats):
       <p>Geometry, station counts, span and density: OpenStreetMap via the
       subway preprocessor CDN, snapshot {meta["as_of"]}, ODbL. The page is
       built offline from committed snapshots; raw GeoJSON never ships.</p>
-      <p>Opened years: operator histories, per-line, dated (sources in the
-      almanac file in the site&rsquo;s public repo). Reported figures:</p>
+      <p>Opened years: Wikipedia and operator histories, per-line, dated
+      (sources in the almanac file in the site&rsquo;s public repo). Reported
+      figures:</p>
       <table class="almtable">
         <tr><th>city</th><th>route-km</th><th>annual rides</th></tr>
         {almanac_table(alm)}
