@@ -13,10 +13,10 @@
     "madrid": "172 km of new metro in sixteen years, Europe's great expansion.",
     "moscow": "Marble, mosaics and a train every 90 seconds.",
     "copenhagen": "Four lines, zero drivers, all night.",
-    "delhi": "PENDING",
-    "guangzhou": "PENDING",
-    "mexico city": "PENDING",
-    "cairo": "PENDING"
+    "delhi": "374 route-km in barely two decades, and it pays its own way.",
+    "guangzhou": "From a 5 km starter line in 1997 to 780 km today.",
+    "mexico city": "A pictogram for every station, a 5-peso fare for every ride.",
+    "cairo": "Africa&rsquo;s first metro, opened 1987, still its workhorse."
   },
   "facts": {
     "tokyo": [
@@ -67,10 +67,22 @@
       "Every train has run driverless since the first one in 2002.",
       "One of only three metros in the world running 24/7, with New York and the Chicago L."
     ],
-    "delhi": ["PENDING", "PENDING"],
-    "guangzhou": ["PENDING", "PENDING"],
-    "mexico city": ["PENDING", "PENDING"],
-    "cairo": ["PENDING", "PENDING"]
+    "delhi": [
+      "The first metro in the world to earn UN carbon credits, in 2011.",
+      "India&rsquo;s first driverless trains entered service on the Magenta Line in 2020."
+    ],
+    "guangzhou": [
+      "Lines 18 and 22 run at 160 km/h, the fastest metro service in China.",
+      "The Guangfo line, opened 2010, was China&rsquo;s first intercity metro."
+    ],
+    "mexico city": [
+      "Every station has its own pictogram, a 1969 design for navigating without reading.",
+      "Pino Su&aacute;rez station holds a small Aztec temple uncovered during construction."
+    ],
+    "cairo": [
+      "Africa&rsquo;s and the Middle East&rsquo;s first metro, opened 1987.",
+      "Trains have carried women-only cars since 1989."
+    ]
   },
   "credit": {
     "tokyo": "&ldquo;Tokyo Subway Linemap&rdquo; by Yveltal, Wikimedia Commons, CC BY-SA 4.0",

@@ -132,7 +132,7 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 
 /* the card object */
 .card {
-  width: 270px; height: 460px; border-radius: 12px;
+  width: 270px; height: 486px; border-radius: 12px;
   background: var(--card); border: 1px solid var(--cedge);
   box-shadow: 0 4px 16px rgba(0, 0, 0, .55); color: var(--text);
   padding: 17px 15px 13px; display: flex; flex-direction: column;
@@ -173,7 +173,7 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 .arena .cledger { display: block; }
 .crow {
   display: flex; align-items: center; gap: 11px; width: 100%;
-  padding: 12px 1px; border-bottom: 1px solid var(--rowline);
+  padding: 10px 1px; border-bottom: 1px solid var(--rowline);
 }
 button.crow {
   background: none; border: 0; border-bottom: 1px solid var(--rowline);
@@ -239,7 +239,7 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 .lcaveat { margin-top: 3px; }
 
 /* flip */
-.flipbox { position: relative; width: 270px; height: 460px; perspective: 1200px; cursor: pointer; }
+.flipbox { position: relative; width: 270px; height: 486px; perspective: 1200px; cursor: pointer; }
 .flipinner {
   position: relative; width: 100%; height: 100%;
   transform-style: preserve-3d;
@@ -285,7 +285,7 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 }
 .bcol { display: flex; flex-direction: column; gap: 11px; align-items: center; }
 .bcap { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--grey); }
-.bslot { width: 270px; height: 460px; position: relative; }
+.bslot { width: 270px; height: 486px; position: relative; }
 .bcardwrap { position: absolute; inset: 0; }
 
 .bmid { width: 234px; flex: none; text-align: center; padding-top: 120px; }

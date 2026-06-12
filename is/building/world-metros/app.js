@@ -32,7 +32,10 @@ function selectTab(name) {
 
 function go(name, hash) {
   selectTab(name);
-  history.replaceState(null, '', hash || '#' + name);
+  // battle owns its own hash (dealRound writes the #battle/you-vs-cpu pair so
+  // the matchup URL is shareable); don't clobber it with a bare #battle.
+  if (hash) history.replaceState(null, '', hash);
+  else if (name !== 'battle') history.replaceState(null, '', '#' + name);
 }
 
 tabs.forEach((tab, i) => {
@@ -55,8 +58,12 @@ function routeFromHash() {
   const h = (location.hash || '').replace(/^#/, '');
   const m = h.match(/^battle\/([a-z-]+)-vs-([a-z-]+)$/);
   if (m && LIVE.includes(m[1]) && LIVE.includes(m[2]) && m[1] !== m[2]) {
+    // a shared matchup link starts that pairing as a clean match
     battle.seed = [m[1], m[2]];
     battle.started = false;
+    battle.round = 1;
+    battle.yScore = 0;
+    battle.cScore = 0;
     selectTab('battle');
     return;
   }
