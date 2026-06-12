@@ -706,3 +706,30 @@ thin themes and unclear labels._
   eye together.
 - Priority order unchanged: Seoul scope freeze first (done at D25/D27);
   D28 lands with the board round.
+
+**D29 · Pill-density: C2 adaptive band picked; occlusion bug fixed -
+RATIFIED 2026-06-12 (owner on the board: "C2 adaptive band seems pretty
+good").**
+- **Bug fix (unconditional, shipped):** at high pill counts the pills (a
+  flex item in a fixed-height column) were shrunk and overflowed the tag
+  and ledger. Fixed: `.cpills { flex: none }` plus a front-drives-height
+  flip so the card grows, so the line/scope tag is never occluded at any
+  count. Verified deck + battle + 375/768/1000/1280.
+- **C2 ratified:** over 16 lines the refs collapse to one thin colour
+  band (the deck-back motif) plus the count + scope + "on the map side";
+  the readable refs live on the lore-back diagram. Threshold > 16 bands
+  five cards (Beijing 27, Seoul 24, NYC 23, Shanghai 19, Guangzhou 19);
+  Paris and Moscow at exactly 16 keep pills. Drift note: a count
+  threshold flips cards at the annual refresh (Moscow's 17th line ~2026,
+  Shanghai's Line 22 trial end-2026); revisit the threshold then.
+- **Board fixes folded in:** seam cities (Guangzhou, NYC) added to the
+  judged set; counts render from len(lines) (Seoul reads 24, not the
+  stale 23); the band copy is "on the map side" (the lore back is the
+  diagram, which labels lines its own way, not our refs).
+- **Still open (owner):** (1) the stat-set question, PLAY/ALMANAC felt
+  thin and the names unclear; the proposal on the table is SCALE (the
+  six) + CHARACTER (base fare, driverless, interchange) with honest
+  names and no padding, OR drop the toggle and move the three to lore.
+  (2) The head-line idea: carry count + scope + ownership up by the name
+  so the under-pill / band tag can shrink; pending a definition of what
+  "ownership" shows.

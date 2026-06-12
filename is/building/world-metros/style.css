@@ -167,6 +167,13 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 }
 .cpills.compact { gap: 3px; }
 .cpills.compact i { font-size: 9px; padding: 2px 5px; }
+/* C2 adaptive band (owner-picked): over 16 lines the refs become one thin
+   strip of the line colours, the deck-back motif; refs read on the lore back. */
+.cband {
+  display: flex; gap: 0; height: 16px; border-radius: 8px;
+  overflow: hidden; margin-top: 13px;
+}
+.cband i { flex: 1; }
 .ctag {
   font-family: var(--mono); font-size: 9px; color: var(--grey);
   letter-spacing: .04em; margin-top: 7px; white-space: nowrap;
