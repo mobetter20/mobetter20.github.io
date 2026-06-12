@@ -184,17 +184,33 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/sweet-wilbur-ff784c`: 
   375/768/1000/1280, battle (153 pairs) + daily across 18, console clean,
   no overflow, soft-launch norms kept. D27 in DECISIONS.
 
-## Current gate: owner verdict on the deck of 18 (D27)
+- D30 board BUILT (2026-06-12, branch `claude/nervous-lehmann-d7c660`,
+  fast-forwarded onto the wilbur head): the card-IA round answering the
+  owner's three-views / overlap flag. `mocks/card-ia-board.html`
+  (`mocks/build_card_ia_board.py`): baseline TODAY row, then A KEEP +
+  RENAME (SCALE | CHARACTER mocked + name menu + set caption + binding
+  whisper), B TWO SURFACES (toggle dies; character stats to the lore back
+  as a figure strip; diagram window pays, measured 178 -> ~112-155px,
+  shown at the live flip height), C NO MODES (everything on the face,
+  +98px measured), the 18-back overlap map (26 collisions incl. 3
+  contradictions + 12 deliberate keeps), and the candidate-invariant
+  26-edit dedup list with replacement copy (NOT applied). Rec: B,
+  fallback A. Verified by DOM probe (pinning, bfit heights, 9px floor,
+  no clips, console clean); D30 in DECISIONS.
 
-The deck of 18 (gate 3 + D27) is built, verified and committed on the
-branch (`claude/sweet-wilbur-ff784c`), and shown to the owner in Arc
-against the local preview. The owner's verdict on this page is the open
-gate. Items carried to that review: the 15 new epithets (creative calls,
-incl. Osaka "the merchant" / Istanbul "the crossing"); the Istanbul scope
-call (Marmaray excluded, could be pulled in); the notable
-Seoul-tops-ridership claim (full-capital scope, sourced, per-operator
-methodology noted); and Osaka's two soft spots (a c.2011 diagram with a
-caveat, and a service-day row that drops for want of a sourced figure).
+## Current gate: owner verdicts on the deck of 18 (D27) and the card-IA board (D30)
+
+Two verdicts pending, independent. (1) The deck of 18 (gate 3 + D27) is
+built, verified and committed on `claude/sweet-wilbur-ff784c`, shown in
+Arc against the local preview; items carried to that review: the 15 new
+epithets (creative calls, incl. Osaka "the merchant" / Istanbul "the
+crossing"); the Istanbul scope call (Marmaray excluded, could be pulled
+in); the notable Seoul-tops-ridership claim (full-capital scope, sourced,
+per-operator methodology noted); and Osaka's two soft spots (a c.2011
+diagram with a caveat, and a service-day row that drops for want of a
+sourced figure). (2) The card-IA board (D30): pick A (plus a name pair) /
+B / C; the dedup edit list ships with whichever wins; the live page IA
+does not change before that verdict.
 
 ## Next exact action
 

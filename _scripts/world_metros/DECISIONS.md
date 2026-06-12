@@ -750,3 +750,49 @@ good").**
 - **Still open (owner):** the set NAMES (PLAY / ALMANAC are placeholders
   the owner dislikes; proposal on the table is SCALE + CHARACTER, or the
   research-chip menu may reshape the second set first).
+
+**D30 · Card-IA round: three candidates + the lore dedup - PROPOSED
+2026-06-12 (board built; the owner verdict on the board is the gate).**
+Owner flag: the card now has three views (play front, almanac front via
+the deck toggle, the lore flip), "not entirely sure if they feel intuitive
+and most appropriate", and "info in almanac and map content sometimes
+overlap". Board: `mocks/card-ia-board.html`
+(`mocks/build_card_ia_board.py`), Seoul the busy case + Tokyo the
+reference, baseline TODAY row first:
+- **A · KEEP + RENAME:** three views stay; PLAY/ALMANAC become honest
+  names (SCALE | CHARACTER mocked; menu with CORE | CHARACTER and
+  SYSTEM | RIDE as alternates); plus small toggle UX: a set caption on
+  each card (mid-scroll state visibility) and a battle-binding whisper
+  on the bar.
+- **B · TWO SURFACES (recommendation):** the front toggle dies; the five
+  character stats move to the lore back as a compact figure strip (small
+  ordinals; 1st keeps the blue chip); the front is the six play stats the
+  battle and daily actually use. Restores the D18 grammar (front for
+  play, back for lore); the set-name question dissolves. Cost shown
+  honestly on the board: pinned to the live flip height (the front
+  drives the box at 469px), the diagram window pays for the strip,
+  178px down to ~125px (Seoul) / ~155px (Tokyo) / ~112px (Mexico City,
+  wordiest); the deck-wide scan of the second set moves to Method's
+  table. Alternative lever noted: let the flip box size to the taller
+  face instead (cards grow).
+- **C · NO MODES:** both sets on one face (six rows + a fine-print
+  strip); zero hidden state; measured +98px per card and the battle
+  arena's fixed slots would retune.
+- **Overlap map, all 18 backs vs the shown stats:** 26 collisions,
+  including three outright contradictions (Singapore flavor "four of
+  them driverless" vs DRIVERLESS 6 after the NSL/EWL conversions;
+  Shanghai fact "five lines driverless" vs stat 7 incl. GoA3; NYC fact
+  "472 stations" vs the plotted 504 on the same card), plus 12
+  deliberate keeps (Hong Kong's 1910 East Rail fact is the model: it
+  explains a stat rather than restating one).
+- **Dedup edit list: 26 edits across 17 cards (Hong Kong untouched),
+  candidate-invariant** (every candidate keeps all eleven numbers
+  somewhere on the card). Listed on the board with replacement copy
+  written to ship; NOT applied before the verdict. Watch-items recorded
+  for the pending second-set research menu (Guangzhou 160 km/h vs a
+  speed stat, Moscow 80 s vs headway, NYC/Copenhagen 24/7 vs hours,
+  Osaka's 1981-vs-1991 driverless dating): re-run the dedup pass against
+  the final set composition before it ships.
+Gate: owner picks A (plus a name pair) / B / C; the pick and the edit
+list then build into the live page and Method and re-verify. The
+deck-of-18 ship gate (push/PR/merge) stays the separate pending yes.
