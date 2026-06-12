@@ -626,3 +626,39 @@ build record).**
 - Method gains the frozen scope table, the theme definitions with win
   directions, and per-figure source tables; it stays method (no roster
   editorial, per the D23 revision).
+
+**D27 · Deck grows to EIGHTEEN; grid capped at 3 columns (1/2/3, never 4)
+- RATIFIED 2026-06-12 (owner, design session; supersedes D23 rev 2's
+  1/2/4 lock and its "deck stays 16" line).**
+_Numbering note: the owner labeled this "D25", but the gate-3 build
+session had already appended D25 (per-city scope freezes) and D26 (build
+record) as PROPOSED, and DATA-CONTRACT / STATUS / code comments reference
+them. Recorded as D27 to keep the log append-only; content is the owner's
+verbatim decision._
+Owner: "i do not like 2 cards per row visual i think 3 was much better."
+18 is even at 3-col and 2-col (and 1-col), so rows fill at every width;
+16 only evened at 2-col and 4-col, which forced the 4-col lock the owner
+now reverses.
+- **Roster += Osaka, Istanbul** as 17/18 (the D23 rev-2 bench note
+  pre-picked them over Sao Paulo and Mumbai). Full newcomer pipeline for
+  both: OSM validator audit, DIAGRAM-LEDGER stanza, rider-scope-B scope
+  freeze (Osaka: Osaka Metro proper, through-running truncated at the
+  boundary; Istanbul: the metro/M-lines, with Marmaray and the trams as
+  the scope question), almanac + lore backs + epithet. Taken to live this
+  session where the audits clear; a card whose audit does not clear stays
+  a "diagram audit pending" soon card and the badge counts it out.
+- **Grid: 1 / 2 / 3 columns, no 4-col tier.** style.css media tiers:
+  1 col base, 2 cols from ~612px, 3 cols from ~906px. Verify by DOM probe
+  at 375 / 768 / 1000 / 1280 (1280 now renders 3, not 4).
+- **All count strings 16 -> 18:** DECK_WORD "eighteen", deck-back
+  "eighteen systems · one deck", livebadge, method "full deck of 18",
+  meta description, ORDINAL range, aria labels (auto from len(ROSTER)),
+  README / BUILD-SPEC / STATUS counts.
+- **PRIORITY (owner): Seoul first.** The owner asked when Seoul's lines
+  would be complete. Do the Seoul scope freeze (the L1 / through-running
+  rule, DATA-CONTRACT) and the full rider-network re-extraction FIRST,
+  not last. (Status entering D27: the D25 freeze already takes Seoul as
+  the whole capital network with L1's through-running corridor IN, 23
+  line identities extracted; the known gap is Sinbundang, whose OSM
+  validator export is empty. D27's Seoul-first work closes or documents
+  that gap before the newcomers.)

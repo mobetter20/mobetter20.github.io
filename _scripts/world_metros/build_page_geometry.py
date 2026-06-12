@@ -44,6 +44,7 @@ import urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
 OUT_DIR = os.path.join(REPO, "is", "building", "world-metros", "assets")
+DATA_DIR = os.path.join(HERE, "data")  # committed supplements (not served)
 CDN = "https://cdn.organicmaps.app/subway/"
 
 # Deck keys match build_metro_cards.py ROSTER.
@@ -60,20 +61,23 @@ CITY_CONFIG = {
     },
     "seoul": {
         # The full capital-region network the familiar map draws, incl. the
-        # L1 through-running corridors and Incheon 1/2. Sinbundang is in the
-        # declared scope but its validator export is empty (snapshot gap,
-        # noted on Method). The suspended Incheon airport maglev stays out.
+        # L1 through-running corridors and Incheon 1/2 (D25/D27). Sinbundang
+        # is in scope but its validator export (seoul_-_neotrans) is empty,
+        # so it rides as a committed Overpass supplement (D27 Seoul-first
+        # completion). The suspended Incheon airport maglev stays out.
         "slugs": ["seoul", "incheon"],
+        "supplements": ["seoul-sinbundang.geojson"],
         "refs": {str(i) for i in range(1, 10)} | {
             "경의·중앙", "수인·분당", "경춘", "경강", "서해", "공항철도",
-            "GTX-A", "W", "Silim", "U", "E", "김포 골드라인", "인천1", "I2"},
+            "GTX-A", "W", "Silim", "U", "E", "김포 골드라인", "인천1", "I2",
+            "신분당"},
         "display": {"경의·중앙": "경의중앙", "수인·분당": "수인분당",
                     "공항철도": "공항", "김포 골드라인": "김포",
                     "Silim": "신림", "W": "우이신설", "U": "의정부",
                     "E": "에버라인", "I2": "인천2"},
-        "order": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "GTX-A",
-                  "공항철도", "경의·중앙", "경춘", "수인·분당", "경강", "서해",
-                  "W", "Silim", "U", "E", "김포 골드라인", "인천1", "I2"],
+        "order": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "신분당",
+                  "GTX-A", "공항철도", "경의·중앙", "경춘", "수인·분당", "경강",
+                  "서해", "W", "Silim", "U", "E", "김포 골드라인", "인천1", "I2"],
         "outlier_km": 250,
     },
     "singapore": {
@@ -217,6 +221,34 @@ CITY_CONFIG = {
         "order": ["1", "2", "3"],
         "outlier_km": 80,
     },
+    "osaka": {
+        # Osaka Metro's nine lines incl. the New Tram (Nanko Port Town, P,
+        # a coequal line on the Osaka Metro map). The JR Loop (O) and the
+        # Osaka Monorail (OM) in the same file are distinct products; the
+        # Nankai Rapi:t airport express is its own validator network.
+        # Midosuji's through-run to Minoo-Kayano (Kita-Osaka Kyuko) is drawn
+        # continuous on the Osaka Metro map (rider-scope B), so the ref keeps
+        # it; through-running onto Kintetsu/Hankyu sits under other refs and
+        # drops out.
+        "slugs": ["osaka"],
+        "refs": {"M", "T", "Y", "C", "S", "K", "N", "I", "P"},
+        "order": ["M", "T", "Y", "C", "S", "K", "N", "I", "P"],
+        "outlier_km": 60,
+    },
+    "istanbul": {
+        # The branded Metro Istanbul M-lines. M1A/M1B fold to M1 (the map's
+        # one line with two branches). Marmaray (B1) is TCDD commuter rail,
+        # excluded like Moscow's MCD and London's Elizabeth line (owner to
+        # confirm at the gate); the funiculars (F-lines) and trams are
+        # distinct feeder products.
+        "slugs": ["istanbul"],
+        "refs": {"M1A", "M1B", "M2", "M3", "M4", "M5", "M6", "M7", "M8",
+                 "M9", "M11"},
+        "fold": {"M1A": "M1", "M1B": "M1"},
+        "order": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9",
+                  "M11"],
+        "outlier_km": 70,
+    },
 }
 
 
@@ -240,9 +272,14 @@ def load_network(cfg):
     """-> dict(lines={identity: {color, pts}}, stations=[(x,y)])"""
     refs = cfg["refs"]
     fold = cfg.get("fold", {})
+    sources = [fetch_city(slug) for slug in cfg["slugs"]]
+    # committed local supplements (e.g. Seoul's Sinbundang, absent from the
+    # validator export); same FeatureCollection shape, never served
+    for fname in cfg.get("supplements", []):
+        with open(os.path.join(DATA_DIR, fname)) as fh:
+            sources.append(json.load(fh))
     lines, pts = [], []
-    for slug in cfg["slugs"]:
-        gj = fetch_city(slug)
+    for gj in sources:
         lines += [f for f in gj["features"]
                   if f["geometry"]["type"] == "LineString"
                   and f["properties"].get("ref") in refs]
