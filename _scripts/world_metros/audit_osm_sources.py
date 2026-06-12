@@ -31,6 +31,9 @@ CITIES = {
     "madrid": "spain.html",
     "copenhagen": "denmark.html",
     "guangzhou": "china.html",
+    # D27 newcomers (deck of 18)
+    "osaka": "japan.html",
+    "istanbul": "turkey.html",
 }
 
 ROW_RE = re.compile(r'<tr id="([^"]+)">\s*<td class="bold (color\d)">')

@@ -33,6 +33,8 @@ Audit results, all candidates **GOOD** (raw GeoJSON size; build will simplify):
 | Madrid | `madrid` | 429 KB (D23 newcomer; audited GOOD 2026-06-12) |
 | Copenhagen | `copenhagen` | 582 KB (D23 newcomer; audited GOOD 2026-06-12) |
 | Guangzhou | `guangzhou` | 1.58 MB (D23 newcomer; audited GOOD 2026-06-12; file carries Foshan + trams, scoped out by ref) |
+| Osaka | `osaka` | 540 pts (D27 newcomer; audited GOOD 2026-06-12; file carries JR Loop `O` + Osaka Monorail `OM`, scoped out by ref; `osaka_-_rapit` airport express is its own network) |
+| Istanbul | `istanbul` | 624 pts (D27 newcomer; audited GOOD 2026-06-12; file carries Marmaray `B1` + funicular `F3`, scoped out by ref) |
 
 Re-verify any time: `python3 _scripts/world_metros/audit_osm_sources.py`.
 
@@ -69,11 +71,28 @@ per-city ref sets in `build_page_geometry.py`; prose on the page's Method tab.
   familiar Tokyo Subway map stops there.
 - Seoul — **FROZEN: the full capital-region network the familiar map draws**,
   incl. Line 1's whole through-running corridor (the map draws it as one
-  line), the Korail K-lines, GTX-A, AREX, the light metros, Incheon 1-2.
-  The L1 open question closes on the map-draws-it test. Snapshot gap:
-  Sinbundang is in the declared scope but its validator export is empty;
-  plotted counts omit it (noted on Method). Reported figures (route-km,
-  ridership) cover the declared scope incl. Sinbundang.
+  line), the Korail K-lines, GTX-A, AREX, the light metros, Incheon 1-2,
+  and Sinbundang. The L1 open question closes on the map-draws-it test.
+  Sinbundang's validator export (`seoul_-_neotrans`) is empty, so it rides
+  as a committed Overpass supplement (`data/seoul-sinbundang.geojson`,
+  ODbL, ref 신분당, fetched 2026-06-12; D27 Seoul-first completion). 24
+  line identities, the full familiar map. Reported figures cover the whole
+  declared scope.
+- Osaka — **FROZEN: Osaka Metro's nine lines** (M, T, Y, C, S, K, N, I,
+  P) incl. the New Tram (Nanko Port Town, P, a coequal line on the Osaka
+  Metro map). The JR Loop (`O`) and the Osaka Monorail (`OM`) in the same
+  file are distinct products; `osaka_-_rapit` (Nankai airport) is its own
+  network. Midosuji's through-run to Minoo-kayano (Kita-Osaka Kyuko) is
+  drawn continuous on the Osaka Metro map (rider-scope B), so the `M` ref
+  keeps it; through-running onto Kintetsu/Hankyu sits under other refs and
+  drops out.
+- Istanbul — **FROZEN: the branded Metro Istanbul M-lines** (M1A/M1B
+  folded to M1, M2 through M11): ten line identities. **Marmaray (`B1`,
+  TCDD commuter rail) is excluded**, like Moscow's MCD and London's
+  Elizabeth line; the funiculars (F-lines) and trams are distinct feeder
+  products. This is the one D27 scope call flagged for owner confirmation
+  at the gate (the familiar Istanbul rapid-transit map does draw Marmaray
+  coequal, so an owner could pull it in).
 - Singapore — MRT only (6 lines); LRT feeders out.
 - Hong Kong — MTR heavy rail incl. Airport Express + Disneyland Resort line
   (10 lines); Light Rail out (district inset, not the metro map's network).
