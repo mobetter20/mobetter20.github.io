@@ -133,8 +133,9 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/exciting-shaw-1ae32b`)
 - D23 + D24 (2026-06-12): owner reviewed the D22 page and recurated the
   roster with a ranked 15-list + reasons; picks: keep Cairo (deck of 16),
   Guangzhou for the PRD seat, deck order = the ranking. Beijing's "why
-  not" reverses; Method now carries per-city reasons ("Why sixteen") and
-  the new absence list (Shenzhen, Osaka, São Paulo, Istanbul, Mumbai).
+  not" reverses. (A "Why sixteen" Method section + absence note shipped
+  with this round, then was cut at the owner's revision the same day:
+  Method is method; the rationale reaches visitors as lore-back facts.)
   Newcomers' soon cards say "diagram audit pending" (dual audit due at
   scale-up). Same round: masthead replaced (premise + verbs), nav tabs to
   sans 12.5px/600, daily type up a step (iOS flag). Themes (frequency /

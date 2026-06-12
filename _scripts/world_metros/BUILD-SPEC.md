@@ -24,10 +24,10 @@ game. Trading cards with footnotes.
    D16's duel mechanics.
 3. **THE DAILY** — one guess a day ("which plots more stations?"), streak in
    localStorage. Consciously un-defers D16's reveal-on-tap guessing.
-4. **METHOD** — scope rules, definitions, sources, as-of dates, licences, win
-   directions, per-city "why it's in" reasons ("Why sixteen", D23), and the
-   absence note (Shenzhen, Osaka, São Paulo, Istanbul, Mumbai). Absence is
-   content. Unchanged role from the atlas contract.
+4. **METHOD** — scope rules, definitions, sources, as-of dates, licences,
+   win directions, and the diagram licensing story. Method is method: no
+   roster editorial (the per-city "why it's in" rationale was cut at the
+   owner's D23 revision; it reaches visitors as lore-back facts instead).
 
 ## Card grammar (D18, ratified)
 

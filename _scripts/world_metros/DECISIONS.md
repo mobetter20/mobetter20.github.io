@@ -503,6 +503,14 @@ the cpu; one guess a day in the daily."), nav tabs to the sans stack at
 12.5px/600 (owner disliked the mono nav font and its legibility), and a
 further daily type bump (the iOS-legibility flag: head/stat/meta/verdict
 /streak/note all up one step).
+*Revision (2026-06-12, owner on the live page):* the "Why sixteen" Method
+section is CUT ("is this part even necessary?"), and the absence note
+("def not necessary") with it. The per-city rationale was the wrong grain
+for the page: it lives here in this entry as working material, and
+surfaces for visitors as each card's own lore-back facts at scale-up.
+With Beijing in the deck, no absence demands an on-page explanation;
+"absence is content" retires with D3's roster. Method ends on the
+licensing story.
 
 **D24 · Themed stat sets ride the scale-up — RATIFIED 2026-06-12 (owner
 idea at the D22 review; sequencing pick recorded).**
