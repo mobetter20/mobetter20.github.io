@@ -91,9 +91,17 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 }
 .intro b { color: var(--text); font-weight: 600; }
 
+/* Column count is locked to 1 / 2 / 4 (never 3): 16 cards land in even
+   rows at every width. The 3-col band (~906-1200px) would orphan one card. */
 .deckgrid {
-  display: grid; grid-template-columns: repeat(auto-fit, 270px);
+  display: grid; grid-template-columns: repeat(1, 270px);
   justify-content: center; gap: 30px 26px; padding: 22px 0 8px;
+}
+@media (min-width: 612px) {
+  .deckgrid { grid-template-columns: repeat(2, 270px); }
+}
+@media (min-width: 1206px) {
+  .deckgrid { grid-template-columns: repeat(4, 270px); }
 }
 
 .cardunit { display: flex; flex-direction: column; gap: 9px; align-items: center; }
