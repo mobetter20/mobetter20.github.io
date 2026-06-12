@@ -715,13 +715,18 @@ good").**
   and ledger. Fixed: `.cpills { flex: none }` plus a front-drives-height
   flip so the card grows, so the line/scope tag is never occluded at any
   count. Verified deck + battle + 375/768/1000/1280.
-- **C2 ratified:** over 16 lines the refs collapse to one thin colour
-  band (the deck-back motif) plus the count + scope + "on the map side";
-  the readable refs live on the lore-back diagram. Threshold > 16 bands
-  five cards (Beijing 27, Seoul 24, NYC 23, Shanghai 19, Guangzhou 19);
-  Paris and Moscow at exactly 16 keep pills. Drift note: a count
-  threshold flips cards at the annual refresh (Moscow's 17th line ~2026,
-  Shanghai's Line 22 trial end-2026); revisit the threshold then.
+- **C2 ratified, then made UNIVERSAL:** the refs collapse to one thin
+  colour band (the deck-back motif) plus count + scope + "on the map
+  side"; the readable line names live on the lore-back diagram. C2 first
+  shipped as adaptive (band only over 16 lines, pills below). _Revision
+  2026-06-12: the owner rejected the pills/band MIX as inconsistent
+  ("either every city pills or density, not mixed; the mix looks bad")
+  and the band is now EVERY card._ All-pills was the alternative but
+  reintroduces the mega-card density problem this round fixed; all-band
+  is uniform and keeps every card at 487px. This retires pills as the
+  on-front identity device (D18/D20); line identity now reads on the lore
+  diagram for all cards. The BAND_THRESHOLD and the variable-height pill
+  machinery are vestigial (all cards uniform now).
 - **Board fixes folded in:** seam cities (Guangzhou, NYC) added to the
   judged set; counts render from len(lines) (Seoul reads 24, not the
   stale 23); the band copy is "on the map side" (the lore back is the

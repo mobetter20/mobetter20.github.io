@@ -243,26 +243,17 @@ def stat_table(meta, alm):
     return stats
 
 
-# Over this line count, the refs collapse to one thin colour band (C2,
-# owner-picked): pills get unreadable at 17+ and the card stays compact. The
-# readable lines live on the lore-back diagram. At or under it, pills as before.
-BAND_THRESHOLD = 16
-
-
 def identity_html(meta, city):
+    """Every card carries the same line-colour band (owner call: one
+    consistent treatment, no pills-vs-band mix). The readable line names
+    live on the lore-back diagram for all cards."""
     lines = meta["cities"][city]["lines"]
     noun = "services" if city == "nyc" else "lines"
     tag = f"{len(lines)} {noun} · {SCOPE_TAG[city]}"
-    if len(lines) > BAND_THRESHOLD:
-        stripes = "".join(f'<i style="background:{l["color"]}"></i>' for l in lines)
-        return (f'<div class="cband" role="img" aria-label="{len(lines)} line '
-                f'colours, shown by name on the lore side">{stripes}</div>'
-                f'<div class="ctag">{tag} · on the map side</div>')
-    segs = "".join(f'<i style="background:{l["color"]}">{html.escape(l["ref"])}</i>'
-                   for l in lines)
-    compact = " compact" if len(lines) > 12 else ""
-    return (f'<div class="cpills{compact}">{segs}</div>'
-            f'<div class="ctag">{tag}</div>')
+    stripes = "".join(f'<i style="background:{l["color"]}"></i>' for l in lines)
+    return (f'<div class="cband" role="img" aria-label="{len(lines)} line '
+            f'colours, shown by name on the lore side">{stripes}</div>'
+            f'<div class="ctag">{tag} · on the map side</div>')
 
 
 def card_foot(meta):
