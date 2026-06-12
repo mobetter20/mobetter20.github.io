@@ -545,8 +545,12 @@ def theme_table(alm, fields):
     return "".join(rows)
 
 
-WIN_PHRASE = {"opened": "earlier wins", "fare": "cheaper wins",
-              "span": "further wins", "density": "tighter wins"}
+SORT_PHRASE = {"opened": "oldest first", "stations": "most first",
+               "span": "longest first", "density": "tightest first",
+               "routekm": "longest first", "ridership": "busiest first",
+               "fare": "cheapest first", "driverless": "most first",
+               "interchange": "most connected first",
+               "biggest_hub": "most lines first", "newlines": "most first"}
 
 RACE_UNIT = {"opened": ("{:g} years", 1), "stations": ("{:g} stations", 1),
              "span": ("{:.1f} km", 1), "density": ("{:.3f} st/km\u00b2", 1),
@@ -561,17 +565,12 @@ def ranks_panel(meta, stats):
     Per-stat only, never a combined score (BUILD-SPEC's explicit OUT).
     Rows wear the card grammar (rank chip, line band, mono value); each
     stat names its tightest adjacent race and links it into the battle."""
-    pick_groups = [("SCALE", [s for s in stats if s["set"] == "play"]),
-                   ("CHARACTER", [s for s in stats if s["set"] == "almanac"])]
-    pickers = []
-    for cap, group in pick_groups:
-        btns = "".join(
-            f'<button type="button" class="rkbtn" data-stat="{st["key"]}" '
-            f'aria-pressed="{"true" if st["key"] == "stations" else "false"}">'
-            f'{st["label"]}</button>' for st in group)
-        pickers.append(f'<span class="rkcap">{cap}</span>{btns}')
-    picker = ('<div class="rkpick" role="group" aria-label="Pick a stat">'
-              + '<span class="rksep"></span>'.join(pickers) + '</div>')
+    btns = "".join(
+        f'<button type="button" class="rkbtn" data-stat="{st["key"]}" '
+        f'aria-pressed="{"true" if st["key"] == "stations" else "false"}">'
+        f'{st["label"]}</button>' for st in stats)
+    picker = (f'<div class="rkpick" role="group" aria-label="Pick a stat">'
+              f'{btns}</div>')
 
     lists = []
     for st in stats:
@@ -605,7 +604,7 @@ def ranks_panel(meta, stats):
                         f'{DISPLAY.get(b, b)}, {fmt.format(d)} apart')
         race = (f'<p class="rkrace">{race_txt} \u00b7 '
                 f'<a href="#battle/{SLUG[a]}-vs-{SLUG[b]}">play it</a></p>')
-        win = WIN_PHRASE.get(st["key"], "more wins")
+        win = SORT_PHRASE[st["key"]]
         hidden = "" if st["key"] == "stations" else " hidden"
         lists.append(
             f'<div class="rklist" data-stat="{st["key"]}"{hidden}>'
