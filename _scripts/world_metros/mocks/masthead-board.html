@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metro Match &middot; masthead + wordmark board (D35 follow-up)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --table:#0f0f12; --chrome:#131318; --edge:#26262c; --card:#1b1b21;
+    --cedge:#32323a; --rowline:#232329; --text:#f2f2ee; --body:#e8e8e3;
+    --soft:#c4c4bf; --grey:#9a9a93; --lblue:#7fb0e8;
+    --mono:'DM Mono',ui-monospace,monospace;
+    --sans:-apple-system,'Helvetica Neue','Segoe UI',Arial,sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--table); color:var(--body); font-family:var(--sans);
+         padding:0 22px 60px; -webkit-font-smoothing:antialiased; }
+  .bb { max-width:980px; margin:26px auto; }
+  .bb h1 { font-size:16px; font-weight:800; letter-spacing:.22em; color:var(--text); }
+  .bb h1 em { font-style:normal; color:var(--lblue); }
+  .bb > p { font-size:13px; color:var(--soft); line-height:1.65; margin:10px 0; max-width:760px; }
+  .cand { margin:38px 0; }
+  .cand h2, .bb h2 { font-family:var(--mono); font-size:12px; letter-spacing:.16em;
+            color:var(--lblue); text-transform:uppercase; margin-bottom:6px; }
+  .wcand h3 { font-family:var(--mono); font-size:11px; letter-spacing:.14em;
+            color:var(--lblue); text-transform:uppercase; margin-bottom:4px; }
+  .note { font-size:12px; color:var(--soft); line-height:1.6; max-width:720px; margin-bottom:12px; }
+  .stage { border:1px solid var(--edge); border-radius:10px; overflow:hidden; }
+
+  /* mini header */
+  .mhead { background:var(--chrome); border-bottom:1px solid var(--edge); padding:13px 0 10px; }
+  .mframe { display:flex; align-items:baseline; gap:22px; max-width:920px;
+            margin:0 auto; padding:0 22px; }
+  .mwordmark { font-size:15px; font-weight:700; letter-spacing:.24em; color:var(--text); }
+  .mwordmark a { color:inherit; text-decoration:none; }
+  .mwordmark em { font-style:normal; color:var(--lblue); }
+  .mnav { display:flex; gap:14px; font-size:12.5px; font-weight:600;
+          letter-spacing:.08em; color:var(--grey); }
+  .mnav b { color:var(--text); border-bottom:2px solid var(--lblue); padding-bottom:5px; }
+
+  /* hover treatments */
+  .w1 a:hover, .w1 a:hover em { color:#fff; }
+  .w2 a:hover em { color:var(--text); }
+  .w3 a { border-bottom:2px solid transparent; padding-bottom:5px; }
+  .w3 a:hover { border-bottom-color:var(--lblue); }
+  /* w4: nothing */
+
+  /* mini main + masthead variants */
+  .mmain { max-width:920px; margin:0 auto; padding:0 22px 26px; }
+  .mintro { font-size:13px; color:var(--soft); line-height:1.65; padding:18px 2px 4px; }
+  .mintro b { color:var(--text); font-weight:600; }
+  .i-left { max-width:640px; }
+  .i-center { max-width:640px; margin:0 auto; text-align:center; }
+  .i-grid { max-width:854px; margin:0 auto; text-align:left; }
+
+  /* placeholder card row (alignment context only, not live cards) */
+  .mgrid { display:grid; grid-template-columns:repeat(3,270px); gap:22px 22px;
+           justify-content:center; padding:16px 0 4px; }
+  .mcard { width:270px; height:198px; border-radius:12px; background:var(--card);
+           border:1px solid var(--cedge); padding:15px; }
+  .mname { font-size:24px; font-weight:800; letter-spacing:.04em; color:var(--text); }
+  .msub { font-family:var(--mono); font-size:9.5px; color:var(--soft); margin-top:5px; }
+  .mbnd { display:flex; height:14px; border-radius:7px; overflow:hidden; margin-top:12px; }
+  .mbnd i { flex:1; }
+  .mrow { height:30px; border-bottom:1px solid var(--rowline); }
+  .wcand { margin:26px 0; }
+</style>
+</head><body>
+<div class="bb">
+  <h1>METRO <em>MATCH</em> &middot; MASTHEAD + WORDMARK BOARD</h1>
+  <p>Two judgments, nothing live changes before your verdict. The card rows
+  are placeholder outlines: the question is where the masthead block sits
+  against the header frame and the grid edges, not the cards themselves.
+  Hover the wordmark in section W: each one is live.</p>
+  <section class="cand"><h2>M1 &middot; LEFT AT THE FRAME (pre-D35 alignment, framed)</h2><p class="note">The masthead returns to left-aligned at the content column edge, where the wordmark also sits now. The text edge and the card edge still differ: the deck centers inside the column.</p><div class="stage"><div class="mhead"><div class="mframe"><span class="mwordmark w2"><a href="#nogo">METRO <em>MATCH</em></a></span><span class="mnav"><b>THE DECK</b><span>THE BATTLE</span><span>THE DAILY</span><span>METHOD</span></span></div></div><div class="mmain"><p class="mintro i-left">Stat cards for the world&rsquo;s great metro systems, every number dated and sourced. <b>Each card has three faces: scale, character, the map. Flip to cycle them; pick a stat and beat the cpu; one guess a day in the daily.</b></p><div class="mgrid"><div class="mcard"><div class="mname">TOKYO</div><div class="msub">13 lines &middot; Metro + Toei</div><span class="mbnd"><i style="background:#f62e36"></i><i style="background:#00a23f"></i><i style="background:#0079c2"></i><i style="background:#ff9500"></i><i style="background:#9c5e31"></i><i style="background:#794698"></i></span><div class="mrow"></div><div class="mrow"></div></div><div class="mcard"><div class="mname">SEOUL</div><div class="msub">13 lines &middot; Metro + Toei</div><span class="mbnd"><i style="background:#f62e36"></i><i style="background:#00a23f"></i><i style="background:#0079c2"></i><i style="background:#ff9500"></i><i style="background:#9c5e31"></i><i style="background:#794698"></i></span><div class="mrow"></div><div class="mrow"></div></div><div class="mcard"><div class="mname">SINGAPORE</div><div class="msub">13 lines &middot; Metro + Toei</div><span class="mbnd"><i style="background:#f62e36"></i><i style="background:#00a23f"></i><i style="background:#0079c2"></i><i style="background:#ff9500"></i><i style="background:#9c5e31"></i><i style="background:#794698"></i></span><div class="mrow"></div><div class="mrow"></div></div></div></div></div></section><section class="cand"><h2>M2 &middot; CENTERED (what is live now, the reference)</h2><p class="note">The masthead centers over the centered deck: one axis, but centered ragged body text is the thing that reads weird.</p><div class="stage"><div class="mhead"><div class="mframe"><span class="mwordmark w2"><a href="#nogo">METRO <em>MATCH</em></a></span><span class="mnav"><b>THE DECK</b><span>THE BATTLE</span><span>THE DAILY</span><span>METHOD</span></span></div></div><div class="mmain"><p class="mintro i-center">Stat cards for the world&rsquo;s great metro systems, every number dated and sourced. <b>Each card has three faces: scale, character, the map. Flip to cycle them; pick a stat and beat the cpu; one guess a day in the daily.</b></p><div class="mgrid"><div class="mcard"><div class="mname">TOKYO</div><div class="msub">13 lines &middot; Metro + Toei</div><span class="mbnd"><i style="background:#f62e36"></i><i style="background:#00a23f"></i><i style="background:#0079c2"></i><i style="background:#ff9500"></i><i style="background:#9c5e31"></i><i style="background:#794698"></i></span><div class="mrow"></div><div class="mrow"></div></div><div class="mcard"><div class="mname">SEOUL</div><div class="msub">13 lines &middot; Metro + Toei</div><span class="mbnd"><i style="background:#f62e36"></i><i style="background:#00a23f"></i><i style="background:#0079c2"></i><i style="background:#ff9500"></i><i style="background:#9c5e31"></i><i style="background:#794698"></i></span><div class="mrow"></div><div class="mrow"></div></div><div class="mcard"><div class="mname">SINGAPORE</div><div class="msub">13 lines &middot; Metro + Toei</div><span class="mbnd"><i style="background:#f62e36"></i><i style="background:#00a23f"></i><i style="background:#0079c2"></i><i style="background:#ff9500"></i><i style="background:#9c5e31"></i><i style="background:#794698"></i></span><div class="mrow"></div><div class="mrow"></div></div></div></div></div></section><section class="cand"><h2>M3 &middot; LEFT AT THE GRID EDGE (recommended)</h2><p class="note">Left-aligned text whose block is exactly as wide as the deck grid, so the masthead's left edge locks to the first card's left edge at every column count. Editorial text, deck stays centered, no stray edges.</p><div class="stage"><div class="mhead"><div class="mframe"><span class="mwordmark w2"><a href="#nogo">METRO <em>MATCH</em></a></span><span class="mnav"><b>THE DECK</b><span>THE BATTLE</span><span>THE DAILY</span><span>METHOD</span></span></div></div><div class="mmain"><p class="mintro i-grid">Stat cards for the world&rsquo;s great metro systems, every number dated and sourced. <b>Each card has three faces: scale, character, the map. Flip to cycle them; pick a stat and beat the cpu; one guess a day in the daily.</b></p><div class="mgrid"><div class="mcard"><div class="mname">TOKYO</div><div class="msub">13 lines &middot; Metro + Toei</div><span class="mbnd"><i style="background:#f62e36"></i><i style="background:#00a23f"></i><i style="background:#0079c2"></i><i style="background:#ff9500"></i><i style="background:#9c5e31"></i><i style="background:#794698"></i></span><div class="mrow"></div><div class="mrow"></div></div><div class="mcard"><div class="mname">SEOUL</div><div class="msub">13 lines &middot; Metro + Toei</div><span class="mbnd"><i style="background:#f62e36"></i><i style="background:#00a23f"></i><i style="background:#0079c2"></i><i style="background:#ff9500"></i><i style="background:#9c5e31"></i><i style="background:#794698"></i></span><div class="mrow"></div><div class="mrow"></div></div><div class="mcard"><div class="mname">SINGAPORE</div><div class="msub">13 lines &middot; Metro + Toei</div><span class="mbnd"><i style="background:#f62e36"></i><i style="background:#00a23f"></i><i style="background:#0079c2"></i><i style="background:#ff9500"></i><i style="background:#9c5e31"></i><i style="background:#794698"></i></span><div class="mrow"></div><div class="mrow"></div></div></div></div></div></section>
+  <h2 style="margin-top:46px">W &middot; wordmark hover (hover each)</h2>
+  <div class="wcand"><h3>W1 &middot; WHOLE MARK LIFTS</h3><p class="note">Both words go full white on hover; one motion, no two-tone flicker.</p><div class="mhead"><div class="mframe"><span class="mwordmark w1"><a href="#nogo">METRO <em>MATCH</em></a></span><span class="mnav"><b>THE DECK</b><span>THE BATTLE</span><span>THE DAILY</span><span>METHOD</span></span></div></div></div><div class="wcand"><h3>W2 &middot; MATCH FLIPS (what is live now, the reference)</h3><p class="note">Only the blue MATCH turns white; the flagged awkward one.</p><div class="mhead"><div class="mframe"><span class="mwordmark w2"><a href="#nogo">METRO <em>MATCH</em></a></span><span class="mnav"><b>THE DECK</b><span>THE BATTLE</span><span>THE DAILY</span><span>METHOD</span></span></div></div></div><div class="wcand"><h3>W3 &middot; NAV UNDERLINE (recommended)</h3><p class="note">Hover draws the same blue underline the active nav tab wears: the page's existing link grammar, colours stay put.</p><div class="mhead"><div class="mframe"><span class="mwordmark w3"><a href="#nogo">METRO <em>MATCH</em></a></span><span class="mnav"><b>THE DECK</b><span>THE BATTLE</span><span>THE DAILY</span><span>METHOD</span></span></div></div></div><div class="wcand"><h3>W4 &middot; NO HOVER</h3><p class="note">Cursor only; the logo is quietly clickable and never changes.</p><div class="mhead"><div class="mframe"><span class="mwordmark w4"><a href="#nogo">METRO <em>MATCH</em></a></span><span class="mnav"><b>THE DECK</b><span>THE BATTLE</span><span>THE DAILY</span><span>METHOD</span></span></div></div></div>
+</div>
+</body></html>
