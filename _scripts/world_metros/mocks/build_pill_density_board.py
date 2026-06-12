@@ -26,7 +26,9 @@ sys.path.insert(0, WM)
 import build_metro_cards as bmc  # noqa: E402
 
 BAND_THRESHOLD = 16
-CITIES = ["tokyo", "seoul", "beijing"]
+# Tokyo (13, reference, keeps pills) then the seam + extremes by line count:
+# Guangzhou 19, NYC 23, Seoul 24, Beijing 27 all band in C2 (over 16).
+CITIES = ["tokyo", "guangzhou", "nyc", "seoul", "beijing"]
 
 
 def band_front(meta, stats, city):
@@ -37,7 +39,9 @@ def band_front(meta, stats, city):
         return bmc.card_front(meta, stats, city, deck=True)
     deck_no = "%02d" % (bmc.ROSTER.index(city) + 1)
     stripes = "".join('<i style="background:%s"></i>' % l["color"] for l in lines)
-    tag = "%d lines &middot; %s &middot; refs on the lore side" % (
+    # count computed from len(lines); "lines on the map side" is exact (the
+    # lore back is the diagram, which labels lines its own way, not our refs).
+    tag = "%d lines &middot; %s &middot; lines on the map side" % (
         len(lines), bmc.SCOPE_TAG[city])
     ledgers = "".join(bmc.ledger_html(stats, city, s)
                       for s in ("play", "almanac"))
