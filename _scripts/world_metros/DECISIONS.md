@@ -787,3 +787,48 @@ be smarter than this"; forms picked from the owner's own list).**
   parity-checked 30/30 days against the page's real JS. Known property:
   hash collisions can repeat a question within a week or two (one in the
   current 30-day window); a no-repeat window is a possible follow-up.
+
+**D31 · Second set recomposed + named: SCALE / CHARACTER - RATIFIED
+2026-06-12 (owner, resolving D29's open naming and the research-chip menu).**
+_Numbering note: D30 (the daily revamp) was appended this session, so the
+research-chip resolution is D31._
+The background research chip from D29 returned a ranked menu (six parallel
+agents verified coverage across all 18 cities against live sources). Owner
+picks, composed from that menu:
+- **Swap, not add (owner): drop `newest line`, add `BIGGEST HUB`.** Newest
+  line was redundant growth with new-lines (both cluster the fast-growers at
+  2024-25); biggest hub is a NEW computed lens, the most counted lines that
+  meet at one station complex. It is free: the per-complex line-sets already
+  drive interchange, so `max(len(rs))` is one line in build_page_geometry.py.
+  All-18, low-freshness (snapshot-grade), spread 2 (Cairo, Delhi, Mexico
+  City, Istanbul) to 9 (NYC), London 6 at King's Cross, Copenhagen 4.
+- **Relabel the interchange-share row `transfer stations`** (owner flagged
+  bare "interchange 22%" as confusing: the percent hid its denominator). The
+  internal stat key stays `interchange`; only the visible label changed.
+  Biggest hub is worded as a line COUNT, never a percent, so the two
+  connectivity stats never blur. Both read NYC high for the same
+  service-sharing reason (Method notes it).
+- **Set NAMES: PLAY -> SCALE, ALMANAC -> CHARACTER** (display text only; the
+  data-set keys stay play/almanac, so app.js and style.css are untouched).
+  CHARACTER (5): base fare, driverless, transfer stations, biggest hub, new
+  lines. Battle and daily stay bound to SCALE (the six).
+- **Cut after research (do not re-propose):** step-free accessibility (11/18,
+  four incompatible definitions), platform screen doors (9-13/18, ten cities
+  mid-rollout = freshness trap), rolling stock (no consistent unit across the
+  18: cars vs trainsets vs vehicles), average/commercial speed (4/18 publish
+  it), busiest single station (10-12/18). Top design speed is comparable but
+  mostly measures "has an airport express", so it stays out. Deepest station
+  passed (15-17/18, wide spread) but the owner declined it. Women-only-car
+  and 24-hour service are lore-fact grade, not stat grade.
+- **Data:** biggest_hub computed from the frozen 2026-06-12 snapshot via the
+  cached validator GeoJSON (no network, no drift: meta.json gains the one
+  field, every other value byte-identical, as_of preserved).
+- **Verified:** regenerated, DOM-probed at 375/768/1280 (1/2/3 columns, no
+  overflow), toggle switches sets, battle stays SCALE-only (no biggest_hub
+  leak), console clean. Open polish: `transfer stations` wraps to two lines
+  on the narrow card (contained, no overlap or card growth, the CHARACTER
+  rows carry the padding for it); `transfers` is a one-word single-line
+  alternative if the owner prefers uniform single-line labels.
+- **Ship state:** built on the gate-3 lineage (this branch fast-forwarded
+  onto it); the whole gate-3 body (D25-D31) is not yet merged to master, so
+  the merge to live is the owner's gate call, not an automatic push.

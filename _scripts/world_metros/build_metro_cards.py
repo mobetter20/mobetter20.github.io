@@ -16,9 +16,10 @@ Design state baked in:
     pipeline landed.
   - D21 name Metro Match; scope rider-B, frozen per city at D25.
   - D23+D27 roster: 18 cards in the owner's ranked order (Osaka, Istanbul appended).
-  - D24 themes: CORE / SERVICE / MONEY stat sets switched at deck level;
-    themed figures are dated almanac snapshots, never live utility info.
-    Battle and daily run on the core six only (full coverage there).
+  - D24/D28/D31 themes: SCALE / CHARACTER stat sets switched at deck level
+    (display names; the data-set keys stay play/almanac). CHARACTER = base
+    fare, driverless, transfer stations, biggest hub, new lines. Battle and
+    daily run on the SCALE six only (full coverage there).
 
 Inputs (both committed, both offline):
   assets/meta.json                  geometry snapshot (build_page_geometry.py)
@@ -211,28 +212,31 @@ def stat_table(meta, alm):
         dict(key="ridership", set="play", label="ridership", win="high",
              values={k: a[k]["ridership"]["annual_m"] for k in ROSTER},
              disp={k: fmt_riders(a[k]["ridership"]["annual_m"]) for k in ROSTER}),
-        # ALMANAC (D28): base fare (uniform-FX USD), driverless (GoA3+),
-        # interchange (computed 7th lens). Exact labels per owner.
+        # CHARACTER (D28 + D31): base fare (uniform-FX USD), driverless
+        # (GoA3+), transfer stations (interchange share), biggest hub (most
+        # counted lines at one complex, computed D31 from the same snapshot),
+        # new lines (growth since 2016). The redundant "newest line" was
+        # dropped at D31 (owner swap); biggest hub took its slot. Internal
+        # key "interchange" kept for the data-stat hook; label is the owner's.
         dict(key="fare", set="almanac", label="base fare", win="low",
              values={k: a[k]["fare_usd"]["value"] for k in ROSTER},
              disp={k: fmt_usd(a[k]["fare_usd"]["value"]) for k in ROSTER}),
         dict(key="driverless", set="almanac", label="driverless", win="high",
              values={k: a[k]["driverless"]["value"] for k in ROSTER},
              disp={k: f'{a[k]["driverless"]["value"]}<small> lines</small>' for k in ROSTER}),
-        dict(key="interchange", set="almanac", label="interchange", win="high",
+        dict(key="interchange", set="almanac", label="transfer stations", win="high",
              values={k: c[k]["interchange_pct"] for k in ROSTER},
              disp={k: f'{c[k]["interchange_pct"]}<small> %</small>' for k in ROSTER}),
+        dict(key="biggest_hub", set="almanac", label="biggest hub", win="high",
+             values={k: c[k]["biggest_hub"] for k in ROSTER},
+             disp={k: f'{c[k]["biggest_hub"]}<small> lines</small>' for k in ROSTER}),
         # growth, computed from the per-line opened years (low-freshness, no
-        # construction-pipeline guesswork): lines opened in the last decade,
-        # and the year of the newest line.
+        # construction-pipeline guesswork): lines opened since 2016.
         dict(key="newlines", set="almanac", label="new lines", win="high",
              values={k: sum(1 for l in a[k]["lines_opened"]["lines"]
                             if l["year"] >= 2016) for k in ROSTER},
              disp={k: f'{sum(1 for l in a[k]["lines_opened"]["lines"] if l["year"] >= 2016)}'
                       f'<small> since &rsquo;16</small>' for k in ROSTER}),
-        dict(key="newest", set="almanac", label="newest line", win="high",
-             values={k: max(l["year"] for l in a[k]["lines_opened"]["lines"]) for k in ROSTER},
-             disp={k: str(max(l["year"] for l in a[k]["lines_opened"]["lines"])) for k in ROSTER}),
     ]
     for s in stats:
         vals = {k: v for k, v in s["values"].items() if v is not None}
@@ -292,8 +296,8 @@ def ledger_html(stats, city, sset, battle=False):
 
 
 def card_front(meta, stats, city, battle=False, deck=False):
-    """The play side. deck=True carries both stat sets (PLAY + ALMANAC,
-    D28); battle cards carry PLAY only (buttons for the you-card, plain
+    """The play side. deck=True carries both stat sets (SCALE + CHARACTER,
+    D28/D31); battle cards carry SCALE only (buttons for the you-card, plain
     rows for cpu)."""
     deck_no = f"{ROSTER.index(city) + 1:02d}"
     if deck:
@@ -361,13 +365,14 @@ def deck_grid(meta, stats):
 
 
 def theme_switch():
-    # Two pills, PLAY | ALMANAC (D28). The fine-print trailer leaves the bar;
-    # Method carries the definitions and the FX date.
+    # Two pills, SCALE | CHARACTER (D31 names; replaces PLAY | ALMANAC). The
+    # data-set keys stay play/almanac (app.js + style.css switch on them);
+    # only the visible labels change. Method carries the definitions + FX date.
     return (
         '<div class="themebar" role="group" aria-label="Stat set">'
         '<span class="themecap">STATS</span>'
-        '<button type="button" class="themebtn" data-set="play" aria-pressed="true">PLAY</button>'
-        '<button type="button" class="themebtn" data-set="almanac" aria-pressed="false">ALMANAC</button>'
+        '<button type="button" class="themebtn" data-set="play" aria-pressed="true">SCALE</button>'
+        '<button type="button" class="themebtn" data-set="almanac" aria-pressed="false">CHARACTER</button>'
         '</div>')
 
 
@@ -555,7 +560,7 @@ def method_panel(meta, alm, stats):
       <p><b>The battle.</b> You hold a card face up; the cpu holds one face
       down. Pick the stat you think wins; the cards compare, and the round
       goes to the better number. First to three rounds takes the match. A
-      dead heat scores nobody. The battle runs on the PLAY set.</p>
+      dead heat scores nobody. The battle runs on the SCALE set.</p>
       <p><b>The daily.</b> One question a day, one guess, and a streak that
       lives in your browser. Some days it is a head-to-head between two
       close systems (never a blowout); some days you pick the right number
@@ -564,7 +569,7 @@ def method_panel(meta, alm, stats):
       <p><b>Win directions are fixed.</b> Opened and base fare win smaller;
       everything else wins larger.</p>
 
-      <h2>PLAY: the six</h2>
+      <h2>SCALE: the six</h2>
       <table>
         <tr><th>stat</th><th>what it measures</th><th>wins</th></tr>
         <tr><td>opened</td><td>earliest regular passenger service within the
@@ -583,7 +588,7 @@ def method_panel(meta, alm, stats):
         (almanac grade)</td><td>more</td></tr>
       </table>
 
-      <h2>ALMANAC: the three</h2>
+      <h2>CHARACTER: the five</h2>
       <p>A second switchable set. Every figure is dated; sources are in the
       almanac file in the site&rsquo;s public repo.</p>
       <table>
@@ -595,16 +600,21 @@ def method_panel(meta, alm, stats):
         <tr><td>driverless</td><td>count of GoA3+ lines (driverless, attended
         or not) within the card&rsquo;s declared scope, from Wikipedia&rsquo;s
         driverless-train-systems list</td><td>more</td></tr>
-        <tr><td>interchange</td><td>share of the card&rsquo;s station
+        <tr><td>transfer stations</td><td>share of the card&rsquo;s station
         complexes served by two or more counted lines, computed from our
         own snapshot</td><td>more</td></tr>
+        <tr><td>biggest hub</td><td>the most counted lines that meet at a
+        single station complex, computed from the same snapshot</td>
+        <td>more</td></tr>
+        <tr><td>new lines</td><td>lines that opened in the last decade (since
+        2016), counted from the per-line opening years</td><td>more</td></tr>
       </table>
-      <p>Two notes on interchange: it is computed from the same snapshot
-      as the other geometry stats, and New York reads high because
-      its lettered and numbered services share track through most stations,
-      so a single complex counts many services. The cut stats (peak headway,
-      service hours, farebox recovery) were dropped for want of one
-      comparable, current source across the deck.</p>
+      <p>Transfer stations and biggest hub are both computed from the same
+      snapshot as the other geometry stats. New York reads high on both
+      because its lettered and numbered services share track through most
+      stations, so a single complex counts many services. The cut stats
+      (peak headway, service hours, farebox recovery) were dropped for want
+      of one comparable, current source across the deck.</p>
 
       <h2>Scope: what each card counts</h2>
       <p>Each card declares its scope as <b>the network its city&rsquo;s own
@@ -624,7 +634,7 @@ def method_panel(meta, alm, stats):
         <tr><th>city</th><th>route-km</th><th>annual rides</th></tr>
         {almanac_table(alm)}
       </table>
-      <details><summary>almanac set: figures and sources</summary>
+      <details><summary>character set: figures and sources</summary>
       <table class="almtable">
         <tr><th>city</th><th>base fare (USD, {alm["fx"]["date"]} FX)</th><th>driverless (GoA3+)</th></tr>
         {alm_table}
@@ -648,7 +658,7 @@ def method_panel(meta, alm, stats):
 
 def data_json(meta, stats):
     cities = {}
-    # battle + daily are bound to the PLAY set (D28)
+    # battle + daily are bound to the SCALE set (D28/D31; key "play")
     play = [s for s in stats if s["set"] == "play"]
     for c in ROSTER:
         slug = SLUG[c]
@@ -706,7 +716,7 @@ def main():
 <meta name="robots" content="noindex"><!-- soft launch: unlisted until the owner verdict gate -->
 <meta name="theme-color" content="#0f0f12">
 <title>Metro Match</title>
-<meta name="description" content="A collectible card deck for the world's defining metro systems. Eighteen cities, honest dated stats in two sets (play and almanac), a battle and a daily guess. Trading cards with footnotes.">
+<meta name="description" content="A collectible card deck for the world's defining metro systems. Eighteen cities, honest dated stats in two sets (scale and character), a battle and a daily guess. Trading cards with footnotes.">
 <link rel="icon" href="{FAVICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -1,6 +1,6 @@
 # STATUS — Metro Match (was World Metros Atlas)
 
-_Last updated: 2026-06-12 (Claude session, branch `claude/sweet-wilbur-ff784c`: gate-3 scale-up built)._
+_Last updated: 2026-06-12 (gate-3 scale-up D25-D31 built atop `claude/sweet-wilbur-ff784c`; D31 = the second set recomposed and named SCALE / CHARACTER, biggest-hub stat added, newest-line dropped). Gate-3 (D25-D31) is not yet merged to master._
 
 ## Done
 

@@ -434,7 +434,9 @@ def main():
                              "plotted stations",
                   "span": "furthest plotted stations, geodesic",
                   "interchange": "share of station complexes whose plotted "
-                                 "points sit by 2+ counted lines"},
+                                 "points sit by 2+ counted lines",
+                  "biggest_hub": "the most counted lines meeting at one "
+                                 "station complex"},
         "cities": {},
     }
     for city, cfg in CITY_CONFIG.items():
@@ -443,6 +445,9 @@ def main():
         complexes = net["complexes"]
         interchange = (sum(1 for rs in complexes if len(rs) >= 2)
                        / len(complexes)) if complexes else 0.0
+        # biggest hub: the most counted lines meeting at one complex (D31).
+        # The complex line-sets already drive interchange, so this is free.
+        biggest_hub = max((len(rs) for rs in complexes), default=0)
         hull = convex_hull(stations)
         area = hull_area(hull)
         span = span_km(stations)
@@ -459,6 +464,7 @@ def main():
             "span_km": round(span, 1),
             "hull_km2": round(area, 1),
             "interchange_pct": round(100 * interchange),
+            "biggest_hub": biggest_hub,
             "w_km": round(max(xs) - min(xs), 1),
             "h_km": round(max(ys) - min(ys), 1),
             "lines": [{"ref": display.get(r, r),
@@ -466,7 +472,7 @@ def main():
         }
         print(f"{city:13s} {len(stations):4d} st  span {span:6.1f}  "
               f"hull {area:8.1f}  {len(idents):2d} lines  "
-              f"interchange {round(100*interchange):2d}%")
+              f"interchange {round(100*interchange):2d}%  hub {biggest_hub}")
 
     meta_path = os.path.join(OUT_DIR, "meta.json")
     with open(meta_path, "w") as fh:
