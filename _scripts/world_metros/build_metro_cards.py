@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Metro Match page generator (gate-3 state: the full deck of 16).
+"""Metro Match page generator (gate-3 + D27 state: the full deck of 18).
 
-Generates is/building/world-metros/index.html: THE DECK (16 cards in the
-owner's D23 ranked order, all live with flip-to-lore backs, three switchable
+Generates is/building/world-metros/index.html: THE DECK (18 cards in the
+owner's D23+D27 ranked order, all live with flip-to-lore backs, three switchable
 stat themes per D24), THE BATTLE (vs cpu, pick-a-stat, first to 3, ties are
 dead heats), THE DAILY (one guess a day, streak in localStorage) and METHOD
 (scopes, definitions, sources, licences).
@@ -15,7 +15,7 @@ Design state baked in:
     mono value right, deck-rank chip; density on the hull basis now that the
     pipeline landed.
   - D21 name Metro Match; scope rider-B, frozen per city at D25.
-  - D23 roster: 16 cards in the owner's ranked order.
+  - D23+D27 roster: 18 cards in the owner's ranked order (Osaka, Istanbul appended).
   - D24 themes: CORE / SERVICE / MONEY stat sets switched at deck level;
     themed figures are dated almanac snapshots, never live utility info.
     Battle and daily run on the core six only (full coverage there).
@@ -40,10 +40,11 @@ REPO = os.path.dirname(os.path.dirname(HERE))
 PAGE = os.path.join(REPO, "is", "building", "world-metros")
 ASSETS = os.path.join(PAGE, "assets")
 
-# Deck order = the owner's ranked curation (D23): the 15-list + Cairo kept.
+# Deck order = the owner's ranked curation (D23) + Osaka, Istanbul appended
+# at 17/18 (D27: deck grows to eighteen, the bench picks promoted).
 ROSTER = ["tokyo", "seoul", "singapore", "hong kong", "paris", "shanghai",
           "beijing", "london", "nyc", "madrid", "moscow", "copenhagen",
-          "delhi", "guangzhou", "mexico city", "cairo"]
+          "delhi", "guangzhou", "mexico city", "cairo", "osaka", "istanbul"]
 
 # URL-safe / filename-safe key per city (battle hashes, DOM ids, assets).
 SLUG = {c: c.replace(" ", "-") for c in ROSTER}
@@ -75,6 +76,8 @@ SYSTEM = {
     "guangzhou": "Guangzhou Metro",
     "mexico city": "Metro de la Ciudad de México",
     "cairo": "Cairo Metro",
+    "osaka": "Osaka Metro",
+    "istanbul": "Metro Istanbul",
 }
 
 EPITHET = {
@@ -94,6 +97,8 @@ EPITHET = {
     "guangzhou": "the workhorse",
     "mexico city": "the icons",
     "cairo": "the pioneer",
+    "osaka": "the merchant",
+    "istanbul": "the crossing",
 }
 
 # Line count + scope tag beside the pills (D20 ratified default: pills never
@@ -115,9 +120,11 @@ SCOPE_TAG = {
     "guangzhou": "GZ metro + Guangfo + APM",
     "mexico city": "STC metro",
     "cairo": "metro lines 1-3",
+    "osaka": "Osaka Metro, JR/monorail out",
+    "istanbul": "M-lines, Marmaray out",
 }
 
-FLAVOR = {}    # filled from almanac content pass (assert checks all 16)
+FLAVOR = {}    # filled from content.json (assert checks all of ROSTER)
 FACTS = {}     # two curated facts per lore back (D22 trim)
 CREDIT = {}    # VERBATIM from DIAGRAM-LEDGER.md
 CAVEAT = {}    # currency caveats where the ledger flags them
@@ -139,10 +146,10 @@ def load_content():
         assert city in CREDIT, f"missing credit: {city}"
 
 
-DECK_WORD = "sixteen"
+DECK_WORD = "eighteen"
 
 ORDINAL = {n: f"{n}{'th' if 10 < n % 100 < 14 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
-           for n in range(1, 17)}
+           for n in range(1, 19)}
 
 
 def load_meta():
@@ -255,7 +262,7 @@ def pills_html(meta, city):
 
 def card_foot(meta):
     return (f'<div class="cfoot">data: OSM snapshot {meta["as_of"]} (ODbL) + '
-            f'dated almanac · ranks across the deck of 16</div>')
+            f'dated almanac · ranks across the deck of {len(ROSTER)}</div>')
 
 
 def chip(rank):
@@ -466,6 +473,15 @@ def method_scope_rows():
                        "Suburbano are separate systems.",
         "cairo": "Metro lines 1-3; the LRT and the monorail are separate "
                  "systems.",
+        "osaka": "Osaka Metro's nine lines incl. the New Tram (a coequal "
+                 "line on the map); the JR Loop and the Osaka Monorail are "
+                 "distinct products. Midosuji's through-run to Minoo-kayano "
+                 "is drawn continuous, so it stays; Kintetsu and Hankyu "
+                 "through-running truncates at the boundary.",
+        "istanbul": "The branded Metro Istanbul M-lines (M1A and M1B fold "
+                    "to M1). Marmaray is TCDD commuter rail, excluded like "
+                    "Moscow's MCD; the funiculars and trams are separate "
+                    "feeder products.",
     }
     return "".join(f'<tr><td>{DISPLAY.get(c, c)}</td><td>{rows[c]}</td></tr>'
                    for c in ROSTER)
@@ -552,7 +568,7 @@ def method_panel(meta, alm, stats):
         <tr><td>ridership</td><td>reported annual rides, dated and sourced
         (almanac grade)</td><td>more</td></tr>
       </table>
-      <p>Ranks are computed across the full deck of 16. Missing evidence
+      <p>Ranks are computed across the full deck of 18. Missing evidence
       drops a row from that card rather than rendering a zero, and the
       battle and the daily run on the core six, where every card carries
       every stat.</p>
@@ -677,7 +693,7 @@ def main():
 <meta name="robots" content="noindex"><!-- soft launch: unlisted until the owner verdict gate -->
 <meta name="theme-color" content="#0f0f12">
 <title>Metro Match</title>
-<meta name="description" content="A collectible card deck for the world's defining metro systems. Sixteen cities, honest dated stats in three themes, a battle and a daily guess. Trading cards with footnotes.">
+<meta name="description" content="A collectible card deck for the world's defining metro systems. Eighteen cities, honest dated stats in three themes, a battle and a daily guess. Trading cards with footnotes.">
 <link rel="icon" href="{FAVICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -696,7 +712,7 @@ def main():
       <button type="button" role="tab" id="tab-daily" aria-controls="panel-daily" aria-selected="false" tabindex="-1">THE DAILY</button>
       <button type="button" role="tab" id="tab-method" aria-controls="panel-method" aria-selected="false" tabindex="-1">METHOD</button>
     </nav>
-    <span class="livebadge">DECK OF 16</span>
+    <span class="livebadge">DECK OF 18</span>
   </header>
 
   <main>

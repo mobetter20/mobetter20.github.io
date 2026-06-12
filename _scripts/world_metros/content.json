@@ -16,7 +16,9 @@
     "delhi": "374 route-km in barely two decades, and it pays its own way.",
     "guangzhou": "From a 5 km starter line in 1997 to 780 km today.",
     "mexico city": "A pictogram for every station, a 5-peso fare for every ride.",
-    "cairo": "Africa&rsquo;s first metro, opened 1987, still its workhorse."
+    "cairo": "Africa&rsquo;s first metro, opened 1987, still its workhorse.",
+    "osaka": "Japan&rsquo;s oldest municipal subway, anchored by the packed Midosuji spine.",
+    "istanbul": "A metro on two continents, and one of the world&rsquo;s fastest-growing."
   },
   "facts": {
     "tokyo": [
@@ -82,6 +84,14 @@
     "cairo": [
       "Africa&rsquo;s and the Middle East&rsquo;s first metro, opened 1987.",
       "Trains have carried women-only cars since 1989."
+    ],
+    "osaka": [
+      "The Midosuji Line opened in 1933 as Japan&rsquo;s first municipally run subway.",
+      "The New Tram has run as a driverless people-mover since 1981."
+    ],
+    "istanbul": [
+      "The M5, opened 2017, was Turkey&rsquo;s first driverless metro line.",
+      "Its lines run on both the European and Asian sides of the Bosphorus."
     ]
   },
   "credit": {
@@ -100,12 +110,15 @@
     "delhi": "&ldquo;Delhi Metro Network 2020&rdquo; by AshuArtsNew, Wikimedia Commons, CC BY-SA 4.0",
     "guangzhou": "&ldquo;Guangzhou Metro Network&rdquo; by Alan Fan Pei, Wikimedia Commons, CC BY-SA 4.0",
     "mexico city": "&ldquo;Plano del Metro de la Ciudad de M&eacute;xico&rdquo; by ManuelContreras1996, Wikimedia Commons, CC BY-SA 4.0",
-    "cairo": "&ldquo;Cairo Metro map&rdquo; by Momooh, Wikimedia Commons, CC0"
+    "cairo": "&ldquo;Cairo Metro map&rdquo; by Momooh, Wikimedia Commons, CC0",
+    "osaka": "&ldquo;Wide-Area Map of Osaka City Subway&rdquo; by Excl-zoo, Wikimedia Commons, public domain",
+    "istanbul": "&ldquo;Istanbul Railway Systems Network Map&rdquo; by Alikam1896, Wikimedia Commons, CC BY-SA 4.0"
   },
   "caveat": {
     "seoul": "diagram dated 2023, future lines as then planned",
     "delhi": "diagram dated 2020; Phase-4 openings not yet drawn",
     "mexico city": "diagram dated 2023, drawn to the sections then in service",
-    "nyc": "the Tauranac-form diagram, the city&rsquo;s map for 45 years"
+    "nyc": "the Tauranac-form diagram, the city&rsquo;s map for 45 years",
+    "osaka": "diagram c.2011 in the pre-2018 Municipal Subway idiom; the 2024 and 2025 extensions not drawn"
   }
 }

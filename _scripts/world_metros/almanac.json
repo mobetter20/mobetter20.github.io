@@ -1733,6 +1733,200 @@
         "source": "https://egyptianstreets.com/2026/03/27/egypt-raises-train-and-metro-ticket-prices-starting-today/",
         "note": "No published ratio; the March 2026 fare rise cited rising fuel and maintenance cost."
       }
+    },
+    "osaka": {
+      "opened": {
+        "year": 1933,
+        "what": "Midosuji Line, Umeda to Shinsaibashi, 1933: Japan's first municipally operated subway.",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "lines": [
+          {
+            "line": "Midosuji (M)",
+            "year": 1933
+          },
+          {
+            "line": "Yotsubashi (Y)",
+            "year": 1942
+          },
+          {
+            "line": "Chuo (C)",
+            "year": 1961
+          },
+          {
+            "line": "Tanimachi (T)",
+            "year": 1967
+          },
+          {
+            "line": "Sennichimae (S)",
+            "year": 1969
+          },
+          {
+            "line": "Sakaisuji (K)",
+            "year": 1969
+          },
+          {
+            "line": "New Tram (P)",
+            "year": 1981
+          },
+          {
+            "line": "Nagahori Tsurumi-ryokuchi (N)",
+            "year": 1990
+          },
+          {
+            "line": "Imazatosuji (I)",
+            "year": 2006
+          }
+        ]
+      },
+      "route_km": {
+        "value": 141,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "note": "Full network incl. the New Tram people-mover (about 133 km for the eight conventional lines)."
+      },
+      "ridership": {
+        "annual_m": 912,
+        "year": "2025",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "note": "No single annual total published; annualized from about 2.5M rides/day in 2025 (FY2013 daily was 2.464M). A derived figure."
+      },
+      "headway": {
+        "value": 2,
+        "note": "Midosuji Line, the Kansai region's busiest, about 2 min at peak.",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": null,
+        "note": "First and last train times were not sourceable on the operator or Wikipedia pages this pass; left unpublished rather than guessed.",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 1,
+        "note": "the New Tram (Nanko Port Town Line), automated since 1981.",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "as_of": "2026"
+      },
+      "fare_usd": {
+        "value": 1.18,
+        "local": "190 JPY",
+        "note": "minimum distance-band adult single.",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
+        "as_of": "2026",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": 70,
+        "year": "2024",
+        "source": "https://en.wikipedia.org/wiki/Osaka_Metro_(company)",
+        "note": "operating revenue over cost, company report."
+      }
+    },
+    "istanbul": {
+      "opened": {
+        "year": 1989,
+        "what": "M1, Aksaray to Kocatepe, 1989: the first modern metro line in Istanbul and Turkey.",
+        "source": "https://en.wikipedia.org/wiki/M1_(Istanbul_Metro)",
+        "as_of": "2026"
+      },
+      "lines_opened": {
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "lines": [
+          {
+            "line": "M1A",
+            "year": 1989
+          },
+          {
+            "line": "M2",
+            "year": 2000
+          },
+          {
+            "line": "M4",
+            "year": 2012
+          },
+          {
+            "line": "M1B",
+            "year": 2013
+          },
+          {
+            "line": "M3",
+            "year": 2013
+          },
+          {
+            "line": "M6",
+            "year": 2015
+          },
+          {
+            "line": "M5",
+            "year": 2017
+          },
+          {
+            "line": "M7",
+            "year": 2020
+          },
+          {
+            "line": "M9",
+            "year": 2021
+          },
+          {
+            "line": "M8",
+            "year": 2023
+          },
+          {
+            "line": "M11",
+            "year": 2023
+          }
+        ]
+      },
+      "route_km": {
+        "value": 247.7,
+        "as_of": "2026",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "note": "M-lines only; Marmaray, trams and funiculars excluded. The per-line table sums higher because M1A/M1B share a trunk."
+      },
+      "ridership": {
+        "annual_m": 613,
+        "year": "2023",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "note": "Infobox figure (612.9M), explicitly excludes the M11 airport line; no all-line total is published."
+      },
+      "headway": {
+        "value": 3,
+        "note": "peak interval across the network, about 3 min.",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "as_of": "2026"
+      },
+      "span_h": {
+        "value": 18,
+        "note": "weekday service roughly 06:00 to 24:00.",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "as_of": "2026"
+      },
+      "driverless": {
+        "value": 4,
+        "note": "M5 (Turkey's first driverless line), M7, M8 and M9, fully automated.",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "as_of": "2026"
+      },
+      "fare_usd": {
+        "value": 0.86,
+        "local": "40 TRY",
+        "note": "flat Istanbulkart single; Turkish fares rise often, so the lira figure dates fast.",
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "as_of": "2026",
+        "fx_as_of": "2026-06-12"
+      },
+      "farebox": {
+        "value": null,
+        "year": null,
+        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
+        "note": "No farebox recovery figure published."
+      }
     }
   }
 }
