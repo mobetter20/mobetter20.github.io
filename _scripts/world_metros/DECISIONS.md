@@ -471,3 +471,49 @@ are some text so small"). Resolutions:
   2–3) to fit the larger type; the through-running scope point lives on
   Method. Re-verified 375/768/1280, keyboard, reduced-motion, console
   clean. Gate unchanged: owner verdict on the revised live page.
+
+**D23 · Roster recurated: the owner's ranked 16 — RATIFIED 2026-06-12
+(owner-directed at the D22 page review; picks recorded verbatim from the
+session log after a crash-rewind).**
+Owner, on the live page: questioned Cairo's seat ("is there a reason we
+have cairo versus other metro systems?") and supplied a ranked 15-list
+with a one-line reason per city (Tokyo, Seoul, Singapore, Hong Kong,
+Paris, Shanghai, Beijing, London, New York, Madrid, Moscow, Copenhagen,
+Delhi, Guangzhou-or-Shenzhen, Mexico City). Forks asked and picked:
+- **Keep Cairo → deck of 16** (it was D3's only Africa rep, holds the
+  ledger's cleanest diagram: CC0, current, tap-ready; "the African
+  pioneer, 1987" fits the owner's distinct-model grammar).
+- **Guangzhou takes the Pearl River Delta seat** (over Shenzhen).
+- **Deck order = the owner's ranking** (Cairo 16th). The D16-era roster
+  order dies; deck numbers renumber.
+Consequences: D3 is superseded (12 → 16). Beijing's "why not" entry
+reverses: Beijing joins as the capital mega-system, and Method's
+absence-is-content note now names Shenzhen, Osaka, São Paulo, Istanbul
+and Mumbai as the ones outside the deck. The four newcomers (Beijing,
+Madrid, Copenhagen, Guangzhou) need BOTH audits at scale-up: the OSM
+validator source check (Beijing already GOOD in DATA-CONTRACT's table;
+Madrid/Copenhagen/Guangzhou not yet audited) and a DIAGRAM-LEDGER stanza
+(none of the four audited). Until then their soon cards read "diagram
+audit pending", never claiming a sourced lore back.
+Same round, same owner message, all shipped with this entry: masthead
+paragraph replaced (owner: "not sure what it is trying to convey"; pick:
+premise + verbs: "Stat cards for the world's great metro systems, every
+number dated and sourced. Flip a card for the lore; pick a stat and beat
+the cpu; one guess a day in the daily."), nav tabs to the sans stack at
+12.5px/600 (owner disliked the mono nav font and its legibility), and a
+further daily type bump (the iOS-legibility flag: head/stat/meta/verdict
+/streak/note all up one step).
+
+**D24 · Themed stat sets ride the scale-up — RATIFIED 2026-06-12 (owner
+idea at the D22 review; sequencing pick recorded).**
+Owner: "its a shame we dont give other interesting info like frequency
+and fare and integration etc. maybe we have different themes of info that
+the deck entries changes per the theme?" Pick: **build themes into the
+roster scale-up** (not this build, not a separate later phase). Design
+note for the scale-up: themes are alternate stat SETS on the same card
+object (e.g. service: frequency/hours; money: fares/farebox; integration:
+through-running/airport link), switched at deck level. The D2 tension is
+real and recorded: fares were cut at D2 over the freshness treadmill;
+themes revive such facts as dated almanac snapshots (source + as-of,
+annual refresh per D6), never as live utility info. Nothing themed
+renders in this build; the generator carries the decision as a comment.

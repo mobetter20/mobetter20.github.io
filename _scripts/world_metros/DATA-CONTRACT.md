@@ -29,9 +29,17 @@ Audit results, all candidates **GOOD** (raw GeoJSON size; build will simplify):
 | Cairo | `cairo` | 176 KB |
 | Moscow | `moscow` | 1.13 MB (proposed add, D3) |
 | Hong Kong | `hong_kong` | 1.05 MB (proposed add, D3) |
-| Beijing | `beijing` | 688 KB (proposed "why not" entry, D3) |
+| Beijing | `beijing` | 688 KB (D3 "why not" → IN the deck at D23) |
 
 Re-verify any time: `python3 _scripts/world_metros/audit_osm_sources.py`.
+
+**D23 roster delta (2026-06-12):** the deck is now the owner's ranked 16.
+Beijing joins (already GOOD above). **Madrid, Copenhagen and Guangzhou are
+not yet audited here** — add them to the candidate list and re-run the
+audit at scale-up, and give all four newcomers DIAGRAM-LEDGER stanzas
+(none audited there either). Each also needs a system-scope entry below
+before extraction (e.g. Guangzhou vs Foshan through-running, Copenhagen
+M1–M4 only, Madrid Metro vs Metro Ligero).
 
 ## Refresh / freeze discipline
 

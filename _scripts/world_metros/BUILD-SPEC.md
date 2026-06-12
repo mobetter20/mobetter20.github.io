@@ -16,7 +16,8 @@ game. Trading cards with footnotes.
 
 ## Surfaces (one URL)
 
-1. **THE DECK** — the landing: all 12 cards (D3 roster), collection grid.
+1. **THE DECK** — the landing: all 16 cards (D23: the owner's ranked
+   roster, superseding D3's twelve), collection grid.
    Cards flip: **front for play, back for lore** (D18).
 2. **THE BATTLE** — vs cpu, Top-Trumps loop: see your card, pick a stat, beat
    the hidden opponent card; first to 3. Stable per-pair URLs survive from
@@ -24,13 +25,14 @@ game. Trading cards with footnotes.
 3. **THE DAILY** — one guess a day ("which plots more stations?"), streak in
    localStorage. Consciously un-defers D16's reveal-on-tap guessing.
 4. **METHOD** — scope rules, definitions, sources, as-of dates, licences, win
-   directions, and the "why not X" section (Beijing, …). Absence is content.
-   Unchanged role from the atlas contract.
+   directions, per-city "why it's in" reasons ("Why sixteen", D23), and the
+   absence note (Shenzhen, Osaka, São Paulo, Istanbul, Mumbai). Absence is
+   content. Unchanged role from the atlas contract.
 
 ## Card grammar (D18, ratified)
 
 - **Front (play side):** city name + epithet (the sprawl / the mesh / the two
-  crews / …), deck number `NN/12` in roster order, line pills carrying the
+  crews / …), deck number `NN/16` in roster order (D23), line pills carrying the
   real refs in the operators' colours (the identity device, rendered purely
   from OSM data; compact above 12 lines) with a line-count + scope tag beside
   them ("8 lines · 2–9 shown": pills never silently claim completeness), six
@@ -66,7 +68,7 @@ game. Trading cards with footnotes.
 The lines→density swap is D20-ratified (the pills + a header count tag
 carry line identity; density restores winner spread and makes the mesh
 playable). Ranks and track positions are computed across the full deck of
-12 at pipeline stage (the mocks footnote "live deck of 3" until then); win
+16 at pipeline stage (the mocks footnote "live deck of 3" until then); win
 directions are fixed above and explained on Method. Interchange share remains a candidate
 seventh stat if the pipeline resolves it cleanly per the lens definition.
 Missing evidence renders **Unknown** and excludes that stat from battles for
@@ -91,10 +93,12 @@ that card; never shown as zero.
    DAILY + METHOD with the three live cities real, nine cards "soon" —
    BUILT 2026-06-12 (D21; `build_metro_cards.py`). Owner verdict on the
    live page is the open gate.
-3. **Roster scale-up** to all 12 (D3) with frozen scope rules under
-   rider-scope B (D21; Seoul L1 is the hard one), per-line opened-year
-   sourcing, full-deck ranks, lore backs per DIAGRAM-LEDGER. Naming is
-   settled (Metro Match, D21).
+3. **Roster scale-up** to all 16 (D23) with frozen scope rules under
+   rider-scope B (D21; Seoul L1 is the hard one), the dual audit for the
+   four D23 newcomers (OSM validator + DIAGRAM-LEDGER stanzas), per-line
+   opened-year sourcing, full-deck ranks, lore backs per DIAGRAM-LEDGER,
+   and the D24 themed stat sets (dated almanac snapshots, annual refresh).
+   Naming is settled (Metro Match, D21).
 
 ## Soft-launch conditions (repo norm, unchanged)
 

@@ -15,6 +15,9 @@ Design state baked in:
     + scope tag beside the pills; 2-3 curated facts on lore backs.
   - D21 name: Metro Match (ratified); scope: rider-scope (B), binds at the
     roster scale-up.
+  - D23 roster: 16 cards in the owner's ranked order (15-list + Cairo kept;
+    Guangzhou takes the PRD seat). Unaudited newcomers' soon cards say so.
+  - D24: themes ship WITH the scale-up; nothing themed renders yet here.
 
 Stats come from the committed assets/meta.json snapshot (never fetched);
 diagram attributions are VERBATIM from DIAGRAM-LEDGER.md. style.css and
@@ -32,9 +35,10 @@ REPO = os.path.dirname(os.path.dirname(HERE))
 PAGE = os.path.join(REPO, "is", "building", "world-metros")
 ASSETS = os.path.join(PAGE, "assets")
 
-# Roster order = deck order (established at the D16 gallery board; Paris 09).
-ROSTER = ["shanghai", "tokyo", "seoul", "hong kong", "singapore", "delhi",
-          "moscow", "london", "paris", "nyc", "mexico city", "cairo"]
+# Deck order = the owner's ranked curation (D23): the 15-list + Cairo kept.
+ROSTER = ["tokyo", "seoul", "singapore", "hong kong", "paris", "shanghai",
+          "beijing", "london", "nyc", "madrid", "moscow", "copenhagen",
+          "delhi", "guangzhou", "mexico city", "cairo"]
 LIVE = ["seoul", "paris", "tokyo"]  # battle/daily availability order
 
 DISPLAY = {"nyc": "new york"}  # card face shows the city, not the acronym
@@ -86,14 +90,18 @@ CREDIT = {
 # Currency caveats where the ledger flags them.
 CAVEAT = {"seoul": "diagram dated 2023, future lines as then planned"}
 
-# The nine pipeline cities: chosen-diagram licence from the DIAGRAM-LEDGER
-# summary (each lore back is already sourced and licence-verified).
+# Pipeline cities with a DIAGRAM-LEDGER entry: chosen-diagram licence from
+# the summary table (lore back already sourced and licence-verified).
+# D23 newcomers (beijing, madrid, copenhagen, guangzhou) are NOT here on
+# purpose: their soon cards say the audit is pending, never claim sourced.
 LEDGER_LICENSE = {
     "shanghai": "CC BY-SA 4.0", "hong kong": "public domain",
     "singapore": "CC BY-SA 3.0", "delhi": "CC BY-SA 4.0",
     "moscow": "CC BY-SA 4.0", "london": "CC BY-SA 4.0",
     "nyc": "CC BY-SA 3.0", "mexico city": "CC BY-SA 4.0", "cairo": "CC0",
 }
+
+DECK_WORD = "sixteen"
 
 ORDINAL = {1: "1st", 2: "2nd", 3: "3rd"}
 
@@ -175,11 +183,11 @@ def card_front(meta, stats, city, battle=False):
     # declared scope, and Seoul's scope is the open freeze). They return at
     # the roster scale-up; Method still documents them as the six-stat model.
     return (f'<article class="card cfront" '
-            f'aria-label="{DISPLAY.get(city, city)}, {EPITHET[city]}, card {deck_no} of 12">'
+            f'aria-label="{DISPLAY.get(city, city)}, {EPITHET[city]}, card {deck_no} of {len(ROSTER)}">'
             f'<div class="chead"><div class="cid">'
             f'<div class="cname">{DISPLAY.get(city, city)}</div>'
             f'<div class="cepi">{EPITHET[city]}</div></div>'
-            f'<div class="cno">{deck_no}/12</div></div>'
+            f'<div class="cno">{deck_no}/{len(ROSTER)}</div></div>'
             f'{pills_html(meta, city)}'
             f'<div class="cledger">{"".join(rows)}</div>'
             f'{card_foot(meta)}</article>')
@@ -211,18 +219,24 @@ def card_deck_back(meta, label_id=""):
             f'aria-label="Face-down card: the Metro Match deck back">'
             f'<div class="pinstripes">{stripes}</div>'
             f'<div class="backband"><div class="backmark">METRO MATCH</div>'
-            f'<div class="backsub">twelve systems · one deck</div></div></div>')
+            f'<div class="backsub">{DECK_WORD} systems · one deck</div></div></div>')
 
 
 def card_soon(city):
     deck_no = f"{ROSTER.index(city) + 1:02d}"
     name = DISPLAY.get(city, city)
-    return (f'<div class="card csoon" aria-label="{name}, card {deck_no} of 12, '
+    return (f'<div class="card csoon" aria-label="{name}, card {deck_no} of {len(ROSTER)}, '
             f'in the pipeline">'
             f'<div class="chead"><div class="cid"><div class="cname">{name}</div>'
-            f'</div><div class="cno">{deck_no}/12</div></div>'
+            f'</div><div class="cno">{deck_no}/{len(ROSTER)}</div></div>'
             f'<div class="soonmid"><span class="soonchip">SOON</span></div>'
-            f'<div class="cfoot">diagram sourced · {LEDGER_LICENSE[city]}</div></div>')
+            f'<div class="cfoot">{soon_foot(city)}</div></div>')
+
+
+def soon_foot(city):
+    if city in LEDGER_LICENSE:
+        return f"diagram sourced · {LEDGER_LICENSE[city]}"
+    return "diagram audit pending"
 
 
 def deck_grid(meta, stats):
@@ -303,10 +317,8 @@ def daily_panel():
         </div>
         <div class="dverdict" id="d-verdict" tabindex="-1" aria-live="polite" hidden></div>
         <div class="dstreak" id="d-streak"></div>
-        <div class="dnote">one guess a day, and the stat rotates: opened,
-        stations, span, density. The streak lives in this browser; counts
-        are plotted from the dated OSM snapshot. Live deck of three, the
-        pool deepens as cards land.</div>
+        <div class="dnote">the stat rotates daily · the streak lives in
+        this browser · live deck of three for now</div>
       </div>
     </div>"""
 
@@ -343,7 +355,7 @@ def method_panel(meta, stats):
         sourced (almanac grade; in the pipeline)</td><td>more</td></tr>
       </table>
       <p>Ranks are computed across the live deck of {len(LIVE)}; the full
-      deck of 12 takes over at the pipeline stage. Missing evidence renders
+      deck of 16 takes over at the pipeline stage. Missing evidence renders
       <b>Unknown</b>, never zero, and Unknown sits out battles.</p>
 
       <h2>Scope: what a card counts</h2>
@@ -378,16 +390,28 @@ def method_panel(meta, stats):
       <p>Official schematic artwork appears nowhere on this site: the major
       operators enforce copyright on their map artwork, so the
       long-maintained Commons recreations are the legal route to the
-      familiar map. The nine pipeline cities are already sourced and
-      licence-verified the same way.</p>
+      familiar map. Twelve of the sixteen backs are already sourced and
+      licence-verified this way; Madrid, Copenhagen, Beijing and Guangzhou
+      get the same audit before their cards land (their slots say so).</p>
 
-      <h2>Why twelve, and why not Beijing</h2>
-      <p>The deck is twelve category-defining systems, not a top-N:
-      Shanghai, Tokyo, Seoul, Hong Kong, Singapore, Delhi, Moscow, London,
-      Paris, New York, Mexico City, Cairo. <b>Beijing stays out
-      deliberately</b>: Shanghai holds the China-mega seat, and a deck of
-      every mega-system would be a different, duller product. Absence is
-      content.</p>
+      <h2>Why sixteen</h2>
+      <p>The deck is sixteen systems, each here for a different reason, not
+      a top-N: <b>Tokyo</b> (the integration story: metro, JR and private
+      rail as one ecosystem), <b>Seoul</b> (the strongest daily-use megacity
+      metro), <b>Singapore</b> (the controlled-system model), <b>Hong
+      Kong</b> (reliability and the rail-plus-property model), <b>Paris</b>
+      (the dense core), <b>Shanghai</b> (21st-century scale), <b>Beijing</b>
+      (the capital mega-system, the longest network), <b>London</b> (the
+      original), <b>New York</b> (the 24-hour giant), <b>Madrid</b> (the
+      most network for its size), <b>Moscow</b> (the palace stations),
+      <b>Copenhagen</b> (the small automated counter-example to
+      biggest-equals-best), <b>Delhi</b> (the rapid-growth story outside
+      China), <b>Guangzhou</b> (the Pearl River Delta seat), <b>Mexico
+      City</b> (Latin America&rsquo;s essential workhorse), <b>Cairo</b>
+      (the African pioneer, 1987).</p>
+      <p>Absence is still content: <b>Shenzhen</b> lost the Pearl River
+      Delta seat to Guangzhou; Osaka, S&atilde;o Paulo, Istanbul and Mumbai
+      wait outside the deck.</p>
     </div>"""
 
 
@@ -460,17 +484,15 @@ def main():
       <button type="button" role="tab" id="tab-daily" aria-controls="panel-daily" aria-selected="false" tabindex="-1">THE DAILY</button>
       <button type="button" role="tab" id="tab-method" aria-controls="panel-method" aria-selected="false" tabindex="-1">METHOD</button>
     </nav>
-    <span class="livebadge">3 OF 12 LIVE</span>
+    <span class="livebadge">3 OF 16 LIVE</span>
   </header>
 
   <main>
 
     <section id="panel-deck" role="tabpanel" aria-labelledby="tab-deck">
-      <p class="intro">A collectible card deck for the world&rsquo;s defining
-      metro systems. Every city is one card, honest dated data is the
-      content, and comparison is the game: flip a card for its lore side,
-      then take the deck into the battle or the daily.
-      <b>Trading cards with footnotes.</b></p>
+      <p class="intro">Stat cards for the world&rsquo;s great metro systems,
+      every number dated and sourced. <b>Flip a card for the lore; pick a
+      stat and beat the cpu; one guess a day in the daily.</b></p>
       <div class="deckgrid">{deck_grid(meta, stats)}</div>
     </section>
 

@@ -130,24 +130,44 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/exciting-shaw-1ae32b`)
   lore backs trimmed to two facts to fit the larger type. Re-verified
   375/768/1280, keyboard, reduced-motion, console clean.
 
+- D23 + D24 (2026-06-12): owner reviewed the D22 page and recurated the
+  roster with a ranked 15-list + reasons; picks: keep Cairo (deck of 16),
+  Guangzhou for the PRD seat, deck order = the ranking. Beijing's "why
+  not" reverses; Method now carries per-city reasons ("Why sixteen") and
+  the new absence list (Shenzhen, Osaka, São Paulo, Istanbul, Mumbai).
+  Newcomers' soon cards say "diagram audit pending" (dual audit due at
+  scale-up). Same round: masthead replaced (premise + verbs), nav tabs to
+  sans 12.5px/600, daily type up a step (iOS flag). Themes (frequency /
+  fares / integration as switchable stat sets) ratified to BUILD INTO the
+  scale-up (D24); nothing themed renders yet. NOTE: the session that took
+  these picks crashed (oversized screenshots) and was rewound; the picks
+  were recovered verbatim from the session JSONL and re-recorded here.
+  Standing norm from that crash: no screenshots in this project's
+  sessions; verify by DOM probes and open the preview URL for the owner.
+
 ## Current gate: owner verdict on the revised live page
 
 All design gates, naming and scope are resolved (C ground, V1 ledger,
-density swap, Metro Match, rider-scope B); the D21 page was then polished
-on owner feedback (D22). The deck is live at
-https://ajin.im/is/building/world-metros/ (still noindex/unlisted). The
-owner judges the revised live page; that verdict opens or closes gate 3.
+density swap, Metro Match, rider-scope B); the page was then polished on
+owner feedback twice (D22: rows/daily/legibility; D23/D24: roster of 16,
+masthead, nav, daily type, themes deferred to scale-up). The deck is live
+at https://ajin.im/is/building/world-metros/ (still noindex/unlisted).
+The owner judges the revised live page; that verdict opens or closes
+gate 3.
 
 ## Next exact action (after the owner verdict)
 
-Roster scale-up to all 12 (BUILD-SPEC gate 3): freeze per-city scope rules
-under rider-scope B (DATA-CONTRACT: Seoul L1 is the hard one; freeze and
-record each rule on Method), per-line opened-year sourcing, full-deck rank
-computation across 12, route-km + ridership as dated almanac rows, and the
-nine remaining lore backs per DIAGRAM-LEDGER. Lifting any soft-launch norm
-stays an owner call after that gate. Also pending in the main checkout:
-register `build_metro_cards.py` in the untracked `publish.sh` (worktrees
-cannot reach it).
+Roster scale-up to all 16 (BUILD-SPEC gate 3, now per the D23 roster):
+dual audit for the four newcomers (OSM validator source check for Madrid /
+Copenhagen / Guangzhou; DIAGRAM-LEDGER stanzas for all four incl.
+Beijing), freeze per-city scope rules under rider-scope B (DATA-CONTRACT:
+Seoul L1 is the hard one; freeze and record each rule on Method), per-line
+opened-year sourcing, full-deck rank computation across 16, route-km +
+ridership as dated almanac rows, the thirteen remaining lore backs, and
+the D24 theme design (alternate stat sets, dated almanac snapshots).
+Lifting any soft-launch norm stays an owner call after that gate. Also
+pending in the main checkout: register `build_metro_cards.py` in the
+untracked `publish.sh` (worktrees cannot reach it).
 
 ## Blockers
 
