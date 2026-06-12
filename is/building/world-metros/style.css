@@ -115,8 +115,9 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
   letter-spacing: .04em;
 }
 
-/* Column count is locked to 1 / 2 / 4 (never 3): 16 cards land in even
-   rows at every width. The 3-col band (~906-1200px) would orphan one card. */
+/* Column count is locked to 1 / 2 / 3 (never 4): 18 cards land in even
+   rows at every width (18 = 1x18 = 2x9 = 3x6). The owner reversed the old
+   1/2/4 lock at D27 ("3 per row was much better"). */
 .deckgrid {
   display: grid; grid-template-columns: repeat(1, 270px);
   justify-content: center; gap: 30px 26px; padding: 22px 0 8px;
@@ -124,8 +125,8 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 @media (min-width: 612px) {
   .deckgrid { grid-template-columns: repeat(2, 270px); }
 }
-@media (min-width: 1206px) {
-  .deckgrid { grid-template-columns: repeat(4, 270px); }
+@media (min-width: 906px) {
+  .deckgrid { grid-template-columns: repeat(3, 270px); }
 }
 
 .cardunit { display: flex; flex-direction: column; gap: 9px; align-items: center; }
