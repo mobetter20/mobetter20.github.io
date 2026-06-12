@@ -776,3 +776,14 @@ be smarter than this"; forms picked from the owner's own list).**
 - Method's daily paragraph documents both forms. Verified by simulating
   14 dated challenges (all duels close, all picks well-formed) plus live
   plays of both forms, 375/1280, console clean.
+- _Revision (2026-06-12, owner review of the bank):_ the date hash gained
+  an avalanche finalizer. Without it, consecutive dates correlated (the
+  same city six pick-days running, exact question repeats a week apart);
+  with it the 30-day simulation interleaves cities and forms cleanly.
+  The full question space is enumerable: 176 eligible duels + 108 pick
+  questions = 284. `mocks/build_daily_bank_board.py` bakes the complete
+  bank plus the literal next-120-day schedule for owner review
+  (`mocks/daily-bank-board.html`), with its Python selection logic
+  parity-checked 30/30 days against the page's real JS. Known property:
+  hash collisions can repeat a question within a week or two (one in the
+  current 30-day window); a no-repeat window is a possible follow-up.

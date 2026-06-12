@@ -274,7 +274,15 @@ function localDateStr(d) {
 function hashStr(s) {
   let h = 0;
   for (let i = 0; i < s.length; i += 1) h = (h * 31 + s.charCodeAt(i)) >>> 0;
-  return h;
+  // avalanche finalizer: consecutive date strings differ in one trailing
+  // character, and without this the daily clustered (same city six days
+  // running, exact repeats a week apart)
+  h ^= h >>> 16;
+  h = Math.imul(h, 0x45d9f3b) >>> 0;
+  h ^= h >>> 16;
+  h = Math.imul(h, 0x45d9f3b) >>> 0;
+  h ^= h >>> 16;
+  return h >>> 0;
 }
 
 // a duel is only fair when the values are close: within 30 percent, or
