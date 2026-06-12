@@ -462,12 +462,13 @@ button.crow[aria-disabled="true"]:hover { background: none; }
   display: flex; align-items: center; gap: 12px;
   padding: 9px 1px; border-bottom: 1px solid var(--rowline);
 }
-.rkrow.podium { padding: 13px 1px; }
+/* Podium emphasis flattened (owner, 2026-06-13): the top-3 bigger font read
+   as weird; all rows are uniform now, the 1ST/2ND/3RD chip carries rank. The
+   .podium class hook stays inert in the markup. */
 .rkname {
   font-size: 13px; font-weight: 700; letter-spacing: .05em;
   text-transform: uppercase; color: var(--body);
 }
-.rkrow.podium .rkname { font-size: 16px; color: var(--text); }
 .rkband {
   display: flex; width: 64px; height: 8px; border-radius: 4px;
   overflow: hidden; margin-left: auto; flex: none;
@@ -477,7 +478,6 @@ button.crow[aria-disabled="true"]:hover { background: none; }
   font-family: var(--mono); font-size: 15px; font-weight: 500;
   white-space: nowrap; min-width: 86px; text-align: right;
 }
-.rkrow.podium .rkval { font-size: 19px; }
 .rkval small { font-size: 9px; color: var(--grey); letter-spacing: .04em; font-weight: 400; }
 .rkrace {
   font-family: var(--mono); font-size: 10.5px; color: var(--grey);
