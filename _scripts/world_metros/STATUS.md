@@ -215,6 +215,12 @@ _Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 m
   authorized publish ("u can put it on metromatch... i will be
   testing"); soft-launch norms stay while the owner tests live.
 
+- D35 (2026-06-12, owner-directed during live testing): header polish.
+  The chrome joins main's column via an .hframe, the masthead centers
+  over the deck (the page's one left-anchored stray), the DECK OF 18
+  badge is cut (soft-launch leftover), and the wordmark links to #deck
+  as the in-app way back. Verified 375/768/1280/1990, console clean.
+
 ## Current gate: owner live-testing the shipped deck
 
 The deck of 18 (gate 3, D25-D31) + this session's D32-D34 are LIVE at

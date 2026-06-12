@@ -994,3 +994,25 @@ but dont list on building page yet. i will be testing": publish
 authorized (push/PR/merge), soft-launch norms STAY (noindex, no
 sitemap, no /is/building hub card, no home teaser) while the owner
 tests live.
+
+**D35 · Header polish: one frame, no badge, wordmark is the way back -
+RATIFIED 2026-06-12 (owner flagged the badge, the dead wordmark and the
+horizontal misalignment; picked the recommended slate: B + cut + #deck).**
+- **Alignment (option B):** the header content moves into an `.hframe`
+  that mirrors main's column exactly (max-width 1240, same side padding),
+  so the chrome and the content share one frame at every width (measured:
+  wordmark x equals the masthead text edge at 1990 and 1280). The
+  masthead paragraph centers over the centered deck, joining the one axis
+  every other surface already uses (deck, battle, daily, method); it was
+  the page's only left-anchored stray.
+- **DECK OF 18 badge CUT:** it was the soft-launch progress badge ("3 OF
+  16 LIVE"); with the full deck live it repeated what the masthead and
+  every card number already say. Styles pruned.
+- **Wordmark clickable:** METRO MATCH links to #deck (an in-page anchor:
+  exempt from the analytics.js new-tab retarget, handled by the existing
+  hash router), so the logo acts as the app's way back to the deck from
+  battle / daily / method. The way home to ajin.im stays the footer
+  colophon, per the bespoke-tier rule.
+- Verified by DOM probe: frame alignment at 1990/1280, intro-grid axis
+  delta 0, wordmark click returns battle to deck, nav wrap at 375, no
+  overflow at 375/768/1280, console clean.
