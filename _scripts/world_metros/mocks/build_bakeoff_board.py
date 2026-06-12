@@ -138,7 +138,7 @@ def octi_cell(city):
 
 def diagram_cell(city):
     fname, credit = DIAGRAM_META[city]
-    rel = f"../../../is/building/world-metros/assets/{fname}"
+    rel = f"../../../is/building/metro-match/assets/{fname}"
     return (f'<div class="cell"><img src="{rel}" alt="{city} familiar diagram">'
             f'<div class="credit">{credit}</div></div>')
 
