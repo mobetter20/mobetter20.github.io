@@ -511,6 +511,17 @@ surfaces for visitors as each card's own lore-back facts at scale-up.
 With Beijing in the deck, no absence demands an on-page explanation;
 "absence is content" retires with D3's roster. Method ends on the
 licensing story.
+*Revision 2 (2026-06-12, owner: "to fill up the row, how about 18 cards
+instead of 16?"):* measured first: the deck grid was even at 4-col
+desktop and 2-col tablet; only the 3-column band (~906-1200px windows)
+orphaned one card, and 18 would have evened that band while breaking
+full desktop (4-4-4-4-2; only multiples of 12 are even at both). Owner
+picked the grid fix over the roster change: **deck stays 16; the grid's
+column count is locked to 1 / 2 / 4 and never renders 3 columns**
+(style.css media queries replace auto-fit). Verified even rows with no
+overflow at 375 / 768 / 1000 / 1280. Bench note, should the deck ever
+grow: the owner's picks for two more seats are **Osaka and Istanbul**
+(over São Paulo and Mumbai).
 
 **D24 · Themed stat sets ride the scale-up — RATIFIED 2026-06-12 (owner
 idea at the D22 review; sequencing pick recorded).**
