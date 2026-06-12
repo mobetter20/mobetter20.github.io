@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Metro Match page generator (gate-3 + D27 state: the full deck of 18).
 
-Generates is/building/world-metros/index.html: THE DECK (18 cards in the
+Generates is/building/metro-match/index.html: THE DECK (18 cards in the
 owner's D23+D27 ranked order, all live with flip-to-lore backs, three switchable
 stat themes per D24), THE BATTLE (vs cpu, pick-a-stat, first to 3, ties are
 dead heats), THE DAILY (one guess a day, streak in localStorage) and METHOD
@@ -37,7 +37,7 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
-PAGE = os.path.join(REPO, "is", "building", "world-metros")
+PAGE = os.path.join(REPO, "is", "building", "metro-match")
 ASSETS = os.path.join(PAGE, "assets")
 
 # Deck order = the owner's ranked curation (D23) + Osaka, Istanbul appended

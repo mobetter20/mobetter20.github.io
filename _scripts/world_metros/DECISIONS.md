@@ -842,3 +842,21 @@ minute;..."):
   unclipped, 375/768/1280 at 1/2/3 columns with no overflow, console
   clean. Board restamped as the round's record. The card-IA round is
   closed; the deck-of-18 ship gate remains the separate pending yes.
+
+**D31 · URL moves to /is/building/metro-match/ - RATIFIED 2026-06-12
+(owner: "it should not be world metro in URL but metro match. Check
+with me before publish"; supersedes D21's "the URL stays" note).**
+The page directory moved wholesale (index.html, style.css, app.js,
+assets/) to `is/building/metro-match/`; a noindex meta-refresh stub
+(house redirect pattern, canonical to the new URL) sits at the old
+`world-metros` path, since that URL has been live soft-launched since
+2026-06-11. Functional path updates: `build_metro_cards.py` PAGE,
+`build_page_geometry.py` OUT_DIR, the two living mock boards' absolute
+style/asset links (regenerated); living docs (README, BUILD-SPEC,
+DIAGRAM-LEDGER, repo CLAUDE.md) updated. Internal names deliberately
+stay: the `_scripts/world_metros/` dev dir, the `world-metros-atlas`
+registry stanza, and historical URLs inside past DECISIONS/STATUS
+entries (history is history). The registry stanza gains the new URL at
+ship time. Per the owner's note, NOTHING IS PUBLISHED: the move is
+committed on the branch and rides the same single ship gate (owner
+check before push/PR/merge).

@@ -218,6 +218,13 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/sweet-wilbur-ff784c`: 
   (1/2/3 cols, no overflow, 18 backs unclipped, console clean). Board
   restamped as the round's record. D30 resolutions in DECISIONS.
 
+- D31 (2026-06-12): URL moved to `/is/building/metro-match/`
+  (owner-directed; supersedes D21's "URL stays world-metros"). Directory
+  moved wholesale, noindex redirect stub at the old path, generator +
+  geometry OUT_DIR + living mocks + living docs updated, page
+  regenerated and re-verified at the new URL. Committed on the branch;
+  NOT published (owner check gates the push).
+
 ## Current gate: owner verdict on the deck of 18 (the ship gate)
 
 One gate left. The deck of 18 (gate 3 + D27) plus the D30 card-IA
@@ -236,10 +243,11 @@ want of a sourced figure).
 On the owner's yes: push `claude/nervous-lehmann-d7c660` (it contains
 `claude/sweet-wilbur-ff784c`; ship the one branch), open the PR,
 squash-merge WITHOUT `--delete-branch`, then delete the remote branch by
-hand. Then update the `~/projects.md` (`world-metros-atlas`) stanza, and
-register `build_metro_cards.py` + `build_page_geometry.py` in the
-untracked `publish.sh` in the MAIN checkout (worktrees cannot reach it;
-this STATUS note carries the reminder until then). Lifting any
+hand. Then update the `~/projects.md` (`world-metros-atlas`) stanza
+(incl. the new `/is/building/metro-match/` URL, D31), and register
+`build_metro_cards.py` + `build_page_geometry.py` in the untracked
+`publish.sh` in the MAIN checkout (worktrees cannot reach it; this
+STATUS note carries the reminder until then). Lifting any
 soft-launch norm (index, sitemap, hub card, home teaser) stays a
 SEPARATE owner call after this gate.
 

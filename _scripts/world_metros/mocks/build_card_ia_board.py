@@ -128,7 +128,7 @@ def back_html(city, flavor, facts, strip=""):
     name = bmc.DISPLAY.get(city, city)
     cls = "card cback bfit" if strip else "card cback"
     return (f'<article class="{cls}" aria-label="{name} lore side">'
-            f'<div class="lart"><img src="/is/building/world-metros/assets/{bmc.diagram_file(city)}" '
+            f'<div class="lart"><img src="/is/building/metro-match/assets/{bmc.diagram_file(city)}" '
             f'alt="{html_mod.escape(bmc.SYSTEM[city])} network diagram"></div>'
             f'<div class="lband"><div class="lname">{name}</div>'
             f'<div class="lsys">{bmc.EPITHET[city]}</div>'
@@ -697,7 +697,7 @@ def main():
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/is/building/world-metros/style.css">
+<link rel="stylesheet" href="/is/building/metro-match/style.css">
 <style>{board_css}</style>
 </head><body>
   <div class="iahead">
