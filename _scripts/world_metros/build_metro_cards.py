@@ -224,7 +224,7 @@ def stat_table(meta, alm):
         dict(key="driverless", set="almanac", label="driverless", win="high",
              values={k: a[k]["driverless"]["value"] for k in ROSTER},
              disp={k: f'{a[k]["driverless"]["value"]}<small> lines</small>' for k in ROSTER}),
-        dict(key="interchange", set="almanac", label="transfer stations", win="high",
+        dict(key="interchange", set="almanac", label="transfer", win="high",
              values={k: c[k]["interchange_pct"] for k in ROSTER},
              disp={k: f'{c[k]["interchange_pct"]}<small> %</small>' for k in ROSTER}),
         dict(key="biggest_hub", set="almanac", label="biggest hub", win="high",
@@ -600,7 +600,7 @@ def method_panel(meta, alm, stats):
         <tr><td>driverless</td><td>count of GoA3+ lines (driverless, attended
         or not) within the card&rsquo;s declared scope, from Wikipedia&rsquo;s
         driverless-train-systems list</td><td>more</td></tr>
-        <tr><td>transfer stations</td><td>share of the card&rsquo;s station
+        <tr><td>transfer</td><td>share of the card&rsquo;s station
         complexes served by two or more counted lines, computed from our
         own snapshot</td><td>more</td></tr>
         <tr><td>biggest hub</td><td>the most counted lines that meet at a
@@ -609,7 +609,7 @@ def method_panel(meta, alm, stats):
         <tr><td>new lines</td><td>lines that opened in the last decade (since
         2016), counted from the per-line opening years</td><td>more</td></tr>
       </table>
-      <p>Transfer stations and biggest hub are both computed from the same
+      <p>Transfer and biggest hub are both computed from the same
       snapshot as the other geometry stats. New York reads high on both
       because its lettered and numbered services share track through most
       stations, so a single complex counts many services. The cut stats

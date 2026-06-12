@@ -832,3 +832,8 @@ picks, composed from that menu:
 - **Ship state:** built on the gate-3 lineage (this branch fast-forwarded
   onto it); the whole gate-3 body (D25-D31) is not yet merged to master, so
   the merge to live is the owner's gate call, not an automatic push.
+- _Revision (2026-06-12, owner):_ the card label is **`transfer`** (not
+  `transfer stations`), which also resolves the two-line wrap; single line
+  at every width. Owner then opened the gate: the whole gate-3 body
+  (D25-D31) is squash-merged to master, so the soft-launched deck-of-18 is
+  now the live page (noindex/unlisted norms unchanged).
