@@ -1,6 +1,6 @@
 # STATUS — Metro Match (was World Metros Atlas)
 
-_Last updated: 2026-06-12 (Claude session, branch `claude/exciting-shaw-1ae32b`)._
+_Last updated: 2026-06-12 (Claude session, branch `claude/sweet-wilbur-ff784c`: gate-3 scale-up built)._
 
 ## Done
 
@@ -146,32 +146,46 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/exciting-shaw-1ae32b`)
   Standing norm from that crash: no screenshots in this project's
   sessions; verify by DOM probes and open the preview URL for the owner.
 
-## Current gate: owner verdict on the revised live page
+- BUILD-SPEC gate 3 BUILT (2026-06-12): the roster scale-up to all 16
+  shipped to the deck. Dual audit done (Madrid/Copenhagen/Guangzhou GOOD
+  on the OSM validator; DIAGRAM-LEDGER stanzas for all four newcomers,
+  licences read off the Commons pages, structures graded on the downloaded
+  files; all 16 lore-back diagrams committed). Per-city scopes FROZEN
+  under rider-scope B (D25; Seoul L1 closes IN as the whole capital
+  corridor the familiar map draws; Guangfo / Copenhagen M1-M4 / Madrid
+  Metro-not-ML / Moscow incl. MCC / HK incl. Airport Express all recorded
+  on Method + DATA-CONTRACT). Pipeline rebuilt for 16 cities (hull
+  density, named-complex station counts, exact span; `meta.json`
+  committed). Almanac researched against live pages (opened + per-line
+  years, route-km, ridership, and the theme figures, each dated + sourced
+  in `almanac.json`; Seoul ridership = the scope-matched capital-region
+  4.42B from Korea Railroad Statistics). D24 themes ship as CORE / SERVICE
+  / MONEY switchable stat sets, every figure a dated snapshot. Battle +
+  daily run the full deck on the core six (battles can tie). Verified at
+  375/768/1280, columns lock 1/2/4, keyboard-playable, reduced-motion
+  intact, console clean, no overflow, soft-launch norms kept (noindex, not
+  in sitemap, no hub card, no home teaser). D25/D26 in DECISIONS.
 
-All design gates, naming and scope are resolved (C ground, V1 ledger,
-density swap, Metro Match, rider-scope B); the page was then polished on
-owner feedback twice (D22: rows/daily/legibility; D23/D24: roster of 16,
-masthead, nav, daily type, themes deferred to scale-up). The deck is live
-at https://ajin.im/is/building/world-metros/ (still noindex/unlisted).
-The owner judges the revised live page; that verdict opens or closes
-gate 3.
+## Current gate: owner verdict on the gate-3 page
 
-## Next exact action (after the owner verdict)
+The gate-3 scale-up is built, verified and committed on the branch
+(`claude/sweet-wilbur-ff784c`), and shown to the owner in Arc against the
+local preview. The owner's verdict on this page is the open gate. Two
+items carried to that review: the 13 new epithets (creative calls) and the
+notable Seoul-tops-ridership claim (a consequence of the full-capital
+scope; sourced, with the per-operator-boarding methodology noted).
 
-Roster scale-up to all 16 (BUILD-SPEC gate 3, now per the D23 roster):
-dual audit for the four newcomers (OSM validator source check for Madrid /
-Copenhagen / Guangzhou; DIAGRAM-LEDGER stanzas for all four incl.
-Beijing), freeze per-city scope rules under rider-scope B (DATA-CONTRACT:
-Seoul L1 is the hard one; freeze and record each rule on Method), per-line
-opened-year sourcing, full-deck rank computation across 16, route-km +
-ridership as dated almanac rows, the thirteen remaining lore backs, and
-the D24 theme design (alternate stat sets, dated almanac snapshots).
-Lifting any soft-launch norm stays an owner call after that gate. Also
-pending in the main checkout: register `build_metro_cards.py` in the
-untracked `publish.sh` (worktrees cannot reach it).
+## Next exact action
+
+On the owner's yes: push the branch, open the PR, squash-merge WITHOUT
+`--delete-branch`, then delete the remote branch by hand. Then update the
+`~/projects.md` (`world-metros-atlas`) stanza, and register
+`build_metro_cards.py` + `build_page_geometry.py` in the untracked
+`publish.sh` in the MAIN checkout (worktrees cannot reach it; this STATUS
+note carries the reminder until then). Lifting any soft-launch norm
+(index, sitemap, hub card, home teaser) stays a SEPARATE owner call after
+this gate.
 
 ## Blockers
 
-None. (Seoul L1 scope freeze is deliberately deferred to the pipeline
-stage, DATA-CONTRACT.md — this build keeps the mocks' lines 2–9 scope
-behind the scope tag.)
+None. Owner verdict pending (supervision gate for this big creative round).
