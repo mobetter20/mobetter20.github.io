@@ -450,10 +450,9 @@ def method_scope_rows():
                  "scope boundary (the familiar Tokyo Subway map stops there).",
         "seoul": "The full capital-region network the familiar map draws, "
                  "incl. Line 1's long Korail corridors, the K-lines, GTX-A, "
-                 "AREX, the light metros and Incheon 1-2. One snapshot gap: "
-                 "Sinbundang is in the declared scope but its OSM validator "
-                 "export is empty, so plotted counts omit it until the "
-                 "snapshot heals.",
+                 "AREX, the light metros, Incheon 1-2 and Sinbundang (whose "
+                 "validator export is empty, so it rides from a committed "
+                 "OpenStreetMap supplement, fetched 2026-06-12).",
         "singapore": "MRT lines only; the LRT feeders are a distinct product "
                      "on the LTA map.",
         "hong kong": "MTR heavy rail incl. the Airport Express and the "
@@ -571,13 +570,13 @@ def method_panel(meta, alm, stats):
         <tr><td>opened</td><td>earliest regular passenger service within the
         card&rsquo;s declared scope, the system&rsquo;s own dating, from
         operator histories</td><td>earlier</td></tr>
-        <tr><td>stations</td><td>station complexes plotted from the frozen
+        <tr><td>stations</td><td>station complexes counted from the frozen
         snapshot: named stations, same-name platforms merged within 350 m,
         interchanges counted once</td><td>more</td></tr>
         <tr><td>span</td><td>the furthest-stations distance: the geodesic
-        between the two plotted stations farthest apart</td><td>more</td></tr>
+        between the two stations farthest apart</td><td>more</td></tr>
         <tr><td>density</td><td>stations per square km of network extent,
-        the convex hull of the plotted stations</td><td>more</td></tr>
+        the convex hull of the counted stations</td><td>more</td></tr>
         <tr><td>route-km</td><td>reported route length, dated and sourced
         (almanac grade)</td><td>more</td></tr>
         <tr><td>ridership</td><td>reported annual rides, dated and sourced
@@ -597,11 +596,11 @@ def method_panel(meta, alm, stats):
         or not) within the card&rsquo;s declared scope, from Wikipedia&rsquo;s
         driverless-train-systems list</td><td>more</td></tr>
         <tr><td>interchange</td><td>share of the card&rsquo;s station
-        complexes whose plotted points sit by two or more counted lines,
-        computed from our own snapshot</td><td>more</td></tr>
+        complexes served by two or more counted lines, computed from our
+        own snapshot</td><td>more</td></tr>
       </table>
-      <p>Two notes on interchange: it is computed from the same plotted
-      snapshot as the other geometry stats, and New York reads high because
+      <p>Two notes on interchange: it is computed from the same snapshot
+      as the other geometry stats, and New York reads high because
       its lettered and numbered services share track through most stations,
       so a single complex counts many services. The cut stats (peak headway,
       service hours, farebox recovery) were dropped for want of one

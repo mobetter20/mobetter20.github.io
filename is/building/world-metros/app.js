@@ -234,7 +234,7 @@ const STORE_KEY = 'metro-match-daily';
    cities' real figures nearest the truth. */
 const DUEL_Q = {
   opened: 'Which opened earlier?',
-  stations: 'Which plots more stations?',
+  stations: 'Which has more stations?',
   span: 'Which reaches further?',
   density: 'Which packs stations tighter?',
   routekm: 'Which reports more route-km?',
@@ -242,7 +242,7 @@ const DUEL_Q = {
 };
 const DUEL_VERB = {
   opened: 'opened earlier',
-  stations: 'plots more stations',
+  stations: 'has more stations',
   span: 'reaches further',
   density: 'packs them tighter',
   routekm: 'reports more route-km',
@@ -250,7 +250,7 @@ const DUEL_VERB = {
 };
 const PICK_Q = {
   opened: 'When did %C% open?',
-  stations: 'How many stations does %C% plot?',
+  stations: 'How many stations does %C% have?',
   span: 'How far apart are %C%\u2019s furthest stations?',
   density: 'How many stations per square km does %C% pack?',
   routekm: 'How many route-km does %C% report?',
@@ -258,7 +258,7 @@ const PICK_Q = {
 };
 const PICK_LEAD = {
   opened: 'opened in',
-  stations: 'plots',
+  stations: 'has',
   span: 'spans',
   density: 'packs',
   routekm: 'reports',

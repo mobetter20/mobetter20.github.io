@@ -363,6 +363,9 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 }
 .dq { font-size: 22px; font-weight: 800; letter-spacing: .02em; margin-top: 8px; color: var(--text); }
 .dchoices { display: flex; gap: 18px; justify-content: center; align-items: center; margin-top: 26px; }
+/* display:flex above would beat the [hidden] attribute (same trap as
+   #panel-daily below): hide the inactive question form explicitly */
+#d-duel[hidden], #d-mc[hidden] { display: none; }
 .dchoice {
   width: 184px; background: var(--card); border: 1px solid var(--cedge);
   border-radius: 12px; padding: 22px 14px 18px; cursor: pointer;
