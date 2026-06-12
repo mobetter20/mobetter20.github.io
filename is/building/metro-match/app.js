@@ -15,7 +15,7 @@ const upper = (k) => CITIES[k].name.toUpperCase();
 
 // ------------------------------------------------------------------- tabs
 
-const TAB_NAMES = ['deck', 'battle', 'daily', 'method'];
+const TAB_NAMES = ['deck', 'battle', 'daily', 'ranks', 'method'];
 const tabs = TAB_NAMES.map((n) => $('tab-' + n));
 const panels = TAB_NAMES.map((n) => $('panel-' + n));
 
@@ -488,6 +488,18 @@ pickButtons().forEach((btn, i) => {
   btn.addEventListener('click', () => {
     if (btn.getAttribute('aria-disabled') === 'true') return;
     guessDaily(i);
+  });
+});
+
+// ------------------------------------------------------------------ ranks
+
+const rkBtns = Array.from(document.querySelectorAll('.rkbtn'));
+rkBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    rkBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    document.querySelectorAll('.rklist').forEach((l) => {
+      l.hidden = l.dataset.stat !== btn.dataset.stat;
+    });
   });
 });
 

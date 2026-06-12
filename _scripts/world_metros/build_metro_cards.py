@@ -545,6 +545,80 @@ def theme_table(alm, fields):
     return "".join(rows)
 
 
+WIN_PHRASE = {"opened": "earlier wins", "fare": "cheaper wins",
+              "span": "further wins", "density": "tighter wins"}
+
+RACE_UNIT = {"opened": ("{:g} years", 1), "stations": ("{:g} stations", 1),
+             "span": ("{:.1f} km", 1), "density": ("{:.3f} st/km\u00b2", 1),
+             "routekm": ("{:g} km", 1), "ridership": ("{:g}M rides a year", 1),
+             "fare": ("${:.2f}", 1), "driverless": ("{:g} lines", 1),
+             "interchange": ("{:g} points", 1), "biggest_hub": ("{:g} lines", 1),
+             "newlines": ("{:g} lines", 1)}
+
+
+def ranks_panel(meta, stats):
+    """THE RANKS (D36): every stat's full leaderboard, one stat at a time.
+    Per-stat only, never a combined score (BUILD-SPEC's explicit OUT).
+    Rows wear the card grammar (rank chip, line band, mono value); each
+    stat names its tightest adjacent race and links it into the battle."""
+    pick_groups = [("SCALE", [s for s in stats if s["set"] == "play"]),
+                   ("CHARACTER", [s for s in stats if s["set"] == "almanac"])]
+    pickers = []
+    for cap, group in pick_groups:
+        btns = "".join(
+            f'<button type="button" class="rkbtn" data-stat="{st["key"]}" '
+            f'aria-pressed="{"true" if st["key"] == "stations" else "false"}">'
+            f'{st["label"]}</button>' for st in group)
+        pickers.append(f'<span class="rkcap">{cap}</span>{btns}')
+    picker = ('<div class="rkpick" role="group" aria-label="Pick a stat">'
+              + '<span class="rksep"></span>'.join(pickers) + '</div>')
+
+    lists = []
+    for st in stats:
+        rows_sorted = sorted(ROSTER, key=lambda k: (st["ranks"][k],
+                                                    DISPLAY.get(k, k)))
+        rows = []
+        for i, city in enumerate(rows_sorted):
+            stripes = "".join(f'<i style="background:{l["color"]}"></i>'
+                              for l in meta["cities"][city]["lines"])
+            podium = " podium" if i < 3 else ""
+            rows.append(
+                f'<div class="rkrow{podium}">'
+                f'{chip(st["ranks"][city])}'
+                f'<span class="rkname">{DISPLAY.get(city, city)}</span>'
+                f'<span class="rkband" aria-hidden="true">{stripes}</span>'
+                f'<span class="rkval">{st["disp"][city]}</span></div>')
+        # the tightest adjacent race in this ranking, linked into the battle
+        best = None
+        for i in range(len(rows_sorted) - 1):
+            a, b = rows_sorted[i], rows_sorted[i + 1]
+            d = abs(st["values"][a] - st["values"][b])
+            if best is None or d < best[0]:
+                best = (d, a, b)
+        d, a, b = best
+        fmt, _ = RACE_UNIT[st["key"]]
+        if d == 0:
+            race_txt = (f'dead heat: {DISPLAY.get(a, a)} and '
+                        f'{DISPLAY.get(b, b)} tie')
+        else:
+            race_txt = (f'tightest race: {DISPLAY.get(a, a)} vs '
+                        f'{DISPLAY.get(b, b)}, {fmt.format(d)} apart')
+        race = (f'<p class="rkrace">{race_txt} \u00b7 '
+                f'<a href="#battle/{SLUG[a]}-vs-{SLUG[b]}">play it</a></p>')
+        win = WIN_PHRASE.get(st["key"], "more wins")
+        hidden = "" if st["key"] == "stations" else " hidden"
+        lists.append(
+            f'<div class="rklist" data-stat="{st["key"]}"{hidden}>'
+            f'<div class="rkhead"><span class="rkstat">{st["label"]}</span>'
+            f'<span class="rkwin">{win} \u00b7 deck of {len(ROSTER)}</span></div>'
+            f'{"".join(rows)}{race}</div>')
+
+    return (f'<div class="ranks">{picker}{"".join(lists)}'
+            f'<p class="rknote">per-stat rankings only; the deck keeps no '
+            f'combined score and crowns no best metro. Definitions and '
+            f'sources on method.</p></div>')
+
+
 def method_panel(meta, alm, stats):
     credits = "".join(f'<p class="credit">{CREDIT[c]}'
                       + (f' <span class="asof">({CAVEAT[c]})</span>' if c in CAVEAT else "")
@@ -558,6 +632,9 @@ def method_panel(meta, alm, stats):
       down. Pick the stat you think wins; the cards compare, and the round
       goes to the better number. First to three rounds takes the match. A
       dead heat scores nobody. The battle runs on the SCALE set.</p>
+      <p><b>The ranks.</b> Every stat&rsquo;s full leaderboard, one stat
+      at a time, with the same per-stat rank chips the cards wear. There is
+      no combined score and no best metro.</p>
       <p><b>The daily.</b> One question a day, one guess, and a streak that
       lives in your browser. Some days it is a head-to-head between two
       close systems (never a blowout); some days you pick the right number
@@ -737,6 +814,7 @@ def main():
       <button type="button" role="tab" id="tab-deck" aria-controls="panel-deck" aria-selected="true">THE DECK</button>
       <button type="button" role="tab" id="tab-battle" aria-controls="panel-battle" aria-selected="false" tabindex="-1">THE BATTLE</button>
       <button type="button" role="tab" id="tab-daily" aria-controls="panel-daily" aria-selected="false" tabindex="-1">THE DAILY</button>
+      <button type="button" role="tab" id="tab-ranks" aria-controls="panel-ranks" aria-selected="false" tabindex="-1">THE RANKS</button>
       <button type="button" role="tab" id="tab-method" aria-controls="panel-method" aria-selected="false" tabindex="-1">METHOD</button>
     </nav>
     </div>
@@ -758,6 +836,10 @@ def main():
 
     <section id="panel-daily" role="tabpanel" aria-labelledby="tab-daily" hidden>
       {daily_panel()}
+    </section>
+
+    <section id="panel-ranks" role="tabpanel" aria-labelledby="tab-ranks" hidden>
+      {ranks_panel(meta, stats)}
     </section>
 
     <section id="panel-method" role="tabpanel" aria-labelledby="tab-method" hidden>

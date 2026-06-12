@@ -432,6 +432,69 @@ button.crow[aria-disabled="true"]:hover { background: none; }
   max-width: 460px; margin-left: auto; margin-right: auto;
 }
 
+/* ----------------------------------------------------------------- ranks */
+
+.ranks { max-width: 680px; margin: 0 auto; padding: 8px 0 10px; }
+.rkpick {
+  display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+  padding: 16px 0 4px;
+}
+.rkcap {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .2em;
+  color: var(--grey);
+}
+.rksep { width: 10px; }
+.rkbtn {
+  background: none; border: 1px solid var(--edge); border-radius: 999px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+  color: var(--grey); padding: 6px 12px; cursor: pointer;
+  text-transform: uppercase;
+}
+.rkbtn:hover { color: var(--body); border-color: var(--chipedge); }
+.rkbtn[aria-pressed="true"] {
+  background: var(--blue); border-color: var(--blue); color: #fff;
+}
+.rkhead {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 18px 1px 8px; border-bottom: 1px solid var(--edge);
+}
+.rkstat {
+  font-size: 15px; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text);
+}
+.rkwin { font-family: var(--mono); font-size: 9.5px; color: var(--grey); letter-spacing: .08em; }
+.rkrow {
+  display: flex; align-items: center; gap: 12px;
+  padding: 9px 1px; border-bottom: 1px solid var(--rowline);
+}
+.rkrow.podium { padding: 13px 1px; }
+.rkname {
+  font-size: 13px; font-weight: 700; letter-spacing: .05em;
+  text-transform: uppercase; color: var(--body);
+}
+.rkrow.podium .rkname { font-size: 16px; color: var(--text); }
+.rkband {
+  display: flex; width: 64px; height: 8px; border-radius: 4px;
+  overflow: hidden; margin-left: auto; flex: none;
+}
+.rkband i { flex: 1; }
+.rkval {
+  font-family: var(--mono); font-size: 15px; font-weight: 500;
+  white-space: nowrap; min-width: 86px; text-align: right;
+}
+.rkrow.podium .rkval { font-size: 19px; }
+.rkval small { font-size: 9px; color: var(--grey); letter-spacing: .04em; font-weight: 400; }
+.rkrace {
+  font-family: var(--mono); font-size: 10.5px; color: var(--grey);
+  letter-spacing: .04em; padding: 12px 1px 2px; line-height: 1.6;
+}
+.rkrace a { color: var(--lblue); text-decoration: none; }
+.rkrace a:hover { text-decoration: underline; }
+.rknote {
+  font-family: var(--mono); font-size: 9.5px; color: var(--faint);
+  line-height: 1.7; padding-top: 18px; letter-spacing: .03em;
+}
+
 /* ---------------------------------------------------------------- method */
 
 .method { max-width: 680px; margin: 0 auto; padding: 8px 0 10px; }
@@ -492,7 +555,7 @@ footer .made:hover { color: var(--body); }
   header { padding: 13px 0 9px; }
   .hframe { gap: 12px; padding: 0 16px; }
   nav[role="tablist"] { order: 3; width: 100%; gap: 0; justify-content: space-between; }
-  nav[role="tablist"] button { padding: 6px 4px 7px; font-size: 11.5px; letter-spacing: .04em; }
+  nav[role="tablist"] button { padding: 6px 2px 7px; font-size: 10.5px; letter-spacing: .02em; }
   main { padding: 0 16px 28px; }
   .deckgrid { gap: 24px 18px; }
   #panel-daily { justify-content: flex-start; min-height: auto; padding-top: 26px; }

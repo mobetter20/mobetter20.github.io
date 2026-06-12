@@ -1072,3 +1072,28 @@ Verified: corrected values + recomputed ranks, all lore + Method strings on
 the rendered page, the stub hash-carry, console clean. The fact-check was
 high quality (9 of 10 findings had a real kernel; only "invalidates rankings"
 and the Beijing-1969 "error" overstated).
+
+**D36 · THE RANKS: per-stat leaderboards join the nav - RATIFIED
+2026-06-12 (owner asked whether a rank page would be good, took the
+assessment's yes + guardrails, then "ok do it now").**
+- The missing comparison mode: cards answer one city, the battle answers
+  a pair; THE RANKS answers the field. A fifth tab between THE DAILY and
+  METHOD; route #ranks via the existing hash router.
+- **Guardrail 1, per-stat only:** a stat picker (grouped SCALE /
+  CHARACTER, the same labels the card faces wear) shows ONE ranked list
+  at a time, 18 rows, all eleven stats. No combined score, no best metro
+  (BUILD-SPEC's explicit OUT; the panel footnote and Method say so).
+- **Guardrail 2, deck grammar:** rows wear the card parts (rank chip,
+  city, line band, mono value); the top three rows read as the podium
+  (larger type). Every list ends with its tightest adjacent race linked
+  into the battle (#battle/a-vs-b; the in-page anchor is retarget-exempt
+  and the router starts the pairing clean), or names the dead heat where
+  two cities tie. Ranks are the same competition ranking the cards carry;
+  ties share ordinals.
+- Mobile: the five-tab nav tightens to 10.5px at 640 and fits one line
+  at 375.
+- Verified by DOM probe: 11 lists x 18 rows, podium 3, picker switches,
+  the stations race (Guangzhou 325 vs London 323) jumps into the battle
+  at 0-0 with that pair, fare list shows the Guangzhou - Mexico City
+  dead heat, keyboard arrow-cycle covers all five tabs, no overflow at
+  375/768/1280, console clean.
