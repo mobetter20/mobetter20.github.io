@@ -101,27 +101,28 @@ EPITHET = {
     "istanbul": "the crossing",
 }
 
-# Line count + scope tag beside the pills (D20 ratified default: pills never
-# silently claim completeness). One line each; detail lives on Method (D25).
+# The scope half of the card subtitle: plain words for what the card
+# COUNTS. Exclusions are not abbreviated here ("X out" read as jargon,
+# owner flag 2026-06-12); Method's scope table carries them in sentences.
 SCOPE_TAG = {
     "tokyo": "Metro + Toei",
     "seoul": "capital region network",
     "singapore": "MRT only",
-    "hong kong": "MTR rail, light rail out",
+    "hong kong": "MTR heavy rail only",
     "paris": "full Métro",
-    "shanghai": "metro proper, maglev out",
+    "shanghai": "metro lines only",
     "beijing": "full mapped network",
     "london": "Underground only",
-    "nyc": "subway services, S as one",
-    "madrid": "Metro only, ML out",
-    "moscow": "metro + MCC, MCD out",
+    "nyc": "subway only",
+    "madrid": "Metro only",
+    "moscow": "metro + MCC ring",
     "copenhagen": "metro M1-M4",
     "delhi": "DMRC + airport line",
-    "guangzhou": "GZ metro + Guangfo + APM",
+    "guangzhou": "metro + Guangfo + APM",
     "mexico city": "STC metro",
     "cairo": "metro lines 1-3",
-    "osaka": "Osaka Metro, JR/monorail out",
-    "istanbul": "M-lines, Marmaray out",
+    "osaka": "Osaka Metro only",
+    "istanbul": "metro M-lines only",
 }
 
 FLAVOR = {}    # filled from content.json (assert checks all of ROSTER)
@@ -304,9 +305,9 @@ def card_front(meta, stats, city, battle=False, deck=False):
             f'aria-label="{DISPLAY.get(city, city)}, {scope_line(meta, city)}, '
             f'card {deck_no} of {len(ROSTER)}">'
             f'<div class="chead"><div class="cid">'
-            f'<div class="cname">{DISPLAY.get(city, city)}</div>'
-            f'<div class="csub">{scope_line(meta, city)}</div></div>'
+            f'<div class="cname">{DISPLAY.get(city, city)}</div></div>'
             f'<div class="cno">{deck_no}/{len(ROSTER)}</div></div>'
+            f'<div class="csub">{scope_line(meta, city)}</div>'
             f'{identity_html(meta, city)}'
             f'{ledgers}'
             f'{card_foot(meta)}</article>')
