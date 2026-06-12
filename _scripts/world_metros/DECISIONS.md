@@ -1016,6 +1016,14 @@ horizontal misalignment; picked the recommended slate: B + cut + #deck).**
 - Verified by DOM probe: frame alignment at 1990/1280, intro-grid axis
   delta 0, wordmark click returns battle to deck, nav wrap at 375, no
   overflow at 375/768/1280, console clean.
+_Revision (2026-06-12, owner on the live page): the centered masthead
+read weird and the MATCH-only hover read awkward. Judged on
+`mocks/masthead-board.html` (build_masthead_board.py): owner picked
+**M3** (masthead left-aligned in a block exactly as wide as the deck
+grid per tier, 270/566/862, so its left edge locks to the first card's
+edge at every column count) and **W4** (no hover change at all; the
+cursor is the affordance). Both applied; lock verified at 375/768/1280
+(intro edge == card edge exactly), hover rule removed, console clean._
 
 
 **D36 · Fact-check pass: data + lore corrections - RATIFIED 2026-06-13
