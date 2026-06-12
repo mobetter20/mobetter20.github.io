@@ -221,6 +221,16 @@ _Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 m
   badge is cut (soft-launch leftover), and the wordmark links to #deck
   as the in-app way back. Verified 375/768/1280/1990, console clean.
 
+- D36 (2026-06-13): fact-check pass on the live deck. Owner "yes fix all
+  now" on a 10-finding external check; verified each against data + live
+  sources. Singapore driverless 6->4 (reverts a wrong D32 lore edit; NSL/EWL
+  keep captains), Delhi 3->2, Hong Kong owns its network (opened 1979->1910
+  via East Rail, route-km 209->271), stations over-count (~+20% vs official)
+  disclosed in Method + wishlisted for a re-extraction round, lore/Method
+  honesty fixes (Beijing one-operator, nothing-leaves-the-page, opened
+  sourcing), redirect stub carries query+hash. Verified + shipped. D36 in
+  DECISIONS.
+
 ## Current gate: owner live-testing the shipped deck
 
 The deck of 18 (gate 3, D25-D31) + this session's D32-D34 are LIVE at

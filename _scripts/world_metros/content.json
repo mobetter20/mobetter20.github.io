@@ -3,11 +3,11 @@
   "flavor": {
     "tokyo": "Trains run to the minute; a five-minute delay comes with a certificate.",
     "seoul": "146 km between its furthest stations, the deck's longest reach.",
-    "singapore": "Six lines, every one of them driverless, none older than 1987.",
+    "singapore": "Six lines, four of them driverless, none older than 1987.",
     "hong kong": "Fares cover the costs and then some: the system runs at a profit.",
     "paris": "1.35 stations per square km, the deck's tightest grid.",
     "shanghai": "From first train to 800 route-km inside three decades.",
-    "beijing": "909 route-km under one operator, the deck's biggest single system.",
+    "beijing": "909 route-km, the deck&rsquo;s biggest single network.",
     "london": "Underground since 1863, before anyone else tried.",
     "nyc": "24 hours a day, every day of the year.",
     "madrid": "Dug fast and cheap, with a tunneling method other cities now copy.",
@@ -15,7 +15,7 @@
     "copenhagen": "Four lines, zero drivers, all night.",
     "delhi": "374 route-km in barely two decades, and it pays its own way.",
     "guangzhou": "From a 5 km starter line in 1997 to 780 km today.",
-    "mexico city": "Trains ride on rubber tires, quieter and softer than steel.",
+    "mexico city": "Most trains ride on rubber tires, quieter and softer than steel.",
     "cairo": "Africa&rsquo;s first metro, opened 1987, still its workhorse.",
     "osaka": "Japan&rsquo;s oldest municipal subway, anchored by the packed Midosuji spine.",
     "istanbul": "A metro on two continents, and one of the world&rsquo;s fastest-growing."
@@ -38,7 +38,7 @@
       "The East Rail corridor dates to 1910, nearly seventy years older than the MTR itself."
     ],
     "paris": [
-      "Opened for the 1900 World&rsquo;s Fair; Line 1 still runs the route it opened with.",
+      "Opened for the 1900 World&rsquo;s Fair; Line 1&rsquo;s original section still runs today.",
       "86 of Guimard&rsquo;s Art Nouveau entrances from the early 1900s still stand."
     ],
     "shanghai": [
@@ -67,7 +67,7 @@
     ],
     "copenhagen": [
       "Every train has run driverless since the first one in 2002.",
-      "One of only three metros in the world running 24/7, with New York and the Chicago L."
+      "One of the few metros in the world running 24/7, like New York and the Chicago L."
     ],
     "delhi": [
       "The first metro in the world to earn UN carbon credits, in 2011.",

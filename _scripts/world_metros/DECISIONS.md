@@ -1016,3 +1016,51 @@ horizontal misalignment; picked the recommended slate: B + cut + #deck).**
 - Verified by DOM probe: frame alignment at 1990/1280, intro-grid axis
   delta 0, wordmark click returns battle to deck, nav wrap at 375, no
   overflow at 375/768/1280, console clean.
+
+
+**D36 · Fact-check pass: data + lore corrections - RATIFIED 2026-06-13
+(owner: "yes fix all now" on a 10-finding external fact-check; recs taken
+on the judgment calls).** _Numbering: a parallel session took D35 for the
+header polish (#168); this is D36._
+An external fact-check of the live deck surfaced 10 findings; verified each
+against the data files and live sources (WebSearch). Triage + fixes:
+- **Singapore driverless 6 -> 4 (the important one).** NSL and EWL keep
+  train captains after their 2017-18 CBTC resignalling (GoA2), NOT GoA4;
+  only NEL/CCL/DTL/TEL are driverless. The almanac stat (6) was wrong and
+  the D32 lore edit ("every one of them driverless") reinforced it; the
+  pre-D32 lore ("four of them") was right and is restored. Root cause:
+  gate-3 research conflated CBTC automation with driverless operation.
+- **Delhi driverless 3 -> 2.** Only Magenta (UTO 2025) and Pink are
+  driverless; the Grey Line is driven (verified via DMRC coverage).
+- **Hong Kong: own the network (scope call, rec taken).** Geometry already
+  plots East Rail + Tuen Ma and the back diagram shows them, but opened
+  (1979) and route-km (209) acted as if they were out, an internal
+  inconsistency. Aligned UP to what we plot rather than amputating two lines
+  the rider map draws (rider-scope B): opened 1979 -> 1910 (East Rail's
+  first passenger service, 1 Oct 1910, sourced), route-km 209 -> 271 (MTR
+  heavy rail incl. East Rail + Tuen Ma). HK moves to 4th-oldest; the 1910
+  lore fact now aligns with the stat; Method's HK scope row states it.
+- **Stations over-count (document, not re-extract; rec taken).** Plotted
+  complex counts run ~+20% over official tallies (NYC 504 vs ~424, London
+  323 vs 272, Paris 389 vs ~310): the 350m same-name merge under-merges
+  sprawling interchanges. Near-uniform, so RANKINGS hold; absolute station +
+  density values inflate. Documented honestly in Method rather than
+  re-extracting all 18 pre-public-post; merge-tightening filed to the cfo
+  wishlist as its own round.
+- **Lore corrections (minimal edits):** Beijing drops the false "under one
+  operator" (several operators; Method scope row updated); Mexico City "Most
+  trains ride on rubber tires" (Lines A/12 are steel); Paris "Line 1's
+  original section still runs today" (extended both ends since 1900);
+  Copenhagen "one of the few metros... 24/7" (was the dubious "only three").
+- **Method honesty:** "Nothing leaves the page" -> "Your guess and streak
+  never leave this browser" (GA4 loads site-wide); opened sourcing ->
+  "Wikipedia and operator histories" (almanac sources are Wikipedia); the
+  opened definition drops "regular" so it no longer contradicts Beijing's
+  1969-inaugural-vs-1971-public date (kept 1969, documented, per D25).
+- **Cairo note:** "~5M a day" -> "~4M a day" (1,460 M/yr = ~4.0M/day).
+- **Redirect stub:** old world-metros URL now carries query + hash across the
+  move (location.replace + search/hash; meta-refresh = no-JS fallback).
+Verified: corrected values + recomputed ranks, all lore + Method strings on
+the rendered page, the stub hash-carry, console clean. The fact-check was
+high quality (9 of 10 findings had a real kernel; only "invalidates rankings"
+and the Beijing-1969 "error" overstated).
