@@ -138,7 +138,7 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
    full rows and the card grows to fit, so the line-count/scope tag is never
    occluded at any pill count (pill-density fix). */
 .card {
-  width: 270px; min-height: 486px; border-radius: 12px;
+  width: 270px; min-height: 469px; border-radius: 12px;
   background: var(--card); border: 1px solid var(--cedge);
   box-shadow: 0 4px 16px rgba(0, 0, 0, .55); color: var(--text);
   padding: 17px 15px 13px; display: flex; flex-direction: column;
@@ -153,6 +153,12 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 .cepi {
   font-family: var(--mono); font-size: 10px; letter-spacing: .2em;
   color: var(--lblue); text-transform: uppercase; margin-top: 5px;
+}
+/* the core line: count + scope, the card subtitle (moved up from the band
+   tag). Data, not flavor, so it reads in soft grey not the blue accent. */
+.csub {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .02em;
+  color: var(--soft); margin-top: 6px; white-space: nowrap;
 }
 .cno { font-family: var(--mono); font-size: 10px; color: var(--dim); padding-top: 6px; }
 
@@ -303,8 +309,8 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 .bcap { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--grey); }
 /* Battle shows one card per side; keep both slots a fixed worst-case height
    (fits Seoul's 4 pill rows) so the two sides align and nothing clips. */
-.bslot { width: 270px; height: 530px; position: relative; }
-.bslot .card { height: 530px; }
+.bslot { width: 270px; height: 469px; position: relative; }
+.bslot .card { height: 469px; }
 .bcardwrap { position: absolute; inset: 0; }
 
 .bmid { width: 234px; flex: none; text-align: center; padding-top: 120px; }

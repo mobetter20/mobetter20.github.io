@@ -243,17 +243,22 @@ def stat_table(meta, alm):
     return stats
 
 
-def identity_html(meta, city):
-    """Every card carries the same line-colour band (owner call: one
-    consistent treatment, no pills-vs-band mix). The readable line names
-    live on the lore-back diagram for all cards."""
+def scope_line(meta, city):
+    """The core line: count + scope. Rides as the card's subtitle, under the
+    name (D-note 4 / owner restructure), so the band needs no tag."""
     lines = meta["cities"][city]["lines"]
     noun = "services" if city == "nyc" else "lines"
-    tag = f"{len(lines)} {noun} · {SCOPE_TAG[city]}"
+    return f"{len(lines)} {noun} · {SCOPE_TAG[city]}"
+
+
+def identity_html(meta, city):
+    """The line-colour band, every card (owner call: one consistent
+    treatment). The count + scope is the card subtitle now; the readable
+    line names live on the lore-back diagram."""
+    lines = meta["cities"][city]["lines"]
     stripes = "".join(f'<i style="background:{l["color"]}"></i>' for l in lines)
     return (f'<div class="cband" role="img" aria-label="{len(lines)} line '
-            f'colours, shown by name on the lore side">{stripes}</div>'
-            f'<div class="ctag">{tag}</div>')
+            f'colours, named on the lore side">{stripes}</div>')
 
 
 def card_foot(meta):
@@ -296,10 +301,11 @@ def card_front(meta, stats, city, battle=False, deck=False):
     else:
         ledgers = ledger_html(stats, city, "play", battle=battle)
     return (f'<article class="card cfront" '
-            f'aria-label="{DISPLAY.get(city, city)}, {EPITHET[city]}, card {deck_no} of {len(ROSTER)}">'
+            f'aria-label="{DISPLAY.get(city, city)}, {scope_line(meta, city)}, '
+            f'card {deck_no} of {len(ROSTER)}">'
             f'<div class="chead"><div class="cid">'
             f'<div class="cname">{DISPLAY.get(city, city)}</div>'
-            f'<div class="cepi">{EPITHET[city]}</div></div>'
+            f'<div class="csub">{scope_line(meta, city)}</div></div>'
             f'<div class="cno">{deck_no}/{len(ROSTER)}</div></div>'
             f'{identity_html(meta, city)}'
             f'{ledgers}'
@@ -317,7 +323,7 @@ def card_back(city):
             f'alt="{html.escape(SYSTEM[city])} network diagram, a Wikimedia Commons '
             f'recreation of the map riders see"></div>'
             f'<div class="lband"><div class="lname">{DISPLAY.get(city, city)}</div>'
-            f'<div class="lsys">{html.escape(SYSTEM[city])}</div>'
+            f'<div class="lsys">{EPITHET[city]}</div>'
             f'<div class="lflavor">{FLAVOR[city]}</div>'
             f'<div class="lfacts">{facts}</div>'
             f'<div class="lcredit">{credit}{caveat}</div></div></article>')

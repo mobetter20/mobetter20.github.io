@@ -731,10 +731,22 @@ good").**
   judged set; counts render from len(lines) (Seoul reads 24, not the
   stale 23); the band copy is "on the map side" (the lore back is the
   diagram, which labels lines its own way, not our refs).
-- **Still open (owner):** (1) the stat-set question, PLAY/ALMANAC felt
-  thin and the names unclear; the proposal on the table is SCALE (the
-  six) + CHARACTER (base fare, driverless, interchange) with honest
-  names and no padding, OR drop the toggle and move the three to lore.
-  (2) The head-line idea: carry count + scope + ownership up by the name
-  so the under-pill / band tag can shrink; pending a definition of what
-  "ownership" shows.
+- **Band made universal (revision, 2026-06-12):** see the C2 bullet above;
+  the owner rejected the pills/band mix, so every card now wears the band.
+- **Head restructure DONE (2026-06-12, owner took the rec):** the core
+  line (count + scope, e.g. "13 lines · Metro + Toei") moves UP to be the
+  card subtitle under the city name; the band drops its tag (no repeat, no
+  clip); the epithet ("the two crews") moves to the lore back as its blue
+  subtitle (replacing the system-name line there; the system name stays in
+  the diagram alt + credit). Card min-height retuned 486 -> 469 so the
+  shorter head leaves no gap above the foot. Verified play/almanac gap 0,
+  battle fit, 375-1280, console clean.
+- **Second set grown to FIVE (2026-06-12):** base fare, driverless,
+  interchange, plus two computed growth stats (new lines opened since
+  2016; newest line year), after the owner asked about update-frequency /
+  profitability. Profitability stays out (it is the cut farebox: 7 of 18
+  missing, incomparable); the forward construction pipeline stays out
+  (freshness trap). A background research chip is out for more candidates.
+- **Still open (owner):** the set NAMES (PLAY / ALMANAC are placeholders
+  the owner dislikes; proposal on the table is SCALE + CHARACTER, or the
+  research-chip menu may reshape the second set first).
