@@ -5,7 +5,7 @@
     "tokyo": {
       "opened": {"year": 1927, "what": "Ginza Line, Asakusa to Ueno, 30 December 1927: the first subway in Asia.", "source": "https://en.wikipedia.org/wiki/Tokyo_Metro", "as_of": "2026"},
       "route_km": {"value": 304, "as_of": "2026", "source": "https://www.jametro.or.jp/japan/", "note": "Tokyo Metro 195 km plus Toei 109 km, per the Japan Subway Association."},
-      "ridership": {"annual_m": 3295, "year": "FY2023", "source": "https://www.jametro.or.jp/japan/", "note": "Sum of the two operators' daily averages annualized (Metro 6.516M/day plus Toei 2.488M/day); the operators publish daily, not annual, totals."},
+      "ridership": {"annual_m": 3460, "year": "FY2024", "source": "https://www.tokyometro.jp/lang_en/corporate/ir/library/factbook/pdf/factbook_2025.pdf", "note": "Operator annual actuals, FY2024: Tokyo Metro 2,495.8M (Fact Book 2025) plus Toei 963.9M (Bureau of Transportation settlement)."},
       "headway": {"value": 1.8, "note": "Marunouchi Line, about 1 min 50 s at peak.", "source": "https://en.wikipedia.org/wiki/Tokyo_Metro_Marunouchi_Line", "as_of": "2026"},
       "span_h": {"value": 19, "note": "Trains run roughly 05:00 to 24:00.", "source": "https://www.gotokyo.org/en/plan/getting-around/subways/index.html", "as_of": "2026"},
       "driverless": {"value": 0, "note": "All Metro and Toei lines run with drivers (GoA2 at most).", "source": "https://en.wikipedia.org/wiki/List_of_automated_train_systems", "as_of": "2026"},
@@ -15,7 +15,7 @@
     "seoul": {
       "opened": {"year": 1974, "what": "Line 1 opened in 1974, the network's first line.", "source": "https://en.wikipedia.org/wiki/Seoul_Metropolitan_Subway", "as_of": "2026"},
       "route_km": {"value": 1302, "as_of": "2026", "source": "https://en.wikipedia.org/wiki/Seoul_Metropolitan_Subway", "note": "The full capital-region network as the familiar map draws it, matching the declared scope."},
-      "ridership": {"annual_m": 2420, "year": "2024", "source": "https://en.wikipedia.org/wiki/Seoul_Metropolitan_Subway", "note": "PLACEHOLDER: covers Seoul Metro lines 1-8 only; no single whole-network annual total is published. Korail lines added about 1.16 billion in 2017."},
+      "ridership": {"annual_m": 4420, "year": "2024", "source": "https://railstat.korail.com/statHtml/statHtml.do?orgId=357&tblId=DT_357001_CC00102&conn_path=I2", "note": "Capital-region sum from Korea Railroad Statistics 2024: the national urban-metro and metropolitan-rail totals less the non-capital systems. Per-operator boardings (the standard Korean measure), so a journey across two operators counts once per operator. Seoul Metro's own 2,417.5M for lines 1-8 matches that component exactly."},
       "headway": {"value": 2.3, "note": "Line 2, about 2 min 18 s at peak.", "source": "https://en.wikipedia.org/wiki/Seoul_Subway_Line_2", "as_of": "2026"},
       "span_h": {"value": 18.5, "note": "Trains run roughly 05:30 to midnight; varies by line.", "source": "https://english.visitseoul.net/transportation", "as_of": "2026"},
       "driverless": {"value": 7, "note": "Sinbundang, Ui-Sinseol, Sillim, Uijeongbu LRT, Yongin Everline, Gimpo Goldline, Incheon Line 2.", "source": "https://en.wikipedia.org/wiki/Shinbundang_Line", "as_of": "2026"},

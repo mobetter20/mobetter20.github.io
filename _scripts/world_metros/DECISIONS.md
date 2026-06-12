@@ -614,8 +614,12 @@ build record).**
   pages this session with source + as-of recorded in
   `_scripts/world_metros/almanac.json` (committed). Known soft spots
   recorded there as notes: farebox years vary widely by city (Madrid's
-  newest published ratio is 2007); two ridership figures are sums of
-  same-year operator components (Tokyo, Moscow incl. MCC).
+  newest published ratio is 2007); Seoul and Moscow ridership are
+  same-year component sums (Seoul's whole capital network has no single
+  published total, so it is summed from Korea Railroad Statistics 2024 and
+  cross-checks against Seoul Metro's own 2,417.5M for lines 1-8; Moscow is
+  metro plus MCC); Tokyo ridership sums the two operators' published
+  annual actuals (FY2024).
 - **Lore backs:** all 16 carry the ledger diagram (attribution verbatim,
   currency caveats where flagged), one flavor line, two curated facts;
   epithets drafted for the 13 new cards (owner reviews at the gate).
