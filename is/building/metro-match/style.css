@@ -56,12 +56,19 @@ button:focus-visible, a:focus-visible {
 
 /* ---------------------------------------------------------------- header */
 
+/* the chrome shares main's column: header paints full-bleed, its content
+   sits in an .hframe that mirrors main's box exactly (D35) */
 header {
-  display: flex; align-items: baseline; gap: 22px; flex-wrap: wrap;
-  padding: 15px 22px 11px; border-bottom: 1px solid var(--edge);
+  padding: 15px 0 11px; border-bottom: 1px solid var(--edge);
   background: var(--chrome);
 }
+.hframe {
+  display: flex; align-items: baseline; gap: 22px; flex-wrap: wrap;
+  width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px;
+}
 .wordmark { font-size: 15px; font-weight: 700; letter-spacing: .24em; color: var(--text); }
+.wordmark a { color: inherit; text-decoration: none; }
+.wordmark a:hover em { color: var(--text); }
 .wordmark em { font-style: normal; color: var(--lblue); }
 
 nav[role="tablist"] { display: flex; gap: 6px; }
@@ -76,11 +83,6 @@ nav[role="tablist"] button[aria-selected="true"] {
   color: var(--text); border-bottom-color: var(--lblue);
 }
 
-.livebadge {
-  margin-left: auto; font-family: var(--mono); font-size: 10px;
-  letter-spacing: .12em; color: var(--lblue); border: 1px solid #7fb0e855;
-  padding: 3px 8px; border-radius: 2px; white-space: nowrap;
-}
 
 main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 34px; }
 
@@ -89,6 +91,7 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 .intro {
   font-size: 13px; color: var(--soft); line-height: 1.65;
   max-width: 640px; padding: 20px 2px 4px;
+  margin: 0 auto; text-align: center;
 }
 .intro b { color: var(--text); font-weight: 600; }
 
@@ -483,10 +486,10 @@ footer .made:hover { color: var(--body); }
 }
 
 @media (max-width: 640px) {
-  header { gap: 12px; padding: 13px 16px 9px; }
+  header { padding: 13px 0 9px; }
+  .hframe { gap: 12px; padding: 0 16px; }
   nav[role="tablist"] { order: 3; width: 100%; gap: 0; justify-content: space-between; }
   nav[role="tablist"] button { padding: 6px 4px 7px; font-size: 11.5px; letter-spacing: .04em; }
-  .livebadge { margin-left: auto; }
   main { padding: 0 16px 28px; }
   .deckgrid { gap: 24px 18px; }
   #panel-daily { justify-content: flex-start; min-height: auto; padding-top: 26px; }
