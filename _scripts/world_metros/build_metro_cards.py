@@ -253,7 +253,7 @@ def identity_html(meta, city):
     stripes = "".join(f'<i style="background:{l["color"]}"></i>' for l in lines)
     return (f'<div class="cband" role="img" aria-label="{len(lines)} line '
             f'colours, shown by name on the lore side">{stripes}</div>'
-            f'<div class="ctag">{tag} · on the map side</div>')
+            f'<div class="ctag">{tag}</div>')
 
 
 def card_foot(meta):
