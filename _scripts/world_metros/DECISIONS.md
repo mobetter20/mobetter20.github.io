@@ -837,3 +837,160 @@ picks, composed from that menu:
   at every width. Owner then opened the gate: the whole gate-3 body
   (D25-D31) is squash-merged to master, so the soft-launched deck-of-18 is
   now the live page (noindex/unlisted norms unchanged).
+
+_Numbering note (2026-06-12): this card-IA session ran in PARALLEL with
+the session that appended D30 (the daily revamp) and D31 (the second set
+recomposed + named SCALE / CHARACTER) and squash-merged them to master
+first. This session's three decisions are therefore recorded as D32-D34
+(its pre-merge worktree commits and its board artifact carry the original
+D30-D32 labels; the board html keeps them as the round's record). Where
+they overlap: the SCALE | CHARACTER names were picked independently in
+both sessions and agree; D34 supersedes both sessions' toggle (one flip
+now cycles the faces); D31's recomposed CHARACTER set (base fare,
+driverless, transfer, biggest hub, new lines) is adopted unchanged and
+renders on the CHARACTER face._
+
+**D32 · Card-IA round: three candidates + the lore dedup - PROPOSED
+2026-06-12 (board built; the owner verdict on the board is the gate).**
+Owner flag: the card now has three views (play front, almanac front via
+the deck toggle, the lore flip), "not entirely sure if they feel intuitive
+and most appropriate", and "info in almanac and map content sometimes
+overlap". Board: `mocks/card-ia-board.html`
+(`mocks/build_card_ia_board.py`), Seoul the busy case + Tokyo the
+reference, baseline TODAY row first:
+- **A · KEEP + RENAME:** three views stay; PLAY/ALMANAC become honest
+  names (SCALE | CHARACTER mocked; menu with CORE | CHARACTER and
+  SYSTEM | RIDE as alternates); plus small toggle UX: a set caption on
+  each card (mid-scroll state visibility) and a battle-binding whisper
+  on the bar.
+- **B · TWO SURFACES (recommendation):** the front toggle dies; the five
+  character stats move to the lore back as a compact figure strip (small
+  ordinals; 1st keeps the blue chip); the front is the six play stats the
+  battle and daily actually use. Restores the D18 grammar (front for
+  play, back for lore); the set-name question dissolves. Cost shown
+  honestly on the board: pinned to the live flip height (the front
+  drives the box at 469px), the diagram window pays for the strip,
+  178px down to ~125px (Seoul) / ~155px (Tokyo) / ~112px (Mexico City,
+  wordiest); the deck-wide scan of the second set moves to Method's
+  table. Alternative lever noted: let the flip box size to the taller
+  face instead (cards grow).
+- **C · NO MODES:** both sets on one face (six rows + a fine-print
+  strip); zero hidden state; measured +98px per card and the battle
+  arena's fixed slots would retune.
+- **Overlap map, all 18 backs vs the shown stats:** 26 collisions,
+  including three outright contradictions (Singapore flavor "four of
+  them driverless" vs DRIVERLESS 6 after the NSL/EWL conversions;
+  Shanghai fact "five lines driverless" vs stat 7 incl. GoA3; NYC fact
+  "472 stations" vs the plotted 504 on the same card), plus 12
+  deliberate keeps (Hong Kong's 1910 East Rail fact is the model: it
+  explains a stat rather than restating one).
+- **Dedup edit list: 26 edits across 17 cards (Hong Kong untouched),
+  candidate-invariant** (every candidate keeps all eleven numbers
+  somewhere on the card). Listed on the board with replacement copy
+  written to ship; NOT applied before the verdict. Watch-items recorded
+  for the pending second-set research menu (Guangzhou 160 km/h vs a
+  speed stat, Moscow 80 s vs headway, NYC/Copenhagen 24/7 vs hours,
+  Osaka's 1981-vs-1991 driverless dating): re-run the dedup pass against
+  the final set composition before it ships.
+Gate: owner picks A (plus a name pair) / B / C; the pick and the edit
+list then build into the live page and Method and re-verify. The
+deck-of-18 ship gate (push/PR/merge) stays the separate pending yes.
+*Resolution (2026-06-12, owner on the board):* **B and C REJECTED** ("the
+ui change u showed me with base fare and driverless etc shoved into
+either front or the back were all ugly and ui wise it basically ruined
+it"); the character info is "interesting and good to have", so it stays
+on the cards and the toggle survives. Three views acknowledged as not
+ideal but stand as the shape, pending A's polish (honest names + set
+caption + binding whisper; name pair still the owner's pick). **The lore
+bar restated by the owner:** facts are fine as long as they are
+factually correct, carry no copyright entanglement, and earn their keep
+by being interesting; number restates are TOLERATED. The round-1 26-edit
+dedup therefore shrinks to the SLIM LIST: 3 must-fixes (Singapore
+"four driverless" is stale, all six MRT lines are GoA4 now; Shanghai
+"five lines driverless" vs the shown 7; Osaka "driverless since 1981" vs
+the source dating GoA4 to 1991, fixed with "automated"), 7 repeat-swaps
+(a back saying the same thing twice wastes a slot: Tokyo, Madrid,
+Moscow, Mexico City flavors; Cairo, Osaka fact 1; Istanbul fact 2), and
+1 optional NYC clarifier (officially-true 472 beside the plotted 504,
+owner's call). The owner also flagged the round-1 edit-list presentation
+as hard to read; the board was rebuilt in place (round 2): A reframed as
+the standing shape, the slim list in a full-width readable form with the
+copyright note (facts not copyrightable, phrasing ours, sources in
+almanac.json, no curated collection copied), B/C/exhibit/tradeoff kept
+as dimmed round-1 records. Open to close the round: the set-name pair
+(SCALE | CHARACTER recommended) and a yes on the slim list.
+*Resolution 2 (2026-06-12, owner: "by copy i meants doesnt feel too
+written. i think ur recs are fine") - D32 RATIFIED AND SHIPPED.* The
+"copyright" concern was copywriting, not law: lore must not feel too
+WRITTEN (the repo's plain-not-poetic rule applied to the cards). Recs
+approved as-is. Shipped the same session, with a plain-pass over the
+new lines (Tokyo / Madrid / Moscow flavors, Cairo / Osaka facts
+simplified; e.g. "Run so tightly that..." became "Trains run to the
+minute;..."):
+- content.json: the 11 slim edits applied (incl. the NYC clarifier,
+  taken per the rec).
+- Set names SCALE | CHARACTER live: theme bar relabeled (internal keys
+  stay play/almanac), binding whisper "the battle and the daily play
+  SCALE" added, deck-only set captions via style.css ::before (battle
+  cards are SCALE-bound, no caption), flip button's flipped label
+  PLAY SIDE -> STAT SIDE (app.js).
+- Method: "SCALE: the six", "CHARACTER: the five" with the previously
+  missing new-lines and newest-line definitions added (a D29 gap), the
+  battle binding line, details summary, meta description all renamed.
+- Verified: toggle/captions/whisper by DOM probe, all 18 lore backs
+  unclipped, 375/768/1280 at 1/2/3 columns with no overflow, console
+  clean. Board restamped as the round's record. The card-IA round is
+  closed; the deck-of-18 ship gate remains the separate pending yes.
+
+**D33 · URL moves to /is/building/metro-match/ - RATIFIED 2026-06-12
+(owner: "it should not be world metro in URL but metro match. Check
+with me before publish"; supersedes D21's "the URL stays" note).**
+The page directory moved wholesale (index.html, style.css, app.js,
+assets/) to `is/building/metro-match/`; a noindex meta-refresh stub
+(house redirect pattern, canonical to the new URL) sits at the old
+`world-metros` path, since that URL has been live soft-launched since
+2026-06-11. Functional path updates: `build_metro_cards.py` PAGE,
+`build_page_geometry.py` OUT_DIR, the two living mock boards' absolute
+style/asset links (regenerated); living docs (README, BUILD-SPEC,
+DIAGRAM-LEDGER, repo CLAUDE.md) updated. Internal names deliberately
+stay: the `_scripts/world_metros/` dev dir, the `world-metros-atlas`
+registry stanza, and historical URLs inside past DECISIONS/STATUS
+entries (history is history). The registry stanza gains the new URL at
+ship time. Per the owner's note, NOTHING IS PUBLISHED: the move is
+committed on the branch and rides the same single ship gate (owner
+check before push/PR/merge).
+
+**D34 · One flip cycles three faces: SCALE -> CHARACTER -> MAP -
+RATIFIED 2026-06-12 (owner: "might be better to maybe jsut have three
+flips... jus flip let it go through three faces one by obe"; supersedes
+the D32 standing shape and the toggle the parallel session reaffirmed at D31; amends D18's two-side grammar).**
+The deck-level SCALE | CHARACTER toggle dies; the card flip is the whole
+interaction. Each flip is a real 180-degree turn: rotation accumulates
+and app.js mounts the next face into whichever slot is hidden before the
+turn (two physical slots, a stash parks the third card), so the cycle
+reads as one continuous gesture. Implementation notes:
+- Generator: deck cards render TWO single-ledger fronts (scale,
+  character; each keeps its D32 set caption) plus the map side in a
+  hidden stash; `theme_switch()` deleted; intro reads "Each card has
+  three faces: scale, character, the map. Flip to cycle them."
+- app.js: cycling flip with height locked at first interaction (the box
+  freezes at the front height, 489px, so the shorter map card cannot
+  collapse it); diagrams still lazy-load, now on the map turn; the flip
+  button names the NEXT face (FLIP - CHARACTER / MAP / SCALE) and stays
+  the keyboard path; aria-hidden tracks the visible slot.
+- style.css: f-a / f-b slot grammar (f-b pre-rotated), .locked absolute
+  faces, .facestash hidden; the old deckgrid[data-set] switching CSS
+  removed (each face carries one ledger); themebar CSS retained only
+  because the round-record mocks reference it.
+- Battle and daily untouched (SCALE-bound; battle cards carry no
+  caption); Method's "second face" wording updated; reduced-motion
+  still degrades to instant swaps (the transition is the only motion).
+- Verified by DOM probe: full cycle x2 incl. wrap, height locked at 489
+  through all faces, captions per face, lazy diagram on the map turn,
+  battle round resolves, daily intact, 375/768/1280 at 1/2/3 columns
+  with no overflow, console clean.
+Ship note, same message: the owner said "u can put it on metromatch.
+but dont list on building page yet. i will be testing": publish
+authorized (push/PR/merge), soft-launch norms STAY (noindex, no
+sitemap, no /is/building hub card, no home teaser) while the owner
+tests live.

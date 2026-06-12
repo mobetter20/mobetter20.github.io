@@ -35,7 +35,7 @@ import build_geo_shape_mock as gm  # noqa: E402  (chaikin only; no fetches)
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 ASSETS = os.path.join(REPO, "is", "building", "world-metros", "assets")
-ASSET_HREF = "../../../is/building/world-metros/assets"
+ASSET_HREF = "../../../is/building/metro-match/assets"
 
 INK = "#17171c"
 

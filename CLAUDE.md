@@ -97,7 +97,8 @@ for full details. Quick reference:
 
 ## Metro Cards (was: World Metros Atlas)
 
-A bespoke build at `/is/building/world-metros/` (soft-launched, noindex; the
+A bespoke build at `/is/building/metro-match/` (soft-launched, noindex; URL
+moved from `world-metros` at D33, stub redirects; the
 atlas-era prototype is live and gets rebuilt as a card deck per DECISIONS
 D17–D19). Before touching anything metro-related, read
 `_scripts/world_metros/README.md` — reading order, product contract, data

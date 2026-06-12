@@ -43,7 +43,7 @@ import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
-OUT_DIR = os.path.join(REPO, "is", "building", "world-metros", "assets")
+OUT_DIR = os.path.join(REPO, "is", "building", "metro-match", "assets")
 DATA_DIR = os.path.join(HERE, "data")  # committed supplements (not served)
 CDN = "https://cdn.organicmaps.app/subway/"
 

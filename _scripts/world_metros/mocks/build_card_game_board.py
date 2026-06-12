@@ -32,7 +32,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 ASSETS = os.path.join(REPO, "is", "building", "world-metros", "assets")
-ASSET_HREF = "../../../is/building/world-metros/assets"
+ASSET_HREF = "../../../is/building/metro-match/assets"
 
 LIVE = ("seoul", "paris", "tokyo")
 DECK_NO = {"tokyo": "02", "seoul": "03", "paris": "09"}

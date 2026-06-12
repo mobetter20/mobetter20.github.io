@@ -13,7 +13,7 @@ read from the Commons page data (API extmetadata + deletion-category check) and
 structure graded by downloading the file and counting text nodes. The 2026-06-12
 downloads also re-counted the nine previously audited files: every count matched
 this ledger. All sixteen chosen files are now committed at
-`is/building/world-metros/assets/<slug>-diagram.(svg|png)` and ride the card
+`is/building/metro-match/assets/<slug>-diagram.(svg|png)` and ride the card
 lore backs._
 
 ## Structure grades (the criterion the interactivity spike added)
