@@ -1097,6 +1097,13 @@ assessment's yes + guardrails, then "ok do it now").**
   at 0-0 with that pair, fare list shows the Guangzhou - Mexico City
   dead heat, keyboard arrow-cycle covers all five tabs, no overflow at
   375/768/1280, console clean.
+_Revision (2026-06-12, owner on the live page): the SCALE / CHARACTER
+captions in the picker were orphaning on wrap and added nothing a ranker
+needs (the set names live on the card faces and Method): cut; the picker
+is one flat wrap of eleven pills. The "more wins / tighter wins" line was
+battle jargon on a leaderboard: replaced with plain sort language per
+stat ("oldest first", "most first", "tightest first", "cheapest first"),
+keeping the "deck of 18" basis tag._
 
 **D37 · THE DECK tab removed: the deck is the page, the wordmark is home -
 RATIFIED 2026-06-12 (owner: "THE DECK and METRO MATCH is basically the
