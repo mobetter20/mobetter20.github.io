@@ -208,33 +208,40 @@ _Last updated: 2026-06-12 (Claude session, branch `claude/sweet-wilbur-ff784c`: 
   exhibit/tradeoffs dimmed as round-1 records. D30 resolution in
   DECISIONS.
 
-## Current gate: owner verdicts on the deck of 18 (D27) and the D30 round-2 confirms
+- D30 RATIFIED AND SHIPPED (2026-06-12): owner approved the recs
+  ("copy" clarified as copywriting: lore must not feel too written).
+  Names SCALE | CHARACTER live (bar relabeled + binding whisper +
+  deck-only set captions + STAT SIDE flip label), the 11 slim lore
+  edits applied to content.json after a plain-pass, Method gained the
+  missing new-lines/newest-line definitions (D29 gap) and the renamed
+  sections. Page regenerated; verified by DOM probe at 375/768/1280
+  (1/2/3 cols, no overflow, 18 backs unclipped, console clean). Board
+  restamped as the round's record. D30 resolutions in DECISIONS.
 
-Two verdicts pending, independent. (1) The deck of 18 (gate 3 + D27) is
-built, verified and committed on `claude/sweet-wilbur-ff784c`, shown in
-Arc against the local preview; items carried to that review: the 15 new
-epithets (creative calls, incl. Osaka "the merchant" / Istanbul "the
-crossing"); the Istanbul scope call (Marmaray excluded, could be pulled
-in); the notable Seoul-tops-ridership claim (full-capital scope, sourced,
-per-operator methodology noted); and Osaka's two soft spots (a c.2011
-diagram with a caveat, and a service-day row that drops for want of a
-sourced figure). (2) D30 round 2, two confirms close the round: the
-set-name pair (SCALE | CHARACTER recommended; CORE | CHARACTER and
-SYSTEM | RIDE on the menu) and a yes on the slim edit list (plus the
-optional NYC clarifier call). On those, the rename + caption + whisper +
-slim edits build into the live page and Method and get re-verified. The
-live page IA does not change before then.
+## Current gate: owner verdict on the deck of 18 (the ship gate)
+
+One gate left. The deck of 18 (gate 3 + D27) plus the D30 card-IA
+round are built, verified and committed on
+`claude/nervous-lehmann-d7c660` (which contains the wilbur branch's
+head; one branch to ship, not two). Items carried to the review: the
+15 new epithets (creative calls, incl. Osaka "the merchant" / Istanbul
+"the crossing"); the Istanbul scope call (Marmaray excluded, could be
+pulled in); the notable Seoul-tops-ridership claim (full-capital scope,
+sourced, per-operator methodology noted); and Osaka's two soft spots
+(a c.2011 diagram with a caveat, and a service-day row that drops for
+want of a sourced figure).
 
 ## Next exact action
 
-On the owner's yes: push the branch, open the PR, squash-merge WITHOUT
-`--delete-branch`, then delete the remote branch by hand. Then update the
-`~/projects.md` (`world-metros-atlas`) stanza, and register
-`build_metro_cards.py` + `build_page_geometry.py` in the untracked
-`publish.sh` in the MAIN checkout (worktrees cannot reach it; this STATUS
-note carries the reminder until then). Lifting any soft-launch norm
-(index, sitemap, hub card, home teaser) stays a SEPARATE owner call after
-this gate.
+On the owner's yes: push `claude/nervous-lehmann-d7c660` (it contains
+`claude/sweet-wilbur-ff784c`; ship the one branch), open the PR,
+squash-merge WITHOUT `--delete-branch`, then delete the remote branch by
+hand. Then update the `~/projects.md` (`world-metros-atlas`) stanza, and
+register `build_metro_cards.py` + `build_page_geometry.py` in the
+untracked `publish.sh` in the MAIN checkout (worktrees cannot reach it;
+this STATUS note carries the reminder until then). Lifting any
+soft-launch norm (index, sitemap, hub card, home teaser) stays a
+SEPARATE owner call after this gate.
 
 ## Blockers
 

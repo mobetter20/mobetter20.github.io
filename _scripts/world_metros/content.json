@@ -1,21 +1,21 @@
 {
-  "_note": "Lore-back copy for build_metro_cards.py. credit strings are VERBATIM from DIAGRAM-LEDGER.md. facts are curated from the gate-3 almanac research (sources in almanac.json). No em dashes anywhere.",
+  "_note": "Lore-back copy for build_metro_cards.py. credit strings are VERBATIM from DIAGRAM-LEDGER.md. facts are curated from the gate-3 almanac research (sources in almanac.json). D30 lore bar: factually correct, plain (not overwritten), interesting on its own; number restates of shown stats are tolerated, but a back never says the same thing twice. No em dashes anywhere.",
   "flavor": {
-    "tokyo": "Thirteen lines, two operators, one grid.",
+    "tokyo": "Trains run to the minute; a five-minute delay comes with a certificate.",
     "seoul": "146 km between its furthest stations, the deck's longest reach.",
-    "singapore": "Six lines, four of them driverless, none older than 1987.",
+    "singapore": "Six lines, every one of them driverless, none older than 1987.",
     "hong kong": "Fares cover the costs and then some: the system runs at a profit.",
     "paris": "1.35 stations per square km, the deck's tightest grid.",
     "shanghai": "From first train to 800 route-km inside three decades.",
     "beijing": "909 route-km under one operator, the deck's biggest single system.",
     "london": "Underground since 1863, before anyone else tried.",
     "nyc": "24 hours a day, every day of the year.",
-    "madrid": "172 km of new metro in sixteen years, Europe's great expansion.",
-    "moscow": "Marble, mosaics and a train every 90 seconds.",
+    "madrid": "Dug fast and cheap, with a tunneling method other cities now copy.",
+    "moscow": "The platform clocks count time since the last train, not time to the next.",
     "copenhagen": "Four lines, zero drivers, all night.",
     "delhi": "374 route-km in barely two decades, and it pays its own way.",
     "guangzhou": "From a 5 km starter line in 1997 to 780 km today.",
-    "mexico city": "A pictogram for every station, a 5-peso fare for every ride.",
+    "mexico city": "Trains ride on rubber tires, quieter and softer than steel.",
     "cairo": "Africa&rsquo;s first metro, opened 1987, still its workhorse.",
     "osaka": "Japan&rsquo;s oldest municipal subway, anchored by the packed Midosuji spine.",
     "istanbul": "A metro on two continents, and one of the world&rsquo;s fastest-growing."
@@ -43,7 +43,7 @@
     ],
     "shanghai": [
       "Set a one-day record of 13.39 million rides on 9 March 2024.",
-      "Five lines run driverless, about 169 km of unattended metro."
+      "Seven lines now run driverless, five of them with no staff aboard at all."
     ],
     "beijing": [
       "China&rsquo;s first subway, built as a Cold War defence project; Zhou Enlai rode the first train in 1969.",
@@ -55,7 +55,7 @@
     ],
     "nyc": [
       "Express tracks let fast trains overtake locals, a luxury most metros never built.",
-      "Its 472 stations are the most of any single-operator metro in the world."
+      "Officially 472 stations, the most of any single-operator metro in the world."
     ],
     "madrid": [
       "Between 1995 and 2011 the network added 172 km and 132 stations, over 10 km a year.",
@@ -82,16 +82,16 @@
       "Pino Su&aacute;rez station holds a small Aztec temple uncovered during construction."
     ],
     "cairo": [
-      "Africa&rsquo;s and the Middle East&rsquo;s first metro, opened 1987.",
+      "Line 2 crosses under the Nile through twin bored tunnels.",
       "Trains have carried women-only cars since 1989."
     ],
     "osaka": [
-      "The Midosuji Line opened in 1933 as Japan&rsquo;s first municipally run subway.",
-      "The New Tram has run as a driverless people-mover since 1981."
+      "Midosuji&rsquo;s first stations were built with high vaulted ceilings and chandeliers.",
+      "The New Tram has run as an automated people-mover since 1981."
     ],
     "istanbul": [
       "The M5, opened 2017, was Turkey&rsquo;s first driverless metro line.",
-      "Its lines run on both the European and Asian sides of the Bosphorus."
+      "Istanbul has run an underground railway since 1875: the two-stop T&uuml;nel funicular."
     ]
   },
   "credit": {

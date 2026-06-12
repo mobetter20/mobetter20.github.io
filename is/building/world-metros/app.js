@@ -90,7 +90,7 @@ document.querySelectorAll('.flipbox').forEach((box) => {
     const flipped = box.classList.toggle('flipped');
     if (flipped) loadDiagram(back);
     btn.setAttribute('aria-pressed', String(flipped));
-    btn.textContent = flipped ? 'FLIP · PLAY SIDE' : 'FLIP · LORE SIDE';
+    btn.textContent = flipped ? 'FLIP · STAT SIDE' : 'FLIP · LORE SIDE';
     front.setAttribute('aria-hidden', String(flipped));
     back.setAttribute('aria-hidden', String(!flipped));
   };

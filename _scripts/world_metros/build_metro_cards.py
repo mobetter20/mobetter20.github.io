@@ -361,13 +361,15 @@ def deck_grid(meta, stats):
 
 
 def theme_switch():
-    # Two pills, PLAY | ALMANAC (D28). The fine-print trailer leaves the bar;
-    # Method carries the definitions and the FX date.
+    # Two pills, SCALE | CHARACTER (D30 rename; the internal set keys stay
+    # play/almanac). The whisper names the game binding; Method carries the
+    # definitions and the FX date.
     return (
         '<div class="themebar" role="group" aria-label="Stat set">'
         '<span class="themecap">STATS</span>'
-        '<button type="button" class="themebtn" data-set="play" aria-pressed="true">PLAY</button>'
-        '<button type="button" class="themebtn" data-set="almanac" aria-pressed="false">ALMANAC</button>'
+        '<button type="button" class="themebtn" data-set="play" aria-pressed="true">SCALE</button>'
+        '<button type="button" class="themebtn" data-set="almanac" aria-pressed="false">CHARACTER</button>'
+        '<span class="themenote">the battle and the daily play SCALE</span>'
         '</div>')
 
 
@@ -547,13 +549,13 @@ def method_panel(meta, alm, stats):
       <p><b>The battle.</b> You hold a card face up; the cpu holds one face
       down. Pick the stat you think wins; the cards compare, and the round
       goes to the better number. First to three rounds takes the match. A
-      dead heat scores nobody. The battle runs on the PLAY set.</p>
+      dead heat scores nobody. The battle runs on the SCALE set.</p>
       <p><b>The daily.</b> One question a day, one guess, and a streak that
       lives in your browser. Nothing leaves the page.</p>
       <p><b>Win directions are fixed.</b> Opened and base fare win smaller;
       everything else wins larger.</p>
 
-      <h2>PLAY: the six</h2>
+      <h2>SCALE: the six</h2>
       <table>
         <tr><th>stat</th><th>what it measures</th><th>wins</th></tr>
         <tr><td>opened</td><td>earliest regular passenger service within the
@@ -572,7 +574,7 @@ def method_panel(meta, alm, stats):
         (almanac grade)</td><td>more</td></tr>
       </table>
 
-      <h2>ALMANAC: the three</h2>
+      <h2>CHARACTER: the five</h2>
       <p>A second switchable set. Every figure is dated; sources are in the
       almanac file in the site&rsquo;s public repo.</p>
       <table>
@@ -587,6 +589,11 @@ def method_panel(meta, alm, stats):
         <tr><td>interchange</td><td>share of the card&rsquo;s station
         complexes whose plotted points sit by two or more counted lines,
         computed from our own snapshot</td><td>more</td></tr>
+        <tr><td>new lines</td><td>count of lines within the
+        card&rsquo;s declared scope that opened in 2016 or later, computed
+        from the per-line opened years in the almanac</td><td>more</td></tr>
+        <tr><td>newest line</td><td>the opening year of the scope&rsquo;s
+        youngest line, from the same per-line years</td><td>later</td></tr>
       </table>
       <p>Two notes on interchange: it is computed from the same plotted
       snapshot as the other geometry stats, and New York reads high because
@@ -613,7 +620,7 @@ def method_panel(meta, alm, stats):
         <tr><th>city</th><th>route-km</th><th>annual rides</th></tr>
         {almanac_table(alm)}
       </table>
-      <details><summary>almanac set: figures and sources</summary>
+      <details><summary>character set: figures and sources</summary>
       <table class="almtable">
         <tr><th>city</th><th>base fare (USD, {alm["fx"]["date"]} FX)</th><th>driverless (GoA3+)</th></tr>
         {alm_table}
@@ -695,7 +702,7 @@ def main():
 <meta name="robots" content="noindex"><!-- soft launch: unlisted until the owner verdict gate -->
 <meta name="theme-color" content="#0f0f12">
 <title>Metro Match</title>
-<meta name="description" content="A collectible card deck for the world's defining metro systems. Eighteen cities, honest dated stats in two sets (play and almanac), a battle and a daily guess. Trading cards with footnotes.">
+<meta name="description" content="A collectible card deck for the world's defining metro systems. Eighteen cities, honest dated stats in two sets (scale and character), a battle and a daily guess. Trading cards with footnotes.">
 <link rel="icon" href="{FAVICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

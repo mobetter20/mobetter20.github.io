@@ -46,9 +46,9 @@ CITIES = ["seoul", "tokyo"]  # busy case + reference (brief: Seoul/Beijing + Tok
 
 NEW_FLAVOR = {
     # repeat-swaps: the flavor duplicated one of the facts
-    "tokyo": "Run so tightly that a five-minute delay comes with a certificate.",
-    "madrid": "Dug fast and cheap, by a method other cities came to copy.",
-    "moscow": "Trains so frequent the platform clock counts up from the last one, not down to the next.",
+    "tokyo": "Trains run to the minute; a five-minute delay comes with a certificate.",
+    "madrid": "Dug fast and cheap, with a tunneling method other cities now copy.",
+    "moscow": "The platform clocks count time since the last train, not time to the next.",
     "mexico city": "Trains ride on rubber tires, quieter and softer than steel.",
     # factual must-fix: all six MRT lines are GoA4 since the NSL/EWL
     # conversions; "four of them" is stale. Minimal edit, structure kept.
@@ -58,11 +58,12 @@ NEW_FLAVOR = {
 NEW_FACTS = {  # only the changed slots; None = keep current
     # factual must-fixes
     "shanghai": [None, "Seven lines now run driverless, five of them with no staff aboard at all."],
-    "osaka": ["Midosuji&rsquo;s first stations were built like vaults, with high arched ceilings and chandeliers.",
+    "osaka": ["Midosuji&rsquo;s first stations were built with high vaulted ceilings and chandeliers.",
               "The New Tram has run as an automated people-mover since 1981."],
     # repeat-swaps: the fact duplicated the flavor line
-    "cairo": ["Line 2 runs beneath the Nile itself, through twin tunnels bored under the riverbed.", None],
+    "cairo": ["Line 2 crosses under the Nile through twin bored tunnels.", None],
     "istanbul": [None, "Istanbul has run an underground railway since 1875: the two-stop T&uuml;nel funicular."],
+    "nyc": [None, "Officially 472 stations, the most of any single-operator metro in the world."],
 }
 
 # Flagged, owner's call (factually correct, so it may stand as-is): the NYC
@@ -565,12 +566,12 @@ def main():
       restates in the lore are tolerated. The standing shape is the section at
       the top: today&rsquo;s three views with honest names, a set caption on the
       card, and a binding whisper on the bar.</p>
-      <p class="iaverdict"><b>Two confirms ship the round:</b> (1) the set-name
-      pair, SCALE | CHARACTER recommended, menu above; (2) the slim edit list,
-      3 must-fixes + 7 repeat swaps, plus your call on the optional New York
-      clarifier. On your yes both build into the live page and Method and get
-      re-verified. The deck-of-18 ship gate (push / PR / merge) stays the
-      separate yes already pending in STATUS.</p>
+      <p class="iaverdict"><b>Both confirms taken and shipped (2026-06-12):</b>
+      SCALE | CHARACTER ratified; the slim edit list applied with a plain-pass
+      (lore must not feel too written); the NYC clarifier applied per the rec.
+      Live page rebuilt and re-verified at 375 / 768 / 1280. The deck-of-18
+      ship gate (push / PR / merge) stays the separate yes pending in
+      STATUS.</p>
     </div></section>"""
 
     board_css = """
@@ -707,8 +708,11 @@ def main():
     factually correct + no copyright entanglement + interesting on their own.
     What is live on this board: the standing shape (the toggle with honest
     names and small UX polish), the slim edit list it needs (3 must-fixes, 7
-    repeat swaps, 1 your-call), and the overlap map as evidence. Nothing is
-    applied to the live page yet.</p>
+    repeat swaps, 1 your-call), and the overlap map as evidence.
+    <b>RATIFIED + SHIPPED 2026-06-12</b>: names SCALE | CHARACTER, the slim
+    list (with a plain-pass per the owner&rsquo;s &ldquo;not too
+    written&rdquo; bar) and the NYC clarifier are live; this board is the
+    round&rsquo;s record.</p>
   </div>
   {baseline}
   {sec_a}

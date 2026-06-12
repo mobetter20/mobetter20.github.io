@@ -820,3 +820,25 @@ copyright note (facts not copyrightable, phrasing ours, sources in
 almanac.json, no curated collection copied), B/C/exhibit/tradeoff kept
 as dimmed round-1 records. Open to close the round: the set-name pair
 (SCALE | CHARACTER recommended) and a yes on the slim list.
+*Resolution 2 (2026-06-12, owner: "by copy i meants doesnt feel too
+written. i think ur recs are fine") - D30 RATIFIED AND SHIPPED.* The
+"copyright" concern was copywriting, not law: lore must not feel too
+WRITTEN (the repo's plain-not-poetic rule applied to the cards). Recs
+approved as-is. Shipped the same session, with a plain-pass over the
+new lines (Tokyo / Madrid / Moscow flavors, Cairo / Osaka facts
+simplified; e.g. "Run so tightly that..." became "Trains run to the
+minute;..."):
+- content.json: the 11 slim edits applied (incl. the NYC clarifier,
+  taken per the rec).
+- Set names SCALE | CHARACTER live: theme bar relabeled (internal keys
+  stay play/almanac), binding whisper "the battle and the daily play
+  SCALE" added, deck-only set captions via style.css ::before (battle
+  cards are SCALE-bound, no caption), flip button's flipped label
+  PLAY SIDE -> STAT SIDE (app.js).
+- Method: "SCALE: the six", "CHARACTER: the five" with the previously
+  missing new-lines and newest-line definitions added (a D29 gap), the
+  battle binding line, details summary, meta description all renamed.
+- Verified: toggle/captions/whisper by DOM probe, all 18 lore backs
+  unclipped, 375/768/1280 at 1/2/3 columns with no overflow, console
+  clean. Board restamped as the round's record. The card-IA round is
+  closed; the deck-of-18 ship gate remains the separate pending yes.
