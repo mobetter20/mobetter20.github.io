@@ -1,16 +1,18 @@
 # Metro Match (the metro-cards deck) — dev docs + tooling
 
-A collectible card deck for 12 category-defining metro systems at
-`/is/building/world-metros/` (bespoke tier; name ratified at D21). Every
-city is one designed stat card (front for play: V1 big-ledger rows with
-deck-rank chips; back for lore: the familiar Commons diagram, credited);
-comparison is the game (battle + daily). Pivoted from the atlas vision
-2026-06-12 (DECISIONS D17–D19) after four map-hero rounds died at their
-gates; the data contracts and licensing posture carry over unchanged.
+A collectible card deck for 16 metro systems in the owner's ranked order
+(D23) at `/is/building/world-metros/` (bespoke tier; name ratified at
+D21). Every city is one designed stat card (front for play: V1 big-ledger
+rows with deck-rank chips; back for lore: the familiar Commons diagram,
+credited); comparison is the game (battle + daily). Pivoted from the
+atlas vision 2026-06-12 (DECISIONS D17–D19) after four map-hero rounds
+died at their gates; the data contracts and licensing posture carry over
+unchanged.
 
 The deck is live (soft-launched, noindex) at the URL since 2026-06-12:
-three cards real (Seoul, Paris, Tokyo), nine "soon" slots, awaiting the
-owner verdict that opens the roster scale-up (BUILD-SPEC gate 3).
+three cards real (Seoul, Paris, Tokyo), thirteen "soon" slots (four of
+them awaiting their source + diagram audits), awaiting the owner verdict
+that opens the roster scale-up (BUILD-SPEC gate 3, incl. D24 themes).
 
 ## Reading order (mandatory for any agent picking this up)
 
