@@ -28,7 +28,7 @@ until that separate owner call.
 4. [DECISIONS.md](DECISIONS.md) — append-only dated decision log. PROPOSED entries need owner (Ajin) ratification.
 
 Source of truth is these files plus git history — never a Claude/Codex session memory.
-The project registry stanza lives in `~/projects.md` (`world-metros-atlas`).
+The project registry stanza is `world-metros-atlas`.
 
 ## Commands
 

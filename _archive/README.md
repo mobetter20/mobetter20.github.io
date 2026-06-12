@@ -25,4 +25,4 @@ and what it would take to bring it back.
 2. Optional: remove the `<meta name="robots" content="noindex, nofollow">` line from `is/building/joseon/index.html`
 3. Re-add the collection card to `is/building/index.html` (a `.project` with an `is-collection` chip linking `/is/building/joseon/`), and move omen.ops + the sky over Seoul out of "Lately" back into the hub.
 4. Re-list The Joseon Review in the hub once it is out of soft-launch.
-5. Update `~/projects.md` (`the-joseon-files` stanza) + `creative-constellation.md`, and remove this entry.
+5. Update the project registry (`the-joseon-files` stanza) + `creative-constellation.md`, and remove this entry.

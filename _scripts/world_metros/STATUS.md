@@ -12,7 +12,7 @@ _Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 m
 - End-to-end proof: same-scale Seoul (lines 2–9) vs Paris SVG render from raw CDN
   GeoJSON (`proof_same_scale.py`). Seoul's through-running scope problem quantified
   (~148 km bbox; L1 = 26 service variants).
-- This doc set + registry stanza (`world-metros-atlas` in `~/projects.md`).
+- This doc set + registry stanza (`world-metros-atlas`).
 - Forks ratified (D9); mock boards round 1 built (Electric Cartography), rejected
   at gate; round 2 rebuilt in the official-map idiom (D10) with fixes: RDP
   closed-ring handling (Line 2 loop), outlier-aware station filtering, Paris
