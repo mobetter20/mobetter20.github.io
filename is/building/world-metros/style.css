@@ -130,10 +130,15 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 }
 
 .cardunit { display: flex; flex-direction: column; gap: 9px; align-items: center; }
+/* mega-pill cards (Seoul 24, Beijing 27) grow taller than the 486 floor, so
+   rows size to their own card: don't stretch the short cards in a tall row. */
+.deckgrid { align-items: start; }
 
-/* the card object */
+/* the card object. min-height not height: the pills (flex: none below) wrap to
+   full rows and the card grows to fit, so the line-count/scope tag is never
+   occluded at any pill count (pill-density fix). */
 .card {
-  width: 270px; height: 486px; border-radius: 12px;
+  width: 270px; min-height: 486px; border-radius: 12px;
   background: var(--card); border: 1px solid var(--cedge);
   box-shadow: 0 4px 16px rgba(0, 0, 0, .55); color: var(--text);
   padding: 17px 15px 13px; display: flex; flex-direction: column;
@@ -153,7 +158,7 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 
 .cpills {
   display: flex; flex-wrap: wrap; align-items: center; gap: 4px;
-  margin-top: 13px; min-height: 18px;
+  margin-top: 13px; min-height: 18px; flex: none;
 }
 .cpills i {
   font-style: normal; font-family: var(--mono); font-size: 10px;
@@ -239,19 +244,20 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 }
 .lcaveat { margin-top: 3px; }
 
-/* flip */
-.flipbox { position: relative; width: 270px; height: 486px; perspective: 1200px; cursor: pointer; }
+/* flip. The front face is in normal flow and drives the box height, so a
+   tall mega-pill front makes the whole card (and the back) grow with it; the
+   back face overlays at the same size. */
+.flipbox { position: relative; width: 270px; perspective: 1200px; cursor: pointer; }
 .flipinner {
-  position: relative; width: 100%; height: 100%;
+  position: relative; width: 100%;
   transform-style: preserve-3d;
   transition: transform .55s cubic-bezier(.2, .7, .3, 1);
 }
 .flipbox.flipped .flipinner { transform: rotateY(180deg); }
-.face {
-  position: absolute; inset: 0;
-  backface-visibility: hidden; -webkit-backface-visibility: hidden;
-}
-.face.backface { transform: rotateY(180deg); }
+.face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.face:not(.backface) { position: relative; }
+.face.backface { position: absolute; inset: 0; transform: rotateY(180deg); }
+.face.backface .card { height: 100%; }
 
 .flipbtn {
   background: none; border: 1px solid var(--edge); border-radius: 999px;
@@ -286,7 +292,10 @@ button.crow[aria-disabled="true"]:hover { background: none; }
 }
 .bcol { display: flex; flex-direction: column; gap: 11px; align-items: center; }
 .bcap { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--grey); }
-.bslot { width: 270px; height: 486px; position: relative; }
+/* Battle shows one card per side; keep both slots a fixed worst-case height
+   (fits Seoul's 4 pill rows) so the two sides align and nothing clips. */
+.bslot { width: 270px; height: 530px; position: relative; }
+.bslot .card { height: 530px; }
 .bcardwrap { position: absolute; inset: 0; }
 
 .bmid { width: 234px; flex: none; text-align: center; padding-top: 120px; }
