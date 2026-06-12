@@ -187,10 +187,9 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
   display: flex; align-items: center; gap: 11px; width: 100%;
   padding: 10px 1px; border-bottom: 1px solid var(--rowline);
 }
-/* ALMANAC is three rows where PLAY is six: grow each row so the three fill
-   the card the six would, leaving no void below (D28; the layout fork is
-   judged on the board). The play card's height stays the deck baseline. */
-.cl-almanac .crow { padding: 34px 1px; }
+/* The second set's rows are grown a little so the set (now five) fills the
+   card the six PLAY rows would, no void below (D28/D29). */
+.cl-almanac .crow { padding: 15px 1px; }
 button.crow {
   background: none; border: 0; border-bottom: 1px solid var(--rowline);
   color: inherit; cursor: pointer; text-align: left;

@@ -221,6 +221,17 @@ def stat_table(meta, alm):
         dict(key="interchange", set="almanac", label="interchange", win="high",
              values={k: c[k]["interchange_pct"] for k in ROSTER},
              disp={k: f'{c[k]["interchange_pct"]}<small> %</small>' for k in ROSTER}),
+        # growth, computed from the per-line opened years (low-freshness, no
+        # construction-pipeline guesswork): lines opened in the last decade,
+        # and the year of the newest line.
+        dict(key="newlines", set="almanac", label="new lines", win="high",
+             values={k: sum(1 for l in a[k]["lines_opened"]["lines"]
+                            if l["year"] >= 2016) for k in ROSTER},
+             disp={k: f'{sum(1 for l in a[k]["lines_opened"]["lines"] if l["year"] >= 2016)}'
+                      f'<small> since &rsquo;16</small>' for k in ROSTER}),
+        dict(key="newest", set="almanac", label="newest line", win="high",
+             values={k: max(l["year"] for l in a[k]["lines_opened"]["lines"]) for k in ROSTER},
+             disp={k: str(max(l["year"] for l in a[k]["lines_opened"]["lines"])) for k in ROSTER}),
     ]
     for s in stats:
         vals = {k: v for k, v in s["values"].items() if v is not None}
