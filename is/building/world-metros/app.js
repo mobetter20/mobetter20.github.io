@@ -101,11 +101,11 @@ document.querySelectorAll('.flipbox').forEach((box) => {
 // ----------------------------------------------------- deck: theme switch
 
 const deckgrid = document.getElementById('deckgrid');
-const themeBtns = Array.from(document.querySelectorAll('.themebtn'));
-themeBtns.forEach((btn) => {
+const setBtns = Array.from(document.querySelectorAll('.themebtn'));
+setBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
-    deckgrid.dataset.theme = btn.dataset.theme;
-    themeBtns.forEach((b) =>
+    deckgrid.dataset.set = btn.dataset.set;
+    setBtns.forEach((b) =>
       b.setAttribute('aria-pressed', String(b === btn)));
   });
 });

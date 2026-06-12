@@ -128,6 +128,7 @@ FLAVOR = {}    # filled from content.json (assert checks all of ROSTER)
 FACTS = {}     # two curated facts per lore back (D22 trim)
 CREDIT = {}    # VERBATIM from DIAGRAM-LEDGER.md
 CAVEAT = {}    # currency caveats where the ledger flags them
+FX_DATE = ""   # the single dated FX snapshot for BASE FARE (D28), from almanac
 
 
 def load_content():
@@ -179,10 +180,10 @@ def fmt_usd(v):
 
 
 def stat_table(meta, alm):
-    """Every stat row the cards can carry, across all three themes.
-    Each stat: key, theme, label, win direction, values (None = unsourced,
-    row drops from that card), display strings, ranks (competition ranking
-    over the cities that carry the stat)."""
+    """Every stat row, across the two D28 sets. Each stat: key, set
+    ('play' | 'almanac'), label, win direction, values, display strings,
+    ranks (competition ranking over the cities that carry the stat).
+    Both sets are full-coverage across the 18 cards (asserted)."""
     c = meta["cities"]
     a = alm["cities"]
 
@@ -190,52 +191,36 @@ def stat_table(meta, alm):
         return c[k]["stations"] / c[k]["hull_km2"]
 
     stats = [
-        # CORE: full coverage enforced (battle + daily run here)
-        dict(key="opened", theme="core", label="opened", win="low",
+        # PLAY: the ratified six (battle + daily run here)
+        dict(key="opened", set="play", label="opened", win="low",
              values={k: a[k]["opened"]["year"] for k in ROSTER},
              disp={k: str(a[k]["opened"]["year"]) for k in ROSTER}),
-        dict(key="stations", theme="core", label="stations", win="high",
+        dict(key="stations", set="play", label="stations", win="high",
              values={k: c[k]["stations"] for k in ROSTER},
              disp={k: str(c[k]["stations"]) for k in ROSTER}),
-        dict(key="span", theme="core", label="span", win="high",
+        dict(key="span", set="play", label="span", win="high",
              values={k: c[k]["span_km"] for k in ROSTER},
              disp={k: f'{c[k]["span_km"]:.1f}<small> km</small>' for k in ROSTER}),
-        dict(key="density", theme="core", label="density", win="high",
+        dict(key="density", set="play", label="density", win="high",
              values={k: round(density(k), 4) for k in ROSTER},
              disp={k: f'{fmt_density(density(k))}<small> st/km²</small>' for k in ROSTER}),
-        dict(key="routekm", theme="core", label="route-km", win="high",
+        dict(key="routekm", set="play", label="route-km", win="high",
              values={k: a[k]["route_km"]["value"] for k in ROSTER},
              disp={k: fmt_km(a[k]["route_km"]["value"]) for k in ROSTER}),
-        dict(key="ridership", theme="core", label="ridership", win="high",
+        dict(key="ridership", set="play", label="ridership", win="high",
              values={k: a[k]["ridership"]["annual_m"] for k in ROSTER},
              disp={k: fmt_riders(a[k]["ridership"]["annual_m"]) for k in ROSTER}),
-        # SERVICE theme (D24): dated almanac snapshots
-        dict(key="headway", theme="service", label="best headway", win="low",
-             values={k: (a[k].get("headway") or {}).get("value") for k in ROSTER},
-             disp={k: (f'{(a[k].get("headway") or {}).get("value")}<small> min</small>'
-                       if (a[k].get("headway") or {}).get("value") is not None else "")
-                   for k in ROSTER}),
-        dict(key="hours", theme="service", label="service day", win="high",
-             values={k: (a[k].get("span_h") or {}).get("value") for k in ROSTER},
-             disp={k: (f'{(a[k].get("span_h") or {}).get("value"):g}<small> h</small>'
-                       if (a[k].get("span_h") or {}).get("value") is not None else "")
-                   for k in ROSTER}),
-        dict(key="driverless", theme="service", label="driverless", win="high",
-             values={k: (a[k].get("driverless") or {}).get("value") for k in ROSTER},
-             disp={k: (f'{(a[k].get("driverless") or {}).get("value")}<small> lines</small>'
-                       if (a[k].get("driverless") or {}).get("value") is not None else "")
-                   for k in ROSTER}),
-        # MONEY theme (D24; fares ride as dated snapshots, D2 stays honest)
-        dict(key="fare", theme="money", label="fare from", win="low",
-             values={k: (a[k].get("fare_usd") or {}).get("value") for k in ROSTER},
-             disp={k: (fmt_usd((a[k].get("fare_usd") or {}).get("value"))
-                       if (a[k].get("fare_usd") or {}).get("value") is not None else "")
-                   for k in ROSTER}),
-        dict(key="farebox", theme="money", label="farebox", win="high",
-             values={k: (a[k].get("farebox") or {}).get("value") for k in ROSTER},
-             disp={k: (f'{(a[k].get("farebox") or {}).get("value"):g}<small> %</small>'
-                       if (a[k].get("farebox") or {}).get("value") is not None else "")
-                   for k in ROSTER}),
+        # ALMANAC (D28): base fare (uniform-FX USD), driverless (GoA3+),
+        # interchange (computed 7th lens). Exact labels per owner.
+        dict(key="fare", set="almanac", label="base fare", win="low",
+             values={k: a[k]["fare_usd"]["value"] for k in ROSTER},
+             disp={k: fmt_usd(a[k]["fare_usd"]["value"]) for k in ROSTER}),
+        dict(key="driverless", set="almanac", label="driverless", win="high",
+             values={k: a[k]["driverless"]["value"] for k in ROSTER},
+             disp={k: f'{a[k]["driverless"]["value"]}<small> lines</small>' for k in ROSTER}),
+        dict(key="interchange", set="almanac", label="interchange", win="high",
+             values={k: c[k]["interchange_pct"] for k in ROSTER},
+             disp={k: f'{c[k]["interchange_pct"]}<small> %</small>' for k in ROSTER}),
     ]
     for s in stats:
         vals = {k: v for k, v in s["values"].items() if v is not None}
@@ -243,8 +228,7 @@ def stat_table(meta, alm):
         s["ranks"] = {k: (order.index(v) + 1 if v is not None else None)
                       for k, v in s["values"].items()}
         s["basis"] = len(vals)
-        if s["theme"] == "core":
-            assert s["basis"] == len(ROSTER), f"core stat {s['key']} not full"
+        assert s["basis"] == len(ROSTER), f"{s['set']} stat {s['key']} not full"
     return stats
 
 
@@ -262,7 +246,8 @@ def pills_html(meta, city):
 
 def card_foot(meta):
     return (f'<div class="cfoot">data: OSM snapshot {meta["as_of"]} (ODbL) + '
-            f'dated almanac · ranks across the deck of {len(ROSTER)}</div>')
+            f'dated almanac · base fare at {FX_DATE} FX · ranks '
+            f'across the deck of {len(ROSTER)}</div>')
 
 
 def chip(rank):
@@ -270,10 +255,10 @@ def chip(rank):
     return f'<span class="{cls}">{ORDINAL[rank]}</span>'
 
 
-def ledger_html(stats, city, theme, battle=False):
+def ledger_html(stats, city, sset, battle=False):
     rows = []
     for s in stats:
-        if s["theme"] != theme:
+        if s["set"] != sset:
             continue
         if s["values"][city] is None:
             continue
@@ -285,18 +270,19 @@ def ledger_html(stats, city, theme, battle=False):
                         f'data-stat="{s["key"]}">{inner}</button>')
         else:
             rows.append(f'<div class="crow" data-stat="{s["key"]}">{inner}</div>')
-    return f'<div class="cledger" data-theme="{theme}">{"".join(rows)}</div>'
+    return f'<div class="cledger cl-{sset}" data-set="{sset}">{"".join(rows)}</div>'
 
 
 def card_front(meta, stats, city, battle=False, deck=False):
-    """The play side. deck=True carries all three themed ledgers; battle
-    cards carry core only (buttons for the you-card, plain rows for cpu)."""
+    """The play side. deck=True carries both stat sets (PLAY + ALMANAC,
+    D28); battle cards carry PLAY only (buttons for the you-card, plain
+    rows for cpu)."""
     deck_no = f"{ROSTER.index(city) + 1:02d}"
     if deck:
-        ledgers = "".join(ledger_html(stats, city, t)
-                          for t in ("core", "service", "money"))
+        ledgers = "".join(ledger_html(stats, city, s)
+                          for s in ("play", "almanac"))
     else:
-        ledgers = ledger_html(stats, city, "core", battle=battle)
+        ledgers = ledger_html(stats, city, "play", battle=battle)
     return (f'<article class="card cfront" '
             f'aria-label="{DISPLAY.get(city, city)}, {EPITHET[city]}, card {deck_no} of {len(ROSTER)}">'
             f'<div class="chead"><div class="cid">'
@@ -356,13 +342,13 @@ def deck_grid(meta, stats):
 
 
 def theme_switch():
+    # Two pills, PLAY | ALMANAC (D28). The fine-print trailer leaves the bar;
+    # Method carries the definitions and the FX date.
     return (
-        '<div class="themebar" role="group" aria-label="Stat theme">'
+        '<div class="themebar" role="group" aria-label="Stat set">'
         '<span class="themecap">STATS</span>'
-        '<button type="button" class="themebtn" data-theme="core" aria-pressed="true">CORE</button>'
-        '<button type="button" class="themebtn" data-theme="service" aria-pressed="false">SERVICE</button>'
-        '<button type="button" class="themebtn" data-theme="money" aria-pressed="false">MONEY</button>'
-        '<span class="themenote" id="themenote">dated almanac snapshots, sources on method</span>'
+        '<button type="button" class="themebtn" data-set="play" aria-pressed="true">PLAY</button>'
+        '<button type="button" class="themebtn" data-set="almanac" aria-pressed="false">ALMANAC</button>'
         '</div>')
 
 
@@ -535,22 +521,20 @@ def method_panel(meta, alm, stats):
                       + (f' <span class="asof">({CAVEAT[c]})</span>' if c in CAVEAT else "")
                       + '</p>'
                       for c in ROSTER)
-    svc_table = theme_table(alm, [("headway", " min"), ("span_h", " h"),
-                                  ("driverless", " lines")])
-    money_table = theme_table(alm, [("fare_usd", " USD"), ("farebox", " %")])
+    alm_table = theme_table(alm, [("fare_usd", " USD"), ("driverless", " lines")])
     return f"""
     <div class="method">
       <h2>The game</h2>
       <p><b>The battle.</b> You hold a card face up; the cpu holds one face
       down. Pick the stat you think wins; the cards compare, and the round
       goes to the better number. First to three rounds takes the match. A
-      dead heat scores nobody.</p>
+      dead heat scores nobody. The battle runs on the PLAY set.</p>
       <p><b>The daily.</b> One question a day, one guess, and a streak that
       lives in your browser. Nothing leaves the page.</p>
-      <p><b>Win directions are fixed.</b> Opened, best headway and fare win
-      smaller; everything else wins larger.</p>
+      <p><b>Win directions are fixed.</b> Opened and base fare win smaller;
+      everything else wins larger.</p>
 
-      <h2>The core six</h2>
+      <h2>PLAY: the six</h2>
       <table>
         <tr><th>stat</th><th>what it measures</th><th>wins</th></tr>
         <tr><td>opened</td><td>earliest regular passenger service within the
@@ -568,33 +552,29 @@ def method_panel(meta, alm, stats):
         <tr><td>ridership</td><td>reported annual rides, dated and sourced
         (almanac grade)</td><td>more</td></tr>
       </table>
-      <p>Ranks are computed across the full deck of 18. Missing evidence
-      drops a row from that card rather than rendering a zero, and the
-      battle and the daily run on the core six, where every card carries
-      every stat.</p>
 
-      <h2>The themes</h2>
-      <p>The deck&rsquo;s stat rows switch between three sets: <b>core</b>
-      (above), <b>service</b> and <b>money</b>. Every themed figure is a
-      dated almanac snapshot with a source, refreshed on the annual pass,
-      never live utility information. Fares especially: the row says what
-      the minimum single ride cost on its as-of date; check the operator
-      for today&rsquo;s fare.</p>
+      <h2>ALMANAC: the three</h2>
+      <p>A second switchable set. Every figure is dated; sources are in the
+      almanac file in the site&rsquo;s public repo.</p>
       <table>
         <tr><th>stat</th><th>what it measures</th><th>wins</th></tr>
-        <tr><td>best headway</td><td>the shortest advertised scheduled peak
-        interval anywhere on the scoped network</td><td>shorter</td></tr>
-        <tr><td>service day</td><td>weekday scheduled span from first to
-        last departure; 24 only for genuinely round-the-clock networks</td>
-        <td>longer</td></tr>
-        <tr><td>driverless</td><td>lines running unattended passenger
-        service as normal practice</td><td>more</td></tr>
-        <tr><td>fare from</td><td>minimum adult single-ride fare, cheapest
-        regular payment method, converted to USD on the as-of date</td>
-        <td>cheaper</td></tr>
-        <tr><td>farebox</td><td>farebox recovery ratio: fare revenue over
-        operating costs, where the operator publishes one</td><td>higher</td></tr>
+        <tr><td>base fare</td><td>the adult single minimum fare, converted to
+        USD at one dated FX snapshot ({alm["fx"]["date"]}) for every card, so
+        the row compares on one rate; check the operator for today&rsquo;s
+        fare</td><td>cheaper</td></tr>
+        <tr><td>driverless</td><td>count of GoA3+ lines (driverless, attended
+        or not) within the card&rsquo;s declared scope, from Wikipedia&rsquo;s
+        driverless-train-systems list</td><td>more</td></tr>
+        <tr><td>interchange</td><td>share of the card&rsquo;s station
+        complexes whose plotted points sit by two or more counted lines,
+        computed from our own snapshot</td><td>more</td></tr>
       </table>
+      <p>Two notes on interchange: it is computed from the same plotted
+      snapshot as the other geometry stats, and New York reads high because
+      its lettered and numbered services share track through most stations,
+      so a single complex counts many services. The cut stats (peak headway,
+      service hours, farebox recovery) were dropped for want of one
+      comparable, current source across the deck.</p>
 
       <h2>Scope: what each card counts</h2>
       <p>Each card declares its scope as <b>the network its city&rsquo;s own
@@ -614,16 +594,15 @@ def method_panel(meta, alm, stats):
         <tr><th>city</th><th>route-km</th><th>annual rides</th></tr>
         {almanac_table(alm)}
       </table>
-      <details><summary>service theme: figures and sources</summary>
+      <details><summary>almanac set: figures and sources</summary>
       <table class="almtable">
-        <tr><th>city</th><th>best headway</th><th>service day</th><th>driverless</th></tr>
-        {svc_table}
-      </table></details>
-      <details><summary>money theme: figures and sources</summary>
-      <table class="almtable">
-        <tr><th>city</th><th>fare from</th><th>farebox</th></tr>
-        {money_table}
-      </table></details>
+        <tr><th>city</th><th>base fare (USD, {alm["fx"]["date"]} FX)</th><th>driverless (GoA3+)</th></tr>
+        {alm_table}
+      </table>
+      <p class="credit">Interchange is computed from the same snapshot as the
+      other geometry stats; its per-city value is in the deck data and on each
+      card. Driverless counts are from the driverless-train-systems list at the
+      revision named in the rows.</p></details>
 
       <h2>The diagrams on the backs</h2>
       <p>The lore side of each card carries the diagram riders actually see,
@@ -639,14 +618,15 @@ def method_panel(meta, alm, stats):
 
 def data_json(meta, stats):
     cities = {}
-    core = [s for s in stats if s["theme"] == "core"]
+    # battle + daily are bound to the PLAY set (D28)
+    play = [s for s in stats if s["set"] == "play"]
     for c in ROSTER:
         slug = SLUG[c]
         cities[slug] = {
             "name": DISPLAY.get(c, c),
-            "values": {s["key"]: s["values"][c] for s in core},
+            "values": {s["key"]: s["values"][c] for s in play},
             "disp": {s["key"]: s["disp"][c].replace("<small>", "").replace("</small>", "")
-                     for s in core},
+                     for s in play},
             "lines": meta["cities"][c]["lines"],
         }
     slugs = [SLUG[c] for c in ROSTER]
@@ -655,8 +635,8 @@ def data_json(meta, stats):
     payload = {
         "asOf": meta["as_of"],
         "live": slugs,
-        "statOrder": [s["key"] for s in core],
-        "stats": {s["key"]: {"win": s["win"]} for s in core},
+        "statOrder": [s["key"] for s in play],
+        "stats": {s["key"]: {"win": s["win"]} for s in play},
         "cities": cities,
         "pairs": pairs,
     }
@@ -674,12 +654,15 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' "
 
 
 def main():
+    global FX_DATE
     load_content()
     meta = load_meta()
     alm = load_almanac()
+    FX_DATE = alm["fx"]["date"]
     for c in ROSTER:
         assert c in meta["cities"], f"meta.json missing {c}"
         assert c in alm["cities"], f"almanac.json missing {c}"
+        assert "interchange_pct" in meta["cities"][c], f"no interchange for {c}"
         assert os.path.exists(os.path.join(ASSETS, diagram_file(c))), \
             f"missing diagram asset for {c}"
     stats = stat_table(meta, alm)
@@ -693,7 +676,7 @@ def main():
 <meta name="robots" content="noindex"><!-- soft launch: unlisted until the owner verdict gate -->
 <meta name="theme-color" content="#0f0f12">
 <title>Metro Match</title>
-<meta name="description" content="A collectible card deck for the world's defining metro systems. Eighteen cities, honest dated stats in three themes, a battle and a daily guess. Trading cards with footnotes.">
+<meta name="description" content="A collectible card deck for the world's defining metro systems. Eighteen cities, honest dated stats in two sets (play and almanac), a battle and a daily guess. Trading cards with footnotes.">
 <link rel="icon" href="{FAVICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -722,7 +705,7 @@ def main():
       every number dated and sourced. <b>Flip a card for the lore; pick a
       stat and beat the cpu; one guess a day in the daily.</b></p>
       {theme_switch()}
-      <div class="deckgrid" id="deckgrid" data-theme="core">{deck_grid(meta, stats)}</div>
+      <div class="deckgrid" id="deckgrid" data-set="play">{deck_grid(meta, stats)}</div>
     </section>
 
     <section id="panel-battle" role="tabpanel" aria-labelledby="tab-battle" hidden>

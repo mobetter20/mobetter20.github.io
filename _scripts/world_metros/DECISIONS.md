@@ -662,3 +662,47 @@ now reverses.
   line identities extracted; the known gap is Sinbundang, whose OSM
   validator export is empty. D27's Seoul-first work closes or documents
   that gap before the newcomers.)
+
+**D28 · Stat sets recomposed on verified fetchability: PLAY + ALMANAC -
+RATIFIED 2026-06-12 (owner, design session; supersedes D24's CORE /
+SERVICE / MONEY theme trio and the parts of D26/D27 that described it).**
+_Numbering note: the owner labeled this "D26"; D26 (the gate-3 build
+record) and D27 (deck of 18) were already appended this session, so it is
+recorded as D28 to keep the log append-only. Content is the owner's
+verbatim decision, composed from a source-checked menu after flagging
+thin themes and unclear labels._
+- **Two sets, one toggle: PLAY and ALMANAC.** CORE/SERVICE/MONEY die.
+  - PLAY = the ratified six (opened, stations, span, density, route-km,
+    ridership, as they source).
+  - ALMANAC = base fare + driverless lines + interchange share.
+- **Cut from cards entirely:** peak/best headway and service day/hours
+  (no comparable source exists; per-operator timetable archaeology), and
+  farebox recovery (owner did not pick it; the central comparison table
+  is FY2018 Tokyo / 2007 Madrid with ~7 of 18 cities missing). The
+  shipped Tokyo farebox 161.55% was an FY2018 figure at false precision;
+  nothing like it ships again. Famous individual cases (e.g. Paris
+  85-second headways) may surface as lore-back facts where citable. The
+  researched headway/hours/farebox figures stay in almanac.json as
+  sourced reference, but render nowhere on the cards.
+- **ALMANAC definitions (Method records each):**
+  - BASE FARE: adult single minimum fare, USD at ONE dated FX rate for
+    all cards (owner-ratified); the FX date is named in the card foot and
+    Method. Lower wins. 2 decimals.
+  - DRIVERLESS: count of GoA3+ lines within the card's declared scope,
+    from Wikipedia's driverless-train-systems list (cite revision). More
+    wins. Integer; "lines" unit.
+  - INTERCHANGE: share of station complexes served by 2+ counted lines,
+    computed from our own snapshot (the long-planned 7th lens). More
+    wins. Whole percent.
+- **Labels (owner flagged clarity), exact:** BASE FARE, DRIVERLESS,
+  INTERCHANGE. Switcher: two pills, PLAY | ALMANAC; the fine-print
+  trailer leaves the bar (Method carries it).
+- **Battle stays bound to the PLAY set** for now; almanac battling is a
+  later owner call.
+- **Layout fork (judged on the board, not pre-locked):** the three
+  ALMANAC rows must not leave the void the owner flagged on sparse cards.
+  The almanac view ships with a default fuller-row layout, shown on the
+  same board as the pill-density candidates (C1/C2) so both are judged by
+  eye together.
+- Priority order unchanged: Seoul scope freeze first (done at D25/D27);
+  D28 lands with the board round.

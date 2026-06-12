@@ -1,6 +1,26 @@
 {
-  "_note": "Researched dated figures for build_metro_cards.py. Every value verified against a live page during the 2026-06-12 gate-3 session; source URL + as_of recorded per field. annual_m is millions of rides/yr; route_km is km; fare_usd is the minimum adult single ride converted to USD on fx_as_of; farebox is recovery ratio percent (vintages and scopes vary by city, see notes; null where no figure is published). NO em dashes anywhere.",
+  "_note": "Researched dated figures for build_metro_cards.py. Every value verified against a live page during the 2026-06-12 gate-3 session; source URL + as_of recorded per field. annual_m is millions of rides/yr; route_km is km; fare_usd is the minimum adult single ride converted to USD on fx_as_of; farebox is recovery ratio percent (vintages and scopes vary by city, see notes; null where no figure is published). NO em dashes anywhere. Per D28, the headway/span_h/farebox fields are retained as sourced reference but render nowhere on the cards (cut stats); the rendered ALMANAC set is fare_usd + driverless + interchange (interchange computed in meta.json).",
   "as_of": "2026-06-12",
+  "fx": {
+    "date": "2026-06-12",
+    "note": "All BASE FARE values converted from the local minimum single fare to USD at one dated FX snapshot (open.er-api.com, 2026-06-12), so the cards compare on one rate. Local fares carry their own as-of date.",
+    "usd_per_unit": {
+      "JPY": 0.00624,
+      "KRW": 0.000656,
+      "SGD": 0.77723,
+      "HKD": 0.12761,
+      "EUR": 1.155084,
+      "CNY": 0.147327,
+      "GBP": 1.338518,
+      "USD": 1.0,
+      "RUB": 0.013852,
+      "DKK": 0.154723,
+      "INR": 0.010452,
+      "MXN": 0.057725,
+      "EGP": 0.019237,
+      "TRY": 0.021636
+    }
+  },
   "cities": {
     "tokyo": {
       "opened": {
@@ -92,9 +112,9 @@
       },
       "driverless": {
         "value": 0,
-        "note": "All Metro and Toei lines run with drivers (GoA2 at most).",
-        "source": "https://en.wikipedia.org/wiki/List_of_automated_train_systems",
-        "as_of": "2026"
+        "note": "no Metro/Toei subway line is GoA3+; only AGT people-movers.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 1.12,
@@ -245,9 +265,9 @@
       },
       "driverless": {
         "value": 7,
-        "note": "Sinbundang, Ui-Sinseol, Sillim, Uijeongbu LRT, Yongin Everline, Gimpo Goldline, Incheon Line 2.",
-        "source": "https://en.wikipedia.org/wiki/Shinbundang_Line",
-        "as_of": "2026"
+        "note": "Sinbundang, Ui-Sinseol, Sillim, Uijeongbu LRT, Yongin Everline, Gimpo Goldline, Incheon Line 2, all GoA4.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 1.02,
@@ -325,10 +345,10 @@
         "as_of": "2026"
       },
       "driverless": {
-        "value": 4,
-        "note": "North East, Circle, Downtown and Thomson-East Coast all fully automated.",
-        "source": "https://en.wikipedia.org/wiki/Mass_Rapid_Transit_(Singapore)",
-        "as_of": "2026"
+        "value": 6,
+        "note": "all six MRT lines GoA4 (NSL/EWL converted 2017-18); LRT out of scope.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 0.99,
@@ -423,9 +443,9 @@
       },
       "driverless": {
         "value": 2,
-        "note": "Disneyland Resort Line (since 2005) and South Island Line.",
-        "source": "https://en.wikipedia.org/wiki/MTR",
-        "as_of": "2026"
+        "note": "South Island and Disneyland Resort lines (GoA4, attendant aboard).",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 0.51,
@@ -544,9 +564,9 @@
       },
       "driverless": {
         "value": 3,
-        "note": "Lines 1, 4 and 14 run unattended (GoA4).",
+        "note": "Lines 1, 4 and 14, GoA4.",
         "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
-        "as_of": "2026"
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 2.36,
@@ -676,10 +696,10 @@
         "as_of": "2026"
       },
       "driverless": {
-        "value": 5,
-        "note": "Lines 10, 14, 15, 18 and Pujiang run unattended (GoA4).",
+        "value": 7,
+        "note": "GoA4: 10, 14, 15, 18, Pujiang; GoA3: 5, 17.",
         "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
-        "as_of": "2026"
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 0.44,
@@ -837,10 +857,10 @@
         "as_of": "2026"
       },
       "driverless": {
-        "value": 6,
-        "note": "Yanfang, Daxing Airport, Lines 11, 17, 3 and 12 run unattended (GoA4).",
+        "value": 8,
+        "note": "GoA4: 3, 11, 12, 17, 19, Yanfang, Daxing Airport; GoA3: Capital Airport Express. (7 if Line 19 and Yanfang count as one.)",
         "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
-        "as_of": "2026"
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 0.44,
@@ -939,9 +959,9 @@
       },
       "driverless": {
         "value": 0,
-        "note": "Automatic train operation on several lines, but every train has a driver.",
-        "source": "https://en.wikipedia.org/wiki/Victoria_line",
-        "as_of": "2026"
+        "note": "all Underground lines GoA2; the GoA3 DLR is out of scope.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 2.94,
@@ -1008,9 +1028,9 @@
       },
       "driverless": {
         "value": 0,
-        "note": "Highest automation is GoA2 CBTC on the L and 7, with operators aboard.",
-        "source": "https://en.wikipedia.org/wiki/List_of_automated_train_systems",
-        "as_of": "2026"
+        "note": "the L and 7 run ATO with a train operator (GoA2).",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 3.0,
@@ -1117,9 +1137,9 @@
       },
       "driverless": {
         "value": 0,
-        "note": "Automation tops out at GoA2 with drivers; Line 6 conversion is due 2027.",
-        "source": "https://en.wikipedia.org/wiki/List_of_automated_train_systems",
-        "as_of": "2026"
+        "note": "all lines GoA2; the Line 6 conversion is not yet operational.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 1.73,
@@ -1238,9 +1258,9 @@
       },
       "driverless": {
         "value": 0,
-        "note": "No metro or MCC line runs unattended passenger service.",
-        "source": "https://en.wikipedia.org/wiki/List_of_automated_train_systems",
-        "as_of": "2026"
+        "note": "no Metro line or the MCC is GoA3+ (only a tram line).",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 1.04,
@@ -1311,9 +1331,9 @@
       },
       "driverless": {
         "value": 4,
-        "note": "All four lines fully automated and unattended since each opened.",
-        "source": "https://en.wikipedia.org/wiki/Copenhagen_Metro",
-        "as_of": "2026"
+        "note": "all four M-lines GoA4.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 3.71,
@@ -1407,10 +1427,10 @@
         "as_of": "2026"
       },
       "driverless": {
-        "value": 2,
-        "note": "Magenta (India's first, 2020) and Pink run unattended, about 120 km.",
-        "source": "https://www.psuconnect.in/psu-news/delhi-metro-records-235-8-crore-passenger-journeys-in-2025-remains-india-largest-metro-network",
-        "as_of": "2026"
+        "value": 3,
+        "note": "Magenta, Pink and Grey lines GoA4; the Airport Express is driven.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 0.11,
@@ -1541,9 +1561,9 @@
       },
       "driverless": {
         "value": 4,
-        "note": "APM plus Lines 10, 11 and 12 run fully automatic (GoA4).",
-        "source": "https://zh.wikipedia.org/wiki/%E5%B9%BF%E5%B7%9E%E5%9C%B0%E9%93%81",
-        "as_of": "2026-05-07"
+        "note": "Lines 10, 11, 12 and the APM, GoA4; Lines 18/22 not yet listed.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 0.29,
@@ -1646,9 +1666,9 @@
       },
       "driverless": {
         "value": 0,
-        "note": "All 12 lines are driver-operated.",
-        "source": "https://en.wikipedia.org/wiki/Mexico_City_Metro",
-        "as_of": "2026"
+        "note": "all STC lines conventionally driven.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 0.29,
@@ -1715,9 +1735,9 @@
       },
       "driverless": {
         "value": 0,
-        "note": "Lines 1 to 3 are driver-operated.",
-        "source": "https://en.wikipedia.org/wiki/Cairo_Metro",
-        "as_of": "2026"
+        "note": "Lines 1-3 driven; the monorail is a separate future system.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
         "value": 0.19,
@@ -1808,12 +1828,12 @@
       },
       "driverless": {
         "value": 1,
-        "note": "the New Tram (Nanko Port Town Line), automated since 1981.",
-        "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
-        "as_of": "2026"
+        "note": "the New Tram (Nanko Port Town Line), GoA4 since 1991.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
-        "value": 1.18,
+        "value": 1.19,
         "local": "190 JPY",
         "note": "minimum distance-band adult single.",
         "source": "https://en.wikipedia.org/wiki/Osaka_Metro",
@@ -1909,12 +1929,12 @@
       },
       "driverless": {
         "value": 4,
-        "note": "M5 (Turkey's first driverless line), M7, M8 and M9, fully automated.",
-        "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",
-        "as_of": "2026"
+        "note": "M5, M7, M8 and M11, GoA3+; M9 is GoA2.",
+        "source": "https://en.wikipedia.org/wiki/List_of_driverless_train_systems",
+        "as_of": "2026-06-08 (oldid 1358345659)"
       },
       "fare_usd": {
-        "value": 0.86,
+        "value": 0.87,
         "local": "40 TRY",
         "note": "flat Istanbulkart single; Turkish fares rise often, so the lira figure dates fast.",
         "source": "https://en.wikipedia.org/wiki/Istanbul_Metro",

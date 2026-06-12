@@ -173,14 +173,17 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 }
 
 .cledger { margin-top: 13px; border-top: 1px solid var(--cedge); display: none; }
-.deckgrid[data-theme="core"] .cledger[data-theme="core"],
-.deckgrid[data-theme="service"] .cledger[data-theme="service"],
-.deckgrid[data-theme="money"] .cledger[data-theme="money"],
+.deckgrid[data-set="play"] .cledger[data-set="play"],
+.deckgrid[data-set="almanac"] .cledger[data-set="almanac"],
 .arena .cledger { display: block; }
 .crow {
   display: flex; align-items: center; gap: 11px; width: 100%;
   padding: 10px 1px; border-bottom: 1px solid var(--rowline);
 }
+/* ALMANAC is three rows where PLAY is six: grow each row so the three fill
+   the card the six would, leaving no void below (D28; the layout fork is
+   judged on the board). The play card's height stays the deck baseline. */
+.cl-almanac .crow { padding: 34px 1px; }
 button.crow {
   background: none; border: 0; border-bottom: 1px solid var(--rowline);
   color: inherit; cursor: pointer; text-align: left;

@@ -314,30 +314,27 @@ def load_network(cfg):
         entry = by_line.setdefault(ident, {"color": color, "pts": []})
         entry["pts"] += proj
 
-    # named station points within 90 m of a scoped vertex
+    # named station points within 90 m of a scoped vertex; record which
+    # line identities each point sits near (for the interchange lens)
     grid = {}
     for ident in by_line:
         for x, y in by_line[ident]["pts"]:
-            grid.setdefault((int(x), int(y)), []).append((x, y))
+            grid.setdefault((int(x), int(y)), []).append((x, y, ident))
     scoped = []
     for coords, name in pts:
         x, y = project_pt(coords[0], coords[1], k)
         gx, gy = int(x), int(y)
-        near = False
+        refs = set()
         for cx in (gx - 1, gx, gx + 1):
             for cy in (gy - 1, gy, gy + 1):
-                for vx, vy in grid.get((cx, cy), ()):
+                for vx, vy, ident in grid.get((cx, cy), ()):
                     if (vx - x) ** 2 + (vy - y) ** 2 < 0.09 ** 2:
-                        near = True
-                        break
-                if near:
-                    break
-            if near:
-                break
-        if near:
-            scoped.append((x, y, name.strip() if name else None))
+                        refs.add(ident)
+        if refs:
+            scoped.append((x, y, name.strip() if name else None, refs))
 
     def cluster(group, linkage):
+        """group: [(x, y, refs)] -> [(cx, cy, union_refs)] by single-linkage."""
         clusters = []
         for p in group:
             hits = [cl for cl in clusters
@@ -350,18 +347,27 @@ def load_network(cfg):
                     clusters.remove(other)
             else:
                 clusters.append([p])
-        return [(sum(q[0] for q in cl) / len(cl),
-                 sum(q[1] for q in cl) / len(cl)) for cl in clusters]
+        out = []
+        for cl in clusters:
+            refs = set()
+            for q in cl:
+                refs |= q[2]
+            out.append((sum(q[0] for q in cl) / len(cl),
+                        sum(q[1] for q in cl) / len(cl), refs))
+        return out
 
-    # complex merge: same name within 350 m single-linkage counts once
+    # complex merge: same name within 350 m single-linkage counts once;
+    # a complex's line set is the union of its points' nearby line refs
     by_name = {}
-    for x, y, name in scoped:
+    for x, y, name, refs in scoped:
         if name:
-            by_name.setdefault(name, []).append((x, y))
-    stations = []
+            by_name.setdefault(name, []).append((x, y, refs))
+    stations, complexes = [], []
     for name, group in by_name.items():
-        stations.extend(cluster(group, 0.35))
-    return {"lines": by_line, "stations": stations}
+        for cx, cy, refs in cluster(group, 0.35):
+            stations.append((cx, cy))
+            complexes.append(refs)
+    return {"lines": by_line, "stations": stations, "complexes": complexes}
 
 
 def convex_hull(points):
@@ -426,12 +432,17 @@ def main():
         "source": "OSM via cdn.organicmaps.app/subway (ODbL)",
         "basis": {"density": "stations per km2 of the convex hull of "
                              "plotted stations",
-                  "span": "furthest plotted stations, geodesic"},
+                  "span": "furthest plotted stations, geodesic",
+                  "interchange": "share of station complexes whose plotted "
+                                 "points sit by 2+ counted lines"},
         "cities": {},
     }
     for city, cfg in CITY_CONFIG.items():
         net = load_network(cfg)
         stations = net["stations"]
+        complexes = net["complexes"]
+        interchange = (sum(1 for rs in complexes if len(rs) >= 2)
+                       / len(complexes)) if complexes else 0.0
         hull = convex_hull(stations)
         area = hull_area(hull)
         span = span_km(stations)
@@ -447,13 +458,15 @@ def main():
             "stations": len(stations),
             "span_km": round(span, 1),
             "hull_km2": round(area, 1),
+            "interchange_pct": round(100 * interchange),
             "w_km": round(max(xs) - min(xs), 1),
             "h_km": round(max(ys) - min(ys), 1),
             "lines": [{"ref": display.get(r, r),
                        "color": net["lines"][r]["color"]} for r in idents],
         }
-        print(f"{city:13s} {len(stations):4d} stations  span {span:6.1f} km  "
-              f"hull {area:8.1f} km2  {len(idents):2d} lines")
+        print(f"{city:13s} {len(stations):4d} st  span {span:6.1f}  "
+              f"hull {area:8.1f}  {len(idents):2d} lines  "
+              f"interchange {round(100*interchange):2d}%")
 
     meta_path = os.path.join(OUT_DIR, "meta.json")
     with open(meta_path, "w") as fh:
