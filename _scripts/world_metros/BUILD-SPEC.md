@@ -98,7 +98,9 @@ that card; never shown as zero.
    four D23 newcomers (OSM validator + DIAGRAM-LEDGER stanzas), per-line
    opened-year sourcing, full-deck ranks, lore backs per DIAGRAM-LEDGER,
    and the D24 themed stat sets (dated almanac snapshots, annual refresh).
-   Naming is settled (Metro Match, D21).
+   Naming is settled (Metro Match, D21). **BUILT 2026-06-12** (D25 scope
+   freezes + D26 build record); the owner verdict on the gate-3 page is
+   the open gate.
 
 ## Soft-launch conditions (repo norm, unchanged)
 

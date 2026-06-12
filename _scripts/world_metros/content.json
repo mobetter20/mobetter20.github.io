@@ -1,0 +1,99 @@
+{
+  "_note": "Lore-back copy for build_metro_cards.py. credit strings are VERBATIM from DIAGRAM-LEDGER.md. facts are curated from the gate-3 almanac research (sources in almanac.json). No em dashes anywhere.",
+  "flavor": {
+    "tokyo": "Thirteen lines, two operators, one grid.",
+    "seoul": "146 km between its furthest stations, the deck's longest reach.",
+    "singapore": "Six lines, four of them driverless, none older than 1987.",
+    "hong kong": "Fares cover the costs and then some: the system runs at a profit.",
+    "paris": "1.35 stations per square km, the deck's tightest grid.",
+    "shanghai": "From first train to 800 route-km inside three decades.",
+    "beijing": "909 route-km under one operator, the deck's biggest single system.",
+    "london": "Underground since 1863, before anyone else tried.",
+    "nyc": "24 hours a day, every day of the year.",
+    "madrid": "172 km of new metro in sixteen years, Europe's great expansion.",
+    "moscow": "Marble, mosaics and a train every 90 seconds.",
+    "copenhagen": "Four lines, zero drivers, all night.",
+    "delhi": "PENDING",
+    "guangzhou": "PENDING",
+    "mexico city": "PENDING",
+    "cairo": "PENDING"
+  },
+  "facts": {
+    "tokyo": [
+      "Two operators share one grid: Tokyo Metro runs nine lines, Toei runs four.",
+      "G is for Ginza: Asia&rsquo;s first metro line, opened 1927."
+    ],
+    "seoul": [
+      "Line 2 is a 48 km loop around the city; trains circle it all day.",
+      "Every station on the network has platform screen doors; the rollout finished by 2017."
+    ],
+    "singapore": [
+      "Many MRT stations double as civil defence shelters, built blast resistant.",
+      "The North East Line opened in 2003 as one of the world&rsquo;s first fully automated heavy metro lines."
+    ],
+    "hong kong": [
+      "The rail plus property model funds new lines with real estate built above the stations.",
+      "The East Rail corridor dates to 1910, nearly seventy years older than the MTR itself."
+    ],
+    "paris": [
+      "Opened for the 1900 World&rsquo;s Fair; Line 1 still runs the route it opened with.",
+      "86 of Guimard&rsquo;s Art Nouveau entrances from the early 1900s still stand."
+    ],
+    "shanghai": [
+      "Set a one-day record of 13.39 million rides on 9 March 2024.",
+      "Five lines run driverless, about 169 km of unattended metro."
+    ],
+    "beijing": [
+      "China&rsquo;s first subway, built as a Cold War defence project; Zhou Enlai rode the first train in 1969.",
+      "Early tickets required an introduction letter from your work unit."
+    ],
+    "london": [
+      "Despite the name, only about 45 percent of the network is below ground.",
+      "Tube stations doubled as air-raid shelters during the Blitz."
+    ],
+    "nyc": [
+      "Express tracks let fast trains overtake locals, a luxury most metros never built.",
+      "Its 472 stations are the most of any single-operator metro in the world."
+    ],
+    "madrid": [
+      "Between 1995 and 2011 the network added 172 km and 132 stations, over 10 km a year.",
+      "Chamber&iacute; station, bypassed in the 1960s, survives as a time-capsule museum of the 1919 metro."
+    ],
+    "moscow": [
+      "The Stalin-era stations were built as palaces for the people, in marble and chandeliers.",
+      "In 2023 Moscow cut rush-hour intervals to 80 seconds, a world first."
+    ],
+    "copenhagen": [
+      "Every train has run driverless since the first one in 2002.",
+      "One of only three metros in the world running 24/7, with New York and the Chicago L."
+    ],
+    "delhi": ["PENDING", "PENDING"],
+    "guangzhou": ["PENDING", "PENDING"],
+    "mexico city": ["PENDING", "PENDING"],
+    "cairo": ["PENDING", "PENDING"]
+  },
+  "credit": {
+    "tokyo": "&ldquo;Tokyo Subway Linemap&rdquo; by Yveltal, Wikimedia Commons, CC BY-SA 4.0",
+    "seoul": "&ldquo;Seoul Metropolitan Subway network map&rdquo; by Satellizer, Wikimedia Commons, CC BY-SA 4.0",
+    "singapore": "&ldquo;Singapore MRT and LRT System Map&rdquo; by Aforl, Wikimedia Commons, CC BY-SA 3.0",
+    "hong kong": "&ldquo;Hong Kong Railway Route Map&rdquo; by Sameboat, Wikimedia Commons, public domain",
+    "paris": "&ldquo;Carte M&eacute;tro de Paris&rdquo; by Rigil, Wikimedia Commons, CC BY 3.0",
+    "shanghai": "&ldquo;Shanghai Metro Linemap&rdquo; by Yveltal, Wikimedia Commons, CC BY-SA 4.0",
+    "beijing": "&ldquo;Beijing Subway System Map&rdquo; by Painjet, Wikimedia Commons, CC BY-SA 4.0",
+    "london": "&ldquo;London Underground Overground DLR Crossrail map&rdquo; by Sameboat, Wikimedia Commons, CC BY-SA 4.0",
+    "nyc": "&ldquo;NYC subway map&rdquo; by CountZ (Jake Berman) &amp; TFSyndicate, Wikimedia Commons, CC BY-SA 3.0",
+    "madrid": "&ldquo;Madrid Metro Map&rdquo; by Javitomad and contributors, Wikimedia Commons, CC BY-SA 4.0",
+    "moscow": "&ldquo;Moscow metro map&rdquo; by Sameboat &amp; IKhitron, Wikimedia Commons, CC BY-SA 4.0",
+    "copenhagen": "&ldquo;Copenhagen Metro 2024&rdquo; by Tomtom24, Wikimedia Commons, CC BY-SA 4.0",
+    "delhi": "&ldquo;Delhi Metro Network 2020&rdquo; by AshuArtsNew, Wikimedia Commons, CC BY-SA 4.0",
+    "guangzhou": "&ldquo;Guangzhou Metro Network&rdquo; by Alan Fan Pei, Wikimedia Commons, CC BY-SA 4.0",
+    "mexico city": "&ldquo;Plano del Metro de la Ciudad de M&eacute;xico&rdquo; by ManuelContreras1996, Wikimedia Commons, CC BY-SA 4.0",
+    "cairo": "&ldquo;Cairo Metro map&rdquo; by Momooh, Wikimedia Commons, CC0"
+  },
+  "caveat": {
+    "seoul": "diagram dated 2023, future lines as then planned",
+    "delhi": "diagram dated 2020; Phase-4 openings not yet drawn",
+    "mexico city": "diagram dated 2023, drawn to the sections then in service",
+    "nyc": "the Tauranac-form diagram, the city&rsquo;s map for 45 years"
+  }
+}
