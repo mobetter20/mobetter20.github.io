@@ -39,8 +39,8 @@ def band_front(meta, stats, city):
     stripes = "".join('<i style="background:%s"></i>' % l["color"] for l in lines)
     tag = "%d lines &middot; %s &middot; refs on the lore side" % (
         len(lines), bmc.SCOPE_TAG[city])
-    ledgers = "".join(bmc.ledger_html(stats, city, t)
-                      for t in ("core", "service", "money"))
+    ledgers = "".join(bmc.ledger_html(stats, city, s)
+                      for s in ("play", "almanac"))
     name = bmc.DISPLAY.get(city, city)
     return ('<article class="card cfront">'
             '<div class="chead"><div class="cid">'
@@ -63,30 +63,37 @@ def main():
     bmc.load_content()
     stats = bmc.stat_table(meta, bmc.load_almanac())
 
-    def row(title, note, builder):
+    def row(title, note, builder, dset):
         cells = "".join(
             cell("%s &middot; %d lines" % (bmc.DISPLAY.get(c, c).upper(),
                                            len(meta["cities"][c]["lines"])),
                  builder(c))
             for c in CITIES)
         return ('<section class="pdrow"><h2>%s</h2><p class="pdnote">%s</p>'
-                '<div class="pdgrid" data-theme="core">%s</div></section>'
-                % (title, note, cells))
+                '<div class="pdgrid" data-set="%s">%s</div></section>'
+                % (title, note, dset, cells))
 
-    c1 = row("C1 &middot; AS-IS, FIXED",
+    c1 = row("C1 &middot; AS-IS, FIXED (pill density)",
              "Every ref kept as a readable pill; the line/scope tag sits on "
              "its own line below and is never occluded. The card grows to fit: "
-             "Tokyo stays 492px, Seoul grows to 530px, Beijing to 513px (the "
-             "card has been 486px min since gate 3's six rows, well past the "
-             "old 420px). This is what ships today.",
-             lambda c: bmc.card_front(meta, stats, c, deck=True))
-    c2 = row("C2 &middot; ADAPTIVE BAND",
+             "Tokyo stays compact, Seoul and Beijing grow taller (the card has "
+             "been 486px min since gate 3's six rows, well past the old 420px). "
+             "This is what ships today.",
+             lambda c: bmc.card_front(meta, stats, c, deck=True), "play")
+    c2 = row("C2 &middot; ADAPTIVE BAND (pill density)",
              "Over ~16 lines the refs collapse to one thin colour band (the "
              "deck-back motif) plus the count and scope; the readable refs live "
              "on the lore-back diagram instead. Cards at or under 16 keep pills "
              "exactly as today, so Tokyo is identical to C1. Seoul and Beijing "
              "come back to the compact height.",
-             lambda c: band_front(meta, stats, c))
+             lambda c: band_front(meta, stats, c), "play")
+    almanac = row("ALMANAC SET (the void treatment, D28)",
+                  "The second stat set is three rows where PLAY is six: base "
+                  "fare, driverless, interchange. To avoid leaving a void below, "
+                  "the three rows are grown so they fill the same height the six "
+                  "would. Shown here on the same cards; judge whether the taller "
+                  "rows read well or want a different treatment.",
+                  lambda c: bmc.card_front(meta, stats, c, deck=True), "almanac")
 
     html = """<!DOCTYPE html>
 <html lang="en"><head>
@@ -110,25 +117,28 @@ def main():
   .pdcell { display: flex; flex-direction: column; gap: 9px; align-items: center; }
   .pdcap { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--grey); }
   .pdcard { width: 270px; }
-  /* the board shows the core theme statically */
+  /* the board shows whichever set its row declares */
   .pdcard .cledger { display: none; }
-  .pdcard .cledger[data-theme="core"] { display: block; }
+  .pdgrid[data-set="play"] .cledger[data-set="play"],
+  .pdgrid[data-set="almanac"] .cledger[data-set="almanac"] { display: block; }
   /* C2 adaptive band: a thin strip of the line colours, deck-back motif */
   .pdband { display: flex; gap: 0; height: 16px; border-radius: 8px; overflow: hidden; margin-top: 13px; }
   .pdband i { flex: 1; }
 </style>
 </head><body>
   <div class="pdhead">
-    <h1>METRO <em>MATCH</em> &middot; PILL-DENSITY BOARD</h1>
-    <p>The bug fix (the line/scope tag is never occluded by the pills) ships
-    regardless and is already live. This board is only to choose the treatment
-    for mega-network counts. Open in Arc and judge by eye. Tokyo (13 lines) is
-    the unchanged reference in both rows.</p>
+    <h1>METRO <em>MATCH</em> &middot; PILL-DENSITY + ALMANAC BOARD</h1>
+    <p>Two things to judge by eye, Tokyo (13 lines) the unchanged reference in
+    every row. First, the pill treatment for mega-networks: C1 keeps every ref
+    as a pill (cards grow), C2 collapses over-16 cards to a colour band. The
+    occlusion bug fix ships regardless and is already live. Second, the new
+    ALMANAC set's three-row layout (D28) and whether its void-fill reads well.</p>
   </div>
   %s
   %s
+  %s
 </body></html>
-""" % (c1, c2)
+""" % (c1, c2, almanac)
 
     out = os.path.join(HERE, "pill-density-board.html")
     with open(out, "w") as fh:
