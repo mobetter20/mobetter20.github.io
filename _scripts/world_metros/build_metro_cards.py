@@ -810,9 +810,9 @@ def main():
     <div class="hframe"><!-- mirrors main's column so the chrome and the
       content share one frame at every width (D35) -->
     <h1 class="wordmark"><a href="#deck">METRO <em>MATCH</em></a></h1>
-    <nav role="tablist" aria-label="Views" id="tabs">
-      <button type="button" role="tab" id="tab-deck" aria-controls="panel-deck" aria-selected="true">THE DECK</button>
-      <button type="button" role="tab" id="tab-battle" aria-controls="panel-battle" aria-selected="false" tabindex="-1">THE BATTLE</button>
+    <nav role="tablist" aria-label="Views" id="tabs"><!-- the deck has no
+      tab: it is the page itself, reached by the wordmark (D37) -->
+      <button type="button" role="tab" id="tab-battle" aria-controls="panel-battle" aria-selected="false">THE BATTLE</button>
       <button type="button" role="tab" id="tab-daily" aria-controls="panel-daily" aria-selected="false" tabindex="-1">THE DAILY</button>
       <button type="button" role="tab" id="tab-ranks" aria-controls="panel-ranks" aria-selected="false" tabindex="-1">THE RANKS</button>
       <button type="button" role="tab" id="tab-method" aria-controls="panel-method" aria-selected="false" tabindex="-1">METHOD</button>
@@ -822,7 +822,7 @@ def main():
 
   <main>
 
-    <section id="panel-deck" role="tabpanel" aria-labelledby="tab-deck">
+    <section id="panel-deck" aria-label="The deck">
       <p class="intro">Stat cards for the world&rsquo;s great metro systems,
       every number dated and sourced. Each card has three faces: scale,
       character, the map. <b>Flip to cycle them; pick a stat and beat the
