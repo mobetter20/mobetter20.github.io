@@ -236,6 +236,10 @@ _Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 m
   top three, card-grammar rows, tightest-race battle links, no combined
   score ever. Verified 375/768/1280, keyboard cycle, console clean.
 
+- D37 (2026-06-12, owner-directed): THE DECK tab removed; the deck is
+  the page itself and the wordmark is the way home. Nav = the four
+  views; home state selects no tab; mobile tabs back to 11.5px.
+
 ## Current gate: owner live-testing the shipped deck
 
 The deck of 18 (gate 3, D25-D31) + this session's D32-D34 are LIVE at

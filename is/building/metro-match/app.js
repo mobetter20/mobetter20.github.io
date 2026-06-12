@@ -15,17 +15,24 @@ const upper = (k) => CITIES[k].name.toUpperCase();
 
 // ------------------------------------------------------------------- tabs
 
-const TAB_NAMES = ['deck', 'battle', 'daily', 'ranks', 'method'];
-const tabs = TAB_NAMES.map((n) => $('tab-' + n));
-const panels = TAB_NAMES.map((n) => $('panel-' + n));
+/* The deck is the page itself, not a view: the four view tabs overlay it
+   and the wordmark (#deck) is the way home (D37). At home no tab is
+   selected; the first tab keeps tabindex 0 so the tablist stays
+   keyboard-reachable. */
+const VIEW_NAMES = ['battle', 'daily', 'ranks', 'method'];
+const tabs = VIEW_NAMES.map((n) => $('tab-' + n));
+const panels = VIEW_NAMES.map((n) => $('panel-' + n));
+const deckPanel = $('panel-deck');
 
 function selectTab(name) {
-  TAB_NAMES.forEach((n, i) => {
+  const home = name === 'deck';
+  VIEW_NAMES.forEach((n, i) => {
     const on = n === name;
     tabs[i].setAttribute('aria-selected', String(on));
-    tabs[i].tabIndex = on ? 0 : -1;
+    tabs[i].tabIndex = (on || (home && i === 0)) ? 0 : -1;
     panels[i].hidden = !on;
   });
+  deckPanel.hidden = !home;
   if (name === 'battle' && !battle.started) dealRound(battle.seed);
   if (name === 'daily') renderDaily();
 }
@@ -39,7 +46,7 @@ function go(name, hash) {
 }
 
 tabs.forEach((tab, i) => {
-  tab.addEventListener('click', () => go(TAB_NAMES[i]));
+  tab.addEventListener('click', () => go(VIEW_NAMES[i]));
   tab.addEventListener('keydown', (e) => {
     let j = null;
     if (e.key === 'ArrowRight') j = (i + 1) % tabs.length;
@@ -48,7 +55,7 @@ tabs.forEach((tab, i) => {
     if (e.key === 'End') j = tabs.length - 1;
     if (j !== null) {
       e.preventDefault();
-      go(TAB_NAMES[j]);
+      go(VIEW_NAMES[j]);
       tabs[j].focus();
     }
   });
@@ -67,7 +74,7 @@ function routeFromHash() {
     selectTab('battle');
     return;
   }
-  selectTab(TAB_NAMES.includes(h) ? h : 'deck');
+  selectTab(VIEW_NAMES.includes(h) ? h : 'deck');
 }
 
 window.addEventListener('hashchange', routeFromHash);

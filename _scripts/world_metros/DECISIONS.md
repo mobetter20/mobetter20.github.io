@@ -1097,3 +1097,22 @@ assessment's yes + guardrails, then "ok do it now").**
   at 0-0 with that pair, fare list shows the Guangzhou - Mexico City
   dead heat, keyboard arrow-cycle covers all five tabs, no overflow at
   375/768/1280, console clean.
+
+**D37 · THE DECK tab removed: the deck is the page, the wordmark is home -
+RATIFIED 2026-06-12 (owner: "THE DECK and METRO MATCH is basically the
+same thing, what if we remove THE DECK"; assessment agreed; "do it").**
+- Since D35 made the wordmark link #deck, the tab and the logo were two
+  controls for one destination. The nav drops to the four VIEWS (THE
+  BATTLE, THE DAILY, THE RANKS, METHOD); the deck panel loses its
+  tabpanel role and becomes the page's base content; at home no tab is
+  selected and the first tab keeps tabindex 0 so the tablist stays
+  keyboard-reachable. #deck stays routable (wordmark, old links).
+- The D36 mobile squeeze relaxes: four tabs go back to 11.5px at 640.
+- Known watch item (accepted): with W4 (no hover) there is no visual cue
+  that the wordmark is the way home until tried; logo-as-home is the
+  standard pattern, revisit only if live testing shows people stranded.
+- Verified by DOM probe: home = deck visible with nothing selected;
+  view tabs select and underline; wordmark returns home from ranks and
+  battle; direct loads of #battle/seoul-vs-paris and #ranks route
+  correctly; arrow-cycle covers the four tabs; nav one line at 375;
+  no overflow; console clean.

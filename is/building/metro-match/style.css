@@ -555,7 +555,7 @@ footer .made:hover { color: var(--body); }
   header { padding: 13px 0 9px; }
   .hframe { gap: 12px; padding: 0 16px; }
   nav[role="tablist"] { order: 3; width: 100%; gap: 0; justify-content: space-between; }
-  nav[role="tablist"] button { padding: 6px 2px 7px; font-size: 10.5px; letter-spacing: .02em; }
+  nav[role="tablist"] button { padding: 6px 4px 7px; font-size: 11.5px; letter-spacing: .04em; }
   main { padding: 0 16px 28px; }
   .deckgrid { gap: 24px 18px; }
   #panel-daily { justify-content: flex-start; min-height: auto; padding-top: 26px; }
