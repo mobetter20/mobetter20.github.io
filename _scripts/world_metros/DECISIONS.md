@@ -536,3 +536,89 @@ real and recorded: fares were cut at D2 over the freshness treadmill;
 themes revive such facts as dated almanac snapshots (source + as-of,
 annual refresh per D6), never as live utility info. Nothing themed
 renders in this build; the generator carries the decision as a comment.
+
+**D25 · Per-city scope freezes (rider-scope B operationalized) · PROPOSED
+2026-06-12 (built into the gate-3 page; the owner verdict at the preview
+gate ratifies).**
+The D21 rider-scope B rule, made operational: a card claims the city's
+metro network AS ITS FAMILIAR MAP DRAWS IT as coequal metro lines; modes
+the map itself marks as distinct products (commuter overlays, trams,
+feeders, people-movers) stay out. The full per-city ref sets live in
+DATA-CONTRACT.md (now frozen) and `build_page_geometry.py`; Method
+carries the prose. The named hard cases close as follows:
+- **Seoul L1 (the long-deferred hard one): IN, whole corridor.** The
+  familiar capital map draws Line 1 end to end as one line, so the card
+  claims it. Seoul's scope is the full capital-region network incl. the
+  Korail K-lines, GTX-A, AREX, light metros and Incheon 1-2 (the owner
+  flagged Seoul's missing lines at D20; this answers it). Two snapshot
+  gaps, declared rather than papered over: Sinbundang's validator export
+  is empty, so plotted counts omit it; same for Beijing's Yizhuang T1
+  tram. Declared scope and reported figures include both; Method says so.
+- **Guangzhou vs Foshan: Guangfo IN, Foshan-proper OUT.** The Guangfo
+  line is drawn coequal on the Guangzhou map and run by the GZ Metro
+  group; Foshan's own lines (F2/F3 in the OSM file) are another system.
+  APM in; trams out; the stray Qingyuan maglev out.
+- **Copenhagen: M1-M4 only.** S-tog is a distinct product.
+- **Madrid: Metro 1-12 + Ramal; Metro Ligero OUT** (ML-branded distinct
+  product on the official plano).
+- **Moscow MCC: IN (supersedes the old exclude note).** The map draws the
+  MCC as coequal line 14; the D-branded MCD diameters stay out.
+- **Hong Kong Airport Express: IN** (drawn coequal on the MTR map);
+  Light Rail out.
+- Identity folds so pills match the rider map: Beijing Batong into 1 and
+  Daxing into 4; NYC rush diamonds into their base services and the three
+  S shuttles as one pill; Moscow 4A into 4; Delhi's Blue branch into Blue.
+Also frozen here, the pipeline-stage stat definitions the cards now use:
+**stations** = named station points within 90 m of an in-scope vertex,
+same-named points merged within 350 m, interchanges once (the old 60 m
+point-grid rule inflated unevenly: NYC plotted 2.9x its official count,
+Copenhagen 1.6x, which would have biased two stats); **density** moves to
+the convex-hull basis (D20's pipeline commitment); **span** is exact over
+hull vertices; **opened** = earliest regular passenger service within the
+declared scope, the system's own dating (Beijing dates itself 1969;
+the public-access-1971 nuance lives in the almanac note).
+
+**D26 · Gate-3 scale-up build: 16 live cards, themes, almanac · PROPOSED
+2026-06-12 (the owner verdict on the preview ratifies; this entry is the
+build record).**
+- **Roster:** all 16 cards live (flip-to-lore, lazy diagrams); the soon
+  slots and the "3 OF 16" badge retire. Card canvas grows 420 to 460 px
+  so the big pill decks (Beijing 27, Seoul 23) and six core rows share
+  the face; the deck grid stays 1/2/4 columns (D23 rev 2).
+- **Dual audit done** for the D23 newcomers: Madrid / Copenhagen /
+  Guangzhou audited GOOD on the OSM validator (DATA-CONTRACT table);
+  DIAGRAM-LEDGER stanzas added for all four with licenses verified on
+  the Commons pages and structure graded on the downloaded files
+  (Copenhagen interactive-ready 6,719 text nodes; Beijing and Madrid
+  pan-zoom-only; Guangzhou raster-only). Guangzhou call recorded in its
+  stanza: on the deck's fastest-growing network, the current clean
+  raster beats a watermarked personal-style SVG and a 2023-frozen
+  official-idiom SVG that would contradict the card's own 19 pills.
+  All 13 missing lore-back diagrams downloaded (serialized, long
+  backoff per the Wikimedia throttle) and committed to assets/.
+- **Themes (D24) ship as CORE / SERVICE / MONEY**, a deck-level switch;
+  the cards re-render rows per theme. SERVICE: best headway, service
+  day, driverless lines. MONEY: fare from (USD-converted, dated),
+  farebox recovery. Every themed figure carries source + as-of on
+  Method; a card missing a themed figure drops that row (the D22
+  hide-not-Unknown pattern). Integration (the third D24 example) is
+  deferred: it lacks three honest, uniformly sourceable numeric stats;
+  revisit when it has them.
+- **Battle and daily stay on the core six**, where every card carries
+  every stat: opened, stations, span, density, and the returning
+  route-km + ridership (scope-matched, dated, sourced almanac rows per
+  the D22 owner call). Battles can now tie at year/figure grain: a dead
+  heat scores nobody and says so. The daily rotates across all six.
+- **Almanac:** per-city opened year + per-line opened years, route-km,
+  annual ridership, and the theme figures, all researched against live
+  pages this session with source + as-of recorded in
+  `_scripts/world_metros/almanac.json` (committed). Known soft spots
+  recorded there as notes: farebox years vary widely by city (Madrid's
+  newest published ratio is 2007); two ridership figures are sums of
+  same-year operator components (Tokyo, Moscow incl. MCC).
+- **Lore backs:** all 16 carry the ledger diagram (attribution verbatim,
+  currency caveats where flagged), one flavor line, two curated facts;
+  epithets drafted for the 13 new cards (owner reviews at the gate).
+- Method gains the frozen scope table, the theme definitions with win
+  directions, and per-figure source tables; it stays method (no roster
+  editorial, per the D23 revision).

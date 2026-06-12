@@ -1,0 +1,2648 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 3865.8 2932.7" style="enable-background:new 0 0 3865.8 2932.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#5DADEC;}
+	.st2{fill:none;stroke:#545454;stroke-width:15;}
+	.st3{fill:none;stroke:#939393;stroke-width:15;}
+	.st4{fill:none;stroke:#D8D5D5;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:14;}
+	.st5{fill:none;stroke:#939393;stroke-width:5;}
+	.st6{fill:none;stroke:#000000;stroke-width:15;}
+	.st7{fill-rule:evenodd;clip-rule:evenodd;}
+	.st8{font-family:'ArialMT';}
+	.st9{font-size:20px;}
+	.st10{fill:none;stroke:#FF4040;stroke-width:15;}
+	.st11{fill:none;stroke:#FFDF00;stroke-width:15;}
+	.st12{fill:none;stroke:#FF4500;stroke-width:15;}
+	.st13{fill:none;stroke:#87CEEB;stroke-width:8;stroke-linecap:square;}
+	.st14{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#000000;stroke-width:2;}
+	.st15{fill:none;stroke:#4169E1;stroke-width:15;}
+	.st16{fill:none;stroke:#553592;stroke-width:15;}
+	.st17{fill:none;stroke:#20B2AA;stroke-width:15;}
+	.st18{fill:#195EB0;stroke:#195FAF;stroke-width:2;}
+	.st19{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st20{fill:none;stroke:#000000;stroke-width:2;}
+	.st21{fill:#939393;}
+	.st22{fill:#545454;}
+	.st23{fill:#20B2AA;}
+	.st24{fill:#FF4040;}
+	.st25{enable-background:new    ;}
+	.st26{letter-spacing:-1;}
+	.st27{fill:none;stroke:#939393;stroke-width:8;stroke-linecap:square;}
+	.st28{fill:none;stroke:#545454;stroke-width:10;stroke-linecap:square;}
+	.st29{fill:none;stroke:#939393;stroke-width:10;stroke-linecap:square;}
+	.st30{fill:none;stroke:#FF4500;stroke-width:8;stroke-linecap:square;}
+	.st31{fill:#195EB0;}
+	.st32{font-family:'Arial-BoldMT';}
+	.st33{font-size:18px;}
+	.st34{letter-spacing:-2;}
+	.st35{fill:none;stroke:#FFDF00;stroke-width:8;stroke-linecap:square;}
+	.st36{fill:none;stroke:#F8C81C;stroke-width:8;stroke-linecap:square;}
+	.st37{fill:none;stroke:#FF4040;stroke-width:8;stroke-linecap:square;}
+	.st38{fill:none;stroke:#FF4040;stroke-width:8.86;stroke-linecap:square;}
+	.st39{fill:none;stroke:#4169E1;stroke-width:8;stroke-linecap:square;}
+	.st40{fill:none;stroke:#2C76CC;stroke-width:8;stroke-linecap:square;}
+	.st41{fill:none;stroke:#20B2AA;stroke-width:8;stroke-linecap:square;}
+	.st42{fill:none;stroke:#553592;stroke-width:8;stroke-linecap:square;}
+	.st43{fill-rule:evenodd;clip-rule:evenodd;fill:#EDEDED;}
+	.st44{fill:#131313;}
+	.st45{font-size:36px;}
+	.st46{fill:#0E0E0E;}
+	.st47{font-size:24px;}
+	.st48{fill:none;stroke:#FF4040;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st49{fill:none;stroke:#FFDF00;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st50{fill:none;stroke:#4169E1;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st51{fill:none;stroke:#20B2AA;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st52{fill:none;stroke:#553592;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st53{fill:none;stroke:#87CEEB;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st54{fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;}
+	.st55{fill:none;stroke:#545454;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st56{fill:none;stroke:#939393;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st57{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+	.st58{fill:none;stroke:#FF4500;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st59{fill:#DD5050;}
+	.st60{fill:#B564CC;}
+	.st61{fill:#2C76CC;}
+	.st62{letter-spacing:-3;}
+	.st63{fill-rule:evenodd;clip-rule:evenodd;fill:#004C99;}
+	.st64{fill-rule:evenodd;clip-rule:evenodd;fill:#0075C4;}
+	.st65{fill-rule:evenodd;clip-rule:evenodd;fill:#20201E;}
+	.st66{fill-rule:evenodd;clip-rule:evenodd;fill:#878787;}
+	.st67{fill:#C0282C;}
+	.st68{fill:none;stroke:#000000;stroke-width:9.09;stroke-dasharray:9.09,9.09;}
+	.st69{font-family:'Arial-ItalicMT';}
+	.st70{font-size:15px;}
+	.st71{font-size:21.39px;}
+	.st72{font-size:15.0021px;}
+	.st73{fill:none;stroke:#CC338B;stroke-width:15;}
+	.st74{fill:none;stroke:#FC8EAC;stroke-width:8;stroke-linecap:square;}
+	.st75{fill:none;stroke:#CC338B;stroke-width:8;stroke-linecap:square;}
+	.st76{fill:#4169E1;}
+	.st77{fill:#CC338B;}
+	.st78{fill:none;stroke:#CC338B;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st79{fill:none;stroke:#FC8EAC;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st80{fill:#5D5D5D;}
+	.st81{fill-rule:evenodd;clip-rule:evenodd;fill:#FAD7DE;stroke:#FC8EAC;stroke-width:8;stroke-linecap:square;}
+	.st82{opacity:0.95;fill:none;stroke:#7FFFD4;stroke-width:15;stroke-linejoin:round;enable-background:new    ;}
+	.st83{fill:none;stroke:#7FFFD4;stroke-width:8;stroke-linecap:square;}
+	
+		.st84{fill-rule:evenodd;clip-rule:evenodd;fill:#7FFFD4;stroke:#7FFFD4;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st85{fill:#FFFFFF;stroke:#C0282C;stroke-width:5.49;}
+	.st86{fill:none;stroke:#277D00;stroke-width:2.13;}
+	.st87{opacity:0.95;fill-rule:evenodd;clip-rule:evenodd;fill:#C0282C;enable-background:new    ;}
+	.st88{fill:none;stroke:#838996;stroke-width:8;stroke-linecap:square;}
+	.st89{fill:none;stroke:#4169E1;stroke-width:15;stroke-linejoin:round;}
+	.st90{fill:#7FFFD4;}
+	.st91{fill:none;stroke:#000000;stroke-width:7.5;stroke-miterlimit:2;}
+	.st92{font-size:20.56px;}
+	.st93{font-size:20.17px;}
+	.st94{font-size:20.16px;}
+	.st95{font-size:19.98px;}
+	.st96{font-size:20.25px;}
+	.st97{font-size:20.2px;}
+	.st98{font-size:13.53px;}
+	.st99{font-size:21.5px;}
+	.st100{fill:none;stroke:#838996;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;}
+	.st101{font-size:13.33px;}
+	.st102{fill:none;stroke:#838996;stroke-width:15.02;}
+	.st103{fill:none;stroke:#FFBF00;stroke-width:5;}
+	.st104{fill:none;stroke:#9457EB;stroke-width:5;}
+	.st105{fill:none;stroke:#FFB7C5;stroke-width:5;}
+	.st106{fill:none;stroke:#FF99CC;stroke-width:5;}
+	.st107{fill:#553592;}
+	.st108{fill:none;stroke:#FAFA37;stroke-width:5;}
+	.st109{fill:#FFDF00;}
+	.st110{fill:#FF4500;}
+	.st111{fill:none;stroke:#5DADEC;stroke-width:5;}
+	.st112{fill:#838996;}
+	.st113{fill:#F8C81C;}
+	.st114{fill-rule:evenodd;clip-rule:evenodd;fill:#4169E1;}
+	.st115{fill-rule:evenodd;clip-rule:evenodd;fill:#939393;}
+	.st116{fill-rule:evenodd;clip-rule:evenodd;fill:#545454;}
+	.st117{fill:none;stroke:#87CEEB;stroke-width:15;stroke-linejoin:round;}
+	.st118{fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linejoin:round;}
+	.st119{fill:none;stroke:#FFFFFF;stroke-width:7;stroke-linecap:square;}
+	.st120{fill:none;stroke:#87CEEB;stroke-width:4;stroke-linecap:square;}
+	.st121{fill:#87CEEB;}
+	.st122{fill:none;stroke:#BFC1C2;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;}
+	.st123{fill:none;stroke:#BFC1C2;stroke-width:5;}
+	.st124{fill:none;stroke:#FC8EAC;stroke-width:15;}
+	.st125{fill:#FC8EAC;}
+	.st126{font-family:'Montserrat-Bold';}
+</style>
+<title>Delhi Metro Network Map 2019</title>
+<g id="Layer_2_1_">
+	<rect x="4.4" class="st0" width="3861.3" height="2932.7"/>
+</g>
+<g id="svg2">
+	<g id="g38">
+		<path id="path54" class="st1" d="M2111.4,46.2l480.9,480.9c3.9,3.9,7.1,11.6,7.1,17.1v369.2c0.3,5.1,2.3,9.9,5.7,13.7l68.6,68.6
+			c3.4,3.8,5.4,8.6,5.6,13.6v293.9c0.3,5.1,2.3,9.9,5.7,13.7l91.4,91.4c1.7,1.9,2.7,4.3,2.8,6.8v23.2c0.1,2.5,1.1,4.9,2.8,6.8
+			l31.2,31.2c2.5,2.8,4,6.4,4.2,10.2v170.7c0.3,5.1,2.3,9.9,5.6,13.7l497,497c3.8,4.2,6.1,9.7,6.4,15.4v435c0.2,4.4,2,8.7,4.9,11.9
+			l302.5,302.5h-65.6l-358.1-358.1c-3-3.3-4.8-7.5-5-11.9v-466.5c-0.3-5.1-2.3-9.9-5.7-13.7L2757,1639.9c-3.4-3.8-5.4-8.6-5.7-13.7
+			v-184.5c-0.2-3.8-1.7-7.4-4.3-10.2l-89-89c-3.4-3.8-5.4-8.6-5.6-13.7v-293.7c-0.3-5.1-2.3-9.9-5.6-13.7l-91.8-91.8
+			c-3.4-3.8-5.4-8.6-5.6-13.7V624c-0.2-3.2-1.4-6.2-3.5-8.5l-21.5-21.6c-2.1-2.4-3.4-5.4-3.5-8.5v-55.2c-0.2-3.2-1.4-6.2-3.5-8.5
+			l-30.9-30.9c-2.1-2.4-3.4-5.4-3.5-8.5V464c-0.2-3.2-1.4-6.2-3.5-8.5L2268,244c-2.4-2.1-5.4-3.4-8.5-3.5h-21.9
+			c-3.2-0.2-6.2-1.4-8.5-3.5l-93-93c-2.4-2.1-5.4-3.4-8.5-3.5h-19.2c-3.2-0.2-6.2-1.4-8.5-3.5L1956.6,0h104l11.1,8.6L2111.4,46.2z"
+			/>
+		<path id="path64" class="st2" d="M2383.9,1197c0,8.3,4.7,19.8,10.6,25.6l118.6,118.6c5.9,5.9,10.6,17.3,10.6,25.6V1570
+			c0,8.3-4.8,19.7-10.6,25.6l-71.6,71.6c-5.9,5.9-17.3,10.6-25.6,10.6h-266.5c-8.3,0-19.7,4.8-25.6,10.6l-58,58
+			c-5.9,5.9-17.3,10.6-25.6,10.6h-119.1c-8.3,0-19.8-4.8-25.6-10.6l-274.2-274.2c-5.9-5.9-10.6-17.3-10.6-25.6v-218.2
+			c0-8.3,4.8-19.7,10.6-25.6l221-221c5.8-5.8,17.3-10.6,25.6-10.6h379.7c8.3,0,19.8,4.8,25.6,10.6l100.2,100.1
+			c5.9,5.9,10.6,17.3,10.6,25.6L2383.9,1197L2383.9,1197z"/>
+		<path id="path66" class="st3" d="M2399,1195.3c0,6.1,3.5,14.5,7.7,18.8l121.1,122.5c5.8,5.9,10.6,17.4,10.6,25.7V1573
+			c0,8.3-4.7,19.8-10.4,25.8l-79,81.2c-5.8,5.9-17.1,10.8-25.4,10.8h-266.1c-8.3,0-19.9,4.6-25.8,10.4l-62.7,60
+			c-6.4,6.1-18.7,11.1-27.6,11.1h-122.6c-9.4,0-22.4-5.4-29-12L1607,1477.4c-5.8-5.9-10.6-17.3-10.5-25.6l0.9-231.3
+			c0-8.3,4.8-19.7,10.7-25.6l227.8-227c5.9-5.8,17.3-10.6,25.6-10.6h391.8c8.3,0,19.8,4.8,25.6,10.6l105.2,104.6
+			c8.2,8.2,14.9,24.2,14.9,35.8V1195.3L2399,1195.3z"/>
+		<path id="path68" class="st3" d="M2233.3,957h383.1c5.5,0,13.2-3.2,17.1-7.1l40.6-40.6c3.9-3.9,11.6-7.1,17.1-7.1l224.1,0.5
+			l406.4-0.1l230.5,2.2l175.5,26.3"/>
+		<path id="path70" class="st3" d="M3288.6,902.4h-82c-11,0-26.3,6.4-33.9,14.3l-107.6,110.4c-3.9,4-7,11.6-7,17.2v156.4
+			c0,5.5-3.2,13.2-7.1,17.1l-263,262.8c-5.9,5.8-17.3,10.6-25.6,10.7l-113.4,0.5c-8.3,0-19.7,4.8-25.6,10.7l-120.3,121.7l-6.7,7
+			c-11.5,11.9-20.8,35-20.8,51.6v55.1c0,5.5,3.2,13.2,7.1,17.1l308.3,308.3c5.9,5.9,10.6,17.3,10.6,25.6v706.6"/>
+		<path id="path72" class="st3" d="M2226.9,957.3h-80.2c-13.3,0-24-10.7-24-24V525.1c0-8.3-4.7-19.8-10.6-25.6l-370.3-370.2"/>
+		<path id="path74" class="st3" d="M1897.9,957.6h-86.4c-8.8,0-21.1-5.1-27.3-11.3l-149.7-149.7c-5.9-5.9-17.3-10.6-25.6-10.6H74.4"
+			/>
+		<path id="path76" class="st3" d="M1663.2,825.1c-12.8-12.3-9.8-35.5,6.6-51.9L2006.1,437c12-12,12-31.4,0.1-43.5
+			c-0.1-0.1-0.2-0.1-0.2-0.2l-7.6-7.5"/>
+		<path id="path78" class="st3" d="M1597.2,1237.3v8.6c0,8.8-5.1,21.1-11.3,27.3L475.2,2383.9"/>
+		<path id="path80" class="st3" d="M2936.6,903h14.7c8.1,0,14.7-6.6,14.7-14.7V208.7"/>
+		<path id="path82" class="st3" d="M2995,902.7h-14.7c-8.1,0-14.7-8.2-14.7-14.7v-14.9"/>
+		<path id="path84" class="st4" d="M2399,1195.3c0,6.1,3.5,14.5,7.7,18.8l121.1,122.5c5.8,5.9,10.6,17.4,10.6,25.7V1573
+			c0,8.3-4.7,19.8-10.4,25.8l-79,81.2c-5.8,5.9-17.1,10.8-25.4,10.8h-266.1c-8.3,0-19.9,4.6-25.8,10.4l-62.7,60
+			c-6.4,6.1-18.7,11.1-27.6,11.1h-122.6c-9.4,0-22.4-5.4-29-12L1607,1477.4c-5.8-5.9-10.6-17.3-10.5-25.6l0.9-231.3
+			c0-8.3,4.8-19.7,10.7-25.6l227.8-227c5.9-5.8,17.3-10.6,25.6-10.6h391.8c8.3,0,19.8,4.8,25.6,10.6l105.2,104.6
+			c8.2,8.2,14.9,24.2,14.9,35.8V1195.3L2399,1195.3z"/>
+		<path id="path86" class="st4" d="M2233.3,957h383.1c5.5,0,13.2-3.2,17.1-7.1l40.6-40.6c3.9-3.9,11.6-7.1,17.1-7.1h226l633.2,1.8
+			l165.1,23.8"/>
+		<path id="path88" class="st5" d="M2486.4,1641.2l40-41"/>
+		<path id="path90" class="st4" d="M3206.4,902.4c-11,0-26.1,6.4-33.8,14.3L3065,1027.1c-3.9,4-7,11.6-7,17.2v156.4
+			c0,5.5-3.2,13.2-7.1,17.1l-263,262.8c-5.9,5.8-17.3,10.6-25.6,10.7l-113.4,0.5c-8.3,0-19.7,4.8-25.6,10.7L2503,1624.2l-6.7,7
+			c-11.5,11.9-20.8,35-20.8,51.6v55.1c0,5.5,3.2,13.2,7.1,17.1l308.3,308.3c5.9,5.9,10.6,17.3,10.6,25.6v706.6"/>
+		<path id="path92" class="st4" d="M2149.5,957.4l-2.8-0.1l0,0c-13.3,0-24-10.7-24-24V525.1c0-8.3-4.8-19.8-10.6-25.6l-370.2-370.2"
+			/>
+		<path id="path94" class="st4" d="M1840.3,957.6h-28.7c-8.8,0-21.1-5.1-27.3-11.3l-149.7-149.7c-5.9-5.9-17.3-10.6-25.6-10.6H74.5"
+			/>
+		<path id="path96" class="st4" d="M1663.2,825.1c-12.8-12.3-9.8-35.5,6.6-51.9L2006.1,437c12-12,12-31.4,0.1-43.5
+			c-0.1-0.1-0.2-0.1-0.2-0.2l-7.6-7.5"/>
+		<path id="path98" class="st4" d="M1597.2,1237.3v8.6c0,8.8-5.1,21.1-11.3,27.3L452.1,2407"/>
+		<path id="path100" class="st4" d="M2965.7,888.4V209.1"/>
+		<path id="path102" class="st6" d="M113.7,785.9H22.5"/>
+		<path id="path104" class="st7" d="M51.5,760.5L26,785.9l25.4,25.5H29.9L4.4,785.9l25.4-25.4H51.5z"/>
+		<path id="path106" class="st6" d="M2801.6,2795.4v91.2"/>
+		<path id="path108" class="st7" d="M2801.6,2904.6l25.4-25.4v-21.6l-25.4,25.4l-25.4-25.4v21.6L2801.6,2904.6z"/>
+		<path id="path110" class="st6" d="M2965.7,209.1v-91.2"/>
+		<path id="path112" class="st7" d="M2965.7,96.3l25.4,25.4v21.6l-25.4-25.4l-25.4,25.4v-21.6L2965.7,96.3z"/>
+		<path id="path114" class="st6" d="M1787.1,174.5l-64.5-64.5"/>
+		<path id="path116" class="st7" d="M1709.9,97.2h36l15.3,15.3h-36v36l-15.3-15.3V97.2z"/>
+		<path id="path118" class="st6" d="M514.1,2345l-64.5,64.5"/>
+		<path id="path120" class="st7" d="M436.9,2422.3h36L488,2407h-36v-36l-15.2,15.3L436.9,2422.3z"/>
+		<g id="text122">
+			<text transform="matrix(1 0 0 1 385.79 2453.8701)" class="st8 st9">Rewari</text>
+		</g>
+		<g id="text126">
+			<text transform="matrix(1 0 0 1 2679.4297 2800.21)" class="st8 st9">Mathura</text>
+		</g>
+		<g id="text130">
+			<text transform="matrix(1 0 0 1 3608.2002 957.2197)" class="st8 st9">Ghaziabad</text>
+		</g>
+		<g id="text134">
+			<text transform="matrix(1 0 0 1 2915.0703 82.7002)" class="st8 st9">Saharanpur</text>
+		</g>
+		<g id="text138">
+			<text transform="matrix(1 0 0 1 1621.4302 112.21)" class="st8 st9">Panipat</text>
+		</g>
+		<g id="text142">
+			<text transform="matrix(1 0 0 1 0 752.5801)" class="st8 st9">Rohtak</text>
+		</g>
+		<path id="path146" class="st10" d="M3193.4,848.8h-520c-5.1,0.3-9.9,2.3-13.6,5.7l-26,26.1c-2.8,2.6-6.4,4.1-10.2,4.3h-810.5
+			c-5.5,0-13.2-3.2-17.1-7.1l-445.5-445.4"/>
+		<path id="path148" class="st11" d="M1869.2,172.9L2365,668.7c2.5,2.8,4,6.4,4.3,10.2v514.9c0,8.3-4.8,19.8-10.6,25.6L2164.1,1414
+			c-3.9,3.9-7.1,11.6-7.1,17.1V2238c0,8.3-4.8,19.8-10.6,25.6l-271.9,272c-3.9,3.9-11.5,7.1-17.1,7.1h-624"/>
+		<path id="path150" class="st12" d="M2354.5,1146.5v46.6c-0.3,5.7-2.5,11.2-6.2,15.5l-11.8,12.3c-3.2,3-7.4,4.8-11.9,5H2171
+			c-5.5,0-13.2,3.2-17.1,7.1l-581,582.2c-3.9,3.9-11.5,7.1-17.1,7l-575.3-3.1c-5.5,0-13.2,3.1-17.1,7l-68.2,68.2"/>
+		<path id="path182" class="st13" d="M1602.9,2751.2h21"/>
+		<path id="rect2230" class="st14" d="M2972.3,841.3l-12,12c-4.3,4.3-11.3,4.3-15.6,0l0,0l0,0c-4.3-4.3-4.3-11.3,0-15.6l0,0l0,0
+			l12-12c4.3-4.3,11.3-4.3,15.6,0l0,0l0,0C2976.6,830,2976.6,837,2972.3,841.3L2972.3,841.3z"/>
+		<path id="path188" class="st15" d="M2733.1,1397.1l43.7-43.7c11.7-11.7,30.7-11.7,42.4,0l0,0l0,0l475.1,475.1
+			c5.9,5.9,17.3,10.7,25.6,10.6l70.6-0.7"/>
+		<path id="path190_3_" class="st16" d="M2851.1,2823.7v-812.1c0-5.5-3.2-13.2-7.1-17l-45.4-44.8c-3.9-3.9-11.6-7-17.1-7h-178.4
+			c-8.3,0-19.8-4.7-25.6-10.6l-372.2-371.8c-5.9-5.9-10.6-17.3-10.6-25.6v-109.7c0-5.5,3.2-13.2,7.1-17.1l22.8-22.8
+			c3.9-3.9,11.6-7.1,17.1-7.1h211.8c8.3,0,19.8-4.8,25.6-10.6l77-77c5.9-5.9,10.6-17.3,10.6-25.6l1.6-179.5
+			c0.1-14.7-6.2-28.6-17.3-38.2l-149.4-129.9c-10.9-9.5-17.2-23.3-17.2-37.7v-54.7"/>
+		<g id="g192">
+			<path id="path194" class="st17" d="M1584.4,1119.8h57.4c11,0,26.4-6.3,34.2-14.1l78.8-78c3.9-3.9,7.1-11.5,7.1-17v-21.2
+				c0-5.5-3.2-13.2-7.1-17.1l-74.1-74.1c-5.9-5.9-17.3-10.6-25.6-10.6H107.4"/>
+			<path id="path196" class="st17" d="M1638.3,887.8h20.8c8.3,0,19.8-4.8,25.6-10.6l18.1-18.1c3.4-3.8,5.4-8.6,5.7-13.7v-27
+				c-0.3-4.4-2-8.6-5-11.9l-17.6-17.6"/>
+		</g>
+		<g id="text198">
+			<text transform="matrix(1 0 0 1 2067.4297 1363.5898)" class="st8 st9">Central</text>
+			<text transform="matrix(1 0 0 1 2067.4297 1385.5898)" class="st8 st9">Secretariat</text>
+		</g>
+		<g id="text214">
+			<text transform="matrix(1 0 0 1 2316.4297 1288.21)" class="st8 st9">Rajiv Chowk</text>
+		</g>
+		<g id="text228">
+			<text transform="matrix(1 0 0 1 2419.4297 1173.21)" class="st8 st9">New Delhi</text>
+		</g>
+		<g id="g232">
+			<path id="rect234" class="st18" d="M2423.4,1125.2h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C2420.4,1126.6,2421.8,1125.2,2423.4,1125.2z"/>
+			<path id="path236" class="st19" d="M2435.4,1128.8c1.1,0,2.2,0.3,3.2,0.9c0.8,0.5,1.3,1.4,1.3,2.3v9c0,0.9-0.5,1.7-1.3,2.2
+				c-0.9,0.6-2,1-3.1,1l2.1,2c0.1,0.1,0.1,0.3,0,0.4s-0.1,0.1-0.2,0.1h-10.6c-0.2,0-0.3-0.1-0.3-0.3l0,0c0-0.1,0-0.2,0.1-0.2l2.1-2
+				c-1.1,0-2.2-0.4-3.1-1c-0.8-0.5-1.2-1.3-1.3-2.2v-9c0-0.9,0.5-1.8,1.3-2.3c0.9-0.6,2-1,3.2-0.9H2435.4z M2432.1,1142.3
+				c1.1,0,1.9-0.8,1.9-1.9l0,0c0.1-1.1-0.7-2-1.8-2.1s-2,0.7-2.1,1.8l0,0c0,0.1,0,0.2,0,0.3
+				C2430.2,1141.4,2431.1,1142.3,2432.1,1142.3L2432.1,1142.3z M2437.9,1136.5v-5.2h-11.6v5.2H2437.9z"/>
+		</g>
+		<g id="text252">
+			<text transform="matrix(1 0 0 1 2923.4297 872.1201)" class="st8 st9">Shahdra</text>
+		</g>
+		<g id="text256">
+			<text transform="matrix(1 0 0 1 1536.4302 1099.21)" class="st8 st9">Kirti Nagar</text>
+		</g>
+		<g id="text270">
+			<text transform="matrix(1 0 0 1 1649.3701 1015.71)" class="st8 st9">Satguru</text>
+			<text transform="matrix(1 0 0 1 1578.2598 1037.71)" class="st8 st9">Ramsingh Marg</text>
+		</g>
+		<g id="g276">
+			<g id="use278">
+				<path id="ae" class="st19" d="M1740.6,1040.3l22.6,22.6c3.9,3.9,3.9,10.2,0,14.1l0,0c-3.9,3.9-10.2,3.9-14.1,0l-22.6-22.6
+					c-3.9-3.9-3.9-10.2,0-14.1l0,0C1730.4,1036.4,1736.7,1036.4,1740.6,1040.3z"/>
+			</g>
+			<path id="rect280" class="st20" d="M1741.3,1039.6l22.6,22.6c4.3,4.3,4.3,11.3,0,15.6l0,0l0,0c-4.3,4.3-11.3,4.3-15.6,0l0,0l0,0
+				l-22.6-22.6c-4.3-4.3-4.3-11.3,0-15.6l0,0l0,0C1730,1035.3,1737,1035.3,1741.3,1039.6L1741.3,1039.6z"/>
+			<circle id="circle282" class="st21" cx="1744.1" cy="1058" r="6"/>
+			<circle id="circle284" class="st22" cx="1754.7" cy="1068.6" r="6"/>
+			<circle id="circle286" class="st23" cx="1733.5" cy="1047.4" r="6"/>
+		</g>
+		<g id="text288">
+			<text transform="matrix(1 0 0 1 1715.4302 773.21)" class="st8 st9">Inder Lok</text>
+		</g>
+		<g id="g292">
+			<g id="use294">
+				<path id="av" class="st19" d="M1708.8,789.4l-12,12c-3.9,3.9-10.2,3.9-14.1,0l0,0c-3.9-3.9-3.9-10.2,0-14.1l12-12
+					c3.9-3.9,10.2-3.9,14.1,0l0,0C1712.7,779.2,1712.7,785.5,1708.8,789.4z"/>
+			</g>
+			<path id="rect296" class="st20" d="M1709.5,790.1l-12,12c-4.3,4.3-11.3,4.3-15.6,0l0,0l0,0c-4.3-4.3-4.3-11.3,0-15.6l0,0l0,0
+				l12-12c4.3-4.3,11.3-4.3,15.6,0l0,0l0,0C1713.8,778.9,1713.8,785.8,1709.5,790.1L1709.5,790.1z"/>
+			<circle id="circle298" class="st24" cx="1701.7" cy="782.3" r="6"/>
+			<circle id="circle300" class="st23" cx="1691.1" cy="793" r="6"/>
+		</g>
+		<g id="text302">
+			<text transform="matrix(1 0 0 1 711.4299 1888.21)" class="st8 st9">Dwarka Sector 21</text>
+		</g>
+		<g id="text316">
+			<text transform="matrix(1 0 0 1 2552.7378 1378.7)" class="st25"><tspan x="0" y="0" class="st8 st9">Supreme Court</tspan><tspan x="-6.1" y="24" class="st8 st9">(Pragati Maidan)</tspan></text>
+		</g>
+		<g id="text344">
+			<text transform="matrix(1 0 0 1 2387.1797 1447.7803)" class="st8 st9">Mandi</text>
+			<text transform="matrix(1 0 0 1 2385.5098 1469.7803)" class="st8 st9">House</text>
+		</g>
+		<g id="g360">
+			<path id="rect362" class="st18" d="M3129.4,1198.2h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C3126.4,1199.6,3127.8,1198.2,3129.4,1198.2z"/>
+			<path id="path364" class="st19" d="M3141.4,1201.8c1.1,0,2.2,0.3,3.2,0.9c0.8,0.5,1.3,1.4,1.3,2.3v9c0,0.9-0.5,1.7-1.3,2.2
+				c-0.9,0.6-2,1-3.1,1l2.1,2c0.1,0.1,0.1,0.3,0,0.4s-0.1,0.1-0.2,0.1h-10.6c-0.2,0-0.3-0.1-0.3-0.3l0,0c0-0.1,0-0.2,0.1-0.2l2.1-2
+				c-1.1,0-2.2-0.4-3.1-1c-0.8-0.5-1.2-1.3-1.3-2.2v-9c0-0.9,0.5-1.8,1.3-2.3c0.9-0.6,2-1,3.2-0.9H3141.4z M3138.1,1215.3
+				c1.1,0,1.9-0.8,1.9-1.9l0,0c0.1-1.1-0.7-2-1.8-2.1s-2,0.7-2.1,1.8c0,0.1,0,0.2,0,0.3C3136.2,1214.4,3137.1,1215.3,3138.1,1215.3
+				L3138.1,1215.3z M3143.9,1209.5v-5.2h-11.6v5.2H3143.9z"/>
+		</g>
+		<g id="g366">
+			<path id="rect368" class="st18" d="M3161.4,1198.2h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C3158.4,1199.6,3159.8,1198.2,3161.4,1198.2z"/>
+			<path id="path370" class="st19" d="M3166.3,1214c0-0.7-0.6-1.3-1.3-1.3c-0.3,0-0.7,0.1-0.9,0.4c-0.5,0.5-0.5,1.3,0,1.8
+				s1.3,0.5,1.8,0C3166.2,1214.7,3166.3,1214.3,3166.3,1214z M3176.6,1214c0-0.7-0.6-1.3-1.3-1.3l0,0c-0.7,0-1.3,0.6-1.3,1.3l0,0
+				c0,0.3,0.1,0.7,0.4,0.9c0.2,0.3,0.6,0.4,0.9,0.4C3176,1215.3,3176.6,1214.7,3176.6,1214L3176.6,1214L3176.6,1214z M3176.1,1210
+				l-0.7-3.9c0-0.1-0.1-0.3-0.2-0.4c-0.1-0.1-0.3-0.1-0.4-0.1h-9.2c-0.1,0-0.3,0-0.4,0.1c-0.1,0.1-0.2,0.2-0.2,0.4l-0.7,3.9
+				c0,0.2,0,0.4,0.1,0.5s0.3,0.2,0.5,0.2h10.7c0.2,0,0.4-0.1,0.5-0.2C3176.1,1210.4,3176.1,1210.2,3176.1,1210z M3173.8,1203.8
+				c0-0.3-0.2-0.5-0.5-0.5l0,0h-6.4c-0.3,0-0.5,0.2-0.5,0.5s0.2,0.5,0.5,0.5h6.4c0.1,0,0.3,0,0.3-0.1
+				C3173.8,1204.1,3173.9,1204,3173.8,1203.8L3173.8,1203.8z M3177.8,1211.1v6.1h-1.3v1.3c0,0.7-0.6,1.3-1.3,1.3l0,0l0,0
+				c-0.3,0-0.7-0.1-0.9-0.4c-0.2-0.2-0.4-0.6-0.4-0.9v-1.3h-7.7v1.3c0,0.3-0.1,0.7-0.4,0.9c-0.2,0.3-0.6,0.4-0.9,0.4
+				c-0.7,0-1.3-0.6-1.3-1.3l0,0l0,0v-1.3h-1.3v-6.1c0-0.8,0.1-1.5,0.3-2.2l1-4.6c0.1-0.6,0.5-1.1,1-1.4c0.7-0.4,1.5-0.8,2.3-0.9
+				c2.1-0.4,4.2-0.4,6.3,0c0.8,0.1,1.6,0.5,2.3,0.9c0.5,0.3,0.9,0.8,1,1.4l1.1,4.6C3177.8,1209.6,3177.8,1210.4,3177.8,1211.1
+				L3177.8,1211.1z"/>
+		</g>
+		<g id="text376">
+			<text transform="matrix(1 0 0 1 2386.4297 1017.21)" class="st8 st9">Chandni</text>
+			<text transform="matrix(1 0 0 1 2386.4297 1039.21)" class="st8 st9">Chowk</text>
+		</g>
+		<g id="g394">
+			<path id="rect396" class="st18" d="M2390.4,969.2h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C2387.4,970.6,2388.8,969.2,2390.4,969.2z"/>
+			<path id="path398" class="st19" d="M2402.4,972.8c1.1,0,2.2,0.3,3.2,0.9c0.8,0.5,1.3,1.4,1.3,2.3v9c0,0.9-0.5,1.7-1.3,2.2
+				c-0.9,0.6-2,1-3.1,1l2.1,2c0.1,0.1,0.1,0.3,0,0.5c-0.1,0.1-0.1,0.1-0.2,0.1h-10.6c-0.2,0-0.3-0.1-0.3-0.3l0,0
+				c0-0.1,0-0.2,0.1-0.2l2.1-2c-1.1,0-2.2-0.4-3.1-1c-0.8-0.5-1.2-1.3-1.3-2.2v-9c0-0.9,0.5-1.8,1.3-2.3c0.9-0.6,2-1,3.2-0.9
+				L2402.4,972.8z M2399.1,986.3c1.1,0,1.9-0.8,1.9-1.9l0,0c0.1-1.1-0.7-2-1.8-2.1s-2,0.7-2.1,1.8c0,0.1,0,0.2,0,0.3
+				C2397.2,985.4,2398.1,986.3,2399.1,986.3L2399.1,986.3z M2404.9,980.5v-5.2h-11.6v5.2H2404.9z"/>
+		</g>
+		<g id="text400">
+			<text transform="matrix(1 0 0 1 2403.4297 862.21)" class="st8 st9">Kashmere Gate</text>
+		</g>
+		<g id="g414">
+			<path id="rect416" class="st18" d="M2407.4,815.2h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C2404.4,816.6,2405.8,815.2,2407.4,815.2z"/>
+			<path id="path418" class="st19" d="M2412.3,831c0-0.7-0.6-1.3-1.3-1.3c-0.3,0-0.7,0.1-0.9,0.4c-0.5,0.5-0.5,1.3,0,1.8
+				s1.3,0.5,1.8,0C2412.2,831.7,2412.3,831.3,2412.3,831z M2422.6,831c0-0.7-0.6-1.3-1.3-1.3l0,0c-0.7,0-1.3,0.6-1.3,1.3l0,0
+				c0,0.3,0.1,0.7,0.4,0.9c0.2,0.3,0.6,0.4,0.9,0.4C2422,832.3,2422.6,831.7,2422.6,831L2422.6,831L2422.6,831z M2422.1,827
+				l-0.7-3.9c0-0.1-0.1-0.3-0.2-0.4c-0.1-0.1-0.3-0.1-0.4-0.1h-9.2c-0.1,0-0.3,0-0.4,0.1c-0.1,0.1-0.2,0.2-0.2,0.4l-0.7,3.9
+				c0,0.2,0,0.4,0.1,0.5s0.3,0.2,0.5,0.2h10.7c0.2,0,0.4-0.1,0.5-0.2C2422.1,827.4,2422.1,827.2,2422.1,827z M2419.8,820.8
+				c0-0.3-0.2-0.5-0.5-0.5l0,0h-6.4c-0.3,0-0.5,0.2-0.5,0.5s0.2,0.5,0.5,0.5h6.4c0.1,0,0.3,0,0.3-0.1
+				C2419.8,821.1,2419.9,821,2419.8,820.8L2419.8,820.8z M2423.8,828.1v6.1h-1.3v1.3c0,0.7-0.6,1.3-1.3,1.3l0,0l0,0
+				c-0.3,0-0.7-0.1-0.9-0.4c-0.2-0.2-0.4-0.6-0.4-0.9v-1.3h-7.7v1.3c0,0.3-0.1,0.7-0.4,0.9c-0.2,0.3-0.6,0.4-0.9,0.4
+				c-0.7,0-1.3-0.6-1.3-1.3l0,0l0,0v-1.3h-1.3v-6.1c0-0.8,0.1-1.5,0.3-2.2l1-4.6c0.1-0.6,0.5-1.1,1-1.4c0.7-0.4,1.5-0.8,2.3-0.9
+				c2.1-0.4,4.2-0.4,6.3,0c0.8,0.1,1.6,0.5,2.3,0.9c0.5,0.3,0.9,0.8,1,1.4l1.1,4.6C2423.8,826.6,2423.8,827.4,2423.8,828.1
+				L2423.8,828.1z"/>
+		</g>
+		<path id="rect420" class="st18" d="M195.3,951.3h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+			C192.3,952.7,193.7,951.3,195.3,951.3z"/>
+		<path id="path422" class="st19" d="M200.2,967.1c0-0.3-0.1-0.7-0.4-0.9c-0.5-0.5-1.3-0.5-1.8,0s-0.5,1.3,0,1.8
+			c0.2,0.2,0.6,0.4,0.9,0.4c0.4,0,0.7-0.1,1-0.4C200.1,967.8,200.2,967.4,200.2,967.1z M210.5,967.1c-0.1-0.7-0.7-1.2-1.4-1.2
+			c-0.6,0.1-1.1,0.5-1.2,1.2c0,0.3,0.1,0.7,0.4,0.9c0.5,0.5,1.3,0.5,1.8,0l0,0l0,0C210.3,967.8,210.5,967.5,210.5,967.1z M210,963.1
+			l-0.7-3.9c0-0.1-0.1-0.3-0.2-0.4c-0.1-0.1-0.3-0.1-0.4-0.1h-9.2c-0.1,0-0.3,0-0.4,0.1c-0.1,0.1-0.2,0.2-0.2,0.4l-0.7,3.9
+			c-0.1,0.3,0.2,0.7,0.5,0.7l0,0h10.8c0.2,0,0.4-0.1,0.5-0.2C210,963.5,210,963.3,210,963.1L210,963.1z M207.7,957
+			c0-0.3-0.2-0.5-0.5-0.5h-6.4c-0.1,0-0.3,0-0.3,0.1c-0.2,0.2-0.2,0.5,0,0.7l0,0l0,0c0.1,0.1,0.2,0.1,0.3,0.1h6.4
+			C207.5,957.5,207.7,957.3,207.7,957C207.7,957.1,207.7,957,207.7,957L207.7,957z M211.7,964.3v6.1h-1.3v1.3c0,0.3-0.1,0.7-0.4,0.9
+			c-0.5,0.5-1.3,0.5-1.8,0l0,0l0,0c-0.3-0.2-0.4-0.6-0.4-0.9v-1.3h-7.7v1.3c0,0.7-0.6,1.3-1.3,1.3s-1.3-0.6-1.3-1.3v-1.3h-1.3v-6.1
+			c0-0.8,0.1-1.5,0.3-2.2l1-4.6c0.1-0.6,0.5-1.1,1-1.4c0.7-0.4,1.5-0.7,2.3-0.9c2.1-0.4,4.2-0.4,6.3,0c0.8,0.1,1.6,0.5,2.3,0.9
+			c0.5,0.3,0.9,0.8,1,1.4l1.1,4.6C211.7,962.8,211.8,963.5,211.7,964.3L211.7,964.3z"/>
+		<g id="text434">
+			<text transform="matrix(1 0 0 1 1634.4302 2576.21)" class="st8 st9">Sikandarpur</text>
+		</g>
+		<g id="use440">
+			<path id="ao" class="st19" d="M2084.9,896c0.2-3.8,1.7-7.5,4.1-10.3l41.3-43.1c3.8-4,3.7-10.3-0.2-14.1c-3.9-3.7-10-3.7-13.9,0
+				l-47.8,48.1c-2.1,2.3-3.4,5.3-3.5,8.5v88.2c0,5.5,4.5,10,10,10s10-4.5,10-10L2084.9,896L2084.9,896z"/>
+		</g>
+		<path id="path442" class="st20" d="M2085.9,896c0.2-3.6,1.6-6.9,3.9-9.7l41.3-43.1c4.2-4.4,4.1-11.3-0.2-15.6
+			c-4.3-4.2-11.1-4.2-15.4,0l-47.8,48.1c-2.3,2.5-3.6,5.8-3.8,9.2v88.2c0,6.1,4.9,11,11,11s11-4.9,11-11V896z"/>
+		<circle id="circle444" class="st24" cx="2075.8" cy="884.6" r="6"/>
+		<circle id="circle446" class="st21" cx="2074.8" cy="956.2" r="6"/>
+		<circle id="circle448" class="st22" cx="2074.8" cy="971.2" r="6"/>
+		<circle id="circle450" class="st21" cx="2123.1" cy="835.5" r="6"/>
+		<circle id="circle2232" class="st24" cx="2952.7" cy="846.2" r="6"/>
+		<circle id="circle2234" class="st21" cx="2964.4" cy="834.5" r="6"/>
+		<g id="text452">
+			<text transform="matrix(1 0 0 1 1997.9502 832.7803)" class="st8 st9">Pratap</text>
+			<text transform="matrix(1 0 0 1 2000.1802 854.7803)" class="st8 st9">Nagar</text>
+		</g>
+		<g id="text458">
+			<g>
+				<text transform="matrix(1 0 0 1 2660.4297 2231.21)" class="st8 st9 st26">T</text>
+				<text transform="matrix(1 0 0 1 2671.8999 2231.21)" class="st8 st9">uglakabad</text>
+			</g>
+		</g>
+		<g id="text462">
+			<text transform="matrix(1 0 0 1 2676.4297 2602.21)" class="st8 st9">Faridabad</text>
+		</g>
+		<g id="text466">
+			<text transform="matrix(1 0 0 1 3246.4297 936.21)" class="st8 st9">Sahibabad</text>
+		</g>
+		<g id="text470">
+			<text transform="matrix(1 0 0 1 1228.46 1553.1201)" class="st8 st9">Palam</text>
+		</g>
+		<path id="path474" class="st27" d="M609.2,779.6v-5"/>
+		<path id="path476" class="st27" d="M865.8,781.4v-5"/>
+		<g id="text478">
+			<text transform="matrix(1 0 0 1 1915.4302 928.5303)" class="st8 st9">Sarai Rohilla</text>
+		</g>
+		<g id="text482">
+			<text transform="matrix(1 0 0 1 1993.3799 498.5498)" class="st8 st9">Azadpur</text>
+		</g>
+		<path id="path486" class="st27" d="M1301.9,1547.8l-3.5-3.5"/>
+		<path id="path488" class="st27" d="M1418.6,1426.1l-3.5-3.5"/>
+		<path id="path490" class="st27" d="M1978.4,373.1l-3.5,3.5"/>
+		<g id="text492">
+			<g>
+				<text transform="matrix(1 0 0 1 1837 393.21)" class="st8 st9">Naya</text>
+				<text transform="matrix(1 0 0 1 1888.1401 393.21)" class="st8 st9">Azadpur</text>
+			</g>
+		</g>
+		<g id="text496">
+			<text transform="matrix(1 0 0 1 1748.0498 240.0596)" class="st8 st9">Narela</text>
+		</g>
+		<g id="text500">
+			<text transform="matrix(1 0 0 1 826.4299 758.21)" class="st8 st9">Nangloi</text>
+		</g>
+		<g id="text504">
+			<text transform="matrix(1 0 0 1 571.8701 756.4502)" class="st8 st9">Mundka</text>
+		</g>
+		<g id="text508">
+			<g>
+				<text transform="matrix(1 0 0 1 1632.4302 1329.21)" class="st8 st9">Naraina</text>
+				<text transform="matrix(1 0 0 1 1708.0303 1329.21)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 1721 1329.21)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<g id="text512">
+			<text transform="matrix(1 0 0 1 1634.4302 1408.8203)" class="st8 st9">Inderpuri</text>
+		</g>
+		<g id="text516">
+			<text transform="matrix(1 0 0 1 1827.4302 1650.8398)" class="st8 st9">Chanakyapuri</text>
+		</g>
+		<g id="text520">
+			<text transform="matrix(1 0 0 1 1864.8599 1696.8701)" class="st8 st9">Safdarjung</text>
+		</g>
+		<g id="text524">
+			<g>
+				<text transform="matrix(1 0 0 1 2490.4297 1254.21)" class="st8 st9 st26">T</text>
+				<text transform="matrix(1 0 0 1 2501.8999 1254.21)" class="st8 st9">ilak</text>
+			</g>
+			<text transform="matrix(1 0 0 1 2490.4297 1276.21)" class="st8 st9">Bridge</text>
+		</g>
+		<g id="text530">
+			<text transform="matrix(1 0 0 1 2445.4297 1208.5801)" class="st8 st9">Shivaji</text>
+			<text transform="matrix(1 0 0 1 2445.4297 1230.5801)" class="st8 st9">Bridge</text>
+		</g>
+		<g id="text536">
+			<text transform="matrix(1 0 0 1 2157.4297 1026.5801)" class="st8 st9">Sadar Bazar</text>
+		</g>
+		<g id="text540">
+			<text transform="matrix(1 0 0 1 1875.4302 1009.21)" class="st8 st9">Dayabasti</text>
+		</g>
+		<g id="text544">
+			<text transform="matrix(1 0 0 1 1950.48 1718.9805)" class="st8 st9">Sarojini</text>
+			<text transform="matrix(1 0 0 1 1956.6001 1740.9805)" class="st8 st9">Nagar</text>
+		</g>
+		<g id="text550">
+			<text transform="matrix(1 0 0 1 2178.0898 1725.21)" class="st8 st9">Lodhi</text>
+			<text transform="matrix(1 0 0 1 2171.4297 1747.21)" class="st8 st9">Colony</text>
+		</g>
+		<path id="path556" class="st27" d="M1837.4,231.1l-3.5,3.5"/>
+		<path id="path558" class="st27" d="M2082.1,480.7l-3.5,3.5"/>
+		<g id="text560">
+			<text transform="matrix(1 0 0 1 2317.4297 1649.21)" class="st8 st9">Lajpat Nagar</text>
+		</g>
+		<g id="text564">
+			<text transform="matrix(1 0 0 1 2259.6499 1724.21)" class="st8 st9">Sewa</text>
+			<text transform="matrix(1 0 0 1 2257.4297 1746.21)" class="st8 st9">Nagar</text>
+		</g>
+		<g id="g570">
+			<path id="rect572" class="st18" d="M2680.4,2552.2h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C2677.4,2553.6,2678.8,2552.2,2680.4,2552.2z"/>
+			<path id="path574" class="st19" d="M2692.4,2555.8c1.1,0,2.2,0.3,3.2,0.9c0.8,0.5,1.3,1.4,1.3,2.3v9c0,0.9-0.5,1.7-1.3,2.2
+				c-0.9,0.6-2,1-3.1,1l2.1,2c0.1,0.1,0.1,0.3,0,0.4c-0.1,0.1-0.1,0.1-0.2,0.1h-10.6c-0.2,0-0.3-0.1-0.3-0.3l0,0
+				c0-0.1,0-0.2,0.1-0.2l2.1-2c-1.1,0-2.2-0.4-3.1-1c-0.8-0.5-1.2-1.3-1.3-2.2v-9c0-0.9,0.5-1.8,1.3-2.3c0.9-0.6,2-1,3.2-0.9H2692.4
+				z M2689.1,2569.3c1.1,0,1.9-0.8,1.9-1.9l0,0c0.1-1.1-0.7-2-1.8-2.1s-2,0.7-2.1,1.8c0,0.1,0,0.2,0,0.3
+				C2687.2,2568.4,2688.1,2569.3,2689.1,2569.3L2689.1,2569.3z M2694.9,2563.5v-5.1h-11.6v5.1H2694.9z"/>
+		</g>
+		<path id="path576" class="st27" d="M3297.5,913.1v-5"/>
+		<path id="path578" class="st27" d="M2791.5,2226.3h5"/>
+		<path id="path580" class="st27" d="M2791.5,2596.3h5"/>
+		<g id="g582">
+			<path id="path584" class="st28" d="M1813.9,1664.8l6.5-6.5"/>
+			<path id="path586" class="st29" d="M1805.9,1672.8l9.5-9.5"/>
+		</g>
+		<g id="g588">
+			<path id="path590" class="st28" d="M1611.2,1323.2h9.2"/>
+			<path id="path592" class="st29" d="M1599.9,1323.2h13.4"/>
+		</g>
+		<g id="g594">
+			<path id="path596" class="st28" d="M2286.9,995.7l-6.5,6.5"/>
+			<path id="path598" class="st29" d="M2294.9,987.7l-9.5,9.5"/>
+		</g>
+		<g id="g600">
+			<path id="path602" class="st28" d="M1921.4,971.9v9.2"/>
+			<path id="path604" class="st29" d="M1921.4,960.6V974"/>
+		</g>
+		<g id="g606">
+			<path id="path608" class="st28" d="M1611.2,1402.2h9.2"/>
+			<path id="path610" class="st29" d="M1599.9,1402.2h13.4"/>
+		</g>
+		<g id="g612">
+			<path id="path614" class="st28" d="M1868.9,1719.7l6.5-6.5"/>
+			<path id="path616" class="st29" d="M1860.9,1727.7l9.5-9.5"/>
+		</g>
+		<g id="g618">
+			<path id="path620" class="st28" d="M2385.4,1677.5v-9.2"/>
+			<path id="path622" class="st29" d="M2385.4,1688.8v-13.4"/>
+		</g>
+		<g id="g624">
+			<path id="path626" class="st29" d="M2211.4,1690.9v9.2"/>
+			<path id="path628" class="st28" d="M2211.4,1681v12"/>
+		</g>
+		<g id="g630">
+			<path id="path632" class="st29" d="M1975.4,956.5v-9.2"/>
+			<path id="path634" class="st28" d="M1975.4,966.4v-12"/>
+		</g>
+		<g id="g636">
+			<path id="path638" class="st29" d="M2477,1284.8l6.5-6.5"/>
+			<path id="path640" class="st28" d="M2470,1291.8l8.5-8.5"/>
+		</g>
+		<g id="g642">
+			<path id="path644" class="st29" d="M2430,1236.8l6.5-6.5"/>
+			<path id="path646" class="st28" d="M2423,1243.8l8.5-8.5"/>
+		</g>
+		<g id="g648">
+			<path id="path650" class="st29" d="M2288.4,1690.9v9.2"/>
+			<path id="path652" class="st28" d="M2288.4,1681v12"/>
+		</g>
+		<g id="text654">
+			<text transform="matrix(1 0 0 1 2589.79 1848.0898)" class="st8 st9">Okhla</text>
+		</g>
+		<g id="text658">
+			<text transform="matrix(1 0 0 1 1993.3799 1171.55)" class="st8 st9">Jhandewalan</text>
+		</g>
+		<g id="text662">
+			<text transform="matrix(1 0 0 1 1642.0698 1470.21)" class="st8 st9">Brar Square</text>
+		</g>
+		<g id="text666">
+			<text transform="matrix(1 0 0 1 2023.4302 1009.21)" class="st8 st9">Kishanganj</text>
+		</g>
+		<g id="text670">
+			<text transform="matrix(1 0 0 1 2138.4297 804.21)" class="st8 st9">Subzi</text>
+			<text transform="matrix(1 0 0 1 2138.4297 826.21)" class="st8 st9">Mandi</text>
+		</g>
+		<path id="path676" class="st27" d="M2600.9,1861.3l3.5-3.5"/>
+		<g id="text678">
+			<text transform="matrix(1 0 0 1 2586.2002 1158.1201)" class="st8 st9">Delhi</text>
+			<text transform="matrix(1 0 0 1 2586.2002 1180.1201)" class="st8 st9">Gate</text>
+		</g>
+		<path id="path684" class="st13" d="M1349.7,2392.4l-2.8,2.8"/>
+		<path id="path686" class="st13" d="M1494.7,2363.4l-2.8,2.8"/>
+		<path id="path688" class="st13" d="M1624.3,2643.5h-4"/>
+		<path id="path690" class="st13" d="M1624.3,2606.5h-4"/>
+		<path id="path692" class="st13" d="M1624.3,2679.5h-4"/>
+		<path id="path694" class="st13" d="M1624.3,2716.5h-4"/>
+		<path id="path696" class="st13" d="M1567.9,2449.5v4"/>
+		<path id="path698" class="st13" d="M1368.9,2312.5v4"/>
+		<g id="text700">
+			<text transform="matrix(1 0 0 1 1499.4302 2477.21)" class="st8 st9">Phase 2</text>
+		</g>
+		<g id="text704">
+			<text transform="matrix(1 0 0 1 1634.4302 2612.21)" class="st8 st9">Phase 1</text>
+		</g>
+		<g id="text708">
+			<text transform="matrix(1 0 0 1 1634.4302 2649.21)" class="st8 st9">Sector 42-43</text>
+		</g>
+		<g id="text712">
+			<text transform="matrix(1 0 0 1 1634.4302 2685.21)" class="st8 st9">Sector 53-54</text>
+		</g>
+		<g id="text716">
+			<text transform="matrix(1 0 0 1 1634.4302 2722.21)" class="st8 st9">Sector 54 Chowk</text>
+		</g>
+		<g id="text720">
+			<text transform="matrix(1 0 0 1 1634.4302 2758.21)" class="st8 st9">Sector 55-56</text>
+		</g>
+		<g id="text724">
+			<text transform="matrix(1 0 0 1 1241.4302 2414.21)" class="st8 st9">Belvedere</text>
+		</g>
+		<g id="text728">
+			<text transform="matrix(1 0 0 1 1316.4302 2304.21)" class="st8 st9">Cyber City</text>
+		</g>
+		<g id="text732">
+			<text transform="matrix(1 0 0 1 1501.4302 2364.21)" class="st8 st9">Phase 3</text>
+		</g>
+		<g id="text736">
+			<text transform="matrix(1 0 0 1 1955.4302 1262.3896)" class="st8 st9">Shivaji Stadium</text>
+		</g>
+		<g id="text740">
+			<text transform="matrix(1 0 0 1 1554.4302 1683.9004)" class="st8 st9">Dhaula Kuan</text>
+		</g>
+		<g id="text744">
+			<g>
+				<text transform="matrix(1 0 0 1 1252.4302 1800.21)" class="st8 st9">IGI</text>
+				<text transform="matrix(1 0 0 1 1283.5498 1800.21)" class="st8 st9">Airport</text>
+			</g>
+		</g>
+		<path id="path748" class="st30" d="M2119.5,1261.2l-3.5-3.5"/>
+		<path id="path750" class="st30" d="M1691.5,1688.2l-3.5-3.5"/>
+		<path id="path752" class="st30" d="M1302.8,1816.4v-5"/>
+		<g id="text754">
+			<text transform="matrix(1 0 0 1 1458.79 1798.3398)" class="st8 st9">Aerocity</text>
+		</g>
+		<g id="g758">
+			<path id="rect760" class="st31" d="M1275.6,1752.9h47c1.7,0,3,1.3,3,3v21c0,1.7-1.3,3-3,3h-47c-1.7,0-3-1.3-3-3v-21
+				C1272.6,1754.3,1274,1752.9,1275.6,1752.9z"/>
+			<g id="text762">
+				<text transform="matrix(1 0 0 1 1299.6299 1772.9102)" class="st0 st32 st33">T3</text>
+			</g>
+			<path id="path766" class="st0" d="M1279.6,1769.3l3.4-3.7c0.1-0.1,0.1-0.2,0.1-0.4c0-0.1-0.1-0.2-0.2-0.3l-5.9-3.3l0,0
+				c-0.1-0.1-0.2-0.2-0.3-0.3c0-0.2,0-0.3,0.1-0.4s0.3-0.2,0.4-0.1l8.4,1.6c0.1,0,0.3,0,0.4-0.1l3.5-2.9l0,0
+				c0.2-0.2,0.6-0.4,0.9-0.3c0.3,0,0.7,0.2,0.9,0.5c0.4,0.5,0.3,1.2-0.2,1.6l0,0l-2.9,3.5c-0.1,0.1-0.1,0.2-0.1,0.4l1.7,8.4
+				c0,0.1,0,0.3-0.1,0.4l-0.1,0.1c-0.1,0.1-0.2,0.2-0.4,0.1c-0.1,0-0.3-0.1-0.3-0.3l0,0l-3.4-5.9c-0.1-0.2-0.4-0.3-0.6-0.2l0,0
+				l-0.1,0.1l-3.7,3.4c-0.1,0.1-0.1,0.2-0.1,0.4l0.5,3c0,0.1,0,0.3-0.1,0.4s-0.3,0.2-0.4,0.1c-0.2,0-0.3-0.1-0.3-0.3l-1.5-3.1
+				c0-0.1-0.1-0.2-0.2-0.2l-3.2-1.5c-0.1-0.1-0.2-0.2-0.2-0.3c0-0.1,0-0.3,0.1-0.4l0.1-0.1c0.1-0.1,0.2-0.1,0.3-0.1h0.1l3,0.5
+				C1279.4,1769.5,1279.5,1769.4,1279.6,1769.3z"/>
+		</g>
+		<g id="g768">
+			<path id="rect770" class="st31" d="M1464.8,1751.9h56c1.7,0,3,1.3,3,3v21c0,1.7-1.3,3-3,3h-56c-1.7,0-3-1.3-3-3v-21
+				C1461.8,1753.3,1463.2,1751.9,1464.8,1751.9z"/>
+			<g id="text772">
+				<text transform="matrix(1 0 0 1 1486.8301 1771.9102)" class="st0 st32 st33">T1D</text>
+			</g>
+			<path id="path776" class="st0" d="M1468.8,1768.3l3.4-3.7c0.1-0.1,0.1-0.2,0.1-0.4c0-0.1-0.1-0.2-0.2-0.3l-5.9-3.3l0,0
+				c-0.1-0.1-0.2-0.2-0.3-0.3c0-0.2,0-0.3,0.1-0.4s0.3-0.2,0.4-0.1l8.4,1.6c0.1,0,0.3,0,0.4-0.1l3.5-2.9l0,0
+				c0.2-0.2,0.6-0.4,0.9-0.3c0.3,0,0.7,0.2,0.9,0.5c0.4,0.5,0.3,1.2-0.2,1.6l0,0l-2.9,3.5c-0.1,0.1-0.1,0.2-0.1,0.4l1.7,8.4
+				c0,0.1,0,0.3-0.1,0.4l-0.1,0.1c-0.1,0.1-0.2,0.2-0.4,0.1c-0.1,0-0.3-0.1-0.3-0.3l0,0l-3.4-5.9c-0.1-0.2-0.4-0.3-0.6-0.2l0,0
+				l-0.1,0.1l-3.7,3.4c-0.1,0.1-0.1,0.2-0.1,0.4l0.5,3c0,0.1,0,0.3-0.1,0.4s-0.3,0.2-0.4,0.1c-0.2,0-0.3-0.1-0.3-0.3l-1.5-3.1
+				c0-0.1-0.1-0.2-0.2-0.2l-3.2-1.5c-0.1-0.1-0.2-0.2-0.2-0.3c0-0.1,0-0.3,0.1-0.4l0.1-0.1c0.1-0.1,0.2-0.1,0.3-0.1h0.1l3,0.5
+				C1468.6,1768.5,1468.7,1768.4,1468.8,1768.3z"/>
+		</g>
+		<g id="text778">
+			<text transform="matrix(1 0 0 1 2391.4297 798.21)" class="st8 st9">Civil Lines</text>
+		</g>
+		<g id="text782">
+			<text transform="matrix(1 0 0 1 2046.4302 1615.21)" class="st8 st9">Jor Bagh</text>
+		</g>
+		<g id="text786">
+			<text transform="matrix(1 0 0 1 2075.4297 1886.21)" class="st8 st9">AIIMS</text>
+		</g>
+		<g id="text790">
+			<text transform="matrix(1 0 0 1 2048.6001 1460.7803)" class="st8 st9">Udyog</text>
+			<text transform="matrix(1 0 0 1 2034.1401 1482.7803)" class="st8 st9">Bhawan</text>
+		</g>
+		<g id="text796">
+			<text transform="matrix(1 0 0 1 1974.4302 1548.21)" class="st8 st9">Lok Kalyan Marg</text>
+		</g>
+		<g id="text800">
+			<g>
+				<text transform="matrix(1 0 0 1 2102.1899 1789.5703)" class="st8 st9">IN</text>
+				<text transform="matrix(1 0 0 1 2122.1899 1789.5703)" class="st8 st9 st34">A</text>
+			</g>
+		</g>
+		<g id="text804">
+			<text transform="matrix(1 0 0 1 2027.3301 2035.5)" class="st8 st9">Hauz Khas</text>
+		</g>
+		<g id="text808">
+			<text transform="matrix(1 0 0 1 1994.4302 2095.21)" class="st8 st9">Malviya Nagar</text>
+		</g>
+		<g id="text812">
+			<text transform="matrix(1 0 0 1 2078.4297 2188.21)" class="st8 st9">Saket</text>
+		</g>
+		<g id="text816">
+			<text transform="matrix(1 0 0 1 2128.4297 2322.21)" class="st8 st9">Qutab Minar</text>
+		</g>
+		<g id="text820">
+			<text transform="matrix(1 0 0 1 2043.4302 2411.21)" class="st8 st9">Sultanpur</text>
+		</g>
+		<g id="text824">
+			<text transform="matrix(1 0 0 1 2000.4302 2454.21)" class="st8 st9">Ghitorni</text>
+		</g>
+		<g id="text828">
+			<text transform="matrix(1 0 0 1 2085.4297 2366.21)" class="st8 st9">Chhattarpur</text>
+		</g>
+		<g id="text832">
+			<g>
+				<text transform="matrix(1 0 0 1 1142.3599 2522.21)" class="st8 st9">HUD</text>
+				<text transform="matrix(1 0 0 1 1185.6899 2522.21)" class="st8 st9 st34">A</text>
+				<text transform="matrix(1 0 0 1 1197.9302 2522.21)" class="st8 st9"> City Centre</text>
+			</g>
+		</g>
+		<g id="text836">
+			<text transform="matrix(1 0 0 1 1265.4302 2580.1797)" class="st8 st9">IFFCO Chowk</text>
+		</g>
+		<g id="text840">
+			<text transform="matrix(1 0 0 1 1388.4302 2524.21)" class="st8 st9">MG Road</text>
+		</g>
+		<g id="text844">
+			<text transform="matrix(1 0 0 1 1911.4302 2540.21)" class="st8 st9">Guru Dronacharya</text>
+		</g>
+		<g id="text848">
+			<text transform="matrix(1 0 0 1 1956.4302 2496.21)" class="st8 st9">Arjangarh</text>
+		</g>
+		<g id="text852">
+			<text transform="matrix(1 0 0 1 2024.4302 1944.21)" class="st8 st9">Green Park</text>
+		</g>
+		<g id="text856">
+			<g>
+				<text transform="matrix(1 0 0 1 2337.4297 617.21)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 2350.4102 617.21)" class="st8 st9">ishwavidyalaya</text>
+			</g>
+		</g>
+		<g id="text860">
+			<g>
+				<text transform="matrix(1 0 0 1 2222.4297 500.21)" class="st8 st9">Model</text>
+				<text transform="matrix(1 0 0 1 2282.1001 500.21)" class="st8 st9 st34">T</text>
+				<text transform="matrix(1 0 0 1 2292.1001 500.21)" class="st8 st9">own</text>
+			</g>
+		</g>
+		<g id="text864">
+			<g>
+				<text transform="matrix(1 0 0 1 2391.4297 730.21)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 2404.4102 730.21)" class="st8 st9">idhan Sabha</text>
+			</g>
+		</g>
+		<g id="text868">
+			<text transform="matrix(1 0 0 1 2204.4297 1103.6504)" class="st8 st9">Chawri Bazaar</text>
+		</g>
+		<g id="text872">
+			<text transform="matrix(1 0 0 1 2281.4297 557.21)" class="st8 st9">GTB Nagar</text>
+		</g>
+		<g id="text876">
+			<text transform="matrix(1 0 0 1 2170.1396 458.8398)" class="st8 st9">Azadpur</text>
+		</g>
+		<g id="text880">
+			<text transform="matrix(1 0 0 1 2040.98 320.4004)" class="st8 st9">Jahangirpuri</text>
+		</g>
+		<g id="text884">
+			<text transform="matrix(1 0 0 1 1893.4302 170.21)" class="st8 st9">Samaypur Badli</text>
+		</g>
+		<g id="text888">
+			<text transform="matrix(1 0 0 1 1934.6201 214.79)" class="st8 st9">Rohini Sec 18, 19</text>
+		</g>
+		<path id="path892" class="st35" d="M2232.5,1336.2l-3.5-3.5"/>
+		<path id="path894" class="st35" d="M2363.5,1097.3h-5"/>
+		<path id="path896" class="st35" d="M2380.5,790.3h-5"/>
+		<path id="path898" class="st35" d="M2380.5,723.3h-5"/>
+		<path id="path900" class="st35" d="M2325.4,613.1l-3.5,3.5"/>
+		<path id="path902" class="st35" d="M2270.4,558.1l-3.5,3.5"/>
+		<path id="path904" class="st35" d="M2209.4,497.1l-3.5,3.5"/>
+		<path id="path906" class="st36" d="M2154.4,442.1l-3.5,3.5"/>
+		<path id="path908" class="st35" d="M2098.4,387.1l-3.5,3.5"/>
+		<path id="path910" class="st35" d="M2046.4,334.1l-3.5,3.5"/>
+		<path id="path912" class="st35" d="M1987.4,275.1l-3.5,3.5"/>
+		<path id="path914" class="st35" d="M1937.4,225.1l-3.5,3.5"/>
+		<path id="path916" class="st35" d="M2152,1469.8h-5"/>
+		<path id="path918" class="st35" d="M2152,1541.8h-5"/>
+		<path id="path920" class="st35" d="M2152,1608.8h-5"/>
+		<path id="path922" class="st35" d="M2152.5,1878.3h-5"/>
+		<path id="path924" class="st35" d="M2152.5,1937.3h-5"/>
+		<path id="path926" class="st35" d="M2152.5,2089.4h-5"/>
+		<path id="path928" class="st35" d="M2152.5,2181.4h-5"/>
+		<path id="path930" class="st35" d="M2128.5,2297.2l-3.5-3.5"/>
+		<path id="path932" class="st35" d="M2085.5,2340.2l-3.5-3.5"/>
+		<path id="path934" class="st35" d="M2042.5,2384.2l-3.5-3.5"/>
+		<path id="path936" class="st35" d="M1999.5,2427.2l-3.5-3.5"/>
+		<path id="path938" class="st35" d="M1955.5,2471.2l-3.5-3.5"/>
+		<path id="path940" class="st35" d="M1911.5,2515.2l-3.5-3.5"/>
+		<path id="path942" class="st35" d="M1435.3,2538.3v-5"/>
+		<path id="path944" class="st35" d="M1334.3,2553.3v-5"/>
+		<g id="text946">
+			<text transform="matrix(1 0 0 1 2107.4297 1324.21)" class="st8 st9">Patel Chowk</text>
+		</g>
+		<path id="path950" class="st35" d="M1233.4,2531.7v21"/>
+		<path id="path952" class="st35" d="M1879.4,167.4l-14.9,14.9"/>
+		<g id="text954">
+			<text transform="matrix(1 0 0 1 2636.4297 827.21)" class="st8 st9">Shastri Park</text>
+		</g>
+		<path id="path958" class="st37" d="M2693,843.6v-5"/>
+		<path id="path960" class="st37" d="M2767,859.6v-5"/>
+		<g id="text964">
+			<g>
+				<text transform="matrix(1 0 0 1 2809.21 827.9102)" class="st8 st9">W</text>
+				<text transform="matrix(1 0 0 1 2827.73 827.9102)" class="st8 st9">elcome</text>
+			</g>
+		</g>
+		<g id="text968">
+			<text transform="matrix(1 0 0 1 2983.9297 806.21)" class="st8 st9">Mansarovar</text>
+			<text transform="matrix(1 0 0 1 3016.1699 828.21)" class="st8 st9">Park</text>
+		</g>
+		<path id="path974" class="st37" d="M3039,843.6v-5"/>
+		<path id="path976" class="st37" d="M3127,858.6v-5"/>
+		<g id="text978">
+			<text transform="matrix(1 0 0 1 3093.4297 882.21)" class="st8 st9">Jhilmil</text>
+		</g>
+		<g id="text982">
+			<text transform="matrix(1 0 0 1 3112.4297 827.21)" class="st8 st9">Dilshad Garden</text>
+		</g>
+		<g id="text986">
+			<text transform="matrix(1 0 0 1 2716.4297 882.21)" class="st8 st9">Seelampur</text>
+		</g>
+		<g id="text990">
+			<g>
+				<text transform="matrix(1 0 0 1 2224.4297 858.21)" class="st8 st9 st26">T</text>
+				<text transform="matrix(1 0 0 1 2235.8999 858.21)" class="st8 st9">is Hazari</text>
+			</g>
+		</g>
+		<g id="text994">
+			<text transform="matrix(1 0 0 1 1830.29 832.7803)" class="st8 st9">Shastri</text>
+			<text transform="matrix(1 0 0 1 1834.1802 854.7803)" class="st8 st9">Nagar</text>
+		</g>
+		<path id="path1000" class="st37" d="M1881,879.5v-5"/>
+		<g id="text1002">
+			<text transform="matrix(1 0 0 1 2164.4297 919.21)" class="st8 st9">Pulbangash</text>
+		</g>
+		<path id="path1006" class="st37" d="M2273,879.5v-5"/>
+		<path id="path1008" class="st37" d="M2216,894.5v-5"/>
+		<g id="text1010">
+			<text transform="matrix(1 0 0 1 1338.2002 650.4)" class="st8 st9">Netaji Subhash Place</text>
+		</g>
+		<g id="text1014">
+			<text transform="matrix(1 0 0 1 1342.4302 572.21)" class="st8 st9">Pitam Pura</text>
+		</g>
+		<g id="text1018">
+			<g>
+				<text transform="matrix(1 0 0 1 1257.4302 493.21)" class="st8 st9">Rohini</text>
+				<text transform="matrix(1 0 0 1 1319.6899 493.21)" class="st8 st9">W</text>
+				<text transform="matrix(1 0 0 1 1338.2002 493.21)" class="st8 st9">est</text>
+			</g>
+		</g>
+		<g id="text1022">
+			<text transform="matrix(1 0 0 1 1265.4302 454.9004)" class="st8 st9">Rithala</text>
+		</g>
+		<g id="text1026">
+			<text transform="matrix(1 0 0 1 1602.3799 655.9805)" class="st8 st9">Keshav Puram</text>
+		</g>
+		<g id="text1030">
+			<text transform="matrix(1 0 0 1 1499.4302 563.1299)" class="st8 st9">Kohat Enclave</text>
+		</g>
+		<g id="text1034">
+			<text transform="matrix(1 0 0 1 1300.4302 531.21)" class="st8 st9">Rohini East</text>
+		</g>
+		<path id="path1038" class="st37" d="M1383.9,481.7l3.5-3.5"/>
+		<path id="path1040" class="st37" d="M1421.9,519.7l3.5-3.5"/>
+		<path id="path1042" class="st37" d="M1460.9,557.7l3.5-3.5"/>
+		<path id="path1044" class="st37" d="M1592.6,664.4l3.5-3.5"/>
+		<path id="path1046" class="st37" d="M1631.6,702.4l3.5-3.5"/>
+		<path id="path1048" class="st37" d="M1514.6,587.6l3.5-3.5"/>
+		<path id="path1050" class="st37" d="M1357.5,425.4l-14.9,14.9"/>
+		<path id="path1054" class="st38" d="M3762.9,852.2v22.3"/>
+		<g id="text1056">
+			<text transform="matrix(1 0 0 1 2602.4297 1451.21)" class="st8 st9">Indraprastha</text>
+		</g>
+		<g id="text1060">
+			<text transform="matrix(1 0 0 1 2953.4297 1458.21)" class="st8 st9">Akshardham</text>
+		</g>
+		<g id="text1064">
+			<text transform="matrix(1 0 0 1 3138.4297 1132.21)" class="st8 st9">Kaushambi</text>
+		</g>
+		<g id="text1068">
+			<g>
+				<text transform="matrix(1 0 0 1 3287.4297 1200.21)" class="st8 st9 st26">V</text>
+				<text transform="matrix(1 0 0 1 3299.29 1200.21)" class="st8 st9">aishali</text>
+			</g>
+		</g>
+		<g id="text1072">
+			<text transform="matrix(1 0 0 1 2717.4297 1268.21)" class="st8 st9">Laxmi Nagar</text>
+		</g>
+		<g id="text1076">
+			<g>
+				<text transform="matrix(1 0 0 1 2760.4297 1220.21)" class="st8 st9">Nirman</text>
+				<text transform="matrix(1 0 0 1 2830.4399 1220.21)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 2843.4199 1220.21)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<g id="text1080">
+			<g>
+				<text transform="matrix(1 0 0 1 2827.4297 1172.21)" class="st8 st9">Preet</text>
+				<text transform="matrix(1 0 0 1 2880.79 1172.21)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 2893.77 1172.21)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<g id="text1084">
+			<g>
+				<text transform="matrix(1 0 0 1 3042.4297 1549.21)" class="st8 st9">Mayur</text>
+				<text transform="matrix(1 0 0 1 3103.5498 1549.21)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 3116.5303 1549.21)" class="st8 st9">ihar Extension</text>
+			</g>
+		</g>
+		<g id="text1088">
+			<text transform="matrix(1 0 0 1 2929.4297 1664.0195)" class="st8 st9">Noida Sector 15</text>
+		</g>
+		<g id="text1092">
+			<text transform="matrix(1 0 0 1 3032.4297 1762.71)" class="st8 st9">Noida Sector 18</text>
+		</g>
+		<g id="text1096">
+			<text transform="matrix(1 0 0 1 3270.9102 1871.96)" class="st8 st9">Golf Course</text>
+		</g>
+		<g id="text1100">
+			<text transform="matrix(1 0 0 1 3308.21 1815.9902)" class="st8 st9">Noida City Centre</text>
+		</g>
+		<g id="text1104">
+			<text transform="matrix(1 0 0 1 2979.4297 1713.21)" class="st8 st9">Noida Sector 16</text>
+		</g>
+		<g id="text1108">
+			<g>
+				<text transform="matrix(1 0 0 1 2856.4297 1616.21)" class="st8 st9">New</text>
+				<text transform="matrix(1 0 0 1 2900.8896 1616.21)" class="st8 st9">Ashok Nagar</text>
+			</g>
+		</g>
+		<g id="text1112">
+			<text transform="matrix(1 0 0 1 3068.9297 1817.21)" class="st8 st9">Botanical Garden</text>
+		</g>
+		<g id="text1116">
+			<g>
+				<text transform="matrix(1 0 0 1 2687.4297 1313.8896)" class="st8 st9 st26">Y</text>
+				<text transform="matrix(1 0 0 1 2699.29 1313.8896)" class="st8 st9">amuna</text>
+			</g>
+			<text transform="matrix(1 0 0 1 2714.8604 1335.8896)" class="st8 st9">Bank</text>
+		</g>
+		<g id="text1122">
+			<text transform="matrix(1 0 0 1 1840.4302 1172.21)" class="st8 st9">Rajendra Place</text>
+		</g>
+		<g id="text1126">
+			<text transform="matrix(1 0 0 1 1704.4302 1172.21)" class="st8 st9">Shadipur</text>
+		</g>
+		<g id="text1130">
+			<text transform="matrix(1 0 0 1 1476.77 1174.21)" class="st8 st9">Moti</text>
+			<text transform="matrix(1 0 0 1 1468.4302 1196.21)" class="st8 st9">Nagar</text>
+		</g>
+		<g id="text1136">
+			<text transform="matrix(1 0 0 1 1133.4302 1174.21)" class="st8 st9">Subhash</text>
+			<text transform="matrix(1 0 0 1 1140.1099 1196.21)" class="st8 st9">Nagar</text>
+		</g>
+		<g id="text1142">
+			<text transform="matrix(1 0 0 1 799.8901 1363.5898)" class="st8 st9">Nawada</text>
+		</g>
+		<g id="text1146">
+			<text transform="matrix(1 0 0 1 869.9299 1503.5801)" class="st8 st9">Dwarka</text>
+		</g>
+		<g id="text1150">
+			<text transform="matrix(1 0 0 1 867.4299 1549.21)" class="st8 st9">Dwarka Sector 14</text>
+		</g>
+		<g id="text1154">
+			<text transform="matrix(1 0 0 1 670.4299 1657.3496)" class="st8 st9">Dwarka Sector 12</text>
+		</g>
+		<g id="text1158">
+			<text transform="matrix(1 0 0 1 720.4299 1708.21)" class="st8 st9">Dwarka Sector 10</text>
+		</g>
+		<g id="text1162">
+			<text transform="matrix(1 0 0 1 649.4299 1595.21)" class="st8 st9">Dwarka Sector 13</text>
+		</g>
+		<g id="text1166">
+			<g>
+				<text transform="matrix(1 0 0 1 699.4299 1683.21)" class="st8 st9">Dwarka Sector</text>
+				<text transform="matrix(1 0 0 1 836.1401 1683.21)" class="st8 st9 st26">1</text>
+				<text transform="matrix(1 0 0 1 845.78 1683.21)" class="st8 st9">1</text>
+			</g>
+		</g>
+		<g id="text1170">
+			<text transform="matrix(1 0 0 1 757.4299 1734.21)" class="st8 st9">Dwarka Sector 9</text>
+		</g>
+		<g id="text1174">
+			<text transform="matrix(1 0 0 1 772.4299 1773.21)" class="st8 st9">Dwarka Sector 8</text>
+		</g>
+		<g id="text1178">
+			<text transform="matrix(1 0 0 1 889.4299 1199.21)" class="st8 st9">Janak Puri East</text>
+		</g>
+		<path id="path1182" class="st39" d="M1098.5,1161.2l-3.5-3.5"/>
+		<path id="path1184" class="st39" d="M1178.8,1145.4v-5"/>
+		<path id="path1186" class="st39" d="M1261.8,1130.4v-5"/>
+		<path id="path1188" class="st39" d="M1430.8,1130.4v-5"/>
+		<path id="path1190" class="st39" d="M1497.8,1145.4v-5"/>
+		<path id="path1192" class="st39" d="M1740.8,1145.4v-5"/>
+		<path id="path1194" class="st39" d="M1901.8,1145.4v-5"/>
+		<path id="path1196" class="st39" d="M2061.8,1145.4v-5"/>
+		<path id="path1198" class="st39" d="M1968.8,1129.4v-5"/>
+		<path id="path1200" class="st39" d="M1823.8,1129.4v-5"/>
+		<path id="path1202" class="st39" d="M1057.5,1202.2l-3.5-3.5"/>
+		<path id="path1204" class="st39" d="M976.5,1283.2l-3.5-3.5"/>
+		<path id="path1206" class="st39" d="M935.5,1324.2l-3.5-3.5"/>
+		<path id="path1208" class="st39" d="M894.5,1365.2l-3.5-3.5"/>
+		<path id="path1210" class="st39" d="M858.6,1452.4h-5"/>
+		<path id="path1214" class="st39" d="M856.6,1543.4h-5"/>
+		<path id="path1216" class="st39" d="M842.6,1588.4h-5"/>
+		<path id="path1218" class="st39" d="M864.4,1641.1l-3.5,3.5"/>
+		<path id="path1220" class="st39" d="M887.4,1664.1l-3.5,3.5"/>
+		<path id="path1222" class="st39" d="M909.4,1686.1l-3.5,3.5"/>
+		<path id="path1224" class="st39" d="M932.4,1709.1l-3.5,3.5"/>
+		<path id="path1226" class="st39" d="M952.6,1765.4h-5"/>
+		<g id="text1228">
+			<text transform="matrix(1 0 0 1 786.4299 1280.21)" class="st8 st9">Uttam Nagar East</text>
+		</g>
+		<g id="text1232">
+			<g>
+				<text transform="matrix(1 0 0 1 740.4299 1322.21)" class="st8 st9">Uttam Nagar</text>
+				<text transform="matrix(1 0 0 1 859.3599 1322.21)" class="st8 st9">W</text>
+				<text transform="matrix(1 0 0 1 877.8701 1322.21)" class="st8 st9">est</text>
+			</g>
+		</g>
+		<g id="text1236">
+			<g>
+				<text transform="matrix(1 0 0 1 843.4299 1240.21)" class="st8 st9">Janak Puri</text>
+				<text transform="matrix(1 0 0 1 943.48 1240.21)" class="st8 st9">W</text>
+				<text transform="matrix(1 0 0 1 961.99 1240.21)" class="st8 st9">est</text>
+			</g>
+		</g>
+		<g id="text1240">
+			<text transform="matrix(1 0 0 1 1354.4902 1162.79)" class="st8 st9">Rajouri</text>
+			<text transform="matrix(1 0 0 1 1352.8198 1184.79)" class="st8 st9">Garden</text>
+		</g>
+		<g id="text1246">
+			<g>
+				<text transform="matrix(1 0 0 1 1219.21 1088.21)" class="st8 st9 st34">T</text>
+				<text transform="matrix(1 0 0 1 1229.21 1088.21)" class="st8 st9">agore</text>
+			</g>
+			<text transform="matrix(1 0 0 1 1216.4302 1110.21)" class="st8 st9">Garden</text>
+		</g>
+		<g id="text1252">
+			<text transform="matrix(1 0 0 1 1393.3398 1090.2803)" class="st8 st9">Ramesh</text>
+			<text transform="matrix(1 0 0 1 1403.3398 1112.2803)" class="st8 st9">Nagar</text>
+		</g>
+		<g id="text1258">
+			<g>
+				<text transform="matrix(1 0 0 1 971.4299 1157.21)" class="st8 st9 st26">T</text>
+				<text transform="matrix(1 0 0 1 982.8999 1157.21)" class="st8 st9">ilak Nagar</text>
+			</g>
+		</g>
+		<g id="text1262">
+			<text transform="matrix(1 0 0 1 867.4299 1458.21)" class="st8 st9">Dwarka Mor</text>
+		</g>
+		<path id="path1266" class="st39" d="M2329.4,1332.3l3.5-3.5"/>
+		<path id="path1268" class="st39" d="M2655.6,1422.6v5"/>
+		<path id="path1270" class="st39" d="M2765.3,1350.2l3.5,3.5"/>
+		<path id="path1272" class="st39" d="M2834.3,1282.2l3.5,3.5"/>
+		<path id="path1274" class="st40" d="M2937.4,1464.3l3.5-3.5"/>
+		<path id="path1276" class="st39" d="M3024.4,1553.3l3.5-3.5"/>
+		<path id="path1278" class="st39" d="M3054.4,1603.3l3.5-3.5"/>
+		<path id="path1280" class="st39" d="M3103.4,1653.3l3.5-3.5"/>
+		<path id="path1282" class="st39" d="M3153.4,1702.3l3.5-3.5"/>
+		<path id="path1284" class="st39" d="M3202.4,1752.3l3.5-3.5"/>
+		<path id="path1286" class="st40" d="M3251.4,1801.3l3.5-3.5"/>
+		<path id="path1288" class="st39" d="M3338.6,1851.6v-5"/>
+		<path id="path1290" class="st39" d="M2931.3,1185.2l3.5,3.5"/>
+		<path id="path1292" class="st39" d="M2882.3,1234.2l3.5,3.5"/>
+		<path id="path1294" class="st39" d="M2169.4,1173.3l3.5-3.5"/>
+		<g id="text1296">
+			<g>
+				<text transform="matrix(1 0 0 1 2171.4302 1140.4)" class="st8 st9">RK</text>
+				<text transform="matrix(1 0 0 1 2203.6699 1140.4)" class="st8 st9">Ashram</text>
+			</g>
+			<text transform="matrix(1 0 0 1 2199.2197 1162.4)" class="st8 st9">Marg</text>
+		</g>
+		<g id="text1302">
+			<text transform="matrix(1 0 0 1 1919.4302 1113.21)" class="st8 st9">Karol Bagh</text>
+		</g>
+		<g id="text1306">
+			<text transform="matrix(1 0 0 1 1775.4302 1113.21)" class="st8 st9">Patel Nagar</text>
+		</g>
+		<g id="text1310">
+			<text transform="matrix(1 0 0 1 2350.4297 1325.21)" class="st8 st9">Barakhamba</text>
+			<text transform="matrix(1 0 0 1 2350.4297 1347.21)" class="st8 st9">Road</text>
+		</g>
+		<path id="path1316" class="st39" d="M3192.8,1151.4v-5"/>
+		<path id="path1318" class="st39" d="M3321.9,1145.8v21"/>
+		<path id="path1320" class="st39" d="M3526.9,1571.8h20.9"/>
+		<g id="text1322">
+			<text transform="matrix(1 0 0 1 1560.4302 927.21)" class="st8 st9">Ashok Park</text>
+		</g>
+		<g id="text1326">
+			<text transform="matrix(1 0 0 1 1297.3398 867.4102)" class="st8 st9">Madi Pur</text>
+		</g>
+		<g id="text1330">
+			<text transform="matrix(1 0 0 1 1219.1699 926.5898)" class="st8 st9">Paschim</text>
+			<g>
+				<text transform="matrix(1 0 0 1 1211.5498 948.5898)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 1224.5303 948.5898)" class="st8 st9">ihar East</text>
+			</g>
+		</g>
+		<g id="text1336">
+			<text transform="matrix(1 0 0 1 1146.3799 841.3496)" class="st8 st9">Paschim</text>
+			<g>
+				<text transform="matrix(1 0 0 1 1136.1802 863.3496)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 1149.1602 863.3496)" class="st8 st9">ihar</text>
+				<text transform="matrix(1 0 0 1 1188.0601 863.3496)" class="st8 st9">W</text>
+				<text transform="matrix(1 0 0 1 1206.5801 863.3496)" class="st8 st9">est</text>
+			</g>
+		</g>
+		<g id="text1342">
+			<text transform="matrix(1 0 0 1 1060.4302 927.21)" class="st8 st9">Peera Garhi</text>
+		</g>
+		<g id="text1346">
+			<text transform="matrix(1 0 0 1 964.4299 865.21)" class="st8 st9">Udyog Nagar</text>
+		</g>
+		<g id="text1350">
+			<text transform="matrix(1 0 0 1 901.4299 927.21)" class="st8 st9">Surajmal</text>
+			<text transform="matrix(1 0 0 1 904.2 949.21)" class="st8 st9">Stadium</text>
+		</g>
+		<g id="text1356">
+			<text transform="matrix(1 0 0 1 828.4299 865.21)" class="st8 st9">Nangloi</text>
+		</g>
+		<g id="text1360">
+			<text transform="matrix(1 0 0 1 695.4299 927.21)" class="st8 st9">Nangloi Station</text>
+		</g>
+		<g id="text1364">
+			<text transform="matrix(1 0 0 1 631.4299 865.21)" class="st8 st9">Rajdhani Park</text>
+		</g>
+		<g id="text1368">
+			<text transform="matrix(1 0 0 1 572.23 926.5898)" class="st8 st9">Mundka</text>
+		</g>
+		<path id="path1372" class="st41" d="M700.8,883.4v-5"/>
+		<path id="path1374" class="st41" d="M866.8,883.4v-5"/>
+		<path id="path1376" class="st41" d="M1030.8,883.4v-5"/>
+		<path id="path1378" class="st41" d="M1196.5,881.5v-5"/>
+		<path id="path1380" class="st41" d="M1331.2,883.4v-5"/>
+		<path id="path1382" class="st41" d="M1551.7,883.4v-5"/>
+		<path id="path1384" class="st41" d="M1617.7,898.4v-5"/>
+		<path id="path1386" class="st41" d="M1399.1,898.4v-5"/>
+		<path id="path1388" class="st41" d="M1263.9,897.7v-5"/>
+		<path id="path1390" class="st41" d="M1119.8,898.4v-5"/>
+		<path id="path1392" class="st41" d="M953.8,898.4v-5"/>
+		<path id="path1394" class="st41" d="M771.8,898.4v-5"/>
+		<path id="path1396" class="st41" d="M111.4,876.5v21"/>
+		<g id="text1398">
+			<text transform="matrix(1 0 0 1 2212.4297 1496.21)" class="st8 st9">Khan Market</text>
+		</g>
+		<g id="text1402">
+			<text transform="matrix(1 0 0 1 2236.4297 1571.21)" class="st8 st9">JLN Stadium</text>
+		</g>
+		<g id="text1406">
+			<text transform="matrix(1 0 0 1 2276.4297 1610.21)" class="st8 st9">Jangpura</text>
+		</g>
+		<path id="path1410" class="st42" d="M2434.9,1810.7l3.5-3.5"/>
+		<path id="path1412" class="st42" d="M2475.9,1851.7l3.5-3.5"/>
+		<path id="path1414" class="st42" d="M2517.9,1893.7l3.5-3.5"/>
+		<path id="path1416" class="st42" d="M2268.9,1620.7l3.5-3.5"/>
+		<path id="path1418" class="st42" d="M2226.9,1577.7l3.5-3.5"/>
+		<path id="path1420" class="st42" d="M2199.1,1487.8h5"/>
+		<path id="path1422" class="st42" d="M2323,1385.9v5"/>
+		<path id="path1424" class="st42" d="M2634.9,1953.9v5"/>
+		<g id="text1430">
+			<text transform="matrix(1 0 0 1 2261.9102 1781.3799)" class="st8 st9">Lajpat Nagar</text>
+		</g>
+		<g id="text1434">
+			<text transform="matrix(1 0 0 1 2354.3301 1873.46)" class="st8 st9">Kailash Colony</text>
+		</g>
+		<g id="text1438">
+			<text transform="matrix(1 0 0 1 2351.3501 1835.29)" class="st8 st9">Moolchand</text>
+		</g>
+		<g id="text1442">
+			<text transform="matrix(1 0 0 1 2399.3398 1908.5698)" class="st8 st9">Nehru Place</text>
+		</g>
+		<g id="text1446">
+			<text transform="matrix(1 0 0 1 2714.9199 1918.0303)" class="st8 st9">Okhla</text>
+		</g>
+		<g id="text1450">
+			<g>
+				<text transform="matrix(1 0 0 1 2879.4297 2077.21)" class="st8 st9">Jasola</text>
+				<text transform="matrix(1 0 0 1 2941.7002 2077.21)" class="st8 st9">Apollo</text>
+			</g>
+		</g>
+		<path id="path1454" class="st42" d="M2860.8,2070.8h-5"/>
+		<path id="path1456" class="st42" d="M2860.8,2126.8h-5"/>
+		<path id="path1458" class="st42" d="M2860.8,2181.8h-5"/>
+		<path id="path1460" class="st42" d="M2860.8,2237.8h-5"/>
+		<path id="path1462" class="st42" d="M2860.8,2290.8h-5"/>
+		<path id="path1464" class="st42" d="M2860.8,2340.8h-5"/>
+		<path id="path1466" class="st42" d="M2860.8,2386.8h-5"/>
+		<path id="path1468" class="st42" d="M2860.8,2429.8h-5"/>
+		<path id="path1470" class="st42" d="M2860.8,2476.7h-5"/>
+		<path id="path1472" class="st42" d="M2860.8,2519.8h-5"/>
+		<path id="path1474" class="st42" d="M2860.8,2566.8h-5"/>
+		<path id="path1476" class="st42" d="M2860.8,2610.8h-5"/>
+		<path id="path1478" class="st42" d="M2860.8,2656.8h-5"/>
+		<g id="text1480">
+			<g>
+				<text transform="matrix(1 0 0 1 2879.4297 2132.21)" class="st8 st9">Sarita</text>
+				<text transform="matrix(1 0 0 1 2937.23 2132.21)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 2950.21 2132.21)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<g id="text1484">
+			<text transform="matrix(1 0 0 1 2879.4297 2187.21)" class="st8 st9">Mohan Estate</text>
+		</g>
+		<g id="text1488">
+			<g>
+				<text transform="matrix(1 0 0 1 2879.4297 2242.21)" class="st8 st9 st26">T</text>
+				<text transform="matrix(1 0 0 1 2890.8999 2242.21)" class="st8 st9">uglakabad</text>
+			</g>
+		</g>
+		<g id="text1492">
+			<text transform="matrix(1 0 0 1 2879.4297 2297.21)" class="st8 st9">Badarpur Border</text>
+		</g>
+		<g id="text1496">
+			<text transform="matrix(1 0 0 1 2879.4297 2347.21)" class="st8 st9">Sarai</text>
+		</g>
+		<g id="text1500">
+			<text transform="matrix(1 0 0 1 2879.4297 2392.21)" class="st8 st9">NHPC Chowk</text>
+		</g>
+		<g id="text1504">
+			<text transform="matrix(1 0 0 1 2879.4297 2437.21)" class="st8 st9">Mewala Maharajpur</text>
+		</g>
+		<g id="text1508">
+			<text transform="matrix(1 0 0 1 2879.4297 2482.21)" class="st8 st9">Sector 28</text>
+		</g>
+		<g id="text1512">
+			<text transform="matrix(1 0 0 1 2879.4297 2527.21)" class="st8 st9">Badkal Mor</text>
+		</g>
+		<g id="text1516">
+			<text transform="matrix(1 0 0 1 2879.4297 2572.21)" class="st8 st9">Faridabad Old</text>
+		</g>
+		<g id="text1520">
+			<g>
+				<text transform="matrix(1 0 0 1 2879.4297 2617.21)" class="st8 st9">Neelam Chowk</text>
+				<text transform="matrix(1 0 0 1 3019.4902 2617.21)" class="st8 st9">Ajronda</text>
+			</g>
+		</g>
+		<g id="text1524">
+			<text transform="matrix(1 0 0 1 2879.4297 2662.21)" class="st8 st9">Bata Chowk</text>
+		</g>
+		<g id="text1528">
+			<text transform="matrix(1 0 0 1 2879.4297 2707.21)" class="st8 st9">Escorts Mujesar</text>
+		</g>
+		<g id="text1532">
+			<text transform="matrix(1 0 0 1 2580.4297 1986.21)" class="st8 st9">Govindpuri</text>
+		</g>
+		<g id="text1536">
+			<g>
+				<text transform="matrix(1 0 0 1 2590.0303 1251.21)" class="st8 st9">I</text>
+				<text transform="matrix(1 0 0 1 2595.5898 1251.21)" class="st8 st9">T</text>
+				<text transform="matrix(1 0 0 1 2607.4399 1251.21)" class="st8 st9">O</text>
+			</g>
+		</g>
+		<g id="text1540">
+			<text transform="matrix(1 0 0 1 2289.4297 1415.21)" class="st8 st9">Janpath</text>
+		</g>
+		<path id="path1544" class="st42" d="M2840.9,2823.7h21"/>
+		<path id="path1546" class="st42" d="M2574,1243.3h5"/>
+		<path id="path1548" class="st42" d="M2574,1160.4h5"/>
+		<path id="path1550" class="st43" d="M39.9,2500.2c-3.3,0-6,3.1-6,6.9v336c0,3.8,2.7,6.9,6,6.9h1004.2c3.3,0,6-3.1,6-6.9v-262.3
+			c-0.1-2.9-1.1-5.6-2.8-7.8l-11.2-12.9c-1.9-2-4.3-3.1-6.8-3.2l-476.7-0.7c-3.2-0.2-6.2-1.6-8.5-4l-41-46.9
+			c-2.8-2.9-6.4-4.6-10.3-4.8L39.9,2500.2z"/>
+		<g id="text1556">
+			<text transform="matrix(1 0 0 1 46.8501 2540.79)" class="st44 st32 st45">Delhi Metro Rail Network</text>
+		</g>
+		<g id="text1560">
+			<text transform="matrix(1 0 0 1 74.8501 2604.21)" class="st46 st8 st47">Red Line</text>
+		</g>
+		<path id="path1564" class="st48" d="M186.4,2595.7h99"/>
+		<g id="text1566">
+			<g>
+				<text transform="matrix(1 0 0 1 50.8501 2642.21)" class="st46 st8 st47">Y</text>
+				<text transform="matrix(1 0 0 1 64.6499 2642.21)" class="st46 st8 st47">ellow Line</text>
+			</g>
+		</g>
+		<path id="path1570" class="st49" d="M186.4,2633.7h99"/>
+		<g id="text1572">
+			<text transform="matrix(1 0 0 1 70.8501 2680.21)" class="st46 st8 st47">Blue Line</text>
+		</g>
+		<path id="path1576" class="st50" d="M186.4,2671.7h99"/>
+		<g id="text1578">
+			<text transform="matrix(1 0 0 1 52.8501 2718.21)" class="st46 st8 st47">Green Line</text>
+		</g>
+		<path id="path1582" class="st51" d="M186.4,2709.7h99"/>
+		<g id="text1584">
+			<g>
+				<text transform="matrix(1 0 0 1 59.8501 2756.21)" class="st46 st8 st47">V</text>
+				<text transform="matrix(1 0 0 1 75.4199 2756.21)" class="st46 st8 st47">iolet Line</text>
+			</g>
+		</g>
+		<path id="path1588" class="st52" d="M186.4,2747.7h99"/>
+		<g id="text1590">
+			<text transform="matrix(1 0 0 1 322.3976 2680.2102)" class="st46 st8 st47">Rapid Metro Gurgaon</text>
+		</g>
+		<g id="g1594">
+			<g id="use1596">
+				<path id="ad" class="st53" d="M569.4,2671.7h99"/>
+			</g>
+			<g id="use1598">
+				<path id="ad-2" class="st54" d="M569.4,2671.7h99"/>
+			</g>
+		</g>
+		<g id="text1600">
+			<text transform="matrix(1 0 0 1 348.9238 2761.4648)" class="st46 st8 st47">Delhi Ring Railway</text>
+		</g>
+		<path id="path1604" class="st55" d="M569.4,2753h99"/>
+		<g id="text1606">
+			<text transform="matrix(1 0 0 1 381.9238 2799.4648)" class="st46 st8 st47">Indian Railways</text>
+		</g>
+		<g id="g1610">
+			<g id="use1612">
+				<path id="ac" class="st56" d="M569.4,2791h99"/>
+			</g>
+			<g id="use1614">
+				<path id="ac-2" class="st57" d="M569.4,2791h99"/>
+			</g>
+		</g>
+		<g id="text1616">
+			<text transform="matrix(1 0 0 1 384.1299 2640.4238)" class="st46 st8 st47">Airport Express</text>
+		</g>
+		<path id="path1620" class="st58" d="M569.4,2633.7h99"/>
+		<g id="g1622">
+			<g id="use1624">
+				<path id="an" class="st19" d="M992.9,2588.2h32c5.5,0,10,4.5,10,10l0,0c0,5.5-4.5,10-10,10h-32c-5.5,0-10-4.5-10-10l0,0
+					C982.9,2592.7,987.4,2588.2,992.9,2588.2L992.9,2588.2z"/>
+			</g>
+			<path id="rect1626" class="st20" d="M992.9,2587.2h32c6.1,0,11,4.9,11,11l0,0c0,6.1-4.9,11-11,11l0,0h-32c-6.1,0-11-4.9-11-11
+				l0,0l0,0C981.9,2592.1,986.9,2587.2,992.9,2587.2L992.9,2587.2z"/>
+			<circle id="circle1628" class="st59" cx="1007.9" cy="2598.2" r="6"/>
+			<ellipse id="circle1630" class="st60" cx="1023.1" cy="2598.3" rx="6" ry="6"/>
+			<circle id="circle1632" class="st61" cx="992.9" cy="2598.2" r="6"/>
+		</g>
+		<g id="text1634">
+			<text transform="matrix(1 0 0 1 699.9399 2608.21)" class="st46 st8 st47">Interchange Station</text>
+		</g>
+		<g id="g1638">
+			<g id="use1640">
+				<path id="am" class="st19" d="M947.9,2608.2h-15c-5.5,0-10-4.5-10-10l0,0c0-5.5,4.5-10,10-10h15c5.5,0,10,4.5,10,10l0,0
+					C957.9,2603.7,953.5,2608.2,947.9,2608.2z"/>
+			</g>
+			<path id="rect1642" class="st20" d="M947.9,2609.2h-15c-6.1,0-11-4.9-11-11l0,0l0,0c0-6.1,4.9-11,11-11h15c6.1,0,11,4.9,11,11
+				l0,0C958.9,2604.3,954,2609.2,947.9,2609.2L947.9,2609.2z"/>
+			<circle id="circle1644" class="st60" cx="947.9" cy="2598.2" r="6"/>
+			<circle id="circle1646" class="st61" cx="932.9" cy="2598.2" r="6"/>
+		</g>
+		<g id="g1648">
+			<path id="rect1650" class="st31" d="M981.8,2617.2h47c1.7,0,3,1.3,3,3v21c0,1.7-1.3,3-3,3h-47c-1.7,0-3-1.3-3-3v-21
+				C978.8,2618.6,980.2,2617.2,981.8,2617.2z"/>
+			<g id="text1652">
+				<text transform="matrix(1 0 0 1 1005.8501 2637.21)" class="st0 st32 st33">T3</text>
+			</g>
+			<path id="path1656" class="st0" d="M985.9,2633.6l3.4-3.7c0.1-0.1,0.1-0.2,0.1-0.4c0-0.1-0.1-0.2-0.2-0.3l-5.9-3.3l0,0
+				c-0.1-0.1-0.2-0.2-0.3-0.4c0-0.2,0-0.3,0.1-0.4c0.1-0.1,0.3-0.2,0.4-0.1l8.4,1.6c0.1,0,0.3,0,0.4-0.1l3.5-2.9l0,0
+				c0.2-0.2,0.6-0.4,0.9-0.4c0.3,0,0.7,0.2,0.9,0.5c0.4,0.5,0.3,1.2-0.2,1.6l0,0l-2.9,3.5c-0.1,0.1-0.1,0.2-0.1,0.4l1.7,8.4
+				c0,0.1,0,0.3-0.1,0.4l-0.1,0.1c-0.1,0.1-0.2,0.2-0.4,0.1c-0.1,0-0.3-0.1-0.3-0.3l0,0l-3.4-5.9c-0.1-0.2-0.4-0.3-0.6-0.2l0,0
+				l-0.1,0.1l-3.7,3.4c-0.1,0.1-0.2,0.2-0.1,0.4l0.5,3c0,0.1,0,0.3-0.1,0.4c-0.1,0.1-0.3,0.2-0.4,0.1c-0.2,0-0.3-0.1-0.3-0.3
+				l-1.5-3.1c0-0.1-0.1-0.2-0.2-0.2l-3.2-1.5c-0.1-0.1-0.2-0.2-0.2-0.3s0-0.3,0.1-0.4l0.1-0.1c0.1-0.1,0.2-0.1,0.3-0.1h0.1l3,0.5
+				C985.6,2633.8,985.8,2633.8,985.9,2633.6z"/>
+		</g>
+		<g id="text1658">
+			<g>
+				<text transform="matrix(1 0 0 1 795.8501 2639.21)" class="st46 st8 st47">Airport</text>
+				<text transform="matrix(1 0 0 1 872.77 2639.21)" class="st46 st8 st47 st62">T</text>
+				<text transform="matrix(1 0 0 1 884.77 2639.21)" class="st46 st8 st47">erminal</text>
+			</g>
+		</g>
+		<g id="g1662">
+			<path id="rect1664" class="st18" d="M982.8,2686.2h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C979.8,2687.6,981.2,2686.2,982.8,2686.2z"/>
+			<path id="path1666" class="st19" d="M987.7,2702c0-0.7-0.6-1.3-1.3-1.3c-0.3,0-0.7,0.1-0.9,0.4c-0.5,0.5-0.5,1.3,0,1.8
+				c0.2,0.2,0.6,0.4,0.9,0.4c0.3,0,0.7-0.1,0.9-0.4C987.6,2702.7,987.7,2702.3,987.7,2702z M998,2702c0-0.7-0.6-1.3-1.3-1.3l0,0
+				c-0.7,0-1.3,0.6-1.3,1.3l0,0c0,0.3,0.1,0.7,0.4,0.9c0.2,0.3,0.6,0.4,0.9,0.4C997.4,2703.3,998,2702.7,998,2702L998,2702L998,2702
+				z M997.5,2698l-0.7-3.9c0-0.1-0.1-0.3-0.2-0.4c-0.1-0.1-0.3-0.1-0.4-0.1H987c-0.1,0-0.3,0-0.4,0.1c-0.1,0.1-0.2,0.2-0.2,0.4
+				l-0.7,3.9c0,0.2,0,0.4,0.1,0.5s0.3,0.2,0.5,0.2h10.6c0.2,0,0.4-0.1,0.5-0.2C997.5,2698.4,997.6,2698.2,997.5,2698z M995.3,2691.9
+				c0-0.3-0.2-0.5-0.5-0.5l0,0h-6.4c-0.3,0-0.5,0.2-0.5,0.5s0.2,0.5,0.5,0.5h6.4c0.1,0,0.3,0,0.3-0.1
+				C995.2,2692.1,995.3,2692,995.3,2691.9L995.3,2691.9z M999.3,2699.1v6.1H998v1.3c0,0.7-0.6,1.3-1.3,1.3l0,0l0,0
+				c-0.3,0-0.7-0.1-0.9-0.4c-0.2-0.2-0.4-0.6-0.4-0.9v-1.3h-7.7v1.3c0,0.3-0.1,0.7-0.4,0.9c-0.2,0.3-0.6,0.4-0.9,0.4
+				c-0.7,0-1.3-0.6-1.3-1.3l0,0l0,0v-1.3h-1.3v-6.1c0-0.8,0.1-1.5,0.3-2.2l1-4.6c0.1-0.6,0.5-1.1,1-1.4c0.7-0.4,1.5-0.8,2.3-0.9
+				c2.1-0.4,4.2-0.4,6.3,0c0.8,0.1,1.6,0.5,2.3,0.9c0.5,0.3,0.9,0.8,1,1.4l1.1,4.6C999.2,2697.6,999.3,2698.4,999.3,2699.1
+				L999.3,2699.1z"/>
+		</g>
+		<g id="text1668">
+			<g>
+				<text transform="matrix(1 0 0 1 718.8501 2707.21)" class="st46 st8 st47">Interstate Bus</text>
+				<text transform="matrix(1 0 0 1 873.1599 2707.21)" class="st46 st8 st47 st62">T</text>
+				<text transform="matrix(1 0 0 1 885.1599 2707.21)" class="st46 st8 st47">erminal</text>
+			</g>
+		</g>
+		<g id="text1672">
+			<text transform="matrix(1 0 0 1 797.8501 2673.21)" class="st46 st8 st47">Railway Station</text>
+		</g>
+		<g id="g1676">
+			<path id="rect1678" class="st18" d="M982.8,2652.2h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C979.8,2653.6,981.2,2652.2,982.8,2652.2z"/>
+			<path id="path1680" class="st19" d="M994.8,2655.8c1.1,0,2.2,0.3,3.2,0.9c0.8,0.5,1.3,1.3,1.3,2.3v9c0,0.9-0.5,1.7-1.3,2.2
+				c-0.9,0.6-2,1-3.1,1l2.1,2c0.1,0.1,0.1,0.3,0,0.4c-0.1,0.1-0.1,0.1-0.2,0.1h-10.6c-0.2,0-0.3-0.1-0.3-0.3l0,0
+				c0-0.1,0-0.2,0.1-0.2l2.1-2c-1.1,0-2.2-0.4-3.1-1c-0.8-0.5-1.2-1.3-1.3-2.2v-9c0-0.9,0.5-1.8,1.3-2.3c0.9-0.6,2-1,3.2-0.9H994.8z
+				 M991.6,2669.3c1.1,0,1.9-0.8,1.9-1.9l0,0c0.1-1.1-0.7-2-1.8-2.1s-2,0.7-2.1,1.8l0,0c0,0.1,0,0.2,0,0.3
+				C989.6,2668.4,990.5,2669.3,991.6,2669.3L991.6,2669.3z M997.4,2663.5v-5.1h-11.6v5.1H997.4z"/>
+		</g>
+		<path id="path1694" class="st63" d="M268.6,64.9l17.1,17h-10.1l-17.1-17H268.6z"/>
+		<path id="path1696" class="st64" d="M258.5,64.9h10.1l2.9-2.9c0.9-1,1.7-2,2.4-3.2l1.8-3.5c2.2-4.1,0.2-7.5,0-7.5L258.5,64.9
+			L258.5,64.9z"/>
+		<path id="path1698" class="st65" d="M282.7,64.9l17.1,17h-10.1l-17.1-17H282.7z"/>
+		<path id="path1700" class="st65" d="M295.8,64.9l17.1,17h-10.1l-17.1-17H295.8z"/>
+		<path id="path1702" class="st66" d="M282.7,64.9l17.1-17h-10.1l-17.1,17H282.7z"/>
+		<path id="path1704" class="st66" d="M295.8,64.9l17.1-17h-10.1l-17.1,17H295.8z"/>
+		<path id="path1706" class="st65" d="M298.3,64.9h5.1c3.2,0.2,6.2,1.4,8.5,3.5l13.5,13.5h-10L298.3,64.9z"/>
+		<g id="text1708">
+			<text transform="matrix(1 0 0 1 339.45 71.9404)" class="st46 st8 st47">Rapid Metro Gurgaon</text>
+		</g>
+		<g id="text1712">
+			<text transform="matrix(1 0 0 1 100.45 71.9404)" class="st46 st8 st47">Delhi Metro</text>
+		</g>
+		<path id="path1716" class="st67" d="M80,68.9c0.6-2.6,0.6-5.4,0-8H69l-8,8H80z M77.4,74.9H47.5c5.5,8.3,16.7,10.5,25,5
+			C74.4,78.6,76.1,76.9,77.4,74.9z M44.9,68.9h9l8-8h-17C44.3,63.6,44.4,66.3,44.9,68.9z M47.4,54.9h30c-5.5-8.3-16.7-10.5-25-5
+			C50.5,51.3,48.8,53,47.4,54.9L47.4,54.9z M62.4,88.9c-13.3,0-24-10.7-24-24s10.7-24,24-24s24,10.7,24,24S75.7,88.9,62.4,88.9z"/>
+		<g id="text1718">
+			<text transform="matrix(1 0 0 1 2434.8604 1102.54)" class="st8 st9">Jama Masjid</text>
+		</g>
+		<g id="text1722">
+			<text transform="matrix(1 0 0 1 2558.5898 1025.4902)" class="st8 st9">Lal Qila</text>
+		</g>
+		<path id="path1728" class="st42" d="M2555.2,1095.7h3"/>
+		<path id="path1730" class="st42" d="M2545.9,1039.9l7.6-7.9"/>
+		<g id="text1732">
+			<text transform="matrix(1 0 0 1 1048.6001 1710.5195)" class="st8 st9">Shahbad</text>
+		</g>
+		<path id="path1736" class="st27" d="M1104.3,1743.8l-3.5-3.5"/>
+		<g id="text1738">
+			<text transform="matrix(1 0 0 1 992.3599 1727.2803)" class="st8 st9">Mohammadpur</text>
+		</g>
+		<path id="path1742" class="st68" d="M971.5,1766l85.4,0.2l31-26.1"/>
+		<path id="path1744" d="M994.5,1776.3c0.5-0.3,0.9-0.9,0.9-1.5c0.1-0.9-0.6-1.7-1.5-1.7c-0.9-0.1-1.6,0.6-1.7,1.5
+			c0,0.1,0,0.2,0,0.3c0,0.4,0.1,0.7,0.3,1c0,0,0.2,0.4-0.2,0.4c-0.9,0-1.7,0.3-2.3,0.9c-1.5,1.6-2.5,3.8-2.7,6
+			c-0.2,0-0.4,0.2-0.3,0.5c0.2,0.6,0.8,1,1.4,1c0.3,0,0.5-0.2,0.5-0.5c0-0.1,0-0.3,0-0.4c-0.4-1.4,0.2-2.9,1.3-3.7
+			c0,0,0.7,5.6-5,10.8l0.9,1.7c0.1,0.3,0.4,0.5,0.8,0.6l0.7,0.1c0.1,0,0.3,0,0.3-0.1s0-0.2-0.1-0.2c-0.2-0.1-0.4-0.3-0.5-0.6
+			c0,0-0.3-1-0.3-1.1c2.1-1.6,3.7-3.6,4.7-6c2,2.7,3.4,5.7,4,9l3-1.4c0.1,0,0.1-0.1,0.1-0.2s-0.1-0.2-0.2-0.2l-1.8-0.2
+			c-0.1,0-0.1,0-0.1-0.1l0,0l0,0c-0.1-1.5-0.4-3-0.9-4.4c-0.1-0.2-0.2-0.5-0.3-0.7c-1.3-1.8-1.8-4.2-1.2-6.3c0.8,1.8,2.5,3,4.5,3.2
+			c0.1,0.1,0.2,0.2,0.3,0.2c0.4,0,0.6-1.2,0.5-1.3c0-0.3-0.3-0.3-0.3-0.3c-0.1,0-0.2,0.1-0.3,0.2c-1.5-0.5-2.7-1.7-3.1-3.3
+			c-0.3-1-0.8-1.8-1.5-2.5C994.4,1776.7,994.2,1776.4,994.5,1776.3L994.5,1776.3z"/>
+		<g id="text1746">
+			<text transform="matrix(1 0 0 1 1002.9199 1787.8701)" class="st69 st70">~10 min</text>
+		</g>
+		<path id="path1750" class="st68" d="M924.2,2729.8h94.1"/>
+		<path id="path1752" d="M1028.8,2723.7c0.5-0.3,0.9-0.9,0.9-1.5c0-0.9-0.7-1.6-1.6-1.6l0,0l0,0c-0.9,0-1.6,0.7-1.6,1.6l0,0l0,0
+			c0,0.4,0.1,0.7,0.3,1c0,0.1,0.2,0.4-0.2,0.4c-0.9,0-1.7,0.3-2.3,0.9c-1.5,1.6-2.5,3.8-2.7,6c-0.2,0-0.4,0.2-0.3,0.5
+			c0.2,0.6,0.8,1,1.4,1c0.3,0,0.5-0.2,0.5-0.5c0-0.1,0-0.3,0-0.4c-0.4-1.4,0.2-2.9,1.3-3.7c0,0,0.7,5.6-5,10.8l0.9,1.7
+			c0.1,0.3,0.4,0.5,0.8,0.6c0.1,0,0.7,0.1,0.7,0.1s0.3,0,0.3-0.1s0-0.2-0.1-0.2c-0.2-0.1-0.4-0.3-0.5-0.6c0,0-0.3-1-0.3-1.1
+			c2.1-1.6,3.7-3.6,4.7-6c2,2.7,3.3,5.7,3.9,9l3-1.4c0.1,0,0.1-0.1,0.1-0.2c0-0.1-0.1-0.1-0.2-0.2l-1.8-0.2c-0.1,0-0.1,0-0.1-0.1
+			l0,0l0,0c-0.1-1.5-0.4-3-0.9-4.4c-0.1-0.2-0.2-0.5-0.3-0.7c-1.3-1.8-1.8-4.2-1.2-6.3c0.8,1.8,2.5,3,4.5,3.2
+			c0.1,0.1,0.2,0.2,0.3,0.2c0.4,0,0.6-1.2,0.6-1.3c0-0.3-0.3-0.3-0.3-0.3c-0.1,0-0.2,0.1-0.3,0.2c-1.5-0.5-2.7-1.7-3.1-3.3
+			c-0.3-1-0.8-1.8-1.5-2.5C1028.6,2724.1,1028.4,2723.8,1028.8,2723.7L1028.8,2723.7z"/>
+		<g id="text1754">
+			<g>
+				<text transform="matrix(0.98 0 0 1 722.79 2735.3301)" class="st8 st71">W</text>
+				<text transform="matrix(0.98 0 0 1 741.7998 2735.3301)" class="st8 st71">alking Interchange</text>
+			</g>
+		</g>
+		<path id="path1758" class="st68" d="M865.4,846.9V795"/>
+		<path id="path1760" d="M883.6,818.3c0.5-0.3,0.9-0.9,0.9-1.5c0.1-0.9-0.6-1.7-1.5-1.7c-0.9-0.1-1.6,0.6-1.7,1.5c0,0.1,0,0.2,0,0.3
+			c0,0.4,0.1,0.7,0.3,1c0.1,0.1,0.1,0.3,0,0.4c0,0-0.1,0.1-0.2,0.1c-0.9,0-1.7,0.3-2.3,0.9c-1.6,1.6-2.5,3.8-2.7,6
+			c-0.2,0.1-0.4,0.3-0.4,0.5c0.2,0.6,0.8,1,1.4,1c0.3,0,0.5-0.2,0.5-0.5c0-0.1,0-0.3,0-0.4c-0.1-0.4-0.1-0.8-0.1-1.1
+			c0.1-1,0.7-1.9,1.4-2.6c0,0,0.7,5.6-5,10.8l0.9,1.7c0.1,0.3,0.4,0.5,0.8,0.6c0.1,0,0.7,0.1,0.7,0.1s0.3,0,0.3-0.1s0-0.2-0.1-0.2
+			c-0.2-0.1-0.4-0.3-0.5-0.6c0,0-0.3-1-0.3-1.1c2.1-1.6,3.7-3.6,4.7-6c2,2.7,3.3,5.7,3.9,9l3-1.4c0.1,0,0.1-0.1,0.1-0.2
+			c0-0.1-0.1-0.2-0.2-0.2l-1.8-0.2c-0.1,0-0.1,0-0.1-0.1l0,0l0,0c-0.1-1.5-0.4-3-0.9-4.4c-0.1-0.2-0.2-0.5-0.3-0.7
+			c-1.3-1.8-1.8-4.2-1.2-6.3c0.8,1.8,2.5,3,4.5,3.2c0.1,0.1,0.2,0.1,0.3,0.2c0.4,0,0.6-1.2,0.5-1.3c0-0.3-0.3-0.3-0.3-0.3
+			c-0.1,0-0.2,0.1-0.3,0.2c-1.5-0.5-2.7-1.7-3.1-3.3c-0.3-1-0.8-1.8-1.5-2.5C883.4,818.8,883.1,818.5,883.6,818.3L883.6,818.3z"/>
+		<g id="text1762">
+			<text transform="matrix(1 0 0 1 891.96 829.9199)" class="st69 st70">~ 5 min</text>
+		</g>
+		<path id="path1766" class="st68" d="M2841.2,2234.6l-29.7-5.8"/>
+		<path id="path1768" d="M2828.3,2240.1c0.5-0.3,0.9-0.9,0.9-1.5c0.1-0.9-0.6-1.7-1.5-1.8s-1.7,0.6-1.8,1.5l0,0c0,0.1,0,0.2,0,0.3
+			c0,0.4,0.1,0.7,0.3,1c0,0.1,0.2,0.4-0.2,0.4c-0.9,0-1.7,0.3-2.3,0.9c-1.6,1.6-2.5,3.8-2.7,6c-0.2,0-0.4,0.2-0.4,0.5
+			c0.2,0.6,0.8,1,1.4,1c0.3,0,0.5-0.2,0.5-0.5c0-0.1,0-0.3,0-0.4c-0.4-1.4,0.2-2.9,1.4-3.7c0,0,0.7,5.6-5,10.8l0.9,1.7
+			c0.1,0.3,0.4,0.5,0.8,0.6c0.1,0,0.7,0.1,0.7,0.1s0.3,0,0.3-0.1s0-0.2-0.1-0.2c-0.2-0.1-0.4-0.3-0.4-0.6c0,0-0.3-1-0.3-1.1
+			c2-1.6,3.7-3.6,4.7-6c2,2.7,3.3,5.7,3.9,9l3.1-1.4c0.1,0,0.1-0.1,0.1-0.2c0-0.1-0.1-0.1-0.2-0.2l-1.8-0.2c-0.1,0-0.1,0-0.1-0.1
+			l0,0l0,0c-0.1-1.5-0.4-3-0.9-4.4c-0.1-0.2-0.2-0.5-0.3-0.7c-1.3-1.8-1.8-4.2-1.1-6.3c0.8,1.8,2.5,3,4.5,3.2
+			c0.1,0.1,0.2,0.2,0.3,0.2c0.4,0,0.6-1.2,0.5-1.3c0-0.3-0.3-0.3-0.3-0.3c-0.1,0-0.2,0.1-0.3,0.2c-1.5-0.5-2.7-1.7-3.1-3.3
+			c-0.3-1-0.8-1.8-1.5-2.5C2828.2,2240.5,2827.9,2240.3,2828.3,2240.1L2828.3,2240.1z"/>
+		<g id="text1770">
+			<text transform="matrix(1 0 0 1 2796.48 2269.4297)" class="st69 st70">~ 10 min</text>
+		</g>
+		<path id="path1774" class="st41" d="M609.9,899v-5"/>
+		<path id="path1776" class="st41" d="M552.7,881.6v-5"/>
+		<g id="text1778">
+			<text transform="matrix(1 0 0 1 515.5 824.8799)" class="st8 st9">Mundka</text>
+			<text transform="matrix(1 0 0 1 510.5 845.8799)" class="st8 st9">Industrial</text>
+			<text transform="matrix(1 0 0 1 533.29 866.8799)" class="st8 st9">Park</text>
+		</g>
+		<path id="path1786" class="st41" d="M494.4,899.3v-5"/>
+		<path id="path1788" class="st41" d="M437.2,881.9v-5"/>
+		<g id="text1790">
+			<text transform="matrix(1 0 0 1 465.2 926.4502)" class="st8 st9">Ghevra</text>
+		</g>
+		<g id="text1794">
+			<g>
+				<text transform="matrix(1 0 0 1 413.5601 840.8398)" class="st8 st9 st34">T</text>
+				<text transform="matrix(1 0 0 1 423.5601 840.8398)" class="st8 st9">ekri</text>
+			</g>
+			<text transform="matrix(1 0 0 1 407.4399 861.8398)" class="st8 st9">Border</text>
+		</g>
+		<g id="text1800">
+			<g>
+				<text transform="matrix(1 0 0 1 346.9299 927.7305)" class="st8 st9 st34">T</text>
+				<text transform="matrix(1 0 0 1 356.9299 927.7305)" class="st8 st9">ekri</text>
+			</g>
+			<text transform="matrix(1 0 0 1 345.24 948.7305)" class="st8 st9">Kalan</text>
+		</g>
+		<g id="text1806">
+			<text transform="matrix(1 0 0 1 257.72 818.7998)" class="st8 st9">Modern</text>
+			<text transform="matrix(1 0 0 1 251.05 839.7998)" class="st8 st9">Industrial</text>
+			<text transform="matrix(1 0 0 1 266.05 860.7998)" class="st8 st9">Estate</text>
+		</g>
+		<g id="text1814">
+			<text transform="matrix(1 0 0 1 146.8401 925.0898)" class="st8 st9">Bahadurgarh</text>
+			<text transform="matrix(1 0 0 1 156.3 946.0898)" class="st8 st9">Bus Stand</text>
+		</g>
+		<g id="text1820">
+			<text transform="matrix(1 0 0 1 43.2 840.7598)" class="st8 st9">Bahadurgarh</text>
+			<text transform="matrix(1 0 0 1 63.24 861.7598)" class="st8 st9">City Park</text>
+		</g>
+		<path id="path1826" class="st41" d="M370.5,900.2v-5"/>
+		<path id="path1828" class="st41" d="M297.5,881.9v-5"/>
+		<path id="path1830" class="st41" d="M203.1,898.5v-5"/>
+		<g id="text1832">
+			<text transform="matrix(1 0 0 1 106.6799 759.0195)" class="st8 st9">Bahadurgarh</text>
+		</g>
+		<g id="text1836">
+			<text transform="matrix(1 0 0 1 453.22 755.8701)" class="st8 st9">Ghevra</text>
+		</g>
+		<path id="path1840" class="st27" d="M492.4,779.8v-5"/>
+		<path id="path1842" class="st27" d="M158.3,779.5v-5"/>
+		<path id="path1844" class="st68" d="M2096.1,467.3l24.1-25.7"/>
+		<path id="path1846" d="M2082.7,424.2c0.2-0.6,0.1-1.2-0.3-1.7c-0.6-0.7-1.6-0.8-2.3-0.2c-0.7,0.6-0.8,1.6-0.2,2.3l0,0
+			c0.2,0.3,0.5,0.5,0.9,0.5c0.1,0,0.4,0.1,0.1,0.5c-0.7,0.6-1.1,1.3-1.2,2.2c-0.1,2.3,0.5,4.5,1.9,6.3c-0.1,0.2-0.1,0.4,0,0.6
+			c0.5,0.3,1.3,0.3,1.7-0.1c0.2-0.2,0.2-0.5,0.1-0.7c-0.1-0.1-0.2-0.2-0.3-0.3c-0.3-0.2-0.6-0.5-0.8-0.8c-0.6-0.9-0.8-1.9-0.6-2.9
+			c0,0,4.1,3.8,3.2,11.5l1.8,0.7c0.3,0.2,0.7,0.1,1-0.1c0.2-0.1,0.4-0.3,0.6-0.4c0,0,0.2-0.1,0.1-0.2s-0.2-0.1-0.2-0.1
+			c-0.2,0.1-0.5,0-0.7-0.1c0,0-0.8-0.6-0.9-0.7c0.6-2.5,0.4-5.1-0.3-7.6c3.2,0.7,6.3,2.2,8.9,4.3l1.4-3c0-0.1,0-0.2,0-0.2
+			c-0.1-0.1-0.2,0-0.3,0s-1.5,1-1.5,1h-0.1l0,0c-1-1.1-2.2-2-3.5-2.8c-0.2-0.1-0.4-0.2-0.6-0.3c-2.2-0.5-4.1-2-5-4.1
+			c1.8,0.8,3.8,0.6,5.5-0.4c0.1,0,0.2,0,0.3-0.1c0.3-0.3-0.3-1.3-0.4-1.3c-0.1-0.1-0.2-0.2-0.4-0.1l0,0c-0.1,0-0.1,0.1-0.1,0.3
+			c-1.5,0.6-3.2,0.4-4.5-0.5c-0.8-0.6-1.8-0.9-2.8-0.9C2083,424.6,2082.6,424.6,2082.7,424.2L2082.7,424.2z"/>
+		<g id="text1848">
+			<text transform="matrix(0.76 -0.65 0.65 0.76 2074.5684 471.0909)" class="st69 st72">~ 10 min</text>
+		</g>
+		<path id="path1862" class="st73" d="M1018,1248.2l780.8,741.9c8.4,8,24.9,16.3,34.7,16.3l634.9,0.4c27.1,0,37.3-8.5,52.7-22.8
+			l221.2-206c23.5-21.9,48.3-12.7,65.8,4.8l211.5,211.2c16.7,16.7,31.9,11.6,41.8,2l186.3-181.1"/>
+		<g id="text1864">
+			<text transform="matrix(1 0 0 1 1328.7402 1393.8496)" class="st8 st9">Delhi</text>
+			<text transform="matrix(1 0 0 1 1299.8301 1414.8496)" class="st8 st9">Cantonment</text>
+		</g>
+		<g id="g1880">
+			<path id="path1882" class="st28" d="M1647.1,1489.7l6.8-6.2"/>
+			<path id="path1884" class="st29" d="M1638.8,1497.3l9.9-9.1"/>
+		</g>
+		<g id="g1886">
+			<path id="path1888" class="st28" d="M1712.4,1556.9l6.8-6.2"/>
+			<path id="path1890" class="st29" d="M1704.1,1564.5l9.9-9.1"/>
+		</g>
+		<g id="text1892">
+			<text transform="matrix(1 0 0 1 1746.9102 1541.54)" class="st8 st9">Sardar</text>
+			<text transform="matrix(1 0 0 1 1731.3501 1562.54)" class="st8 st9">Patel Marg</text>
+		</g>
+		<path id="path1898" class="st74" d="M1464,945l-4.2-2.7"/>
+		<g id="text1900">
+			<text transform="matrix(1 0 0 1 1365.6099 922.46)" class="st8 st9">Shivaji</text>
+			<text transform="matrix(1 0 0 1 1377.29 943.46)" class="st8 st9">Park</text>
+		</g>
+		<g id="text1906">
+			<text transform="matrix(1 0 0 1 1510.7002 847.3701)" class="st8 st9">Punjabi</text>
+			<text transform="matrix(1 0 0 1 1500.7002 868.3701)" class="st8 st9">Bagh East</text>
+		</g>
+		<g id="text1912">
+			<text transform="matrix(1 0 0 1 1473.8701 952.75)" class="st8 st9">Punjabi</text>
+			<g>
+				<text transform="matrix(1 0 0 1 1461.2803 973.75)" class="st8 st9">Bagh</text>
+				<text transform="matrix(1 0 0 1 1513.5498 973.75)" class="st8 st9">W</text>
+				<text transform="matrix(1 0 0 1 1532.0601 973.75)" class="st8 st9">est</text>
+			</g>
+		</g>
+		<path id="path1918" class="st74" d="M1472,731.7l-4-3"/>
+		<g id="text1920">
+			<text transform="matrix(1 0 0 1 1631.9399 687.3799)" class="st8 st9">Kanhaiya</text>
+			<text transform="matrix(1 0 0 1 1649.1802 708.3799)" class="st8 st9">Nagar</text>
+		</g>
+		<g id="text1936">
+			<text transform="matrix(1 0 0 1 1366.3599 728.7197)" class="st8 st9">Shakurpur</text>
+		</g>
+		<path id="path1940" class="st74" d="M1779.7,517.8v-5"/>
+		<g id="text1942">
+			<text transform="matrix(1 0 0 1 1716.4399 496.8398)" class="st8 st9">Shalimar Bagh</text>
+		</g>
+		<g id="text1956">
+			<text transform="matrix(1 0 0 1 2101.27 370.3496)" class="st8 st9">Adarsh</text>
+			<text transform="matrix(1 0 0 1 2108.4902 391.3496)" class="st8 st9">Nagar</text>
+		</g>
+		<path id="path1962" class="st74" d="M2204.9,327h-19"/>
+		<g id="text1964">
+			<text transform="matrix(1 0 0 1 2175.4199 317.6504)" class="st8 st9">Majlis Park</text>
+		</g>
+		<path id="path1968" class="st74" d="M1421.9,1319.2l-3.7,3.4"/>
+		<g id="text1970">
+			<text transform="matrix(1 0 0 1 1418.7002 1305.0898)" class="st8 st9">Maya Puri</text>
+		</g>
+		<path id="path1974" class="st74" d="M1537.6,1462.1l-3.7,3.4"/>
+		<g id="text1976">
+			<text transform="matrix(1 0 0 1 1456.6001 1483.75)" class="st8 st9">Naraina</text>
+			<g>
+				<text transform="matrix(1 0 0 1 1471.2402 1504.75)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 1484.2197 1504.75)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<path id="path1982" class="st74" d="M1636.7,1560.8l-3.7,3.4"/>
+		<g id="text1984">
+			<text transform="matrix(1 0 0 1 1558.3701 1569.6104)" class="st8 st9">Delhi</text>
+			<text transform="matrix(1 0 0 1 1529.46 1590.6104)" class="st8 st9">Cantonment</text>
+		</g>
+		<path id="path1990" class="st74" d="M1790.7,1705.8l-10.6,10.9"/>
+		<g id="text1992">
+			<text transform="matrix(1 0 0 1 1692.1699 1736.8604)" class="st8 st9">Durgabai</text>
+			<text transform="matrix(1 0 0 1 1690.52 1757.8604)" class="st8 st9">Desmukh</text>
+			<text transform="matrix(1 0 0 1 1706.6201 1778.8604)" class="st8 st9">South</text>
+			<text transform="matrix(1 0 0 1 1698.29 1799.8604)" class="st8 st9">Campus</text>
+		</g>
+		<g id="text2002">
+			<text transform="matrix(1 0 0 1 1994.0498 256.04)" class="st8 st9">Haiderpur</text>
+			<text transform="matrix(1 0 0 1 1998.5 277.04)" class="st8 st9">Badli Mor</text>
+		</g>
+		<path id="path2008" class="st74" d="M1403.7,1034.5l-4.2-2.7"/>
+		<g id="text2010">
+			<text transform="matrix(1 0 0 1 1412.3398 1043.1299)" class="st8 st9">ESI Basaidarapur</text>
+		</g>
+		<path id="path2024" class="st30" d="M1490.9,1815.3v-5"/>
+		<path id="path2026" class="st75" d="M1512.8,1726.7l-3.7,3.4"/>
+		<g id="text2028">
+			<g>
+				<text transform="matrix(1 0 0 1 1374.6802 1746.9297)" class="st8 st9 st34">T</text>
+				<text transform="matrix(1 0 0 1 1384.6802 1746.9297)" class="st8 st9">erminal 1 IGI</text>
+			</g>
+		</g>
+		<path id="path2032" class="st75" d="M1403.9,1624l-3.7,3.4"/>
+		<path id="path2034" class="st75" d="M1106.8,1343.4l-3.7,3.4"/>
+		<path id="path2036" class="st75" d="M1188.8,1419.2l-3.7,3.4"/>
+		<path id="path2038" class="st75" d="M1262.2,1489.6l-3.7,3.4"/>
+		<g id="text2040">
+			<text transform="matrix(1 0 0 1 997.5 1362.1895)" class="st25"><tspan x="0" y="0" class="st8 st9">Dabri Mor</tspan><tspan x="0" y="24" class="st8 st9">Janakpuri South</tspan></text>
+		</g>
+		<g id="text2044">
+			<text transform="matrix(1 0 0 1 1064.3101 1445.4395)" class="st8 st9">Dashrath Puri</text>
+		</g>
+		<g id="text2048">
+			<text transform="matrix(1 0 0 1 1194.1499 1511.4395)" class="st8 st9">Palam</text>
+		</g>
+		<g id="text2052">
+			<text transform="matrix(1 0 0 1 1275.27 1647.9697)" class="st8 st9">Sadar Bazaar</text>
+			<text transform="matrix(1 0 0 1 1284.7197 1668.9697)" class="st8 st9">Cantonment</text>
+		</g>
+		<path id="path2058" class="st75" d="M1613,1823.4l-3.7,3.4"/>
+		<path id="path2060" class="st75" d="M1678.8,1890.1l-3.7,3.4"/>
+		<path id="path2062" class="st75" d="M1764.9,1966.5l-3.7,3.4"/>
+		<path id="path2064" class="st75" d="M1891.7,2017.3v-5"/>
+		<path id="path2066" class="st75" d="M1974.4,1998.1v-5"/>
+		<g id="text2068">
+			<text transform="matrix(1 0 0 1 1543.73 1852.8999)" class="st8 st9">Shankar</text>
+			<g>
+				<text transform="matrix(1 0 0 1 1560.5898 1873.8999)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 1573.5698 1873.8999)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<g id="text2074">
+			<g>
+				<text transform="matrix(1 0 0 1 1602.77 1914.5098)" class="st8 st9 st26">V</text>
+				<text transform="matrix(1 0 0 1 1614.6299 1914.5098)" class="st8 st9">asant</text>
+			</g>
+			<g>
+				<text transform="matrix(1 0 0 1 1612.7803 1935.5098)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 1625.7598 1935.5098)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<g id="text2080">
+			<text transform="matrix(1 0 0 1 1686.8599 1990.0498)" class="st8 st9">Munirka</text>
+		</g>
+		<g id="text2084">
+			<text transform="matrix(1 0 0 1 1834.2998 2046.1499)" class="st8 st9">RK Puram</text>
+		</g>
+		<g id="text2088">
+			<g>
+				<text transform="matrix(1 0 0 1 1934.5098 1979.6699)" class="st8 st9">II</text>
+				<text transform="matrix(1 0 0 1 1945.6201 1979.6699)" class="st8 st9">T</text>
+				<text transform="matrix(1 0 0 1 1957.48 1979.6699)" class="st8 st9"> Delhi</text>
+			</g>
+		</g>
+		<g id="text2092">
+			<text transform="matrix(1 0 0 1 2416.8203 1948.9199)" class="st8 st9">Kalkaji Mandir</text>
+		</g>
+		<path id="path2106" class="st42" d="M2741.6,1929.7v5"/>
+		<path id="path2108" class="st75" d="M2313,2015.7v-5"/>
+		<path id="path2110" class="st75" d="M2233,2000.6v-5"/>
+		<path id="path2112" class="st75" d="M2465.4,2016.9v-5"/>
+		<path id="path2114" class="st75" d="M2385.3,2001.8v-5"/>
+		<g id="text2116">
+			<text transform="matrix(1 0 0 1 2179.75 1965.21)" class="st8 st9">Panchsheel</text>
+			<text transform="matrix(1 0 0 1 2214.23 1986.21)" class="st8 st9">Park</text>
+		</g>
+		<g id="text2122">
+			<text transform="matrix(1 0 0 1 2277.6396 2039.3501)" class="st8 st9">Chirag</text>
+			<text transform="matrix(1 0 0 1 2293.77 2060.3501)" class="st8 st9">Dilli</text>
+		</g>
+		<g id="text2128">
+			<text transform="matrix(1 0 0 1 2319.1499 1988.3101)" class="st8 st9">Greater Kailash</text>
+		</g>
+		<g id="text2132">
+			<text transform="matrix(1 0 0 1 2430.5898 2041.21)" class="st8 st9">Nehru</text>
+			<text transform="matrix(1 0 0 1 2425.02 2062.21)" class="st8 st9">Enclave</text>
+		</g>
+		<g id="g2138">
+			<g id="use2140">
+				<path id="aa-5" class="st19" d="M3257.1,1782.6v33c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10v-33c0-5.5,4.5-10,10-10l0,0
+					C3252.7,1772.6,3257.1,1777.1,3257.1,1782.6z"/>
+			</g>
+			<path id="rect2142" class="st20" d="M3258.1,1782.6v33c0,6.1-4.9,11-11,11l0,0c-6.1,0-11-4.9-11-11l0,0v-33c0-6.1,4.9-11,11-11
+				l0,0C3253.2,1771.6,3258.1,1776.5,3258.1,1782.6z"/>
+		</g>
+		<circle id="circle2144" class="st76" cx="3247.1" cy="1782.6" r="6"/>
+		<circle id="circle2146" class="st77" cx="3247.1" cy="1815.6" r="6"/>
+		<path id="path2148" class="st75" d="M2847.5,1834.4l-3.4,3.6"/>
+		<path id="path2150" class="st75" d="M2953.3,1912.8l-3.4,3.6"/>
+		<path id="path2152" class="st75" d="M2740.6,1774l-3.6-3.4"/>
+		<path id="path2154" class="st75" d="M2681.5,1825.2l-3.6-3.4"/>
+		<path id="path2156" class="st75" d="M3173.5,1903.6l-3.5-3.6"/>
+		<path id="path2158" class="st75" d="M3076,1999.1l-3.4-3.6"/>
+		<g id="text2160">
+			<text transform="matrix(1 0 0 1 2612.1001 1790.6797)" class="st8 st9">Sukhdev</text>
+			<g>
+				<text transform="matrix(1 0 0 1 2630.6299 1811.6802)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 2643.6104 1811.6802)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<g id="text2166">
+			<text transform="matrix(1 0 0 1 2653.4399 1738.5)" class="st8 st9">Jamia Millia</text>
+			<text transform="matrix(1 0 0 1 2676.7803 1759.5)" class="st8 st9">Islamia</text>
+		</g>
+		<g id="text2172">
+			<text transform="matrix(1 0 0 1 2785.7598 1857.8999)" class="st8 st9">Okhla</text>
+			<g>
+				<text transform="matrix(1 0 0 1 2791.5 1878.8999)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 2804.48 1878.8999)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<g id="text2178">
+			<g>
+				<text transform="matrix(1 0 0 1 2941.8896 1874.8799)" class="st8 st9">Jasola</text>
+				<text transform="matrix(1 0 0 1 3005.2598 1874.8799)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 3018.2402 1874.8799)" class="st8 st9">ihar</text>
+			</g>
+			<text transform="matrix(1 0 0 1 2933.3501 1895.8799)" class="st8 st9">Shaheen Bagh</text>
+		</g>
+		<g id="text2184">
+			<text transform="matrix(1 0 0 1 3055.8398 2026.8901)" class="st8 st9">Kalindi</text>
+			<text transform="matrix(1 0 0 1 3068.6299 2047.8901)" class="st8 st9">Kunj</text>
+		</g>
+		<g id="text2190">
+			<text transform="matrix(1 0 0 1 3165.48 1929.4199)" class="st8 st9">Okhla Bird Sanctuary</text>
+		</g>
+		<path id="path2194" class="st78" d="M186.5,2816.8h99"/>
+		<g id="text2196">
+			<text transform="matrix(1 0 0 1 72.6582 2814.6152)" class="st25"><tspan x="0" y="0" class="st8 st47">Magenta </tspan><tspan x="27.3" y="28.8" class="st8 st47">Line</tspan></text>
+		</g>
+		<path id="path2200" class="st79" d="M186.5,2783.3h99"/>
+		<g id="text2202">
+			<text transform="matrix(1 0 0 1 73.23 2788.7803)" class="st8 st47">Pink Line</text>
+		</g>
+		<g id="text2206">
+			<g>
+				<text transform="matrix(1 0 0 1 46.8501 2566.2402)" class="st80 st8 st9">Updated January, 2020</text>
+			</g>
+		</g>
+		<g id="g2210">
+			<path id="path2212" class="st28" d="M1985.7,1760.7l0.1-9.2"/>
+			<path id="path2214" class="st29" d="M1985.6,1772l0.1-13.4"/>
+		</g>
+		<path id="path2216" class="st74" d="M1846.5,1763.4l-10.6,10.9"/>
+		<g id="text2218">
+			<text transform="matrix(1 0 0 1 1799.8999 1799.46)" class="st8 st9">Moti</text>
+			<text transform="matrix(1 0 0 1 1798.2197 1820.46)" class="st8 st9">Bagh</text>
+		</g>
+		<g id="text2224">
+			<text transform="matrix(1 0 0 1 1908.0698 1847.1699)" class="st8 st9">Bhikaji</text>
+			<text transform="matrix(1 0 0 1 1910.2998 1868.1699)" class="st8 st9">Carna</text>
+			<text transform="matrix(1 0 0 1 1915.2998 1889.1699)" class="st8 st9">Place</text>
+		</g>
+		<g id="text2232">
+			<text transform="matrix(1 0 0 1 2006.6602 1847.1699)" class="st8 st9">Sarojini</text>
+			<text transform="matrix(1 0 0 1 2015.5498 1868.1699)" class="st8 st9">Nagar</text>
+		</g>
+		<g id="text2238">
+			<text transform="matrix(1 0 0 1 2250.1499 1846.3799)" class="st8 st9">South</text>
+			<text transform="matrix(1 0 0 1 2235.1396 1867.3799)" class="st8 st9">Extension</text>
+		</g>
+		<path id="path2244" class="st74" d="M2278.9,1821.6v-5"/>
+		<path id="path2266" class="st74" d="M2043.5,1821v-5"/>
+		<path id="path2268" class="st74" d="M1937.2,1821.6v-5"/>
+		<g id="text2276">
+			<text transform="matrix(1 0 0 1 2535.0942 1650.8398)" class="st8 st9">Hazrat</text>
+			<text transform="matrix(1 0 0 1 2535.0942 1672.8398)" class="st8 st9">Nizamuddin</text>
+		</g>
+		<g id="text2302">
+			<g>
+				<text transform="matrix(1 0 0 1 3064.8203 1507.9502)" class="st8 st9">Mayur</text>
+				<text transform="matrix(1 0 0 1 3125.9399 1507.9502)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 3138.9199 1507.9502)" class="st8 st9">ihar Pocket 1</text>
+			</g>
+		</g>
+		<g id="text2306">
+			<g>
+				<text transform="matrix(1 0 0 1 2825.3147 1514.3003)" class="st8 st9">Mayur Vihar - I</text>
+			</g>
+		</g>
+		<path id="path2310" class="st74" d="M2448.6,1737.6l-3.4-3.6"/>
+		<path id="path2312" class="st81" d="M2491.1,1685.5l-3.4-3.6"/>
+		<g id="text2314">
+			<g>
+				<text transform="matrix(1 0 0 1 2456.6396 1758.8203)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 2469.6201 1758.8203)" class="st8 st9">inoba Puri</text>
+			</g>
+		</g>
+		<g id="text2318">
+			<text transform="matrix(1 0 0 1 2499.1396 1699.5303)" class="st8 st9">Ashram</text>
+		</g>
+		<g id="text2354">
+			<g>
+				<text transform="matrix(1 0 0 1 2796.48 533.4902)" class="st8 st9">Shiv</text>
+				<text transform="matrix(1 0 0 1 2840.9399 533.4902)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 2853.9204 533.4902)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<path id="path2358_1_" class="st74" d="M3080.9,1442.8"/>
+		<path id="path2360" class="st74" d="M2909.2,1056.6h-5"/>
+		<path id="path2362" class="st74" d="M2908.2,1010.1h-5"/>
+		<path id="path2364" class="st74" d="M2908.1,965.6h-5"/>
+		<path id="path2366" class="st74" d="M3107,1375.5h-5"/>
+		<path id="path2368" class="st74" d="M3106,1329.1h-5"/>
+		<path id="path2370" class="st74" d="M3105.9,1284.5h-5"/>
+		<path id="path2372" class="st74" d="M2905.1,775h-5"/>
+		<path id="path2374" class="st74" d="M2904.4,740.6h-5"/>
+		<g id="text2380">
+			<g>
+				<text transform="matrix(1 0 0 1 3112.6699 1449.8203)" class="st8 st9 st26">T</text>
+				<text transform="matrix(1 0 0 1 3124.1396 1449.8203)" class="st8 st9">rilokpuri - Sanjay Lake</text>
+			</g>
+		</g>
+		<g id="text2384">
+			<g>
+				<text transform="matrix(1 0 0 1 3112.23 1383.0605)" class="st8 st9">E</text>
+				<text transform="matrix(1 0 0 1 3131.1299 1383.0605)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 3144.1104 1383.0605)" class="st8 st9">inod Nagar - Mayur</text>
+				<text transform="matrix(1 0 0 1 3320.8398 1383.0605)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 3333.8203 1383.0605)" class="st8 st9">ihar - II</text>
+			</g>
+		</g>
+		<g id="text2388">
+			<g>
+				<text transform="matrix(1 0 0 1 3113.1104 1336.0703)" class="st8 st9">Mandawali - W</text>
+				<text transform="matrix(1 0 0 1 3250.9199 1336.0703)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 3263.8999 1336.0703)" class="st8 st9">inod Nagar</text>
+			</g>
+		</g>
+		<g id="text2392">
+			<g>
+				<text transform="matrix(1 0 0 1 3111.79 1289.9502)" class="st8 st9">I.</text>
+				<text transform="matrix(1 0 0 1 3122.8999 1289.9502)" class="st8 st9 st62">P</text>
+				<text transform="matrix(1 0 0 1 3133.6699 1289.9502)" class="st8 st9">. Extension</text>
+			</g>
+		</g>
+		<g id="text2396">
+			<text transform="matrix(1 0 0 1 2729.6797 1062.4502)" class="st8 st9">Kakardooma Court</text>
+		</g>
+		<g id="text2400">
+			<text transform="matrix(1 0 0 1 2763.0498 1016.7695)" class="st8 st9">Krishna Nagar</text>
+		</g>
+		<g id="text2404">
+			<g>
+				<text transform="matrix(1 0 0 1 2765.0498 972.7695)" class="st8 st9">E</text>
+				<text transform="matrix(1 0 0 1 2782.8398 972.7695)" class="st8 st9">Azad Nagar</text>
+			</g>
+		</g>
+		<g id="text2408">
+			<text transform="matrix(1 0 0 1 2815.5703 779.9697)" class="st8 st9">Jafrabad</text>
+		</g>
+		<g id="text2412">
+			<text transform="matrix(1 0 0 1 2719.5703 745.9697)" class="st8 st9">Maujpur - Babarpur</text>
+		</g>
+		<g id="text2416">
+			<text transform="matrix(1 0 0 1 2804.48 671.7002)" class="st8 st9">Gokulpuri</text>
+		</g>
+		<g id="text2420">
+			<text transform="matrix(1 0 0 1 2771.0757 597.0188)" class="st8 st9">Johri Enclave</text>
+		</g>
+		<path id="path2424" class="st82" d="M3466.2,1885.3l-2.9,658.2l332.5,3.2"/>
+		<g id="text2426">
+			<text transform="matrix(1 0 0 1 3394.2197 1939.29)" class="st8 st9">S-50</text>
+		</g>
+		<path id="path2430" class="st83" d="M3458.6,1931.9h-5"/>
+		<path id="path2432" class="st83" d="M3458.6,1965.9h-5"/>
+		<path id="path2434" class="st83" d="M3458.6,2012.9h-5"/>
+		<path id="path2436" class="st83" d="M3458.6,2068.9h-5"/>
+		<path id="path2438" class="st83" d="M3458.6,2121.9h-5"/>
+		<path id="path2440" class="st83" d="M3458.6,2171.9h-5"/>
+		<path id="path2442" class="st83" d="M3458.6,2217.9h-5"/>
+		<path id="path2444" class="st83" d="M3458.6,2260.9h-5"/>
+		<path id="path2446" class="st83" d="M3458.6,2307.8h-5"/>
+		<path id="path2448" class="st83" d="M3458.6,2350.9h-5"/>
+		<path id="path2450" class="st83" d="M3458.6,2397.9h-5"/>
+		<path id="path2452" class="st83" d="M3458.6,2441.9h-5"/>
+		<path id="path2454" class="st83" d="M3458.6,2481.9h-5"/>
+		<g id="text2456">
+			<text transform="matrix(1 0 0 1 3393.2197 1974.29)" class="st8 st9">S-76</text>
+		</g>
+		<g id="text2460">
+			<text transform="matrix(1 0 0 1 3393.2197 2021.29)" class="st8 st9">S-101</text>
+		</g>
+		<g id="text2464">
+			<text transform="matrix(1 0 0 1 3403.2197 2076.29)" class="st8 st9">S-81</text>
+		</g>
+		<g id="text2468">
+			<text transform="matrix(1 0 0 1 3389.2197 2131.29)" class="st8 st9">NSEZ</text>
+		</g>
+		<g id="text2472">
+			<text transform="matrix(1 0 0 1 3399.2197 2181.29)" class="st8 st9">S-83</text>
+		</g>
+		<g id="text2476">
+			<text transform="matrix(1 0 0 1 3387.2197 2226.29)" class="st8 st9">S-137</text>
+		</g>
+		<g id="text2480">
+			<text transform="matrix(1 0 0 1 3393.2197 2271.29)" class="st8 st9">S-142</text>
+		</g>
+		<g id="text2484">
+			<text transform="matrix(1 0 0 1 3393.2197 2316.29)" class="st8 st9">S-143</text>
+		</g>
+		<g id="text2488">
+			<text transform="matrix(1 0 0 1 3393.2197 2361.29)" class="st8 st9">S-144</text>
+		</g>
+		<g id="text2492">
+			<text transform="matrix(1 0 0 1 3393.2197 2406.29)" class="st8 st9">S-145</text>
+		</g>
+		<g id="text2496">
+			<text transform="matrix(1 0 0 1 3393.2197 2451.29)" class="st8 st9">S-146</text>
+		</g>
+		<g id="text2500">
+			<text transform="matrix(1 0 0 1 3393.2197 2490.29)" class="st8 st9">S-147</text>
+		</g>
+		<g id="text2504">
+			<text transform="matrix(1 0 0 1 3480.7803 1910.9502)" class="st8 st9">S-51</text>
+		</g>
+		<path id="path2508" class="st83" d="M3458.6,2519.9h-5"/>
+		<g id="text2510">
+			<text transform="matrix(1 0 0 1 3393.2197 2528.29)" class="st8 st9">S-148</text>
+		</g>
+		<g id="text2516">
+			<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3474.2598 2562.9902)" class="st8 st9">Knowledge Park II</text>
+		</g>
+		<g id="text2520">
+			<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3539.7793 2562.3501)" class="st8 st9">Pari Chowk</text>
+		</g>
+		<g id="text2524">
+			<g>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3617.5996 2565.5601)" class="st8 st9">ALPH</text>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3618.8496 2617.7998)" class="st8 st9 st34">A</text>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3619.1406 2630.02)" class="st8 st9"> 1</text>
+			</g>
+		</g>
+		<g id="text2528">
+			<g>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3685.6191 2568.2197)" class="st8 st9">DE</text>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3686.2793 2595.9902)" class="st8 st9 st34">L</text>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3686.4766 2604.2275)" class="st8 st9 st26">T</text>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3686.7695 2616.3604)" class="st8 st9 st34">A</text>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3687.0605 2628.5898)" class="st8 st9"> 1</text>
+			</g>
+		</g>
+		<g id="text2532">
+			<g>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3752.8789 2567.1899)" class="st8 st9">GNID</text>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3754.0801 2617.1797)" class="st8 st9 st34">A</text>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3754.3691 2629.4102)" class="st8 st9"> O</text>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3754.8691 2650.52)" class="st8 st9">f</text>
+				<text transform="matrix(2.390878e-02 0.9997 -0.9997 2.390878e-02 3755 2655.7002)" class="st8 st9">fice</text>
+			</g>
+		</g>
+		<g id="text2536">
+			<text transform="matrix(-2.006997e-02 0.9998 -0.9998 -2.006997e-02 3811.5188 2499.4199)" class="st8 st9">Depot Stn</text>
+		</g>
+		<path id="path2540" class="st84" d="M571.4,2709.7h99"/>
+		<g id="text2542">
+			<g>
+				<text transform="matrix(1 0 0 1 311.7651 2716.3132)" class="st8 st47">Noida Metro</text>
+				<text transform="matrix(1 0 0 1 447.835 2716.3132)" class="st8 st47">Aqua Line</text>
+			</g>
+		</g>
+		<g id="text2554">
+			<text transform="matrix(1 0 0 1 100.54 143.9502)" class="st46 st8 st47">Noida Metro</text>
+		</g>
+		<path id="path2558" class="st85" d="M63.1,155.2c-12.1-0.1-21.8-9.9-21.7-22s9.9-21.8,22-21.7c12,0.1,21.7,9.8,21.7,21.9
+			C85.1,145.5,75.3,155.3,63.1,155.2C63.2,155.2,63.1,155.2,63.1,155.2z"/>
+		<path id="path2560" class="st86" d="M53.1,141.6v-22l18,14.7c0.1-4.4-0.1-9.7-0.1-13.8h1.9c0.2,0,0.4,0.1,0.6,0.2
+			c0.2,0.2,0.3,0.4,0.3,0.7v25.2l-18-14.9c0,4.4,0,9.5-0.1,13c0,0-2.6,0.3-2.6-0.4C53.1,143.4,53.1,142.5,53.1,141.6L53.1,141.6z"/>
+		<path id="path2562" class="st87" d="M265.6,99.8h58v56.9h-58V99.8z"/>
+		<g id="g2564">
+			<path id="path2566" class="st19" d="M284.9,113.1c0-0.5-0.2-0.9-0.4-1.3c-0.2-0.5-0.5-1-0.9-1.4h-9.9v-1.8h15v1.8h-3.1
+				c0.6,0.9,1,1.9,1.1,2.9c0,1.1-0.5,2-1.4,2.6c0.7,0.3,1.3,0.9,1.7,1.6c0.4,0.7,0.6,1.5,0.6,2.3c0.1,1.2-0.4,2.3-1.3,3.1
+				c-0.9,0.8-2,1.2-3.2,1.1c-1,0-1.9-0.3-2.7-0.9c-0.8-0.6-1.6-1.3-2.2-2.1c-0.6-0.9-1.2-1.8-1.6-2.7c-0.4-0.8-0.8-1.6-1.1-2.4
+				c-0.2-0.6-0.4-1.1-0.5-1.4l1.6-1c0.2,0.6,0.4,1.1,0.6,1.7c0.4,0.8,0.8,1.8,1.4,2.9s1.3,2,2.1,2.9c0.6,0.7,1.5,1.2,2.5,1.3
+				c0.7,0.1,1.4-0.2,2-0.6c0.4-0.4,0.7-1,0.6-1.6c0-0.8-0.3-1.6-0.9-2.3c-0.5-0.6-1.3-1-2-1h-2.4l-0.8-1.8h1.8
+				c0.9,0,1.7-0.1,2.5-0.4C284.5,114.2,284.9,113.7,284.9,113.1z"/>
+			<path id="path2568" class="st19" d="M309.9,113.9c0,0.8-0.4,1.6-1,2.1s-1.4,0.8-2.3,0.8h-0.7c1,1.4,2,2.7,3,4
+				c0.6,0.7,1.2,1.4,1.9,2l-1.3,1.3c-0.3-0.3-0.6-0.6-0.9-0.9l-0.9-0.9c-0.3-0.3-0.5-0.6-0.7-0.8c-0.3-0.3-0.5-0.7-0.8-1
+				c-0.3-0.5-0.6-0.8-0.7-1s-0.4-0.6-0.9-1.2l-0.9-1.3c-0.2-0.2-0.5-0.8-1-1.5c-0.5-0.8-0.9-1.3-1.2-1.7l1.5-1l0.7,1.2
+				c0.6,0.7,1.6,1.1,2.6,1c1,0,1.5-0.4,1.5-1.2v-3.6h-7.3v-1.8h11.4v1.8h-2.2L309.9,113.9z"/>
+			<path id="path2570" class="st19" d="M309.8,108.5h-1.9l-5.9-5.7l1.5-1.5L309.8,108.5z"/>
+			<path id="path2572" class="st19" d="M290.1,136.8V155h-2.6l-9.4-14.8V155h-2.2v-18.2h2.5l9.5,14.9v-14.9H290.1z"/>
+			<path id="path2574" class="st19" d="M311.5,146c0.5,0.2,0.9,0.5,1.3,0.8c0.3,0.3,0.6,0.7,0.8,1.1c0.2,0.4,0.3,0.7,0.3,1.1
+				c0.1,0.4,0.1,0.8,0.1,1.3v1.3c0,0.6,0.1,1.2,0.2,1.7c0.2,0.5,0.5,0.9,0.9,1.1v0.6h-2.8c-0.4-1-0.5-2-0.5-3v-1.6
+				c0.1-0.9-0.2-1.8-0.7-2.4c-0.6-0.6-1.4-0.9-2.3-0.8h-6v7.9h-2.3v-18.2h8.4c1.5-0.1,2.9,0.4,4.1,1.3c1,0.9,1.5,2.2,1.5,3.6
+				c0,0.9-0.2,1.8-0.7,2.6C313.1,145,312.4,145.6,311.5,146z M311.9,142c0.1-0.9-0.2-1.9-1-2.5c-0.8-0.5-1.7-0.7-2.6-0.7h-5.6v6.3
+				h5.6c1,0.1,1.9-0.2,2.7-0.8C311.7,143.8,312,142.9,311.9,142L311.9,142z"/>
+		</g>
+		<g id="text2576">
+			<text transform="matrix(1 0 0 1 339.29 140.2002)" class="st46 st8 st47">Northern Railway (IR)</text>
+		</g>
+		<path id="path2580" class="st83" d="M3480.5,2553v-5"/>
+		<path id="path2582" class="st83" d="M3547.5,2555v-5"/>
+		<path id="path2584" class="st83" d="M3624.7,2557v-5"/>
+		<path id="path2586" class="st83" d="M3692.5,2558v-5"/>
+		<path id="path2588" class="st83" d="M3760,2559v-5"/>
+		<path id="path2590" class="st27" d="M749,2095.2l-3.5-3.5"/>
+		<g id="text2592">
+			<text transform="matrix(1 0 0 1 662.49 2082.6001)" class="st8 st9">Bijwasan</text>
+		</g>
+		<path id="path2596" class="st27" d="M622.1,2221.4l-3.5-3.5"/>
+		<g id="text2598">
+			<text transform="matrix(1 0 0 1 522.8401 2210.9399)" class="st8 st9">Gurugram</text>
+		</g>
+		<path id="path2602" class="st27" d="M565.5,2277.6l-3.5-3.5"/>
+		<g id="text2604">
+			<text transform="matrix(1 0 0 1 416.0601 2268.5703)" class="st8 st9">Basai Dhankot</text>
+		</g>
+		<path id="path2610" class="st88" d="M741.7,1509.9v-5"/>
+		<path id="path2612" class="st88" d="M678.1,1489.4v-5"/>
+		<path id="path2614" class="st88" d="M585.4,1485v21"/>
+		<g id="text2616">
+			<text transform="matrix(1 0 0 1 717.3901 1537.5898)" class="st69 st9">Nangli</text>
+		</g>
+		<g id="text2620">
+			<text transform="matrix(1 0 0 1 639.8901 1469.0898)" class="st69 st9">Najafgarh</text>
+		</g>
+		<g id="text2624">
+			<text transform="matrix(1 0 0 1 406.8901 1502.0898)" class="st69 st9">Dhansa Bus Stand</text>
+		</g>
+		<path id="path2628_1_" class="st89" d="M3388.8,1838.4l96.9,0.3c27.5,0.1,49.9-22,50.2-49.5l2.1-216.8"/>
+		<path id="path2630" class="st39" d="M3386.6,1833.9v-5"/>
+		<g id="g2632">
+			<g id="use2634">
+				<path id="aa-8" class="st19" d="M3474.9,1842.1v33c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10v-33c0-5.5,4.5-10,10-10l0,0
+					C3470.5,1832.1,3474.9,1836.6,3474.9,1842.1z"/>
+			</g>
+			<path id="rect2636" class="st20" d="M3475.9,1842.1v33c0,6.1-4.9,11-11,11l0,0l0,0c-6.1,0-11-4.9-11-11l0,0v-33
+				c0-6.1,4.9-11,11-11l0,0l0,0C3471,1831.1,3475.9,1836,3475.9,1842.1L3475.9,1842.1z"/>
+		</g>
+		<circle id="circle2638" class="st76" cx="3465" cy="1842.1" r="6"/>
+		<circle id="circle2640" class="st90" cx="3465" cy="1875.1" r="6"/>
+		<g id="text2642">
+			<text transform="matrix(1 0 0 1 3480.1699 1862.73)" class="st8 st9">S-52</text>
+		</g>
+		<g id="text2646">
+			<text transform="matrix(1 0 0 1 3395.96 1872.1602)" class="st8 st9">S-34</text>
+		</g>
+		<path id="path2650" class="st39" d="M3416.1,1852.2v-5"/>
+		<path id="path2652" class="st39" d="M3549.1,1647.9h-5"/>
+		<path id="path2654" class="st39" d="M3549.1,1705.9h-5"/>
+		<path id="path2656" class="st39" d="M3549.1,1766.9h-5"/>
+		<g id="text2658">
+			<text transform="matrix(1 0 0 1 3555.7197 1656.29)" class="st8 st9">S-62</text>
+		</g>
+		<g id="text2662">
+			<text transform="matrix(1 0 0 1 3556.1699 1712.7002)" class="st8 st9">S-59</text>
+		</g>
+		<g id="text2666">
+			<text transform="matrix(1 0 0 1 3555.6001 1770.8799)" class="st8 st9">S-61</text>
+		</g>
+		<g id="text2670">
+			<text transform="matrix(1 0 0 1 3439.2197 1560.4697)" class="st8 st9">Noida Electronic City</text>
+		</g>
+		<g id="text2674">
+			<text transform="matrix(1 0 0 1 384.1299 1537.6699)" class="st69 st9">under construction</text>
+		</g>
+		<path id="path2678" class="st27" d="M3666.9,935.7v-5"/>
+		<path id="path2680" class="st91" d="M3727.3,925.9l41.8-22.6"/>
+		<path id="path2682" class="st7" d="M3762.1,921.3l5.3-17.2l-17.2-5.3l9.6-5l17.2,5.3l-5.3,17.2L3762.1,921.3z"/>
+		<path id="path2684" class="st91" d="M3727.9,931.1h45.6"/>
+		<path id="path2686" class="st7" d="M3769.9,918.4l12.7,12.7l-12.7,12.7h-10.8l12.7-12.7l-12.7-12.7H3769.9z"/>
+		<path id="path2688" class="st91" d="M3727.3,935.4l39.6,26.3"/>
+		<path id="path2690" class="st7" d="M3747.7,964.3l17.6-3.6l-3.6-17.6l9,6l3.6,17.6l-17.6,3.6L3747.7,964.3z"/>
+		<g id="text2692">
+			<text transform="matrix(1 0 0 1 3781.4102 969.96)" class="st8 st9">Aligarh</text>
+		</g>
+		<g id="text2696">
+			<text transform="matrix(1 0 0 1 3782.9102 935.96)" class="st8 st9">Hapur</text>
+		</g>
+		<g id="text2700">
+			<text transform="matrix(1 0 0 1 3781.4102 903.96)" class="st8 st9">Meerut</text>
+		</g>
+		<path id="path2706" class="st10" d="M3193,848.7l256.6,2l317.5,13.4"/>
+		<g id="text2708">
+			<text transform="matrix(0.95 0 0 1 3215.1895 884.0195)" class="st8 st92">Shahid Nagar</text>
+		</g>
+		<path id="path2712" class="st37" d="M3272.4,862.2v-5.3"/>
+		<g id="text2714">
+			<text transform="matrix(0.98 0 0 1 3272.1797 827.9102)" class="st8 st93">Raj Bagh</text>
+		</g>
+		<path id="path2718" class="st37" d="M3307.3,843.3V838"/>
+		<g id="text2720">
+			<text transform="matrix(0.95 0 0 1 3367.6895 884.0596)" class="st8 st92">Rajendra Nagar</text>
+		</g>
+		<path id="path2724" class="st37" d="M3405.7,863.3V858"/>
+		<g id="text2726">
+			<text transform="matrix(0.98 0 0 1 3385.1797 828.1201)" class="st8 st94">Shyam Park</text>
+		</g>
+		<path id="path2730" class="st37" d="M3439.9,843.3V838"/>
+		<g id="text2732">
+			<text transform="matrix(0.92 0 0 1 3515.5605 830.04)" class="st8 st95">Mohan Nagar</text>
+		</g>
+		<path id="path2736" class="st37" d="M3539.2,848.7v-5.3"/>
+		<g id="text2738">
+			<text transform="matrix(0.98 0 0 1 3535.3496 890.6904)" class="st8 st96">Arthala</text>
+		</g>
+		<path id="path2742" class="st37" d="M3571.9,869v-5.3"/>
+		<g id="text2744">
+			<text transform="matrix(0.98 0 0 1 3619.1299 895.1201)" class="st8 st97">Hindon River</text>
+		</g>
+		<path id="path2748" class="st37" d="M3671.1,873.7v-5.3"/>
+		<path id="path2750" class="st83" d="M3475.3,1905h-5"/>
+		<path id="rect2756" class="st18" d="M195.3,951.3h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+			C192.3,952.7,193.7,951.3,195.3,951.3z"/>
+		<path id="path2758" class="st19" d="M200.2,967.1c0-0.3-0.1-0.7-0.4-0.9c-0.5-0.5-1.3-0.5-1.8,0s-0.5,1.3,0,1.8
+			c0.2,0.2,0.6,0.4,0.9,0.4c0.4,0,0.7-0.1,1-0.4C200.1,967.8,200.2,967.4,200.2,967.1z M210.5,967.1c-0.1-0.7-0.7-1.2-1.4-1.2
+			c-0.6,0.1-1.1,0.5-1.2,1.2c0,0.3,0.1,0.7,0.4,0.9c0.5,0.5,1.3,0.5,1.8,0l0,0l0,0C210.3,967.8,210.5,967.5,210.5,967.1z M210,963.1
+			l-0.7-3.9c0-0.1-0.1-0.3-0.2-0.4c-0.1-0.1-0.3-0.1-0.4-0.1h-9.2c-0.1,0-0.3,0-0.4,0.1c-0.1,0.1-0.2,0.2-0.2,0.4l-0.7,3.9
+			c-0.1,0.3,0.2,0.7,0.5,0.7l0,0h10.8c0.2,0,0.4-0.1,0.5-0.2C210,963.5,210,963.3,210,963.1L210,963.1z M207.7,957
+			c0-0.3-0.2-0.5-0.5-0.5h-6.4c-0.1,0-0.3,0-0.3,0.1c-0.2,0.2-0.2,0.5,0,0.7l0,0l0,0c0.1,0.1,0.2,0.1,0.3,0.1h6.4
+			C207.5,957.5,207.7,957.3,207.7,957C207.7,957.1,207.7,957,207.7,957L207.7,957z M211.7,964.3v6.1h-1.3v1.3c0,0.3-0.1,0.7-0.4,0.9
+			c-0.5,0.5-1.3,0.5-1.8,0l0,0l0,0c-0.3-0.2-0.4-0.6-0.4-0.9v-1.3h-7.7v1.3c0,0.7-0.6,1.3-1.3,1.3s-1.3-0.6-1.3-1.3v-1.3h-1.3v-6.1
+			c0-0.8,0.1-1.5,0.3-2.2l1-4.6c0.1-0.6,0.5-1.1,1-1.4c0.7-0.4,1.5-0.7,2.3-0.9c2.1-0.4,4.2-0.4,6.3,0c0.8,0.1,1.6,0.5,2.3,0.9
+			c0.5,0.3,0.9,0.8,1,1.4l1.1,4.6C211.7,962.8,211.8,963.5,211.7,964.3L211.7,964.3z"/>
+		<g id="g2760">
+			<path id="rect2762" class="st18" d="M3807.8,804.1h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C3804.8,805.4,3806.1,804.1,3807.8,804.1z"/>
+			<path id="path2764" class="st19" d="M3812.6,819.8c0-0.3-0.1-0.7-0.4-0.9c-0.2-0.2-0.6-0.4-0.9-0.4c-0.7,0-1.3,0.6-1.3,1.3l0,0
+				c0,0.7,0.6,1.3,1.3,1.3c0.3,0,0.7-0.1,0.9-0.4C3812.5,820.5,3812.7,820.2,3812.6,819.8z M3822.9,819.8c-0.1-0.7-0.7-1.2-1.4-1.2
+				c-0.6,0.1-1.1,0.5-1.2,1.2l0,0c0,0.7,0.6,1.3,1.3,1.3l0,0C3822.4,821.1,3822.9,820.5,3822.9,819.8z M3822.5,815.8l-0.7-3.8
+				c0-0.1-0.1-0.3-0.2-0.4c-0.1-0.1-0.3-0.1-0.4-0.1h-9.3c-0.1,0-0.3,0-0.4,0.1c-0.1,0.1-0.2,0.2-0.2,0.4l-0.7,3.8
+				c0,0.2,0,0.4,0.1,0.5s0.3,0.2,0.5,0.2h10.7c0.2,0,0.4-0.1,0.5-0.2C3822.5,816.2,3822.5,816,3822.5,815.8L3822.5,815.8z
+				 M3820.2,809.7c0-0.1-0.1-0.3-0.1-0.3c-0.1-0.1-0.2-0.1-0.3-0.1h-6.4c-0.3,0-0.5,0.2-0.5,0.5s0.2,0.5,0.5,0.5h6.4
+				c0.1,0,0.2-0.1,0.3-0.1C3820.2,810,3820.2,809.9,3820.2,809.7L3820.2,809.7z M3824.2,817v6h-1.3v1.3c0,0.7-0.6,1.3-1.3,1.3
+				s-1.3-0.6-1.3-1.3l0,0V823h-7.7v1.3c0,0.3-0.1,0.7-0.4,0.9c-0.5,0.5-1.3,0.5-1.8,0c-0.2-0.2-0.4-0.6-0.4-0.9V823h-1.3v-6
+				c0-0.8,0.1-1.5,0.3-2.2l1-4.6c0.1-0.6,0.5-1.1,1-1.4c0.7-0.4,1.5-0.7,2.3-0.9c2.1-0.4,4.2-0.4,6.3,0c0.8,0.1,1.6,0.5,2.3,0.9
+				c0.5,0.3,0.9,0.8,1,1.4l1,4.6C3824.1,815.5,3824.2,816.2,3824.2,817L3824.2,817z"/>
+		</g>
+		<g id="g2772">
+			<g id="text2774">
+				<g>
+					<text transform="matrix(0.97 0 0 1 3767.79 878.96)" class="st8 st98">(New Bus</text>
+					<text transform="matrix(0.97 0 0 1 3827.5801 878.96)" class="st8 st98">Adda)</text>
+				</g>
+			</g>
+			<g id="text2778">
+				<text transform="matrix(0.97 0 0 1 3774.3896 850.04)" class="st8 st99">Shaheed</text>
+			</g>
+			<g id="text5921">
+				<text transform="matrix(0.97 0 0 1 3792.79 867.0303)" class="st8 st99">Sthal</text>
+			</g>
+		</g>
+		<g id="text2782">
+			<text transform="matrix(1 0 0 1 436.5999 2603.8799)" class="st46 st8 st47">Grey Line</text>
+		</g>
+		<path id="path2786" class="st100" d="M563.5,2595.7h99"/>
+		<path id="path6922" class="st27" d="M527.5,2317.6l-3.5-3.5"/>
+		<g id="text6924">
+			<text transform="matrix(1 0 0 1 476.25 2312.46)" class="st8 st9">Patli</text>
+		</g>
+		<g id="text2246">
+			<text transform="matrix(1 0 0 1 2986.96 685.4102)" class="st8 st9">Gokulpur Saboli</text>
+		</g>
+		<g id="text2250">
+			<text transform="matrix(1 0 0 1 2986.3999 533.4902)" class="st8 st9">Behta Hajipur</text>
+		</g>
+		<path id="path2252" class="st27" d="M2972.4,677.6h5"/>
+		<path id="path2254" class="st27" d="M2972.4,527.6h5"/>
+		<g id="text2258">
+			<text transform="matrix(1 0 0 1 2986.3999 233.4902)" class="st8 st9">Noli</text>
+		</g>
+		<path id="path2261" class="st27" d="M2972.4,227.6h5"/>
+		<g id="text2283">
+			<text transform="matrix(1 0 0 1 1770.21 1085.5605)" class="st8 st9">Patel Nagar Jn.</text>
+		</g>
+		<g id="g2295">
+			<path id="path2291" class="st28" d="M1685.6,1527.4l6.8-6.2"/>
+			<path id="path2293" class="st29" d="M1677.3,1535l9.9-9.1"/>
+		</g>
+		<g id="text2299">
+			<text transform="matrix(1 0 0 1 1695.1602 1509.4805)" class="st8 st9">Dhaula Kuan</text>
+		</g>
+		<g id="g2305">
+			<path id="path2301" class="st28" d="M1633.9,1202.1l6,7"/>
+			<path id="path2303" class="st29" d="M1626.4,1193.5l8.8,10.2"/>
+		</g>
+		<g id="text2309">
+			<text transform="matrix(1 0 0 1 1651.21 1230.4697)" class="st8 st9">Kirti Nagar</text>
+		</g>
+		<g id="g2337">
+			<path id="rect2329" class="st31" d="M3221.9,720.9h90.2c2.7,0,4.8,2.2,4.8,4.8V743c0,2.7-2.2,4.8-4.8,4.8h-90.2
+				c-2.7,0-4.8-2.2-4.8-4.8v-17.3C3217.1,723.1,3219.2,720.9,3221.9,720.9z"/>
+			<g id="text2333">
+				<text transform="matrix(1 0 0 1 3242.0601 740.8896)" class="st0 st32 st33">HINDON</text>
+			</g>
+			<path id="path2335" class="st0" d="M3224,737.3l3.4-3.7c0.1-0.1,0.1-0.2,0.1-0.4c0-0.1-0.1-0.2-0.2-0.3l-5.9-3.3l0,0
+				c-0.1-0.1-0.2-0.2-0.3-0.3c0-0.2,0-0.3,0.1-0.4c0.1-0.1,0.3-0.2,0.4-0.1l8.4,1.7c0.1,0,0.3,0,0.4-0.1l3.5-2.9l0,0
+				c0.2-0.3,0.6-0.4,0.9-0.3c0.3,0,0.7,0.2,0.9,0.5c0.4,0.5,0.3,1.2-0.2,1.6l0,0l-2.9,3.5c-0.1,0.1-0.1,0.2-0.1,0.4l1.6,8.4
+				c0,0.1,0,0.3-0.1,0.4l-0.1,0.1c-0.1,0.1-0.2,0.2-0.4,0.1c-0.1,0-0.3-0.1-0.3-0.2l0,0l-3.4-5.9c-0.1-0.1-0.2-0.2-0.3-0.2
+				s-0.3,0-0.4,0.1l-3.7,3.4c-0.1,0.1-0.2,0.3-0.1,0.4l0.5,3c0,0.2,0,0.3-0.1,0.4c-0.1,0.1-0.3,0.2-0.4,0.1c-0.2,0-0.3-0.1-0.4-0.3
+				l-1.5-3.1c0-0.1-0.1-0.1-0.2-0.2l-3.2-1.5c-0.1-0.1-0.2-0.2-0.2-0.3s0-0.3,0.1-0.4l0.1-0.1c0.1-0.1,0.2-0.1,0.3-0.1h0.1l3,0.5
+				C3223.8,737.5,3224,737.5,3224,737.3L3224,737.3z"/>
+		</g>
+		<path id="path5914" class="st37" d="M3193.7,842.8v-5"/>
+		<path id="path5908" class="st27" d="M3152.8,950.7l3.5,3.5"/>
+		<g id="text5912">
+			<text transform="matrix(1 0 0 1 3165.6602 972.1699)" class="st8 st9">Chander Nagar</text>
+		</g>
+		<g id="text5916">
+			<g>
+				<text transform="matrix(1 0 0 1 3046.4297 936.21)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 3059.4102 936.21)" class="st8 st9">ivek</text>
+				<text transform="matrix(1 0 0 1 3100.5303 936.21)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 3113.5098 936.21)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<path id="path5918" class="st27" d="M3097.5,913.1v-5"/>
+		<path id="path5923" class="st27" d="M2949.3,1329.7l3.5,3.5"/>
+		<g id="text5927">
+			<text transform="matrix(1 0 0 1 2962.1699 1351.1895)" class="st8 st9">Mandawali -</text>
+		</g>
+		<g id="text5940">
+			<g>
+				<text transform="matrix(1 0 0 1 2962.1699 1369.1895)" class="st8 st9">Chander</text>
+				<text transform="matrix(1 0 0 1 3044.4502 1369.1895)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 3057.4199 1369.1895)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<g id="text5925">
+			<g>
+				<text transform="matrix(1 0 0 1 1917.4302 940.5303)" class="st8 st101">&amp;</text>
+				<text transform="matrix(1 0 0 1 1930.0303 940.5303)" class="st8 st101">V</text>
+				<text transform="matrix(1 0 0 1 1938.6802 940.5303)" class="st8 st101">ivekanand Puri</text>
+			</g>
+		</g>
+		<path id="path5576" class="st102" d="M839.4,1497.6l-254-1"/>
+		<g id="text5610">
+			<text transform="matrix(1 0 0 1 624.9099 1931.6001)" class="st8 st9">Dwarka ECC - Sector 25</text>
+		</g>
+		<path id="path1478-2" class="st42" d="M2861.1,2701.2h-5"/>
+		<path id="path1478-3" class="st42" d="M2861.1,2760.2h-5"/>
+		<g id="text1528-2">
+			<text transform="matrix(1 0 0 1 2879.4297 2765.73)" class="st8 st9">NCB Goodyear Colony</text>
+		</g>
+		<g id="text1528-3">
+			<text transform="matrix(1 0 0 1 2879.4297 2823.71)" class="st8 st9">Ballabhgarh</text>
+		</g>
+		<path id="path2588-2" class="st83" d="M3795.7,2559v-23.9"/>
+		<g id="text372">
+			<g>
+				<text transform="matrix(1 0 0 1 3103.5493 1184.79)" class="st8 st9">Anand</text>
+				<text transform="matrix(1 0 0 1 3166.9395 1184.79)" class="st8 st9">V</text>
+				<text transform="matrix(1 0 0 1 3179.9189 1184.79)" class="st8 st9">ihar</text>
+			</g>
+		</g>
+		<path id="path150_2_" class="st103" d="M2354.4,1164.5l0.1,28.7c-0.3,5.7-2.5,11.2-6.2,15.5l-11.8,12.3c-3.2,3-7.4,4.8-11.9,5
+			H2171c-5.5,0-13.2,3.2-17.1,7.1L1837,1550.6"/>
+		<path id="path150_3_" class="st103" d="M1555.8,1822.3l-575.3-3.1c-5.5,0-13.2,3.1-17.1,7l-53.5,53.4"/>
+		<path id="path190_2_" class="st104" d="M2353.3,1708.2l-148.1-147.8c-5.9-5.9-10.6-17.3-10.6-25.6v-109.7c0-5.5,3.2-13.2,7.1-17.1
+			l22.8-22.8c3.9-3.9,11.6-7.1,17.1-7.1h211.8c8.3,0,19.8-4.8,25.6-10.6l77-77c5.9-5.9,10.6-17.3,10.6-25.6l1.6-179.5
+			c0.1-14.7-6.2-28.6-17.3-38.2l-148.7-130.4c-10.6-9.3-18-22.3-18.2-36.4l0.4-55.5"/>
+		<path id="path1428_1_" class="st105" d="M3016.1,1507.9"/>
+		<path id="path1428_7_" class="st105" d="M1336.3,1121.8"/>
+		<path id="path1428_3_" class="st105" d="M1462.7,908"/>
+		<path id="path1428_6_" class="st105" d="M2195.2,326.8"/>
+		<path id="path1862_7_" class="st106" d="M3247.3,1814.9"/>
+		<path id="path1862_4_" class="st106" d="M3019.2,1994"/>
+		<path id="path1862_5_" class="st106" d="M2807.7,1782.8"/>
+		<path id="path1862_3_" class="st106" d="M1635.5,1835.3l161.9,153.8c9.4,9,25.9,17.3,35.7,17.3l634.9,0.4
+			c27.1,0,37.3-8.5,52.7-22.8l72.2-67.3"/>
+		<path id="path1862_1_" class="st106" d="M1460.3,1667.9l149.6,142.1"/>
+		<path id="path1862_2_" class="st106" d="M1045.4,1273.7l313.1,297.5"/>
+		<g id="g2096">
+			<g id="use2098">
+				<path id="aa-4" class="st19" d="M2569,1915.6v33c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10v-33c0-5.5,4.5-10,10-10l0,0
+					C2564.5,1905.6,2569,1910.1,2569,1915.6z"/>
+			</g>
+			<path id="rect2100" class="st20" d="M2570,1915.6v33c0,6.1-4.9,11-11,11l0,0l0,0c-6.1,0-11-4.9-11-11l0,0l0,0v-33
+				c0-6.1,4.9-11,11-11l0,0C2565.1,1904.6,2570,1909.5,2570,1915.6z"/>
+		</g>
+		<circle id="circle2102" class="st107" cx="2559" cy="1915.6" r="6"/>
+		<circle id="circle2104" class="st77" cx="2559" cy="1948.6" r="6"/>
+		<path id="path148_2_" class="st108" d="M1868.9,172.6"/>
+		<path id="path148_4_" class="st108" d="M2156.7,2038.3v199.5c0,8.3-4.8,19.8-10.6,25.6"/>
+		<path id="path148_3_" class="st108" d="M2235.1,538.9l129.6,129.6c2.5,2.8,4,6.4,4.3,10.2v514.9c0,8.3-4.8,19.8-10.6,25.6
+			l-194.6,194.6c-3.9,3.9-7.1,11.6-7.1,17.1l0.3,567.3"/>
+		<g id="g404">
+			<g id="use406">
+				<path id="aq" class="st19" d="M2387.6,875.5l-37.8,0c-5.2,0-9.4,4.2-9.4,9.4l0,0c0,5.2,4.2,9.4,9.4,9.4l0,0l37.8,0
+					c5.2,0,9.4-4.2,9.4-9.4l0,0C2397.1,879.7,2392.8,875.5,2387.6,875.5z"/>
+			</g>
+			<path id="rect408" class="st20" d="M2387.4,874.7h-37.2c-5.6,0-10.2,4.6-10.2,10.2l0,0c0,5.6,4.6,10.2,10.2,10.2l37.2,0
+				c5.6,0,10.2-4.6,10.2-10.2l0,0l0,0C2397.6,879.3,2393.1,874.6,2387.4,874.7C2387.4,874.6,2387.4,874.6,2387.4,874.7L2387.4,874.7
+				z"/>
+			<circle id="circle410" class="st109" cx="2369" cy="884.7" r="6"/>
+			<circle id="circle412" class="st24" cx="2351.4" cy="884.9" r="6"/>
+			<circle id="circle1726" class="st107" cx="2385.5" cy="884.9" r="6"/>
+		</g>
+		<g id="g204">
+			<g id="use206">
+				<path id="ab" class="st19" d="M2201.4,1377.1l18.4,18.4c3.9,3.9,3.9,10.2,0,14.1l0,0c-3.9,3.9-10.2,3.9-14.1,0l0,0l-18.4-18.4
+					c-3.9-3.9-3.9-10.2,0-14.1l0,0C2191.2,1373.2,2197.5,1373.2,2201.4,1377.1z"/>
+			</g>
+			<path id="rect208" class="st20" d="M2202.1,1376.4l18.4,18.4c4.3,4.3,4.3,11.3,0,15.6l0,0l0,0c-4.3,4.3-11.3,4.3-15.6,0
+				l-18.4-18.4c-4.3-4.3-4.3-11.3,0-15.6l0,0l0,0C2190.8,1372.1,2197.8,1372.1,2202.1,1376.4L2202.1,1376.4z"/>
+			<circle id="circle210" class="st109" cx="2194.6" cy="1384" r="6"/>
+			<circle id="circle212" class="st107" cx="2212.7" cy="1402.1" r="6"/>
+		</g>
+		<g id="g238">
+			<g id="use240">
+				<path id="ay" class="st19" d="M2354.4,1142.5h45c5.5,0,10,4.5,10,10l0,0c0,5.5-4.5,10-10,10h-45c-5.5,0-10-4.5-10-10l0,0
+					C2344.4,1147,2348.9,1142.5,2354.4,1142.5z"/>
+			</g>
+			<path id="rect242" class="st20" d="M2354.4,1141.5h45c6.1,0,11,4.9,11,11l0,0l0,0c0,6.1-4.9,11-11,11l0,0h-45
+				c-6.1,0-11-4.9-11-11l0,0l0,0C2343.4,1146.4,2348.4,1141.5,2354.4,1141.5L2354.4,1141.5z"/>
+			<circle id="circle244" class="st109" cx="2369.4" cy="1152.5" r="6"/>
+			<circle id="circle246" class="st22" cx="2384.4" cy="1152.5" r="6"/>
+			<circle id="circle248" class="st21" cx="2399.4" cy="1152.5" r="6"/>
+			<circle id="circle250" class="st110" cx="2354.4" cy="1152.5" r="6"/>
+		</g>
+		<g id="g382">
+			<g id="use384">
+				<path id="ar" class="st19" d="M2377,1009.1l-38.9,38.9c-3.9,3.9-10.2,3.9-14.1,0l0,0c-3.9-3.9-3.9-10.2,0-14.1l38.9-38.9
+					c3.9-3.9,10.2-3.9,14.1,0l0,0C2380.9,998.9,2380.9,1005.2,2377,1009.1z"/>
+			</g>
+			<path id="rect386" class="st20" d="M2377.7,1009.8l-38.9,38.9c-4.3,4.3-11.3,4.3-15.6,0l0,0c-4.3-4.3-4.3-11.3,0-15.6l0,0l0,0
+				l38.9-38.9c4.3-4.3,11.3-4.3,15.6,0l0,0l0,0C2382,998.6,2382,1005.5,2377.7,1009.8L2377.7,1009.8L2377.7,1009.8z"/>
+			<circle id="circle388" class="st109" cx="2369.6" cy="1002.4" r="6"/>
+			<circle id="circle390" class="st21" cx="2341.6" cy="1030.4" r="6"/>
+			<circle id="circle392" class="st22" cx="2331" cy="1041" r="6"/>
+		</g>
+		<path id="path1544_1_" class="st42" d="M2380.5,828.2h14.2"/>
+		<path id="path184" class="st15" d="M884,1883.9l62.4-62.4c5.9-5.9,10.6-17.3,10.6-25.6l-0.1-53.7c0-8.3-4.8-19.8-10.6-25.6
+			l-88.8-88.8c-5.9-5.9-10.6-17.3-10.6-25.6v-168.4c0-8.3,4.8-19.8,10.6-25.6l262.9-262.9c5.8-5.9,17.3-10.6,25.6-10.6h963
+			c8.3,0,19.8,4.8,25.6,10.6l262,262c5.9,5.8,17.3,10.6,25.6,10.6H2697c8.3,0,19.8-4.8,25.6-10.6L2963,1167
+			c5.9-5.9,17.3-10.6,25.6-10.6h332.5"/>
+		<path id="path184_4_" class="st111" d="M2181.9,1191.9l215.2,215.2c5.9,5.8,17.3,10.6,25.6,10.6h46.9"/>
+		<path id="path184_1_" class="st111" d="M899,1869.2l47.9-47.9"/>
+		<g id="g260">
+			<g id="use262">
+				<path id="aw" class="st19" d="M1601.4,1119.2v17c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10v-17c0-5.5,4.5-10,10-10l0,0
+					C1597,1109.2,1601.4,1113.7,1601.4,1119.2z"/>
+			</g>
+			<path id="rect264" class="st20" d="M1602.4,1119.2v17c0,6.1-4.9,11-11,11l0,0l0,0c-6.1,0-11-4.9-11-11l0,0l0,0v-17
+				c0-6.1,4.9-11,11-11l0,0l0,0C1597.5,1108.2,1602.4,1113.1,1602.4,1119.2L1602.4,1119.2z"/>
+			<circle id="circle266" class="st23" cx="1591.4" cy="1120.2" r="6"/>
+			<circle id="circle268" class="st76" cx="1591.4" cy="1135.2" r="6"/>
+		</g>
+		<g id="g1870">
+			<g id="use1872">
+				<path id="ab-3" class="st19" d="M1025.9,1239.4l18.4,18.4c3.9,3.9,3.9,10.2,0,14.1l0,0c-3.9,3.9-10.2,3.9-14.1,0l0,0l-18.4-18.4
+					c-3.9-3.9-3.9-10.2,0-14.1l0,0C1015.6,1235.5,1022,1235.5,1025.9,1239.4z"/>
+			</g>
+			<path id="path1874" class="st20" d="M1026.6,1238.7l18.4,18.4c4.4,4.2,4.5,11.2,0.2,15.6c-4.2,4.4-11.2,4.5-15.6,0.2l0,0
+				l-0.2-0.2l-18.4-18.4c-4.3-4.3-4.3-11.3,0-15.6S1022.3,1234.4,1026.6,1238.7L1026.6,1238.7z"/>
+		</g>
+		<circle id="circle1876" class="st76" cx="1019" cy="1246.3" r="6"/>
+		<circle id="circle1878" class="st77" cx="1037.2" cy="1264.5" r="6"/>
+		<g id="g5580">
+			<g id="use5582">
+				<path id="az-2" class="st19" d="M846.6,1507.3l-29-0.1c-5.5,0-10-4.5-10-10v-0.1l0,0c0-5.5,4.5-10,10-9.9l0,0l29,0.1
+					c5.5,0,10,4.5,10,10l0,0C856.6,1502.8,852.2,1507.3,846.6,1507.3z"/>
+			</g>
+			<path id="rect5584" class="st20" d="M846.6,1508.3l-29-0.1c-6.1,0-11-4.9-11-11v-0.1l0,0c0-6.1,4.9-11,11-10.9l0,0l29,0.1
+				c6.1,0,11,4.9,11,11l0,0C857.6,1503.4,852.7,1508.3,846.6,1508.3z"/>
+			<circle id="circle5586" class="st76" cx="846.7" cy="1497.3" r="6"/>
+			<circle id="circle5588" class="st112" cx="819.7" cy="1497.2" r="6"/>
+		</g>
+		<g id="g306">
+			<g id="use308">
+				<path id="au" class="st19" d="M894.5,1895.4l-12-12c-3.9-3.9-3.9-10.2,0-14.1l0,0c3.9-3.9,10.2-3.9,14.1,0l12,12
+					c3.9,3.9,3.9,10.2,0,14.1l0,0C904.8,1899.3,898.4,1899.3,894.5,1895.4z"/>
+			</g>
+			<path id="rect310" class="st20" d="M893.9,1896.2l-12-12c-4.3-4.3-4.3-11.3,0-15.6l0,0l0,0c4.3-4.3,11.3-4.3,15.6,0l0,0l0,0
+				l12,12c4.3,4.3,4.3,11.3,0,15.6l0,0l0,0C905.1,1900.4,898.2,1900.4,893.9,1896.2L893.9,1896.2z"/>
+			<circle id="circle312" class="st110" cx="901.6" cy="1888.4" r="6"/>
+			<circle id="circle314" class="st76" cx="891" cy="1877.8" r="6"/>
+		</g>
+		<g id="g218">
+			<g id="use220">
+				<path id="az" class="st19" d="M2270.4,1271.7h29c5.5,0,10,4.5,10,10l0,0c0,5.5-4.5,10-10,10h-29c-5.5,0-10-4.5-10-10l0,0
+					C2260.4,1276.2,2264.9,1271.7,2270.4,1271.7z"/>
+			</g>
+			<path id="rect222" class="st20" d="M2270.4,1270.7h29c6.1,0,11,4.9,11,11l0,0l0,0c0,6.1-4.9,11-11,11h-29c-6.1,0-11-4.9-11-11
+				l0,0C2259.4,1275.6,2264.4,1270.7,2270.4,1270.7L2270.4,1270.7z"/>
+			<circle id="circle224" class="st76" cx="2270.4" cy="1281.7" r="6"/>
+			<circle id="circle226" class="st113" cx="2297.4" cy="1281.7" r="6"/>
+		</g>
+		<g id="g334">
+			<g id="use336">
+				<path id="aa" class="st19" d="M2442.9,1384.7v33c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10v-33c0-5.5,4.5-10,10-10l0,0
+					C2438.5,1374.7,2442.9,1379.2,2442.9,1384.7z"/>
+			</g>
+			<path id="rect338" class="st20" d="M2443.9,1384.7v33c0,6.1-4.9,11-11,11l0,0c-6.1,0-11-4.9-11-11v-33c0-6.1,4.9-11,11-11l0,0
+				C2439,1373.7,2443.9,1378.6,2443.9,1384.7z"/>
+			<circle id="circle340" class="st107" cx="2432.9" cy="1384.7" r="6"/>
+			<circle id="circle342" class="st76" cx="2432.9" cy="1417.7" r="6"/>
+		</g>
+		<g id="g322">
+			<g id="use324">
+				<path id="at" class="st19" d="M2572,1425.4c3.9-3.9,3.9-10.2,0-14.2c-3.9-3.9-10.2-3.9-14.1,0l-14.4,14.4
+					c-1.9,1.7-4.3,2.7-6.8,2.8h-14.4c-5.5,0-10,4.5-10,10s4.5,10,10,10h19.7c2.6-0.1,5-1.1,7-2.7L2572,1425.4L2572,1425.4z"/>
+			</g>
+			<path id="path326" class="st20" d="M2572.6,1426.1c4.4-4.2,4.6-11.1,0.4-15.6c-4.2-4.4-11.1-4.6-15.6-0.4
+				c-0.1,0.1-0.3,0.3-0.4,0.4l-14.4,14.4c-1.7,1.5-3.9,2.4-6.1,2.5h-14.4c-6.1,0-11,4.9-11,11s4.9,11,11,11h19.8
+				c2.8-0.1,5.5-1.1,7.7-2.9L2572.6,1426.1L2572.6,1426.1L2572.6,1426.1z"/>
+		</g>
+		<path id="path328" class="st114" d="M2560.4,1414.4c-2.3,2.3-2.3,6.1,0,8.5c2.3,2.3,6.1,2.3,8.5,0c2.3-2.3,2.3-6.1,0-8.5
+			C2566.5,1412,2562.7,1412,2560.4,1414.4L2560.4,1414.4z"/>
+		<path id="path330" class="st115" d="M2539.2,1432.5c-3.3,0-6,2.7-6,6s2.7,6,6,6s6-2.7,6-6S2542.5,1432.5,2539.2,1432.5z"/>
+		<path id="path332" class="st116" d="M2524.2,1432.5c-3.3,0-6,2.7-6,6s2.7,6,6,6s6-2.7,6-6S2527.5,1432.5,2524.2,1432.5z"/>
+		<g id="g152">
+			<g id="use154">
+				<path id="aj" class="st117" d="M1613.8,2747.3l-1.1-102.8V2462c0-11-9-20-20-20h-180.1c-1.9-0.1-3.7-0.9-5.1-2.1L1307,2338.6
+					c-7.4-7.4-4.9-13.5,5.6-13.5h123.7c1.9,0.1,3.7,0.9,5.1,2.1l98.4,99.1c8.6,8.6,25.4,15.6,37.5,15.6h14.3"/>
+			</g>
+			<g id="use156">
+				<path id="aj-2" class="st118" d="M1613.7,2740.5l-1-96V2462c0-11-9-20-20-20h-180.1c-1.9-0.1-3.7-0.9-5.1-2.1L1307,2338.6
+					c-7.4-7.4-4.9-13.5,5.6-13.5h123.7c1.9,0.1,3.7,0.9,5.1,2.1l98.4,99.1c8.6,8.6,25.4,15.6,37.5,15.6h14.3"/>
+			</g>
+		</g>
+		<g id="g158">
+			<g id="use160">
+				<path id="ai" class="st119" d="M1335.3,2354.2h-12.9v13.1"/>
+			</g>
+			<g id="use162">
+				<path id="ai-2" class="st120" d="M1335.3,2354.2h-12.9v13.1"/>
+			</g>
+		</g>
+		<g id="g164">
+			<g id="use166">
+				<path id="ah" class="st119" d="M1504.5,2403.3h12.9v-13.1"/>
+			</g>
+			<g id="use168">
+				<path id="ah-2" class="st120" d="M1504.5,2403.3h12.9v-13.1"/>
+			</g>
+		</g>
+		<g id="g170">
+			<g id="use172">
+				<path id="ag" class="st119" d="M1403.7,2316.2l9.1,9.1l-9.3,9.3"/>
+			</g>
+			<g id="use174">
+				<path id="ag-2" class="st120" d="M1403.7,2316.2l9.1,9.1l-9.3,9.3"/>
+			</g>
+		</g>
+		<g id="g176">
+			<g id="use178">
+				<path id="af" class="st119" d="M1435.5,2433.2l-9.1,9.1l9.2,9.2"/>
+			</g>
+			<g id="use180">
+				<path id="af-2" class="st120" d="M1435.5,2433.2l-9.1,9.1l9.2,9.2"/>
+			</g>
+		</g>
+		<g id="g424">
+			<g id="use426">
+				<path id="ap" class="st19" d="M1590.6,2533.3l30.4,30.4c3.9,3.9,3.9,10.2,0,14.1l0,0c-3.9,3.9-10.2,3.9-14.1,0l0,0l-30.4-30.4
+					c-3.9-3.9-3.9-10.2,0-14.1l0,0C1580.4,2529.4,1586.7,2529.4,1590.6,2533.3z"/>
+			</g>
+			<path id="rect428" class="st20" d="M1591.3,2532.6l30.4,30.4c4.3,4.3,4.3,11.3,0,15.6l0,0l0,0c-4.3,4.3-11.3,4.3-15.6,0
+				l-30.4-30.4c-4.3-4.3-4.3-11.3,0-15.6l0,0l0,0C1580,2528.3,1587,2528.3,1591.3,2532.6L1591.3,2532.6z"/>
+			<circle id="circle430" class="st109" cx="1584.9" cy="2541.8" r="6"/>
+			<circle id="circle432" class="st121" cx="1612.5" cy="2569.4" r="6"/>
+		</g>
+		<path id="path2786_1_" class="st100" d="M924.3,2760h99"/>
+		<g id="text1606_1_">
+			<text transform="matrix(1 0 0 1 768.2864 2766.8896)" class="st46 st8 st47">Underground</text>
+		</g>
+		<path id="path2786_2_" class="st122" d="M924.1,2760h99"/>
+		<g id="text1606_2_">
+			<text transform="matrix(1 0 0 1 700.6549 2795.7805)" class="st46 st8 st47">Elevated / At Grade</text>
+		</g>
+		<path id="path2786_3_" class="st100" d="M924,2788.1h99"/>
+		<path id="path5576_1_" class="st123" d="M711.4,1497.2l-121.9-0.5"/>
+		<g id="g2014">
+			<path id="path2018" class="st20" d="M2146.4,1999.6l18.4,18.4c4.2,4.3,4.2,11.3-0.2,15.6c-4.3,4.2-11.1,4.2-15.4,0l-18.4-18.4
+				c-4.3-4.3-4.3-11.3,0-15.6S2142.1,1995.3,2146.4,1999.6L2146.4,1999.6L2146.4,1999.6z"/>
+			<g id="use2016">
+				<path id="ab-4" class="st19" d="M2145.7,2000.3l18.4,18.4c3.9,3.9,3.9,10.2,0,14.1l0,0c-3.9,3.9-10.2,3.9-14.1,0l0,0l-18.4-18.4
+					c-3.9-3.9-3.9-10.2,0-14.1l0,0C2135.5,1996.4,2141.8,1996.4,2145.7,2000.3z"/>
+			</g>
+		</g>
+		<circle id="circle2020" class="st77" cx="2138.9" cy="2007.2" r="6"/>
+		<circle id="circle2022" class="st109" cx="2157" cy="2025.3" r="6"/>
+		<path id="path1428_9_" class="st124" d="M2195.3,326.8l0.8,62.1c0.1,5.9-1.5,11.6-4.5,16.6l0,0c-5.1,8.3-11.3,15.9-18.6,22.4
+			l-92.7,83.3c-8.4,7.6-16.4,10.8-26.4,10.5c-129.2-0.8-212.3-0.8-334.4-0.2c-27.1,0.1-53.1,11.3-71.8,30.9L1490.5,717
+			c-17.8,18.6-27.7,43.4-27.7,69.1V908c0,14.1-2.4,20.3-8,28.5L1349.6,1091c-9.2,13.4-13.2,21.3-13.2,30.8v89.6
+			c0,25.3,4.7,40.7,16.5,52.7l412.8,418.1l100.7,101.4c24.2,24.4,27.6,24.5,43.5,24.8l448.7,1.6c18.9-3.1,95.3-104.8,152.2-171.7
+			c15.8-18.6,373.9-94.3,460-119.4c5.6-1.6,26.1-6.4,45.4-11c23.7-5.6,44.5-20,58.2-40.2l0,0c11.1-16.4,17.1-35.8,17.1-55.6l0.7-221
+			c0-11-8.8-20-19.8-20.1l-57-0.5c-5.6-0.1-10.9-2.4-14.7-6.6l-60.3-66.8c-16.3-18.1-25.5-41.5-25.8-65.8l-3.9-503.7"/>
+		<path id="path1428_5_" class="st105" d="M1499.4,1412.5l83.7,84.8"/>
+		<path id="path1428_8_" class="st105" d="M2164.4,434.8l-84.2,76.4c-8.4,7.6-16.4,10.8-26.4,10.5c-129.2-0.8-212.3-0.8-334.4-0.2
+			c-27.1,0.1-53.1,11.3-71.8,30.9L1490.4,717"/>
+		<path id="path1428_4_" class="st105" d="M1866.3,1783.6c24.2,24.4,27.6,24.5,43.5,24.8l448.7,1.6c18.9-3.1,95.3-104.8,152.2-171.7
+			c5.6-6.6,53.8-20.2,117.7-36.3"/>
+		<path id="path2374_1_" class="st74" d="M2903.6,666.3h-5"/>
+		<path id="path2374_2_" class="st74" d="M2906.1,590.2h-5"/>
+		<path id="path2374_4_" class="st74" d="M2923.4,527.6h-24"/>
+		<path id="rect2230-2" class="st14" d="M2912.9,857.1l-17,0.1c-6.1,0-11-4.8-11.1-10.9l0,0l0,0l0,0c0-6.1,4.9-11,10.9-11.1l17-0.1
+			c6.1,0,11,4.8,11.1,10.9l0,0C2923.9,852.1,2919,857.1,2912.9,857.1C2913,857.1,2913,857.1,2912.9,857.1L2912.9,857.1z"/>
+		<circle id="circle2232-2" class="st24" cx="2895.5" cy="846.8" r="6"/>
+		<circle id="circle2234-2" class="st125" cx="2912.1" cy="846.7" r="6"/>
+		<g id="g2342">
+			<g id="use2344">
+				<path id="aa-7" class="st19" d="M3018.4,1152v21.6c0,3.6-3.7,6.5-8.2,6.5l0,0c-4.5,0-8.2-2.9-8.2-6.5V1152
+					c0-3.6,3.7-6.5,8.2-6.5l0,0C3014.8,1145.4,3018.4,1148.3,3018.4,1152z"/>
+			</g>
+			<path id="rect2346" class="st20" d="M3019.3,1152v21.6c0,4-4,7.2-9,7.2l0,0c-5,0-9-3.2-9-7.2V1152c0-4,4-7.2,9-7.2l0,0
+				C3015.2,1144.8,3019.3,1148,3019.3,1152z"/>
+		</g>
+		<circle id="circle2348" class="st76" cx="3010.1" cy="1153.9" r="6"/>
+		<circle id="circle2350" class="st125" cx="3010.1" cy="1170.9" r="6"/>
+		<g id="g350">
+			<g id="use352">
+				<path id="as" class="st19" d="M3061.8,1125.1l28.5,35.7c3.9,5.3,3.9,12.5,0,17.8l0,0c-3.9,4.9-10.3,4.9-14.3,0l-28.5-35.7
+					c-3.9-5.3-3.9-12.6,0-17.8l0,0C3051.5,1120.1,3057.8,1120.1,3061.8,1125.1z"/>
+			</g>
+			<path id="rect354" class="st20" d="M3062.5,1124.2l28.5,35.7c4.3,5.8,4.3,13.8,0,19.6l0,0c-4.3,5.4-11.4,5.4-15.7,0l-28.5-35.7
+				c-4.3-5.8-4.3-13.8,0-19.6l0,0C3051.1,1118.7,3058.2,1118.7,3062.5,1124.2z"/>
+		</g>
+		<circle id="circle356" class="st21" cx="3054.4" cy="1132.9" r="6"/>
+		<circle id="circle358" class="st76" cx="3076.1" cy="1160.5" r="6"/>
+		<circle id="circle2340" class="st125" cx="3083.9" cy="1174" r="6"/>
+		<g id="text2336">
+			<text transform="matrix(1 0 0 1 2923.2402 1140.9102)" class="st8 st9">Karkardooma</text>
+		</g>
+		<path id="rect2270" class="st14" d="M2990.2,1522l-12,12c-4.3,4.3-11.3,4.3-15.6,0l0,0c-4.3-4.3-4.3-11.3,0-15.6l0,0l0,0l12-12
+			c4.3-4.3,11.3-4.3,15.6,0l0,0C2994.5,1510.7,2994.5,1517.7,2990.2,1522L2990.2,1522z"/>
+		<circle id="circle2272" class="st76" cx="2982.4" cy="1514.3" r="6"/>
+		<circle id="circle2274" class="st125" cx="2971.8" cy="1524.9" r="6"/>
+		<g id="g2766">
+			<path id="rect2768" class="st18" d="M2631.1,1629.8h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C2628.1,1631.2,2629.5,1629.8,2631.1,1629.8z"/>
+			<path id="path2770" class="st19" d="M2636,1645.6c0-0.3-0.1-0.7-0.4-0.9c-0.5-0.5-1.3-0.5-1.8,0s-0.5,1.3,0,1.8
+				c0.2,0.2,0.6,0.4,0.9,0.4C2635.4,1646.9,2636,1646.3,2636,1645.6L2636,1645.6z M2646.3,1645.6c0-0.7-0.6-1.3-1.3-1.3
+				c-0.3,0-0.6,0.1-0.9,0.4c-0.2,0.2-0.4,0.6-0.4,0.9c0,0.7,0.6,1.3,1.3,1.3l0,0c0.3,0,0.7-0.1,0.9-0.4
+				C2646.1,1646.3,2646.3,1645.9,2646.3,1645.6z M2645.8,1641.6l-0.7-3.9c0-0.1-0.1-0.3-0.2-0.4c-0.1-0.1-0.3-0.1-0.4-0.1h-9.2
+				c-0.1,0-0.3,0-0.4,0.1c-0.1,0.1-0.2,0.2-0.2,0.4l-0.7,3.9c-0.1,0.3,0.2,0.7,0.5,0.7l0,0h10.8c0.2,0,0.4-0.1,0.5-0.2
+				C2645.8,1642,2645.8,1641.8,2645.8,1641.6L2645.8,1641.6z M2643.5,1635.5c0-0.3-0.2-0.5-0.5-0.5h-6.4c-0.1,0-0.3,0-0.3,0.1
+				c-0.2,0.2-0.2,0.5,0,0.7l0,0l0,0c0.1,0.1,0.2,0.1,0.3,0.1h6.4c0.1,0,0.2-0.1,0.3-0.1C2643.5,1635.7,2643.5,1635.6,2643.5,1635.5
+				L2643.5,1635.5z M2647.5,1642.7v6.1h-1.3v1.3c0,0.3-0.1,0.7-0.4,0.9c-0.5,0.5-1.3,0.5-1.8,0l0,0c-0.2-0.2-0.4-0.6-0.4-0.9v-1.3
+				h-7.7v1.3c0,0.7-0.6,1.3-1.3,1.3s-1.3-0.6-1.3-1.3v-1.3h-1.3v-6.1c0-0.8,0.1-1.5,0.3-2.2l1-4.6c0.1-0.6,0.5-1.1,1-1.4
+				c0.7-0.4,1.5-0.7,2.3-0.9c2.1-0.4,4.2-0.4,6.3,0c0.8,0.1,1.6,0.5,2.3,0.9c0.5,0.3,0.9,0.8,1,1.4l1.1,4.6
+				C2647.5,1641.3,2647.6,1642,2647.5,1642.7L2647.5,1642.7z"/>
+		</g>
+		<g id="g2294">
+			<path id="rect2296" class="st18" d="M2603,1629.8h18c1.7,0,3,1.3,3,3v19c0,1.7-1.3,3-3,3h-18c-1.7,0-3-1.3-3-3v-19
+				C2600,1631.2,2601.4,1629.8,2603,1629.8z"/>
+			<path id="path2298" class="st19" d="M2615,1633.4c1.1,0,2.2,0.3,3.2,0.9c0.8,0.5,1.3,1.3,1.3,2.3v9c0,0.9-0.5,1.7-1.3,2.2
+				c-0.9,0.6-2,1-3.1,1l2.1,2c0.1,0.1,0.1,0.3,0,0.4s-0.1,0.1-0.2,0.1h-10.6c-0.2,0-0.3-0.1-0.3-0.3l0,0c0-0.1,0-0.2,0.1-0.2l2.1-2
+				c-1.1,0-2.2-0.4-3.1-1c-0.8-0.5-1.2-1.3-1.3-2.2v-9c0-0.9,0.5-1.8,1.3-2.3c0.9-0.6,2-1,3.2-0.9H2615z M2611.7,1646.9
+				c1.1,0,1.9-0.8,1.9-1.9l0,0c0.1-1.1-0.7-2-1.8-2.1s-2,0.7-2.1,1.8c0,0.1,0,0.2,0,0.3C2609.8,1646,2610.7,1646.9,2611.7,1646.9
+				L2611.7,1646.9L2611.7,1646.9z M2617.5,1641.1v-5.2h-11.6v5.2H2617.5z"/>
+		</g>
+		<g id="g2282">
+			<g id="use2284">
+				<path id="ae-2" class="st19" d="M2497.5,1613.4l22.6,22.6c3.9,3.9,3.9,10.2,0,14.1l0,0c-3.9,3.9-10.2,3.9-14.1,0l-22.6-22.6
+					c-3.9-3.9-3.9-10.2,0-14.1l0,0C2487.3,1609.5,2493.6,1609.5,2497.5,1613.4z"/>
+			</g>
+			<path id="rect2286" class="st20" d="M2498.2,1612.7l22.6,22.6c4.3,4.3,4.3,11.3,0,15.6l0,0l0,0c-4.3,4.3-11.3,4.3-15.6,0l0,0l0,0
+				l-22.6-22.6c-4.3-4.3-4.3-11.3,0-15.6l0,0l0,0C2486.9,1608.4,2493.9,1608.4,2498.2,1612.7L2498.2,1612.7z"/>
+			<circle id="circle2288" class="st21" cx="2501" cy="1631.1" r="6"/>
+			<circle id="circle2290" class="st125" cx="2511.6" cy="1641.7" r="6"/>
+			<circle id="circle2292" class="st22" cx="2490.4" cy="1620.5" r="6"/>
+		</g>
+		<g id="g2246">
+			<g id="use2248">
+				<path id="aa-6" class="st19" d="M2410.9,1755.8v33c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10v-33c0-5.5,4.5-10,10-10l0,0
+					C2406.4,1745.8,2410.9,1750.3,2410.9,1755.8z"/>
+			</g>
+			<path id="rect2250" class="st20" d="M2411.9,1755.8v33c0,6.1-4.9,11-11,11l0,0l0,0c-6.1,0-11-4.9-11-11l0,0l0,0v-33
+				c0-6.1,4.9-11,11-11l0,0l0,0C2406.9,1744.8,2411.9,1749.7,2411.9,1755.8L2411.9,1755.8z"/>
+		</g>
+		<circle id="circle2252" class="st107" cx="2400.8" cy="1755.8" r="6"/>
+		<circle id="circle2254" class="st125" cx="2400.8" cy="1788.8" r="6"/>
+		<g id="g2256">
+			<g id="use2258">
+				<path id="ab-5" class="st19" d="M2146.5,1804.6l18.4,18.4c3.9,3.9,3.9,10.2,0,14.1l0,0c-3.9,3.9-10.2,3.9-14.1,0l0,0l-18.4-18.4
+					c-3.9-3.9-3.9-10.2,0-14.1l0,0C2136.2,1800.7,2142.6,1800.7,2146.5,1804.6L2146.5,1804.6z"/>
+			</g>
+			<path id="path2260" class="st20" d="M2147.2,1803.9l18.4,18.4c4.2,4.3,4.2,11.3-0.2,15.6c-4.3,4.2-11.1,4.2-15.4,0l-18.4-18.4
+				c-4.3-4.3-4.3-11.3,0-15.6S2142.9,1799.6,2147.2,1803.9z"/>
+		</g>
+		<circle id="circle2262" class="st125" cx="2139.7" cy="1811.5" r="6"/>
+		<circle id="circle2264" class="st109" cx="2157.9" cy="1829.6" r="6"/>
+		<g id="g2256-2">
+			<g id="use2258-2">
+				<path id="ab-6" class="st19" d="M1747.1,1677.8l-18.7-18.1c-4-3.8-4.1-10.2-0.2-14.1l0,0c3.8-4,10.2-4.1,14.1-0.2l18.7,18.1
+					c4,3.8,4.1,10.2,0.2,14.1l0,0C1757.4,1681.5,1751,1681.6,1747.1,1677.8z"/>
+			</g>
+			<path id="path2260-2" class="st20" d="M1746.4,1678.5l-18.7-18.1c-4.4-4.2-4.5-11.2-0.3-15.6s11.2-4.5,15.6-0.3l18.7,18.1
+				c4.5,4.1,4.7,11.1,0.6,15.5s-11.1,4.7-15.5,0.6l0,0L1746.4,1678.5L1746.4,1678.5z"/>
+		</g>
+		<circle id="circle2262-2" class="st125" cx="1753.8" cy="1670.8" r="6"/>
+		<circle id="circle2264-2" class="st110" cx="1735.3" cy="1652.9" r="6"/>
+		<g id="g1852">
+			<g id="use1854">
+				<path id="ab-2" class="st19" d="M1325.4,1128.4l18.4,18.4c3.9,3.9,3.9,10.2,0,14.1l0,0c-3.9,3.9-10.2,3.9-14.1,0l0,0l-18.4-18.4
+					c-3.9-3.9-3.9-10.2,0-14.1l0,0C1315.2,1124.5,1321.5,1124.5,1325.4,1128.4z"/>
+			</g>
+			<path id="path1856" class="st20" d="M1326.1,1127.7l18.4,18.4c4.4,4.2,4.5,11.2,0.2,15.6c-4.2,4.4-11.2,4.5-15.6,0.2l0,0
+				l-0.2-0.2l-18.4-18.4c-4.3-4.3-4.3-11.3,0-15.6S1321.8,1123.4,1326.1,1127.7L1326.1,1127.7z"/>
+		</g>
+		<circle id="circle1858" class="st76" cx="1318.6" cy="1135.3" r="6"/>
+		<circle id="circle1860" class="st125" cx="1336.7" cy="1153.4" r="6"/>
+		<g id="g260-2">
+			<g id="use262-2">
+				<path id="aw-2" class="st19" d="M1474,886.6v17c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10v-17c0-5.5,4.5-10,10-10l0,0
+					C1469.5,876.6,1474,881.1,1474,886.6z"/>
+			</g>
+			<path id="rect264-2" class="st20" d="M1475,886.6v17c0,6.1-4.9,11-11,11l0,0l0,0c-6.1,0-11-4.9-11-11l0,0l0,0v-17
+				c0-6.1,4.9-11,11-11l0,0C1470.1,875.6,1475,880.5,1475,886.6z"/>
+			<circle id="circle266-2" class="st23" cx="1464" cy="887.6" r="6"/>
+			<circle id="circle268-2" class="st125" cx="1464" cy="902.6" r="6"/>
+		</g>
+		<g id="g1926">
+			<g id="use1928">
+				<path id="aa-2" class="st19" d="M1568.3,651.3l-23.2,23.4c-3.9,3.9-10.2,4-14.1,0.1l0,0c-3.9-3.9-4-10.2-0.1-14.1l0,0l23.2-23.4
+					c3.9-3.9,10.2-4,14.1-0.1l0,0C1572.2,641,1572.2,647.4,1568.3,651.3L1568.3,651.3z"/>
+			</g>
+			<path id="rect1930" class="st20" d="M1569.1,652l-23.2,23.4c-4.3,4.3-11.2,4.4-15.6,0.1l0,0l0,0c-4.3-4.3-4.3-11.2-0.1-15.6l0,0
+				l0,0l23.2-23.4c4.3-4.3,11.2-4.4,15.6-0.1l0,0l0,0C1573.3,640.7,1573.4,647.7,1569.1,652L1569.1,652L1569.1,652z"/>
+		</g>
+		<circle id="circle1932" class="st24" cx="1561.3" cy="644.4" r="6"/>
+		<circle id="circle1934" class="st125" cx="1538" cy="667.7" r="6"/>
+		<g id="g1946">
+			<g id="use1948">
+				<path id="aa-3" class="st19" d="M2140.4,433.3v33c0,5.5-4.5,10-10,10l0,0c-5.5,0-10-4.5-10-10v-33c0-5.5,4.5-10,10-10l0,0
+					C2136,423.3,2140.4,427.7,2140.4,433.3z"/>
+			</g>
+			<path id="rect1950" class="st20" d="M2141.4,433.3v33c0,6.1-4.9,11-11,11l0,0c-6.1,0-11-4.9-11-11v-33c0-6.1,4.9-11,11-11l0,0
+				C2136.5,422.3,2141.4,427.2,2141.4,433.3z"/>
+		</g>
+		<circle id="circle1952" class="st109" cx="2130.4" cy="433.3" r="6"/>
+		<circle id="circle1954" class="st125" cx="2130.4" cy="466.3" r="6"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 361.9302 2894.9248)" class="st126 st9">Copyright © 2020 by RAPID TRANSIT NEWS, ® All rights reserved. </text>
+</svg>

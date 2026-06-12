@@ -30,16 +30,25 @@ Audit results, all candidates **GOOD** (raw GeoJSON size; build will simplify):
 | Moscow | `moscow` | 1.13 MB (proposed add, D3) |
 | Hong Kong | `hong_kong` | 1.05 MB (proposed add, D3) |
 | Beijing | `beijing` | 688 KB (D3 "why not" → IN the deck at D23) |
+| Madrid | `madrid` | 429 KB (D23 newcomer; audited GOOD 2026-06-12) |
+| Copenhagen | `copenhagen` | 582 KB (D23 newcomer; audited GOOD 2026-06-12) |
+| Guangzhou | `guangzhou` | 1.58 MB (D23 newcomer; audited GOOD 2026-06-12; file carries Foshan + trams, scoped out by ref) |
 
 Re-verify any time: `python3 _scripts/world_metros/audit_osm_sources.py`.
 
-**D23 roster delta (2026-06-12):** the deck is now the owner's ranked 16.
-Beijing joins (already GOOD above). **Madrid, Copenhagen and Guangzhou are
-not yet audited here** — add them to the candidate list and re-run the
-audit at scale-up, and give all four newcomers DIAGRAM-LEDGER stanzas
-(none audited there either). Each also needs a system-scope entry below
-before extraction (e.g. Guangzhou vs Foshan through-running, Copenhagen
-M1–M4 only, Madrid Metro vs Metro Ligero).
+**Audit note 2026-06-12 (gate-3 re-run):** all 16 deck cities GOOD except
+**Paris, which showed ERRORS on that day's validator run** (it was GOOD
+2026-06-11; the validator regenerates hourly from OSM, so status
+fluctuates). Its GeoJSON still serves and the gate-3 extraction matched
+the committed 2026-06-11 numbers (16 lines; station delta only from the
+new complex-merge rule), so the snapshot shipped. Re-check on the next
+refresh.
+
+Seoul-area supplementary networks: the capital-region scope (D25) also
+draws `incheon` (Incheon 1-2). `seoul_-_neotrans` (Sinbundang) exists on
+the validator but its GeoJSON export is **empty**: a snapshot gap recorded
+in D25 and on Method. `incheon_-_airport` (the suspended airport maglev)
+stays out.
 
 ## Refresh / freeze discipline
 
@@ -48,29 +57,62 @@ timestamps + checksums; `build` runs offline and deterministically over snapshot
 Facts carry `value · unit · source · as_of`. Missing evidence renders **Unknown**,
 never "No" or zero. No SLA tiers (D6) — annual scripted refresh.
 
-## System scopes (freeze before extraction; each gets a Method entry)
+## System scopes (FROZEN 2026-06-12, D25; rider-scope B operationalized)
 
-- Shanghai Metro — exclude maglev.
-- Tokyo — Tokyo Metro + Toei only; truncate through-running at scope boundary.
-- Seoul — **OPEN QUESTION (the hard one):** OSM network spans ~148 km north–south;
-  `ref=1` alone carries ~26 Korail through-service variants (Cheonan/Incheon/Soyosan).
-  "Lines 1–9 at marketed extents" (Codex) would still include ~200 km of Korail
-  corridor. Candidate rule: lines 1–9 truncated to Seoul-Metro-operated sections;
-  decide at pipeline stage with data in hand, record in DECISIONS.
-- Singapore MRT — exclude LRT.
-- Delhi Metro — as is.
-- London Underground — exclude Elizabeth line.
-- Paris Métro — 1–14 + 3bis/7bis; exclude RER. (Note: stray `LISA` ref and one outlier
-  segment in raw data — build-step QA filters by known refs + bbox sanity.)
-- NYC Subway — `new_york_city` network only (PATH, Staten Island, JFK already separate).
-- Mexico City Metro — as is.
-- Cairo Metro — exclude LRT + monorail.
-- Moscow Metro — exclude Central Circle (MCC) + Diameters (MCD) if added.
-- Hong Kong MTR — exclude light rail + Airport Express? (freeze before extraction).
+The rule: a card claims the city's metro network **as its familiar map draws
+it as coequal metro lines**; modes the map itself marks as distinct products
+(commuter overlays, trams, feeders, people-movers) stay out. Implemented as
+per-city ref sets in `build_page_geometry.py`; prose on the page's Method tab.
 
-Route variants: many service patterns share a `ref` (Seoul L1: 26). For Shape
-rendering, union segments per ref. For counted lenses, count **customer-facing line
-identities**, not variants.
+- Tokyo — Metro + Toei only (13 lines); JR refs and the `Al` through-service
+  excluded. Through-running truncates at the scope boundary, because the
+  familiar Tokyo Subway map stops there.
+- Seoul — **FROZEN: the full capital-region network the familiar map draws**,
+  incl. Line 1's whole through-running corridor (the map draws it as one
+  line), the Korail K-lines, GTX-A, AREX, the light metros, Incheon 1-2.
+  The L1 open question closes on the map-draws-it test. Snapshot gap:
+  Sinbundang is in the declared scope but its validator export is empty;
+  plotted counts omit it (noted on Method). Reported figures (route-km,
+  ridership) cover the declared scope incl. Sinbundang.
+- Singapore — MRT only (6 lines); LRT feeders out.
+- Hong Kong — MTR heavy rail incl. Airport Express + Disneyland Resort line
+  (10 lines); Light Rail out (district inset, not the metro map's network).
+  The AEL question closes as INCLUDE: the MTR map draws it coequal.
+- Paris — Métro 1-14 + 3bis/7bis; RER out; CDGVAL/Orlyval out (not on the
+  Métro map). Outlier guard still drops the stray fragment.
+- Shanghai — lines 1-18 + Pujiang (19); maglev out (distinct product even
+  on the official map).
+- Beijing — the operator's full mapped network (27 identities incl. both
+  airport expresses, S1, Xijiao, the named suburban lines); Batong folds
+  into Line 1 and Daxing into Line 4 as the map draws them. Snapshot gap:
+  the Yizhuang T1 tram is on the operator's map but absent from the
+  validator export; reported route-km (909) includes it.
+- London — Underground only (11 lines); Elizabeth, Overground, DLR out
+  (distinct products in the Tube map's own grammar).
+- NYC — subway services only (23 pills); `<6>`/`<7>`/`<F>` fold into their
+  base identities; the three S shuttles ride as one; SIR/PATH separate.
+- Madrid — Metro 1-12 + Ramal (13); Metro Ligero out.
+- Moscow — metro + MCC (16 identities; the map's coequal line 14, so the
+  old exclude-MCC note is superseded); MCD diameters out (D-branded
+  commuter product); 4А folds into 4; monorail closed and absent.
+- Copenhagen — M1-M4 only; S-tog and Lokaltog out.
+- Delhi — DMRC + Airport Express (9 identities); the Blue branch folds into
+  Blue; Rapid Metro Gurgaon and the Aqua line out (separate concessions).
+- Guangzhou — GZ metro + Guangfo + APM (19); Foshan's own lines (F2/F3),
+  all trams, and the stray Qingyuan maglev out.
+- Mexico City — STC Metro's 12 lines; Tren Ligero and Suburbano out.
+- Cairo — metro 1-3; LRT and monorail out.
+
+Route variants: many service patterns share a `ref` (Seoul L1: 87 at the
+gate-3 snapshot). Segments union per ref; counted lenses count
+**customer-facing line identities** (ref folds above), not variants.
+
+Station counting (gate-3 definition): named station points within 90 m of
+an in-scope line vertex; same-named points merge within 350 m
+single-linkage into one complex (interchanges count once); unnamed
+per-service stop points are ignored (their share varies wildly by city and
+was biasing counts; NYC plotted 2.9x its official count under the old 60 m
+grid rule).
 
 ## The five computed ranking lenses (from frozen snapshots; definitions are the product)
 

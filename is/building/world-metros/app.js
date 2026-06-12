@@ -1,7 +1,9 @@
-/* Metro Match — page logic (D17 card pivot, D20-resolved state).
+/* Metro Match — page logic (gate-3 state: full deck of 16).
    Vanilla JS. All stat data is baked into the #mm-data JSON island by
    _scripts/world_metros/build_metro_cards.py; nothing is fetched at runtime
-   except the lore-back diagrams, which lazy-load on first flip. */
+   except the lore-back diagrams, which lazy-load on first flip. City keys
+   are slugs (hong-kong, mexico-city). Battle and daily run on the core six;
+   the deck's theme switch (D24) is CSS-only via data-theme. */
 'use strict';
 
 const DATA = JSON.parse(document.getElementById('mm-data').textContent);
@@ -51,7 +53,7 @@ tabs.forEach((tab, i) => {
 
 function routeFromHash() {
   const h = (location.hash || '').replace(/^#/, '');
-  const m = h.match(/^battle\/([a-z]+)-vs-([a-z]+)$/);
+  const m = h.match(/^battle\/([a-z-]+)-vs-([a-z-]+)$/);
   if (m && LIVE.includes(m[1]) && LIVE.includes(m[2]) && m[1] !== m[2]) {
     battle.seed = [m[1], m[2]];
     battle.started = false;
@@ -87,6 +89,18 @@ document.querySelectorAll('.flipbox').forEach((box) => {
   };
   btn.addEventListener('click', toggle);
   box.addEventListener('click', toggle); // pointer convenience; button is the keyboard path
+});
+
+// ----------------------------------------------------- deck: theme switch
+
+const deckgrid = document.getElementById('deckgrid');
+const themeBtns = Array.from(document.querySelectorAll('.themebtn'));
+themeBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    deckgrid.dataset.theme = btn.dataset.theme;
+    themeBtns.forEach((b) =>
+      b.setAttribute('aria-pressed', String(b === btn)));
+  });
 });
 
 // ----------------------------------------------------------------- battle
@@ -156,13 +170,15 @@ function pickStat(stat) {
   const win = DATA.stats[stat].win;
   const vy = CITIES[you].values[stat];
   const vc = CITIES[cpu].values[stat];
+  const tie = vy === vc;
   const youWins = win === 'low' ? vy < vc : vy > vc;
-  if (youWins) battle.yScore += 1; else battle.cScore += 1;
+  if (!tie) { if (youWins) battle.yScore += 1; else battle.cScore += 1; }
 
   $('b-prompt').hidden = true;
   $('b-call').hidden = false;
   $('b-nums').hidden = false;
-  $('b-call').textContent = upper(youWins ? you : cpu) + ' TAKES THE ROUND';
+  $('b-call').textContent = tie ? 'DEAD HEAT · NOBODY SCORES'
+    : upper(youWins ? you : cpu) + ' TAKES THE ROUND';
   $('b-nums').textContent =
     CITIES[you].disp[stat] + ' vs ' + CITIES[cpu].disp[stat];
   renderScore();
@@ -210,12 +226,16 @@ const DAILY_Q = {
   stations: 'Which plots more stations?',
   span: 'Which reaches further?',
   density: 'Which packs stations tighter?',
+  routekm: 'Which reports more route-km?',
+  ridership: 'Which carries more riders a year?',
 };
 const DAILY_VERB = {
   opened: 'opened earlier',
   stations: 'plots more stations',
   span: 'reaches further',
   density: 'packs them tighter',
+  routekm: 'reports more route-km',
+  ridership: 'carries more riders',
 };
 
 function localDateStr(d) {
