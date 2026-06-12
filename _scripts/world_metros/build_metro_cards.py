@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Metro Match page generator (gate-3 + D27 state: the full deck of 18).
 
-Generates is/building/world-metros/index.html: THE DECK (18 cards in the
+Generates is/building/metro-match/index.html: THE DECK (18 cards in the
 owner's D23+D27 ranked order, all live with flip-to-lore backs, three switchable
 stat themes per D24), THE BATTLE (vs cpu, pick-a-stat, first to 3, ties are
 dead heats), THE DAILY (one guess a day, streak in localStorage) and METHOD
@@ -16,10 +16,10 @@ Design state baked in:
     pipeline landed.
   - D21 name Metro Match; scope rider-B, frozen per city at D25.
   - D23+D27 roster: 18 cards in the owner's ranked order (Osaka, Istanbul appended).
-  - D24/D28/D31 themes: SCALE / CHARACTER stat sets switched at deck level
-    (display names; the data-set keys stay play/almanac). CHARACTER = base
-    fare, driverless, transfer stations, biggest hub, new lines. Battle and
-    daily run on the SCALE six only (full coverage there).
+  - D28/D31/D34 stat sets: SCALE (the six) and CHARACTER (base fare,
+    driverless, transfer, biggest hub, new lines; D31 composition). No
+    deck-level toggle: one flip cycles each card's three faces,
+    SCALE -> CHARACTER -> MAP (D34). Battle + daily run on the SCALE six.
 
 Inputs (both committed, both offline):
   assets/meta.json                  geometry snapshot (build_page_geometry.py)
@@ -38,7 +38,7 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
-PAGE = os.path.join(REPO, "is", "building", "world-metros")
+PAGE = os.path.join(REPO, "is", "building", "metro-match")
 ASSETS = os.path.join(PAGE, "assets")
 
 # Deck order = the owner's ranked curation (D23) + Osaka, Istanbul appended
@@ -295,19 +295,21 @@ def ledger_html(stats, city, sset, battle=False):
     return f'<div class="cledger cl-{sset}" data-set="{sset}">{"".join(rows)}</div>'
 
 
-def card_front(meta, stats, city, battle=False, deck=False):
-    """The play side. deck=True carries both stat sets (SCALE + CHARACTER,
-    D28/D31); battle cards carry SCALE only (buttons for the you-card, plain
-    rows for cpu)."""
+def card_front(meta, stats, city, battle=False, sset=None):
+    """A stat face. Deck cards are built one face per set (sset='play' |
+    'almanac'; the D34 flip cycles scale -> character -> map). Battle
+    cards carry the SCALE set only (buttons for the you-card, plain rows
+    for cpu)."""
     deck_no = f"{ROSTER.index(city) + 1:02d}"
-    if deck:
-        ledgers = "".join(ledger_html(stats, city, s)
-                          for s in ("play", "almanac"))
+    if sset:
+        ledgers = ledger_html(stats, city, sset)
+        face_aria = ", " + {"play": "scale", "almanac": "character"}[sset] + " stats"
     else:
         ledgers = ledger_html(stats, city, "play", battle=battle)
+        face_aria = ""
     return (f'<article class="card cfront" '
             f'aria-label="{DISPLAY.get(city, city)}, {scope_line(meta, city)}, '
-            f'card {deck_no} of {len(ROSTER)}">'
+            f'card {deck_no} of {len(ROSTER)}{face_aria}">'
             f'<div class="chead"><div class="cid">'
             f'<div class="cname">{DISPLAY.get(city, city)}</div></div>'
             f'<div class="cno">{deck_no}/{len(ROSTER)}</div></div>'
@@ -348,6 +350,10 @@ def card_deck_back(meta):
 
 
 def deck_grid(meta, stats):
+    """Each card cycles three faces on one gesture (D34): SCALE front,
+    CHARACTER front, MAP (the lore side). The two flip slots hold the
+    current and the incoming face; the third card waits in the stash and
+    app.js rotates them through. No deck-level toggle."""
     cells = []
     for city in ROSTER:
         slug = SLUG[city]
@@ -355,25 +361,14 @@ def deck_grid(meta, stats):
             f'<div class="cardunit">'
             f'<div class="flipbox" data-city="{slug}">'
             f'<div class="flipinner">'
-            f'<div class="face">{card_front(meta, stats, city, deck=True)}</div>'
-            f'<div class="face backface" aria-hidden="true">{card_back(city)}</div>'
+            f'<div class="face f-a">{card_front(meta, stats, city, sset="play")}</div>'
+            f'<div class="face f-b" aria-hidden="true">{card_front(meta, stats, city, sset="almanac")}</div>'
             f'</div></div>'
-            f'<button type="button" class="flipbtn" data-city="{slug}" '
-            f'aria-pressed="false">FLIP · LORE SIDE</button>'
+            f'<div class="facestash" hidden>{card_back(city)}</div>'
+            f'<button type="button" class="flipbtn" data-city="{slug}">'
+            f'FLIP · CHARACTER</button>'
             f'</div>')
     return "".join(cells)
-
-
-def theme_switch():
-    # Two pills, SCALE | CHARACTER (D31 names; replaces PLAY | ALMANAC). The
-    # data-set keys stay play/almanac (app.js + style.css switch on them);
-    # only the visible labels change. Method carries the definitions + FX date.
-    return (
-        '<div class="themebar" role="group" aria-label="Stat set">'
-        '<span class="themecap">STATS</span>'
-        '<button type="button" class="themebtn" data-set="play" aria-pressed="true">SCALE</button>'
-        '<button type="button" class="themebtn" data-set="almanac" aria-pressed="false">CHARACTER</button>'
-        '</div>')
 
 
 def battle_panel(meta, stats):
@@ -589,7 +584,7 @@ def method_panel(meta, alm, stats):
       </table>
 
       <h2>CHARACTER: the five</h2>
-      <p>A second switchable set. Every figure is dated; sources are in the
+      <p>The card&rsquo;s second face. Every figure is dated; sources are in the
       almanac file in the site&rsquo;s public repo.</p>
       <table>
         <tr><th>stat</th><th>what it measures</th><th>wins</th></tr>
@@ -742,10 +737,10 @@ def main():
 
     <section id="panel-deck" role="tabpanel" aria-labelledby="tab-deck">
       <p class="intro">Stat cards for the world&rsquo;s great metro systems,
-      every number dated and sourced. <b>Flip a card for the lore; pick a
-      stat and beat the cpu; one guess a day in the daily.</b></p>
-      {theme_switch()}
-      <div class="deckgrid" id="deckgrid" data-set="play">{deck_grid(meta, stats)}</div>
+      every number dated and sourced. Each card has three faces: scale,
+      character, the map. <b>Flip to cycle them; pick a stat and beat the
+      cpu; one guess a day in the daily.</b></p>
+      <div class="deckgrid" id="deckgrid">{deck_grid(meta, stats)}</div>
     </section>
 
     <section id="panel-battle" role="tabpanel" aria-labelledby="tab-battle" hidden>

@@ -1,6 +1,6 @@
 # STATUS — Metro Match (was World Metros Atlas)
 
-_Last updated: 2026-06-12 (gate-3 scale-up D25-D31 built atop `claude/sweet-wilbur-ff784c`; D31 = the second set recomposed and named SCALE / CHARACTER, biggest-hub stat added, newest-line dropped). Gate-3 (D25-D31) is not yet merged to master._
+_Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 merged to master as PR #164; this session's card-IA round, URL move and three-face flip recorded as D32-D34 and shipped on top)._
 
 ## Done
 
@@ -184,29 +184,59 @@ _Last updated: 2026-06-12 (gate-3 scale-up D25-D31 built atop `claude/sweet-wilb
   375/768/1000/1280, battle (153 pairs) + daily across 18, console clean,
   no overflow, soft-launch norms kept. D27 in DECISIONS.
 
-## Current gate: owner verdict on the deck of 18 (D27)
+- D30 + D31 (2026-06-12, parallel session, merged as PR #164): the daily
+  got smart (two deterministic forms: close-pair DUELs + PICK-the-number
+  with honest distractors, avalanche date hash, bank board in mocks/) and
+  the second set was recomposed from the research-chip menu + named
+  SCALE / CHARACTER (drop newest line, add BIGGEST HUB computed from the
+  snapshot, interchange relabeled "transfer"; meta.json gains
+  biggest_hub).
 
-The deck of 18 (gate 3 + D27) is built, verified and committed on the
-branch (`claude/sweet-wilbur-ff784c`), and shown to the owner in Arc
-against the local preview. The owner's verdict on this page is the open
-gate. Items carried to that review: the 15 new epithets (creative calls,
-incl. Osaka "the merchant" / Istanbul "the crossing"); the Istanbul scope
-call (Marmaray excluded, could be pulled in); the notable
-Seoul-tops-ridership claim (full-capital scope, sourced, per-operator
-methodology noted); and Osaka's two soft spots (a c.2011 diagram with a
-caveat, and a service-day row that drops for want of a sourced figure).
+- D32 (2026-06-12, this session; built as "D30" pre-merge, renumbered):
+  the card-IA round. Board (`mocks/card-ia-board.html`): three candidates
+  on real cards + the 18-back overlap map (26 collisions incl. 3 factual
+  contradictions). Owner verdicts: B/C (figures shoved onto front or
+  back) rejected as ugly; the lore bar = factually correct, plain (not
+  overwritten), interesting; the dedup shrank to 11 slim edits (3
+  must-fixes, 7 repeat swaps, 1 NYC clarifier), applied to content.json
+  with a plain-pass; set captions ride each stat face.
+
+- D33 (2026-06-12, this session): URL moved to
+  `/is/building/metro-match/` (owner-directed); a noindex redirect stub
+  sits at the old world-metros path; generator, geometry OUT_DIR, mocks
+  and living docs updated. Internal names (the `_scripts/world_metros/`
+  dir, the `world-metros-atlas` registry stanza) deliberately stay.
+
+- D34 (2026-06-12, this session): one flip cycles three faces,
+  SCALE -> CHARACTER -> MAP; the deck-level toggle is gone (supersedes
+  the D32 standing shape and D31's relabeled toggle). Deck cards render
+  two single-ledger fronts + a stashed map side; app.js cycles them with
+  a locked card height; diagrams lazy-load on the map turn. Owner
+  authorized publish ("u can put it on metromatch... i will be
+  testing"); soft-launch norms stay while the owner tests live.
+
+## Current gate: owner live-testing the shipped deck
+
+The deck of 18 (gate 3, D25-D31) + this session's D32-D34 are LIVE at
+https://ajin.im/is/building/metro-match/ (still noindex/unlisted; the
+old world-metros URL redirects). Listing it on /is/building, the
+sitemap or the home teaser is a SEPARATE owner call. Items carried to
+the live review: the 15 new epithets; the Istanbul scope call (Marmaray
+excluded, could be pulled in); the Seoul-tops-ridership claim
+(full-capital scope, sourced); Osaka's two soft spots (c.2011 diagram
+caveat; no sourced service-day figure); and the daily's known
+hash-collision property (a question can repeat within a week or two).
 
 ## Next exact action
 
-On the owner's yes: push the branch, open the PR, squash-merge WITHOUT
-`--delete-branch`, then delete the remote branch by hand. Then update the
-`~/projects.md` (`world-metros-atlas`) stanza, and register
-`build_metro_cards.py` + `build_page_geometry.py` in the untracked
-`publish.sh` in the MAIN checkout (worktrees cannot reach it; this STATUS
-note carries the reminder until then). Lifting any soft-launch norm
-(index, sitemap, hub card, home teaser) stays a SEPARATE owner call after
-this gate.
+Owner tests the live page and reports; fixes land as new rounds on a
+fresh branch (the ship branch was squash-merged; continuing one needs
+`git rebase --onto origin/master <old-head>`). Post-ship housekeeping
+done this session: registry stanza updated (new URL), generators
+registered in the main checkout's untracked `publish.sh`. Lifting any
+soft-launch norm (index, sitemap, hub card, home teaser) stays a
+SEPARATE owner call.
 
 ## Blockers
 
-None. Owner verdict pending (supervision gate for this big creative round).
+None.

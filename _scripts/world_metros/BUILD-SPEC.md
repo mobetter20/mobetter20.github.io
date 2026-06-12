@@ -14,11 +14,14 @@ A collectible card deck for the world's defining metro systems. Every city is
 one designed stat card; honest dated data is the content; comparison is the
 game. Trading cards with footnotes.
 
-## Surfaces (one URL)
+## Surfaces (one URL: `/is/building/metro-match/`; moved from
+`world-metros` at D33, a noindex stub redirects the old path)
 
 1. **THE DECK** — the landing: all 18 cards (D23's ranked 16 + Osaka and
    Istanbul at D27, superseding D3's twelve), collection grid locked to
-   1/2/3 columns (D27). Cards flip: **front for play, back for lore** (D18).
+   1/2/3 columns (D27). One gesture cycles each card's three faces (D34):
+   **SCALE -> CHARACTER -> MAP**; no deck-level toggle. (Amends D18's
+   two-side grammar: the lore side survives as the MAP face.)
 2. **THE BATTLE** — vs cpu, Top-Trumps loop: see your card, pick a stat, beat
    the hidden opponent card; first to 3. Stable per-pair URLs survive from
    D16's duel mechanics.

@@ -81,33 +81,45 @@ function loadDiagram(scope) {
   });
 }
 
+// One gesture cycles three faces (D34): SCALE -> CHARACTER -> MAP -> SCALE.
+// Two physical slots alternate visibility as rotation accumulates in 180deg
+// steps; before each turn, the card that is next in the cycle is mounted
+// into whichever slot is currently hidden (its swap is invisible), and the
+// card it displaces parks in the stash.
 document.querySelectorAll('.flipbox').forEach((box) => {
   const unit = box.closest('.cardunit');
   const btn = unit.querySelector('.flipbtn');
-  const front = box.querySelector('.face:not(.backface)');
-  const back = box.querySelector('.face.backface');
-  const toggle = () => {
-    const flipped = box.classList.toggle('flipped');
-    if (flipped) loadDiagram(back);
-    btn.setAttribute('aria-pressed', String(flipped));
-    btn.textContent = flipped ? 'FLIP · PLAY SIDE' : 'FLIP · LORE SIDE';
-    front.setAttribute('aria-hidden', String(flipped));
-    back.setAttribute('aria-hidden', String(!flipped));
+  const inner = box.querySelector('.flipinner');
+  const slots = [box.querySelector('.face.f-a'), box.querySelector('.face.f-b')];
+  const stash = unit.querySelector('.facestash');
+  const cards = [slots[0].firstElementChild,   // scale front
+                 slots[1].firstElementChild,   // character front
+                 stash.firstElementChild];     // map (lore) side
+  const NEXT_LABEL = ['FLIP · CHARACTER', 'FLIP · MAP', 'FLIP · SCALE'];
+  let state = 0;  // index into cards of the visible face
+  let rot = 0;    // accumulated rotation, multiples of 180
+
+  const advance = () => {
+    if (!box.classList.contains('locked')) {
+      // freeze the box at its settled height so the shorter map card
+      // cannot collapse it once the slots go absolute
+      box.style.height = inner.offsetHeight + 'px';
+      box.classList.add('locked');
+    }
+    const next = (state + 1) % 3;
+    const hidden = slots[1 - ((rot / 180) % 2)];  // the slot about to turn in
+    if (hidden.firstElementChild) stash.appendChild(hidden.firstElementChild);
+    hidden.appendChild(cards[next]);
+    if (next === 2) loadDiagram(hidden);
+    rot += 180;
+    inner.style.transform = 'rotateY(' + rot + 'deg)';
+    state = next;
+    btn.textContent = NEXT_LABEL[state];
+    slots.forEach((s, i) =>
+      s.setAttribute('aria-hidden', String(i !== (rot / 180) % 2)));
   };
-  btn.addEventListener('click', toggle);
-  box.addEventListener('click', toggle); // pointer convenience; button is the keyboard path
-});
-
-// ----------------------------------------------------- deck: theme switch
-
-const deckgrid = document.getElementById('deckgrid');
-const setBtns = Array.from(document.querySelectorAll('.themebtn'));
-setBtns.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    deckgrid.dataset.set = btn.dataset.set;
-    setBtns.forEach((b) =>
-      b.setAttribute('aria-pressed', String(b === btn)));
-  });
+  btn.addEventListener('click', advance);
+  box.addEventListener('click', advance); // pointer convenience; button is the keyboard path
 });
 
 // ----------------------------------------------------------------- battle

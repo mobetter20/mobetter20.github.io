@@ -107,7 +107,7 @@ def main():
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/is/building/world-metros/style.css">
+<link rel="stylesheet" href="/is/building/metro-match/style.css">
 <style>
   body { padding: 0 22px 60px; }
   .pdhead { max-width: 760px; margin: 26px auto 8px; }
