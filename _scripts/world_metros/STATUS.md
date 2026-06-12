@@ -160,7 +160,8 @@ _Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 m
   years, route-km, ridership, and the theme figures, each dated + sourced
   in `almanac.json`; Seoul ridership = the scope-matched capital-region
   4.42B from Korea Railroad Statistics). D24 themes ship as CORE / SERVICE
-  / MONEY switchable stat sets, every figure a dated snapshot. Battle +
+  / MONEY switchable stat sets (subsequently recomposed and renamed
+  SCALE / CHARACTER at D28/D31, then folded into the three-face flip at D34), every figure a dated snapshot. Battle +
   daily run the full deck on the core six (battles can tie). Verified at
   375/768/1280, columns lock 1/2/4, keyboard-playable, reduced-motion
   intact, console clean, no overflow, soft-launch norms kept (noindex, not
@@ -221,14 +222,14 @@ _Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 m
   badge is cut (soft-launch leftover), and the wordmark links to #deck
   as the in-app way back. Verified 375/768/1280/1990, console clean.
 
-- D36 (2026-06-13): fact-check pass on the live deck. Owner "yes fix all
+- D38 (2026-06-13, renumbered from a parallel session's D36): fact-check pass on the live deck. Owner "yes fix all
   now" on a 10-finding external check; verified each against data + live
   sources. Singapore driverless 6->4 (reverts a wrong D32 lore edit; NSL/EWL
   keep captains), Delhi 3->2, Hong Kong owns its network (opened 1979->1910
   via East Rail, route-km 209->271), stations over-count (~+20% vs official)
   disclosed in Method + wishlisted for a re-extraction round, lore/Method
   honesty fixes (Beijing one-operator, nothing-leaves-the-page, opened
-  sourcing), redirect stub carries query+hash. Verified + shipped. D36 in
+  sourcing), redirect stub carries query+hash. Verified + shipped. D38 in
   DECISIONS.
 
 - D36 (2026-06-12, owner-commissioned): THE RANKS tab. Per-stat

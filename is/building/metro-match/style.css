@@ -98,29 +98,6 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 @media (min-width: 906px) { .intro { max-width: 862px; } }
 .intro b { color: var(--text); font-weight: 600; }
 
-/* theme switch (D24): three stat sets on the same cards */
-.themebar {
-  display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
-  padding: 16px 2px 0;
-}
-.themecap {
-  font-family: var(--mono); font-size: 9.5px; letter-spacing: .2em;
-  color: var(--grey);
-}
-.themebtn {
-  background: none; border: 1px solid var(--edge); border-radius: 999px;
-  font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
-  color: var(--grey); padding: 6px 13px; cursor: pointer;
-}
-.themebtn:hover { color: var(--body); border-color: var(--chipedge); }
-.themebtn[aria-pressed="true"] {
-  background: var(--blue); border-color: var(--blue); color: #fff;
-}
-.themenote {
-  font-family: var(--mono); font-size: 9px; color: var(--faint);
-  letter-spacing: .04em;
-}
-
 /* Column count is locked to 1 / 2 / 3 (never 4): 18 cards land in even
    rows at every width (18 = 1x18 = 2x9 = 3x6). The owner reversed the old
    1/2/4 lock at D27 ("3 per row was much better"). */
@@ -156,10 +133,6 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
   font-size: 28px; font-weight: 800; letter-spacing: .04em;
   text-transform: uppercase; line-height: 1.02;
 }
-.cepi {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .2em;
-  color: var(--lblue); text-transform: uppercase; margin-top: 5px;
-}
 /* the core line: count + scope, the card subtitle (moved up from the band
    tag). Data, not flavor, so it reads in soft grey not the blue accent. */
 .csub {
@@ -168,17 +141,6 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
 }
 .cno { font-family: var(--mono); font-size: 10px; color: var(--dim); padding-top: 6px; }
 
-.cpills {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 4px;
-  margin-top: 13px; min-height: 18px; flex: none;
-}
-.cpills i {
-  font-style: normal; font-family: var(--mono); font-size: 10px;
-  font-weight: 500; color: #fff; padding: 3px 8px; border-radius: 999px;
-  letter-spacing: .02em;
-}
-.cpills.compact { gap: 3px; }
-.cpills.compact i { font-size: 9px; padding: 2px 5px; }
 /* C2 adaptive band (owner-picked): over 16 lines the refs become one thin
    strip of the line colours, the deck-back motif; refs read on the lore back. */
 .cband {
@@ -186,10 +148,6 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 22px 
   overflow: hidden; margin-top: 13px;
 }
 .cband i { flex: 1; }
-.ctag {
-  font-family: var(--mono); font-size: 9px; color: var(--grey);
-  letter-spacing: .04em; margin-top: 7px; white-space: nowrap;
-}
 
 /* D34: no deck-level toggle. Each deck face carries exactly one ledger
    (scale or character), so ledgers simply display; battle stays scale. */

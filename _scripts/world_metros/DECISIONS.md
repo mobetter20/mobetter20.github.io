@@ -1026,7 +1026,8 @@ cursor is the affordance). Both applied; lock verified at 375/768/1280
 (intro edge == card edge exactly), hover rule removed, console clean._
 
 
-**D36 · Fact-check pass: data + lore corrections - RATIFIED 2026-06-13
+**D38 · Fact-check pass: data + lore corrections - RATIFIED 2026-06-13
+_Numbering note: this parallel session's entry originally carried D36, colliding with THE RANKS (D36, 2026-06-12); renumbered D38 since D37 (the deck-tab removal) was also taken. Content unchanged._
 (owner: "yes fix all now" on a 10-finding external fact-check; recs taken
 on the judgment calls).** _Numbering: a parallel session took D35 for the
 header polish (#168); this is D36._
@@ -1123,3 +1124,32 @@ same thing, what if we remove THE DECK"; assessment agreed; "do it").**
   battle; direct loads of #battle/seoul-vs-paris and #ranks route
   correctly; arrow-cycle covers the four tabs; nav one line at 375;
   no overflow; console clean.
+
+**D39 · Final sweep before the session close: three-agent audit + repo
+cleanup - RATIFIED 2026-06-12 (owner: "final ux check or content check...
+one last safety check" + "clean repos or any trees").**
+- Three parallel read-only auditors over the live master state. ZERO
+  BLOCKERS. Safety clean (no secrets, PII, or licensing gaps; all 18
+  diagrams ledgered + attributed verbatim; ODbL present). Deployment
+  clean (all assets 200, noindex on, sitemap clean, redirect stub
+  correct; the big map SVGs gzip on the wire, Beijing 6.4MB -> 1.36MB,
+  flip-only). Numbers consistent across cards, data island, Method and
+  the almanac on a 10-city spot check.
+- Fixed from the findings, one round: the D36 numbering collision (the
+  parallel fact-check entry renumbered D38); stale spec lines (README
+  theme names; BUILD-SPEC NN/18, interchange-shipped-as-transfer, gate-2
+  URL note, n=12 note; DATA-CONTRACT lenses section updated to the
+  six-stat SCALE reality); ~1.4KB dead CSS pruned (themebar, cpills,
+  cepi, ctag; archived mock HTMLs that referenced them are round
+  records, not live surfaces) + two dead battle ids; copy: Method says
+  "the map face" not "lore side", aria-labels likewise, Osaka's
+  driverless reads "1 line" singular, the "second face" sentence cut,
+  app.js header de-staled.
+- Repo cleanup: worktrees 7 -> 4 (removed brave-engelbart,
+  metro-cards-d17, exciting-shaw; the latter's only dirt was the
+  canary's machine-regenerated state.json); local branches 63 -> 50
+  (the 13 provably merged). Remaining after the owner closes sessions:
+  the 46 squash-orphan branches (need a confirmed force-delete), the
+  factcheck worktree (its work landed on master; branch is an orphan),
+  and the prepublish-namefix worktree (UNMERGED privacy fix, owner call
+  pending).

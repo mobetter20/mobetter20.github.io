@@ -35,7 +35,7 @@ game. Trading cards with footnotes.
 ## Card grammar (D18, ratified)
 
 - **Front (play side):** city name + epithet (the sprawl / the mesh / the two
-  crews / …), deck number `NN/16` in roster order (D23), line pills carrying the
+  crews / …), deck number `NN/18` in roster order (D23 + D27), line pills carrying the
   real refs in the operators' colours (the identity device, rendered purely
   from OSM data; compact above 12 lines) with a line-count + scope tag beside
   them ("8 lines · 2–9 shown": pills never silently claim completeness), six
@@ -82,7 +82,7 @@ that card; never shown as zero.
 - The practical-traveller layer (D2) — unchanged.
 - **Aggregate scores.** Rank chips are per-stat; no card carries an overall
   power number, no "best metro".
-- Brackets / tournaments (rejected at D16; n=12).
+- Brackets / tournaments (rejected at D16 at n=12; the logic holds at 18).
 - Accounts, multiplayer, backend anything. Static site; the streak is
   localStorage.
 - Official schematic artwork (licensing posture unchanged, DATA-CONTRACT.md)
@@ -92,7 +92,8 @@ that card; never shown as zero.
 
 1. **D19 ground pick** — DONE (C: dark card, dark table) + **D20** — DONE
    (V1 big ledger; density swap ratified).
-2. **Live-page rebuild** of `/is/building/world-metros/` as DECK + BATTLE +
+2. **Live-page rebuild** of `/is/building/world-metros/` (URL moved to
+   `/is/building/metro-match/` at D33) as DECK + BATTLE +
    DAILY + METHOD with the three live cities real, nine cards "soon" —
    BUILT 2026-06-12 (D21; `build_metro_cards.py`). Owner verdict on the
    live page is the open gate.

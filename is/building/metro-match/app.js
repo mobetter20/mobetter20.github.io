@@ -1,9 +1,10 @@
-/* Metro Match — page logic (gate-3 state: full deck of 16).
+/* Metro Match — page logic (full deck of 18).
    Vanilla JS. All stat data is baked into the #mm-data JSON island by
    _scripts/world_metros/build_metro_cards.py; nothing is fetched at runtime
-   except the lore-back diagrams, which lazy-load on first flip. City keys
-   are slugs (hong-kong, mexico-city). Battle and daily run on the core six;
-   the deck's theme switch (D24) is CSS-only via data-theme. */
+   except the map-face diagrams, which lazy-load on their flip turn. City
+   keys are slugs (hong-kong, mexico-city). Battle and daily run on the
+   SCALE six across the full deck; one flip cycles each card's three faces
+   (D34); the wordmark is the way home (D37). */
 'use strict';
 
 const DATA = JSON.parse(document.getElementById('mm-data').textContent);

@@ -133,11 +133,16 @@ per-service stop points are ignored (their share varies wildly by city and
 was biasing counts; NYC plotted 2.9x its official count under the old 60 m
 grid rule).
 
-## The five computed ranking lenses (from frozen snapshots; definitions are the product)
+## The computed ranking lenses (from frozen snapshots; definitions are the product)
+
+_Updated at the gate-3 sweep: the SCALE face ships six stats (opened,
+stations, span, density, route-km, ridership). Density replaced
+customer-facing lines at D20; route-km and ridership are almanac-grade
+reported figures (D5/D26), never computed lenses._
 
 1. **Furthest-stations span** — max geodesic distance between two station complexes.
 2. **Station complexes** — official identities; interchanges counted once.
-3. **Customer-facing lines** — primary-map identities, excluding service variants.
+3. **Network density** (D20, replaces customer-facing lines): station complexes per km2 of the convex hull; line identities ride the cards as band metadata only.
 4. **Interchange share** — complexes served by ≥2 counted lines ÷ all complexes.
 5. **Opening chronology** — earliest regular passenger service within declared scope.
 
