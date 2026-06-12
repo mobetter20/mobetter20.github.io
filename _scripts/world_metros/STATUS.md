@@ -231,6 +231,11 @@ _Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 m
   sourcing), redirect stub carries query+hash. Verified + shipped. D36 in
   DECISIONS.
 
+- D36 (2026-06-12, owner-commissioned): THE RANKS tab. Per-stat
+  leaderboards for all eleven stats (SCALE + CHARACTER picker), podium
+  top three, card-grammar rows, tightest-race battle links, no combined
+  score ever. Verified 375/768/1280, keyboard cycle, console clean.
+
 ## Current gate: owner live-testing the shipped deck
 
 The deck of 18 (gate 3, D25-D31) + this session's D32-D34 are LIVE at
