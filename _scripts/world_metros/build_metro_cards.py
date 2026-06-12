@@ -223,7 +223,9 @@ def stat_table(meta, alm):
              disp={k: fmt_usd(a[k]["fare_usd"]["value"]) for k in ROSTER}),
         dict(key="driverless", set="almanac", label="driverless", win="high",
              values={k: a[k]["driverless"]["value"] for k in ROSTER},
-             disp={k: f'{a[k]["driverless"]["value"]}<small> lines</small>' for k in ROSTER}),
+             disp={k: f'{a[k]["driverless"]["value"]}<small> '
+                      f'{"line" if a[k]["driverless"]["value"] == 1 else "lines"}</small>'
+                   for k in ROSTER}),
         dict(key="interchange", set="almanac", label="transfer", win="high",
              values={k: c[k]["interchange_pct"] for k in ROSTER},
              disp={k: f'{c[k]["interchange_pct"]}<small> %</small>' for k in ROSTER}),
@@ -263,7 +265,7 @@ def identity_html(meta, city):
     lines = meta["cities"][city]["lines"]
     stripes = "".join(f'<i style="background:{l["color"]}"></i>' for l in lines)
     return (f'<div class="cband" role="img" aria-label="{len(lines)} line '
-            f'colours, named on the lore side">{stripes}</div>')
+            f'colours, named on the map">{stripes}</div>')
 
 
 def card_foot(meta):
@@ -325,7 +327,7 @@ def card_back(city):
     credit = CREDIT[city]
     caveat = (f'<div class="lcaveat">{CAVEAT[city]}</div>'
               if city in CAVEAT else "")
-    return (f'<article class="card cback" aria-label="{DISPLAY.get(city, city)} lore side">'
+    return (f'<article class="card cback" aria-label="{DISPLAY.get(city, city)} map face">'
             f'<div class="lart"><img data-src="assets/{diagram_file(city)}" '
             f'alt="{html.escape(SYSTEM[city])} network diagram, a Wikimedia Commons '
             f'recreation of the map riders see"></div>'
@@ -400,9 +402,9 @@ def battle_panel(meta, stats):
       <div class="bcol">
         <div class="bcap">CPU · FACE DOWN</div>
         <div class="bslot bflip" id="cpu-slot">
-          <div class="bflipinner" id="cpu-flip">
+          <div class="bflipinner">
             <div class="bface">{card_deck_back(meta)}</div>
-            <div class="bface bfaceup" id="cpu-front">{cpu}</div>
+            <div class="bface bfaceup">{cpu}</div>
           </div>
         </div>
       </div>
@@ -666,7 +668,7 @@ def method_panel(meta, alm, stats):
       </table>
 
       <h2>CHARACTER: the five</h2>
-      <p>The card&rsquo;s second face. Every figure is dated; sources are in the
+      <p>Every figure is dated; sources are in the
       almanac file in the site&rsquo;s public repo.</p>
       <table>
         <tr><th>stat</th><th>what it measures</th><th>wins</th></tr>
@@ -723,7 +725,7 @@ def method_panel(meta, alm, stats):
       revision named in the rows.</p></details>
 
       <h2>The diagrams on the backs</h2>
-      <p>The lore side of each card carries the diagram riders actually see,
+      <p>The map face of each card carries the diagram riders actually see,
       as a Wikimedia Commons recreation, credited on the card:</p>
       {credits}
       <p>Official schematic artwork appears nowhere on this site: the major
