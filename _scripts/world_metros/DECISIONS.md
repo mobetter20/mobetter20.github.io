@@ -1167,3 +1167,19 @@ zero-blocker D39 sweep).**
   noindex pages), no home-teaser line.
 - Verified: card renders at the top of Lately, link root-relative to
   /is/building/metro-match/, one group-start, no overflow at 375/1280.
+
+**D41 · Indexable + sitemapped: hub-listed means default visibility -
+RATIFIED 2026-06-13 (owner: "if its on building page list it can be
+indexed, thats by default and others are like that too right?").**
+- Premise verified before lifting: all four neighbouring Lately builds
+  (the canary, LunarOnce, sky-over-seoul, omen.ops) carry no robots meta
+  and sit in sitemap.xml. Hub-listed and noindexed was the inconsistent
+  state.
+- The noindex meta leaves the generator; sitemap regenerated
+  (107 urls): /is/building/metro-match/ enters. The world-metros
+  redirect stub KEEPS its noindex + canonical (redirect pages stay out
+  of the index by design) and stays out of the sitemap.
+- Soft-launch ledger after D40/D41: hub card LISTED, noindex LIFTED,
+  sitemap IN. The home teaser is the one remaining norm, a separate
+  curation call (the IA rule: swap one of building's two teaser lines,
+  never add a third).
