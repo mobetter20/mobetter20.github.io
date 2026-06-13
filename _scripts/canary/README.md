@@ -2,10 +2,12 @@
 
 Automation behind <https://ajin.im/is/building/did-claude-just-reset-usage/>.
 
-Every 30 minutes a LaunchAgent polls Claude's official usage meter
-(`api.anthropic.com/api/oauth/usage`, token read from the macOS Keychain
-item `Claude Code-credentials`), appends the reading to a local history
-log, and decides:
+Every 30 minutes a LaunchAgent reads Claude's usage from cfo's
+`~/.local/share/cfo/state.json` (cfo extracts the meter from the CodexBar
+menubar snapshot on its own 30-min LaunchAgent). Reading cfo's file means
+this watcher carries no OAuth token of its own, and sidesteps the macOS TCC
+block that stops a launchd job from reading CodexBar's Group Container
+directly. It appends the reading to a local history log, and decides:
 
 - **reset candidate** — seven_day utilization dropped >10pp while
   `resets_at` stayed put (or moved >1h early = re-anchor). Held one tick,
