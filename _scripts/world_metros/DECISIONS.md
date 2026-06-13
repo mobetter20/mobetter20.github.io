@@ -1153,3 +1153,17 @@ one last safety check" + "clean repos or any trees").**
   factcheck worktree (its work landed on master; branch is an orphan),
   and the prepublish-namefix worktree (UNMERGED privacy fix, owner call
   pending).
+
+**D40 · Hub-listed: the /is/building norm lifts - RATIFIED 2026-06-13
+(owner: "i think now it can be listed on is/building too", after the
+zero-blocker D39 sweep).**
+- Metro Match leads the "Lately" stream on /is/building as a loose
+  single build (the IA rule: collections up top, loose builds in
+  Lately; new entries do not auto-promote to Featured). Card copy in
+  the page's plain one-liner register: "18 metro systems as trading
+  cards; pick a stat, beat the cpu." Status tag: live.
+- The OTHER soft-launch norms hold until called separately: noindex
+  stays on, the sitemap keeps skipping it (the builder auto-skips
+  noindex pages), no home-teaser line.
+- Verified: card renders at the top of Lately, link root-relative to
+  /is/building/metro-match/, one group-start, no overflow at 375/1280.
