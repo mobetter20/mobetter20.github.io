@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""canary watcher: reads Claude's usage from CodexBar's widget snapshot,
-detects quiet quota resets, and publishes state.json for
+"""canary watcher: reads Claude's usage from cfo's state.json (which extracts
+it from the CodexBar menubar snapshot), detects quiet quota resets, and
+publishes state.json for
 https://ajin.im/is/building/did-claude-just-reset-usage/
 
 Runs every 30 min via LaunchAgent (com.ajin.canary-watcher); see
@@ -41,9 +42,7 @@ GH = "/opt/homebrew/bin/gh"
 DATA_DIR = Path("~/.local/share/canary").expanduser()
 HISTORY = DATA_DIR / "usage-history.jsonl"
 PUBSTATE = DATA_DIR / "publisher.json"
-CODEXBAR_SNAPSHOT = Path(
-    "~/Library/Group Containers/Y5PE65HELJ.com.steipete.codexbar/widget-snapshot.json"
-).expanduser()
+CFO_STATE = Path("~/.local/share/cfo/state.json").expanduser()
 
 DROP_PP = 10.0          # utilization drop that counts as a candidate
 WINDOW_TOL_S = 120      # resets_at jitter tolerance (server emits ~1s noise)
@@ -73,29 +72,26 @@ def log(msg):
 # ── poll ────────────────────────────────────────────────────────────────
 
 def poll():
-    """Read the latest Claude usage from CodexBar's widget snapshot.
+    """Read Claude usage from cfo's state.json.
 
-    CodexBar already polls Claude's meter on its own schedule, so piggybacking
-    on it means this watcher carries no OAuth token of its own. The prior
-    direct api.anthropic.com poll died every time the Keychain access token
-    expired (HTTP 401) while Claude Code was idle. cfo reads the same snapshot.
+    cfo (com.tradlinx.cfo-state) extracts the meter from CodexBar's menubar
+    snapshot every 30 min and writes it under ~/.local/share — a path this
+    background agent can read. CodexBar's own Group Container cannot be read
+    from a launchd job (macOS TCC: "Operation not permitted"), and cfo already
+    holds the access to do the extraction. Neither path needs an OAuth token of
+    our own; the prior api.anthropic.com poll 401'd whenever its Keychain
+    access token expired during an idle stretch.
     """
-    snap = json.loads(CODEXBAR_SNAPSHOT.read_text())
-    entry = next(
-        (e for e in snap.get("entries", []) if e.get("provider") == "claude"), None)
-    if entry is None:
-        raise RuntimeError("no claude entry in CodexBar snapshot")
-    prim = entry["primary"]      # 5-hour session window
-    sec = entry["secondary"]     # 7-day weekly window (CodexBar's main "Weekly")
-    if prim.get("windowMinutes") != 300 or sec.get("windowMinutes") != 10080:
-        raise RuntimeError(
-            "CodexBar claude windows unexpected: primary=%s secondary=%s"
-            % (prim.get("windowMinutes"), sec.get("windowMinutes")))
+    st = json.loads(CFO_STATE.read_text())
+    claude = st["providers"]["claude"]
+    wk = claude["weekly"]       # 7-day window
+    sess = claude["session"]    # 5-hour window
+    t = st.get("meta", {}).get("codexbar_generated_at") or st["computed_at"]
     return {
-        "t": entry.get("updatedAt") or snap.get("generatedAt") or iso(now_utc()),
-        "u7": float(sec["usedPercent"]),
-        "r7": sec["resetsAt"],
-        "u5": float(prim["usedPercent"]),
+        "t": t,
+        "u7": float(wk["used_pct"]),
+        "r7": wk["resets_at"],
+        "u5": float(sess["used_pct"]),
     }
 
 
