@@ -1183,3 +1183,26 @@ indexed, thats by default and others are like that too right?").**
   sitemap IN. The home teaser is the one remaining norm, a separate
   curation call (the IA rule: swap one of building's two teaser lines,
   never add a third).
+
+**D42 · LAUNCHED: the soft launch formally closes - RATIFIED 2026-06-13
+(owner: "so this is now from soft launch to full public isnt it? there
+should be way to ratify transition").**
+- The soft launch was a four-norm bundle (BUILD-SPEC, D12): noindex, no
+  sitemap entry, no /is/building hub card, no home teaser. The transition
+  ledger: hub card LISTED at D40 (2026-06-13, after the zero-blocker D39
+  sweep); noindex LIFTED and sitemap ENTERED at D41 (2026-06-13). This
+  entry closes the bundle: METRO MATCH IS LAUNCHED, fully public at
+  https://ajin.im/is/building/metro-match/.
+- The home teaser is hereby DECOUPLED from launch: it is homepage
+  curation under the home IA rule (each verb shows exactly two lines;
+  featuring something means swapping a line, never appending a third).
+  An un-teased launched build is a normal state; the swap is a separate
+  curation call whenever the owner wants it.
+- Steady state from here: the page is live, indexed and hub-listed; data
+  refresh is the annual scripted pass (D6) over the committed snapshots
+  (geometry via build_page_geometry.py, almanac re-research, FX re-pin;
+  watch items recorded at D29/D38: Moscow's 17th line and Shanghai's
+  Line 22 arrive ~2026 and touch counts; the Osaka diagram wants a
+  re-source when a current Commons map appears). New design rounds are
+  ordinary owner-directed work, no standing gate.
+- The world-metros redirect stub stays noindexed forever by design.
