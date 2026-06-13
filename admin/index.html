@@ -24,8 +24,17 @@
   .bar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 0 0}
   .brand{font-weight:700;letter-spacing:1.5px;font-size:14px}
   .brand .tag{color:var(--dim);font-weight:400;letter-spacing:0;margin-left:8px;font-size:11px}
-  .brand a{color:inherit;text-decoration:none}
-  .brand a:hover{color:#e6edf3}
+  /* the exit: selfd is a door — hover swings it open on its left hinge to show ajin.im behind; click walks through (plain same-tab link, no JS) */
+  .brand a.exit{color:inherit;text-decoration:none;position:relative;display:inline-block;min-width:8.6ch;perspective:300px}
+  .brand a.exit .leaf{display:inline-block;transform-origin:0 50%;transition:transform .42s cubic-bezier(.36,.07,.39,.97),filter .42s}
+  .brand a.exit .behind{position:absolute;left:0;top:0;color:#c9a876;opacity:0;transition:opacity .24s ease .15s}
+  .brand a.exit:hover .leaf{transform:rotateY(-84deg);filter:brightness(.7)}
+  .brand a.exit:hover .behind{opacity:1}
+  @media (prefers-reduced-motion:reduce){
+    .brand a.exit .leaf,.brand a.exit .behind{transition:none}
+    .brand a.exit:hover .leaf{transform:none;filter:none}
+    .brand a.exit:hover .behind{opacity:0}
+  }
   .stat{display:flex;flex-direction:column;line-height:1.25}
   .stat .k{color:var(--muted);font-size:10px;letter-spacing:.5px;text-transform:uppercase}
   .stat .v{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
@@ -160,7 +169,7 @@
 <header>
   <div class="wrap">
     <div class="bar">
-      <div class="brand"><a id="exit" href="/" target="_self" title="exit">selfd</a><span class="tag">unit/self · prod</span></div>
+      <div class="brand"><a id="exit" class="exit" href="/" target="_self" title="exit"><span class="leaf">selfd</span><span class="behind">ajin.im</span></a><span class="tag">unit/self · prod</span></div>
       <div class="stat"><span class="k">uptime</span><span class="v" id="uptime">0d since incident</span></div>
       <div class="stat"><span class="k">build</span><span class="v" id="version">v34.7.2</span></div>
       <div class="spacer"></div>
