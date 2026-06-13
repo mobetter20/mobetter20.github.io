@@ -1,6 +1,6 @@
 # STATUS — Metro Match (was World Metros Atlas)
 
-_Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 merged to master as PR #164; this session's card-IA round, URL move and three-face flip recorded as D32-D34 and shipped on top)._
+_Last updated: 2026-06-13 (LAUNCHED at D42; soft launch closed)._
 
 ## Done
 
@@ -247,13 +247,22 @@ _Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 m
   trading cards; pick a stat, beat the cpu."). Noindex, the sitemap and
   the home teaser stay until called separately.
 
-## Current gate: owner live-testing the shipped deck
+- D42 (2026-06-13, owner): LAUNCHED. The soft-launch bundle formally
+  closes (hub card D40, noindex + sitemap D41, ratified as a transition
+  at D42). The home teaser is decoupled: homepage curation, not a launch
+  norm.
 
-The deck of 18 (gate 3, D25-D31) + D32-D39 are LIVE at
-https://ajin.im/is/building/metro-match/ and hub-listed on /is/building
-(D40; the old world-metros URL redirects), indexable and in the
-sitemap since D41 (2026-06-13; the redirect stub stays noindexed). The
-home teaser is the one remaining soft-launch norm, a separate call. Items carried to
+## State: LAUNCHED (no standing gate)
+
+Metro Match is live, indexed and hub-listed at
+https://ajin.im/is/building/metro-match/ (the old world-metros URL
+redirects via a permanently noindexed stub). Steady state: the annual
+scripted refresh (D6) over committed snapshots; watch items at the next
+refresh: Moscow's 17th line and Shanghai's Line 22 (~2026) touch
+line counts, and the Osaka diagram wants a re-source when a current
+Commons map appears. The home-teaser swap on the homepage is an open
+curation option, not a gate. New rounds are ordinary owner-directed
+work. Items carried to
 the live review: the 15 new epithets; the Istanbul scope call (Marmaray
 excluded, could be pulled in); the Seoul-tops-ridership claim
 (full-capital scope, sourced); Osaka's two soft spots (c.2011 diagram

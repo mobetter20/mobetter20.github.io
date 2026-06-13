@@ -106,11 +106,14 @@ that card; never shown as zero.
    freezes + D26 build record); the owner verdict on the gate-3 page is
    the open gate.
 
-## Soft-launch conditions (repo norm, unchanged)
+## Launch state (the soft launch closed at D42, 2026-06-13)
 
-`noindex` meta · not in sitemap · no `/is/building` hub card · no home-teaser
-line · site-wide `/analytics.js` loads as on every page. Lifting any of these
-is an owner call after gate 3.
+The original soft-launch bundle (noindex, no sitemap entry, no hub card,
+no home teaser) lifted in stages: hub card at D40, noindex + sitemap at
+D41, the bundle formally closed at D42. LAUNCHED: live, indexed,
+hub-listed at /is/building/metro-match/. The home teaser is homepage
+curation (swap a line, never append), decoupled from launch. Site-wide
+`/analytics.js` loads as on every page.
 
 ## Acceptance checklist
 

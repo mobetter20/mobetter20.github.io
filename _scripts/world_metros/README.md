@@ -11,7 +11,7 @@ atlas vision 2026-06-12 (DECISIONS D17–D19) after four map-hero rounds
 died at their gates; the data contracts and licensing posture carry over
 unchanged.
 
-The deck is live (soft-launched, noindex) at the URL since 2026-06-12.
+The deck is LAUNCHED: live, indexed and hub-listed (soft launch closed at D42, 2026-06-13; live at the URL since 2026-06-12).
 Gate 3 (the roster scale-up) is built: all 18 cards real with lore backs
 (D27 grew the deck from 16 to 18 with Osaka + Istanbul; grid is 1/2/3
 columns, never 4), scopes frozen per city (D25/D27; Seoul completed with a
