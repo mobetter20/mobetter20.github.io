@@ -251,8 +251,9 @@ _Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 m
 
 The deck of 18 (gate 3, D25-D31) + D32-D39 are LIVE at
 https://ajin.im/is/building/metro-match/ and hub-listed on /is/building
-(D40; the old world-metros URL redirects). Still noindex; the sitemap
-and the home teaser are SEPARATE owner calls. Items carried to
+(D40; the old world-metros URL redirects), indexable and in the
+sitemap since D41 (2026-06-13; the redirect stub stays noindexed). The
+home teaser is the one remaining soft-launch norm, a separate call. Items carried to
 the live review: the 15 new epithets; the Istanbul scope call (Marmaray
 excluded, could be pulled in); the Seoul-tops-ridership claim
 (full-capital scope, sourced); Osaka's two soft spots (c.2011 diagram
