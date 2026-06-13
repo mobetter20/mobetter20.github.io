@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""canary watcher — polls Claude's official usage meter, detects quiet
-quota resets, and publishes state.json for
+"""canary watcher: reads Claude's usage from CodexBar's widget snapshot,
+detects quiet quota resets, and publishes state.json for
 https://ajin.im/is/building/did-claude-just-reset-usage/
 
 Runs every 30 min via LaunchAgent (com.ajin.canary-watcher); see
@@ -31,7 +31,6 @@ import base64
 import json
 import subprocess
 import sys
-import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -42,6 +41,9 @@ GH = "/opt/homebrew/bin/gh"
 DATA_DIR = Path("~/.local/share/canary").expanduser()
 HISTORY = DATA_DIR / "usage-history.jsonl"
 PUBSTATE = DATA_DIR / "publisher.json"
+CODEXBAR_SNAPSHOT = Path(
+    "~/Library/Group Containers/Y5PE65HELJ.com.steipete.codexbar/widget-snapshot.json"
+).expanduser()
 
 DROP_PP = 10.0          # utilization drop that counts as a candidate
 WINDOW_TOL_S = 120      # resets_at jitter tolerance (server emits ~1s noise)
@@ -70,31 +72,30 @@ def log(msg):
 
 # ── poll ────────────────────────────────────────────────────────────────
 
-def get_token():
-    raw = subprocess.run(
-        ["security", "find-generic-password", "-s", "Claude Code-credentials", "-w"],
-        capture_output=True, text=True, timeout=30,
-    )
-    if raw.returncode != 0:
-        raise RuntimeError("keychain read failed: %s" % raw.stderr.strip())
-    return json.loads(raw.stdout)["claudeAiOauth"]["accessToken"]
-
-
 def poll():
-    req = urllib.request.Request(
-        "https://api.anthropic.com/api/oauth/usage",
-        headers={
-            "Authorization": "Bearer %s" % get_token(),
-            "anthropic-beta": "oauth-2025-04-20",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=20) as r:
-        d = json.loads(r.read().decode())
+    """Read the latest Claude usage from CodexBar's widget snapshot.
+
+    CodexBar already polls Claude's meter on its own schedule, so piggybacking
+    on it means this watcher carries no OAuth token of its own. The prior
+    direct api.anthropic.com poll died every time the Keychain access token
+    expired (HTTP 401) while Claude Code was idle. cfo reads the same snapshot.
+    """
+    snap = json.loads(CODEXBAR_SNAPSHOT.read_text())
+    entry = next(
+        (e for e in snap.get("entries", []) if e.get("provider") == "claude"), None)
+    if entry is None:
+        raise RuntimeError("no claude entry in CodexBar snapshot")
+    prim = entry["primary"]      # 5-hour session window
+    sec = entry["secondary"]     # 7-day weekly window (CodexBar's main "Weekly")
+    if prim.get("windowMinutes") != 300 or sec.get("windowMinutes") != 10080:
+        raise RuntimeError(
+            "CodexBar claude windows unexpected: primary=%s secondary=%s"
+            % (prim.get("windowMinutes"), sec.get("windowMinutes")))
     return {
-        "t": iso(now_utc()),
-        "u7": float(d["seven_day"]["utilization"]),
-        "r7": d["seven_day"]["resets_at"],
-        "u5": float(d["five_hour"]["utilization"]),
+        "t": entry.get("updatedAt") or snap.get("generatedAt") or iso(now_utc()),
+        "u7": float(sec["usedPercent"]),
+        "r7": sec["resetsAt"],
+        "u5": float(prim["usedPercent"]),
     }
 
 
@@ -269,6 +270,9 @@ def main():
 
     cur = poll()
     prev = last_history_line()
+    if prev and prev["t"] == cur["t"]:
+        log("no new CodexBar reading (updatedAt=%s); skipping tick" % cur["t"])
+        return 0
     append_history(cur)
     pub = load_pubstate()
 

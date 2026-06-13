@@ -14,7 +14,7 @@
     "to_pct": 0,
     "window": "unchanged",
     "announced": false,
-    "suspected_trigger": null
+    "suspected_trigger": "possibly goodwill after Anthropic suspended Fable 5 and Mythos 5 (US government directive received ~21:21 UTC Jun 12, about 4h before this reset); no compensation was announced, so unconfirmed"
   },
   "resets": [
     {
@@ -22,7 +22,7 @@
       "counter": "40% → 0%",
       "window": "unchanged",
       "announced": "no",
-      "note": "unannounced; trigger unknown"
+      "note": "suspected goodwill after Fable 5 and Mythos 5 were suspended; unconfirmed"
     },
     {
       "date": "2026-06-09",
