@@ -152,6 +152,9 @@
     font-size: 0.9rem;
     color: var(--text-faint);
     animation: fade 0.9s ease-out 0.55s both;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
   }
 
   .colophon a {
@@ -165,6 +168,20 @@
   .colophon a:focus-visible {
     color: var(--text-soft);
     border-bottom-color: rgba(138, 127, 112, 0.45);
+  }
+
+  /* admin: the easter-egg door (PERSONAL·OPS) */
+  .colophon .admin {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: rgba(143, 132, 115, 0.45);
+  }
+
+  .colophon .admin:hover,
+  .colophon .admin:focus-visible {
+    color: var(--text-soft);
+    border-bottom-color: transparent;
   }
 
   @media (max-width: 600px) {
@@ -207,6 +224,7 @@
 
   <footer class="colophon">
     <a href="mailto:contact@ajin.im">contact@ajin.im</a>
+    <a class="admin" href="/admin/">admin</a>
   </footer>
 
 </main>
