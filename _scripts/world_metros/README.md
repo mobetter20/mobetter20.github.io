@@ -16,9 +16,9 @@ Gate 3 (the roster scale-up) is built: all 18 cards real with lore backs
 (D27 grew the deck from 16 to 18 with Osaka + Istanbul; grid is 1/2/3
 columns, never 4), scopes frozen per city (D25/D27; Seoul completed with a
 Sinbundang Overpass supplement), three sequential card faces
-(SCALE, CHARACTER, MAP) cycled by one flip (D31/D34); no deck-level toggle, battle and daily across the full deck. The
-owner verdict on the page decides what's next; soft-launch norms hold
-until that separate owner call.
+(SCALE, CHARACTER, MAP) cycled by one flip (D31/D34); no deck-level
+toggle; battle and daily across the full deck. Steady state: the annual
+scripted refresh (D6); new rounds are ordinary owner-directed work.
 
 ## Reading order (mandatory for any agent picking this up)
 
