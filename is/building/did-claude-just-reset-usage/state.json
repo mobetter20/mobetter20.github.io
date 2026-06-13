@@ -1,22 +1,29 @@
 {
   "_note": "machine-updated by canary_watcher (LaunchAgent com.ajin.canary-watcher, see _scripts/canary/) — hand edits may be overwritten within 30 minutes",
-  "last_polled_utc": "2026-06-12T00:20:40Z",
+  "last_polled_utc": "2026-06-13T02:13:47Z",
   "canary_now": {
     "seven_day_used_pct": 3.0,
-    "seven_day_resets_at": "2026-06-18T23:00:00.009115+00:00"
+    "seven_day_resets_at": "2026-06-18T23:00:00Z"
   },
   "verdict_override": null,
   "watching_note": null,
   "last_reset": {
-    "detected_utc": "2026-06-09T22:13:00Z",
-    "bracket": "between 22:06 and 22:13 UTC, Jun 9",
-    "from_pct": 77,
+    "detected_utc": "2026-06-13T02:08:41Z",
+    "bracket": "between 01:27 and 02:08 UTC, Jun 13",
+    "from_pct": 40,
     "to_pct": 0,
     "window": "unchanged",
     "announced": false,
-    "suspected_trigger": "Claude Opus 4.6 elevated-errors incident, resolved 22:10 UTC"
+    "suspected_trigger": null
   },
   "resets": [
+    {
+      "date": "2026-06-13",
+      "counter": "40% → 0%",
+      "window": "unchanged",
+      "announced": "no",
+      "note": "unannounced; trigger unknown"
+    },
     {
       "date": "2026-06-09",
       "counter": "77% → 0%",
