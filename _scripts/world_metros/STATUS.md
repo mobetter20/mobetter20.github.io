@@ -241,12 +241,18 @@ _Last updated: 2026-06-12 (reconcile session: the parallel gate-3 body D25-D31 m
   the page itself and the wordmark is the way home. Nav = the four
   views; home state selects no tab; mobile tabs back to 11.5px.
 
+- D40 (2026-06-13, owner call): HUB-LISTED. The owner lifted the
+  /is/building norm after the zero-blocker D39 sweep: Metro Match now
+  leads the "Lately" stream on /is/building ("18 metro systems as
+  trading cards; pick a stat, beat the cpu."). Noindex, the sitemap and
+  the home teaser stay until called separately.
+
 ## Current gate: owner live-testing the shipped deck
 
-The deck of 18 (gate 3, D25-D31) + this session's D32-D34 are LIVE at
-https://ajin.im/is/building/metro-match/ (still noindex/unlisted; the
-old world-metros URL redirects). Listing it on /is/building, the
-sitemap or the home teaser is a SEPARATE owner call. Items carried to
+The deck of 18 (gate 3, D25-D31) + D32-D39 are LIVE at
+https://ajin.im/is/building/metro-match/ and hub-listed on /is/building
+(D40; the old world-metros URL redirects). Still noindex; the sitemap
+and the home teaser are SEPARATE owner calls. Items carried to
 the live review: the 15 new epithets; the Istanbul scope call (Marmaray
 excluded, could be pulled in); the Seoul-tops-ridership claim
 (full-capital scope, sourced); Osaka's two soft spots (c.2011 diagram
