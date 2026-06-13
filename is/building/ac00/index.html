@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AC00 · hangul is an integer</title>
+<meta name="description" content="every hangul syllable is an integer. 0xAC00 + 초×588 + 중×28 + 종">
+<link rel="canonical" href="https://ajin.im/is/building/ac00/">
+<meta property="og:site_name" content="ajin.im">
+<meta property="og:title" content="AC00 · hangul is an integer">
+<meta property="og:description" content="every hangul syllable is an integer. 0xAC00 + 초×588 + 중×28 + 종">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ajin.im/is/building/ac00/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AC00 · hangul is an integer">
+<meta name="twitter:description" content="every hangul syllable is an integer. 0xAC00 + 초×588 + 중×28 + 종">
+<meta name="robots" content="noindex"><!-- soft launch: unlisted until the owner verdict gate -->
+<link rel="icon" type="image/png" href="/img/a3.png">
+<link rel="apple-touch-icon" href="/img/a3.png">
+<script src="/analytics.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#101013;
+  --panel:#17171b;
+  --panel2:#1d1d22;
+  --line:#2a2a31;
+  --text:#e8e4da;
+  --dim:#6e6a60;
+  --faint:#44423c;
+  --cho:#e3492b;   /* vermilion · initial */
+  --jung:#d9a441;  /* ochre · medial */
+  --jong:#4fa3a5;  /* teal · final */
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --kr:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--mono);font-size:14px;line-height:1.5;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  padding:28px 20px 60px;
+}
+.wrap{width:100%;max-width:880px}
+
+/* ── header ── */
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.title{display:flex;align-items:center;gap:14px}
+.seal{
+  border:2px solid var(--cho);color:var(--cho);
+  padding:6px 10px;font-weight:600;font-size:18px;letter-spacing:.08em;
+  user-select:none;
+}
+.subtitle{color:var(--dim);font-size:12px;max-width:340px}
+.subtitle b{color:var(--text);font-weight:500}
+.modes{display:flex;border:1px solid var(--line)}
+.modes button{
+  background:none;border:none;color:var(--dim);font-family:var(--mono);
+  font-size:12px;padding:8px 16px;cursor:pointer;letter-spacing:.05em;
+}
+.modes button.on{background:var(--panel2);color:var(--text)}
+.modes button:focus-visible{outline:2px solid var(--cho);outline-offset:-2px}
+
+/* ── stage ── */
+.stage{
+  display:grid;grid-template-columns:auto auto 1fr;gap:28px;align-items:center;
+  background:var(--panel);border:1px solid var(--line);padding:26px 28px;
+}
+.glyph{
+  font-family:var(--kr);font-weight:700;font-size:150px;line-height:1;
+  min-width:170px;text-align:center;user-select:none;
+}
+.schematic{display:flex;flex-direction:column;gap:8px;align-items:center}
+.schematic svg{display:block}
+.rule{color:var(--dim);font-size:11px;text-align:center;max-width:150px}
+.rule b{color:var(--text);font-weight:500}
+
+/* ── equation ── */
+.eq{font-size:14px;justify-self:end;min-width:300px}
+.eq .row{display:grid;grid-template-columns:64px 96px 1fr;gap:10px;padding:3px 0;align-items:baseline}
+.eq .lbl{color:var(--dim);font-size:11px}
+.eq .mid{color:var(--dim)}
+.eq .val{text-align:right;font-variant-numeric:tabular-nums}
+.eq .jamo-k{font-family:var(--kr);font-weight:700;margin-right:6px}
+.eq .r-cho .jamo-k,.eq .r-cho .val{color:var(--cho)}
+.eq .r-jung .jamo-k,.eq .r-jung .val{color:var(--jung)}
+.eq .r-jong .jamo-k,.eq .r-jong .val{color:var(--jong)}
+.eq .sum{border-top:1px solid var(--line);margin-top:6px;padding-top:8px}
+.eq .sum .val,.eq .sum .mid{color:var(--text);font-weight:600;font-size:16px}
+.eq .bytes{margin-top:10px;color:var(--dim);font-size:11px}
+.eq .bytes span{color:var(--text)}
+.flash{animation:flash .5s ease-out}
+@keyframes flash{0%{background:var(--panel2)}100%{background:transparent}}
+@media(prefers-reduced-motion:reduce){.flash{animation:none}}
+
+/* ── pickers ── */
+.pickers{margin-top:22px;display:flex;flex-direction:column;gap:18px}
+.group .ghead{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.ghead .tag{font-size:11px;font-weight:600;letter-spacing:.06em}
+.ghead .note{color:var(--dim);font-size:11px}
+.g-cho .tag{color:var(--cho)} .g-jung .tag{color:var(--jung)} .g-jong .tag{color:var(--jong)}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{
+  font-family:var(--kr);font-size:17px;font-weight:500;
+  background:var(--panel);border:1px solid var(--line);color:var(--text);
+  width:40px;height:40px;cursor:pointer;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.chip .idx{position:absolute;top:2px;right:4px;font-family:var(--mono);font-size:8px;color:var(--faint)}
+.chip:hover{background:var(--panel2)}
+.chip:focus-visible{outline:2px solid var(--text);outline-offset:-2px}
+.g-cho .chip.sel{border-color:var(--cho);color:var(--cho);background:var(--panel2)}
+.g-jung .chip.sel{border-color:var(--jung);color:var(--jung);background:var(--panel2)}
+.g-jong .chip.sel{border-color:var(--jong);color:var(--jong);background:var(--panel2)}
+.chip.none{font-family:var(--mono);font-size:10px;color:var(--dim)}
+.toolbar{display:flex;gap:8px;margin-top:4px}
+.btn{
+  background:none;border:1px solid var(--line);color:var(--dim);
+  font-family:var(--mono);font-size:11px;padding:6px 12px;cursor:pointer;letter-spacing:.04em;
+}
+.btn:hover{color:var(--text);background:var(--panel)}
+.btn:focus-visible{outline:2px solid var(--cho);outline-offset:-2px}
+
+/* ── decompose ── */
+.decomp{margin-top:22px;display:none;flex-direction:column;gap:14px}
+.decomp input{
+  background:var(--panel);border:1px solid var(--line);color:var(--text);
+  font-family:var(--kr);font-size:18px;padding:12px 14px;width:100%;
+}
+.decomp input:focus-visible{outline:2px solid var(--cho);outline-offset:-1px}
+.decomp .hint{color:var(--dim);font-size:11px}
+.sylls{display:flex;flex-wrap:wrap;gap:5px}
+.syll{
+  font-family:var(--kr);font-size:20px;font-weight:500;
+  background:var(--panel);border:1px solid var(--line);color:var(--text);
+  min-width:46px;height:46px;padding:0 6px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.syll:hover{background:var(--panel2)}
+.syll:focus-visible{outline:2px solid var(--text);outline-offset:-2px}
+.syll.sel{border-color:var(--cho);color:var(--cho);background:var(--panel2)}
+.syll.inert{color:var(--faint);border-color:transparent;cursor:default;background:none}
+
+footer{margin-top:34px;color:var(--faint);font-size:11px;max-width:880px;width:100%}
+footer span{color:var(--dim)}
+
+@media(max-width:760px){
+  .stage{grid-template-columns:1fr;justify-items:center;gap:18px}
+  .eq{justify-self:center;min-width:0;width:100%;max-width:340px}
+  .glyph{font-size:110px;min-width:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="title">
+    <div class="seal">AC00</div>
+    <div class="subtitle">every hangul syllable is an integer.<br><b>0xAC00 + 초×588 + 중×28 + 종</b></div>
+  </div>
+  <div class="modes" role="tablist">
+    <button id="mCompose" class="on" role="tab" aria-selected="true">compose</button>
+    <button id="mDecomp" role="tab" aria-selected="false">decompose</button>
+  </div>
+</header>
+
+<section class="stage">
+  <div class="glyph" id="glyph">한</div>
+  <div class="schematic">
+    <svg id="schema" width="140" height="140" viewBox="0 0 140 140" aria-hidden="true"></svg>
+    <div class="rule" id="ruleLabel"></div>
+  </div>
+  <div class="eq" id="eq"></div>
+</section>
+
+<section class="pickers" id="pickers">
+  <div class="group g-cho">
+    <div class="ghead"><span class="tag">초성 · initial</span><span class="note">19 consonants · ×588</span></div>
+    <div class="chips" id="choChips"></div>
+  </div>
+  <div class="group g-jung">
+    <div class="ghead"><span class="tag">중성 · medial</span><span class="note">21 vowels · ×28 · decides the layout</span></div>
+    <div class="chips" id="jungChips"></div>
+  </div>
+  <div class="group g-jong">
+    <div class="ghead"><span class="tag">종성 · final</span><span class="note">28 endings · ×1</span></div>
+    <div class="chips" id="jongChips"></div>
+  </div>
+  <div class="toolbar">
+    <button class="btn" id="btnRandom">⚄ random syllable</button>
+  </div>
+</section>
+
+<section class="decomp" id="decomp">
+  <input id="decompInput" value="한글은 정수다" spellcheck="false" autocomplete="off">
+  <div class="hint">type or paste korean · click a syllable to take it apart</div>
+  <div class="sylls" id="sylls"></div>
+</section>
+
+<footer>
+  one square = three indices = one number. <span>11,172 possible syllables, U+AC00 가 through U+D7A3 힣, every one of them computed, none of them stored.</span> · <a href="/" style="color:var(--dim);text-decoration:underline;text-underline-offset:2px">made by ajin.im</a>
+</footer>
+
+</div>
+
+<script>
+'use strict';
+const CHO  = [...'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ'];
+const JUNG = [...'ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ'];
+const JONG = ['', ...'ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ'];
+
+const VERT = new Set([0,1,2,3,4,5,6,7,20]);     // ㅏㅐㅑㅒㅓㅔㅕㅖㅣ
+const HORZ = new Set([8,12,13,17,18]);          // ㅗㅛㅜㅠㅡ
+// remainder = wrapped compounds
+
+const state = { cho:18, jung:0, jong:4, mode:'compose' };
+const $ = id => document.getElementById(id);
+const enc = new TextEncoder();
+
+function codepoint(s){ return 0xAC00 + s.cho*588 + s.jung*28 + s.jong; }
+
+/* ── chips ── */
+function buildChips(el, arr, key){
+  arr.forEach((j,i)=>{
+    const b = document.createElement('button');
+    b.className = 'chip' + (j===''?' none':'');
+    b.innerHTML = (j===''?'∅':j) + `<span class="idx">${i}</span>`;
+    b.title = `index ${i}`;
+    b.addEventListener('click', ()=>{ state[key]=i; render(true); });
+    el.appendChild(b);
+  });
+}
+buildChips($('choChips'), CHO, 'cho');
+buildChips($('jungChips'), JUNG, 'jung');
+buildChips($('jongChips'), JONG, 'jong');
+
+function markSel(el, idx){
+  [...el.children].forEach((c,i)=>c.classList.toggle('sel', i===idx));
+}
+
+/* ── schematic ── */
+function schematic(){
+  const svg = $('schema');
+  const cs = getComputedStyle(document.documentElement);
+  const col = { cho:cs.getPropertyValue('--cho'), jung:cs.getPropertyValue('--jung'), jong:cs.getPropertyValue('--jong') };
+  const hasJong = state.jong !== 0;
+  const j = state.jung;
+  let regions;
+  const H = hasJong ? 95 : 134;            // vertical space above final
+  if (VERT.has(j)) {
+    regions = [
+      {k:'cho',  x:3,  y:3, w:64, h:H},
+      {k:'jung', x:73, y:3, w:64, h:H},
+    ];
+  } else if (HORZ.has(j)) {
+    const half = (H-3)/2;
+    regions = [
+      {k:'cho',  x:3, y:3,        w:134, h:half},
+      {k:'jung', x:3, y:6+half,   w:134, h:half},
+    ];
+  } else { // wrapped compound: medial hugs right + below
+    const h2 = (H-3)/2;
+    regions = [
+      {k:'cho',  x:3,  y:3,      w:64,  h:h2},
+      {k:'jung', x:73, y:3,      w:64,  h:H, wrap:{x:3,y:6+h2,w:64,h:h2-3}},
+    ];
+  }
+  if (hasJong) regions.push({k:'jong', x:3, y:101, w:134, h:36});
+
+  const LBL = {cho:'초', jung:'중', jong:'종'};
+  let s = '';
+  for (const r of regions){
+    s += `<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="${col[r.k]}" fill-opacity="0.10" stroke="${col[r.k]}" stroke-width="1.5"/>`;
+    s += `<text x="${r.x+r.w/2}" y="${r.y+r.h/2+5}" fill="${col[r.k]}" font-size="13" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-weight="700">${LBL[r.k]}</text>`;
+    if (r.wrap){
+      const w = r.wrap;
+      s += `<rect x="${w.x}" y="${w.y}" width="${w.w}" height="${w.h}" fill="${col[r.k]}" fill-opacity="0.10" stroke="${col[r.k]}" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+    }
+  }
+  svg.innerHTML = s;
+
+  const rl = $('ruleLabel');
+  if (VERT.has(j))      rl.innerHTML = `<b>vertical vowel</b> → medial sits right of the initial`;
+  else if (HORZ.has(j)) rl.innerHTML = `<b>horizontal vowel</b> → medial sits below the initial`;
+  else                  rl.innerHTML = `<b>compound vowel</b> → medial wraps right + below`;
+}
+
+/* ── equation ── */
+function pad(n,w){ return String(n).padStart(w,'\u2007'); }
+function equation(flash){
+  const cp = codepoint(state);
+  const ch = String.fromCharCode(cp);
+  const bytes = [...enc.encode(ch)].map(b=>b.toString(16).toUpperCase().padStart(2,'0')).join(' ');
+  const rows = [
+    `<div class="row"><span class="lbl">base</span><span class="mid">0xAC00</span><span class="val">${pad(44032,6)}</span></div>`,
+    `<div class="row r-cho ${flash?'flash':''}"><span class="lbl">초성</span><span class="mid"><span class="jamo-k">${CHO[state.cho]}</span>${pad(state.cho,2)} × 588</span><span class="val">+${pad(state.cho*588,5)}</span></div>`,
+    `<div class="row r-jung ${flash?'flash':''}"><span class="lbl">중성</span><span class="mid"><span class="jamo-k">${JUNG[state.jung]}</span>${pad(state.jung,2)} × 28</span><span class="val">+${pad(state.jung*28,5)}</span></div>`,
+    `<div class="row r-jong ${flash?'flash':''}"><span class="lbl">종성</span><span class="mid"><span class="jamo-k">${JONG[state.jong]||'∅'}</span>${pad(state.jong,2)} × 1</span><span class="val">+${pad(state.jong,5)}</span></div>`,
+    `<div class="row sum"><span class="lbl"></span><span class="mid">U+${cp.toString(16).toUpperCase()}</span><span class="val">${pad(cp,6)}</span></div>`,
+    `<div class="bytes">utf-8 <span>${bytes}</span></div>`
+  ];
+  $('eq').innerHTML = rows.join('');
+}
+
+/* ── render ── */
+function render(flash=false){
+  $('glyph').textContent = String.fromCharCode(codepoint(state));
+  markSel($('choChips'), state.cho);
+  markSel($('jungChips'), state.jung);
+  markSel($('jongChips'), state.jong);
+  schematic();
+  equation(flash);
+  if (flash) history.replaceState(null, '', '#' + String.fromCharCode(codepoint(state)));
+}
+
+/* ── decompose ── */
+function decompose(){
+  const txt = $('decompInput').value;
+  const box = $('sylls');
+  box.innerHTML = '';
+  let firstLoaded = false;
+  [...txt].forEach(ch=>{
+    const cp = ch.codePointAt(0);
+    const b = document.createElement('button');
+    if (cp >= 0xAC00 && cp <= 0xD7A3){
+      b.className = 'syll';
+      b.textContent = ch;
+      b.addEventListener('click', ()=>{
+        const s = cp - 0xAC00;
+        state.cho = Math.floor(s/588);
+        state.jung = Math.floor((s%588)/28);
+        state.jong = s%28;
+        [...box.children].forEach(c=>c.classList.remove('sel'));
+        b.classList.add('sel');
+        render(true);
+      });
+      if (!firstLoaded){ firstLoaded = true; b.classList.add('sel');
+        const s = cp - 0xAC00;
+        state.cho = Math.floor(s/588); state.jung = Math.floor((s%588)/28); state.jong = s%28;
+      }
+    } else {
+      b.className = 'syll inert';
+      b.textContent = ch === ' ' ? '·' : ch;
+      b.tabIndex = -1;
+    }
+    box.appendChild(b);
+  });
+  render();
+}
+
+/* ── modes ── */
+function setMode(m){
+  state.mode = m;
+  $('mCompose').classList.toggle('on', m==='compose');
+  $('mDecomp').classList.toggle('on', m==='decompose');
+  $('mCompose').setAttribute('aria-selected', m==='compose');
+  $('mDecomp').setAttribute('aria-selected', m==='decompose');
+  $('pickers').style.display = m==='compose' ? 'flex' : 'none';
+  $('decomp').style.display = m==='decompose' ? 'flex' : 'none';
+  if (m==='decompose') decompose();
+}
+$('mCompose').addEventListener('click', ()=>setMode('compose'));
+$('mDecomp').addEventListener('click', ()=>setMode('decompose'));
+$('decompInput').addEventListener('input', decompose);
+
+$('btnRandom').addEventListener('click', ()=>{
+  state.cho = Math.floor(Math.random()*19);
+  state.jung = Math.floor(Math.random()*21);
+  state.jong = Math.floor(Math.random()*28);
+  render(true);
+});
+
+/* ── url state ── */
+function applyHash(){
+  let h = '';
+  try { h = decodeURIComponent(location.hash.slice(1)); } catch { return false; }
+  if (!h) return false;
+  const cp = /^[0-9A-Fa-f]{4,5}$/.test(h) ? parseInt(h, 16) : h.codePointAt(0);
+  if (!(cp >= 0xAC00 && cp <= 0xD7A3)) return false;
+  const s = cp - 0xAC00;
+  state.cho = Math.floor(s/588); state.jung = Math.floor((s%588)/28); state.jong = s%28;
+  return true;
+}
+window.addEventListener('hashchange', ()=>{ if (applyHash()){ setMode('compose'); render(true); } });
+
+setMode(applyHash() ? 'compose' : 'decompose');
+render();
+</script>
+</body>
+</html>
