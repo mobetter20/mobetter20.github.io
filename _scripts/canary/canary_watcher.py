@@ -74,7 +74,7 @@ def log(msg):
 def poll():
     """Read Claude usage from cfo's state.json.
 
-    cfo (com.tradlinx.cfo-state) extracts the meter from CodexBar's menubar
+    cfo extracts the meter from CodexBar's menubar
     snapshot every 30 min and writes it under ~/.local/share — a path this
     background agent can read. CodexBar's own Group Container cannot be read
     from a launchd job (macOS TCC: "Operation not permitted"), and cfo already

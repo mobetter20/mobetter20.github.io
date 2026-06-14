@@ -32,7 +32,7 @@ The corpus in the solver must mirror `LEVELS` in `index.html`. First-draft gloss
 
 - `NORTH-STAR.md` — the constitution (cryptanalysis primary, decode voice, honest ceiling). Wins on conflict.
 - `HANDOFF.md` — the build handoff. The morpheme/grammar tier was prototyped and **cut** (its decode target is metalanguage, so it plays as a grammar lesson); the script is the whole scope.
-- Prototypes (in `~/Downloads/Decode_hangul/` and `~/Downloads/`, not committed): `dig-proto` (phoneme loop, accepted), `flow-proto` (bridge fold), `curve-proto` (the ramp + persistence). Rejected tiers: grammar / grid / morph / bridge.
+- Prototypes (in a local Downloads dir, not committed): `dig-proto` (phoneme loop, accepted), `flow-proto` (bridge fold), `curve-proto` (the ramp + persistence). Rejected tiers: grammar / grid / morph / bridge.
 
 ## Phase 2 (parked)
 
