@@ -2,7 +2,7 @@
 
 A logic puzzle that reverse-engineers the Korean alphabet from almost nothing. The script is a cipher: unknown symbols, one given word (나무 = namu), and a cascade where cracking one piece resolves every word that shares it. Openly Korean, no invented-script mystery. Learning Korean is a side effect, never the goal.
 
-**Live:** https://ajin.im/is/building/crib/ (slug stays `crib`; handle is KRIB). Soft-launch (noindex, not hub-listed). First-draft corpus, refined live.
+**Live:** https://ajin.im/is/building/krib/ (slug + handle both KRIB; old `/is/building/crib/` is a noindex redirect stub). Soft-launch (noindex, not hub-listed). First-draft corpus, refined live.
 
 **Source of truth:** `is/building/crib/index.html` (single static file, vanilla JS, Google Fonts the only dep). Sibling tool: AC00 (`is/building/ac00/`), whose compose math the finale reuses.
 
