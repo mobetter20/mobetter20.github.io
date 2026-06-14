@@ -14,7 +14,7 @@ The eventual full claim (Phase 2): the script never bottoms out into arbitrarine
 
 ## Current state
 
-**SHIPPED (Phase 1, 2026-06-13):** live at https://ajin.im/is/building/ac00/ (soft-launch: noindex, no hub listing; lifting that is Ajin's call). Source of truth is `is/building/ac00/index.html` in mobetter20.github.io; the `~/Downloads/Hangul_zoom/` mock is the pre-ship snapshot. The page has:
+**SHIPPED (Phase 1, 2026-06-13):** live at https://ajin.im/is/building/ac00/ (soft-launch: noindex, no hub listing; lifting that is Ajin's call). Source of truth is `is/building/ac00/index.html` in mobetter20.github.io; a local Downloads snapshot (not committed) is the pre-ship mock. The page has:
 
 - **Compose mode**: 19/21/28 jamo chip pickers, live glyph + schematic + equation
 - **Decompose mode**: text input (default 한글은 정수다), clickable per-syllable chips, same view
