@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KRIB · decode the Korean script</title>
-<meta name="description" content="A cryptogram pointed at Korean. One word is given; sound out a piece and every word that shares it resolves at once. Reconstruct the alphabet in a sitting.">
+<title>KRIB · decode hangul</title>
+<meta name="description" content="Decode hangul, the Korean writing system, as a cipher. One word is given; crack a piece and every word that shares it resolves at once.">
 <link rel="canonical" href="https://ajin.im/is/building/krib/">
 <meta property="og:site_name" content="ajin.im">
-<meta property="og:title" content="KRIB · decode the Korean script">
-<meta property="og:description" content="One word is given, the rest is unread. Sound out a piece and every word that shares it resolves at once. Korean was built to come apart this fast.">
+<meta property="og:title" content="KRIB · decode hangul">
+<meta property="og:description" content="Decode hangul, the Korean writing system, from one given word. Crack a piece and every word that shares it resolves at once. Hangul was built to come apart this fast.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ajin.im/is/building/krib/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KRIB · decode the Korean script">
-<meta name="twitter:description" content="A cryptogram pointed at Korean. Crack one piece, every word that shares it resolves at once.">
+<meta name="twitter:title" content="KRIB · decode hangul">
+<meta name="twitter:description" content="Decode hangul from one given word. Crack a piece, and every word that shares it resolves at once.">
 <meta name="robots" content="noindex"><!-- soft launch: first-draft corpus, unlisted until the owner verdict gate -->
 <link rel="icon" type="image/png" href="/img/a3.png">
 <link rel="apple-touch-icon" href="/img/a3.png">
@@ -40,30 +40,31 @@ header{margin-bottom:6px}
 .frame{color:var(--dim);font-size:13px;margin:12px 0 4px;border-left:2px solid var(--line);padding-left:12px;line-height:1.7}
 .frame b{color:var(--text);font-weight:500}.frame .anc{font-family:var(--kr);color:var(--given);font-weight:700}
 
-.navrow{display:flex;align-items:center;gap:10px;margin:20px 0 4px}
-.nav{background:none;border:1px solid var(--line);color:var(--dim);font-family:var(--mono);font-size:14px;
-  width:30px;height:28px;cursor:pointer;line-height:1}
-.nav:hover:not(:disabled){color:var(--text);background:var(--panel)}
-.nav:disabled{opacity:.32;cursor:default}
-.nav.lit{border-color:var(--ok);color:var(--ok);animation:litpulse 1.4s ease-in-out infinite}
-@keyframes litpulse{0%,100%{background:transparent}50%{background:rgba(122,155,107,.12)}}
-@media(prefers-reduced-motion:reduce){.nav.lit{animation:none}}
-.navlvl{font-size:12px;letter-spacing:.08em;color:var(--text);text-transform:uppercase}
+.navrow{display:flex;align-items:center;gap:10px;margin:20px 0 4px;flex-wrap:wrap}
+.stages{display:flex;gap:5px;flex-wrap:wrap}
+.stage{min-width:26px;height:26px;border:1px solid var(--line);background:none;color:var(--dim);font-family:var(--mono);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0 5px}
+.stage.reached:hover{border-color:var(--dim);color:var(--text)}
+.stage.cleared{border-color:var(--ok);color:var(--ok)}
+.stage.active{background:var(--panel2);border-color:var(--text);color:var(--text)}
+.stage.active.cleared{border-color:var(--ok);color:var(--ok)}
+.stage.locked{opacity:.3;cursor:default}
+.stage.fin{font-size:13px}
 .keyct{margin-left:auto;font-size:12px;letter-spacing:.04em;color:var(--given)}
 .evt{font-size:11.5px;letter-spacing:.04em;color:var(--dim);min-height:16px;margin-bottom:4px}
-.evt .done{color:var(--ok)}
+
+.nav{background:none;border:1px solid var(--line);color:var(--dim);font-family:var(--mono);font-size:14px;width:30px;height:28px;cursor:pointer;line-height:1}
+.nav:hover{color:var(--text);background:var(--panel)}
 
 .eyebrow{font-size:11px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin:22px 0 12px}
-.howline{font-size:11.5px;color:var(--dim);margin:12px 0 0;letter-spacing:.02em;min-height:0}
-.howline:empty{margin:0}
-.howline b{color:var(--text);font-weight:500}
+.howline{font-size:11.5px;color:var(--dim);margin:12px 0 0;letter-spacing:.02em}
+.howline:empty{margin:0}.howline b{color:var(--text);font-weight:500}
 
 .keygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(62px,1fr));gap:8px;min-height:62px}
 .cell{background:var(--panel);border:1px solid var(--line);padding:9px 4px 7px;text-align:center;cursor:pointer;position:relative;user-select:none}
 .cell .sym{font-family:var(--kr);font-size:28px;font-weight:700;line-height:1}
 .cell .snd{font-size:13px;margin-top:5px;height:16px;color:var(--text)}.cell .snd.empty{color:var(--faint)}
 .cell.locked{cursor:default;border-color:var(--given)}.cell.locked .snd,.cell.locked .sym{color:var(--given)}
-.cell.locked::after{content:attr(data-tag);position:absolute;top:-7px;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:.08em;color:var(--given);background:var(--bg);padding:0 4px}
+.cell.locked::after{content:'known';position:absolute;top:-7px;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:.08em;color:var(--given);background:var(--bg);padding:0 4px}
 .cell.active{border-color:var(--active)}.cell.active .sym{color:var(--active)}
 .cell.filled .snd{color:var(--text)}
 .cell:not(.locked):not(.filled) .sym{color:var(--dim)}
@@ -88,6 +89,12 @@ header{margin-bottom:6px}
 @keyframes pulse{0%{background:rgba(127,170,85,.22)}100%{background:var(--panel)}}
 @media(prefers-reduced-motion:no-preference){.word.justsolved{animation:pulse .6s ease-out}}
 
+.advance{display:none;width:100%;margin-top:18px;padding:13px;background:rgba(122,155,107,.10);border:1px solid var(--ok);color:var(--ok);font-family:var(--mono);font-size:13px;cursor:pointer;letter-spacing:.05em;text-align:center}
+.advance:hover{background:rgba(122,155,107,.18)}
+.advance.show{display:block}
+@media(prefers-reduced-motion:no-preference){.advance.show{animation:advin .4s ease-out}}
+@keyframes advin{0%{opacity:0;transform:translateY(-4px)}100%{opacity:1}}
+
 #pop{position:fixed;display:none;z-index:50;background:#1b1b21;border:1px solid var(--active);padding:10px;min-width:150px;box-shadow:0 10px 30px rgba(0,0,0,.55)}
 #pop .snds{display:flex;flex-wrap:wrap;gap:5px}
 #pop .sc{background:var(--panel2);border:1px solid var(--line);color:var(--text);font-family:var(--mono);font-size:15px;padding:7px 12px;cursor:pointer}
@@ -100,11 +107,8 @@ header{margin-bottom:6px}
 .finale .ftop{display:flex;align-items:center;gap:10px;margin:20px 0 6px}
 .finale .ftag{font-size:12px;letter-spacing:.08em;color:var(--active);text-transform:uppercase}
 .finale .fsub{font-size:12px;color:var(--dim)}.finale .fsub b{color:var(--text);font-weight:500}
-.finale .stage{background:var(--panel);border:1px solid var(--line);padding:22px 20px;margin-top:6px}
-.finale .rline{font-family:var(--kr);font-size:34px;font-weight:700;letter-spacing:.05em;text-align:center;line-height:1.2}
-.finale .rrom{text-align:center;color:var(--given);margin-top:10px;letter-spacing:.1em;height:18px}
-.finale .rgloss{text-align:center;color:var(--dim);font-size:12.5px;margin-top:4px;height:16px}
-.finale .target{text-align:center;margin:6px 0 14px}
+.finale .stage2{background:var(--panel);border:1px solid var(--line);padding:22px 20px;margin-top:6px}
+.finale .target{text-align:center;margin:2px 0 14px}
 .finale .target .g{font-size:15px;color:var(--text)}.finale .target .r{color:var(--given);letter-spacing:.12em;margin-left:8px}
 .slots{display:flex;gap:8px;justify-content:center;margin:6px 0 4px}
 .slot{width:60px;height:72px;border:1px solid var(--line);border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;background:var(--bg)}
@@ -128,16 +132,13 @@ header{margin-bottom:6px}
 .panel .h{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
 .panel .big{font-size:16px;line-height:1.7}.panel .big b{color:var(--ok)}
 .panel .note{color:var(--dim);font-size:12.5px;margin-top:12px;line-height:1.6}
+.winbtns{display:flex;gap:10px;flex-wrap:wrap}
 .btn{background:none;border:1px solid var(--ok);color:var(--text);font-family:var(--mono);font-size:13px;padding:10px 18px;cursor:pointer;margin-top:18px}
 .btn:hover{background:var(--panel2)}
-.advance{display:none;width:100%;margin-top:18px;padding:13px;background:rgba(122,155,107,.10);border:1px solid var(--ok);color:var(--ok);font-family:var(--mono);font-size:13px;cursor:pointer;letter-spacing:.05em;text-align:center}
-.advance:hover{background:rgba(122,155,107,.18)}
-.advance.show{display:block}
-@media(prefers-reduced-motion:no-preference){.advance.show{animation:advin .4s ease-out}}
-@keyframes advin{0%{opacity:0;transform:translateY(-4px)}100%{opacity:1}}
+.btn.ghost{border-color:var(--line);color:var(--dim)}.btn.ghost:hover{color:var(--text)}
 
 footer{margin-top:40px;color:var(--faint);font-size:11px;max-width:680px;width:100%;line-height:1.7}
-footer a{color:var(--dim);text-decoration:underline;text-underline-offset:2px}
+footer a{color:var(--dim)}
 @media(max-width:520px){.word .blocks{font-size:26px}.cell .sym{font-size:24px}.finale .rline{font-size:28px}}
 </style>
 </head>
@@ -145,23 +146,21 @@ footer a{color:var(--dim);text-decoration:underline;text-underline-offset:2px}
 <div class="wrap">
 
 <header>
-  <div class="kicker"><b>KRIB</b> · crack the alphabet from a single word</div>
+  <div class="kicker"><b>KRIB</b> · crack hangul from a single word</div>
 </header>
 
 <div class="frame">
-  One square is already decoded: <span class="anc">나무</span> = <b>namu</b>. Everything else is unread. Sound out a piece and every word that shares it resolves at once. Korean was built to come apart this fast.
+  One square is already decoded: <span class="anc">나무</span> = <b>namu</b>. Everything else is unread. Sound out a piece and every word that shares it resolves at once. Hangul was built to come apart this fast.
 </div>
 
 <div id="play">
   <div class="navrow">
-    <button class="nav" id="navPrev" aria-label="previous level">‹</button>
-    <span class="navlvl" id="navLvl">level 1 / 7</span>
-    <button class="nav" id="navNext" aria-label="next level">›</button>
-    <span class="keyct" id="keyCt">key 0 / 22</span>
+    <div class="stages" id="stages"></div>
+    <span class="keyct" id="keyCt">pieces 0 / 22</span>
   </div>
   <div class="evt" id="evt"></div>
 
-  <div class="eyebrow">key</div>
+  <div class="eyebrow">your hangul</div>
   <div class="keygrid" id="keygrid"></div>
   <div class="howline" id="howKey"></div>
 
@@ -173,18 +172,21 @@ footer a{color:var(--dim);text-decoration:underline;text-underline-offset:2px}
 
 <div class="finale" id="finale">
   <div class="ftop">
-    <button class="nav" id="finBack" aria-label="back to levels">‹</button>
+    <button class="nav" id="finBack" aria-label="back to your stages">‹</button>
     <span class="ftag">finale</span>
     <span class="fsub" id="finSub"></span>
   </div>
-  <div class="stage" id="finStage"></div>
+  <div class="stage2" id="finStage"></div>
 </div>
 
 <div class="panel" id="win">
-  <div class="h">script decoded</div>
-  <div class="big">The alphabet, from one given word.</div>
-  <div class="note">Twenty-two pieces cracked, then two you built yourself. Not fluency. The wall, gone.</div>
-  <button class="btn" id="againBtn">run again</button>
+  <div class="h">hangul decoded</div>
+  <div class="big">Hangul, from one given word.</div>
+  <div class="note">Twenty-two pieces, cracked from one given word. Then two more, built from scratch.</div>
+  <div class="winbtns">
+    <button class="btn" id="reviewBtn">‹ back to your stages</button>
+    <button class="btn ghost" id="resetBtn">start over</button>
+  </div>
 </div>
 
 <footer>
@@ -206,11 +208,12 @@ const TRUTH={'ㄴ':'n','ㅏ':'a','ㅁ':'m','ㅜ':'u','ㅅ':'s','ㅗ':'o','ㅣ':'
   'ㄹ':'r','ㅎ':'h','ㅔ':'e','ㅈ':'j','ㅓ':'eo','ㅡ':'eu','ㅇ':'ng','ㅊ':'ch','ㅐ':'ae','ㅋ':'k','ㅌ':'t','ㅍ':'p'};
 const DECOYS=['kk','tt','pp','ss','jj','ya','yo','wa'];
 const TOTAL=Object.keys(TRUTH).length;
+const SAVE='krib_v1';
 
 const LEVELS=[
   { event:null, crib:'나무', wide:false,
     words:[{w:'나무',g:'tree'},{w:'나',g:'I'},{w:'소',g:'cow'},{w:'산',g:'mountain'},{w:'미',g:'beauty'},{w:'미소',g:'smile'}] },
-  { event:'anchor withheld', crib:null, wide:false,
+  { event:'nothing given', crib:null, wide:false,
     words:[{w:'고기',g:'meat'},{w:'비누',g:'soap'},{w:'도시',g:'city'},{w:'두부',g:'tofu'},{w:'가구',g:'furniture'}] },
   { event:'sound bank widened', crib:null, wide:true,
     words:[{w:'사람',g:'person'},{w:'소리',g:'sound'},{w:'하나',g:'one'},{w:'하루',g:'a day'},{w:'게',g:'crab'},{w:'네',g:'four'}] },
@@ -223,10 +226,7 @@ const LEVELS=[
   { event:'overlap thinned', crib:null, wide:true,
     words:[{w:'포도',g:'grape'},{w:'파',g:'scallion'},{w:'풀',g:'grass'},{w:'바다',g:'sea'},{w:'거리',g:'street'},{w:'그림',g:'picture'}] },
 ];
-const FINALE={
-  read:{ blocks:['바다','소리'], rom:'bada sori', gloss:'sea sound' },
-  compose:[ {g:'spring',rom:'bom',target:'봄'}, {g:'road',rom:'gil',target:'길'} ]
-};
+const FINALE={ compose:[ {g:'spring',rom:'bom',target:'봄'}, {g:'road',rom:'gil',target:'길'} ] };
 
 function blockAtoms(ch){const c=ch.charCodeAt(0)-0xAC00;const a=[CHO[Math.floor(c/588)],JUNG[Math.floor((c%588)/28)]];const jo=JONG[c%28];if(jo)a.push(jo);return a;}
 function wordBlocks(w){return [...w].map(blockAtoms);}
@@ -254,20 +254,41 @@ function keyCount(){
   const s=new Set(Object.keys(solvedKey));
   const f=maxReached;
   if(f<LEVELS.length){
-    if(LEVELS[f].crib) wordAtoms(LEVELS[f].crib).forEach(p=>s.add(p));   // frontier crib pieces are known
-    if(levelState[f]) [...new Set(LEVELS[f].words.flatMap(o=>wordAtoms(o.w)))].forEach(p=>{
-      if(levelState[f].assigned[p]===TRUTH[p]) s.add(p);
-    });
+    if(LEVELS[f].crib) wordAtoms(LEVELS[f].crib).forEach(p=>s.add(p));
+    if(levelState[f]) [...new Set(LEVELS[f].words.flatMap(o=>wordAtoms(o.w)))].forEach(p=>{ if(levelState[f].assigned[p]===TRUTH[p]) s.add(p); });
   }
   return s.size;
 }
 
-function start(){ solvedKey={}; levelState=[]; merged=new Set(); maxReached=0; enterLevel(0); }
+/* persistence */
+function saveState(){
+  try{ localStorage.setItem(SAVE, JSON.stringify({
+    solvedKey, maxReached, li, merged:[...merged],
+    levels: levelState.map(s=> s? {assigned:s.assigned, opened:[...s.opened]} : null)
+  })); }catch(e){}
+}
+function loadState(){
+  try{
+    const d=JSON.parse(localStorage.getItem(SAVE)||'null');
+    if(!d) return false;
+    solvedKey=d.solvedKey||{}; maxReached=d.maxReached||0; li=d.li||0; merged=new Set(d.merged||[]);
+    levelState=(d.levels||[]).map(s=> s? {assigned:s.assigned||{}, opened:new Set(s.opened||[])} : null);
+    ensure(li); ensure(maxReached);
+    return true;
+  }catch(e){ return false; }
+}
+function clearState(){ try{ localStorage.removeItem(SAVE); }catch(e){} }
+
+function start(){
+  if(!loadState()){ solvedKey={}; levelState=[]; merged=new Set(); maxReached=0; li=0; ensure(0); }
+  popSym=null; freshSyms=new Set();
+  $('finale').style.display='none'; $('win').style.display='none'; $('play').style.display='block';
+  renderAll();
+}
 function enterLevel(i){ maxReached=i; li=i; ensure(i); popSym=null; freshSyms=new Set();
   $('finale').style.display='none'; $('win').style.display='none'; $('play').style.display='block'; renderAll(); }
 function viewLevel(i){ if(i<0||i>maxReached)return; li=i; popSym=null; hidePop(); renderAll(); }
 
-/* key */
 function keyList(){
   const out=[];
   Object.keys(solvedKey).forEach(p=>{if(!out.includes(p))out.push(p);});
@@ -277,9 +298,9 @@ function keyList(){
 }
 function renderKey(){
   $('keygrid').innerHTML=keyList().map(s=>{
-    const lk=locked(s), val=soundOf(s), tag=carried(s)?'known':'given';
+    const lk=locked(s), val=soundOf(s);
     const cls=['cell',lk?'locked':'',popSym===s?'active':'',(val&&!lk)?'filled':'',freshSyms.has(s)?'fresh':''].filter(Boolean).join(' ');
-    return `<div class="${cls}" data-sym="${s}" data-tag="${tag}"><div class="sym">${s}</div><div class="snd ${val?'':'empty'}">${val||'?'}</div></div>`;
+    return `<div class="${cls}" data-sym="${s}"><div class="sym">${s}</div><div class="snd ${val?'':'empty'}">${val||'?'}</div></div>`;
   }).join('');
   $('keygrid').querySelectorAll('.cell').forEach(c=>c.addEventListener('click',e=>{e.stopPropagation();onSym(c.dataset.sym,c);}));
   freshSyms=new Set();
@@ -309,28 +330,36 @@ function openWord(w){
   discoveredNew().forEach(a=>{if(!before.has(a))freshSyms.add(a);});
   renderAll();
 }
+function renderStages(){
+  let html='';
+  for(let i=0;i<LEVELS.length;i++){
+    const reached=i<=maxReached, cleared=merged.has(i), active=i===li;
+    const cls=['stage',active?'active':'',cleared?'cleared':'',reached?'reached':'locked'].filter(Boolean).join(' ');
+    html+=`<button class="${cls}" data-i="${i}" ${reached?'':'disabled'}>${i+1}</button>`;
+  }
+  const finReady=merged.has(LEVELS.length-1);
+  html+=`<button class="stage fin ${finReady?'reached':'locked'}" data-fin="1" ${finReady?'':'disabled'}>✦</button>`;
+  $('stages').innerHTML=html;
+  $('stages').querySelectorAll('.stage[data-i]').forEach(b=>{ if(!b.disabled) b.addEventListener('click',e=>{e.stopPropagation();viewLevel(+b.dataset.i);}); });
+  const fb=$('stages').querySelector('.stage[data-fin]');
+  if(fb && !fb.disabled) fb.addEventListener('click',e=>{e.stopPropagation();enterFinale();});
+}
 function renderNav(){
-  $('navLvl').textContent=`level ${li+1} / ${LEVELS.length}`;
-  $('keyCt').textContent=`key ${keyCount()} / ${TOTAL}`;
-  $('navPrev').disabled = li<=0;
-  const finaleReady = merged.has(LEVELS.length-1);
-  const canNext = li<maxReached || (li===LEVELS.length-1 && finaleReady);
-  $('navNext').disabled = !canNext;
-  $('navNext').classList.toggle('lit', canNext && merged.has(li));
-  $('evt').innerHTML = LEVELS[li].event ? '› '+LEVELS[li].event : '';
+  renderStages();
+  $('keyCt').textContent=`pieces ${keyCount()} / ${TOTAL}`;
+  const finReady=merged.has(LEVELS.length-1);
+  const canNext=li<maxReached || (li===LEVELS.length-1 && finReady);
+  $('evt').textContent = LEVELS[li].event ? '› '+LEVELS[li].event : '';
   const adv=$('advance');
   if(merged.has(li) && canNext){
-    adv.textContent = (li===LEVELS.length-1) ? '✓ alphabet complete — the finale →' : '✓ level decoded — next level →';
+    adv.textContent=(li===LEVELS.length-1)?'✓ all pieces recovered — the finale →':'✓ stage decoded — next stage →';
     adv.classList.add('show');
   } else adv.classList.remove('show');
-  const intro = li===0;
-  $('howKey').innerHTML = intro ? `<b>tap a piece</b> to give it a sound. teal pieces you already know.` : '';
-  $('howWords').innerHTML = intro ? `<b>tap a dashed square</b> to open it. 나무 starts known.` : '';
 }
 function renderProgress(){
   if(li===maxReached && !merged.has(li) && LEVELS[li].words.every(o=>wordState(o)==='solved')) clearLevel();
 }
-function renderAll(){renderNav();renderKey();renderWords();renderProgress();}
+function renderAll(){renderNav();renderKey();renderWords();renderProgress();saveState();}
 
 /* popover */
 function onSym(s,cell){
@@ -365,38 +394,28 @@ document.addEventListener('keydown',e=>{
 });
 window.addEventListener('scroll',()=>{if($('pop').style.display==='block'){hidePop();renderKey();}},true);
 
-/* level flow */
+/* flow */
 function clearLevel(){
   merged.add(li);
   levelPieces().forEach(p=>solvedKey[p]=TRUTH[p]);
   if(li+1<LEVELS.length){ maxReached=li+1; ensure(li+1); }
-  renderNav();
+  renderNav(); saveState();
 }
-$('navPrev').addEventListener('click',e=>{e.stopPropagation();viewLevel(li-1);});
 function goForward(){ if(li<maxReached) viewLevel(li+1); else if(li===LEVELS.length-1 && merged.has(li)) enterFinale(); }
-$('navNext').addEventListener('click',e=>{e.stopPropagation();goForward();});
 $('advance').addEventListener('click',e=>{e.stopPropagation();goForward();});
+$('reviewBtn').addEventListener('click',e=>{e.stopPropagation();$('win').style.display='none';$('play').style.display='block';viewLevel(maxReached);});
+$('resetBtn').addEventListener('click',e=>{e.stopPropagation();clearState();solvedKey={};levelState=[];merged=new Set();maxReached=0;li=0;ensure(0);start();});
 
-/* finale */
-let finStep, cmpIdx, slot, activeSlot;
+/* finale — compose only (reverse the cipher) */
+let cmpIdx, slot, activeSlot;
 function knownConsonants(){return CHO.filter(c=>carried(c));}
 function knownVowels(){return JUNG.filter(v=>carried(v));}
-function enterFinale(){ $('play').style.display='none'; $('win').style.display='none'; $('finale').style.display='block'; finStep='read'; renderFinale(); }
+function enterFinale(){ $('play').style.display='none'; $('win').style.display='none'; $('finale').style.display='block'; cmpIdx=0; resetSlots(); renderFinale(); }
 $('finBack').addEventListener('click',e=>{e.stopPropagation();$('finale').style.display='none';$('play').style.display='block';viewLevel(LEVELS.length-1);});
+function resetSlots(){slot={cho:null,jung:null,jong:null};activeSlot='cho';}
 function renderFinale(){
-  if(finStep==='read'){
-    $('finSub').innerHTML='<b>read a line</b> you have not seen';
-    const r=FINALE.read;
-    $('finStage').innerHTML=`<div class="rline">${r.blocks.join(' ')}</div><div class="rrom" id="rrom"></div><div class="rgloss" id="rgloss"></div><div class="cmpbtns"><button class="check" id="readBtn">decode the line</button></div>`;
-    $('readBtn').addEventListener('click',e=>{e.stopPropagation();
-      const r=FINALE.read;
-      if(!$('readBtn').dataset.done){ $('rrom').textContent=r.rom; $('rgloss').textContent=r.gloss; $('readBtn').textContent='build a word →'; $('readBtn').dataset.done='1'; }
-      else { finStep='compose'; cmpIdx=0; resetSlots(); renderFinale(); }
-    });
-    return;
-  }
   const t=FINALE.compose[cmpIdx];
-  $('finSub').innerHTML='<b>build a word</b> from the meaning';
+  $('finSub').innerHTML='reverse the cipher — <b>build a word</b> from its meaning';
   const cons=knownConsonants().map(c=>`<button class="jchip" data-j="${c}" data-t="c">${c}<span class="s">${TRUTH[c]}</span></button>`).join('');
   const vows=knownVowels().map(v=>`<button class="jchip" data-j="${v}" data-t="v">${v}<span class="s">${TRUTH[v]}</span></button>`).join('');
   const pv=(slot.cho!=null&&slot.jung!=null)?String.fromCharCode(0xAC00+slot.cho*588+slot.jung*28+(slot.jong??0)):'';
@@ -416,7 +435,6 @@ function renderFinale(){
   $('cmpClear').addEventListener('click',e=>{e.stopPropagation();resetSlots();renderFinale();});
   $('cmpCheck').addEventListener('click',e=>{e.stopPropagation();checkCompose();});
 }
-function resetSlots(){slot={cho:null,jung:null,jong:null};activeSlot='cho';}
 function tapJamo(j,type){
   if(type==='v'){ slot.jung=JUNG.indexOf(j); activeSlot='jong'; }
   else { const ci=CHO.indexOf(j), ji=JONG.indexOf(j);
@@ -437,7 +455,6 @@ function checkCompose(){
 }
 function fmsg(k,t){const m=$('cmpmsg');if(m){m.className='cmpmsg '+k;m.textContent=t;}}
 function finWin(){ $('finale').style.display='none'; $('win').style.display='block'; }
-$('againBtn').addEventListener('click',e=>{e.stopPropagation();start();});
 
 start();
 </script>
