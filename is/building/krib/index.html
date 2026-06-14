@@ -222,7 +222,7 @@ const LEVELS=[
   { event:'finals in play', crib:null, wide:true,
     words:[{w:'강',g:'river'},{w:'공',g:'ball'},{w:'방',g:'room'},{w:'책',g:'book'},{w:'차',g:'car'},{w:'개',g:'dog'},{w:'문',g:'door'},{w:'밥',g:'rice'}] },
   { event:null, crib:null, wide:true,
-    words:[{w:'코',g:'nose'},{w:'키',g:'height'},{w:'토',g:'soil'},{w:'타',g:'ride'},{w:'발',g:'foot'},{w:'곰',g:'bear'},{w:'짐',g:'load'},{w:'산',g:'mountain'}] },
+    words:[{w:'코',g:'nose'},{w:'키',g:'height'},{w:'토',g:'soil'},{w:'탑',g:'tower'},{w:'발',g:'foot'},{w:'곰',g:'bear'},{w:'짐',g:'luggage'},{w:'산',g:'mountain'}] },
   { event:'overlap thinned', crib:null, wide:true,
     words:[{w:'포도',g:'grape'},{w:'파',g:'scallion'},{w:'풀',g:'grass'},{w:'바다',g:'sea'},{w:'거리',g:'street'},{w:'그림',g:'picture'}] },
 ];
@@ -355,6 +355,9 @@ function renderNav(){
     adv.textContent=(li===LEVELS.length-1)?'✓ all pieces recovered — the finale →':'✓ stage decoded — next stage →';
     adv.classList.add('show');
   } else adv.classList.remove('show');
+  const intro=li===0;
+  $('howKey').innerHTML=intro?'<b>tap a piece</b> to give it a sound.':'';
+  $('howWords').innerHTML=intro?'<b>tap a dashed square</b> to open it.':'';
 }
 function renderProgress(){
   if(li===maxReached && !merged.has(li) && LEVELS[li].words.every(o=>wordState(o)==='solved')) clearLevel();
