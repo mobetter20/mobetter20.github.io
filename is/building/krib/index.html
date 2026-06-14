@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://ajin.im/is/building/krib/">
 <meta property="og:site_name" content="ajin.im">
 <meta property="og:title" content="KRIB · decode hangul">
-<meta property="og:description" content="Decode hangul from a single given word. Crack a piece and every Korean word that shares it resolves at once. Hangul was built to come apart this fast.">
+<meta property="og:description" content="Decode hangul from a single given word. Crack a piece and every Korean word that shares it resolves at once.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ajin.im/is/building/krib/">
 <meta name="twitter:card" content="summary">
@@ -24,7 +24,7 @@
 :root{
   --bg:#101013; --panel:#17171b; --panel2:#1d1d22; --line:#2a2a31;
   --text:#e8e4da; --dim:#6e6a60; --faint:#3a3833;
-  --given:#4fa3a5; --active:#e3492b; --ok:#7faa55;
+  --given:#78cdd0; --active:#eea78c; --ok:#c7d14f;
   --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
   --kr:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;
 }
@@ -86,11 +86,11 @@ header{margin-bottom:6px}
 .word.full .rom{color:#9c6a52}
 .word.solved{border-color:var(--ok)}
 .word.solved .blocks,.word.solved .rom,.word.solved .rom .k{color:var(--ok)}.word.solved .gloss{color:var(--dim)}
-@keyframes pulse{0%{background:rgba(127,170,85,.22)}100%{background:var(--panel)}}
+@keyframes pulse{0%{background:rgba(199,209,79,.22)}100%{background:var(--panel)}}
 @media(prefers-reduced-motion:no-preference){.word.justsolved{animation:pulse .6s ease-out}}
 
-.advance{display:none;width:100%;margin-top:18px;padding:13px;background:rgba(122,155,107,.10);border:1px solid var(--ok);color:var(--ok);font-family:var(--mono);font-size:13px;cursor:pointer;letter-spacing:.05em;text-align:center}
-.advance:hover{background:rgba(122,155,107,.18)}
+.advance{display:none;width:100%;margin-top:18px;padding:13px;background:rgba(199,209,79,.10);border:1px solid var(--ok);color:var(--ok);font-family:var(--mono);font-size:13px;cursor:pointer;letter-spacing:.05em;text-align:center}
+.advance:hover{background:rgba(199,209,79,.18)}
 .advance.show{display:block}
 @media(prefers-reduced-motion:no-preference){.advance.show{animation:advin .4s ease-out}}
 @keyframes advin{0%{opacity:0;transform:translateY(-4px)}100%{opacity:1}}
@@ -115,7 +115,7 @@ header{margin-bottom:6px}
 .slot .lab{font-size:9px;letter-spacing:.1em;color:var(--faint);text-transform:uppercase}
 .slot .j{font-family:var(--kr);font-size:30px;font-weight:700;color:var(--text);line-height:1;height:34px;display:flex;align-items:center}
 .slot.on{border-color:var(--active);border-style:solid}
-.slot.cho .j{color:var(--active)}.slot.jung .j{color:#d9a441}.slot.jong .j{color:var(--given)}
+.slot.cho .j{color:var(--active)}.slot.jung .j{color:#ffdd00}.slot.jong .j{color:var(--given)}
 .preview{text-align:center;margin:14px 0}
 .preview .pv{font-family:var(--kr);font-size:64px;font-weight:700;line-height:1;color:var(--text)}.preview .pv.empty{color:var(--faint)}
 .picker .prow{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;justify-content:center}
@@ -150,7 +150,7 @@ footer a{color:var(--dim)}
 </header>
 
 <div class="frame">
-  One square is already decoded: <span class="anc">나무</span> = <b>namu</b>. Everything else is unread. Sound out a piece and every word that shares it resolves at once. Hangul was built to come apart this fast.
+  One square is already decoded: <span class="anc">나무</span> = <b>namu</b>. Everything else is unread. Sound out a piece and every word that shares it resolves at once.
 </div>
 
 <div id="play">
@@ -182,7 +182,7 @@ footer a{color:var(--dim)}
 <div class="panel" id="win">
   <div class="h">hangul decoded</div>
   <div class="big">Hangul, from one given word.</div>
-  <div class="note">Twenty-two pieces, cracked from one given word. Then two more, built from scratch.</div>
+  <div class="note">Twenty-two pieces decoded. Two new words built from them.</div>
   <div class="winbtns">
     <button class="btn" id="reviewBtn">‹ back to your stages</button>
     <button class="btn ghost" id="resetBtn">start over</button>
