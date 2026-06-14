@@ -11,7 +11,7 @@ A logic puzzle that reverse-engineers the Korean alphabet from almost nothing. T
 1. **Mechanic** — phoneme cryptogram + the block-composition bridge folded in (open a square, its pieces enter a shared key; recurrence carries the bridge). The bridge is not its own tier.
 2. **Curve** — 5 staged levers, one wrinkle per band: loop → withhold the crib → widen the sound bank → finals (a piece in any position) → thin the overlap. Anchor-withholding is band 2, not the whole lever.
 3. **Length** — one sitting, 7 cryptogram levels + a finale, ~22 basic jamo. The recovered key **persists across levels**, so it reads as reconstructing one alphabet, not seven puzzles.
-4. **Finale** — flip decode→encode: read one unseen line, then compose two unseen words (봄, 길) from the recovered alphabet via AC00's codepoint math.
+4. **Finale**: flip decode→encode. Compose-only ("reverse the cipher"): build two unseen words (봄, 돈) from the recovered alphabet via AC00's codepoint math. Targets avoid syllable-final ㄹ so the romanization stays consistent with the cipher (ㄹ=r), not real-Korean ㄹ=l.
 5. **Naming**: handle **KRIB**. The on-page 해독 seal was removed (owner call, 2026-06-14: it read as a confusing logo); the title and OG carry "decode the Korean script". 해독 stays the project working title in the canon only.
 
 ## v1.1 copy + UX pass (2026-06-14)

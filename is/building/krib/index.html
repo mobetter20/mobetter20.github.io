@@ -226,9 +226,9 @@ const LEVELS=[
   { event:'overlap thinned', crib:null, wide:true,
     words:[{w:'포도',g:'grape'},{w:'파',g:'scallion'},{w:'풀',g:'grass'},{w:'바다',g:'sea'},{w:'거리',g:'street'},{w:'그림',g:'picture'}] },
 ];
-const FINALE={ compose:[ {g:'spring',rom:'bom',target:'봄'}, {g:'road',rom:'gil',target:'길'} ] };
+const FINALE={ compose:[ {g:'spring',rom:'bom',target:'봄'}, {g:'money',rom:'don',target:'돈'} ] };
 
-function blockAtoms(ch){const c=ch.charCodeAt(0)-0xAC00;const a=[CHO[Math.floor(c/588)],JUNG[Math.floor((c%588)/28)]];const jo=JONG[c%28];if(jo)a.push(jo);return a;}
+function blockAtoms(ch){const c=ch.charCodeAt(0)-0xAC00;if(c<0||c>=11172)return [];const a=[CHO[Math.floor(c/588)],JUNG[Math.floor((c%588)/28)]];const jo=JONG[c%28];if(jo)a.push(jo);return a;}
 function wordBlocks(w){return [...w].map(blockAtoms);}
 function wordAtoms(w){return wordBlocks(w).flat();}
 
@@ -270,9 +270,20 @@ function saveState(){
 function loadState(){
   try{
     const d=JSON.parse(localStorage.getItem(SAVE)||'null');
-    if(!d) return false;
-    solvedKey=d.solvedKey||{}; maxReached=d.maxReached||0; li=d.li||0; merged=new Set(d.merged||[]);
-    levelState=(d.levels||[]).map(s=> s? {assigned:s.assigned||{}, opened:new Set(s.opened||[])} : null);
+    if(!d||typeof d!=='object') return false;
+    const sk=d.solvedKey||{};
+    for(const k in sk){ if(TRUTH[k]===undefined||sk[k]!==TRUTH[k]) return false; }   // every carried piece is a real jamo at its true sound
+    const mr=d.maxReached, mg=Array.isArray(d.merged)?d.merged:[];
+    if(!Number.isInteger(mr)||mr<0||mr>=LEVELS.length) return false;
+    const mset=new Set(mg); if(mset.size!==mg.length) return false;
+    for(let i=0;i<mg.length;i++){ if(!mset.has(i)) return false; }                   // merged is a {0..n-1} prefix
+    if(mr!==(mg.length<LEVELS.length?mg.length:LEVELS.length-1)) return false;        // frontier consistent with cleared count
+    const exp=new Set(); mg.forEach(i=>LEVELS[i].words.forEach(o=>wordAtoms(o.w).forEach(p=>exp.add(p))));
+    const sks=Object.keys(sk);
+    if(sks.length!==exp.size||sks.some(k=>!exp.has(k))) return false;                 // key == exactly the cleared levels' pieces
+    let cli=Number.isInteger(d.li)?d.li:mr; if(cli<0||cli>mr) cli=mr;
+    solvedKey=sk; maxReached=mr; li=cli; merged=mset;
+    levelState=(Array.isArray(d.levels)?d.levels:[]).map(s=> s&&typeof s==='object'?{assigned:(s.assigned&&typeof s.assigned==='object')?s.assigned:{},opened:new Set(Array.isArray(s.opened)?s.opened:[])}:null);
     ensure(li); ensure(maxReached);
     return true;
   }catch(e){ return false; }
@@ -410,11 +421,11 @@ $('reviewBtn').addEventListener('click',e=>{e.stopPropagation();$('win').style.d
 $('resetBtn').addEventListener('click',e=>{e.stopPropagation();clearState();solvedKey={};levelState=[];merged=new Set();maxReached=0;li=0;ensure(0);start();});
 
 /* finale — compose only (reverse the cipher) */
-let cmpIdx, slot, activeSlot;
+let cmpIdx, slot, activeSlot, finTimer=null;
 function knownConsonants(){return CHO.filter(c=>carried(c));}
 function knownVowels(){return JUNG.filter(v=>carried(v));}
-function enterFinale(){ $('play').style.display='none'; $('win').style.display='none'; $('finale').style.display='block'; cmpIdx=0; resetSlots(); renderFinale(); }
-$('finBack').addEventListener('click',e=>{e.stopPropagation();$('finale').style.display='none';$('play').style.display='block';viewLevel(LEVELS.length-1);});
+function enterFinale(){ if(finTimer){clearTimeout(finTimer);finTimer=null;} $('play').style.display='none'; $('win').style.display='none'; $('finale').style.display='block'; cmpIdx=0; resetSlots(); renderFinale(); }
+$('finBack').addEventListener('click',e=>{e.stopPropagation();if(finTimer){clearTimeout(finTimer);finTimer=null;}$('finale').style.display='none';$('play').style.display='block';viewLevel(LEVELS.length-1);});
 function resetSlots(){slot={cho:null,jung:null,jong:null};activeSlot='cho';}
 function renderFinale(){
   const t=FINALE.compose[cmpIdx];
@@ -439,21 +450,21 @@ function renderFinale(){
   $('cmpCheck').addEventListener('click',e=>{e.stopPropagation();checkCompose();});
 }
 function tapJamo(j,type){
-  if(type==='v'){ slot.jung=JUNG.indexOf(j); activeSlot='jong'; }
-  else { const ci=CHO.indexOf(j), ji=JONG.indexOf(j);
-    if(activeSlot==='jong'&&ji>0) slot.jong=ji;
-    else if(slot.cho==null&&ci>=0){ slot.cho=ci; activeSlot='jung'; }
-    else if(ji>0) slot.jong=ji;
-    else if(ci>=0){ slot.cho=ci; activeSlot='jung'; } }
+  const ci=CHO.indexOf(j), ji=JONG.indexOf(j);
+  if(type==='v'){ slot.jung=JUNG.indexOf(j); activeSlot = slot.cho==null?'cho':(slot.jong==null?'jong':'jung'); }
+  else if(activeSlot==='cho'){ if(ci>=0){ slot.cho=ci; activeSlot='jung'; } }
+  else if(activeSlot==='jong'){ if(ji>0) slot.jong=ji; }
+  else { if(slot.cho==null&&ci>=0){ slot.cho=ci; activeSlot='jung'; } else if(ji>0) slot.jong=ji; else if(ci>=0) slot.cho=ci; }
   renderFinale();
 }
 function checkCompose(){
+  if(finTimer) return;
   const t=FINALE.compose[cmpIdx];
   if(slot.cho==null||slot.jung==null){ fmsg('bad','need an initial and a vowel'); return; }
   const ch=String.fromCharCode(0xAC00+slot.cho*588+slot.jung*28+(slot.jong??0));
   if(ch===t.target){
-    if(cmpIdx+1<FINALE.compose.length){ fmsg('good',`${ch} — correct. one more.`); setTimeout(()=>{cmpIdx++;resetSlots();renderFinale();},800); }
-    else { fmsg('good',`${ch} — correct.`); setTimeout(finWin,800); }
+    if(cmpIdx+1<FINALE.compose.length){ fmsg('good',`${ch} — correct. one more.`); finTimer=setTimeout(()=>{finTimer=null;cmpIdx++;resetSlots();renderFinale();},800); }
+    else { fmsg('good',`${ch} — correct.`); finTimer=setTimeout(()=>{finTimer=null;finWin();},800); }
   } else fmsg('bad',`${ch||'?'} is not it — check each piece against ${t.rom}`);
 }
 function fmsg(k,t){const m=$('cmpmsg');if(m){m.className='cmpmsg '+k;m.textContent=t;}}
