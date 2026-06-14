@@ -26,7 +26,7 @@ LEVELS=[
  ('band3 · wide bank',    None,  True,  ['사람','소리','하나','하루','게','네']),
  ('band3 · wide bank',    None,  True,  ['바지','자리','거리','머리','그림','드라마']),
  ('band4 · finals',       None,  True,  ['강','공','방','책','차','개','문','밥']),
- ('band4 · finals',       None,  True,  ['코','키','토','타','발','곰','짐','산']),
+ ('band4 · finals',       None,  True,  ['코','키','토','탑','발','곰','짐','산']),
  ('band5 · thin overlap', None,  True,  ['포도','파','풀','바다','거리','그림']),
 ]
 
