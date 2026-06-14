@@ -1,8 +1,8 @@
-# CRIB · 해독 — decode the Korean script
+# KRIB · decode the Korean script
 
 A logic puzzle that reverse-engineers the Korean alphabet from almost nothing. The script is a cipher: unknown symbols, one given word (나무 = namu), and a cascade where cracking one piece resolves every word that shares it. Openly Korean, no invented-script mystery. Learning Korean is a side effect, never the goal.
 
-**Live:** https://ajin.im/is/building/crib/ — soft-launch (noindex, not hub-listed). First-draft corpus, refined live.
+**Live:** https://ajin.im/is/building/crib/ (slug stays `crib`; handle is KRIB). Soft-launch (noindex, not hub-listed). First-draft corpus, refined live.
 
 **Source of truth:** `is/building/crib/index.html` (single static file, vanilla JS, Google Fonts the only dep). Sibling tool: AC00 (`is/building/ac00/`), whose compose math the finale reuses.
 
@@ -12,7 +12,11 @@ A logic puzzle that reverse-engineers the Korean alphabet from almost nothing. T
 2. **Curve** — 5 staged levers, one wrinkle per band: loop → withhold the crib → widen the sound bank → finals (a piece in any position) → thin the overlap. Anchor-withholding is band 2, not the whole lever.
 3. **Length** — one sitting, 7 cryptogram levels + a finale, ~22 basic jamo. The recovered key **persists across levels**, so it reads as reconstructing one alphabet, not seven puzzles.
 4. **Finale** — flip decode→encode: read one unseen line, then compose two unseen words (봄, 길) from the recovered alphabet via AC00's codepoint math.
-5. **Naming** — 해독 seal + English handle **CRIB** (the cryptanalysis term for a known-plaintext foothold, which is the given-word mechanic).
+5. **Naming**: handle **KRIB**. The on-page 해독 seal was removed (owner call, 2026-06-14: it read as a confusing logo); the title and OG carry "decode the Korean script". 해독 stays the project working title in the canon only.
+
+## v1.1 copy + UX pass (2026-06-14)
+
+Re-grounded on the constitution (decode voice over tutor voice; minimal load-bearing UX). Changes: masthead rewritten dry (dropped "no Korean needed" and the "real alphabet" framing); band labels became terse console events shown only when a lever engages (crib withheld / sound bank widened / finals in play / overlap thinned); how-lines on level 1 only; three counters collapsed to one `key M / 22`; the key sits above the squares so the cascade fires in view; **level navigation** added (prev/next stepper, completed levels reviewable read-only, work preserved). Page copy is em-dash-free per house rule.
 
 ## Corpus + verification
 
