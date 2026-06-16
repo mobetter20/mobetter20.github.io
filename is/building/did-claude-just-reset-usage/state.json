@@ -1,22 +1,29 @@
 {
   "_note": "machine-updated by canary_watcher (LaunchAgent com.ajin.canary-watcher, see _scripts/canary/) — hand edits may be overwritten within 30 minutes",
-  "last_polled_utc": "2026-06-15T02:42:47Z",
+  "last_polled_utc": "2026-06-16T01:27:00Z",
   "canary_now": {
-    "seven_day_used_pct": 19.0,
+    "seven_day_used_pct": 0.0,
     "seven_day_resets_at": "2026-06-18T22:59:59Z"
   },
   "verdict_override": null,
   "watching_note": null,
   "last_reset": {
-    "detected_utc": "2026-06-13T02:08:41Z",
-    "bracket": "between 01:27 and 02:08 UTC, Jun 13",
-    "from_pct": 40,
+    "detected_utc": "2026-06-16T00:59:09Z",
+    "bracket": "between 00:25 and 00:59 UTC, Jun 16",
+    "from_pct": 25,
     "to_pct": 0,
     "window": "unchanged",
     "announced": false,
-    "suspected_trigger": "possibly goodwill after Anthropic suspended Fable 5 and Mythos 5 (US government directive received ~21:21 UTC Jun 12, about 4h before this reset); no compensation was announced, so unconfirmed"
+    "suspected_trigger": null
   },
   "resets": [
+    {
+      "date": "2026-06-16",
+      "counter": "25% → 0%",
+      "window": "unchanged",
+      "announced": "no",
+      "note": "auto-detected by the canary"
+    },
     {
       "date": "2026-06-13",
       "counter": "40% → 0%",
