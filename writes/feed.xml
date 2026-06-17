@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>ajin.im — Collected Writing</title>
+<link rel="alternate" href="https://ajin.im/writes/"/>
+<link rel="self" href="https://ajin.im/writes/feed.xml"/>
+<id>https://ajin.im/writes/</id>
+<updated>2026-01-01T00:00:00Z</updated>
+<author><name>ajin</name></author>
+<entry>
+<id>https://ajin.im/writes/the-house-chips-of-ai/</id>
+<link rel="alternate" href="https://ajin.im/writes/the-house-chips-of-ai/"/>
+<title>The House Chips of AI</title>
+<updated>2026-01-01T00:00:00Z</updated>
+<published>2026-01-01T00:00:00Z</published>
+<summary type="text">An AI subscription is not a software product. It is access to a private economy — paid in dollars, metered in tokens, credits, and limits the platform sets.</summary>
+</entry>
+<entry>
+<id>https://ajin.im/writes/already-seen/</id>
+<link rel="alternate" href="https://ajin.im/writes/already-seen/"/>
+<title>Already Seen</title>
+<updated>2026-01-01T00:00:00Z</updated>
+<published>2026-01-01T00:00:00Z</published>
+<summary type="text">At Hanoi Train Street, the train is not symbolic. It is loud, close, and solid. When it comes through, people flatten themselves against the...</summary>
+</entry>
+<entry>
+<id>https://ajin.im/writes/adventure-is-danger-past-tense/</id>
+<link rel="alternate" href="https://ajin.im/writes/adventure-is-danger-past-tense/"/>
+<title>Adventure Is Danger, Past Tense</title>
+<updated>2026-01-01T00:00:00Z</updated>
+<published>2026-01-01T00:00:00Z</published>
+<summary type="text">A young woman once got on the wrong train in a country where she didn’t speak the language.</summary>
+</entry>
+<entry>
+<id>https://ajin.im/writes/call-of-the-void/</id>
+<link rel="alternate" href="https://ajin.im/writes/call-of-the-void/"/>
+<title>Call of the Void</title>
+<updated>2026-01-01T00:00:00Z</updated>
+<published>2026-01-01T00:00:00Z</published>
+<summary type="text">Have you ever heard of the call of the void?</summary>
+</entry>
+<entry>
+<id>https://ajin.im/writes/korea-was-the-beta-test-zone-for-modern-loneliness/</id>
+<link rel="alternate" href="https://ajin.im/writes/korea-was-the-beta-test-zone-for-modern-loneliness/"/>
+<title>Korea was the beta test zone for modern loneliness.</title>
+<updated>2026-01-01T00:00:00Z</updated>
+<published>2026-01-01T00:00:00Z</published>
+<summary type="text">Korea didn’t invent loneliness.</summary>
+</entry>
+<entry>
+<id>https://ajin.im/writes/how-to-cry-on-the-subway-and-not-be-seen/</id>
+<link rel="alternate" href="https://ajin.im/writes/how-to-cry-on-the-subway-and-not-be-seen/"/>
+<title>How to Cry on the Subway and Not Be Seen</title>
+<updated>2026-01-01T00:00:00Z</updated>
+<published>2026-01-01T00:00:00Z</published>
+<summary type="text">You’re surrounded by hundreds of people. You’re crying. No one looks.</summary>
+</entry>
+</feed>
