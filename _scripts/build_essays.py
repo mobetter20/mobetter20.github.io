@@ -305,6 +305,7 @@ def build_post_page(post: EssayPost) -> str:
         kicker=kicker,
         back_href="/writes/",
         back_label="← ajin.im/writes",
+        feed_url="/writes/feed.xml",
     )
 
 
@@ -322,6 +323,61 @@ def load_posts() -> list[EssayPost]:
     return sorted(posts, key=lambda post: post.order)
 
 
+SITE_BASE_URL = "https://ajin.im"
+ESSAY_FEED_TITLE = "ajin.im — Collected Writing"
+ESSAY_FEED_ALTERNATE = f"{SITE_BASE_URL}/writes/"
+ESSAY_FEED_SELF = f"{SITE_BASE_URL}/writes/feed.xml"
+ESSAY_FEED_PATH = WRITES_ROOT / "feed.xml"
+
+
+def xml_escape(value: str) -> str:
+    """html.escape(quote=True) yields valid XML entity/char references."""
+    return html.escape(value, quote=True)
+
+
+def render_feed(posts: list[EssayPost]) -> str:
+    """Build a valid Atom 1.0 feed from the live essays.
+
+    Mirrors build_bird_coo.render_feed. Essay front matter carries only a
+    year (`date: 2026`), so timestamps are pinned to YYYY-01-01 — coarse but
+    honest; the feed exists for discovery/followability, not minute-accuracy.
+    Posts are emitted in `order` (0 first = the featured/most-recent piece)."""
+    def timestamp(post: EssayPost) -> str:
+        year = post.year or "2026"
+        return f"{year}-01-01T00:00:00Z"
+
+    entries = []
+    for post in posts:
+        entry_url = f"{SITE_BASE_URL}/writes/{post.slug}/"
+        ts = timestamp(post)
+        summary = post.excerpt or post.title
+        entries.append(
+            "<entry>\n"
+            f"<id>{xml_escape(entry_url)}</id>\n"
+            f'<link rel="alternate" href="{xml_escape(entry_url)}"/>\n'
+            f"<title>{xml_escape(post.title)}</title>\n"
+            f"<updated>{ts}</updated>\n"
+            f"<published>{ts}</published>\n"
+            f'<summary type="text">{xml_escape(summary)}</summary>\n'
+            "</entry>"
+        )
+
+    feed_updated = max((timestamp(p) for p in posts), default="2026-01-01T00:00:00Z")
+    entries_block = ("\n" + "\n".join(entries) + "\n") if entries else "\n"
+    return (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<feed xmlns="http://www.w3.org/2005/Atom">\n'
+        f"<title>{xml_escape(ESSAY_FEED_TITLE)}</title>\n"
+        f'<link rel="alternate" href="{xml_escape(ESSAY_FEED_ALTERNATE)}"/>\n'
+        f'<link rel="self" href="{xml_escape(ESSAY_FEED_SELF)}"/>\n'
+        f"<id>{xml_escape(ESSAY_FEED_ALTERNATE)}</id>\n"
+        f"<updated>{feed_updated}</updated>\n"
+        "<author><name>ajin</name></author>"
+        f"{entries_block}"
+        "</feed>\n"
+    )
+
+
 def main() -> None:
     posts = load_posts()
     for post in posts:
@@ -336,6 +392,8 @@ def main() -> None:
             encoding="utf-8",
         )
         print(f"built {out_dir / 'index.html'}")
+    ESSAY_FEED_PATH.write_text(render_feed(posts), encoding="utf-8")
+    print(f"built {ESSAY_FEED_PATH}")
 
 
 if __name__ == "__main__":

@@ -94,6 +94,7 @@ def render_index() -> str:
         bar_href="/",
         note_html=NOTE_HTML,
         body_html=body,
+        feed_url="/writes/feed.xml",
     )
 
 

@@ -19,10 +19,22 @@ FONTS = (
 )
 
 
-def head(title: str, description: str, canonical: str, *, og_type: str = "website") -> str:
-    """The shared <head> block. `title` and `description` are escaped here."""
+def head(
+    title: str, description: str, canonical: str, *, og_type: str = "website", feed_url: str = ""
+) -> str:
+    """The shared <head> block. `title` and `description` are escaped here.
+
+    `feed_url`, when set, emits an Atom autodiscovery <link>. Only pages that
+    belong to that feed (the essays + the /writes index) pass it; comedy and
+    /wrote leave it empty so the essays-only feed isn't advertised there."""
     t = html.escape(title)
     d = html.escape(description)
+    feed_link = (
+        f'\n    <link rel="alternate" type="application/atom+xml" '
+        f'title="ajin.im — Collected Writing" href="{feed_url}" />'
+        if feed_url
+        else ""
+    )
     return f"""  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,7 +42,7 @@ def head(title: str, description: str, canonical: str, *, og_type: str = "websit
     <link rel="apple-touch-icon" href="/img/a3.png" />
     <title>{t}</title>
     <meta name="description" content="{d}" />
-    <link rel="canonical" href="{canonical}" />
+    <link rel="canonical" href="{canonical}" />{feed_link}
     <meta property="og:site_name" content="ajin.im" />
     <meta property="og:title" content="{t}" />
     <meta property="og:description" content="{d}" />
@@ -62,6 +74,7 @@ def reading_page(
     back_label: str,
     subtitle: str = "",
     note_html: str = "",
+    feed_url: str = "",
 ) -> str:
     """A single piece. `body_html` is already-rendered HTML (indented)."""
     subtitle_html = (
@@ -70,7 +83,7 @@ def reading_page(
     note_block = f"      {note_html}\n" if note_html else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
-{head(title, description, canonical, og_type="article")}
+{head(title, description, canonical, og_type="article", feed_url=feed_url)}
   <body class="read-page">
     <main class="shell">
       <a class="back" href="{back_href}">{html.escape(back_label)}</a>
@@ -106,11 +119,12 @@ def log_page(
     bar_href: str,
     note_html: str,
     body_html: str,
+    feed_url: str = "",
 ) -> str:
     """A log index (/writes or /wrote). `body_html` is the rendered .log block."""
     return f"""<!DOCTYPE html>
 <html lang="en">
-{head(title, description, canonical)}
+{head(title, description, canonical, feed_url=feed_url)}
   <body class="log-page">
     <main class="shell">
       <div class="bar"><a href="{bar_href}">{html.escape(bar_text)}</a></div>
