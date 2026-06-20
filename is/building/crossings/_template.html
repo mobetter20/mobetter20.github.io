@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Whose passport got stronger?</title>
+<meta name="description" content="Forty years of visa requirements, 1973 to 2013, plus a separate Passport Index snapshot series through 2025. The average barely moved. Underneath, the gap between passports widened.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230a1a3a'/%3E%3Crect x='3' y='6' width='10' height='4' fill='%23fff200'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a1a3a; --bg2:#0e2349; --bg3:#13294f;
+  --line:rgba(233,240,253,.12); --line2:rgba(233,240,253,.26);
+  --ink:#eef3fc; --ink2:#9fb2d6; --ink3:#6178a6;
+  --hot:#fff200; --blue:#1c4286; --amber:#6178a6;
+  --c-closed:#16306a; --c-mid:#4a6fb0; --c-open:#fff200;
+  --sans:'Space Grotesk',system-ui,sans-serif;
+  --mono:'Space Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body{font-size:15px;line-height:1.55;padding:0 0 70px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+a{color:var(--hot);text-decoration:none}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+button{font-family:var(--sans);cursor:pointer}
+::selection{background:var(--hot);color:var(--bg)}
+
+.masthead{padding:40px 0 8px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink3)}
+.title{font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:-.02em;line-height:1.04;margin:14px 0 0;max-width:18ch}
+.title .q{color:var(--hot)}
+.standfirst{font-size:13px;color:var(--ink3);max-width:64ch;margin-top:14px;line-height:1.5;font-family:var(--mono);letter-spacing:.02em}
+.answer{font-size:18px;color:var(--ink);max-width:58ch;margin-top:10px;line-height:1.5;font-weight:400}
+.answer b{font-weight:500}
+.answer .hot{color:var(--hot);font-weight:500}
+.finding{display:flex;gap:26px;flex-wrap:wrap;margin:24px 0 6px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fstat .n{font-family:var(--mono);font-size:23px;font-weight:700;color:var(--ink)}
+.fstat .n.up{color:var(--hot)}
+.fstat .k{font-size:12px;color:var(--ink3);letter-spacing:.02em;margin-top:2px;max-width:24ch}
+
+.controlbar{position:sticky;top:0;z-index:30;background:rgba(10,26,58,.88);backdrop-filter:blur(9px);border-bottom:1px solid var(--line);margin-top:18px}
+.controlbar .inner{max-width:1180px;margin:0 auto;padding:11px 26px 13px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.tabs{display:flex;border:1px solid var(--line2);border-radius:7px;overflow:hidden}
+.tab{padding:8px 16px;font-size:12.5px;letter-spacing:.04em;color:var(--ink2);background:transparent;border:0;border-right:1px solid var(--line);font-weight:500}
+.tab:last-child{border-right:0}
+.tab.on{background:var(--hot);color:var(--bg);font-weight:700}
+.tab small{display:block;font-size:9.5px;letter-spacing:.06em;color:var(--ink3);font-weight:400;margin-top:1px}
+.tab.on small{color:var(--blue)}
+.timeline{display:flex;align-items:center;gap:13px;flex:1;min-width:320px}
+.playbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);background:var(--bg2);color:var(--hot);font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.playbtn:hover{border-color:var(--hot)}
+.yearwrap{flex:1;position:relative}
+.trackzones{position:absolute;top:6px;left:0;right:0;height:6px;border-radius:3px;overflow:hidden;display:flex;pointer-events:none;z-index:0}
+.tz{height:100%}
+.tz.deep{background:var(--line2)}
+.tz.gap{background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(233,240,253,.16) 2px,rgba(233,240,253,.16) 3px);background-color:transparent}
+.tz.today{background:rgba(255,242,0,.28)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:18px;background:transparent;outline:none;position:relative;z-index:1;margin:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--hot);cursor:pointer;border:3px solid var(--bg);margin-top:-6px}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--hot);cursor:pointer;border:3px solid var(--bg)}
+input[type=range]::-webkit-slider-runnable-track{height:6px;background:transparent}
+input[type=range]::-moz-range-track{height:6px;background:transparent}
+.ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:1px;padding:0 2px}
+.ticks .gaplbl{color:var(--ink3)}
+.yearbox{min-width:120px;text-align:right}
+.yearval{font-family:var(--mono);font-size:25px;font-weight:700;line-height:1}
+.srcbadge{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--ink3);margin-top:3px;text-transform:uppercase}
+.srcbadge.today{color:var(--ink2)}
+.srcbadge.gap{color:var(--ink3)}
+
+.stage{display:grid;grid-template-columns:1fr 340px;gap:24px;padding-top:22px;align-items:start}
+@media(max-width:980px){.stage{grid-template-columns:1fr}}
+.mapcard{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:8px 8px 4px;position:relative;transition:box-shadow .2s}
+.mapcard.today-on{box-shadow:inset 0 0 0 1px rgba(255,242,0,.16)}
+.maptop{display:flex;justify-content:space-between;align-items:center;padding:6px 10px 8px;gap:10px}
+.maptop .lens-h{font-size:13px;color:var(--ink2)}
+.maptop .lens-h b{color:var(--ink);font-weight:500}
+.lenstoggle{display:none;border:1px solid var(--line2);border-radius:6px;overflow:hidden;flex-shrink:0}
+.lenstoggle.show{display:inline-flex}
+.lenstoggle button{padding:5px 11px;font-size:11px;color:var(--ink2);background:transparent;border-right:1px solid var(--line)}
+.lenstoggle button:last-child{border-right:0}
+.lenstoggle button.on{background:var(--bg3);color:var(--hot)}
+.lenstoggle button:disabled{opacity:.35;cursor:not-allowed}
+#mapsvg{display:block;width:100%;height:auto}
+#mapsvg path{fill:var(--bg2);stroke:var(--bg);stroke-width:.6;transition:fill .14s ease;cursor:pointer}
+#mapsvg path.dim{opacity:.18}
+#mapsvg path.hl{stroke:var(--ink);stroke-width:1.4}
+.gapnote{position:absolute;inset:38px 8px 30px;display:none;align-items:center;justify-content:center;text-align:center;background:rgba(10,26,58,.55)}
+.gapnote.show{display:flex}
+.gapnote div{max-width:32ch;font-size:13px;color:var(--ink2);line-height:1.55}
+.gapnote div b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;color:var(--ink2)}
+.legend{display:flex;align-items:center;gap:7px;padding:8px 12px 6px;font-size:11px;color:var(--ink3)}
+.legend .ramp{height:9px;width:130px;border-radius:2px;background:linear-gradient(90deg,var(--c-closed),var(--c-mid),var(--c-open))}
+.legend .hatchkey{width:16px;height:9px;border-radius:2px;background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(233,240,253,.18) 2px,rgba(233,240,253,.18) 3px);border:1px solid var(--line)}
+.tooltip{position:fixed;pointer-events:none;background:#06122b;border:1px solid var(--line2);border-radius:7px;padding:8px 11px;font-size:12px;z-index:50;opacity:0;transition:opacity .1s;max-width:230px}
+.tooltip .tn{font-weight:500;color:var(--ink)}
+.tooltip .tv{font-family:var(--mono);color:var(--hot);margin-top:2px}
+.tooltip .tnd{color:var(--ink3);font-style:italic}
+
+.side{display:flex;flex-direction:column;gap:16px}
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:17px 18px}
+.panel h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin-bottom:12px}
+.picker label{font-size:11px;color:var(--ink3);display:block;margin-bottom:5px;letter-spacing:.03em}
+select{width:100%;background:var(--bg3);color:var(--ink);border:1px solid var(--line2);border-radius:7px;padding:9px 11px;font-family:var(--sans);font-size:14px;font-weight:500}
+select:focus{outline:none;border-color:var(--hot)}
+select option{background:#0c1f44;color:var(--ink)}
+select optgroup{background:#0c1f44;color:var(--ink3);font-style:normal;font-weight:700}
+.bignum{font-family:var(--mono);font-size:40px;font-weight:700;line-height:1;color:var(--hot)}
+.bignum small{font-size:15px;color:var(--ink3)}
+.bigcap{font-size:12px;color:var(--ink2);margin-top:6px;line-height:1.5}
+.spark{width:100%;height:62px;display:block;margin-top:12px}
+.sparklbl{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9.5px;color:var(--ink3);margin-top:3px}
+.todayline{font-size:12px;color:var(--ink3);margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);line-height:1.5}
+.todayline b{font-family:var(--mono);font-weight:700;color:var(--ink2)}
+.cmplegend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:11.5px;margin-top:11px;font-variant-numeric:tabular-nums}
+.cmplegend span{display:inline-flex;align-items:center;gap:6px}
+.cmplegend i{width:13px;height:3px;border-radius:2px;flex-shrink:0}
+.cmplegend b{font-weight:700}
+.cmp{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink3);margin-top:9px}
+.cmp select{min-width:0;flex:1;padding:4px 8px;font-size:12px}
+.note-historical{font-size:11px;color:var(--ink3);font-style:italic;margin-top:10px}
+
+.ribbon-dir{margin-bottom:14px}
+.ribbon-dir .rh{font-size:12.5px;color:var(--ink2);margin-bottom:5px}
+.ribbon-dir .rh b{color:var(--ink);font-weight:500}
+.ribbon-svg{width:100%;height:32px;display:block;border-radius:5px;overflow:hidden}
+.ribbon-axis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--ink3);margin-top:2px}
+.verdict-now{font-size:14px;color:var(--ink);line-height:1.5;padding:12px 0;border-top:1px solid var(--line);margin-top:4px}
+.verdict-now b.yes{color:var(--hot)} .verdict-now b.no{color:var(--c-mid)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.chip{font-size:11.5px;padding:5px 10px;border-radius:6px;border:1px solid var(--line2);background:transparent;color:var(--ink2)}
+.chip:hover{border-color:var(--hot);color:var(--hot)}
+.translog{margin-top:12px;font-size:11.5px;color:var(--ink2);max-height:150px;overflow:auto}
+.translog .ev{display:flex;gap:8px;padding:4px 0;border-top:1px dashed var(--line)}
+.translog .ev .yr{font-family:var(--mono);color:var(--hot);flex-shrink:0}
+.translog .ev.t .yr{color:var(--ink3)}
+
+.fan{width:100%;height:118px;display:block;margin-top:4px}
+.fan-cap{font-size:11.5px;color:var(--ink2);line-height:1.5;margin-top:8px}
+.fan-cap b{color:var(--ink)}
+.movers{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.mvr{display:grid;grid-template-columns:90px 1fr 40px;align-items:center;gap:9px;font-size:11.5px}
+.mvr .nm{color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mvr .tr{height:8px;background:var(--bg3);border-radius:3px;position:relative;overflow:hidden}
+.mvr .tr i{position:absolute;top:0;bottom:0}
+.mvr .d{text-align:right;font-family:var(--mono);font-weight:700}
+.mvr.up .d{color:var(--hot)} .mvr.dn .d{color:var(--c-mid)}
+
+.foot{margin-top:50px;padding-top:22px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);line-height:1.75}
+.foot b{color:var(--ink2)}
+.foot a{color:var(--ink2);border-bottom:1px solid var(--line2)}
+.foot .colophon{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.04em}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">the world's visa record</div>
+    <h1 class="title">Whose passport got <span class="q">stronger</span>?</h1>
+    <p class="answer">Not all passports aged the same. The average barely moved; the gap between passports grew.</p>
+    <div class="finding" id="finding"></div>
+  </header>
+
+  <div class="controlbar">
+    <div class="inner">
+      <div class="tabs" id="tabs">
+        <button class="tab on" data-mode="passport">Passport<small>one nationality</small></button>
+        <button class="tab" data-mode="corridor">Corridor<small>two countries</small></button>
+        <button class="tab" data-mode="atlas">Atlas<small>every country</small></button>
+      </div>
+      <div class="timeline">
+        <button class="playbtn" id="play" aria-label="play">▶</button>
+        <div class="yearwrap">
+          <div class="trackzones" id="trackzones"></div>
+          <input type="range" id="slider" min="0" value="40" step="1" aria-label="year">
+          <div class="ticks"><span>1973</span><span>1993</span><span>2013</span><span class="gaplbl">data gap</span><span>2025</span></div>
+        </div>
+        <div class="yearbox">
+          <div class="yearval mono" id="yearval">2013</div>
+          <div class="srcbadge" id="srcbadge">DEMIG · bilateral visas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="mapcard" id="mapcard">
+      <div class="maptop">
+        <div class="lens-h" id="lensH"></div>
+        <div class="lenstoggle" id="lensToggle">
+          <button data-lens="power" class="on">passport reach</button>
+          <button data-lens="open">openness</button>
+        </div>
+      </div>
+      <!--WORLD_SVG-->
+      <div class="gapnote" id="gapnote"><div><b>2014 – 2018</b>These years fall between the two free datasets used here. The deep bilateral record (DEMIG) ends in 2013; the Passport Index snapshot series used here begins in 2019. Rather than splice two different rulers across the gap, it is left empty.</div></div>
+      <div class="legend">
+        <span>more restricted</span><span class="ramp"></span><span>more open</span>
+        <span style="margin-left:14px;display:inline-flex;align-items:center;gap:5px"><span class="hatchkey"></span>no record</span>
+      </div>
+    </div>
+
+    <div class="side" id="side">
+      <div class="panel mode-passport" id="pPassport">
+        <h3>Your passport</h3>
+        <select id="heldSel"></select>
+        <div style="margin-top:16px"><span class="bignum"><span id="reachN">–</span><small>%</small></span></div>
+        <div class="bigcap" id="reachCap"></div>
+        <svg class="spark" id="reachSpark" viewBox="0 0 300 62" preserveAspectRatio="none"></svg>
+        <div class="sparklbl"><span>1973</span><span>visa-free reach</span><span>2013</span></div>
+        <div class="cmplegend" id="cmpLegend"></div>
+        <div class="cmp">compare with <select id="cmpSel"></select></div>
+        <div class="todayline" id="todayLine"></div>
+        <div class="note-historical" id="heldNote"></div>
+      </div>
+      <div class="panel mode-corridor hidden" id="pCorridor">
+        <h3>The corridor</h3>
+        <div class="picker" style="margin-bottom:10px"><label>from (traveller)</label><select id="fromSel"></select></div>
+        <div class="picker"><label>to (destination)</label><select id="toSel"></select></div>
+        <div style="margin-top:16px" id="ribbons"></div>
+        <div class="verdict-now" id="corVerdict"></div>
+        <div class="translog" id="corLog"></div>
+        <div style="margin-top:12px"><div class="picker" style="margin-bottom:7px"><label>jump to a story</label></div><div class="chips" id="storyChips"></div></div>
+      </div>
+      <div class="panel mode-atlas hidden" id="pAtlas">
+        <h3>Global average reach <span style="color:var(--ink3);font-weight:400">· deep record only</span></h3>
+        <svg class="fan" id="fan" viewBox="0 0 320 118" preserveAspectRatio="none"></svg>
+        <div class="fan-cap" id="fanCap"></div>
+        <h3 style="margin-top:18px">Biggest movers · 1973 → 2013</h3>
+        <div class="movers" id="movers"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <b>Sources.</b> History: <a href="https://www.migrationinstitute.org/data/demig-data/demig-visa-data">DEMIG (2015) <i>DEMIG VISA, version 1.4, Full Edition</i></a>, Oxford: International Migration Institute, University of Oxford; bilateral visa requirements, annual January snapshots, 1973–2013. Later snapshots: <a href="https://github.com/ilyankou/passport-index-dataset">Passport Index dataset</a>, 2019–2025 (ilyankou, MIT). Two sources, two methods. The Passport Index source counts a broader set of arrivals as open, so its levels run higher; it is shown as a separate snapshot series, never spliced onto the older line, and the 2014–2018 gap between them is left empty. Map outlines: <a href="https://github.com/sirLisko/world-map-country-shapes">world-map-country-shapes</a> (simplemaps, MIT).<br>
+    <b>How to read it.</b> A country is coloured by its visa rules for incoming travellers, or by its passport's visa-free reach. Where the record has no entry, the country is hatched rather than guessed. Former states (the USSR, Yugoslavia, Czechoslovakia, the two Germanys, the two Yemens) are missing from the modern map but can be held as passports.
+    <div class="colophon">a thing made by <a href="https://ajin.im">ajin.im</a></div>
+  </footer>
+
+</div>
+<div class="tooltip" id="tip"></div>
+
+<script>
+/*DATA_BLOCK*/
+
+(function(){
+"use strict";
+const YEARS=G.years, NY=YEARS.length;
+const TY=TD.years;                                  // later Passport Index snapshot years
+const GAPYRS=[2014,2015,2016,2017,2018];
+// unified frame model: deep -> gap -> today
+const FRAMES=[];
+YEARS.forEach((y,i)=>FRAMES.push({era:'deep',i:i,label:y}));
+GAPYRS.forEach(y=>FRAMES.push({era:'gap',label:y}));
+TY.forEach((y,t)=>FRAMES.push({era:'today',i:t,label:y}));
+const NF=FRAMES.length, DEEP_END=NY-1, TODAY_START=NY+GAPYRS.length;
+
+const C_CLOSED=[0x16,0x30,0x6a],C_MID=[0x4a,0x6f,0xb0],C_OPEN=[0xff,0xf2,0x00];
+const NAME={}; for(const k in C) NAME[k]=C[k].name;
+for(const k in TD.power) if(!NAME[k]) NAME[k]=k;
+
+function lerp(a,b,t){return Math.round(a+(b-a)*t);}
+function rgb(a){return 'rgb('+a[0]+','+a[1]+','+a[2]+')';}
+function colorFor(v){ if(v==null)return null; const t=Math.max(0,Math.min(100,v))/100; let c;
+  if(t<.5){const u=t/.5;c=[lerp(C_CLOSED[0],C_MID[0],u),lerp(C_CLOSED[1],C_MID[1],u),lerp(C_CLOSED[2],C_MID[2],u)];}
+  else{const u=(t-.5)/.5;c=[lerp(C_MID[0],C_OPEN[0],u),lerp(C_MID[1],C_OPEN[1],u),lerp(C_MID[2],C_OPEN[2],u)];}
+  return rgb(c); }
+const VISA_COLOR_DEEP={0:rgb(C_OPEN),2:'#070a12',1:rgb(C_CLOSED)};
+const VISA_COLOR_TODAY={0:rgb(C_OPEN),2:rgb(C_MID),1:rgb(C_CLOSED)};
+const VISA_LABEL_DEEP={0:'visa-free',2:'no admission',1:'visa required'};
+const VISA_LABEL_TODAY={0:'visa-free',2:'e-visa / ETA',1:'visa required'};
+function visaColor(v,f){ return (f&&f.era==='today'?VISA_COLOR_TODAY:VISA_COLOR_DEEP)[v]; }
+function visaLabel(v,f){ return (f&&f.era==='today'?VISA_LABEL_TODAY:VISA_LABEL_DEEP)[v]||'no record'; }
+const HATCH='url(#nodata)';
+function decode(t,idx){ if(!t)return null; let v=-1; for(const e of t){ if(e[0]<=idx)v=e[1]; else break; } return v===-1?null:v; }
+function pairVal(o,d,i){ const row=P[o]; return row?decode(row[d],i):null; }
+function tPairVal(o,d,i){ const row=TD.pairs[o]; return row?decode(row[d],i):null; }
+function powerAt(iso,i){ const c=C[iso]; if(!c||c.pN[i]<8)return null; return c.power[i]; }
+function openAt(iso,i){ const c=C[iso]; if(!c||c.oN[i]<8)return null; return c.open[i]; }
+function tPowerAt(iso,i){ const a=TD.power[iso]; return a?a[i]:null; }
+
+let frame=DEEP_END, mode='passport', held='KOR', cmp='PAK', lens='power', cFrom='PAK', cTo='GBR', playing=null;
+const F=()=>FRAMES[frame];
+
+const svg=document.getElementById('mapsvg'), paths={};
+svg.querySelectorAll('path').forEach(p=>{ const iso=MAP[p.id]; if(!iso){p.style.cursor='default';return;}
+  p.setAttribute('data-iso',iso); (paths[iso]=paths[iso]||[]).push(p);
+  p.addEventListener('mousemove',e=>showTip(e,iso)); p.addEventListener('mouseleave',hideTip);
+  p.addEventListener('click',()=>onCountryClick(iso)); });
+
+// destination value for the map under the current frame, for a given held passport
+function destVisa(o,iso){ const f=F(); if(f.era==='gap')return null; return f.era==='today'?tPairVal(o,iso,f.i):pairVal(o,iso,f.i); }
+function passportReach(iso){ const f=F(); if(f.era==='gap')return null; return f.era==='today'?tPowerAt(iso,f.i):powerAt(iso,f.i); }
+function destOpen(iso){ const f=F(); if(f.era!=='deep')return null; return openAt(iso,f.i); }
+
+function paintMap(){
+  const f=F(), gap=f.era==='gap';
+  document.getElementById('gapnote').classList.toggle('show',gap);
+  document.getElementById('mapcard').classList.toggle('today-on',f.era==='today');
+  for(const iso in paths){
+    let fill,dim=false,hl=false;
+    if(gap){ fill=HATCH; }
+    else if(mode==='passport'){ const v= iso===held?0:destVisa(held,iso); fill=v==null?HATCH:visaColor(v,f); hl=iso===held; }
+    else if(mode==='atlas'){ const useOpen=lens==='open'&&f.era==='deep'; const v=useOpen?destOpen(iso):passportReach(iso); fill=v==null?HATCH:colorFor(v); }
+    else { const isPair=iso===cFrom||iso===cTo; fill=isPair?(iso===cFrom?rgb(C_OPEN):rgb(C_MID)):(colorFor(destOpen(iso))||HATCH); dim=!isPair; hl=isPair; }
+    paths[iso].forEach(p=>{ p.style.fill=fill; p.classList.toggle('dim',dim); p.classList.toggle('hl',hl); });
+  }
+}
+
+const tip=document.getElementById('tip');
+function showTip(e,iso){
+  const f=F(); let html='<div class="tn">'+(NAME[iso]||iso)+'</div>';
+  if(f.era==='gap'){ html+='<div class="tnd">no record, '+f.label+'</div>'; }
+  else if(mode==='passport'){ if(iso===held)html+='<div class="tv">your passport</div>'; else{const v=destVisa(held,iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+visaLabel(v,f)+'</div>';} }
+  else if(mode==='atlas'){ const useOpen=lens==='open'&&f.era==='deep'; const v=useOpen?destOpen(iso):passportReach(iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+v+'% '+(useOpen?'allow visa-free entry':'visa-free reach')+'</div>'; }
+  else { const v=destOpen(iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+v+'% openness</div>'; }
+  tip.innerHTML=html; tip.style.opacity='1';
+  tip.style.left=Math.min(e.clientX+14,innerWidth-240)+'px'; tip.style.top=(e.clientY+14)+'px';
+}
+function hideTip(){ tip.style.opacity='0'; }
+function onCountryClick(iso){
+  if(mode==='passport'){ if(iso!==held){ cFrom=held; cTo=iso; document.getElementById('fromSel').value=held; document.getElementById('toSel').value=iso; setMode('corridor'); } }
+  else if(mode==='corridor'){ cTo=iso; document.getElementById('toSel').value=iso; renderCorridor(); paintMap(); }
+  else if(mode==='atlas'){ held=iso; document.getElementById('heldSel').value=iso; setMode('passport'); }
+}
+
+// passport
+function renderPassport(){
+  const f=F(), c=C[held]||{power:[]};
+  const r=passportReach(held);
+  document.getElementById('reachN').textContent= r==null?'—':r;
+  document.getElementById('reachCap').innerHTML= f.era==='gap'?'no record for '+f.label+'.': 'of measured destinations available without a visa, in '+f.label+(f.era==='today'?' <span style="color:var(--ink3)">(Passport Index snapshot)</span>':'.');
+  drawSpark(document.getElementById('reachSpark'), c.power, cmp&&C[cmp]?C[cmp].power:null);
+  const mi=f.era==='deep'?f.i:NY-1, cc=cmp&&C[cmp]?C[cmp]:null;
+  const hv=c.power?c.power[mi]:null, cv=cc?cc.power[mi]:null;
+  document.getElementById('cmpLegend').innerHTML=
+    '<span><i style="background:var(--hot)"></i>'+(NAME[held]||held)+' <b>'+(hv!=null?hv+'%':'—')+'</b></span>'+
+    (cc?'<span><i style="background:var(--ink3)"></i>'+(NAME[cmp]||cmp)+' <b>'+(cv!=null?cv+'%':'—')+'</b></span>':'');
+  // Forward reference to the later snapshot, only while viewing the deep record.
+  const tnow=TD.power[held];
+  document.getElementById('todayLine').innerHTML = (f.era!=='today' && tnow && tnow[tnow.length-1]!=null)
+    ? 'Latest loaded Passport Index snapshot: <b>'+tnow[tnow.length-1]+'%</b> (2025). A different ruler, not on the line above.'
+    : '';
+  document.getElementById('heldNote').textContent= paths[held]?'':NAME[held]+' has no outline on the modern map (a former or very small state); its reach still colours the destinations.';
+  const where = f.era==='today'?'could go in this snapshot':(f.era==='gap'?'could go':'could go');
+  document.getElementById('lensH').innerHTML='where a <b>'+(NAME[held]||held)+'</b> passport '+where+', <b>'+f.label+'</b>';
+}
+function drawSpark(s,arr,ghost){
+  const W=300,H=62,pad=3, X=i=>pad+(i/(NY-1))*(W-2*pad), Y=v=>H-pad-((v==null?0:v)/100)*(H-2*pad);
+  function line(a){let d='',on=false;for(let i=0;i<NY;i++){if(a[i]==null)continue;d+=(on?'L':'M')+X(i).toFixed(1)+' '+Y(a[i]).toFixed(1)+' ';on=true;}return d;}
+  const f=F(), mi=f.era==='deep'?f.i:NY-1;          // marker parks at 2013 outside deep era
+  let h='';
+  if(ghost)h+='<path d="'+line(ghost)+'" fill="none" stroke="#6178a6" stroke-width="1.2" opacity=".6"/>';
+  h+='<path d="'+line(arr)+'" fill="none" stroke="#fff200" stroke-width="2"/>';
+  if(arr[mi]!=null)h+='<circle cx="'+X(mi).toFixed(1)+'" cy="'+Y(arr[mi]).toFixed(1)+'" r="3" fill="#fff200"/>';
+  h+='<line x1="'+X(mi).toFixed(1)+'" y1="0" x2="'+X(mi).toFixed(1)+'" y2="'+H+'" stroke="#fff200" stroke-width=".6" opacity=".35"/>';
+  s.innerHTML=h;
+}
+
+// corridor (deep + gap + today ribbon)
+function ribbonSVG(o,d){
+  const W=300,H=32, nDeep=NY, nGap=GAPYRS.length, nT=TY.length, total=nDeep+nGap+nT, cw=W/total;
+  let h='',x=0;
+  for(let i=0;i<nDeep;i++){ const v=pairVal(o,d,i); h+='<rect x="'+x.toFixed(1)+'" y="0" width="'+(cw+.5).toFixed(1)+'" height="'+H+'" fill="'+(v==null?HATCH:visaColor(v,{era:'deep'}))+'"/>'; x+=cw; }
+  h+='<rect x="'+x.toFixed(1)+'" y="0" width="'+(cw*nGap).toFixed(1)+'" height="'+H+'" fill="url(#gaphatch)"/>'; x+=cw*nGap;
+  for(let i=0;i<nT;i++){ const v=tPairVal(o,d,i); h+='<rect x="'+x.toFixed(1)+'" y="0" width="'+(cw+.5).toFixed(1)+'" height="'+H+'" fill="'+(v==null?HATCH:visaColor(v,{era:'today'}))+'"/>'; x+=cw; }
+  // frame marker
+  const mx=(frame+0.5)*cw;
+  h+='<line x1="'+mx.toFixed(1)+'" y1="-1" x2="'+mx.toFixed(1)+'" y2="'+(H+1)+'" stroke="#eef3fc" stroke-width="1.4"/>';
+  return h;
+}
+function curPair(o,d){ const f=F(); if(f.era==='gap')return null; return f.era==='today'?tPairVal(o,d,f.i):pairVal(o,d,f.i); }
+function renderCorridor(){
+  const o=cFrom,d=cTo;
+  document.getElementById('ribbons').innerHTML=
+    '<div class="ribbon-dir"><div class="rh"><b>'+NAME[o]+'</b> → '+NAME[d]+'</div><svg class="ribbon-svg" viewBox="0 0 300 32" preserveAspectRatio="none">'+ribbonSVG(o,d)+'</svg><div class="ribbon-axis"><span>1973</span><span style="color:var(--ink3)">gap</span><span>2025</span></div></div>'+
+    '<div class="ribbon-dir"><div class="rh"><b>'+NAME[d]+'</b> → '+NAME[o]+'</div><svg class="ribbon-svg" viewBox="0 0 300 32" preserveAspectRatio="none">'+ribbonSVG(d,o)+'</svg></div>';
+  const f=F(), ab=curPair(o,d), ba=curPair(d,o);
+  const ph=(v,from,to)=> v==null?from+' → '+to+': <b class="no">no record</b>': v===0?from+' → '+to+': <b class="yes">visa-free</b>': from+' → '+to+': <b class="no">'+visaLabel(v,f)+'</b>';
+  document.getElementById('corVerdict').innerHTML='<div style="font-family:var(--mono);color:var(--ink3);font-size:11px;margin-bottom:6px">'+f.label+(f.era==='today'?' · Passport Index snapshot':'')+'</div>'+ph(ab,NAME[o],NAME[d])+'<br>'+ph(ba,NAME[d],NAME[o]);
+  // transition log across deep + today
+  let evs=[];
+  function collect(src,getter,o2,d2,n,yrs,lab,cls){ let prev=null; const srcFrame={era:src==='t'?'today':'deep'}; for(let i=0;i<n;i++){ const v=getter(o2,d2,i); if(prev!==null&&v!=null&&v!==prev){ evs.push([yrs[i],lab+' '+(v===0?'opened (visa-free)':'tightened ('+visaLabel(v,srcFrame)+')'),cls]); } if(v!=null)prev=v; } }
+  collect('d',pairVal,o,d,NY,YEARS,NAME[o]+'→'+NAME[d],''); collect('d',pairVal,d,o,NY,YEARS,NAME[d]+'→'+NAME[o],'');
+  collect('t',tPairVal,o,d,TY.length,TY,NAME[o]+'→'+NAME[d],'t'); collect('t',tPairVal,d,o,TY.length,TY,NAME[d]+'→'+NAME[o],'t');
+  evs.sort((a,b)=>a[0]-b[0]);
+  document.getElementById('corLog').innerHTML= evs.length? evs.map(e=>'<div class="ev '+e[2]+'"><span class="yr">'+e[0]+'</span><span>'+e[1]+'</span></div>').join('') : '<div class="ev" style="color:var(--ink3)">no change on record.</div>';
+  document.getElementById('lensH').innerHTML='<b>'+NAME[o]+'</b> ⇄ <b>'+NAME[d]+'</b>';
+}
+
+// atlas (deep-only fan + movers)
+function renderAtlas(){
+  drawFan();
+  const f=F();
+  document.getElementById('lensH').innerHTML=(lens==='open'&&f.era==='deep'?'how open each country is to the world':'how far each passport reaches')+', <b>'+f.label+'</b>'+(f.era==='today'?' <span style="color:var(--ink3)">(Passport Index snapshot)</span>':'');
+  const rows=[...V.winners.slice(0,5).map(x=>[x.name,x.d,'up']),...V.losers.slice(0,5).map(x=>[x.name,x.d,'dn'])].sort((a,b)=>b[1]-a[1]);
+  document.getElementById('movers').innerHTML=rows.map(([n,d,cls])=>{ const w=Math.min(100,Math.abs(d)/50*100);
+    return '<div class="mvr '+cls+'"><div class="nm">'+n+'</div><div class="tr"><i style="'+(d>=0?'left:50%':'right:50%')+';width:'+(w/2)+'%;background:'+(d>=0?'#fff200':'#4a6fb0')+'"></i><span style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line2)"></span></div><div class="d">'+(d>=0?'+':'')+d+'</div></div>'; }).join('');
+}
+function drawFan(){
+  const s=document.getElementById('fan'),W=320,H=118,pad=4,padB=14,ymax=60, X=i=>pad+(i/(NY-1))*(W-2*pad), Y=v=>H-padB-(v/ymax)*(H-pad-padB);
+  let up=[],dn=[]; for(let i=0;i<NY;i++){up.push([X(i),Y(G.powerMean[i]+G.powerSd[i])]);dn.push([X(i),Y(Math.max(0,G.powerMean[i]-G.powerSd[i]))]);}
+  const band=up.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ')+' '+dn.reverse().map(p=>'L'+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ')+' Z';
+  const mean=G.powerMean.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join(' ');
+  const f=F(), mi=f.era==='deep'?f.i:NY-1;
+  s.innerHTML='<path d="'+band+'" fill="rgba(255,242,0,.10)" stroke="rgba(255,242,0,.25)" stroke-width=".5"/>'+
+    '<path d="'+mean+'" fill="none" stroke="#fff200" stroke-width="1.8"/>'+
+    '<line x1="'+X(NY-1).toFixed(1)+'" y1="'+pad+'" x2="'+X(NY-1).toFixed(1)+'" y2="'+(H-padB)+'" stroke="#6178a6" stroke-width="1" stroke-dasharray="3 2"/>'+
+    '<text x="'+(X(NY-1)-3)+'" y="'+(pad+8)+'" text-anchor="end" font-family="Space Mono,monospace" font-size="8" fill="#6178a6">record ends</text>'+
+    '<line x1="'+X(mi).toFixed(1)+'" y1="0" x2="'+X(mi).toFixed(1)+'" y2="'+H+'" stroke="#eef3fc" stroke-width=".7" opacity=".5"/>'+
+    '<circle cx="'+X(mi).toFixed(1)+'" cy="'+Y(G.powerMean[mi]).toFixed(1)+'" r="2.6" fill="#fff200"/>'+
+    '<text x="'+X(0)+'" y="'+(H-3)+'" font-family="Space Mono,monospace" font-size="9" fill="#6178a6">1973</text>'+
+    '<text x="'+X(NY-1)+'" y="'+(H-3)+'" text-anchor="end" font-family="Space Mono,monospace" font-size="9" fill="#6178a6">2013</text>';
+  document.getElementById('fanCap').innerHTML='The gold line is the world average; the band is one standard deviation, the gap between passports. The line holds roughly level while the band widens: the spread grew from '+G.powerSd[0]+' in 1973 to <b>'+G.powerSd[NY-1]+'</b> in 2013. This chart is the deep record only and stops at 2013.';
+}
+
+// frame control
+const slider=document.getElementById('slider'); slider.max=NF-1; slider.value=frame;
+function srcText(f){ return f.era==='deep'?'DEMIG · bilateral visas': f.era==='today'?'Passport Index · snapshot': '2014–2018 · no record'; }
+function setFrame(n){
+  frame=n; slider.value=n; const f=F();
+  document.getElementById('yearval').textContent=f.label;
+  const sb=document.getElementById('srcbadge'); sb.textContent=srcText(f); sb.className='srcbadge'+(f.era==='deep'?'':' '+f.era);
+  // disable openness lens outside the deep era
+  const ob=document.querySelector('#lensToggle button[data-lens="open"]');
+  if(f.era!=='deep'&&lens==='open'){ lens='power'; document.querySelectorAll('#lensToggle button').forEach(b=>b.classList.toggle('on',b.dataset.lens==='power')); }
+  ob.disabled=f.era!=='deep';
+  ob.title=f.era==='deep'?'':'Openness is only available in the DEMIG 1973–2013 record.';
+  paintMap(); renderSide();
+}
+slider.addEventListener('input',()=>setFrame(+slider.value));
+document.getElementById('play').addEventListener('click',function(){
+  if(playing){clearInterval(playing);playing=null;this.textContent='▶';return;}
+  this.textContent='❚❚'; playing=setInterval(()=>{ setFrame((frame+1)%NF); },150);
+});
+function setMode(m){ mode=m;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.mode===m));
+  document.getElementById('pPassport').classList.toggle('hidden',m!=='passport');
+  document.getElementById('pCorridor').classList.toggle('hidden',m!=='corridor');
+  document.getElementById('pAtlas').classList.toggle('hidden',m!=='atlas');
+  document.getElementById('lensToggle').classList.toggle('show',m==='atlas');
+  renderSide(); paintMap();
+}
+function renderSide(){ mode==='passport'?renderPassport():mode==='corridor'?renderCorridor():renderAtlas(); }
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setMode(t.dataset.mode)));
+document.querySelectorAll('#lensToggle button').forEach(b=>b.addEventListener('click',function(){ if(this.disabled)return; lens=this.dataset.lens; document.querySelectorAll('#lensToggle button').forEach(x=>x.classList.toggle('on',x===this)); paintMap(); renderSide(); }));
+
+// track zones (deep | gap | today)
+(function(){ const tz=document.getElementById('trackzones'); const total=NF;
+  tz.innerHTML='<div class="tz deep" style="width:'+(NY/total*100)+'%"></div><div class="tz gap" style="width:'+(GAPYRS.length/total*100)+'%"></div><div class="tz today" style="width:'+(TY.length/total*100)+'%"></div>';
+})();
+
+// selects
+function fillSelect(sel){ const modern=[],former=[];
+  Object.keys(C).sort((a,b)=>NAME[a].localeCompare(NAME[b])).forEach(iso=>{(paths[iso]?modern:former).push(iso);});
+  const opt=iso=>'<option value="'+iso+'">'+NAME[iso]+'</option>';
+  sel.innerHTML=modern.map(opt).join('')+(former.length?'<optgroup label="former / off-map states">'+former.map(opt).join('')+'</optgroup>':'');
+}
+['heldSel','cmpSel','fromSel','toSel'].forEach(id=>fillSelect(document.getElementById(id)));
+document.getElementById('heldSel').value=held; document.getElementById('cmpSel').value=cmp;
+document.getElementById('fromSel').value=cFrom; document.getElementById('toSel').value=cTo;
+document.getElementById('heldSel').addEventListener('change',function(){held=this.value;renderPassport();paintMap();});
+document.getElementById('cmpSel').addEventListener('change',function(){cmp=this.value;renderPassport();});
+document.getElementById('fromSel').addEventListener('change',function(){cFrom=this.value;renderCorridor();paintMap();});
+document.getElementById('toSel').addEventListener('change',function(){cTo=this.value;renderCorridor();paintMap();});
+
+const STORIES=[
+  ['PAK','GBR','Pakistan → UK · tightened 1987'],
+  ['IND','GBR','India → UK · tightened 1987'],
+  ['KOR','JPN','Korea → Japan · opened 2007'],
+  ['POL','DEU','Poland → Germany · visa-free from 1993'],
+  ['KOR','CHN','Korea → China · 2025 snapshot opens']
+];
+document.getElementById('storyChips').innerHTML=STORIES.map(s=>'<button class="chip" data-o="'+s[0]+'" data-d="'+s[1]+'">'+s[2]+'</button>').join('');
+document.querySelectorAll('#storyChips .chip').forEach(ch=>ch.addEventListener('click',function(){cFrom=this.dataset.o;cTo=this.dataset.d;document.getElementById('fromSel').value=cFrom;document.getElementById('toSel').value=cTo;renderCorridor();paintMap();}));
+
+document.getElementById('finding').innerHTML=
+  '<div class="fstat"><div class="n">'+V.dyadReq73+'% → '+V.dyadReq13+'%</div><div class="k">of country-pairs needed a visa, then and now. Barely moved.</div></div>'+
+  '<div class="fstat"><div class="n up">'+G.powerSd[0]+' → '+G.powerSd[NY-1]+' pts</div><div class="k">unevenness in visa-free reach. The gap grew by nearly a third.</div></div>'+
+  '<div class="fstat"><div class="n">'+V.gained+' gained · '+V.lost+' lost</div><div class="k">out of '+V.panelN+' passports; each by more than 2 reach points.</div></div>';
+
+setMode('passport'); setFrame(DEEP_END);
+})();
+</script>
+</body>
+</html>
