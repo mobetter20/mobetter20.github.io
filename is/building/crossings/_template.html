@@ -482,7 +482,7 @@ document.querySelectorAll('#storyChips .chip').forEach(ch=>ch.addEventListener('
 
 document.getElementById('finding').innerHTML=
   '<div class="fstat"><div class="n">'+V.dyadReq73+'% → '+V.dyadReq13+'%</div><div class="k">of country-pairs needed a visa, then and now. Barely moved.</div></div>'+
-  '<div class="fstat"><div class="n up">'+G.powerSd[0]+' → '+G.powerSd[NY-1]+' pts</div><div class="k">unevenness in visa-free reach. The gap grew by nearly a third.</div></div>'+
+  '<div class="fstat" title="standard deviation of visa-free reach across countries"><div class="n up">±'+G.powerSd[0]+' → ±'+G.powerSd[NY-1]+'</div><div class="k">unevenness in visa-free reach. The gap grew by nearly a third.</div></div>'+
   '<div class="fstat"><div class="n">'+V.gained+' gained · '+V.lost+' lost</div><div class="k">out of '+V.panelN+' passports; each by more than 2 reach points.</div></div>';
 
 setMode('passport'); setFrame(DEEP_END);
