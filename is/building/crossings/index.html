@@ -1888,7 +1888,7 @@ function showTip(e,iso){
 }
 function hideTip(){ tip.style.opacity='0'; }
 function onCountryClick(iso){
-  if(mode==='passport'){ if(iso!==held){ cFrom=held; cTo=iso; document.getElementById('fromSel').value=held; document.getElementById('toSel').value=iso; setMode('corridor'); } }
+  if(mode==='passport'){ if(iso!==held){ held=iso; document.getElementById('heldSel').value=iso; renderPassport(); paintMap(); } }
   else if(mode==='corridor'){ cTo=iso; document.getElementById('toSel').value=iso; renderCorridor(); paintMap(); }
   else if(mode==='atlas'){ held=iso; document.getElementById('heldSel').value=iso; setMode('passport'); }
 }
