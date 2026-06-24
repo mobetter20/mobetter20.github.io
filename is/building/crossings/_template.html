@@ -318,8 +318,8 @@ const tip=document.getElementById('tip');
 function showTip(e,iso){
   const f=F(); let html='<div class="tn">'+(NAME[iso]||iso)+'</div>'; let hint='';
   if(f.era==='gap'){ html+='<div class="tnd">no record, '+f.label+'</div>'; }
-  else if(mode==='passport'){ if(iso===held)html+='<div class="tv">your passport</div>'; else{const v=destVisa(held,iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+visaLabel(v,f)+'</div>'; hint='click to hold this passport';} }
-  else if(mode==='atlas'){ const useOpen=lens==='open'&&f.era==='deep'; const v=useOpen?destOpen(iso):passportReach(iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+v+'% '+(useOpen?'allow visa-free entry':'visa-free reach')+'</div>'; hint='click to open this passport'; }
+  else if(mode==='passport'){ if(iso===held)html+='<div class="tv">your passport</div>'; else{const v=destVisa(held,iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+visaLabel(v,f)+'</div>'; hint='click to view this passport';} }
+  else if(mode==='atlas'){ const useOpen=lens==='open'&&f.era==='deep'; const v=useOpen?destOpen(iso):passportReach(iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+v+'% '+(useOpen?'allow visa-free entry':'visa-free reach')+'</div>'; hint='click to view this passport'; }
   else { const v=destOpen(iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+v+'% openness</div>'; if(iso!==cFrom)hint='click to set as destination'; }
   if(hint) html+='<div class="thint">'+hint+'</div>';
   tip.innerHTML=html; tip.style.opacity='1';
