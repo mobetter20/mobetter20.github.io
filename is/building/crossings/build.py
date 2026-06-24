@@ -31,9 +31,9 @@ svg = head2 + svg[m.end():]
 # neutralize the baked-in light fill so CSS/JS own the color
 svg = svg.replace('fill:#f2f2f2;', '').replace('fill:#f2f2f2', '')
 # inject the no-data hatch pattern right after the opening tag
-defs = ('<defs><pattern id="nodata" width="6" height="6" patternUnits="userSpaceOnUse" '
-        'patternTransform="rotate(45)"><rect width="6" height="6" fill="#0e2349"/>'
-        '<line x1="0" y1="0" x2="0" y2="6" stroke="rgba(233,240,253,.18)" stroke-width="1.4"/></pattern>'
+defs = ('<defs><pattern id="nodata" width="5" height="5" patternUnits="userSpaceOnUse" '
+        'patternTransform="rotate(45)"><rect width="5" height="5" fill="#20283a"/>'
+        '<line x1="0" y1="0" x2="0" y2="5" stroke="rgba(233,240,253,.42)" stroke-width="1.2"/></pattern>'
         '<pattern id="gaphatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'
         '<rect width="5" height="5" fill="#0e2349"/>'
         '<line x1="0" y1="0" x2="0" y2="5" stroke="rgba(232,161,58,.5)" stroke-width="1.2"/></pattern></defs>')

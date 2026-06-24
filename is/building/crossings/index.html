@@ -100,11 +100,12 @@ input[type=range]::-moz-range-track{height:6px;background:transparent}
 .gapnote div b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;color:var(--ink2)}
 .legend{display:flex;align-items:center;gap:7px;padding:8px 12px 6px;font-size:11px;color:var(--ink3)}
 .legend .ramp{height:9px;width:130px;border-radius:2px;background:linear-gradient(90deg,var(--c-closed),var(--c-mid),var(--c-open))}
-.legend .hatchkey{width:16px;height:9px;border-radius:2px;background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(233,240,253,.18) 2px,rgba(233,240,253,.18) 3px);border:1px solid var(--line)}
+.legend .hatchkey{width:16px;height:9px;border-radius:2px;background-color:#20283a;background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(233,240,253,.42) 2px,rgba(233,240,253,.42) 3px);border:1px solid var(--line2)}
 .tooltip{position:fixed;pointer-events:none;background:#06122b;border:1px solid var(--line2);border-radius:7px;padding:8px 11px;font-size:12px;z-index:50;opacity:0;transition:opacity .1s;max-width:230px}
 .tooltip .tn{font-weight:500;color:var(--ink)}
 .tooltip .tv{font-family:var(--mono);color:var(--hot);margin-top:2px}
 .tooltip .tnd{color:var(--ink3);font-style:italic}
+.tooltip .thint{font-size:10px;color:var(--hot);margin-top:5px;opacity:.8;letter-spacing:.03em}
 
 .side{display:flex;flex-direction:column;gap:16px}
 .panel{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:17px 18px}
@@ -220,7 +221,7 @@ select optgroup{background:#0c1f44;color:var(--ink3);font-style:normal;font-weig
   
    id="mapsvg"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="world.svg"><defs><pattern id="nodata" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#0e2349"/><line x1="0" y1="0" x2="0" y2="6" stroke="rgba(233,240,253,.18)" stroke-width="1.4"/></pattern><pattern id="gaphatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#0e2349"/><line x1="0" y1="0" x2="0" y2="5" stroke="rgba(232,161,58,.5)" stroke-width="1.2"/></pattern></defs>
+   sodipodi:docname="world.svg"><defs><pattern id="nodata" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#20283a"/><line x1="0" y1="0" x2="0" y2="5" stroke="rgba(233,240,253,.42)" stroke-width="1.2"/></pattern><pattern id="gaphatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#0e2349"/><line x1="0" y1="0" x2="0" y2="5" stroke="rgba(232,161,58,.5)" stroke-width="1.2"/></pattern></defs>
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -1878,11 +1879,12 @@ function paintMap(){
 
 const tip=document.getElementById('tip');
 function showTip(e,iso){
-  const f=F(); let html='<div class="tn">'+(NAME[iso]||iso)+'</div>';
+  const f=F(); let html='<div class="tn">'+(NAME[iso]||iso)+'</div>'; let hint='';
   if(f.era==='gap'){ html+='<div class="tnd">no record, '+f.label+'</div>'; }
-  else if(mode==='passport'){ if(iso===held)html+='<div class="tv">your passport</div>'; else{const v=destVisa(held,iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+visaLabel(v,f)+'</div>';} }
-  else if(mode==='atlas'){ const useOpen=lens==='open'&&f.era==='deep'; const v=useOpen?destOpen(iso):passportReach(iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+v+'% '+(useOpen?'allow visa-free entry':'visa-free reach')+'</div>'; }
-  else { const v=destOpen(iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+v+'% openness</div>'; }
+  else if(mode==='passport'){ if(iso===held)html+='<div class="tv">your passport</div>'; else{const v=destVisa(held,iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+visaLabel(v,f)+'</div>'; hint='click to hold this passport';} }
+  else if(mode==='atlas'){ const useOpen=lens==='open'&&f.era==='deep'; const v=useOpen?destOpen(iso):passportReach(iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+v+'% '+(useOpen?'allow visa-free entry':'visa-free reach')+'</div>'; hint='click to open this passport'; }
+  else { const v=destOpen(iso); html+=v==null?'<div class="tnd">no record</div>':'<div class="tv">'+v+'% openness</div>'; if(iso!==cFrom)hint='click to set as destination'; }
+  if(hint) html+='<div class="thint">'+hint+'</div>';
   tip.innerHTML=html; tip.style.opacity='1';
   tip.style.left=Math.min(e.clientX+14,innerWidth-240)+'px'; tip.style.top=(e.clientY+14)+'px';
 }
