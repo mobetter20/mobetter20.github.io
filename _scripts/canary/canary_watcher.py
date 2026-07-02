@@ -69,7 +69,39 @@ def log(msg):
     print("%s %s" % (iso(now_utc()), msg), flush=True)
 
 
+class PollUnavailable(Exception):
+    """Raised when CFO is alive but the weekly Claude meter is absent."""
+
+
 # ── poll ────────────────────────────────────────────────────────────────
+
+def extract_cfo_usage(st):
+    """Normalize the CFO state shape the canary depends on."""
+    try:
+        claude = st["providers"]["claude"]
+    except KeyError as e:
+        raise PollUnavailable("claude provider missing from CFO state") from e
+
+    weekly = claude.get("weekly")
+    if not isinstance(weekly, dict):
+        keys = ", ".join(sorted(claude.keys())) or "none"
+        raise PollUnavailable("claude weekly meter unavailable in CFO state; keys=%s" % keys)
+
+    used_pct = weekly.get("used_pct")
+    resets_at = weekly.get("resets_at")
+    if used_pct is None or not resets_at:
+        raise PollUnavailable("claude weekly meter incomplete in CFO state")
+
+    session = claude.get("session")
+    session_used = session.get("used_pct") if isinstance(session, dict) else None
+    t = st.get("meta", {}).get("codexbar_generated_at") or st["computed_at"]
+    return {
+        "t": t,
+        "u7": float(used_pct),
+        "r7": resets_at,
+        "u5": float(session_used) if session_used is not None else None,
+    }
+
 
 def poll():
     """Read Claude usage from cfo's state.json.
@@ -83,16 +115,7 @@ def poll():
     access token expired during an idle stretch.
     """
     st = json.loads(CFO_STATE.read_text())
-    claude = st["providers"]["claude"]
-    wk = claude["weekly"]       # 7-day window
-    sess = claude["session"]    # 5-hour window
-    t = st.get("meta", {}).get("codexbar_generated_at") or st["computed_at"]
-    return {
-        "t": t,
-        "u7": float(wk["used_pct"]),
-        "r7": wk["resets_at"],
-        "u5": float(sess["used_pct"]),
-    }
+    return extract_cfo_usage(st)
 
 
 # ── local state ─────────────────────────────────────────────────────────
@@ -242,6 +265,16 @@ def selftest():
     rean_cur = {"t": "2026-05-28T19:06:00Z", "u7": 0.0, "r7": "2026-05-28T22:59:59+00:00", "u5": 1}
     rean_prev = {"t": "2026-05-28T10:40:00Z", "u7": 37.0, "r7": "2026-06-01T07:00:00+00:00", "u5": 1}
     flicker = {"t": "2026-06-09T22:43:00Z", "u7": 75.0, "r7": "2026-06-11T23:00:00+00:00", "u5": 1}
+    full_cfo = {"computed_at": "2026-07-02T03:33:24Z", "providers": {"claude": {
+        "weekly": {"used_pct": 18.0, "resets_at": "2026-07-02T23:00:00Z"},
+        "session": {"used_pct": 70.0},
+    }}}
+    no_session = {"computed_at": "2026-07-02T03:33:24Z", "providers": {"claude": {
+        "weekly": {"used_pct": 18.0, "resets_at": "2026-07-02T23:00:00Z"},
+    }}}
+    no_weekly = {"computed_at": "2026-07-02T23:07:52Z", "providers": {"claude": {
+        "session": {"used_pct": 100.0},
+    }}}
 
     cand = classify(a, b)
     assert cand and cand["window"] == "unchanged", "reset not classified"
@@ -252,6 +285,14 @@ def selftest():
     assert rc and rc["window"] == "re-anchored", "re-anchor not classified"
     assert classify(b, c) is None, "small accrual misclassified"
     assert bracket(a["t"], b["t"]) == "between 21:30 and 22:13 UTC, Jun 9", "bracket format"
+    assert extract_cfo_usage(full_cfo)["u5"] == 70.0, "full CFO state not parsed"
+    assert extract_cfo_usage(no_session)["u5"] is None, "session should be optional"
+    try:
+        extract_cfo_usage(no_weekly)
+    except PollUnavailable:
+        pass
+    else:
+        raise AssertionError("missing weekly meter should skip without crashing")
     print("selftest: PASS")
 
 
@@ -264,7 +305,11 @@ def main():
         return 0
     dry = "--dry-run" in args
 
-    cur = poll()
+    try:
+        cur = poll()
+    except PollUnavailable as e:
+        log("poll skipped: %s" % e)
+        return 0
     prev = last_history_line()
     if prev and prev["t"] == cur["t"]:
         log("no new CodexBar reading (updatedAt=%s); skipping tick" % cur["t"])
