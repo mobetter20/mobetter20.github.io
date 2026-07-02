@@ -49,6 +49,7 @@ WINDOW_TOL_S = 120      # resets_at jitter tolerance (server emits ~1s noise)
 REANCHOR_MIN_S = 3600   # resets_at moved >1h early => re-anchor, not roll
 CONFIRM_TOL_PP = 15.0   # next poll must still be near the dropped value
 HEARTBEAT_H = 24        # freshness push cadence when nothing happens
+ROLL_INFER_H = 6        # after a known weekly expiry, tolerate missing r7 briefly
 
 
 def now_utc():
@@ -72,29 +73,33 @@ def log(msg):
 class PollUnavailable(Exception):
     """Raised when CFO is alive but the weekly Claude meter is absent."""
 
+    def __init__(self, msg, t=None):
+        super().__init__(msg)
+        self.t = t
+
 
 # ── poll ────────────────────────────────────────────────────────────────
 
 def extract_cfo_usage(st):
     """Normalize the CFO state shape the canary depends on."""
+    t = st.get("meta", {}).get("codexbar_generated_at") or st.get("computed_at")
     try:
         claude = st["providers"]["claude"]
     except KeyError as e:
-        raise PollUnavailable("claude provider missing from CFO state") from e
+        raise PollUnavailable("claude provider missing from CFO state", t=t) from e
 
     weekly = claude.get("weekly")
     if not isinstance(weekly, dict):
         keys = ", ".join(sorted(claude.keys())) or "none"
-        raise PollUnavailable("claude weekly meter unavailable in CFO state; keys=%s" % keys)
+        raise PollUnavailable("claude weekly meter unavailable in CFO state; keys=%s" % keys, t=t)
 
     used_pct = weekly.get("used_pct")
     resets_at = weekly.get("resets_at")
     if used_pct is None or not resets_at:
-        raise PollUnavailable("claude weekly meter incomplete in CFO state")
+        raise PollUnavailable("claude weekly meter incomplete in CFO state", t=t)
 
     session = claude.get("session")
     session_used = session.get("used_pct") if isinstance(session, dict) else None
-    t = st.get("meta", {}).get("codexbar_generated_at") or st["computed_at"]
     return {
         "t": t,
         "u7": float(used_pct),
@@ -179,6 +184,25 @@ def confirm(pending, cur):
     if pending["window"] == "unchanged":
         return abs((parse_ts(cur["r7"]) - parse_ts(pending["r7"])).total_seconds()) <= WINDOW_TOL_S
     return True
+
+
+def infer_normal_roll(prev, cur_t_iso):
+    """Infer the scheduled weekly roll when CodexBar omits the new r7 briefly."""
+    if not prev or not cur_t_iso or not prev.get("r7"):
+        return None
+    cur_t = parse_ts(cur_t_iso)
+    old_end = parse_ts(prev["r7"])
+    if cur_t < old_end - timedelta(minutes=1):
+        return None
+    if cur_t - old_end > timedelta(hours=ROLL_INFER_H):
+        return None
+    new_end = old_end + timedelta(days=7)
+    return {
+        "t": cur_t_iso,
+        "u7": 0.0,
+        "r7": iso(new_end),
+        "u5": None,
+    }
 
 
 # ── publish ─────────────────────────────────────────────────────────────
@@ -275,6 +299,8 @@ def selftest():
     no_weekly = {"computed_at": "2026-07-02T23:07:52Z", "providers": {"claude": {
         "session": {"used_pct": 100.0},
     }}}
+    just_after_roll = {"t": "2026-07-02T22:37:52Z", "u7": 37.0, "r7": "2026-07-02T22:59:59Z", "u5": 60.0}
+    inferred_roll = infer_normal_roll(just_after_roll, "2026-07-02T23:16:04Z")
 
     cand = classify(a, b)
     assert cand and cand["window"] == "unchanged", "reset not classified"
@@ -293,6 +319,8 @@ def selftest():
         pass
     else:
         raise AssertionError("missing weekly meter should skip without crashing")
+    assert inferred_roll and inferred_roll["r7"] == "2026-07-09T22:59:59Z", "weekly roll not inferred"
+    assert classify(just_after_roll, inferred_roll) is None, "inferred roll misclassified as reset"
     print("selftest: PASS")
 
 
@@ -308,8 +336,12 @@ def main():
     try:
         cur = poll()
     except PollUnavailable as e:
-        log("poll skipped: %s" % e)
-        return 0
+        prev = last_history_line()
+        cur = infer_normal_roll(prev, e.t)
+        if cur is None:
+            log("poll skipped: %s" % e)
+            return 0
+        log("weekly meter unavailable; inferred normal roll to %s" % cur["r7"])
     prev = last_history_line()
     if prev and prev["t"] == cur["t"]:
         log("no new CodexBar reading (updatedAt=%s); skipping tick" % cur["t"])
