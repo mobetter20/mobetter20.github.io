@@ -1,9 +1,9 @@
 {
   "_note": "machine-updated by canary_watcher (LaunchAgent com.ajin.canary-watcher, see _scripts/canary/) — hand edits may be overwritten within 30 minutes",
-  "last_polled_utc": "2026-07-19T23:59:19Z",
+  "last_polled_utc": "2026-07-20T23:38:48Z",
   "canary_now": {
-    "seven_day_used_pct": 15.0,
-    "seven_day_resets_at": "2026-07-23T22:59:00Z"
+    "seven_day_used_pct": 26.0,
+    "seven_day_resets_at": "2026-07-23T23:00:00Z"
   },
   "verdict_override": null,
   "watching_note": null,
