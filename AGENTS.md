@@ -25,6 +25,16 @@ Tier follows a page's **nature, not its URL parent** — konbini (bespoke) sits 
 
 Within the house, `.house-title` marks **section entrances and orphan URLs** (`/is/writing` → "ajin.im *is* writing"). The writing archive is **not** in the house: `/writes` (a running log of thoughts — the essays) and `/wrote` (the sealed Medium-years comedy archive) are their own Bespoke world — `writes.css`, a monospace log index + serif reading pages, **not** `creative-house.css` — wearing only the Bespoke anchors (a way home, a thread of palette sympathy). The tense pair is load-bearing: **is writing** (the masked worlds) · **writes** (the living log) · **wrote** (the sealed archive); pieces carry no genre labels. Coo issues carry their own title as content. The device tolerates the page's tense/phrasing — a sub-hub may extend its parent's verb, e.g. Small Ware → "ajin.im *is* building small."
 
+**Favicon scheme:** `a1` = frame hubs (`/`, running, reading, learning, building); `a2` = error/404; `a3` = house + all generated pages; bespoke pages carry their own art. (Single 180px PNGs today; full sized-set + manifest deferred.)
+
+## Information architecture — what surfaces where
+
+Treat the apex surfaces as curated teasers, not mirrors of what sits below; surface each thing at its grain.
+
+- **Home (`/`, from `templates/root.html`) is a balanced teaser.** Each `ajin.im is ___` verb shows exactly **two** detail lines (running: 2 stats; writing: 2 worlds; building: 2 collections). To feature something new on a verb, **swap a line, don't append a third**; the two-per-verb symmetry is the device. The building lines show **collections only**, never loose tools.
+- **`/is/building`** = collection cards (container builds) up top + loose single builds under "Lately."
+- **Grain descends:** home (2/verb, collections) → section index (collections + "Lately") → hub → piece. Put each thing at its grain: a collection on the home teaser, a loose piece in "Lately," not the reverse.
+
 ## Build Scripts
 
 `_scripts/build_root.py` generates the stats-driven pages — `index.html` (the root `ajin.im is …` page), `is/running/`, `is/reading/`, `is/learning/` — from `templates/{root,running,reading,learning}.html` + `content/stats.md`. **Edit the templates, never the generated `index.html` files.** Direct edits are overwritten on the next build, and `.github/workflows/rebuild-root-on-stats.yml` rebuilds them automatically whenever a template, `stats.md`, or the script changes. Each generated file carries a `GENERATED FILE — DO NOT EDIT` banner under its doctype as an in-file reminder.
@@ -84,3 +94,13 @@ for full details. Quick reference:
   with `generate_graph.py`). Character-name linting is intentionally
   deferred — single-token names like "Conrad" / "Dennis" collide with
   ordinary English.
+
+## Metro Cards (was: World Metros Atlas)
+
+A bespoke build at `/is/building/metro-match/` (soft-launched, noindex; URL
+moved from `world-metros` at D33, stub redirects; the
+atlas-era prototype is live and gets rebuilt as a card deck per DECISIONS
+D17–D19). Before touching anything metro-related, read
+`_scripts/world_metros/README.md` — reading order, product contract, data
+contract, and the decision log live there. Open forks need owner ratification
+before frontend work starts (see `_scripts/world_metros/STATUS.md`).
