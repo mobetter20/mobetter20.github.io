@@ -1,3 +1,15 @@
+"""Render the essays at /writes/<slug>/ plus the Atom feed.
+
+The `_src/` directory IS the registry: every `*.md` in it is an essay, and files
+whose name starts with `_` are notes, not posts. There is no second list to keep
+in sync (the old POST_DEFS + Medium-export scaffolding retired 2026-09-16).
+
+Front matter: `title` and `order` are required, `date` and `excerpt` optional.
+`order` sorts ascending, 0 = newest, and must be unique — the build fails loudly
+rather than silently guessing at a tie. `_scripts/writes_publisher/` maintains
+those numbers automatically when publishing from Obsidian.
+"""
+
 from __future__ import annotations
 
 import html
@@ -11,48 +23,8 @@ import writes_common
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ESSAY_ROOT = REPO_ROOT / "is" / "writing" / "essays"
 SOURCE_ROOT = ESSAY_ROOT / "_src"
-EXPORT_ROOT = Path.home() / "Documents/New project/personal/ajin.im:is:writing/archive/essay"
 WROTE_ROOT = REPO_ROOT / "wrote"
 WRITES_ROOT = REPO_ROOT / "writes"
-
-
-POST_DEFS = [
-    {
-        "source": "the-dislike-button-and-the-rise-of-bad-engagement.md",
-        "title": "The Dislike Button and the Rise of Bad Engagement",
-        "order": 0,
-    },
-    {
-        "source": "the-house-chips-of-ai.md",
-        "title": "The House Chips of AI",
-        "order": 1,
-    },
-    {
-        "source": "already-seen.md",
-        "title": "Already Seen",
-        "order": 2,
-    },
-    {
-        "source": "adventure-is-danger-past-tense.md",
-        "title": "Adventure Is Danger, Past Tense",
-        "order": 3,
-    },
-    {
-        "source": "call-of-the-void.md",
-        "title": "Call of the Void",
-        "order": 4,
-    },
-    {
-        "source": "korea-was-the-beta-test-zone-for-modern-loneliness.md",
-        "title": "Korea was the beta test zone for modern loneliness.",
-        "order": 5,
-    },
-    {
-        "source": "how-to-cry-on-the-subway-and-not-be-seen.md",
-        "title": "How to Cry on the Subway and Not Be Seen",
-        "order": 6,
-    },
-]
 
 
 @dataclass(frozen=True)
@@ -84,80 +56,6 @@ def strip_tags(value: str) -> str:
     return re.sub(r"<[^>]+>", "", value)
 
 
-def convert_inline_html_to_markdown(value: str) -> str:
-    value = value.replace("\xa0", " ")
-
-    def replace_link(match: re.Match[str]) -> str:
-        href = html.unescape(match.group(1))
-        text = convert_inline_html_to_markdown(match.group(2))
-        return f"[{text}]({href})"
-
-    value = re.sub(r'<a\s+href="([^"]+)"[^>]*>(.*?)</a>', replace_link, value, flags=re.S | re.I)
-    value = re.sub(r"</?(?:strong|b)[^>]*>", lambda m: "**", value, flags=re.I)
-    value = re.sub(r"</?(?:em|i)[^>]*>", lambda m: "*", value, flags=re.I)
-    value = re.sub(r"<br\s*/?>", "<br />", value, flags=re.I)
-    value = strip_tags(value)
-    value = html.unescape(value)
-    value = re.sub(r"[ \t]+", " ", value).strip()
-    return value
-
-
-def paragraph_to_markdown(paragraph_html: str) -> str:
-    text = convert_inline_html_to_markdown(paragraph_html)
-    if not text:
-        return ""
-    if text == "---":
-        return "---"
-    bullet = re.match(r"^[\s•\u2022]+(.*)$", text)
-    if bullet:
-        text = f"- {bullet.group(1).strip()}"
-    return text
-
-
-def clean_export_fragment(html_text: str) -> str:
-    html_text = re.sub(r'<div class="captioned-image-container">.*?</div>\s*', "", html_text, flags=re.S | re.I)
-    html_text = re.sub(r"<figure\b.*?</figure>", "", html_text, flags=re.S | re.I)
-    html_text = re.sub(r'<div class="subscription-widget-wrap-editor".*?</div>', "", html_text, flags=re.S | re.I)
-    html_text = re.sub(r"<div>\s*<hr\s*/?>\s*</div>", "<p>---</p>", html_text, flags=re.S | re.I)
-    html_text = re.sub(r"</?div\b[^>]*>", "", html_text, flags=re.S | re.I)
-    return html_text
-
-
-def export_html_to_markdown(export_path: Path) -> str:
-    raw = export_path.read_text(encoding="utf-8", errors="ignore")
-    cleaned = clean_export_fragment(raw)
-    paragraphs = re.findall(r"<p\b[^>]*>(.*?)</p>", cleaned, flags=re.S | re.I)
-    blocks: list[str] = []
-    list_items: list[str] = []
-
-    def flush_list() -> None:
-        nonlocal list_items
-        if list_items:
-          blocks.append("\n".join(list_items))
-          list_items = []
-
-    for paragraph in paragraphs:
-        md = paragraph_to_markdown(paragraph)
-        if md:
-            if md == "---":
-                flush_list()
-                if blocks and blocks[-1] != "---":
-                    blocks.append("---")
-                elif not blocks:
-                    blocks.append("---")
-                continue
-            if md.startswith("- "):
-                list_items.append(md)
-                continue
-            if md == "." and blocks:
-                blocks[-1] = blocks[-1].rstrip() + "."
-                continue
-            flush_list()
-            blocks.append(md)
-    flush_list()
-    return "\n\n".join(blocks).strip() + "\n"
-
-
 def parse_front_matter(source_text: str) -> tuple[dict[str, str], str]:
     lines = source_text.splitlines()
     if not lines or lines[0].strip() != "---":
@@ -178,8 +76,15 @@ def parse_front_matter(source_text: str) -> tuple[dict[str, str], str]:
 def parse_markdown_post(source_path: Path) -> EssayPost:
     source_text = source_path.read_text(encoding="utf-8")
     front_matter, body_md = parse_front_matter(source_text)
+    if "title" not in front_matter:
+        raise ValueError(f"{source_path.name}: front matter needs a `title:`")
+    if "order" not in front_matter:
+        raise ValueError(f"{source_path.name}: front matter needs an `order:` (0 = newest)")
     title = front_matter["title"]
-    order = int(front_matter.get("order", "999"))
+    try:
+        order = int(front_matter["order"])
+    except ValueError as exc:
+        raise ValueError(f"{source_path.name}: `order:` must be an integer") from exc
     excerpt = front_matter.get("excerpt", "")
     slug = source_path.stem
     if not excerpt:
@@ -281,24 +186,6 @@ def markdown_to_html(body_md: str) -> str:
     return "\n".join(blocks)
 
 
-def ensure_source_markdown() -> None:
-    SOURCE_ROOT.mkdir(parents=True, exist_ok=True)
-    for post_def in POST_DEFS:
-        source_path = SOURCE_ROOT / post_def["source"]
-        if source_path.exists():
-            continue
-        export_path = EXPORT_ROOT / post_def["export"]
-        body_md = export_html_to_markdown(export_path)
-        source_text = (
-            "---\n"
-            f'title: {post_def["title"]}\n'
-            f'order: {post_def["order"]}\n'
-            "---\n\n"
-            f"{body_md}"
-        )
-        source_path.write_text(source_text, encoding="utf-8")
-
-
 def build_post_page(post: EssayPost) -> str:
     body_html = indent_body(markdown_to_html(post.body_md))
     kicker = f"{post.year} · a thought" if post.year else "a thought"
@@ -320,11 +207,22 @@ def indent_body(body_html: str) -> str:
 
 
 def load_posts() -> list[EssayPost]:
-    ensure_source_markdown()
-    posts: list[EssayPost] = []
-    for post_def in POST_DEFS:
-        source_path = SOURCE_ROOT / post_def["source"]
-        posts.append(parse_markdown_post(source_path))
+    """Every `*.md` in _src/ is an essay. `_`-prefixed files are notes, not posts."""
+    posts = [
+        parse_markdown_post(path)
+        for path in sorted(SOURCE_ROOT.glob("*.md"))
+        if not path.name.startswith("_")
+    ]
+    orders = [post.order for post in posts]
+    clashes = sorted({o for o in orders if orders.count(o) > 1})
+    if clashes:
+        where = ", ".join(
+            f"{post.source.name}={post.order}" for post in posts if post.order in clashes
+        )
+        raise ValueError(
+            f"duplicate `order:` in {SOURCE_ROOT.relative_to(REPO_ROOT)} — {where}. "
+            "Order must be unique (0 = newest)."
+        )
     return sorted(posts, key=lambda post: post.order)
 
 
