@@ -17,7 +17,7 @@
       "slug": "bird-docket",
       "title": "Bird Docket",
       "kind": "meta_directory",
-      "status": "live",
+      "status": "archived",
       "canonicalPath": "/is/writing/bird-docket/",
       "publicUrl": "https://ajin.im/is/writing/bird-docket/",
       "parent": null,
@@ -153,6 +153,7 @@
         "is/writing/nest-court/calendar/index.html",
         "is/writing/nest-court/index.html",
         "is/writing/nest-court-proceedings/index.html",
+        "is/writing/bird-coo/index.html",
         "is/writing/bird-coo/issues/2026-07-07.html",
         "is/writing/bird-coo/issues/2026-07-28.html",
         "is/writing/bird-coo/issues/2026-08-18.html",
@@ -193,6 +194,7 @@
         "is/writing/avian-district/map-options/site-preview-option-4-property-gis-2_5d.html",
         "is/writing/nest-court/calendar/index.html",
         "is/writing/nest-court/index.html",
+        "is/writing/bird-coo/index.html",
         "is/writing/bird-coo/issues/2026-03-10.html",
         "is/writing/bird-coo/issues/2026-03-17.html",
         "is/writing/bird-coo/issues/2026-03-24.html",
@@ -445,9 +447,11 @@
       "key_facts": "District's first investigative service / private investigator. Formerly a wedding photographer. Conspicuous (\"not a discreet bird\"); tends to sympathize with subjects — returned the fee on his only assignment, submitting a hand-illustrated account of the male's routine in place of evidence. The foraging group logs his position routinely; he does not move. Introduced Coo #21. Bought his own Coo display ad (Coo #22) — gentle, self-revealing, \"I grow attached to my subjects.\"",
       "active_cases": [],
       "mentions": [
+        "is/writing/bird-coo/index.html",
         "is/writing/bird-coo/issues/2026-07-28.html",
         "is/writing/bird-coo/issues/2026-08-04.html",
-        "is/writing/bird-coo/issues/2026-09-08.html"
+        "is/writing/bird-coo/issues/2026-09-08.html",
+        "is/writing/secondnest/index.html"
       ]
     },
     {
@@ -457,6 +461,7 @@
       "key_facts": "New nestling letter writer (Coo #21). Has a brother. The two keep an even score — longer weekend, who came to the school thing, who they run to first at pickup — to avoid picking a favorite of their separating parents, and hide the bookkeeping to protect them. Coo #28: the brothers coordinated their \"what I did this summer\" school accounts so the two households' versions matched — \"we are not lying. We are coordinating.\"",
       "active_cases": [],
       "mentions": [
+        "is/writing/bird-coo/index.html",
         "is/writing/bird-coo/issues/2026-07-28.html",
         "is/writing/bird-coo/issues/2026-09-15.html"
       ]
@@ -476,7 +481,8 @@
       "key_facts": "Nest appraiser & divider; new practitioner introduced via display ad (Coo #28). Catalogues and prices a separating couple's nest, then divides it; \"values bright things.\" Takes shiny items as her fee (\"her fee was three of them… she did very well out of it\"). Gentle-grift voice, Cat. 8 — distinct from Karen the advocate. Distinct from the unnamed magpie of Coo #16 (Box 41-M) — names ≠ identities.",
       "active_cases": [],
       "mentions": [
-        "is/writing/bird-coo/issues/2026-09-15.html"
+        "is/writing/bird-coo/issues/2026-09-15.html",
+        "is/writing/secondnest/index.html"
       ]
     },
     {

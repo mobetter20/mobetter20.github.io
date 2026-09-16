@@ -1,6 +1,6 @@
 ---
 title: How to Cry on the Subway and Not Be Seen
-order: 7
+order: 6
 date: 2026
 ---
 

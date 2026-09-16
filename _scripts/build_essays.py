@@ -18,14 +18,19 @@ WRITES_ROOT = REPO_ROOT / "writes"
 
 POST_DEFS = [
     {
+        "source": "the-dislike-button-and-the-rise-of-bad-engagement.md",
+        "title": "The Dislike Button and the Rise of Bad Engagement",
+        "order": 0,
+    },
+    {
         "source": "the-house-chips-of-ai.md",
         "title": "The House Chips of AI",
-        "order": 0,
+        "order": 1,
     },
     {
         "source": "already-seen.md",
         "title": "Already Seen",
-        "order": 1,
+        "order": 2,
     },
     {
         "source": "adventure-is-danger-past-tense.md",
@@ -40,12 +45,12 @@ POST_DEFS = [
     {
         "source": "korea-was-the-beta-test-zone-for-modern-loneliness.md",
         "title": "Korea was the beta test zone for modern loneliness.",
-        "order": 6,
+        "order": 5,
     },
     {
         "source": "how-to-cry-on-the-subway-and-not-be-seen.md",
         "title": "How to Cry on the Subway and Not Be Seen",
-        "order": 7,
+        "order": 6,
     },
 ]
 
