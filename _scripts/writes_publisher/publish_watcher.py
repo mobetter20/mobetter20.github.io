@@ -523,7 +523,14 @@ def stage(candidates: list[Candidate]) -> dict[str, str]:
     a monotonic counter, so a publish touches exactly one file per piece."""
     staged: dict[str, str] = {}
     counter = next_order()
-    for cand in sorted(candidates, key=lambda c: c.path.stat().st_mtime):
+
+    def mtime(cand: Candidate) -> float:
+        try:  # the drop file can vanish between scan and stage
+            return cand.path.stat().st_mtime
+        except OSError:
+            return 0.0
+
+    for cand in sorted(candidates, key=mtime):
         record = None
         src_file = SRC / f"{cand.slug}.md"
         if src_file.exists():
