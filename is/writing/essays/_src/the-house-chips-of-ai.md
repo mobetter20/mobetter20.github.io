@@ -1,6 +1,6 @@
 ---
 title: The House Chips of AI
-order: 1
+order: 5
 date: 2026
 excerpt: An AI subscription is not a software product. It is access to a private economy — paid in dollars, metered in tokens, credits, and limits the platform sets.
 ---

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Documentation copy. Runtime lives at ~/.local/bin/ (see README.md).
+     LaunchAgent requires absolute paths; the /Users/ajin/... paths below are intentional. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.ajin.writes-publisher</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/ajin/.local/bin/writes_publish_watcher.py</string>
+  </array>
+
+  <!-- WatchPaths reacts to a save; StartInterval is what actually lets a piece
+       mature. The stability check needs a tick AFTER editing stops, and no file
+       event fires when you simply stop typing. -->
+  <key>WatchPaths</key>
+  <array>
+    <string>/Users/ajin/Documents/Ajin/Writing/publish</string>
+  </array>
+  <key>StartInterval</key>
+  <integer>300</integer>
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- PATH must carry /opt/homebrew/bin: the repo's pre-commit hook runs gitleaks
+       and exits 0 silently when gitleaks is not found, which would leave unattended
+       commits with no secret scanning at all. -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/ajin/.local/share/writes-publisher/publisher.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/ajin/.local/share/writes-publisher/publisher.log</string>
+</dict>
+</plist>

@@ -1,6 +1,6 @@
 ---
 title: Call of the Void
-order: 4
+order: 2
 date: 2026
 ---
 

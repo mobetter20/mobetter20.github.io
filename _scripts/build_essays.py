@@ -5,9 +5,11 @@ whose name starts with `_` are notes, not posts. There is no second list to keep
 in sync (the old POST_DEFS + Medium-export scaffolding retired 2026-09-16).
 
 Front matter: `title` and `order` are required, `date` and `excerpt` optional.
-`order` sorts ascending, 0 = newest, and must be unique — the build fails loudly
-rather than silently guessing at a tie. `_scripts/writes_publisher/` maintains
-those numbers automatically when publishing from Obsidian.
+`order` is a monotonic publication counter: **highest is newest**, and it must be
+unique — the build fails loudly rather than silently guessing at a tie. A new piece
+takes `max(order) + 1`, so publishing only ever writes ONE file and existing pieces
+are never renumbered. `_scripts/writes_publisher/` assigns it when publishing from
+Obsidian.
 """
 
 from __future__ import annotations
@@ -79,7 +81,9 @@ def parse_markdown_post(source_path: Path) -> EssayPost:
     if "title" not in front_matter:
         raise ValueError(f"{source_path.name}: front matter needs a `title:`")
     if "order" not in front_matter:
-        raise ValueError(f"{source_path.name}: front matter needs an `order:` (0 = newest)")
+        raise ValueError(
+            f"{source_path.name}: front matter needs an `order:` (highest = newest)"
+        )
     title = front_matter["title"]
     try:
         order = int(front_matter["order"])
@@ -221,9 +225,9 @@ def load_posts() -> list[EssayPost]:
         )
         raise ValueError(
             f"duplicate `order:` in {SOURCE_ROOT.relative_to(REPO_ROOT)} — {where}. "
-            "Order must be unique (0 = newest)."
+            "Order must be unique (highest = newest)."
         )
-    return sorted(posts, key=lambda post: post.order)
+    return sorted(posts, key=lambda post: post.order, reverse=True)
 
 
 SITE_BASE_URL = "https://ajin.im"
@@ -244,7 +248,7 @@ def render_feed(posts: list[EssayPost]) -> str:
     Mirrors build_bird_coo.render_feed. Essay front matter carries only a
     year (`date: 2026`), so timestamps are pinned to YYYY-01-01 — coarse but
     honest; the feed exists for discovery/followability, not minute-accuracy.
-    Posts are emitted in `order` (0 first = the featured/most-recent piece)."""
+    Posts are emitted newest first (highest `order`)."""
     def timestamp(post: EssayPost) -> str:
         year = post.year or "2026"
         return f"{year}-01-01T00:00:00Z"

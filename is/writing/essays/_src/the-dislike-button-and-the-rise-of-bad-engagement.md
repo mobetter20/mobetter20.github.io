@@ -1,6 +1,6 @@
 ---
 title: The Dislike Button and the Rise of Bad Engagement
-order: 0
+order: 6
 date: 2026
 excerpt: The dislike button did something most engagement metrics do not. It separated attention from approval.
 ---

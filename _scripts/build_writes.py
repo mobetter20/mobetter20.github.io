@@ -6,7 +6,8 @@ on disk. Bespoke essays (hand-built; their form is part of the art) live at
 /writes/<slug>/ and are listed via BESPOKE_ESSAYS.
 
 Dates are optional: add `date: YYYY-MM-DD` to an essay's front matter and its year
-appears in the log. Until then the log renders dateless (newest first by `order`).
+appears in the log. Until then the log renders dateless (newest first by `order`,
+which is a monotonic publication counter — highest is newest).
 
 The sealed comedy archive is a separate twin at /wrote/ (see build_wrote.py).
 Run order (publish.sh): build_comedy, build_essays, build_writes, build_wrote.
@@ -52,12 +53,12 @@ def collect_items() -> list[dict]:
                 "excerpt": bespoke.get("excerpt", ""),
             }
         )
-    items.sort(key=lambda item: item["order"])
+    items.sort(key=lambda item: item["order"], reverse=True)
     return items
 
 
 def render_index() -> str:
-    items = collect_items()  # sorted by order (newest intent first)
+    items = collect_items()  # newest first (highest order)
     newest_slug = items[0]["slug"] if items else None
     dek_slugs = {item["slug"] for item in items[:2]}  # top two carry a one-line dek
 
@@ -80,9 +81,9 @@ def render_index() -> str:
     inner: list[str] = []
     for year in sorted(by_year, reverse=True):
         inner.append(f'        <p class="yr">## {year}</p>')
-        for item in sorted(by_year[year], key=lambda x: x["order"]):
+        for item in sorted(by_year[year], key=lambda x: x["order"], reverse=True):
             inner.append(render_line(item))
-    for item in sorted(undated, key=lambda x: x["order"]):
+    for item in sorted(undated, key=lambda x: x["order"], reverse=True):
         inner.append(render_line(item))
 
     body = '      <div class="log nodate">\n' + "\n".join(inner) + "\n      </div>"

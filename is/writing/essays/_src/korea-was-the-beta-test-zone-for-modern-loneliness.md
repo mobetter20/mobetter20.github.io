@@ -1,6 +1,6 @@
 ---
 title: Korea was the beta test zone for modern loneliness.
-order: 5
+order: 1
 date: 2026
 ---
 
