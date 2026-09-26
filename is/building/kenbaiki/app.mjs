@@ -125,7 +125,7 @@ function act(action,word){
  }
  if(result.reason==='printing'){
   const version=epoch,number=state.pending.number;
-  setTimeout(()=>{if(epoch!==version)return;const r=transition(state,{type:'finish',number});if(!r.ok)return;state=r.state;showWord('ticket');announce(messages.printed);render();},PRINT_DURATION_MS);
+  setTimeout(()=>{if(epoch!==version)return;const r=transition(state,{type:'finish',number});if(!r.ok)return;state=r.state;announce(messages.printed);render();},PRINT_DURATION_MS);
  }
  if(result.ok&&['firmness','refill-firmness','served'].includes(state.stage))$(state.stage==='served'?'#completion':'#firmness-panel').focus();
 }
