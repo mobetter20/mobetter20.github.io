@@ -4,7 +4,7 @@ import {words} from './vocabulary.mjs';
 import {PRINT_DURATION_MS,setSoundEnabled,playMechanismSound,stopMechanismSounds} from './sound.mjs';
 const $=s=>document.querySelector(s);
 const money=n=>`¥${n.toLocaleString('en-US')}`;
-let state=initialState(),cash=1000,epoch=0,sound=false,soundRequest=0,lastInspectedControl=null;
+let state=initialState(),cash=1000,epoch=0,sound=false,soundRequest=0,lastInspectedControl=null,inspectedAnchorId=null;
 let learning={activeId:'insert-instructions',pinned:false,controlTerms:[]};
 const encountered=new Set();
 const messages={
@@ -49,15 +49,17 @@ function showWord(id,{manual=false,terms=[],scroll=false}={}){
  encountered.add(id);const w=words[id];
  $('#word-card').innerHTML=`${manual?'<p class="word-pin">Reading this label. Stays open until your next action.</p>':''}<h2 class="word-title" lang="ja">${w.jp}</h2><p class="word-reading"><span lang="ja">${w.reading}</span> · ${w.roman}</p><p class="word-meaning">${w.meaning}</p>${w.photo?'<img class="bowl-photo" src="assets/shoyu.png" width="1254" height="1254" alt="Illustration of this shop’s shoyu ramen with pork, bamboo shoots, nori and spring onion.">':''}<p class="word-detail">${w.detail}</p>${w.extra?`<details><summary>A useful connection</summary><p>${w.extra}</p></details>`:''}${learning.controlTerms.length>1?`<div class="term-options"><span class="term-options-label">Labels on this control</span>${learning.controlTerms.map(term=>`<button data-read-term="${term}" lang="ja" aria-pressed="${term===id}">${words[term].jp}</button>`).join('')}</div>`:''}`;
  $('#word-announcement').textContent=`${w.jp}. ${w.reading}. ${w.meaning}`;
- if(scroll&&matchMedia('(max-width:760px)').matches)$('#word-card').scrollIntoView({behavior:'instant',block:'start'});
+ prepareReaderNotes(manual);if(manual&&isMobileReader())$('.context').scrollTop=0;refreshReader();if(scroll)requestAnimationFrame(revealInspectedControl);
 }
 function inspectControl(button,target){
- if(button.closest('#machine'))lastInspectedControl=button;
+ const keyboard=button.matches(':focus-visible'),anchorId=button.id||null;
+ if(isMobileReader()&&!state.inspect)setInspect(true);
+ lastInspectedControl=button;inspectedAnchorId=anchorId;
  const terms=(button.dataset.terms||button.dataset.word||button.dataset.globalWord||button.dataset.item).split(/\s+/);
  const id=target||button.dataset.item||button.dataset.word||button.dataset.globalWord||terms[0];
  showWord(id,{manual:true,terms,scroll:true});
  // Move keyboard focus to the explanation so its secondary terms are next in Tab order.
- if(button.matches(':focus-visible')){ $('#word-card').tabIndex=-1;$('#word-card').focus({preventScroll:true}); }
+ if(keyboard){ $('#word-card').tabIndex=-1;$('#word-card').focus({preventScroll:true}); }
 }
 function announce(message){$('#feedback').textContent=message;$('#cash-instruction').textContent=message;}
 function render(){
@@ -88,7 +90,7 @@ function render(){
  $('#change').dataset.terms=state.changeTray?'change outlet yen take':'change outlet coin';
  $('#change').setAttribute('aria-label',state.inspect?'Read change outlet labels':state.changeTray?`Collect ${state.changeTray} yen change`:'おつり 取出口. Change outlet empty');
  $('#held-count').textContent=state.held.length?`${state.held.length} ticket${state.held.length===1?'':'s'}`:'no tickets';
- $('#held-tickets').innerHTML=state.held.map(t=>`<div class="held-ticket"><div><button data-global-word="${t.id}" lang="ja">${t.name}</button><span><button data-global-word="ticket" lang="ja">食券</button>　No. ${String(t.number).padStart(3,'0')}</span>${t.kind==='refill'?'<span class="refill-tag">Keep for your noodle refill</span>':''}</div><div>${money(t.price)}</div></div>`).join('');
+ $('#held-tickets').innerHTML=state.held.map(t=>`<div class="held-ticket"><div><button id="held-${t.number}-item" data-global-word="${t.id}" lang="ja">${t.name}</button><span><button id="held-${t.number}-ticket" data-global-word="ticket" lang="ja">食券</button>　No. ${String(t.number).padStart(3,'0')}</span>${t.kind==='refill'?'<span class="refill-tag">Keep for your noodle refill</span>':''}</div><div>${money(t.price)}</div></div>`).join('');
  $('#returned-money').textContent=state.collectedChange?`${money(state.collectedChange)} change collected`:'';
  $('#handoff').disabled=!state.held.length||state.stage!=='machine';
  const choosing=['firmness','refill-firmness'].includes(state.stage);
@@ -104,8 +106,9 @@ function render(){
   const bowls=state.staff.filter(t=>t.kind==='bowl');
   $('#completion-text').textContent=bowls.length?`${state.staff.map(t=>`${t.name}${state.firmness[t.number]||state.refillFirmness[t.number]?` (${firmnessOptions.find(f=>f.id===(state.firmness[t.number]||state.refillFirmness[t.number])).meaning.toLowerCase()})`:''}`).join(' + ')}. Total paid: ${money(state.purchases.reduce((v,t)=>v+t.price,0))}.${state.collectedChange?` Change collected: ${money(state.collectedChange)}.`:''}`:'Your tickets are for extras or sides only. Staff may check whether you also want a bowl of ramen.';
   $('#refill-actions').innerHTML=state.held.length?'<p class="refill-note">When you have eaten the noodles, keep some broth and give the staff one refill ticket.</p>'+state.held.map(t=>`<button class="refill-action" data-refill="${t.number}">Request ${t.name} · Ticket ${String(t.number).padStart(3,'0')} →</button>`).join(''):'';
-  $('#word-recap').innerHTML=['ticket','change','please'].filter(id=>encountered.has(id)).map(id=>`<div class="recap-word"><button data-global-word="${id}" lang="ja">${words[id].jp}</button> ${words[id].meaning}</div>`).join('');
+  $('#word-recap').innerHTML=['ticket','change','please'].filter(id=>encountered.has(id)).map(id=>`<div class="recap-word"><button id="recap-${id}" data-global-word="${id}" lang="ja">${words[id].jp}</button> ${words[id].meaning}</div>`).join('');
  }
+ refreshReader();const other=getShop(state.shopId==='shoyu'?'hakata':'shoyu');$('#try-other-shop').hidden=state.stage!=='served'||hasOutstandingProperty(state);$('#try-other-shop').textContent=`Try ${other.id==='hakata'?'the Hakata shop':'the shoyu / shio shop'} →`;
  $('#selected-cash').textContent=`${money(cash)} ${cash>=1000?'note':'coin'} selected → ${cash>=1000?'紙幣':'硬貨'}`;
  for(const b of document.querySelectorAll('[data-money]'))b.setAttribute('aria-pressed',String(Number(b.dataset.money)===cash));
 }
@@ -129,13 +132,13 @@ function act(action,word){
  }
  if(result.ok&&['firmness','refill-firmness','served'].includes(state.stage))$(state.stage==='served'?'#completion':'#firmness-panel').focus();
 }
-function setInspect(enabled){state=transition(state,{type:'inspect',enabled}).state;render();announce(enabled?'Reading mode: select a label or control for its explanation. Buying is paused.':'Buying mode. Your money and tickets are unchanged.');}
+function setInspect(enabled){if(enabled&&!state.inspect){lastInspectedControl=null;inspectedAnchorId=null;}state=transition(state,{type:'inspect',enabled}).state;render();announce(enabled?'Reading mode: select a label or control for its explanation. Buying is paused.':'Buying mode. Your money and tickets are unchanged.');}
 function insertAt(slot){
  if((cash>=1000)!==(slot==='bill')){learning.pinned=false;showWord(slot);announce(`Use the ${cash>=1000?'wide 紙幣 banknote':'round 硬貨 coin'} slot for ${money(cash)}.`);return;}
  act({type:'insert',value:cash},slot);
 }
 function reset(shopId=state.shopId){
- epoch++;stopMechanismSounds();lastInspectedControl=null;state=initialState(shopId);cash=1000;encountered.clear();learning={activeId:'insert-instructions',pinned:false,controlTerms:[]};
+ epoch++;stopMechanismSounds();lastInspectedControl=null;inspectedAnchorId=null;state=initialState(shopId);cash=1000;encountered.clear();learning={activeId:'insert-instructions',pinned:false,controlTerms:[]};
  renderMenu();render();showWord('insert-instructions');announce(messages.reset);
  $('#bill-input').focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});
 }
@@ -163,9 +166,9 @@ $('#other-money').onclick=()=>{const open=$('#other-denoms').hidden;$('#other-de
 $('#return').onclick=()=>act({type:'return'},'change');$('#tickets').onclick=()=>act({type:'tickets'},'outlet');$('#change').onclick=()=>act({type:'change'},'change');$('#handoff').onclick=()=>act({type:'handoff'},'please');
 $('#firmness-options').onclick=event=>{const b=event.target.closest('[data-firmness]');if(b)act({type:state.stage==='firmness'?'firmness':'refill-firmness',number:state.firmnessQueue[0],value:b.dataset.firmness},'firmness');};
 $('#refill-actions').onclick=event=>{const b=event.target.closest('[data-refill]');if(b)act({type:'begin-refill',number:Number(b.dataset.refill)},'kaedama');};
-$('#inspect-toggle').onclick=()=>setInspect(!state.inspect);$('#inspect-done').onclick=()=>setInspect(false);
+$('#inspect-toggle').onclick=()=>state.inspect?closeReader():setInspect(true);$('#inspect-done').onclick=()=>closeReader();$('#reader-close').onclick=()=>closeReader();
 $('#read-controls').onclick=()=>{setInspect(true);$('#inspect-toggle').focus();$('#machine').scrollIntoView({behavior:'instant',block:'start'});};
-$('#resume-buying').onclick=()=>{setInspect(false);const control=lastInspectedControl||$('#bill-input');control.focus({preventScroll:true});control.scrollIntoView({block:'center',behavior:'instant'});};
+$('#resume-buying').onclick=()=>closeReader();
 $('#reset').onclick=()=>reset();$('#again').onclick=()=>reset();
 $('#change-shop').onclick=()=>$('#shop-picker').showModal();
 $('#shop-picker-close').onclick=()=>$('#shop-picker').close();
@@ -182,7 +185,7 @@ $('#sound').onclick=async()=>{
  $('#sound').setAttribute('aria-pressed',String(sound));$('#sound').textContent=sound?'Sound on':'Sound off';
  try{await setSoundEnabled(sound);}catch(error){if(version!==soundRequest)return;sound=false;$('#sound').setAttribute('aria-pressed','false');$('#sound').textContent='Sound off';announce(error.message);}
 };
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&state.inspect){setInspect(false);$('#inspect-toggle').focus();}});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&state.inspect&&!$('#shop-picker').open){event.preventDefault();closeReader();}});
 renderMenu();render();showWord('insert-instructions');
 // Read-only progressive enhancement. No browser dependency or transaction access.
 if(document.modelContext?.registerTool){
@@ -194,3 +197,61 @@ if(document.modelContext?.registerTool){
 
 // Use the host site's existing analytics only on the published site.
 if(location.hostname==='ajin.im'){const script=document.createElement('script');script.src='/analytics.js';script.defer=true;document.head.append(script);}
+
+// Reuse the same explanation on mobile, keeping its machine control in view.
+function isMobileReader(){return matchMedia('(max-width:760px)').matches;}
+function prepareReaderNotes(manual){
+ if(!isMobileReader()||!manual||$('#word-card .reader-notes'))return;
+ const card=$('#word-card'),notes=document.createElement('details');
+ notes.className='reader-notes';notes.innerHTML='<summary>More about this label</summary>';
+ for(const node of [...card.children])if(node.matches('.bowl-photo,.word-detail,details'))notes.append(node);
+ card.append(notes);notes.addEventListener('toggle',()=>requestAnimationFrame(revealInspectedControl));
+}
+function restoreReaderNotes(){
+ const notes=$('#word-card .reader-notes');if(!notes)return;
+ const card=$('#word-card'),before=card.querySelector('.term-options')||notes;
+ for(const node of [...notes.children])if(node.tagName!=='SUMMARY')card.insertBefore(node,before);
+ notes.remove();
+}
+function resolveInspectedControl(){
+ if(inspectedAnchorId)lastInspectedControl=document.getElementById(inspectedAnchorId);
+ if(!lastInspectedControl?.isConnected)lastInspectedControl=null;
+ return lastInspectedControl;
+}
+function refreshReader(){
+ const reading=state.inspect&&isMobileReader(),hasTarget=Boolean(resolveInspectedControl());
+ if(!reading)restoreReaderNotes();else if(hasTarget)prepareReaderNotes(true);
+ document.body.classList.toggle('reader-selected',reading&&hasTarget);
+ $('.reader-label').textContent=reading?'READING · BUYING PAUSED':'HELP';
+ for(const node of document.querySelectorAll('.inspected-control,.inspected-term'))node.classList.remove('inspected-control','inspected-term');
+ if(reading&&hasTarget){
+  lastInspectedControl.classList.add('inspected-control');
+  const term=[...lastInspectedControl.querySelectorAll('[data-glossary]')].find(node=>node.dataset.glossary===learning.activeId);
+  term?.classList.add('inspected-term');
+ }
+ if(!reading)document.documentElement.style.removeProperty('--reader-height');
+ if(reading)requestAnimationFrame(()=>{if(state.inspect&&isMobileReader())document.documentElement.style.setProperty('--reader-height',`${$('.context').getBoundingClientRect().height+24}px`);});
+}
+function revealInspectedControl(){
+ if(!state.inspect||!isMobileReader()||!resolveInspectedControl())return;
+ const reader=$('.context'),height=reader.getBoundingClientRect().height;
+ const visibleBottom=innerHeight-height-24;
+ const rect=lastInspectedControl.getBoundingClientRect();
+ const targetTop=Math.max(16,(visibleBottom-rect.height)/2);
+ if(rect.top<16||rect.bottom>visibleBottom){
+  window.scrollTo({top:Math.max(0,scrollY+rect.top-targetTop),behavior:'instant'});
+ }
+ document.documentElement.style.setProperty('--reader-height',`${height+24}px`);
+}
+function closeReader(){
+ setInspect(false);
+ const control=resolveInspectedControl()||$('#inspect-toggle');
+ control.focus({preventScroll:true});
+ if(isMobileReader()){
+  const rect=control.getBoundingClientRect(),bottom=innerHeight-$('.wallet').getBoundingClientRect().height-24;
+  if(rect.top<16||rect.bottom>bottom)window.scrollTo({top:Math.max(0,scrollY+rect.top-Math.max(16,(bottom-rect.height)/2)),behavior:'instant'});
+ }
+}
+$('#try-other-shop').onclick=()=>{if(state.stage!=='served'||hasOutstandingProperty(state))return;reset(state.shopId==='shoyu'?'hakata':'shoyu');$('#shop-name').focus({preventScroll:true});};
+window.addEventListener('resize',()=>{refreshReader();requestAnimationFrame(revealInspectedControl);});
+$('#word-card').addEventListener('click',event=>{if(event.target.closest('[data-read-term]'))requestAnimationFrame(revealInspectedControl);});
