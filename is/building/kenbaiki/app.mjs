@@ -1,7 +1,7 @@
-import {initialState,transition,conserved,changeCoins,hasOutstandingProperty} from './model.mjs';
-import {getShop,firmnessOptions} from './shops.mjs';
-import {words} from './vocabulary.mjs';
-import {PRINT_DURATION_MS,setSoundEnabled,playMechanismSound,stopMechanismSounds} from './sound.mjs';
+import {initialState,transition,conserved,changeCoins,hasOutstandingProperty} from './model.mjs?v=3';
+import {getShop,firmnessOptions,counterOptions,getCounterOptions} from './shops.mjs?v=3';
+import {words} from './vocabulary.mjs?v=3';
+import {PRINT_DURATION_MS,setSoundEnabled,playMechanismSound,stopMechanismSounds} from './sound.mjs?v=3';
 const $=s=>document.querySelector(s);
 const money=n=>`¥${n.toLocaleString('en-US')}`;
 let state=initialState(),cash=1000,epoch=0,sound=false,soundRequest=0,lastInspectedControl=null,inspectedAnchorId=null;
@@ -12,7 +12,7 @@ const messages={
  printing:'Ticket printing. The price has been deducted.',
  printed:'Your ticket is in the outlet. You can buy another item or collect it.',
  returned:'Collect your unspent money from the change outlet. Your purchased tickets remain valid.',
- 'tickets-collected':'Tickets collected. Hand bowl and topping tickets to the staff.',
+ 'tickets-collected':'Tickets collected. Take them to the staff.',
  'change-collected':'Change collected.',
  insufficient:'Not enough credit for that button. Add money first.',
  'sold-out':'That item is sold out. Choose another button.',
@@ -30,6 +30,11 @@ const messages={
  'refill-requested':'The staff has your refill ticket. Keep your remaining broth for the extra noodles.',
  'refill-without-bowl':'This ticket buys only extra noodles. Buy a bowl of ramen first; your refill ticket stays in your hand.',
  finished:'This order is already with the staff. Start again for a new visit.',
+ 'size-without-noodles':'大盛 increases a noodle dish. Buy a noodle ticket as well; the staff has left these tickets in your hand.',
+ 'ask-noodles':'Tell the staff which noodles you want for this ticket.',
+ 'counter-wait':'Keep your numbered stubs. Collect your food at the counter when called.',
+ 'counter-ready':'Your number has been called. Exchange your stubs at the pickup counter.',
+ 'picked-up':'Order collected. After eating, return your tray and dishes to 返却口.',
  reset:'Insert money to enable menu buttons.'
 };
 function renderMenu(){
@@ -39,8 +44,9 @@ function renderMenu(){
  $('#shop-name').textContent=shop.jp;$('#shop-name').dataset.globalWord=shop.word;
  $('#handoff-notice').textContent=words[shop.notice].jp;$('#handoff-notice').dataset.word=shop.notice;
  $('#refill-notice').hidden=!shop.extraNotice;
- $('#menu').innerHTML=shop.menu.map((item,i)=>`<button class="key ${item.size||''} ${i===1?'second':''} ${item.soldOut?'sold':''} ${!item.size&&item.name.length>5?'long':''}" data-item="${item.id}" data-terms="${item.id} ${item.bandWord} yen${item.soldOut?' sold':''}"><span class="band" data-glossary="${item.bandWord}">${item.band}</span><b data-glossary="${item.id}">${item.name}</b><span class="price" data-glossary="yen">${item.price.toLocaleString()}円</span><i class="light" ${item.soldOut?'data-glossary="sold"':''}>${item.soldOut?'売切':''}</i></button>`).join('')+'<div class="key blank" aria-hidden="true"></div>'.repeat(shop.blankKeys);
- $('.shop-context').textContent=shop.firmness?'Give bowl and topping tickets to the staff. Keep refill tickets until you want more noodles. The staff asks about noodle firmness.':'Give your tickets to the staff, then follow their seating instructions.';
+ if(shop.extraNotice){$('#refill-notice').textContent=words[shop.extraNotice].jp;$('#refill-notice').dataset.word=shop.extraNotice;}
+ $('#menu').innerHTML=shop.menu.map((item,i)=>`<button class="key ${item.size||''} ${i===1?'second':''} ${item.soldOut?'sold':''} ${!item.size&&item.name.length>5?'long':''}" data-category="${item.category||''}" data-item="${item.id}" data-terms="${item.id} ${item.bandWord} yen${item.soldOut?' sold':''}"><span class="band" data-glossary="${item.bandWord}">${item.band}</span><b data-glossary="${item.id}">${item.name}</b><span class="price" data-glossary="yen">${item.price.toLocaleString()}円</span><i class="light" ${item.soldOut?'data-glossary="sold"':''}>${item.soldOut?'売切':''}</i></button>`).join('')+'<div class="key blank" aria-hidden="true"></div>'.repeat(shop.blankKeys);
+ $('.shop-context').textContent=shop.service==='counter'?'Take your tickets to the counter. Choose the noodles, keep your numbered stubs, then collect the order when called.':shop.firmness?'Give bowl and topping tickets to the staff. Keep refill tickets until you want more noodles. The staff asks about noodle firmness.':'Give your tickets to the staff, then follow their seating instructions.';
 }
 function showWord(id,{manual=false,terms=[],scroll=false}={}){
  if(!words[id])throw new Error(`Missing explanation: ${id}`);
@@ -63,7 +69,9 @@ function inspectControl(button,target){
 }
 function announce(message){$('#feedback').textContent=message;$('#cash-instruction').textContent=message;}
 function render(){
+ const focused=document.activeElement;
  const shop=getShop(state.shopId);
+ document.body.classList.toggle('at-counter',shop.service==='counter'&&state.stage!=='machine');
  $('#balance').textContent=state.balance.toLocaleString('en-US');
  for(const button of document.querySelectorAll('[data-item]')){
   const item=shop.menu.find(x=>x.id===button.dataset.item);
@@ -101,23 +109,48 @@ function render(){
   $('#firmness-options').className='firmness-options';
   $('#firmness-options').innerHTML=firmnessOptions.map(f=>`<button class="firmness-choice" data-firmness="${f.id}"><strong lang="ja">${f.jp}</strong><small>${f.reading} · ${f.meaning}</small></button>`).join('');
  }
+ renderCounter();
  $('#completion').hidden=state.stage!=='served';
+ $('#completion h2').textContent=shop.service==='counter'?'Your order is collected.':'Your order is with the staff.';
  if(state.stage==='served'){
   const bowls=state.staff.filter(t=>t.kind==='bowl');
-  $('#completion-text').textContent=bowls.length?`${state.staff.map(t=>`${t.name}${state.firmness[t.number]||state.refillFirmness[t.number]?` (${firmnessOptions.find(f=>f.id===(state.firmness[t.number]||state.refillFirmness[t.number])).meaning.toLowerCase()})`:''}`).join(' + ')}. Total paid: ${money(state.purchases.reduce((v,t)=>v+t.price,0))}.${state.collectedChange?` Change collected: ${money(state.collectedChange)}.`:''}`:'Your tickets are for extras or sides only. Staff may check whether you also want a bowl of ramen.';
+  $('#completion-text').textContent=shop.service==='counter'||bowls.length?`${state.staff.map(t=>`${t.name}${state.counterChoices[t.number]?` (${counterOptions.find(o=>o.id===state.counterChoices[t.number]).meaning.toLowerCase()})`:''}${state.firmness[t.number]||state.refillFirmness[t.number]?` (${firmnessOptions.find(f=>f.id===(state.firmness[t.number]||state.refillFirmness[t.number])).meaning.toLowerCase()})`:''}`).join(' + ')}. Total paid: ${money(state.purchases.reduce((v,t)=>v+t.price,0))}.${state.collectedChange?` Change collected: ${money(state.collectedChange)}.`:''}`:'Your tickets are for extras or sides only. Staff may check whether you also want a bowl of ramen.';
   $('#refill-actions').innerHTML=state.held.length?'<p class="refill-note">When you have eaten the noodles, keep some broth and give the staff one refill ticket.</p>'+state.held.map(t=>`<button class="refill-action" data-refill="${t.number}">Request ${t.name} · Ticket ${String(t.number).padStart(3,'0')} →</button>`).join(''):'';
-  $('#word-recap').innerHTML=['ticket','change','please'].filter(id=>encountered.has(id)).map(id=>`<div class="recap-word"><button id="recap-${id}" data-global-word="${id}" lang="ja">${words[id].jp}</button> ${words[id].meaning}</div>`).join('');
+  $('#word-recap').innerHTML=(shop.service==='counter'?['claim-stub','pickup-counter','tray-return']:['ticket','change','please']).filter(id=>shop.service==='counter'||encountered.has(id)).map(id=>`<div class="recap-word"><button id="recap-${id}" data-global-word="${id}" lang="ja">${words[id].jp}</button> ${words[id].meaning}</div>`).join('');
  }
- refreshReader();const other=getShop(state.shopId==='shoyu'?'hakata':'shoyu');$('#try-other-shop').hidden=state.stage!=='served'||hasOutstandingProperty(state);$('#try-other-shop').textContent=`Try ${other.id==='hakata'?'the Hakata shop':'the shoyu / shio shop'} →`;
+ refreshReader();$('#try-other-shop').hidden=state.stage!=='served'||hasOutstandingProperty(state);$('#try-other-shop').textContent='Try another shop →';
  $('#selected-cash').textContent=`${money(cash)} ${cash>=1000?'note':'coin'} selected → ${cash>=1000?'紙幣':'硬貨'}`;
  for(const b of document.querySelectorAll('[data-money]'))b.setAttribute('aria-pressed',String(Number(b.dataset.money)===cash));
+ // Rebuilt ticket and stub buttons retain keyboard focus during background updates.
+ if(focused?.id&&!focused.isConnected&&document.activeElement===document.body)document.getElementById(focused.id)?.focus({preventScroll:true});
+}
+function renderCounter(){
+ const active=state.stage.startsWith('counter-');
+ $('#counter-panel').hidden=!active;
+ if(!active)return;
+ const choosing=state.stage==='counter-choice';
+ $('#counter-choice-area').hidden=!choosing;
+ if(choosing){
+  const number=state.counterQueue[0],ticket=state.staff.find(t=>t.number===number);
+  const item=getShop(state.shopId).menu.find(m=>m.id===ticket.id),question=item.temperature==='either'?'set-question':'noodle-question';
+  $('#counter-question').dataset.globalWord=question;$('#counter-question').textContent=words[question].jp;
+  $('#counter-choice-context').textContent=`${ticket.name} · Ticket ${String(number).padStart(3,'0')}. Tell the staff your choice.`;
+  $('#counter-options').innerHTML=getCounterOptions(item).map(o=>`<button id="counter-choice-${o.id}" class="firmness-choice" data-counter-choice="${o.id}" data-terms="${o.id}"><strong lang="ja">${o.jp}</strong><small>${o.reading} · ${o.meaning}</small></button>`).join('');
+ }
+ $('#claim-stubs').innerHTML=state.claimStubs.map(number=>{
+  const t=state.staff.find(t=>t.number===number),choice=counterOptions.find(o=>o.id===state.counterChoices[number]);
+  return `<div class="claim-stub"><div><button id="stub-${number}-item" data-global-word="${t.id}" lang="ja">${t.name}</button>${choice?`<button id="stub-${number}-choice" data-global-word="${choice.id}" class="stub-choice" lang="ja">${choice.jp}</button>`:''}</div><div><button id="stub-${number}-number" data-global-word="pickup-number" lang="ja">番号</button><strong>${String(number).padStart(3,'0')}</strong></div></div>`;
+ }).join('');
+ $('#counter-status').textContent=choosing?'The staff has your tickets. Answer for each noodle dish.':state.stage==='counter-wait'?'Preparing your order. Keep the stubs and wait for your number.':'Your number has been called. Take your stubs to the pickup counter.';
+ $('#counter-pickup-area').hidden=state.stage!=='counter-ready';
+ $('#counter-call').textContent=state.claimStubs.map(n=>String(n).padStart(3,'0')).join('・')+'番のお客様';
 }
 function act(action,word){
  if(state.inspect){showWord(word||'insert-instructions',{manual:true,scroll:true});return;}
  learning.pinned=false;const previous=state;
  const result=transition(state,action);state=result.state;
  if(!conserved(state))throw new Error('Cash or ticket conservation failed');
- const mapping={unsupported:'bill','sold-out':'sold',insufficient:'credit',busy:'printing',returned:'change',printed:'ticket','tickets-collected':'ticket','change-collected':'outlet','handed-over':'please','extras-only':'please','ask-firmness':'firmness','ask-refill-firmness':'firmness','refill-requested':'kaedama','refill-without-bowl':'kaedama'};
+ const mapping={unsupported:'bill','sold-out':'sold',insufficient:'credit',busy:'printing',returned:'change',printed:'ticket','tickets-collected':'ticket','change-collected':'outlet','handed-over':'please','extras-only':'please','ask-firmness':'firmness','ask-refill-firmness':'firmness','refill-requested':'kaedama','refill-without-bowl':'kaedama','size-without-noodles':'large','ask-noodles':getShop(state.shopId).menu.find(m=>m.id===state.staff.find(t=>t.number===state.counterQueue[0])?.id)?.temperature==='either'?'set-question':'noodle-question','counter-wait':'claim-stub','picked-up':'tray-return'};
  showWord(mapping[result.reason]||word||learning.activeId);
  announce(messages[result.reason]||'Check the machine before continuing.');render();
  if(result.ok){
@@ -130,6 +163,11 @@ function act(action,word){
   const version=epoch,number=state.pending.number;
   setTimeout(()=>{if(epoch!==version)return;const r=transition(state,{type:'finish',number});if(!r.ok)return;state=r.state;announce(messages.printed);render();},PRINT_DURATION_MS);
  }
+ if(result.ok&&state.stage==='counter-wait'&&previous.stage!=='counter-wait'){
+  const version=epoch;
+  setTimeout(()=>{if(epoch!==version)return;const r=transition(state,{type:'counter-ready'});if(!r.ok)return;state=r.state;render();},3000);
+ }
+ if(result.ok&&state.stage.startsWith('counter-'))$('#counter-panel').focus();
  if(result.ok&&['firmness','refill-firmness','served'].includes(state.stage))$(state.stage==='served'?'#completion':'#firmness-panel').focus();
 }
 function setInspect(enabled){if(enabled&&!state.inspect){lastInspectedControl=null;inspectedAnchorId=null;}state=transition(state,{type:'inspect',enabled}).state;render();announce(enabled?'Reading mode: select a label or control for its explanation. Buying is paused.':'Buying mode. Your money and tickets are unchanged.');}
@@ -166,6 +204,8 @@ $('#other-money').onclick=()=>{const open=$('#other-denoms').hidden;$('#other-de
 $('#return').onclick=()=>act({type:'return'},'change');$('#tickets').onclick=()=>act({type:'tickets'},'outlet');$('#change').onclick=()=>act({type:'change'},'change');$('#handoff').onclick=()=>act({type:'handoff'},'please');
 $('#firmness-options').onclick=event=>{const b=event.target.closest('[data-firmness]');if(b)act({type:state.stage==='firmness'?'firmness':'refill-firmness',number:state.firmnessQueue[0],value:b.dataset.firmness},'firmness');};
 $('#refill-actions').onclick=event=>{const b=event.target.closest('[data-refill]');if(b)act({type:'begin-refill',number:Number(b.dataset.refill)},'kaedama');};
+$('#counter-options').onclick=event=>{const b=event.target.closest('[data-counter-choice]');if(!b)return;if(state.inspect){inspectControl(b);return;}act({type:'counter-choice',number:state.counterQueue[0],value:b.dataset.counterChoice},b.dataset.counterChoice);};
+$('#collect-order').onclick=()=>state.inspect?inspectControl($('#collect-order')):act({type:'pickup'},'pickup-counter');
 $('#inspect-toggle').onclick=()=>state.inspect?closeReader():setInspect(true);$('#inspect-done').onclick=()=>closeReader();$('#reader-close').onclick=()=>closeReader();
 $('#read-controls').onclick=()=>{setInspect(true);$('#inspect-toggle').focus();$('#machine').scrollIntoView({behavior:'instant',block:'start'});};
 $('#resume-buying').onclick=()=>closeReader();
@@ -252,6 +292,6 @@ function closeReader(){
   if(rect.top<16||rect.bottom>bottom)window.scrollTo({top:Math.max(0,scrollY+rect.top-Math.max(16,(bottom-rect.height)/2)),behavior:'instant'});
  }
 }
-$('#try-other-shop').onclick=()=>{if(state.stage!=='served'||hasOutstandingProperty(state))return;reset(state.shopId==='shoyu'?'hakata':'shoyu');$('#shop-name').focus({preventScroll:true});};
+$('#try-other-shop').onclick=()=>{if(state.stage!=='served'||hasOutstandingProperty(state))return;$('#shop-picker').showModal();};
 window.addEventListener('resize',()=>{refreshReader();requestAnimationFrame(revealInspectedControl);});
 $('#word-card').addEventListener('click',event=>{if(event.target.closest('[data-read-term]'))requestAnimationFrame(revealInspectedControl);});

@@ -33,7 +33,7 @@ add('hakata-shop','博多とんこつ','はかた とんこつ','Hakata tonkotsu
 add('recommended','おすすめ','おすすめ','osusume','Recommended.','The shop is drawing attention to this dish. It is not a separate size or topping.');
 add('chicken-stock','鶏だし','とりだし','tori dashi','Chicken stock.','鶏 is chicken; だし is stock. This describes the base broth, while 醤油 and 塩 describe the seasoning.');
 add('egg-included','味玉入り','あじたまいり','ajitama iri','Seasoned egg included.','入り means “containing” or “with.” This bowl already comes with an egg. An extra 味玉 ticket buys another one.');
-add('topping','トッピング','トッピング','toppingu','Toppings / add-ons.','These tickets add something to a bowl. They do not buy another ramen.');
+add('topping','トッピング','トッピング','toppingu','Toppings / add-ons.','These tickets add something to a bowl. They do not buy a complete noodle dish.');
 add('more-noodles','麺増量','めんぞうりょう','men zōryō','More noodles.','麺 means noodles; 増量 means an increased quantity. In this shop, 大盛 increases the initial serving.');
 add('rice-heading','ごはん','ごはん','gohan','Rice.','This header groups the rice side dishes. ご飯 can also mean a meal in other contexts.');
 add('yen','円','えん','en','Yen.','The number followed by 円 is the ticket price. 850円 means 850 yen.','¥ and 円 both indicate yen in these price labels.');
@@ -76,3 +76,39 @@ add('refill-notice','替玉券はお手元に','かえだまけんは おても�
 add('firmness','麺のかたさは？','めんの かたさは','men no katasa wa?','How firm would you like your noodles?','The staff is asking about the noodles, not the strength of the soup. ふつう is a reasonable first choice.','やわめ = soft; ふつう = regular; かため = firm; バリカタ = extra firm. Available choices vary by shop.');
 
 add('thanks','ありがとうございます。','ありがとうございます','arigatō gozaimasu','Thank you.','A polite thank-you you may hear from the staff after handing over your tickets.');
+
+// Soba counter: menu words and the spoken choices that follow the ticket purchase.
+add('soba-shop','そば・うどん','そば・うどん','soba / udon','Soba and udon noodle shop.','Soba here means buckwheat noodles; udon are thicker wheat noodles. This counter also sells rice bowls and noodle sets.','中華そば at the first shop means ramen. Plain そば here means a different noodle. Soba often contains wheat too; these names are not allergy guidance.');
+add('noodle-notice','そば・うどんは店員にお伝えください','そば・うどんは てんいんに おつたえください','soba / udon wa ten’in ni otsutae kudasai','Choose soba or udon when handing over your ticket.','The same button buys either noodle. Tell the staff at the counter. Set tickets also offer a hot or cold choice.');
+add('counter-notice','食券はカウンターへ','しょっけんは カウンターへ','shokken wa kauntā e','Take your meal ticket to the counter.','This shop needs you to hand over the ticket. Buying it does not send the order to the kitchen.');
+add('set','セット','セット','setto','Set meal.','One ticket includes more than one dish. Here, rice and noodles come together. A separate rice ticket would buy more food.');
+add('hot','温かい','あたたかい','atatakai','Hot / warm.','This row is for noodles served hot. At the counter, choose soba or udon.','温 is also the character in 温泉 (おんせん), a hot spring. Some menus shorten 温かい to 温.');
+add('cold','冷たい','つめたい','tsumetai','Cold.','This row is for cold noodles. At the counter, choose soba or udon.','冷 also appears in 冷蔵庫 (れいぞうこ), refrigerator. A blue label is useful supporting evidence, but read the wording.');
+add('single-item','単品','たんぴん','tanpin','Single item / à la carte.','This ticket buys only the named dish, without a set meal. The rice buttons do not include noodles, and the croquette button buys one croquette.','Korean 단품 uses the same characters, 単品.');
+add('katsudon-set','かつ丼セット','かつどんセット','katsudon setto','Pork-cutlet rice bowl with noodles.','One ticket buys a katsudon and a noodle dish. Tell the staff soba or udon, hot or cold. You do not need a separate noodle ticket.');
+add('mini-curry-set','ミニカレーセット','ミニカレーセット','mini karē setto','Small curry rice with a noodle dish.','ミニ describes the curry portion, not the noodles. Choose soba or udon, hot or cold, when handing over the ticket.');
+add('kake','かけ','かけ','kake','Plain noodles in hot broth.','A basic hot soba or udon. In this shop it has spring onion and no main topping. Choose the noodle at the counter.');
+add('kitsune','きつね','きつね','kitsune','Hot noodles with seasoned fried tofu.','The topping is aburaage, a thin pouch of fried tofu. This ticket buys a complete noodle dish.','きつね literally means fox. On this Tokyo-style menu it names a tofu topping, not meat. Regional naming varies.');
+add('tempura','天ぷら','てんぷら','tenpura','Hot noodles with tempura.','Here the topping is a vegetable kakiage fritter. It does not mean shrimp tempura at every shop. Choose soba or udon at the counter.');
+add('mori','もり','もり','mori','Cold noodles with a dipping sauce.','The noodles and sauce are served separately. Dip a mouthful into the sauce as you eat. Choose soba or udon at this counter.');
+add('cold-tanuki','冷したぬき','ひやしたぬき','hiyashi tanuki','Cold noodles with crunchy tempura bits.','The topping is tenkasu, also called agedama. This is a complete cold noodle dish, not a topping-only ticket.','たぬき literally means raccoon dog. Here it is a conventional dish name; regional usage differs.');
+add('cold-kitsune','冷しきつね','ひやしきつね','hiyashi kitsune','Cold noodles with seasoned fried tofu.','The cold version of きつね. 冷し, also written 冷やし, indicates chilled food. Choose soba or udon at the counter.');
+add('katsudon','かつ丼','かつどん','katsudon','Pork-cutlet and egg rice bowl.','A breaded pork cutlet simmered with egg and onion over rice. This single-item ticket does not include noodles.','丼 (どん) appears in 牛丼, beef rice bowl, and 天丼, tempura rice bowl.');
+add('curry-rice','カレーライス','カレーライス','karē raisu','Japanese curry with rice.','A complete rice dish without noodles. For curry and noodles together, use the ミニカレーセット button.');
+add('raw-egg','生玉子','なまたまご','nama tamago','Raw egg.','An extra raw egg to add to your noodles. Unlike 味玉 at the ramen shops, this is not a cooked, marinated egg.','生 means raw here. 玉子 and 卵 are both used for egg.');
+add('wakame','わかめ','わかめ','wakame','Wakame seaweed.','An extra portion of soft seaweed for the noodles. It is different from the dried sheets of のり at the ramen shop.');
+add('croquette','コロッケ','コロッケ','korokke','Croquette.','A breaded, fried potato croquette sold separately. It is sold out in this shop. Some customers put one on their noodles.');
+add('noodle-question','そばですか、うどんですか？','そばですか、うどんですか','soba desu ka, udon desu ka?','Soba or udon?','The staff is asking which noodle you want, not asking you to pay again. Answer with the noodle name followed by でお願いします.');
+add('set-question','そば・うどん、温かいのと冷たいの、どちらにしますか？','そば・うどん、あたたかいのと つめたいの、どちらにしますか','soba / udon, atatakai no to tsumetai no, dochira ni shimasu ka?','Soba or udon, and would you like it hot or cold?','The set ticket leaves the noodle and temperature choice to the counter. Choose one combination for this ticket.');
+add('claim-stub','半券','はんけん','hanken','Ticket stub.','The staff keeps part of your ticket and gives this part back. Keep it until your number is called, then exchange it for your order.','半 means half. 券 is ticket. Some shops keep the full ticket or use a screen instead; follow their instructions.');
+add('pickup-number','番号','ばんごう','bangō','Number.','Match the number called by the staff with the number on your stub. This is for collecting food, not an amount of money.','Korean 번호 uses the same characters, 番号.');
+add('pickup-counter','受取口','うけとりぐち','uketoriguchi','Pickup counter.','Collect your food here when your number is called. Keep your stubs until the staff takes them.');
+add('tray-return','返却口','へんきゃくぐち','henkyakuguchi','Tray return.','After eating, bring the tray and used dishes here. This is different from the machine’s cash-return control.','返却 is returning something; 口 is an opening or service point.');
+for(const [id,jp,reading,roman,meaning] of [
+ ['hot-soba','温かいそば','あたたかいそば','atatakai soba','Hot soba'],
+ ['hot-udon','温かいうどん','あたたかいうどん','atatakai udon','Hot udon'],
+ ['cold-soba','冷たいそば','つめたいそば','tsumetai soba','Cold soba'],
+ ['cold-udon','冷たいうどん','つめたいうどん','tsumetai udon','Cold udon']
+])add(id,jp,reading,roman,meaning+'.',`Say “${jp}でお願いします” (${roman} de onegai shimasu): “${meaning}, please.” This chooses the noodles for the ticket you already bought.`);
+
+add('number-call','○番のお客様','○ばんの おきゃくさま','…ban no okyakusama','Customer with number …','The staff is calling a ticket number. Match it to your stub, then go to the pickup counter. No further payment is needed.');

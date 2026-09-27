@@ -50,3 +50,44 @@
  .reading-mode .machine button{scroll-margin:16px 0 var(--reader-height,120px)}
  html:has(.reading-mode){scroll-padding-bottom:var(--reader-height,120px)}
 }
+
+/* Approved soba cabinet B: ivory enamel, red trim; colored menu groups. */
+
+.machine[data-shop=soba]{border-color:#9fa7a7;border-right-color:#adb4b4;background:linear-gradient(108deg,#f4f5f2,#fff 32%,#e5e9e7 94%,#c2c9c8);color:#252e30}
+.machine[data-shop=soba] .menu{grid-template-columns:repeat(12,minmax(0,1fr))}
+.machine[data-shop=soba] .key{grid-column:span 3;background:linear-gradient(110deg,#fffef7,#f0eee6);border-color:#a4aaa7;border-bottom-color:#909a97}
+.machine[data-shop=soba] .key.large,.machine[data-shop=soba] .key.wide{grid-column:span 6}
+.machine[data-shop=soba] .key.noodle{grid-column:span 4}
+.machine[data-shop=soba] .key.large b{font-size:20px;letter-spacing:0}
+.machine[data-shop=soba] .key .band{background:#e7e6de;color:#45463f;border-color:#c4c7be}
+.machine[data-shop=soba] .key[data-category=set] .band{background:#dd8a3c;color:#362b20;border-color:#c87b34}
+.machine[data-shop=soba] .key[data-category=hot] .band{background:#f4dc70;color:#53451c;border-color:#cbbb73}
+.machine[data-shop=soba] .key[data-category=cold] .band{background:#42759b;color:#fff;border-color:#35627f}
+.machine[data-shop=soba] .display{border-color:#adb9b9}
+.machine[data-shop=soba] .outlets{background:linear-gradient(#e2e7e7,#c9d2d2);border-color:#a8b5b6}
+.machine[data-shop=soba] .slot{border-color:#a6b1b1;border-bottom-color:#f6f7ef}
+.machine[data-shop=soba] .machine-notice{background:#fffdf2;border-color:#b8beba}
+.machine[data-shop=soba] .plate{background:#f9f9ef;color:#294c69;border-color:#a4b3b9;box-shadow:0 3px #294c69}
+.machine[data-shop=soba] .pedestal{background:#294c69;color:#f0f2ef;margin-left:-14px;margin-right:-14px;border-color:#203e55;padding-inline:15px}
+@media(max-width:760px){.machine[data-shop=soba] .key.large b{font-size:17px}.machine[data-shop=soba] .key.noodle b{font-size:13px}.machine[data-shop=soba] .key:not(.large) b{line-height:1.35}.machine[data-shop=soba] .pedestal{margin-inline:-8px}}
+.machine[data-shop=soba]{background:linear-gradient(108deg,#f1ecd8,#fffbed 32%,#e0d9c1 94%,#bab29a);border-color:#afa68e;border-right-color:#b4a98c}.machine[data-shop=soba] .plate{color:#8b3028;border-color:#b2a48a;box-shadow:0 3px #8b3028}.machine[data-shop=soba] .pedestal{background:#8b3028;border-color:#6d251f}.machine[data-shop=soba] .outlets{background:linear-gradient(#e5e1d1,#cfccb9);border-color:#b0ac99}
+.soba-board{color:#8b3028;background:#f5eddb;border-color:#b4a98c}
+.counter-panel{margin-top:22px;border-top:3px solid #8b3028;padding-top:17px;scroll-margin-bottom:190px}
+.counter-panel p{font-size:14px;line-height:1.6}
+.counter-panel .staff-question{font-size:20px;line-height:1.6}
+.claim-heading{display:flex;align-items:baseline;gap:12px;margin:22px 0 10px}
+.claim-heading button,.counter-sign{border:0;border-bottom:1px dotted #8f987f;background:none;padding:0;font:700 18px var(--jp)}
+.claim-heading span{font-size:11px;color:#69745f}
+.claim-stub{background:#fff7d2;padding:10px 13px;border:1px solid #d1c79f;border-top:2px dashed #bfb58f;margin:8px 0;display:flex;justify-content:space-between;gap:10px;font:13px var(--jp);box-shadow:1px 2px 3px #44553313}
+.claim-stub button{font:inherit;background:none;border:0;border-bottom:1px dotted #aaa17e;padding:0;text-align:left}
+.claim-stub>div:last-child{text-align:center;min-width:42px}
+.claim-stub strong{font:22px monospace;display:block;margin-top:3px}
+.claim-stub .stub-choice{font-size:11px;display:block;margin-top:5px;color:#675e42}
+.counter-sign{display:block;margin:16px 0 10px}
+#counter-pickup-area .handoff{margin-bottom:10px}
+@media(max-width:760px){.counter-panel{grid-row:4}.counter-panel .staff-question{font-size:20px}}
+
+/* Once tickets are handed over, the counter replaces the cash controls. */
+.at-counter .wallet,.at-counter .your-hand{display:none}
+@media(min-width:761px){.at-counter .companion{display:flex;flex-direction:column}.at-counter .counter-panel,.at-counter .completion{order:-1;margin-top:0}}
+@media(max-width:760px){.at-counter .counter-panel,.at-counter .completion{grid-row:2}.at-counter .context{grid-row:3}.at-counter footer{padding-bottom:35px}}
