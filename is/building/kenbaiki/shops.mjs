@@ -30,9 +30,34 @@ const hakataMenu=[
  {id:'gyoza',name:'餃子',price:350,band:'一口餃子',bandWord:'bite-gyoza',kind:'side',soldOut:true},
  {id:'beer',name:'瓶ビール',price:500,band:'お飲み物',bandWord:'drinks',kind:'side'}
 ];
+const sobaMenu=[
+ {id:'katsudon-set',name:'かつ丼セット',price:980,band:'セット',bandWord:'set',kind:'bowl',size:'large',temperature:'either',category:'set'},
+ {id:'mini-curry-set',name:'ミニカレーセット',price:740,band:'セット',bandWord:'set',kind:'bowl',size:'large',temperature:'either',category:'set'},
+ {id:'kake',name:'かけ',price:450,band:'温かい',bandWord:'hot',kind:'bowl',size:'noodle',temperature:'hot',category:'hot'},
+ {id:'kitsune',name:'きつね',price:550,band:'温かい',bandWord:'hot',kind:'bowl',size:'noodle',temperature:'hot',category:'hot'},
+ {id:'tempura',name:'天ぷら',price:620,band:'温かい',bandWord:'hot',kind:'bowl',size:'noodle',temperature:'hot',category:'hot'},
+ {id:'mori',name:'もり',price:450,band:'冷たい',bandWord:'cold',kind:'bowl',size:'noodle',temperature:'cold',category:'cold'},
+ {id:'cold-tanuki',name:'冷したぬき',price:550,band:'冷たい',bandWord:'cold',kind:'bowl',size:'noodle',temperature:'cold',category:'cold'},
+ {id:'cold-kitsune',name:'冷しきつね',price:550,band:'冷たい',bandWord:'cold',kind:'bowl',size:'noodle',temperature:'cold',category:'cold'},
+ {id:'katsudon',name:'かつ丼',price:630,band:'単品',bandWord:'single-item',kind:'bowl',size:'wide',category:'rice'},
+ {id:'curry-rice',name:'カレーライス',price:550,band:'単品',bandWord:'single-item',kind:'bowl',size:'wide',category:'rice'},
+ {id:'raw-egg',name:'生玉子',price:80,band:'トッピング',bandWord:'topping',kind:'extra'},
+ {id:'wakame',name:'わかめ',price:100,band:'トッピング',bandWord:'topping',kind:'extra'},
+ {id:'large',name:'大盛',price:150,band:'麺増量',bandWord:'more-noodles',kind:'extra'},
+ {id:'croquette',name:'コロッケ',price:150,band:'単品',bandWord:'single-item',kind:'side',soldOut:true}
+];
 export const shops={
  shoyu:{id:'shoyu',label:'Shoyu / shio ramen shop',jp:'中華そば',word:'shoyu-shop',menu:shoyuMenu,firmness:false,notice:'notice',extraNotice:null,blankKeys:2},
- hakata:{id:'hakata',label:'Hakata tonkotsu ramen shop',jp:'博多とんこつ',word:'hakata-shop',menu:hakataMenu,firmness:true,notice:'firmness-notice',extraNotice:'refill-notice',blankKeys:0}
+ hakata:{id:'hakata',label:'Hakata tonkotsu ramen shop',jp:'博多とんこつ',word:'hakata-shop',menu:hakataMenu,firmness:true,notice:'firmness-notice',extraNotice:'refill-notice',blankKeys:0},
+ soba:{id:'soba',label:'Soba, udon and rice-bowl counter',jp:'そば・うどん',word:'soba-shop',menu:sobaMenu,firmness:false,service:'counter',notice:'noodle-notice',extraNotice:'counter-notice',blankKeys:0}
 };
 export function getShop(id){const shop=shops[id];if(!shop)throw new Error('Unknown shop');return shop;}
 export const firmnessOptions=[{id:'soft',jp:'やわめ',reading:'yawame',meaning:'Soft'},{id:'regular',jp:'ふつう',reading:'futsū',meaning:'Regular'},{id:'firm',jp:'かため',reading:'katame',meaning:'Firm'},{id:'extra-firm',jp:'バリカタ',reading:'barikata',meaning:'Extra firm'}];
+
+export const counterOptions=[
+ {id:'hot-soba',jp:'温かいそば',reading:'atatakai soba',meaning:'Hot soba',temperature:'hot'},
+ {id:'hot-udon',jp:'温かいうどん',reading:'atatakai udon',meaning:'Hot udon',temperature:'hot'},
+ {id:'cold-soba',jp:'冷たいそば',reading:'tsumetai soba',meaning:'Cold soba',temperature:'cold'},
+ {id:'cold-udon',jp:'冷たいうどん',reading:'tsumetai udon',meaning:'Cold udon',temperature:'cold'}
+];
+export function getCounterOptions(item){return counterOptions.filter(o=>item?.temperature==='either'||o.temperature===item?.temperature);}
