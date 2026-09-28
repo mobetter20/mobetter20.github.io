@@ -1,233 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ajin.im</title>
-<meta name="description" content="A creative house of rooms: essays, comedy, and the Avian Municipal District, where divorced birds file for clean separations.">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=IBM+Plex+Sans:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/entrances/cabinet.css">
+<meta name="description" content="Running, writing, and building. A personal index by Ajin.">
 <link rel="canonical" href="https://ajin.im/">
-<meta property="og:site_name" content="ajin.im">
-<meta property="og:title" content="ajin.im is ___">
-<meta property="og:description" content="A creative house of rooms: essays, comedy, and the Avian Municipal District, where divorced birds file for clean separations.">
+<meta property="og:title" content="ajin.im">
+<meta property="og:description" content="Running, writing, and building.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ajin.im/">
-
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ajin.im is ___">
-<meta name="twitter:description" content="A creative house of rooms: essays, comedy, and the Avian Municipal District, where divorced birds file for clean separations.">
-
 <link rel="icon" type="image/png" href="/img/a1.png">
 <link rel="apple-touch-icon" href="/img/a1.png">
-<script src="/analytics.js" defer></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #1a1612;
-    --text: #e8e0d0;
-    --text-soft: #a89c87;
-    --text-faint: #8f8473;
-    --accent: #c9a876;
-    --accent-soft: rgba(201, 168, 118, 0.25);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html, body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'EB Garamond', Georgia, serif;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh;
-  }
-
-  /* very subtle warm grain — adds material feel without being noisy */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.78 0 0 0 0 0.66 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.4;
-    mix-blend-mode: overlay;
-    z-index: 1;
-  }
-
-  main {
-    position: relative;
-    z-index: 2;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 9vh 8vw 6vh;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  .stanza {
-    margin-bottom: 3.2rem;
-    animation: fade 0.9s ease-out both;
-  }
-
-  .stanza:nth-child(1) { animation-delay: 0.1s; }
-  .stanza:nth-child(2) { animation-delay: 0.25s; }
-  .stanza:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes fade {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .line {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 1.35rem;
-    font-weight: 400;
-    letter-spacing: -0.005em;
-    margin-bottom: 0.55rem;
-    color: var(--text);
-  }
-
-  .line .prefix {
-    color: var(--text-faint);
-    font-weight: 400;
-  }
-
-  .line .verb {
-    font-style: italic;
-    color: var(--text);
-  }
-
-  .detail {
-    color: var(--text-soft);
-    font-size: 0.96rem;
-    line-height: 1.65;
-    padding-left: 0.05rem;
-  }
-
-  .detail .work-title {
-    color: #c4b9a6;
-  }
-
-  .detail .em {
-    color: var(--text);
-  }
-
-  .detail a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent-soft);
-    transition: border-color 0.25s ease, color 0.25s ease;
-  }
-
-  .detail a:hover,
-  .detail a:focus-visible {
-    color: #d8b884;
-    border-bottom-color: rgba(201, 168, 118, 0.7);
-  }
-
-  /* verb link — subtle, stays in the visual rhythm of the other verbs */
-  .line .verb a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(232, 224, 208, 0.15);
-    transition: border-color 0.3s ease, color 0.3s ease;
-  }
-
-  .line .verb a:hover,
-  .line .verb a:focus-visible {
-    color: #f4ecdc;
-    border-bottom-color: rgba(232, 224, 208, 0.45);
-  }
-
-  /* colophon — a quiet closing line of the verse (serif, faint), pinned to the bottom */
-  .colophon {
-    margin-top: auto;
-    padding-top: 3.5rem;
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 0.9rem;
-    color: var(--text-faint);
-    animation: fade 0.9s ease-out 0.55s both;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-
-  .colophon a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: color 0.25s ease, border-color 0.25s ease;
-  }
-
-  .colophon a:hover,
-  .colophon a:focus-visible {
-    color: var(--text-soft);
-    border-bottom-color: rgba(138, 127, 112, 0.45);
-  }
-
-  /* admin: the easter-egg door (PERSONAL·OPS) */
-  .colophon .admin {
-    font-family: 'DM Mono', ui-monospace, monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: rgba(143, 132, 115, 0.45);
-  }
-
-  .colophon .admin:hover,
-  .colophon .admin:focus-visible {
-    color: var(--text-soft);
-    border-bottom-color: transparent;
-  }
-
-  @media (max-width: 600px) {
-    main { padding: 7vh 7vw 5vh; }
-    .line { font-size: 1.18rem; }
-    .detail { font-size: 0.93rem; }
-    .stanza { margin-bottom: 2.6rem; }
-    .colophon { padding-top: 2.5rem; }
-  }
-</style>
+<link rel="alternate" type="application/atom+xml" title="ajin.im writes" href="/writes/feed.xml">
+<script src="/analytics.js" defer>
+</script>
 </head>
-<body>
-
-<main>
-  <h1 class="vh" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">ajin.im</h1>
-
-  <div class="stanza">
-    <div class="line"><span class="prefix">ajin.im is</span> <span class="verb"><a href="/is/running/">running</a></span></div>
-    <div class="detail">
-      ~{{running_total_km}} km running since {{running_since}}, {{running_earth_prose}}.<br>
-      {{running_moon_remaining}} km left until the moon.
-    </div>
-  </div>
-
-  <div class="stanza">
-    <div class="line"><span class="prefix">ajin.im is</span> <span class="verb"><a href="/is/writing/">writing</a></span></div>
-    <div class="detail">
-      <a href="https://propagandaformyself.xyz">Bureau of Interior Conditions</a>, where feelings become filings.<br>
-      <a href="/is/writing/bird-coo/">Avian Municipal District</a>, where divorced birds file for clean separations.
-    </div>
-  </div>
-
-  <div class="stanza">
-    <div class="line"><span class="prefix">ajin.im is</span> <span class="verb"><a href="/is/building/">building</a></span></div>
-    <div class="detail">
-      <a href="https://seoulcrushing.com">Seoul Crushing</a>, Korea made legible. With bite.<br>
-      <a href="/is/building/bus/">Instrument Bus</a>, small tools for big feelings.
-    </div>
-  </div>
-
-  <footer class="colophon">
-    <a href="mailto:contact@ajin.im">contact@ajin.im</a>
-    <a class="admin" href="/admin/">admin</a>
-  </footer>
-
+<body class="machine-c" data-finish="blue">
+<main class="machine">
+<div class="top-cap" aria-hidden="true">
+</div>
+<header class="marquee">
+<a href="/" target="_self" class="brand" aria-label="ajin.im home">ajin.im <span>is</span>
+</a>
+<div class="marquee-note">SELF-SERVICE<br>INDEX<br>running / writing / building</div>
+</header>
+<div class="machine-body">
+<aside class="controls">
+<div class="readout" aria-live="polite">
+<span class="display-caption">SECTION</span>
+<strong id="section-name">writing</strong>
+<span class="display-count" id="section-count">{{writing_count}}</span>
+</div>
+<nav class="selectors" id="sections" aria-label="Choose a section">
+<button class="selector" data-section="running" aria-pressed="false" aria-controls="running">
+<span class="selector-number">01</span>
+<span class="selector-word">running</span>
+<span class="selector-lamp" aria-hidden="true">
+</span>
+</button>
+<button class="selector" data-section="writing" aria-pressed="false" aria-controls="writing">
+<span class="selector-number">02</span>
+<span class="selector-word">writing</span>
+<span class="selector-lamp" aria-hidden="true">
+</span>
+</button>
+<button class="selector" data-section="building" aria-pressed="false" aria-controls="building">
+<span class="selector-number">03</span>
+<span class="selector-word">building</span>
+<span class="selector-lamp" aria-hidden="true">
+</span>
+</button>
+</nav>
+<div class="instruction">
+<span class="instruction-number">1</span>
+<p>Choose a section.</p>
+<span class="instruction-number">2</span>
+<p>Press a title to open it.</p>
+</div>
+<div class="rail-bottom">
+<div class="vents" aria-hidden="true">
+</div>
+<span>Personal index<br>ajin.im</span>
+</div>
+</aside>
+<div class="selection-bay">
+<div class="bay-heading">
+<span id="bay-name">WRITING</span>
+<span>Press to open ↓</span>
+</div>
+<section class="inventory" id="writing" aria-label="Writing" data-count="{{writing_count}}">{{home_writing}}</section>
+<section class="inventory" id="building" aria-label="Building" data-count="{{building_count}}">{{home_building}}</section>
+<section class="inventory" id="running" aria-label="Running" data-count="{{running_total_km}} km since {{running_since}}">
+<div class="run-board">
+<div class="run-label">DISTANCE SINCE {{running_since}}</div>
+<div class="run-digits" role="img" aria-label="{{running_total_km}} kilometres">{{running_total_km}}<small>km</small>
+</div>
+<p>{{running_earth_prose}}.</p>
+<div class="orbit" aria-hidden="true">
+<div class="planet">
+</div>
+<i>
+</i>
+<span class="moon">
+</span>
+</div>
+<div class="run-scale">
+<span>Earth {{running_earth_multiplier}}</span>
+<span>Moon · {{running_moon_pct}}%</span>
+</div>
+<p class="remaining">{{running_moon_remaining}} km to the Moon.</p>
+</div>
+<a href="/is/running/" class="record-button" target="_blank" rel="noopener">Open the current running record <span>↗</span>
+</a>
+</section>
+</div>
+</div>
+<footer class="service-panel">
+<a class="contact-port" href="mailto:contact@ajin.im">
+<span class="port-label">CONTACT</span>
+<span class="port-paper">contact@ajin.im <span>↗</span>
+</span>
+</a>
+<a class="return-key" href="#sections">↑ Sections</a>
+<div class="service-mark">
+<span>ajin.im</span>
+<small>PERSONAL SITE</small>
+</div>
+</footer>
+<div class="base" aria-hidden="true">
+</div>
 </main>
-
+<script src="/assets/entrances/cabinet.js">
+</script>
 </body>
 </html>

@@ -495,7 +495,10 @@ def verify_published(staged: dict[str, str]) -> str | None:
     contained = git("merge-base", "--is-ancestor", "HEAD", f"origin/{BRANCH}", check=False)
     if contained.returncode != 0:
         return "local commit is not on origin — nothing was actually pushed"
+    home = git("show", "HEAD:index.html", check=False)
     for slug, expected in staged.items():
+        if home.returncode != 0 or f'data-essay-slug="{slug}"' not in home.stdout or f'href="/writes/{slug}/?from=machine"' not in home.stdout:
+            return f"{slug}: homepage control is not in the pushed commit"
         shown = git("show", f"HEAD:is/writing/essays/_src/{slug}.md", check=False)
         if shown.returncode != 0 or shown.stdout != expected:
             return f"{slug}: source is not in the pushed commit"

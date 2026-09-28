@@ -103,6 +103,9 @@ def main() -> None:
     WRITES_ROOT.mkdir(parents=True, exist_ok=True)
     (WRITES_ROOT / "index.html").write_text(render_index(), encoding="utf-8")
     print(f"built {WRITES_ROOT / 'index.html'}")
+    import build_root
+    build_root.build(root_only=True)
+    build_root.check_home()
 
 
 if __name__ == "__main__":
