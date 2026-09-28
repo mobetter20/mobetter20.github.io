@@ -8,10 +8,18 @@ on:
       - "templates/root.html"
       - "templates/running.html"
       - "_scripts/build_root.py"
+      - "_scripts/home_catalog.py"
+      - "_scripts/build_essays.py"
+      - "_scripts/build_writes.py"
+      - "_scripts/test_build_root.py"
+      - ".github/workflows/rebuild-root-on-stats.yml"
+      - "is/writing/essays/_src/**"
+      - "is/building/index.html"
   workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
 
 jobs:
   rebuild:
@@ -29,7 +37,10 @@ jobs:
           python-version: "3.11"
 
       - name: Rebuild index + running pages
-        run: python3 _scripts/build_root.py
+        run: |
+          python3 _scripts/build_root.py
+          python3 _scripts/build_root.py --check-home
+          python3 -m unittest discover -s _scripts -p test_build_root.py
 
       - name: Rebuild sitemap
         run: python3 _scripts/build_sitemap.py
@@ -54,3 +65,9 @@ jobs:
       - name: Push rebuilt pages
         if: steps.changes.outputs.changed == 'true'
         run: git push
+
+      # GITHUB_TOKEN commits do not trigger a legacy Pages build themselves.
+      - name: Request Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"

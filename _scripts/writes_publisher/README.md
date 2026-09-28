@@ -17,7 +17,7 @@ Obsidian next to the writing. This file is the operator's side.
 3. It writes `is/writing/essays/_src/<slug>.md`, assigning `order = max + 1`.
    Existing essays are never renumbered, so a publish touches exactly one file.
 4. It runs `publish.sh` (all builds, link check, sitemap, commit, rebase, push).
-5. It **proves** the result from git before telling you anything. Then a banner
+5. It **proves** the source, generated essay page, and homepage control are all in the pushed commit before telling you anything. Then a banner
    with the live URL.
 
 ## Why it refuses so much

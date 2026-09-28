@@ -8,11 +8,18 @@ Renders:
 Usage:
     python3 _scripts/build_root.py          # write both
     python3 _scripts/build_root.py --check  # print output sizes, don't write
+    python3 _scripts/build_root.py --check-home  # verify generated home
+
+Home additionally reads the essay registry and curated building index.
+The tracked build_writes entry point refreshes home during writing publication.
 """
 
 import argparse
 import sys
 from pathlib import Path
+
+import build_essays
+import home_catalog
 
 ROOT = Path(__file__).resolve().parent.parent
 ROOT_TEMPLATE_PATH = ROOT / "templates" / "root.html"
@@ -24,6 +31,7 @@ INDEX_PATH = ROOT / "index.html"
 RUNNING_INDEX_PATH = ROOT / "is" / "running" / "index.html"
 READING_INDEX_PATH = ROOT / "is" / "reading" / "index.html"
 LEARNING_INDEX_PATH = ROOT / "is" / "learning" / "index.html"
+BUILDING_INDEX_PATH = ROOT / "is" / "building" / "index.html"
 
 EARTH_KM = 40075
 MOON_KM = 384400
@@ -207,10 +215,12 @@ def render(template_path: Path, replacements: dict[str, str]) -> str:
     leftover = [t for t in used if t in output]
     if leftover:
         raise StatsError(f"unresolved tokens after substitution in {template_path.name}: {leftover}")
+    if "{{" in output:
+        raise StatsError(f"unresolved template token in {template_path}")
     return with_generated_banner(output, template_path)
 
 
-def build(check_only: bool = False) -> None:
+def replacements_for_root() -> dict[str, str]:
     sections = parse_stats(STATS_PATH)
 
     running_kv = parse_kv(require(sections, "running"), "running")
@@ -236,7 +246,10 @@ def build(check_only: bool = False) -> None:
     if not learning:
         raise StatsError("learning: section body is empty")
 
-    replacements = {
+    writing_html, writing_count = home_catalog.render_writing(build_essays.load_posts())
+    building_html, building_count = home_catalog.render_building(BUILDING_INDEX_PATH)
+
+    return {
         "{{running_total_km}}": total_km_fmt,
         "{{running_since}}": str(since_year),
         "{{running_earth_prose}}": earth,
@@ -246,19 +259,46 @@ def build(check_only: bool = False) -> None:
         "{{reading_current}}": reading_current_html,
         "{{reading_year}}": reading_year_str,
         "{{learning}}": learning,
+        "{{home_writing}}": writing_html,
+        "{{home_building}}": building_html,
+        "{{writing_count}}": writing_count,
+        "{{building_count}}": building_count,
     }
 
-    targets: list[tuple[Path, Path]] = [
-        (ROOT_TEMPLATE_PATH, INDEX_PATH),
-        (RUNNING_TEMPLATE_PATH, RUNNING_INDEX_PATH),
-        (READING_TEMPLATE_PATH, READING_INDEX_PATH),
-        (LEARNING_TEMPLATE_PATH, LEARNING_INDEX_PATH),
-    ]
 
-    print(f"running: {total_km_fmt} km since {since_year} — {earth} ({earth_mult}) — {remaining_fmt} km left")
-    print(f"reading_current: {len(books_current)} book(s)")
-    print(f"reading_year: {len(books_year)} book(s) (actives + paused combined)")
-    print(f"learning: {learning!r}")
+def expected_root() -> str:
+    """Return the exact current source-derived home document."""
+    return render(ROOT_TEMPLATE_PATH, replacements_for_root())
+
+
+def check_home() -> None:
+    """Fail loudly when the generated home file is stale or malformed."""
+    if not INDEX_PATH.is_file():
+        raise StatsError(f"generated home file not found: {INDEX_PATH}")
+    expected = expected_root()
+    actual = INDEX_PATH.read_text(encoding="utf-8")
+    if actual != expected:
+        raise StatsError(
+            "index.html is stale relative to its template, essay registry, or building source; "
+            "run python3 _scripts/build_root.py"
+        )
+    for token in ("{{home_writing}}", "{{home_building}}", "{{writing_count}}", "{{building_count}}"):
+        if token in actual:
+            raise StatsError(f"index.html contains unresolved token: {token}")
+
+
+def build(check_only: bool = False, root_only: bool = False) -> None:
+    replacements = replacements_for_root()
+
+    targets: list[tuple[Path, Path]] = [(ROOT_TEMPLATE_PATH, INDEX_PATH)]
+    if not root_only:
+        targets.extend(
+            [
+                (RUNNING_TEMPLATE_PATH, RUNNING_INDEX_PATH),
+                (READING_TEMPLATE_PATH, READING_INDEX_PATH),
+                (LEARNING_TEMPLATE_PATH, LEARNING_INDEX_PATH),
+            ]
+        )
 
     for tpl, out_path in targets:
         output = render(tpl, replacements)
@@ -273,11 +313,17 @@ def build(check_only: bool = False) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build ajin.im/index.html from stats.md")
     parser.add_argument("--check", action="store_true", help="print output, don't write")
+    parser.add_argument("--root-only", action="store_true", help="write only index.html")
+    parser.add_argument("--check-home", action="store_true", help="fail unless index.html matches its sources")
     args = parser.parse_args()
 
     try:
-        build(check_only=args.check)
-    except StatsError as e:
+        if args.check_home:
+            check_home()
+            print(f"checked {INDEX_PATH}")
+        else:
+            build(check_only=args.check, root_only=args.root_only)
+    except (StatsError, home_catalog.CatalogError, ValueError) as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
     return 0

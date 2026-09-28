@@ -202,7 +202,7 @@ def build_post_page(post: EssayPost) -> str:
         back_href="/writes/",
         back_label="← ajin.im/writes",
         feed_url="/writes/feed.xml",
-    )
+    ).replace("</body>", '<script src="/assets/entrances/reader-return.js" defer></script>\n</body>')
 
 
 def indent_body(body_html: str) -> str:
