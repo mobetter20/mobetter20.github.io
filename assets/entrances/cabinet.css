@@ -258,3 +258,11 @@ body.machine-c { background:#e8ebec;color:#252b2e }
 
 body { padding: 32px 0 46px; }
 @media(max-width:650px) { body { padding: 14px 0 32px; } }
+
+/* Useful labels stay readable; only decorative serial markings remain tiny. */
+.site-heading { margin: 0; font: inherit; line-height: 1; }
+.machine-c .display-count { font-size: 10px; }
+.machine-c .choice-desc, .machine-c .build .choice-desc { font-size: 11px; line-height: 1.45; }
+.machine-c .label-top { font-size: 10px; }
+.machine-c .press-face { font-size: 10px; }
+.machine-c .return-key { min-height: 44px; display: inline-flex; align-items: center; }
