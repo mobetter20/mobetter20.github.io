@@ -1,11 +1,11 @@
 # writes-publisher
 
-Write in Obsidian, mark it, it lands on <https://ajin.im/writes>.
+Approved release exports land on <https://ajin.im/writes>. Private manuscripts remain in the everyday Obsidian vault.
 
-    ~/Documents/Ajin/Writing/publish/<anything>.md   ->   ajin.im/writes/<slug>/
+    ~/Documents/Ajin-Publishing/<anything>.md   ->   ajin.im/writes/<slug>/
 
-The owner-facing contract lives in that folder's own `_README.md`, so it reads in
-Obsidian next to the writing. This file is the operator's side.
+The owner-facing contract lives in that folder's own `_README.md`. The external
+release folder is not nested or symlinked into the everyday Obsidian vault. This file is the operator's side.
 
 ## How a piece becomes a page
 
@@ -22,8 +22,8 @@ Obsidian next to the writing. This file is the operator's side.
 
 ## Why it refuses so much
 
-It pushes to a public site with nobody reviewing, out of a vault that contains
-private writing. Every guard below exists because of a specific way this could
+It pushes to a public site with nobody reviewing, from an approved-release folder; private writing remains in the everyday
+vault. Every guard below exists because of a specific way this could
 put the wrong words on the internet or lie to you about having published.
 
 | Guard | The failure it stops |
@@ -37,7 +37,7 @@ put the wrong words on the internet or lie to you about having published.
 | clean-tree assert | `publish.sh` runs `git add -A`, so unrelated work in progress would be committed and pushed. |
 | nothing-unpushed assert | A commit you deliberately kept local would ride out to the public site. |
 | post-publish verify | **`publish.sh` exits 0 when it pushed nothing.** Without this the tool banners "it's live" for a page that 404s, and the commit sits local forever. |
-| hand-edit detect | You edited `_src/<slug>.md` in the repo; the next vault save would silently discard it. |
+| hand-edit detect | You edited `_src/<slug>.md` in the repo; the next release save would silently discard it. |
 | slug collision | Two drop files claiming one URL, or overwriting an essay this tool did not publish. |
 
 Refusals notify **once per distinct problem**, not once per tick. A tool that
@@ -64,7 +64,7 @@ re-copy, then `launchctl kickstart -k gui/$(id -u)/com.ajin.writes-publisher`.
 ```sh
 writes_publish_watcher.py --selftest   # pure logic, offline, no git
 writes_publish_watcher.py --status     # what it believes is live / held / refused
-writes_publish_watcher.py --dry-run    # full scan + guards, writes nothing
+writes_publish_watcher.py --dry-run    # scan with live Git guards; can fetch/rebase/push stranded commits
 tail -40 ~/.local/share/writes-publisher/publisher.log
 launchctl bootout gui/$(id -u)/com.ajin.writes-publisher    # kill switch
 ```
@@ -75,7 +75,7 @@ drop file, rather than refusing forever.
 
 ## Unpublish
 
-**Deliberately not automated.** Deleting the vault file does nothing; removing
+**Deliberately not automated.** Deleting the release export does nothing; removing
 `publish: true` does nothing. A public URL is cached and indexed, so retraction is a
 decision, not a side effect of a file operation.
 
@@ -96,3 +96,23 @@ If the LaunchAgent is unloaded, nothing notices — there is no second daemon
 watching this one. `RunAtLoad` + `StartInterval` mean launchd restarts it after a
 crash or reboot, so the realistic way to end up dark is booting it out by hand. If
 you published something and no banner arrived within ~15 minutes, run `--status`.
+
+## Maintenance gate
+
+The nonexpiring `~/.local/share/writes-publisher/maintenance` marker pauses every
+CLI mode before logging, locking, state access or Git. Any directory entry,
+including a dangling symlink, pauses successfully; inspection errors fail closed
+with exit 75. Only confirmed absence permits normal operation.
+
+Hold the marker before installing a reviewed gated runtime. Let already-loaded
+old code finish naturally, freeze all manual publisher entrypoints and site work,
+and verify both publisher entrypoints and orphaned repository processes have
+drained before unregistering the job or moving release files. Idle launchd or
+an absent JSON lock alone does not establish drain. Keep backups outside both
+release roots. Reload with the marker still held, verify unchanged candidate and
+site-source identities, then remove only the operator-owned marker. Do not replay
+a stale state backup after any intervening publication.
+
+Production `--dry-run` is not a maintenance test: its live Git guards can fetch,
+rebase and push stranded essay commits. Use isolated fixtures with subprocess
+and network effects prohibited for offline verification.

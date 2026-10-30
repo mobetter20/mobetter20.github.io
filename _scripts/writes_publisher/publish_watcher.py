@@ -3,13 +3,13 @@
 
 Contract (also stated for the owner in the drop folder's own `_README.md`):
 
-    ~/Documents/Ajin/Writing/publish/<anything>.md   top level only, never recursive
+    ~/Documents/Ajin-Publishing/<anything>.md   top level only, never recursive
     front matter needs `title:` and exactly `publish: true`
     optional: `date:` (year), `slug:`, `excerpt:`
 
-A file without `publish: true` is ignored, so drafts live safely in the folder.
-Absence of the marker means nothing happens — that is the safe default, because the
-vault it sits in contains private writing.
+A file without `publish: true` is ignored. Only approved release exports belong
+in this external folder; private manuscripts remain in the everyday Obsidian
+vault. The opt-in flag remains required for every release.
 
 This pushes to a PUBLIC site with no human in the loop, so it refuses far more
 readily than it publishes. Every refusal notifies once (not every tick) and leaves
@@ -29,9 +29,11 @@ Guards, and the failure each one exists to stop:
   * state reconcile      — lost state file must self-heal, not refuse forever
 
 Operate:
+    ~/.local/share/writes-publisher/maintenance pauses every CLI mode while present
+    A marker-check error also blocks all work (exit 75); absence alone permits work.
     publish_watcher.py --selftest    pure logic, offline
     publish_watcher.py --status      what it thinks is published / pending
-    publish_watcher.py --dry-run     full scan + guards, writes nothing
+    publish_watcher.py --dry-run     scans + guards; can fetch/rebase/push stranded commits
     publish_watcher.py               one real tick (what launchd runs)
 """
 
@@ -49,7 +51,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-DROP = Path.home() / "Documents/Ajin/Writing/publish"
+DROP = Path.home() / "Documents/Ajin-Publishing"
 SITE = Path.home() / "Documents/New project/personal/mobetter20.github.io"
 SRC = SITE / "is" / "writing" / "essays" / "_src"
 BRANCH = "master"
@@ -59,6 +61,7 @@ STATE_DIR = Path.home() / ".local/share/writes-publisher"
 STATE_PATH = STATE_DIR / "state.json"
 LOCK_PATH = STATE_DIR / "lock.json"
 LOG_PATH = STATE_DIR / "publisher.log"
+MAINTENANCE_PATH = STATE_DIR / "maintenance"
 
 DEBOUNCE_SECONDS = 180          # file must have been still this long
 STABILITY_SECONDS = 300         # ...and unchanged across ticks this far apart
@@ -79,6 +82,24 @@ SLUG_OK = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
 # ---------------------------------------------------------------- small helpers
+
+def maintenance_exit_code() -> int | None:
+    """Permit work only after confirming the maintenance marker is absent.
+
+    Inspect the directory entry without following symlinks: even a dangling
+    marker symlink pauses work. This probe deliberately creates no directories,
+    logs, locks or state. A present marker pauses successfully; an inspection
+    error returns EX_TEMPFAIL without calling the publisher's error handlers.
+    The controller must hold the nonexpiring marker throughout maintenance.
+    """
+    try:
+        MAINTENANCE_PATH.lstat()
+    except FileNotFoundError:
+        return None
+    except OSError:
+        return 75  # EX_TEMPFAIL: unknown marker status must fail closed.
+    return 0
+
 
 def log(message: str) -> None:
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -718,9 +739,14 @@ def cmd_selftest() -> int:
 
 
 def main() -> int:
+    maintenance_code = maintenance_exit_code()
+    if maintenance_code is not None:
+        return maintenance_code
+
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--dry-run", action="store_true", help="scan and check, write nothing")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="scan with live Git guards; can fetch/rebase/push stranded commits")
     ap.add_argument("--status", action="store_true", help="print what it thinks is live")
     ap.add_argument("--selftest", action="store_true", help="pure logic checks, offline")
     args = ap.parse_args()
