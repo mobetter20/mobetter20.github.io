@@ -11,6 +11,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from html import escape
 from html.parser import HTMLParser
+import html
 import re
 from pathlib import Path
 from typing import Iterable
@@ -144,8 +145,7 @@ def essay_choices(posts: Iterable[object]) -> list[Choice]:
         if not title:
             raise CatalogError(f"essay {slug} has no title")
         choices.append(Choice(title=title, href=f"/writes/{slug}/?from=machine", status=("Latest thought" if not choices else f"{max(1, round(len(str(getattr(post, 'body_md', '')).split()) / 220))} min read"), description=""))
-    if not choices:
-        raise CatalogError("essay registry contains no published essays")
+    # Zero essays is allowed: Ajin retracts essays while revising them (Nov 2026).
     slugs = [choice.href.split("/")[2] for choice in choices]
     duplicates = sorted({slug for slug in slugs if slugs.count(slug) > 1})
     if duplicates:
@@ -185,7 +185,8 @@ def _choice_markup(
 
 
 WORLDS = (
-    # The Coo leads: the likely visitor arrives from r/DivorcedBirds.
+    # The Coo leads. The building collections (Seoul Crushing, Instrument Bus) join
+    # these in one "Worlds" group: Ajin chose not to distinguish them (Nov 2026).
     Choice("The Municipal Coo", "/is/writing/bird-coo/", "Weekly newspaper", "The newspaper of the Avian Municipal District."),
     Choice("Bureau of Interior Conditions", "https://propagandaformyself.xyz", "Fictional world", "Where feelings become filings."),
 )
@@ -195,15 +196,50 @@ def _group_title(name: str, count: int) -> str:
     return f'<div class="group-title"><span>{name}</span><span>{count:02d}</span></div>'
 
 
-def render_worlds(start: int = 1) -> tuple[str, int]:
+def render_worlds(start: int = 1, collections: Iterable[Choice] = ()) -> tuple[str, int]:
+    collections = list(collections)
     markup = "".join(
         _choice_markup(choice=choice, number=start + index, class_name="world", local=False)
         for index, choice in enumerate(WORLDS)
+    ) + "".join(
+        _choice_markup(choice=choice, number=start + len(WORLDS) + index, class_name="collection",
+                       local=False, same_tab=True)
+        for index, choice in enumerate(collections)
     )
-    return f'{_group_title("Worlds", len(WORLDS))}<div class="worlds lead">{markup}</div>', len(WORLDS)
+    total = len(WORLDS) + len(collections)
+    return f'{_group_title("Worlds", total)}<div class="worlds lead">{markup}</div>', total
+
+
+# Comedy cards on the home tray. Read from the committed, generated /wrote/ index
+# (the Medium exports behind it are not in the repo, so CI could not rebuild them).
+# Leave COMEDY_PICKS empty to show the newest COMEDY_SHOWN pieces, or list slugs to
+# hand-pick them in order.
+WROTE_INDEX_PATH = Path(__file__).resolve().parents[1] / "wrote" / "index.html"
+COMEDY_PICKS: tuple[str, ...] = ()
+COMEDY_SHOWN = 7
+_WROTE_LINE = re.compile(
+    r'<a class="line" href="/wrote/([a-z0-9-]+)/">(?:<span class="d">([^<]*)</span>)?'
+    r'<span class="t">([^<]+)</span></a>')
+
+
+def comedy_choices(index_path: Path = WROTE_INDEX_PATH) -> tuple[list[Choice], int]:
+    if not index_path.is_file():
+        raise CatalogError(f"comedy index not found: {index_path}")
+    pieces = [(slug, html.unescape(title), date) for slug, date, title in _WROTE_LINE.findall(index_path.read_text(encoding="utf-8"))]
+    if not pieces:
+        raise CatalogError("comedy index lists no pieces")
+    by_slug = {slug: (slug, title, date) for slug, title, date in pieces}
+    missing = [slug for slug in COMEDY_PICKS if slug not in by_slug]
+    if missing:
+        raise CatalogError(f"COMEDY_PICKS not in the comedy index: {', '.join(missing)}")
+    chosen = [by_slug[s] for s in COMEDY_PICKS] if COMEDY_PICKS else pieces[:COMEDY_SHOWN]
+    choices = [Choice(title, f"/wrote/{slug}/", date.replace("·", " · ") if date else "Comedy", "")
+               for slug, title, date in chosen]
+    return choices, len(pieces)
 
 
 def render_essays(posts: Iterable[object], start: int = 1) -> tuple[str, int]:
+    """The Writing group: published essays (if any), comedy cards, then the archive."""
     essays = essay_choices(posts)
     essay_markup = "".join(
         _choice_markup(
@@ -215,40 +251,41 @@ def render_essays(posts: Iterable[object], start: int = 1) -> tuple[str, int]:
         )
         for index, choice in enumerate(essays)
     )
-    archive = Choice("The comedy years", "/wrote/", "2022–2023 archive", "")
-    archive_markup = _choice_markup(choice=archive, number=start + len(essays), class_name="archive", local=False)
-    total = len(essays) + 1
-    return f'{_group_title("Essays &amp; archive", total)}<div class="pieces">{essay_markup}{archive_markup}</div>', total
+    comedy, comedy_total = comedy_choices()
+    comedy_markup = "".join(
+        _choice_markup(choice=choice, number=start + len(essays) + index, class_name="thought", local=True)
+        for index, choice in enumerate(comedy)
+    )
+    archive = Choice("The comedy years", "/wrote/", f"All {comedy_total} · 2022–2023", "")
+    archive_markup = _choice_markup(choice=archive, number=start + len(essays) + len(comedy),
+                                    class_name="archive", local=False)
+    total = len(essays) + len(comedy) + 1
+    return (f'{_group_title("Writing", total)}<div class="pieces">'
+            f'{essay_markup}{comedy_markup}{archive_markup}</div>'), total
 
 
 def render_building(path: Path, start: int = 1) -> tuple[str, str]:
+    """Single pieces only; the collections render inside the Worlds group."""
     choices = load_building_choices(path)
     collections = [choice for choice in choices if choice.collection]
     builds = [choice for choice in choices if not choice.collection]
     if not builds:
         raise CatalogError("building source contains no individual build cards")
-    collection_markup = "".join(
-        _choice_markup(choice=choice, number=start + index, class_name="collection", local=False, same_tab=True)
-        for index, choice in enumerate(collections)
-    )
     build_markup = "".join(
-        _choice_markup(choice=choice, number=start + len(collections) + index, class_name="build", local=False)
+        _choice_markup(choice=choice, number=start + index, class_name="build", local=False)
         for index, choice in enumerate(builds)
     )
-    html = (
-        f'{_group_title("Builds · collections", len(collections))}'
-        f'<div class="worlds">{collection_markup}</div>'
-        f'{_group_title("Builds · single pieces", len(builds))}'
-        f'<div class="pieces">{build_markup}</div>'
-    )
+    html = f'{_group_title("Builds", len(builds))}<div class="pieces">{build_markup}</div>'
     return html, f"{len(collections):02d} collections / {len(builds):02d} pieces"
 
 
 def render_home(posts: Iterable[object], building_path: Path) -> dict[str, str]:
-    """One open tray, numbered as one sequence: worlds, builds, then essays."""
-    worlds_html, next_number = render_worlds(1)
-    next_number += 1
+    """One open tray, numbered as one sequence: worlds (incl. collections), builds, writing."""
+    choices = load_building_choices(building_path)
+    collections = [choice for choice in choices if choice.collection]
+    worlds_html, count = render_worlds(1, collections)
+    next_number = 1 + count
     building_html, _ = render_building(building_path, next_number)
-    next_number += len(load_building_choices(building_path))
+    next_number += sum(not choice.collection for choice in choices)
     essays_html, _ = render_essays(posts, next_number)
     return {"worlds": worlds_html, "building": building_html, "essays": essays_html}

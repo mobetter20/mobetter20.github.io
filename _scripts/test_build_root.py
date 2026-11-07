@@ -23,7 +23,8 @@ class HomeBuildTest(unittest.TestCase):
         self.assertIn('data-essay-slug="fixture-essay"', added)
         self.assertIn("A &lt;new&gt; essay", added)
         self.assertNotIn('data-essay-slug="fixture-essay"', build_root.expected_root())
-        for invalid in [[], [fixture, fixture], [SimpleNamespace(slug="bad/slug", title="bad")]]:
+        self.assertEqual(home_catalog.essay_choices([]), [])   # essays may all be retracted
+        for invalid in [[fixture, fixture], [SimpleNamespace(slug="bad/slug", title="bad")]]:
             with self.assertRaises(home_catalog.CatalogError):
                 home_catalog.essay_choices(invalid)
 
@@ -63,9 +64,14 @@ class HomeBuildTest(unittest.TestCase):
         output = build_root.expected_root()
         self.assertNotIn("data-section", output)
         coo = output.index('href="/is/writing/bird-coo/" class="choice world"')
-        self.assertLess(output.index('class="beat"'), coo)
+        self.assertNotIn('class="beat"', output)          # display removed Nov 2026
+        self.assertNotIn("DivorcedBirds", output)
         self.assertLess(coo, output.index('href="https://propagandaformyself.xyz"'))
-        self.assertLess(coo, output.index("data-essay-slug="))
+        worlds = output[output.index('id="worlds"'):output.index('id="building"')]
+        self.assertIn('class="choice collection"', worlds)      # collections join Worlds
+        self.assertNotIn('class="choice collection"', output[output.index('id="building"'):])
+        self.assertLess(coo, output.index('href="/wrote/'))
+        self.assertIn(">The comedy years<", output)
         numbers = [int(n) for n in re.findall(r'<span class="label-top"><span>(\d+)</span>', output)]
         self.assertEqual(numbers, list(range(1, len(numbers) + 1)))
         running = build_root.parse_kv(build_root.require(build_root.parse_stats(build_root.STATS_PATH), "running"), "running")
