@@ -1,5 +1,11 @@
 # canary watcher
 
+**Retired 2026-11-08.** The LaunchAgent is unloaded and its plist parked in
+`~/Library/LaunchAgents/_retired-20261108/`. The page stays up, unlisted and
+noindex, reading `"retired"` from its `state.json`. To revive: delete the
+`retired` field, drop the noindex meta, re-list the card on `/is/building`,
+then follow Install below.
+
 Automation behind <https://ajin.im/is/building/did-claude-just-reset-usage/>.
 
 Every 30 minutes a LaunchAgent reads Claude's usage from cfo's

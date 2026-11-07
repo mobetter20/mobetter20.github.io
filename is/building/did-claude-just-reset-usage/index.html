@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>did claude just reset usage?</title>
-<meta name="description" content="A canary for Anthropic's quiet usage-limit resets. One reference account, polled every 30 minutes. Answers yes or no.">
+<meta name="robots" content="noindex">
+<meta name="description" content="A retired canary for Anthropic's quiet usage-limit resets. It watched one reference account from June to November 2026. The resets it caught are listed here.">
 <meta property="og:title" content="did claude just reset usage?">
-<meta property="og:description" content="A canary for Anthropic's quiet usage-limit resets. Answers yes or no.">
+<meta property="og:description" content="A retired canary for Anthropic's quiet usage-limit resets, June to November 2026.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/png" href="/img/a3.png">
@@ -34,6 +35,7 @@ h1{font-size:clamp(22px,5.6vw,30px);font-weight:500;letter-spacing:.01em;line-he
 .verdict.yes{color:var(--accent)}
 .verdict.no{color:var(--dim)}
 .verdict.probably{color:var(--accent);opacity:.75}
+.verdict.retired{font-size:clamp(40px,12vw,72px);color:var(--dim)}
 
 .answer{font-size:13.5px;color:var(--fg);max-width:52ch}
 .answer .quiet{color:var(--dim)}
@@ -83,7 +85,7 @@ pre{background:var(--codebg);border:1px solid var(--rule);border-radius:4px;
 
   <div class="verdict" id="verdict">…</div>
   <div class="answer" id="answer">
-    <noscript>this page needs javascript to read the canary's latest state. last known reset: Jun 9, 2026, weekly counter 77% to 0%, window unchanged, not announced.</noscript>
+    <noscript>this canary is retired. it stopped watching on nov 8, 2026. the last reset it saw: sep 1, 2026, weekly counter 39% to 0%, window unchanged, not announced.</noscript>
   </div>
   <div class="definition" id="definition" data-hours="48">on this page, “just” means a reset detected within the past 48 hours.</div>
   <div class="canaryline" id="canaryline"></div>
@@ -92,7 +94,7 @@ pre{background:var(--codebg);border:1px solid var(--rule);border-radius:4px;
   <section>
     <div class="label">what this is</div>
     <p>anthropic sometimes zeroes pro/max usage counters mid-week. often it is quiet compensation after an incident or a metering bug. sometimes it gets a post on x. often it does not. either way there is no in-app notice, no email, nothing in the status-page incident text.</p>
-    <p>this page watches <strong>one heavy reference account</strong> (the canary), whose official meter is polled every ~30 minutes, and answers from that. a mid-week reset looks like this: used% plunges to zero while the week keeps elapsing and the reset date stays put.</p>
+    <p>this page watched <strong>one heavy reference account</strong> (the canary). its official meter was polled every ~30 minutes from jun 10 to nov 8, 2026, and the page answered from that. a mid-week reset looks like this: used% plunges to zero while the week keeps elapsing and the reset date stays put.</p>
   </section>
 
   <section>
@@ -115,7 +117,7 @@ curl -s https://api.anthropic.com/api/oauth/usage \
   </section>
 
   <section>
-    <div class="label">resets the canary has seen</div>
+    <div class="label">resets the canary saw</div>
     <div id="resets"></div>
     <p style="margin-top:14px">people file these as bugs (<a href="https://github.com/anthropics/claude-code/issues/52497" rel="noopener">claude-code #52497</a>, <a href="https://github.com/anthropics/claude-code/issues/49616" rel="noopener">#49616</a>). it is not a bug.</p>
   </section>
@@ -126,7 +128,7 @@ curl -s https://api.anthropic.com/api/oauth/usage \
     <p>incident context comes from the <a href="https://status.claude.com" rel="noopener">claude status page</a>. the resets themselves do not appear in its incident text.</p>
   </section>
 
-  <div class="colophon">made by <a href="/" target="_self">ajin.im</a>, with the extra usage from the jun 9 reset · the canary is a real max account · endpoint is undocumented and may drift</div>
+  <div class="colophon">made by <a href="/" target="_self">ajin.im</a>, with the extra usage from the jun 9 reset · the canary was a real max account · endpoint is undocumented and may drift</div>
 
 </div>
 
@@ -151,13 +153,16 @@ curl -s https://api.anthropic.com/api/oauth/usage \
     var v = document.getElementById('verdict'), a = document.getElementById('answer');
     var lr = s.last_reset;
     var hoursSince = (Date.now() - new Date(lr.detected_utc).getTime()) / HOUR;
-    var verdict = s.verdict_override || (hoursSince < JUST_HOURS ? 'yes' : 'no');
+    var verdict = s.retired ? 'retired' : (s.verdict_override || (hoursSince < JUST_HOURS ? 'yes' : 'no'));
 
     v.textContent = verdict.toUpperCase() + '.';
     v.className = 'verdict ' + verdict;
 
     var html = '';
-    if (verdict === 'yes') {
+    if (verdict === 'retired') {
+      html = 'the canary stopped watching on nov 8, 2026. <span class="quiet">the last reset it saw: ' + esc(lr.bracket) + ', ' + esc(lr.from_pct) + '% to ' + esc(lr.to_pct) + '%' + (lr.announced ? ', announced' : ', never announced') + '. you can still check your own account below.</span>';
+      document.getElementById('definition').style.display = 'none';
+    } else if (verdict === 'yes') {
       html = 'the canary’s weekly counter went <strong>' + esc(lr.from_pct) + '% to ' + esc(lr.to_pct) + '%</strong> ' + esc(lr.bracket) + ' (' + ago(lr.detected_utc) + '). the week’s window did not move.';
       html += lr.announced
         ? ' <span class="quiet">anthropic announced this one.</span>'
@@ -171,12 +176,12 @@ curl -s https://api.anthropic.com/api/oauth/usage \
     a.innerHTML = html;
 
     var cn = s.canary_now || {};
-    if (cn.seven_day_used_pct != null && cn.seven_day_resets_at) {
+    if (verdict !== 'retired' && cn.seven_day_used_pct != null && cn.seven_day_resets_at) {
       document.getElementById('canaryline').textContent =
         'canary now: ' + cn.seven_day_used_pct + '% used / ' + elapsedPct(cn.seven_day_resets_at) + '% of the week elapsed · polled ' + ago(s.last_polled_utc);
     }
     var staleH = (Date.now() - new Date(s.last_polled_utc).getTime()) / HOUR;
-    if (staleH > 36) {
+    if (verdict !== 'retired' && staleH > 36) {
       var st = document.getElementById('stale');
       st.style.display = '';
       st.textContent = 'the canary has been asleep since ' + s.last_polled_utc.slice(0,16).replace('T',' ') + ' utc. verdict may lag.';
