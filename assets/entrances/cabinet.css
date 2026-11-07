@@ -281,3 +281,14 @@ body { padding: 32px 0 46px; }
 .worlds.lead .label { min-height:0 }
 .run-copy { flex-direction:column }
 }
+
+/* Phone reading sizes (Nov 2026 review): most visitors arrive on a phone, so the
+   words people read get real sizes; only the decorative slot markings stay small. */
+@media(max-width:650px) {
+.machine-c .choice-desc { font-size:13px;line-height:1.4 }
+.machine-c .build .choice-desc { font-size:12px }
+.machine-c .label-top, .machine-c .press-face { font-size:11px }
+.machine-c .group-title { font-size:11px }
+.machine-c .marquee-note { font-size:9px }
+.run-line { font-size:12px }
+}

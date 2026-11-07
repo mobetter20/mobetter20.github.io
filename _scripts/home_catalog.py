@@ -193,7 +193,7 @@ WORLDS = (
 
 
 def _group_title(name: str, count: int) -> str:
-    return f'<div class="group-title"><span>{name}</span><span>{count:02d}</span></div>'
+    return f'<h2 class="group-title"><span>{name}</span><span>{count:02d}</span></h2>'
 
 
 def render_worlds(start: int = 1, collections: Iterable[Choice] = ()) -> tuple[str, int]:
