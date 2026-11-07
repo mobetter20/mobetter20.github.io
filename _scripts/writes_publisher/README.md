@@ -90,6 +90,13 @@ rm -rf writes/<slug> wrote/<slug>
 Then remove the slug from `state.json`, or delete the drop-folder file first so the
 watcher does not simply publish it again on the next tick.
 
+## Interpreter
+
+The LaunchAgent runs `/opt/homebrew/bin/python3.13`, which has Full Disk Access.
+`/usr/bin/python3` does not: under launchd it reads `~/Documents/Ajin-Publishing` as empty,
+so nothing ever publishes and the log just says `0 marked file(s)`. If that line appears
+while a release with `publish: true` is in the folder, check the interpreter first.
+
 ## Known gap
 
 If the LaunchAgent is unloaded, nothing notices — there is no second daemon

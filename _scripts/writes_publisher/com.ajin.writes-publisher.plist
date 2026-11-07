@@ -8,7 +8,10 @@
   <string>com.ajin.writes-publisher</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/usr/bin/python3</string>
+    <!-- Must be the Full-Disk-Access python. Under launchd, /usr/bin/python3 sees
+         ~/Documents/Ajin-Publishing as an empty folder (TCC hides its contents), so the
+         publisher never saw a single release (verified 2026-11-07 with a launchd probe). -->
+    <string>/opt/homebrew/bin/python3.13</string>
     <string>/Users/ajin/.local/bin/writes_publish_watcher.py</string>
   </array>
 
