@@ -59,6 +59,20 @@ class HomeBuildTest(unittest.TestCase):
                 with self.assertRaises(build_root.StatsError):
                     build_root.check_home()
 
+    def test_open_tray_birds_first_one_sequence(self):
+        output = build_root.expected_root()
+        self.assertNotIn("data-section", output)
+        coo = output.index('href="/is/writing/bird-coo/" class="choice world"')
+        self.assertLess(output.index('class="beat"'), coo)
+        self.assertLess(coo, output.index('href="https://propagandaformyself.xyz"'))
+        self.assertLess(coo, output.index("data-essay-slug="))
+        numbers = [int(n) for n in re.findall(r'<span class="label-top"><span>(\d+)</span>', output)]
+        self.assertEqual(numbers, list(range(1, len(numbers) + 1)))
+        self.assertIn("to July 2026", output)
+        self.assertEqual(build_root.as_of_label(""), "")
+        with self.assertRaises(build_root.StatsError):
+            build_root.as_of_label("July 2026")
+
     def test_writing_publisher_refreshes_root(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

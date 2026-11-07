@@ -184,52 +184,71 @@ def _choice_markup(
     )
 
 
-def render_writing(posts: Iterable[object]) -> tuple[str, str]:
+WORLDS = (
+    # The Coo leads: the likely visitor arrives from r/DivorcedBirds.
+    Choice("The Municipal Coo", "/is/writing/bird-coo/", "Weekly newspaper", "The newspaper of the Avian Municipal District."),
+    Choice("Bureau of Interior Conditions", "https://propagandaformyself.xyz", "Fictional world", "Where feelings become filings."),
+)
+
+
+def _group_title(name: str, count: int) -> str:
+    return f'<div class="group-title"><span>{name}</span><span>{count:02d}</span></div>'
+
+
+def render_worlds(start: int = 1) -> tuple[str, int]:
+    markup = "".join(
+        _choice_markup(choice=choice, number=start + index, class_name="world", local=False)
+        for index, choice in enumerate(WORLDS)
+    )
+    return f'{_group_title("Worlds", len(WORLDS))}<div class="worlds lead">{markup}</div>', len(WORLDS)
+
+
+def render_essays(posts: Iterable[object], start: int = 1) -> tuple[str, int]:
     essays = essay_choices(posts)
-    worlds = [
-        Choice("Bureau of Interior Conditions", "https://propagandaformyself.xyz", "Fictional world", "Where feelings become filings."),
-        Choice("The Municipal Coo", "/is/writing/bird-coo/", "Weekly newspaper", "The newspaper of the Avian Municipal District."),
-    ]
-    world_markup = "".join(_choice_markup(choice=choice, number=index, class_name="world", local=False) for index, choice in enumerate(worlds, 1))
     essay_markup = "".join(
         _choice_markup(
             choice=choice,
-            number=index + len(worlds),
+            number=start + index,
             class_name="thought",
             local=True,
             essay_slug=choice.href.split("/")[2],
         )
-        for index, choice in enumerate(essays, 1)
+        for index, choice in enumerate(essays)
     )
     archive = Choice("The comedy years", "/wrote/", "2022–2023 archive", "")
-    archive_markup = _choice_markup(choice=archive, number=len(worlds) + len(essays) + 1, class_name="archive", local=False)
-    html = (
-        f'<div class="group-title"><span>Worlds</span><span>{len(worlds):02d}</span></div>'
-        f'<div class="worlds">{world_markup}</div>'
-        f'<div class="group-title"><span>Thoughts &amp; archive</span><span>{len(essays) + 1:02d}</span></div>'
-        f'<div class="pieces">{essay_markup}{archive_markup}</div>'
-    )
-    return html, f"{len(worlds):02d} worlds / {len(essays) + 1:02d} pieces"
+    archive_markup = _choice_markup(choice=archive, number=start + len(essays), class_name="archive", local=False)
+    total = len(essays) + 1
+    return f'{_group_title("Essays &amp; archive", total)}<div class="pieces">{essay_markup}{archive_markup}</div>', total
 
 
-def render_building(path: Path) -> tuple[str, str]:
+def render_building(path: Path, start: int = 1) -> tuple[str, str]:
     choices = load_building_choices(path)
     collections = [choice for choice in choices if choice.collection]
     builds = [choice for choice in choices if not choice.collection]
     if not builds:
         raise CatalogError("building source contains no individual build cards")
     collection_markup = "".join(
-        _choice_markup(choice=choice, number=index, class_name="collection", local=False, same_tab=True)
-        for index, choice in enumerate(collections, 1)
+        _choice_markup(choice=choice, number=start + index, class_name="collection", local=False, same_tab=True)
+        for index, choice in enumerate(collections)
     )
     build_markup = "".join(
-        _choice_markup(choice=choice, number=index + len(collections), class_name="build", local=False)
-        for index, choice in enumerate(builds, 1)
+        _choice_markup(choice=choice, number=start + len(collections) + index, class_name="build", local=False)
+        for index, choice in enumerate(builds)
     )
     html = (
-        f'<div class="group-title"><span>Collections</span><span>{len(collections):02d}</span></div>'
+        f'{_group_title("Builds · collections", len(collections))}'
         f'<div class="worlds">{collection_markup}</div>'
-        f'<div class="group-title"><span>Individual builds</span><span>{len(builds):02d}</span></div>'
+        f'{_group_title("Builds · single pieces", len(builds))}'
         f'<div class="pieces">{build_markup}</div>'
     )
     return html, f"{len(collections):02d} collections / {len(builds):02d} pieces"
+
+
+def render_home(posts: Iterable[object], building_path: Path) -> dict[str, str]:
+    """One open tray, numbered as one sequence: worlds, builds, then essays."""
+    worlds_html, next_number = render_worlds(1)
+    next_number += 1
+    building_html, _ = render_building(building_path, next_number)
+    next_number += len(load_building_choices(building_path))
+    essays_html, _ = render_essays(posts, next_number)
+    return {"worlds": worlds_html, "building": building_html, "essays": essays_html}

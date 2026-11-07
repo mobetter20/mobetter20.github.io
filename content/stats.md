@@ -6,6 +6,8 @@
 total_km: 76240
 baseline_km: 75000
 since_year: 2009
+# as_of = month of the last good Strava sync (YYYY-MM). The Strava adapter sets it; the home run-line reads it.
+as_of: 2026-07
 # Earth circumference: 40,075 km. Moon distance: 384,400 km.
 
 ## reading_current

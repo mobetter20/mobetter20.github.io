@@ -10,12 +10,14 @@ Usage:
     python3 _scripts/build_root.py --check  # print output sizes, don't write
     python3 _scripts/build_root.py --check-home  # verify generated home
 
-Home additionally reads the essay registry and curated building index.
+Home is one open tray: worlds, builds, essays, then a running line.
+It additionally reads the essay registry and curated building index.
 The tracked build_writes entry point refreshes home during writing publication.
 """
 
 import argparse
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import build_essays
@@ -143,6 +145,22 @@ def earth_prose(total_km: int) -> str:
     return f"{ratio:.1f} times around earth"
 
 
+def as_of_label(raw: str) -> str:
+    """`as_of: 2026-07` -> "to July 2026". Empty when the key is absent.
+
+    The Strava adapter sets it on every good sync, so the home run-line never
+    presents a frozen total as current.
+    """
+    raw = raw.strip()
+    if not raw:
+        return ""
+    try:
+        stamp = datetime.strptime(raw, "%Y-%m")
+    except ValueError as e:
+        raise StatsError(f"[running] as_of must be YYYY-MM, got: {raw!r}") from e
+    return f"to {stamp:%B %Y}"
+
+
 def earth_multiplier(total_km: int) -> str:
     return f"{total_km / EARTH_KM:.2f}×"
 
@@ -228,6 +246,7 @@ def replacements_for_root() -> dict[str, str]:
     if total_km < 0:
         raise StatsError(f"running.total_km must be non-negative, got {total_km}")
     since_year = require_int(running_kv, "since_year", "running")
+    running_as_of = as_of_label(running_kv.get("as_of", ""))
 
     total_km_fmt = f"{total_km:,}"
     remaining_km = MOON_KM - total_km
@@ -246,8 +265,7 @@ def replacements_for_root() -> dict[str, str]:
     if not learning:
         raise StatsError("learning: section body is empty")
 
-    writing_html, writing_count = home_catalog.render_writing(build_essays.load_posts())
-    building_html, building_count = home_catalog.render_building(BUILDING_INDEX_PATH)
+    home = home_catalog.render_home(build_essays.load_posts(), BUILDING_INDEX_PATH)
 
     return {
         "{{running_total_km}}": total_km_fmt,
@@ -259,10 +277,10 @@ def replacements_for_root() -> dict[str, str]:
         "{{reading_current}}": reading_current_html,
         "{{reading_year}}": reading_year_str,
         "{{learning}}": learning,
-        "{{home_writing}}": writing_html,
-        "{{home_building}}": building_html,
-        "{{writing_count}}": writing_count,
-        "{{building_count}}": building_count,
+        "{{running_as_of}}": running_as_of,
+        "{{home_worlds}}": home["worlds"],
+        "{{home_building}}": home["building"],
+        "{{home_essays}}": home["essays"],
     }
 
 
@@ -282,7 +300,7 @@ def check_home() -> None:
             "index.html is stale relative to its template, essay registry, or building source; "
             "run python3 _scripts/build_root.py"
         )
-    for token in ("{{home_writing}}", "{{home_building}}", "{{writing_count}}", "{{building_count}}"):
+    for token in ("{{home_worlds}}", "{{home_building}}", "{{home_essays}}", "{{running_as_of}}"):
         if token in actual:
             raise StatsError(f"index.html contains unresolved token: {token}")
 
