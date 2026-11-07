@@ -68,7 +68,9 @@ class HomeBuildTest(unittest.TestCase):
         self.assertLess(coo, output.index("data-essay-slug="))
         numbers = [int(n) for n in re.findall(r'<span class="label-top"><span>(\d+)</span>', output)]
         self.assertEqual(numbers, list(range(1, len(numbers) + 1)))
-        self.assertIn("to July 2026", output)
+        running = build_root.parse_kv(build_root.require(build_root.parse_stats(build_root.STATS_PATH), "running"), "running")
+        self.assertIn(build_root.as_of_label(running.get("as_of", "")), output)
+        self.assertEqual(build_root.as_of_label("2026-07"), "to July 2026")
         self.assertEqual(build_root.as_of_label(""), "")
         with self.assertRaises(build_root.StatsError):
             build_root.as_of_label("July 2026")
