@@ -18,86 +18,32 @@
 <link rel="alternate" type="application/atom+xml" title="ajin.im writes" href="/writes/feed.xml">
 <script src="/analytics.js" defer>
 </script>
-<noscript><style>.controls,.bay-heading,.return-key{display:none!important}.machine-body{display:block}.inventory+.inventory{margin-top:24px}</style></noscript>
 </head>
 <body class="machine-c" data-finish="blue">
 <main class="machine">
 <div class="top-cap" aria-hidden="true">
 </div>
 <header class="marquee">
-<h1 class="site-heading"><a href="/" target="_self" class="brand" aria-label="ajin.im home">ajin.im <span>is</span>
-</a></h1>
-<div class="marquee-note">SELF-SERVICE<br>INDEX<br>running / writing / building</div>
+<h1 class="site-heading"><a href="/" target="_self" class="brand" aria-label="ajin.im home">ajin.im</a></h1>
+<div class="marquee-note">SELF-SERVICE<br>INDEX</div>
 </header>
 <div class="machine-body">
-<aside class="controls">
-<div class="readout" aria-live="polite">
-<span class="display-caption">SECTION</span>
-<strong id="section-name">writing</strong>
-<span class="display-count" id="section-count">{{writing_count}}</span>
-</div>
-<nav class="selectors" id="sections" aria-label="Choose a section">
-<button class="selector" data-section="running" aria-pressed="false" aria-controls="running">
-<span class="selector-number">01</span>
-<span class="selector-word">running</span>
-<span class="selector-lamp" aria-hidden="true">
-</span>
-</button>
-<button class="selector" data-section="writing" aria-pressed="false" aria-controls="writing">
-<span class="selector-number">02</span>
-<span class="selector-word">writing</span>
-<span class="selector-lamp" aria-hidden="true">
-</span>
-</button>
-<button class="selector" data-section="building" aria-pressed="false" aria-controls="building">
-<span class="selector-number">03</span>
-<span class="selector-word">building</span>
-<span class="selector-lamp" aria-hidden="true">
-</span>
-</button>
-</nav>
-<div class="instruction">
-<span class="instruction-number">1</span>
-<p>Choose a section.</p>
-<span class="instruction-number">2</span>
-<p>Press a title to open it.</p>
-</div>
-<div class="rail-bottom">
-<div class="vents" aria-hidden="true">
-</div>
-<span>Personal index<br>ajin.im</span>
-</div>
-</aside>
 <div class="selection-bay">
-<div class="bay-heading">
-<span id="bay-name">WRITING</span>
-<span>Press to open ↓</span>
+<div class="beat">
+<div>
+<span class="display-caption">NOW SHOWING · FROM r/DivorcedBirds</span>
+<q>Wedding dress for sale. Vera Wang, original box, tear stained.</q>
+<small>2,447 upvotes · one of 700+ · u/propagandaformyself</small>
 </div>
-<section class="inventory" id="writing" aria-label="Writing" data-count="{{writing_count}}">{{home_writing}}</section>
-<section class="inventory" id="building" aria-label="Building" data-count="{{building_count}}">{{home_building}}</section>
-<section class="inventory" id="running" aria-label="Running" data-count="{{running_total_km}} km since {{running_since}}">
-<div class="run-board">
-<div class="run-label">DISTANCE SINCE {{running_since}}</div>
-<div class="run-digits" role="img" aria-label="{{running_total_km}} kilometres">{{running_total_km}}<small>km</small>
+<a href="/is/writing/bird-coo/" target="_blank" rel="noopener">More birds <span aria-hidden="true">↗</span></a>
 </div>
-<p>{{running_earth_prose}}.</p>
-<div class="orbit" aria-hidden="true">
-<div class="planet">
-</div>
-<i>
-</i>
-<span class="moon">
-</span>
-</div>
-<div class="run-scale">
-<span>Earth {{running_earth_multiplier}}</span>
-<span>Moon · {{running_moon_pct}}%</span>
-</div>
-<p class="remaining">{{running_moon_remaining}} km to the Moon.</p>
-</div>
-<a href="/is/running/" class="record-button" target="_blank" rel="noopener">Open the current running record <span>↗</span>
+<section class="inventory" id="worlds" aria-label="Worlds">{{home_worlds}}</section>
+<section class="inventory" id="building" aria-label="Builds">{{home_building}}</section>
+<section class="inventory" id="writing" aria-label="Essays and archive">{{home_essays}}</section>
+<a class="run-line" id="running" href="/is/running/" target="_blank" rel="noopener">
+<span class="run-copy"><span>Running since {{running_since}}</span><span>{{running_as_of}}</span></span>
+<strong>{{running_total_km}} km <span aria-hidden="true">↗</span></strong>
 </a>
-</section>
 </div>
 </div>
 <footer class="service-panel">
@@ -106,7 +52,6 @@
 <span class="port-paper">contact@ajin.im <span>↗</span>
 </span>
 </a>
-<a class="return-key" href="#sections">↑ Sections</a>
 <div class="service-mark">
 <span>ajin.im</span>
 <small>PERSONAL SITE</small>
