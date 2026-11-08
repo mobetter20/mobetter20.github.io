@@ -292,3 +292,11 @@ body { padding: 32px 0 46px; }
 .machine-c .marquee-note { font-size:9px }
 .run-line { font-size:12px }
 }
+
+/* Night keys (Nov 2026): a key whose destination page has a dark ground wears the cabinet's own
+   navy, so the eye is ready before the click. Set by hand with data-room on each /is/building card;
+   the running row opens a dark page too. Lamps stay green everywhere: on these machines red means sold out. */
+.machine-c .choice[data-room=night] .press-face { position:relative;background:linear-gradient(#2a5596,#17366c);color:#eef3fc;border-top-color:#102953;box-shadow:inset 0 1px 0 #4f78b5 }
+.machine-c .run-line[data-room=night] { background:linear-gradient(#2a5596,#17366c);border-color:#102953;border-bottom-color:#0b2147;color:#d6e2f3 }
+.machine-c .run-line[data-room=night] strong { color:#fffcec }
+.machine-c .run-line[data-room=night]:hover { background:linear-gradient(#3060a4,#1b3d79) }
