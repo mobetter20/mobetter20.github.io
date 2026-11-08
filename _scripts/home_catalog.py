@@ -31,6 +31,7 @@ class Choice:
     status: str
     description: str
     collection: bool = False
+    night: bool = False  # its own page is dark: the home key wears the night finish
 
 
 class _BuildingParser(HTMLParser):
@@ -62,6 +63,7 @@ class _BuildingParser(HTMLParser):
                 "status": "",
                 "description": "",
                 "collection": False,
+                "room": attrs_dict.get("data-room"),
             }
         if self._active is not None:
             if tag == "span" and "project-name" in classes:
@@ -102,6 +104,10 @@ class _BuildingParser(HTMLParser):
             missing = [key for key in ("title", "href", "status", "description") if not record[key]]
             if missing:
                 raise CatalogError(f"project card is missing {', '.join(missing)}")
+            if record["room"] not in {"day", "night"}:
+                raise CatalogError(
+                    f'project card "{record["title"]}" needs data-room="day" or data-room="night" '
+                    "(night when its own page has a dark ground; it sets the home key's finish)")
             self.choices.append(
                 Choice(
                     title=record["title"],
@@ -109,6 +115,7 @@ class _BuildingParser(HTMLParser):
                     status=record["status"],
                     description=record["description"],
                     collection=bool(record["collection"]),
+                    night=record["room"] == "night",
                 )
             )
 
@@ -172,6 +179,8 @@ def _choice_markup(
         attrs.append(f'data-project-url="{href}"')
     if not local and not same_tab:
         attrs.extend(['target="_blank"', 'rel="noopener"'])
+    if choice.night:
+        attrs.append('data-room="night"')
     action = "Read" if local else "Open"
     arrow = "→" if local or same_tab else "↗"
     desc = f'<span class="choice-desc">{escape(choice.description)}</span>' if choice.description else ""
@@ -187,6 +196,7 @@ def _choice_markup(
 WORLDS = (
     # The Coo leads. The building collections (Seoul Crushing, Instrument Bus) join
     # these in one "Worlds" group: Ajin chose not to distinguish them (Nov 2026).
+    # Both are day rooms: the Coo is newsprint, and BIC is a dark machine on a light floor, like home.
     Choice("The Municipal Coo", "/is/writing/bird-coo/", "Weekly newspaper", "The newspaper of the Avian Municipal District."),
     Choice("Bureau of Interior Conditions", "https://propagandaformyself.xyz", "Fictional world", "Where feelings become filings."),
 )

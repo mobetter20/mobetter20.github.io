@@ -30,7 +30,7 @@ class HomeBuildTest(unittest.TestCase):
 
     def test_building_add_remove_and_malformed(self):
         source = build_root.BUILDING_INDEX_PATH.read_text()
-        fixture = '<div class="project"><div class="project-head"><span class="project-name"><a href="/fixture/">Fixture</a></span><span class="project-status">live</span></div><p class="project-desc">A fixture project.</p></div>'
+        fixture = '<div data-room="day" class="project"><div class="project-head"><span class="project-name"><a href="/fixture/">Fixture</a></span><span class="project-status">live</span></div><p class="project-desc">A fixture project.</p></div>'
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "building.html"
             path.write_text(source + fixture)
@@ -42,7 +42,10 @@ class HomeBuildTest(unittest.TestCase):
             self.assertEqual(home_catalog.load_building_choices(path)[-1].description, "A clear description.")
             path.write_text(source)
             self.assertNotIn('data-project-url="/fixture/"', home_catalog.render_building(path)[0])
-            for bad in ["", source + fixture + fixture, source + fixture.replace('class="project-desc"', 'class="wrong"'), source + fixture[:-6]]:
+            path.write_text(source + fixture.replace('data-room="day"', 'data-room="night"'))
+            self.assertRegex(home_catalog.render_building(path)[0], r'<a href="/fixture/"[^>]*data-room="night"')
+            for bad in ["", source + fixture + fixture, source + fixture.replace('class="project-desc"', 'class="wrong"'), source + fixture[:-6],
+                        source + fixture.replace('data-room="day" ', ''), source + fixture.replace('data-room="day"', 'data-room="dusk"')]:
                 path.write_text(bad)
                 with self.assertRaises(home_catalog.CatalogError):
                     home_catalog.load_building_choices(path)
