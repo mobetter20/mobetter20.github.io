@@ -59,7 +59,7 @@ def head(
 
 FOOTER = (
     '    <footer class="site-foot">&#8617; <a href="/">ajin.im</a> '
-    '&nbsp;&middot;&nbsp; <a href="mailto:contact@ajin.im">contact@ajin.im</a></footer>'
+    '&nbsp;&middot;&nbsp; <a href="mailto:hi@ajin.im">hi@ajin.im</a></footer>'
 )
 
 
