@@ -2,11 +2,13 @@
 
 This is the practical guide for adding work and maintaining the site. [AGENTS.md](AGENTS.md) holds the design decisions and project rules. Git records the exact changes. Update this guide alongside changes to the workflow, and add a brief dated entry for meaningful fixes or releases.
 
+For ordinary image additions, use the short [publishing recipe](PUBLISHING.md) and `_scripts/piece.py`. The detailed source map below is for maintenance, not a checklist to reread for every cartoon.
+
 ## Release status
 
-**Release status, 2026-11-09:** the newspaper redesign was published through PR #220, the first eight image readers through PR #221, and Austen's publication-date correction through PR #222. The public readers, assets and Writing list were checked after deployment. The current addition contains Do you cycle? and On privilege. Approval, a Git push and a successful build are distinct from a verified deployment; follow the live checks under Publishing below and record each batch's live verification in its release PR.
+**Release status, 2026-11-09:** the newspaper redesign was published through PR #220, the first eight image readers through PR #221, Austen's publication-date correction through PR #222, and Do you cycle? and On privilege through PR #223. The public readers, assets and Writing list were checked after deployment. Each later release PR records its deployment and live verification. Approval, a Git push and a successful build are distinct from a verified deployment.
 
-The catalog contains ten image readers: Austen, C’est la vie, Thought + Time ≠ Insight, Going to the Market, Children’s Museum, Just Checking the Weather, When you grow up poor, A gifted child, Do you cycle?, and On privilege. Only Austen is eligible for the homepage. The generic writing-footer credit is replaced with a credit beside the artwork.
+The current image inventory is [content/image-pieces.json](content/image-pieces.json), which generates the public Writing list. Only Austen is eligible for the homepage. Credits sit beside the artwork instead of in a generic writing footer.
 
 The local review page used for this release was <http://127.0.0.1:8744/_review/>, with page and viewport selectors. It works only while its local server is running; this address is not a public deployment or permanent hosting arrangement. Visitors use <https://ajin.im/is/writing/#all>. Ordinary pages can also be previewed with a loopback-only static server from a worktree.
 
@@ -14,16 +16,18 @@ The local review page used for this release was <http://127.0.0.1:8744/_review/>
 
 Send the images to Codex or Claude, singly or in a batch. Supply preferred titles or separate captions if there are any. Otherwise the agent can propose descriptive titles from the work.
 
-Example: “Add these to Writing. Keep Austen on Home. Preview first.”
+Example: “Publish these in Writing.” For a local review instead, say “Preview first.” Austen stays on Home by default.
 
 The agent handles the web assets, filenames, accessible descriptions, reader pages, Writing list, and visual checks. Ajin does not need to edit JSON or run build commands. Publication is a separate instruction when the work is still a preview.
 
-There is currently no image upload form or automatic image drop folder. The existing approved-release folder publisher handles Markdown essays. Its operating instructions are in [_scripts/writes_publisher/README.md](_scripts/writes_publisher/README.md). Do not put images there and assume they will publish. A new image uploader has been discussed but is not implemented or approved.
+The agent uses `_scripts/piece.py` to prepare images, check a batch and verify deployed pages. It does not require an AI API or a running service. There is no upload form or automatic image drop folder. The existing approved-release folder publisher handles Markdown essays; its instructions are in [_scripts/writes_publisher/README.md](_scripts/writes_publisher/README.md). Do not put images there and assume they will publish.
 
 ## Adding an image: maintainer procedure
 
+The `add` command implements steps 2 through 4 below, including lossless conversion and pixel checks. `illustrate` attaches artwork to an existing comedy article without adding another Writing entry. `check` implements the build and mechanical checks once for the whole batch. The commands and short release sequence are in [PUBLISHING.md](PUBLISHING.md).
+
 1. Check the active branch, worktree and Git status. Use a feature worktree based on the current default branch; continue an existing one if its work is still under review. Keep the canonical checkout free for the essay publisher, and investigate unrelated changes before touching them.
-2. Inspect the original image. Choose a stable, descriptive lowercase slug with hyphens. Add the web asset under `assets/paper/pieces/<slug>.webp`. The current conversion uses lossless WebP, for example `cwebp -lossless -m 6 "source.png" -o "assets/paper/pieces/new-piece.webp"`. Verify the dimensions and pixel preservation. Do not change the illustration, crop away captions, or stretch it to match other pieces.
+2. Inspect the original image. Choose a stable, descriptive lowercase slug with hyphens. The helper writes the web asset under `assets/paper/pieces/<slug>.webp`, using Pillow's lossless WebP encoder and comparing all decoded RGBA pixels. Earlier additions used `cwebp -lossless`. Do not change the illustration, crop away captions, or stretch it to match other pieces.
 3. Add a record to [content/image-pieces.json](content/image-pieces.json). Use an existing record as a structural example, with a new unique slug. The fields are:
 
    | Field | Meaning |
@@ -88,7 +92,7 @@ git status --short
 
 For changes spanning prose or the full site, use the complete build sequence in [AGENTS.md](AGENTS.md). The CI checks in [.github/workflows/check-paper.yml](.github/workflows/check-paper.yml) verify generated files and publishing contracts. Normal builds must work without private exports.
 
-Visually check new readers at 375, 768 and 1280px. Confirm full artwork, readable captions or a working enlargement path, correct credit, accessible description, and no broken images or horizontal overflow. Follow the full-size and All writing links. Check the archive order and that Home still shows Austen. If changing the homepage lead logic, also check disabled JavaScript, failed-image fallback, matching captions and links, and stability while images load.
+For content-only additions using established layouts, visually check phone and desktop readers. Any new layout or stylesheet requires all three widths: 375, 768 and 1280px. Confirm complete artwork, readable captions or a working enlargement path, correct credit and accessible description, and no broken images or overflow. Follow the native links. The live verifier checks the readers, their images and stylesheets, Home and Writing against deployed source. If changing the homepage lead logic, also check disabled JavaScript, failed-image fallback, matching captions and links, and stability while images load.
 
 For a simple local preview without the optional review controls:
 
@@ -135,3 +139,9 @@ The Austen piece was mistakenly left undated, placing it after all dated prose d
 ### 2026-11-09: cycling and privilege cartoons
 
 Added Do you cycle? and On privilege as individual readers and the newest entries in Writing. Both use lossless WebP assets with the original pixels preserved. The cycling comic uses the existing two-panel phone layout; On privilege has a visible external title that frames the joke. Neither is added to the homepage selection. This batch uses the existing catalog fields and reader templates; its release PR records the build, layout and live checks.
+
+### 2026-11-09: repeatable publishing and the desk illustration
+
+Added `_scripts/piece.py` and the short publishing recipe to remove repeated conversion, metadata editing and verification setup. Preparation refuses conflicting content, validates source data before replacement, compares decoded pixels and treats identical retries as no-ops. Checks run once per batch; live verification is read-only and cannot mistake a local build for deployment. Tests cover rollback, duplicates, preservation and stale public responses; CI installs the preparation dependency.
+
+Mug Shot of My Desk now has its numbered-mug illustration before the prose. The optional `illustration` metadata is separate from imported text and preserved by slug during Medium refreshes; the reader adds the image, a short AI credit, native enlargement and social-image metadata. The article keeps its 2023-11-30 date, URL, text and archive position. Publication and live evidence are recorded in this change's release PR.

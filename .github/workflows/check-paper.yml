@@ -29,6 +29,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Install image preparation test dependency
+        run: python3 -m pip install -r _scripts/publishing-requirements.txt
       - name: Test source content and publishing contracts
         run: python3 -m unittest discover -s _scripts -p 'test_*.py'
       - name: Rebuild without private exports

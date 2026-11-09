@@ -6,7 +6,7 @@ Static site hosted on GitHub Pages. Ajin's writing, cartoons, worlds and builds.
 
 ## Maintenance documentation
 
-Read [MAINTENANCE.md](MAINTENANCE.md) when adding pieces, changing publishing behavior, or resuming site work. It contains the owner workflow, source map, verification steps, release status and dated change record. Keep that guide current in the same change as the behavior it describes. Record meaningful fixes and their reasons; Git remains the detailed file-by-file history. Distinguish a local preview, a pushed branch and a verified live release. A successful build or local commit does not mean published. `CLAUDE.md` imports this file, so the same entry point applies across agents.
+For routine image additions, start with [PUBLISHING.md](PUBLISHING.md) and `_scripts/piece.py`; use the fixed defaults and one batch check instead of reconstructing the workflow from chat history. Read [MAINTENANCE.md](MAINTENANCE.md) for source ownership, unusual changes or publishing behavior. Keep the guides current when behavior changes; routine content batches belong in the catalog and release PR, without rewriting a running inventory in the guide. Git records exact changes. Distinguish a local preview, a pushed branch and a verified live release. A successful build or local commit does not mean published. `CLAUDE.md` imports this file, so the same entry point applies across agents.
 
 ## Design System — typographic tiers
 
@@ -56,6 +56,8 @@ For a deliberately composed pair of equal square panels in a 2:1 image, optional
 Optional `show_title: true` makes the existing piece title visible above the artwork when it supplies part of the joke or its setup. It defaults to false; do not add repeated headings to existing images. Keep the title in the Writing list and page metadata either way. The visible title uses the reader's newspaper typography and stays outside the image file.
 
 The committed `content/comedy.json` holds the 51 public Medium texts; the standalone Markdown supplies the 52nd piece. Ordinary builds never require private exports. `_scripts/build_comedy.py --import-medium` is an explicit importer. It removes verified promotional nodes, never an entire `section--last`: short articles and substantive final sections use that class. Empty bodies, duplicate slugs and malformed data fail the build.
+
+Comedy posts may have an optional `illustration` object with exactly `image`, `width`, `height` and `alt`. It is a local addition rendered before the prose, with native enlargement, an AI illustration credit and matching social-image metadata. The importer preserves it by slug. Do not insert it into `body_html`: the Medium cleaner deliberately strips imported figures. Adding an illustration must not change the article's text, date, title, URL or list position.
 
 Validation before publication:
 

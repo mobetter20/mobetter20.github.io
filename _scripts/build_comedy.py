@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import hashlib
 import argparse
 import json
 import os
@@ -11,6 +12,7 @@ from datetime import datetime
 from pathlib import Path
 
 import writes_common
+import image_pieces
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -32,6 +34,7 @@ class ComedyPost:
     canonical: str
     body_html: str
     slug: str
+    illustration: dict | None = None
 
     @property
     def month_label(self) -> str:
@@ -279,12 +282,21 @@ def is_response_like(post: ComedyPost) -> bool:
 
 def build_page(post: ComedyPost) -> str:
     body_html = indent_body(clean_body(post.body_html))
+    if post.illustration:
+        art = post.illustration
+        src = html.escape(art['image'], quote=True)
+        alt = html.escape(art['alt'], quote=True)
+        body_html = f'''        <figure class="prose-illustration">
+          <a href="{src}" target="_self" aria-label="View illustration full size"><img src="{src}" width="{art['width']}" height="{art['height']}" alt="{alt}" /></a>
+          <figcaption>Illustration generated with AI. <a href="{src}" target="_self">View full size</a></figcaption>
+        </figure>
+{body_html}'''
     note_html = (
         '<p class="post-note">Originally published on Medium on '
         f"{html.escape(post.readable_date)}. "
         f'<a href="{html.escape(post.canonical, quote=True)}" target="_blank" rel="noreferrer noopener">View original</a></p>'
     )
-    return writes_common.reading_page(
+    page = writes_common.reading_page(
         title=post.title,
         body_html=body_html,
         canonical=f"https://ajin.im/wrote/{post.slug}/",
@@ -295,6 +307,20 @@ def build_page(post: ComedyPost) -> str:
         subtitle=post.subtitle,
         note_html=note_html,
     )
+    if post.illustration:
+        version = hashlib.sha256((REPO_ROOT / 'assets/paper/prose-images.css').read_bytes()).hexdigest()[:10]
+        extra = f'''    <link rel="stylesheet" href="/assets/paper/prose-images.css?v={version}" />
+    <meta property="og:image" content="https://ajin.im{src}" />
+    <meta property="og:image:width" content="{art['width']}" />
+    <meta property="og:image:height" content="{art['height']}" />
+    <meta property="og:image:alt" content="{alt}" />
+    <meta name="twitter:image" content="https://ajin.im{src}" />
+    <meta name="twitter:image:alt" content="{alt}" />'''
+        page = page.replace('  </head>', extra + '\n  </head>').replace(
+            '<meta name="twitter:card" content="summary" />',
+            '<meta name="twitter:card" content="summary_large_image" />',
+        )
+    return page
 
 
 def build_standalone_page(post: StandaloneComedyPost) -> str:
@@ -344,7 +370,27 @@ def import_medium_posts(export_root: Path = EXPORT_ROOT) -> list[ComedyPost]:
     return posts
 
 
-def validate_medium_posts(posts: list[ComedyPost], source: Path) -> None:
+def validate_illustration(art: object, root: Path | None = None) -> dict:
+    """A local addition, independent of the imported article's text and date."""
+    root = root or REPO_ROOT
+    if not isinstance(art, dict) or set(art) != {'image', 'width', 'height', 'alt'}:
+        raise ValueError('illustration needs exactly image, width, height and alt')
+    if not isinstance(art['alt'], str) or not art['alt'].strip():
+        raise ValueError('illustration alt must be non-empty text')
+    image = art['image']
+    if not isinstance(image, str) or not image.startswith('/assets/'):
+        raise ValueError('illustration image must be a root-relative /assets/ path')
+    path = (root / image.lstrip('/')).resolve()
+    if not path.is_relative_to((root / 'assets').resolve()):
+        raise ValueError('illustration image must stay inside assets')
+    if any(type(art[k]) is not int or art[k] <= 0 for k in ('width', 'height')):
+        raise ValueError('illustration dimensions must be positive integers')
+    if image_pieces.image_dimensions(path) != (art['width'], art['height']):
+        raise ValueError('illustration dimensions do not match the asset')
+    return dict(art)
+
+
+def validate_medium_posts(posts: list[ComedyPost], source: Path, root: Path | None = None) -> None:
     if not posts:
         raise ValueError(f"no comedy posts in {source}; refusing to replace committed comedy data")
     seen: set[str] = set()
@@ -356,6 +402,8 @@ def validate_medium_posts(posts: list[ComedyPost], source: Path) -> None:
         seen.add(post.slug)
         if not normalize_text(clean_body(post.body_html)):
             raise ValueError(f"empty comedy body after cleaning in {source}: {post.slug}")
+        if post.illustration is not None:
+            validate_illustration(post.illustration, root)
 
 
 def write_medium_data(
@@ -364,8 +412,10 @@ def write_medium_data(
     validate_medium_posts(posts, path)
     # A partial local export is far more likely than an intentional archive
     # deletion. Compare before writing and require an explicit CLI escape hatch.
+    illustrations = {}
     if path.exists():
         existing = load_medium_data(path)
+        illustrations = {post.slug: post.illustration for post in existing if post.illustration}
         missing = sorted({post.slug for post in existing} - {post.slug for post in posts})
         if missing and not allow_removals:
             raise ValueError(
@@ -382,6 +432,8 @@ def write_medium_data(
                 "date": post.date.date().isoformat(),
                 "canonical": post.canonical,
                 "body_html": clean_body(post.body_html),
+                **({'illustration': illustrations.get(post.slug) or post.illustration}
+                   if illustrations.get(post.slug) or post.illustration else {}),
             }
             for post in posts
         ],
@@ -402,7 +454,7 @@ def write_medium_data(
         raise
 
 
-def load_medium_data(path: Path = COMEDY_DATA_PATH) -> list[ComedyPost]:
+def load_medium_data(path: Path = COMEDY_DATA_PATH, *, root: Path | None = None) -> list[ComedyPost]:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except FileNotFoundError as error:
@@ -430,11 +482,12 @@ def load_medium_data(path: Path = COMEDY_DATA_PATH) -> list[ComedyPost]:
             date = datetime.strptime(item["date"], "%Y-%m-%d")
         except ValueError as error:
             raise ValueError(f"invalid comedy date for {slug} in {path}: {item['date']}") from error
-        post = ComedyPost(path, item["title"], item["subtitle"], date, item["canonical"], item["body_html"], slug)
+        illustration = validate_illustration(item['illustration'], root) if 'illustration' in item else None
+        post = ComedyPost(path, item["title"], item["subtitle"], date, item["canonical"], item["body_html"], slug, illustration)
         if not normalize_text(clean_body(post.body_html)):
             raise ValueError(f"empty comedy body after cleaning in {path}: {slug}")
         posts.append(post)
-    validate_medium_posts(posts, path)
+    validate_medium_posts(posts, path, root)
     return posts
 
 
