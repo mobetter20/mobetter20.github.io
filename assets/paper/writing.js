@@ -3,13 +3,11 @@
   if (!root) return;
   const selection = document.querySelector('#selection');
   const archive = document.querySelector('#all');
-  const credit = document.querySelector('.foot-credit');
   const state = { view: 'selection' };
 
   function renderView() {
     selection.hidden = state.view !== 'selection';
     archive.hidden = state.view !== 'all';
-    if (credit) credit.hidden = state.view === 'all';
     document.title = `ajin.im · Writing${state.view === 'all' ? ' · Archive' : ''}`;
   }
 

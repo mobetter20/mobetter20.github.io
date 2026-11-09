@@ -7,6 +7,7 @@ from pathlib import Path
 import argparse
 
 import build_writes
+import image_pieces
 import paper_site
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -39,6 +40,8 @@ def expected_sections():
         result[f'is/{page}/index.html'] = output
     for alias in ALIASES:
         result[f'is/writing/{alias}/index.html'] = redirect_page()
+    for piece in image_pieces.load_catalog(root=ROOT)["pieces"]:
+        result[f'is/writing/{piece["slug"]}/index.html'] = image_pieces.render_piece(piece)
     return result
 
 

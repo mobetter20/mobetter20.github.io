@@ -12,14 +12,13 @@ from types import SimpleNamespace
 
 import build_comedy
 import home_catalog
+import image_pieces
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILDING_SOURCE = ROOT / 'content/building.json'
 ASSET_ROOT = ROOT / 'assets/paper'
 # Editorial exclusions keep durable reader URLs and source text intact.
 UNLISTED_COMEDY_SLUGS = {'10-reasons-why-you-shouldn-t-read-this-list'}
-CAPTION = "It is a truth universally acknowledged, that a single woman in possession of no fortune, must be in want of a job."
-ALT = "A woman in Regency dress sits at a laptop, with her chin in her hand and an empty purse beside her."
 ROUTES = {'home':'/', 'writing':'/is/writing/', 'building':'/is/building/', 'running':'/is/running/'}
 
 
@@ -39,6 +38,9 @@ def head(page):
     if page == 'building':
         stylesheet = '<link rel="stylesheet" href="/assets/entrances/cabinet.css?v=2026-11-08-night">' + stylesheet
     scripts = f'<script src="{asset("paper.js")}" defer></script>'
+    # The small lead controller loads before the lead markup so the initial
+    # image and its intrinsic size are selected before the page is painted.
+    if page == 'home': scripts += f'<script src="{asset("home-images.js")}"></script>'
     if page == 'writing': scripts += f'<script src="{asset("writing.js")}" defer></script>'
     return f'''<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -52,7 +54,7 @@ def head(page):
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="https://ajin.im/assets/paper/home-preview.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The ajin.im newspaper, with an Austen cartoon and writing by Ajin.">
+<meta property="og:image:alt" content="The ajin.im newspaper, with illustrated pieces and writing by Ajin.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/img/a1.png">
 <link rel="apple-touch-icon" href="/img/a1.png">
@@ -96,15 +98,23 @@ def header(current, total=0, since=2009, as_of=''):
 
 def footer(current):
     home_link = '<a href="/" target="_self">ajin.im</a>' if current != 'home' else ''
-    return f'<footer class="foot"><span class="foot-credit">Words by Ajin. Cartoon illustration made with AI.</span>{home_link}<a href="mailto:hi@ajin.im">hi@ajin.im</a></footer>'
+    return f'<footer class="foot">{home_link}<a href="mailto:hi@ajin.im">hi@ajin.im</a></footer>'
 
 
-def cartoon_dialog():
-    return f'''<dialog id="cartoon-dialog" aria-labelledby="cartoon-caption">
-  <button type="button" data-close-cartoon autofocus>Close <span aria-hidden="true">×</span></button>
-  <figure><img src="/assets/paper/austen.webp" width="1145" height="954" alt="{ALT}">
-  <figcaption id="cartoon-caption">{CAPTION}</figcaption></figure>
-</dialog>'''
+def home_image_lead():
+    catalog = image_pieces.load_catalog()
+    fallback = next(piece for piece in catalog['pieces'] if piece['slug'] == catalog['fallback_slug'])
+    payload = json.dumps({'fallback': fallback, 'pieces': [p for p in catalog['pieces'] if p['featured']]}, ensure_ascii=True)
+    # This data lives in a script element; a future caption cannot close it.
+    payload = payload.replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
+    caption_hidden = '' if fallback['caption'] else ' hidden'
+    return f'''<article class="lead" id="home-image-lead" data-piece="{fallback['slug']}">
+        <a data-piece-link href="{fallback['href']}" target="_self" aria-label="Read {escape(fallback['title'], quote=True)}"><img data-piece-image src="{fallback['image']}" width="{fallback['width']}" height="{fallback['height']}" alt="{escape(fallback['alt'], quote=True)}" fetchpriority="high"></a>
+        <p data-piece-caption{caption_hidden}>{escape(fallback['caption'])}</p>
+        <p class="piece-credit">{image_pieces.CREDIT}</p>
+        <script type="application/json" id="home-image-catalog">{payload}</script>
+        <script>window.paperHomeLead?.init();</script>
+      </article>'''
 
 
 def essay_controls(posts):
@@ -121,7 +131,7 @@ def render_home(posts, total, since, as_of):
     mugs = by_slug["mug-shot-of-my-desk"]
     homunculus = by_slug["homunculus-infection-rising-in-adult-population"]
     return header("home", total, since, as_of) + f'''<main id="main" class="page home-page">
-      <article class="lead"><a href="/assets/paper/austen.webp" data-cartoon-view target="_self" aria-label="View full-size cartoon"><img src="/assets/paper/austen.webp" width="1145" height="954" alt="{ALT}"></a><p>{CAPTION}</p></article>
+      {home_image_lead()}
       <section class="news" aria-label="Selected writing">
         <article class="big"><small>{cave['dateline']}</small><h2><a href="/wrote/{cave['slug']}/" target="_blank" rel="noopener">{escape(cave['title'])}</a></h2><p>{escape(cave['subtitle'])}</p></article>
         <div class="side"><article><small>{cake['dateline']}</small><h3><a href="/wrote/{cake['slug']}/" target="_blank" rel="noopener">{escape(cake['title'])}</a></h3><p>{escape(cake['subtitle'])}</p></article>
@@ -139,7 +149,7 @@ def render_home(posts, total, since, as_of):
           </ol></div>
         </div>
       </aside>
-    </main>''' + footer("home") + cartoon_dialog()
+    </main>''' + footer("home")
 
 def excerpt(item, start=0, count=1):
     return '<div class="column-copy">' + ''.join(f'<p>{escape(p)}</p>' for p in item['paragraphs'][start:start+count]) + '</div>'
@@ -173,12 +183,14 @@ def render_writing(essays):
         for item in comedy if item['slug'] not in UNLISTED_COMEDY_SLUGS
     ]
     archive_items.extend({"title":item["title"], "href":f"/writes/{item['slug']}/", "kind":"piece", "published_date": item.get('date', '')} for item in essays)
-    archive_items.append({"title": "It is a truth universally acknowledged…", "href": "#cartoons", "kind": "cartoon", "published_date": ''})
+    catalog = image_pieces.load_catalog()
+    cartoon = next(piece for piece in catalog['pieces'] if piece['slug'] == catalog['fallback_slug'])
+    archive_items.extend({"title": piece['title'], "href": piece['href'], "kind": "image", "published_date": piece['published_date']} for piece in catalog['pieces'])
     # Full publication dates, newest first. Partial dates retain only known
     # precision; undated pieces follow dated work without an invented date.
     archive_items.sort(key=lambda item: tuple(int(part) for part in item['published_date'].split('-')) if item['published_date'] else (), reverse=True)
     archive_rows = ''.join(
-        f'''<li data-kind="{item['kind']}"><a href="{item['href']}"{' target="_blank" rel="noopener"' if item['kind'] == 'piece' else ' aria-label="View cartoon: It is a truth universally acknowledged"'}>{escape(item['title'])}</a></li>'''
+        f'''<li data-kind="{item['kind']}"><a href="{item['href']}"{' target="_blank" rel="noopener"' if item['kind'] == 'piece' else ' target="_self"'}>{escape(item['title'])}</a></li>'''
         for item in archive_items
     )
 
@@ -199,8 +211,9 @@ def render_writing(essays):
           {edition_story(wish, 'edition-dispatch', 1)}
           <figure class="edition-cartoon" id="cartoons" tabindex="-1">
             <p class="eyebrow">Cartoon</p>
-            <a href="/assets/paper/austen.webp" data-cartoon-view target="_self" aria-label="View full-size cartoon"><img src="/assets/paper/austen.webp" width="1145" height="954" alt="{ALT}"></a>
-            <figcaption>{CAPTION}</figcaption>
+            <a href="{cartoon['href']}" target="_self" aria-label="Read {escape(cartoon['title'], quote=True)}"><img src="{cartoon['image']}" width="{cartoon['width']}" height="{cartoon['height']}" alt="{escape(cartoon['alt'], quote=True)}"></a>
+            <figcaption>{escape(cartoon['caption'])}</figcaption>
+            <p class="piece-credit">{image_pieces.CREDIT}</p>
           </figure>
           <aside class="edition-sister">
             <p class="eyebrow">Sister publication</p>
@@ -215,7 +228,7 @@ def render_writing(essays):
         <h2 id="archive-heading" class="visually-hidden">Archive</h2>
         <ol id="writing-list" class="writing-list">{archive_rows}</ol>
       </section>
-    </main>''' + footer("writing") + cartoon_dialog()
+    </main>''' + footer("writing")
 
 def load_building(path=None):
     data = json.loads((path or BUILDING_SOURCE).read_text())

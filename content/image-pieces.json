@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "fallback_slug": "austen-at-work",
+  "pieces": [
+    {
+      "slug": "when-you-grow-up-poor",
+      "title": "When you grow up poor",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/when-you-grow-up-poor.webp",
+      "width": 1024,
+      "height": 1536,
+      "alt": "Three panels. A green character blows a pink bubble while holding a packet labeled GUM. They pull the used gum onto a wrapper above a bin. As they hesitate to throw it away, a smaller version of them appears in a thought bubble with folded arms: “Who do you think you are? There’s still flavour in that.”",
+      "caption": "",
+      "featured": false,
+      "show_title": true
+    },
+    {
+      "slug": "a-gifted-child",
+      "title": "A gifted child",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/a-gifted-child.webp",
+      "width": 1145,
+      "height": 1374,
+      "alt": "Two panels. A green character holding a mug imagines their child winning a Nobel Prize, becoming a doctor, and becoming a writer. Then the phone rings: “Hello, this is the kindergarten. Your son is a biter.”",
+      "caption": "",
+      "featured": false,
+      "show_title": true
+    },
+    {
+      "slug": "childrens-museum",
+      "title": "Children’s Museum",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/childrens-museum.webp",
+      "width": 1536,
+      "height": 1024,
+      "alt": "A gallery labeled “Children’s Museum” displays four people on plinths. An adult rolling up a sleeve is labeled “Child, Age 41”; a young child inspecting a shoe, “Child, Age 6”; a young adult leaning against a wall, “Child, Age 27”; and an older person reading a book, “Child, Age 82”.",
+      "caption": "",
+      "featured": false
+    },
+    {
+      "slug": "just-checking-the-weather",
+      "title": "Just Checking the Weather",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/just-checking-the-weather.webp",
+      "width": 1199,
+      "height": 1312,
+      "alt": "Three panels. A green character steps through a smartphone-shaped doorway toward a weather display, saying “Just checking the weather.” Inside, distractions appear: SHOP, WATCH, and CHAT. Surrounded by shopping, videos, and conversation, the character asks, “What did I come in here for?” The weather display is still in the corner.",
+      "caption": "",
+      "featured": false
+    },
+    {
+      "slug": "going-to-the-market",
+      "title": "Going to the Market",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/going-to-the-market.webp",
+      "width": 1774,
+      "height": 887,
+      "alt": "Two panels. A person holds an empty purse at a busy market. The caption reads: “Going to the market knowing you can’t buy anything is rather boring.” At a café table, the same person sits silently while three companions talk. An empty speech bubble hangs above the silent person. The caption reads: “It’s like having a conversation where you can’t say anything.”",
+      "caption": "",
+      "featured": false,
+      "mobile_panels": 2
+    },
+    {
+      "slug": "cest-la-vie",
+      "title": "C’est la vie",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/cest-la-vie.webp",
+      "width": 1254,
+      "height": 1254,
+      "alt": "A four-panel comic: a person sitting on a toilet checks a marked sheet of toilet paper, celebrates a clean length, finds another mark, then tears the paper and drops a piece. The caption reads “C’est la vie.”",
+      "caption": "",
+      "featured": false
+    },
+    {
+      "slug": "thought-time-insight",
+      "title": "Thought + Time ≠ Insight",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/thought-time-insight.webp",
+      "width": 1145,
+      "height": 1374,
+      "alt": "Thought + Time ≠ Insight. A diagram shows thought plus air becoming development: a brain grows a sprout in an open beaker. Thought minus air becomes brooding: the brain sits in a closed jar with condensation and mould. Fig. 1. Thought under two conditions.",
+      "caption": "",
+      "featured": false
+    },
+    {
+      "slug": "austen-at-work",
+      "title": "It is a truth universally acknowledged…",
+      "published_date": "",
+      "image": "/assets/paper/austen.webp",
+      "width": 1145,
+      "height": 954,
+      "alt": "A woman in Regency dress sits at a laptop, with her chin in her hand and an empty purse beside her.",
+      "caption": "It is a truth universally acknowledged, that a single woman in possession of no fortune, must be in want of a job.",
+      "featured": true
+    }
+  ]
+}
