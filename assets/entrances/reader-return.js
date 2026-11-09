@@ -1,10 +1,10 @@
-// Keep ordinary essay arrivals in the writing archive. Machine arrivals return to their card on the home tray.
+// The old Home tray used ?from=machine to return readers to a prose anchor.
+// Home no longer owns essay cards, so both paths now converge on Writing.
 (() => {
   if (new URLSearchParams(location.search).get('from') !== 'machine') return;
-  const slug = location.pathname.split('/').filter(Boolean).pop();
   const back = document.querySelector('a.back');
-  if (!back || !slug) return;
-  back.href = '/#' + encodeURIComponent(slug);
+  if (!back) return;
+  back.href = '/is/writing/#all';
   back.target = '_self';
-  back.textContent = '← ajin.im';
+  back.textContent = '← All writing';
 })();

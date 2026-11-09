@@ -37,7 +37,10 @@ SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
 # Path fragments that exclude a file from the sitemap. Compared against the
 # POSIX relative path with leading+trailing slashes so "/foo/" matches a
 # directory component named exactly "foo".
-EXCLUDE_DIRS = ("/.git/", "/.claude/", "/_archive/", "/_lab/", "/templates/")
+# Slides present the existing canonical piece readers, so only the overview
+# and those original readers belong in the sitemap.
+EXCLUDE_DIRS = ("/.git/", "/.claude/", "/_archive/", "/_lab/", "/templates/",
+                "/is/writing/cartoons/slides/")
 EXCLUDE_FILES = {"404.html"}
 
 # Municipal Coo issues live here as YYYY-MM-DD.html; future-dated ones are held.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build Home and the stats pages from templates and committed content.
 
-Home reads the comedy catalog and essay registry through paper_site. Running,
+Home reads its pinned cartoon and running stats through paper_site. Running,
 Reading and Learning read content/stats.md. The daily running adapter relies on
 this output set; Writing and Building belong to the explicit build_sections
 publisher, never this daily entry point.
@@ -18,7 +18,6 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-import build_essays
 import home_catalog
 import paper_site
 
@@ -264,7 +263,7 @@ def replacements_for_root() -> dict[str, str]:
     if not learning:
         raise StatsError("learning: section body is empty")
 
-    paper_home = paper_site.render_home(build_essays.load_posts(), total_km, since_year, running_as_of)
+    paper_home = paper_site.render_home(total_km, since_year, running_as_of)
 
     return {
         "{{running_total_km}}": total_km_fmt,

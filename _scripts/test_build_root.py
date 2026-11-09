@@ -11,6 +11,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 import build_root
+import build_essays
 import build_writes
 import home_catalog
 import paper_site
@@ -19,13 +20,14 @@ import build_sections
 
 class HomeBuildTest(unittest.TestCase):
     def test_essay_add_remove_and_rejections(self):
-        original = build_root.build_essays.load_posts()
+        original = build_essays.load_posts()
+        baseline = build_root.expected_root()
         fixture = SimpleNamespace(slug="fixture-essay", title="A <new> essay", body_md="some words")
-        with patch.object(build_root.build_essays, "load_posts", return_value=original + [fixture]):
+        with patch.object(build_essays, "load_posts", return_value=original + [fixture]):
             added = build_root.expected_root()
-        self.assertIn('data-essay-slug="fixture-essay"', added)
-        self.assertIn("A &lt;new&gt; essay", added)
-        self.assertNotIn('data-essay-slug="fixture-essay"', build_root.expected_root())
+        self.assertEqual(added, baseline)
+        with patch.object(build_essays, "load_posts", return_value=[]):
+            self.assertEqual(build_root.expected_root(), baseline)
         self.assertEqual(home_catalog.essay_choices([]), [])   # essays may all be retracted
         for invalid in [[fixture, fixture], [SimpleNamespace(slug="bad/slug", title="bad")]]:
             with self.assertRaises(home_catalog.CatalogError):
@@ -57,18 +59,24 @@ class HomeBuildTest(unittest.TestCase):
             with patch.object(build_root, "STATS_PATH", stats), patch.object(build_root, "INDEX_PATH", output):
                 build_root.build(root_only=True)
                 self.assertIn("80,000", output.read_text())
+                self.assertIn('--progress:20.812%', output.read_text())
                 build_root.check_home()
                 output.write_text(output.read_text() + "stale")
                 with self.assertRaises(build_root.StatsError):
                     build_root.check_home()
 
-    def test_newspaper_navigation_and_mileage(self):
+    def test_distinct_home_with_running_below_the_work(self):
         output = build_root.expected_root()
-        self.assertIn('class="paper-page page-home"', output)
+        self.assertIn('class="home-page"', output)
         self.assertNotIn('is running</a>', output)
         self.assertEqual(output.count('href="/is/running/"'), 1)
-        self.assertIn('href="/is/writing/bird-coo/"', output)
-        self.assertIn('id="home-image-catalog"', output)
+        self.assertNotIn('href="/is/writing/bird-coo/"', output)
+        self.assertNotIn('data-essay-slug', output)
+        self.assertNotRegex(output, r'<a\b[^>]*href="/(?:writes|wrote)/')
+        self.assertLess(output.index('id="writing-heading"'), output.index('id="building-heading"'))
+        self.assertLess(output.index('</main>'), output.index('class="running"'))
+        self.assertIn('href="/is/building/kenbaiki/"', output)
+        self.assertNotIn('home-images.js', output)
         self.assertIn('href="/is/writing/austen-at-work/" target="_self"', output)
         self.assertNotIn('id="cartoon-dialog"', output)
         self.assertNotIn('Local mock', output)
@@ -99,13 +107,12 @@ class HomeBuildTest(unittest.TestCase):
         image_count = len(paper_site.image_pieces.load_catalog()['pieces'])
         self.assertEqual(baseline.count('<li data-kind='), 51 + image_count + len(build_writes.collect_items()))
         fixture = SimpleNamespace(slug='new-essay', title='New essay', body_md='Words', date='2026', excerpt='A thought.', order=1)
-        with patch.object(build_root.build_essays, 'load_posts', return_value=[fixture]):
+        with patch.object(build_essays, 'load_posts', return_value=[fixture]):
             added = build_sections.expected_sections()['is/writing/index.html']
             home = build_root.expected_root()
         self.assertEqual(added.count('<li data-kind='), 52 + image_count)
         self.assertIn('href="/writes/new-essay/"', added)
-        self.assertIn('data-essay-slug="new-essay"', home)
-        self.assertIn('href="/writes/new-essay/?from=machine"', home)
+        self.assertNotIn('/writes/new-essay/', home)
         self.assertNotIn('/writes/new-essay/', baseline)
         self.assertEqual(baseline.count('Browse all writing'),1)
         self.assertLess(baseline.index('Browse all writing'),baseline.index('class="edition-main"'))
@@ -167,21 +174,28 @@ class HomeBuildTest(unittest.TestCase):
         self.assertIsNotNone(preview)
         self.assertTrue((build_root.ROOT / preview.group(1).lstrip('/')).is_file())
 
-    def test_publisher_rejects_missing_home_control(self):
+    def test_publisher_requires_pushed_archive_source_and_reader(self):
         spec = importlib.util.spec_from_file_location("watcher", Path(__file__).parent / "writes_publisher/publish_watcher.py")
         watcher = importlib.util.module_from_spec(spec)
         sys.modules[spec.name] = watcher
         spec.loader.exec_module(watcher)
         def git(*args, **kwargs):
             value = "source" if args[:1] == ("show",) else ""
-            if args == ("show", "HEAD:index.html"):
-                value = self.home
-            return subprocess.CompletedProcess(args, 0, value, "")
+            if args == ("show", "HEAD:is/writing/index.html"):
+                value = self.writing
+            return subprocess.CompletedProcess(args, 1 if args == self.failure else 0, value, "")
         with patch.object(watcher, "git", git):
-            self.home = "<html></html>"
-            self.assertIn("homepage control", watcher.verify_published({"fixture": "source"}))
-            self.home = '<a data-essay-slug="fixture" href="/writes/fixture/?from=machine">Fixture</a>'
+            self.failure = None
+            teaser = '<a href="/writes/fixture/">Fixture</a>'
+            self.writing = teaser
+            self.assertIn("Writing archive entry", watcher.verify_published({"fixture": "source"}))
+            self.writing = teaser + '<ol id="writing-list"><li>' + teaser + '</li></ol>'
             self.assertIsNone(watcher.verify_published({"fixture": "source"}))
+            self.assertIn('source is not', watcher.verify_published({"fixture": "edited source"}))
+            self.failure = ('cat-file', '-e', 'HEAD:writes/fixture/index.html')
+            self.assertIn('page was not generated', watcher.verify_published({"fixture": "source"}))
+            self.failure = ('merge-base', '--is-ancestor', 'HEAD', 'origin/master')
+            self.assertIn('not on origin', watcher.verify_published({"fixture": "source"}))
 
 
 if __name__ == "__main__":

@@ -87,13 +87,12 @@
       "slug": "going-to-the-market",
       "title": "Going to the Market",
       "published_date": "2026-11-09",
-      "image": "/assets/paper/pieces/going-to-the-market.webp",
-      "width": 1774,
-      "height": 887,
-      "alt": "Two panels. A person holds an empty purse at a busy market. The caption reads: “Going to the market knowing you can’t buy anything is rather boring.” At a café table, the same person sits silently while three companions talk. An empty speech bubble hangs above the silent person. The caption reads: “It’s like having a conversation where you can’t say anything.”",
+      "image": "/assets/paper/pieces/going-to-the-market-v2.png",
+      "width": 1061,
+      "height": 1483,
+      "alt": "Two vertically stacked panels. A green character holds an empty purse at a fruit stall. The caption says, “Going to the market knowing you can’t buy anything is rather boring.” Below, the green character has an empty speech bubble while a purple character speaks. The caption says, “It’s like having a conversation where you can’t say anything.”",
       "caption": "",
-      "featured": false,
-      "mobile_panels": 2
+      "featured": false
     },
     {
       "slug": "cest-la-vie",
