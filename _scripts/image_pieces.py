@@ -100,9 +100,10 @@ def load_catalog(path: Path | None = None, root: Path | None = None) -> dict:
     clean: list[dict] = []
     slugs: set[str] = set()
     required = {"slug", "title", "published_date", "image", "width", "height", "alt", "caption", "featured"}
+    optional = {"mobile_panels", "show_title"}
     for piece in pieces:
-        if not isinstance(piece, dict) or not required <= set(piece) or set(piece) - required - {"mobile_panels"}:
-            _fail("each piece needs slug, title, published_date, image, width, height, alt, caption, featured; only mobile_panels is optional")
+        if not isinstance(piece, dict) or not required <= set(piece) or set(piece) - required - optional:
+            _fail("each piece needs slug, title, published_date, image, width, height, alt, caption, featured; only mobile_panels and show_title are optional")
         slug = piece["slug"]
         if not isinstance(slug, str) or not _SLUG.fullmatch(slug):
             _fail(f"invalid slug {slug!r}")
@@ -126,6 +127,8 @@ def load_catalog(path: Path | None = None, root: Path | None = None) -> dict:
                 raise ValueError(f"image-pieces catalog: {slug}: invalid published_date") from exc
         if type(piece["featured"]) is not bool:
             _fail(f"{slug}: featured must be boolean")
+        if "show_title" in piece and type(piece["show_title"]) is not bool:
+            _fail(f"{slug}: show_title must be boolean")
         for key in ("width", "height"):
             if type(piece[key]) is not int or piece[key] <= 0:
                 _fail(f"{slug}: {key} must be a positive integer")
@@ -180,11 +183,17 @@ def render_piece(piece: dict) -> str:
         # asset and native full-size link remain the complete original strip.
         panel = f'<span class="piece-panel" aria-hidden="true"><img src="{image}" width="{piece["width"]}" height="{piece["height"]}" alt="" /></span>'
         art += f'\n          <span class="piece-panels" role="img" aria-label="{alt}">{panel}{panel}</span>'
+    body_attributes = 'class="read-page image-piece"'
+    if piece.get('show_title', False):
+        # Keep the title, artwork and page furniture aligned when a portrait
+        # image is constrained by viewport height on larger screens.
+        ratio = piece['width'] / piece['height']
+        body_attributes = f'class="read-page image-piece piece-with-title" style="--piece-ratio: {ratio:.8f}"'
     return f'''<!doctype html>
 {GENERATOR_MARKER}
 <html lang="en">
 {document_head}
-  <body class="read-page image-piece">
+  <body {body_attributes}>
     <main class="shell">
       <a class="back" href="/is/writing/#all" target="_self">← All writing</a>
       <h1 class="piece-title">{title}</h1>

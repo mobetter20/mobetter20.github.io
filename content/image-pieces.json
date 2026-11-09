@@ -3,6 +3,30 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "when-you-grow-up-poor",
+      "title": "When you grow up poor",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/when-you-grow-up-poor.webp",
+      "width": 1024,
+      "height": 1536,
+      "alt": "Three panels. A green character blows a pink bubble while holding a packet labeled GUM. They pull the used gum onto a wrapper above a bin. As they hesitate to throw it away, a smaller version of them appears in a thought bubble with folded arms: “Who do you think you are? There’s still flavour in that.”",
+      "caption": "",
+      "featured": false,
+      "show_title": true
+    },
+    {
+      "slug": "a-gifted-child",
+      "title": "A gifted child",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/a-gifted-child.webp",
+      "width": 1145,
+      "height": 1374,
+      "alt": "Two panels. A green character holding a mug imagines their child winning a Nobel Prize, becoming a doctor, and becoming a writer. Then the phone rings: “Hello, this is the kindergarten. Your son is a biter.”",
+      "caption": "",
+      "featured": false,
+      "show_title": true
+    },
+    {
       "slug": "childrens-museum",
       "title": "Children’s Museum",
       "published_date": "2026-11-09",

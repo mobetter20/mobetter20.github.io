@@ -53,6 +53,8 @@ The newspaper Home and unified Writing page use EB Garamond, IBM Plex Mono, crea
 
 For a deliberately composed pair of equal square panels in a 2:1 image, optional `mobile_panels: 2` stacks the full left and right halves on phones. This is presentation only: the original asset and full-size link remain intact. Never infer panel divisions automatically from an image’s shape; verify the seam and caption legibility before using it.
 
+Optional `show_title: true` makes the existing piece title visible above the artwork when it supplies part of the joke or its setup. It defaults to false; do not add repeated headings to existing images. Keep the title in the Writing list and page metadata either way. The visible title uses the reader's newspaper typography and stays outside the image file.
+
 The committed `content/comedy.json` holds the 51 public Medium texts; the standalone Markdown supplies the 52nd piece. Ordinary builds never require private exports. `_scripts/build_comedy.py --import-medium` is an explicit importer. It removes verified promotional nodes, never an entire `section--last`: short articles and substantive final sections use that class. Empty bodies, duplicate slugs and malformed data fail the build.
 
 Validation before publication:

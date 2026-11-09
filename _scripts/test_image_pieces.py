@@ -101,6 +101,30 @@ class ImagePiecesTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, '2:1'):
                 image_pieces.load_catalog(path, root)
 
+    def test_visible_title_is_opt_in_and_requires_a_boolean(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = self.make_catalog(root)
+            data = json.loads(path.read_text())
+            data['pieces'][0]['title'] = 'A "gifted" child <perhaps>'
+            path.write_text(json.dumps(data))
+            default_page = image_pieces.render_piece(image_pieces.load_catalog(path, root)['pieces'][0])
+            data['pieces'][0]['show_title'] = False
+            path.write_text(json.dumps(data))
+            self.assertEqual(default_page, image_pieces.render_piece(image_pieces.load_catalog(path, root)['pieces'][0]))
+            data['pieces'][0]['show_title'] = True
+            path.write_text(json.dumps(data))
+            page = image_pieces.render_piece(image_pieces.load_catalog(path, root)['pieces'][0])
+            self.assertIn('image-piece piece-with-title', page)
+            self.assertEqual(page.count('<h1 '), 1)
+            self.assertIn('<h1 class="piece-title">A &quot;gifted&quot; child &lt;perhaps&gt;</h1>', page)
+            self.assertIn('href="/assets/paper/first.png" target="_self"', page)
+            for bad in (0, 1, 'true', 'false', None):
+                data['pieces'][0]['show_title'] = bad
+                path.write_text(json.dumps(data))
+                with self.assertRaisesRegex(ValueError, 'show_title'):
+                    image_pieces.load_catalog(path, root)
+
     def test_future_catalog_piece_is_a_section_output(self):
         catalog = {"schema_version": 1, "fallback_slug": "new-piece", "pieces": [{
             "slug": "new-piece", "title": "New", "published_date": "",

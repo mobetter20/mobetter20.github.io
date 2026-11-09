@@ -1,6 +1,8 @@
 /* Image readers inherit the existing paper reader palette and type in writes.css. */
 .image-piece .shell { max-width:900px;padding:28px 28px 20px }
-.image-piece .piece-title { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0 }
+.image-piece:not(.piece-with-title) .piece-title { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0 }
+.image-piece.piece-with-title .piece-title { margin:26px 0 14px;font:500 28px/1.2 var(--serif);letter-spacing:0;color:var(--ink) }
+.image-piece.piece-with-title .piece-art { margin-top:0 }
 .image-piece .piece-art { margin:26px 0 0 }
 .image-piece .piece-art > a { display:block }
 .image-piece .piece-art img { display:block;width:100%;height:auto }
@@ -13,9 +15,12 @@
 .image-piece a:focus-visible { outline:2px solid var(--blue);outline-offset:5px }
 @media(min-width:651px) and (min-height:650px) {
   .image-piece .piece-art img { width:auto;max-width:100%;max-height:70vh;margin-inline:auto }
+  .image-piece.piece-with-title .shell { max-width:min(900px, calc(70vh * var(--piece-ratio) + 56px)) }
+  .image-piece.piece-with-title .site-foot { max-width:min(844px, calc(70vh * var(--piece-ratio))) }
 }
 @media(max-width:650px) {
   .image-piece .shell { padding:22px 16px 12px }
+  .image-piece.piece-with-title .piece-title { margin-top:22px;font-size:26px }
   .image-piece .piece-art { margin-top:22px }
   .image-piece .piece-art figcaption { font-size:24px;line-height:1.2 }
   .image-piece .site-foot { width:calc(100% - 32px) }

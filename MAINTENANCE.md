@@ -6,7 +6,7 @@ This is the practical guide for adding work and maintaining the site. [AGENTS.md
 
 **As of 2026-11-09:** the newspaper redesign was published through PR #220. The subsequent image-piece work is saved locally on `codex/image-pieces-preview` in the sibling `ajin-image-preview` worktree. It has not been pushed or published. Keep that work local until Ajin explicitly approves publication.
 
-The preview contains six image readers: Austen, C’est la vie, Thought + Time ≠ Insight, Going to the Market, Children’s Museum, and Just Checking the Weather. Only Austen is eligible for the homepage. The preview also replaces the generic writing-footer credit with a credit beside the artwork. These are preview behaviors until the image release is deployed.
+The preview contains eight image readers: Austen, C’est la vie, Thought + Time ≠ Insight, Going to the Market, Children’s Museum, Just Checking the Weather, When you grow up poor, and A gifted child. “A gifted child” is an assistant-proposed title awaiting Ajin's review. Only Austen is eligible for the homepage. The preview also replaces the generic writing-footer credit with a credit beside the artwork. These are preview behaviors until the image release is deployed.
 
 The current local review page is <http://127.0.0.1:8744/_review/>. It has page and viewport selectors. It works only while the local preview server is running; this address is not a public deployment or permanent hosting arrangement. Ordinary pages can also be previewed with a loopback-only static server from the worktree.
 
@@ -34,6 +34,7 @@ There is currently no image upload form or automatic image drop folder. The exis
    | `alt` | Describe the relevant scene and include the words needed to understand the joke. |
    | `caption` | Separate caption text, or an empty string when the caption is already in the artwork. |
    | `featured` | Set new pieces to `false`. Austen stays on Home until Ajin asks to change it. |
+   | `show_title` | Optional boolean, default `false`. Set to `true` when an external title adds meaning or sets up the joke; it becomes a visible heading above the artwork. |
    | `mobile_panels` | Optional integer `2`, only for a deliberately composed 2:1 image containing two equal square panels. See the mobile guidance below. |
 
 4. Keep `fallback_slug` set to `austen-at-work`. New pieces appear in Writing automatically. Sorting is by publication date, newest first; equal-date image entries retain their catalog order. Prepending a new same-day batch keeps that batch first without alphabetizing it. Undated work follows dated work.
@@ -44,11 +45,13 @@ There is currently no image upload form or automatic image drop folder. The exis
 
 Keep the entire image and the native full-size link. Embedded titles and captions do not need a second visible copy outside the image. Each reader still has an accessible page heading.
 
+An external title can be part of the work. “When you grow up poor” supplies the childhood context before the gum joke, so it is visibly displayed above the image using `show_title: true`. The same opt-in treatment is being previewed with the proposed title “A gifted child”. This does not make visible headings the default for other pieces. The title remains in the browser tab, social metadata and Writing list regardless of its visibility on the reader.
+
 The shared credit is **“Words and ideas by Ajin. Illustrations generated with AI.”** Its source is `CREDIT` in [_scripts/image_pieces.py](_scripts/image_pieces.py). It belongs beside the artwork on Home, the Writing selection, and image readers. It does not belong in Browse all or in a generic Writing footer.
 
 At 375px, check the actual joke, including small lettering. Going to the Market uses `mobile_panels: 2` to stack its complete left and right halves on phones while keeping the original strip on larger screens. Do not infer panel boundaries from aspect ratio alone. Children’s Museum remains one scene; its small age labels benefit from enlargement. Just Checking the Weather is already arranged vertically.
 
-Download names come from the public asset names, such as `childrens-museum.webp`, not the original ChatGPT filename. Page credits are not embedded in downloaded images. Austen’s caption is also separate HTML, so saving that image alone omits the caption. A separate share/download export has not been implemented.
+Download names come from the public asset names, such as `childrens-museum.webp`, not the original ChatGPT filename. Page credits and external page titles are not embedded in downloaded images. Austen’s caption is also separate HTML, so saving that image alone omits the caption. A separate share/download export has not been implemented.
 
 ## Where to make changes
 
@@ -118,3 +121,4 @@ PR #220 (`bd123db`, followed by generated-root commit `0fed583`) brought Home, W
 - `ba58b51`: added Going to the Market and an explicit mobile panel option so its two captioned panels remain readable on phones without changing the original download.
 - `92b0fdd`: added Children’s Museum and Just Checking the Weather. At this checkpoint, all 33 existing tests passed, 1,083 internal links across 179 pages had no broken links, and the new readers were checked at all three viewport widths. Native full-size links worked; the museum’s small labels need enlargement on a phone. The worktree was clean and the live checkout unchanged.
 - Added this maintenance guide and linked it from AGENTS.md so another chat or agent can find the workflow and release boundary without reconstructing the conversation.
+- Added When you grow up poor and the provisionally titled A gifted child. Optional visible titles now let words outside an image supply the setup, without repeating headings on the six earlier readers or changing the artwork. The existing readers retain their layout; Austen remains pinned. Verified all eight readers at 375, 768 and 1280px, all 34 tests passed, and 1,103 internal links across 181 pages had no broken links. Still a local preview.
