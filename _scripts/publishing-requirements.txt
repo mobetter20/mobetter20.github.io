@@ -1,0 +1,2 @@
+# Used only by the image preparation command and its tests. Builds use stdlib.
+Pillow==12.1.1

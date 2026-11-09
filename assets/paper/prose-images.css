@@ -1,0 +1,5 @@
+/* Optional illustrations use the existing prose column and paper typography. */
+.read-page .body .prose-illustration { margin:0 0 2rem; }
+.read-page .body .prose-illustration img { display:block;width:100%;height:auto; }
+.read-page .body .prose-illustration figcaption { margin-top:10px;font:11px/1.65 var(--mono);color:var(--soft); }
+.read-page .body .prose-illustration figcaption a { display:inline-block;padding-block:8px; }
