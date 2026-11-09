@@ -10,6 +10,9 @@ release folder is not nested or symlinked into the everyday Obsidian vault. This
 ## How a piece becomes a page
 
 1. A markdown file in the drop folder carries `title:` and `publish: true`.
+   Optional `date:` accepts `YYYY`, `YYYY-MM`, or `YYYY-MM-DD`. Use the full
+   publication date when known; the Atom feed retains it. Partial dates use
+   the first day of the known period, and invalid calendar dates fail the build.
 2. The watcher waits until you have stopped editing — 3 minutes of stillness, then
    the same content across two ticks at least 5 minutes apart. Typical time from
    last keystroke to live page is **5–10 minutes**, not seconds. That delay is the

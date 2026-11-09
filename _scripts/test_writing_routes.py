@@ -1,7 +1,9 @@
 """Contracts for durable writing readers and retired archive indexes."""
 
 from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
+import xml.etree.ElementTree as ET
 
 import build_essays
 import build_writes
@@ -56,6 +58,41 @@ class WritingRouteTest(unittest.TestCase):
         self.assertIn('<link rel="alternate" href="https://ajin.im/writes/"/>', feed)
         self.assertIn('<link rel="self" href="https://ajin.im/writes/feed.xml"/>', feed)
         self.assertIn('https://ajin.im/writes/fixture/', feed)
+
+    def test_feed_preserves_publication_date_precision(self):
+        dates = ["", "2023", "2026-10", "2026-11-09", "2024-02-29"]
+        expected = ["2026-01-01", "2023-01-01", "2026-10-01", "2026-11-09", "2024-02-29"]
+        posts = [build_essays.EssayPost(
+            source=Path(f"fixture-{i}.md"), title="Fixture", order=i,
+            body_md="Words.", excerpt="Words.", slug=f"fixture-{i}", date=value,
+        ) for i, value in enumerate(dates)]
+        feed = ET.fromstring(build_essays.render_feed(posts))
+        ns = {"a": "http://www.w3.org/2005/Atom"}
+        self.assertEqual(feed.findtext("a:updated", namespaces=ns), "2026-11-09T00:00:00Z")
+        entries = feed.findall("a:entry", ns)
+        self.assertEqual(len(entries), len(expected))
+        for entry, day in zip(entries, expected):
+            for field in ("updated", "published"):
+                self.assertEqual(entry.findtext(f"a:{field}", namespaces=ns), day + "T00:00:00Z")
+
+    def test_essay_source_accepts_partial_and_full_dates(self):
+        with TemporaryDirectory() as tmp:
+            source = Path(tmp) / "essay.md"
+            for value in ("", "2026", "2026-11", "2026-11-09", "2024-02-29"):
+                with self.subTest(date=value):
+                    source.write_text(f"---\ntitle: Essay\norder: 1\ndate: {value}\n---\nText.\n")
+                    self.assertEqual(build_essays.parse_markdown_post(source).date, value)
+
+    def test_essay_source_rejects_invalid_dates_before_building(self):
+        with TemporaryDirectory() as tmp:
+            source = Path(tmp) / "essay.md"
+            for value in ("0000", "2026-00", "2026-13", "2026-11-00", "2026-04-31",
+                          "2026-02-29", "2024-02-30", "26", "2026-1", "2026-11-9",
+                          "2026-11-09T00:00:00Z", "tomorrow"):
+                with self.subTest(date=value):
+                    source.write_text(f"---\ntitle: Essay\norder: 1\ndate: {value}\n---\nText.\n")
+                    with self.assertRaisesRegex(ValueError, r"essay\.md: .*`date:`"):
+                        build_essays.parse_markdown_post(source)
 
 
 if __name__ == "__main__":
