@@ -17,6 +17,7 @@ from __future__ import annotations
 import html
 import re
 from dataclasses import dataclass
+from datetime import date as calendar_date
 from pathlib import Path
 
 import writes_common
@@ -89,6 +90,11 @@ def parse_markdown_post(source_path: Path) -> EssayPost:
         order = int(front_matter["order"])
     except ValueError as exc:
         raise ValueError(f"{source_path.name}: `order:` must be an integer") from exc
+    publication = front_matter.get("date", "")
+    try:
+        publication_date(publication)
+    except ValueError as exc:
+        raise ValueError(f"{source_path.name}: {exc}") from exc
     excerpt = front_matter.get("excerpt", "")
     slug = source_path.stem
     if not excerpt:
@@ -100,8 +106,24 @@ def parse_markdown_post(source_path: Path) -> EssayPost:
         body_md=body_md,
         excerpt=excerpt,
         slug=slug,
-        date=front_matter.get("date", ""),
+        date=publication,
     )
+
+
+def publication_date(value: str) -> calendar_date:
+    """Keep known date precision; use the first day for missing components.
+
+    Undated legacy essays retain the feed's existing 2026-01-01 fallback.
+    """
+    if not value:
+        return calendar_date(2026, 1, 1)
+    if not re.fullmatch(r"[0-9]{4}(?:-[0-9]{2}(?:-[0-9]{2})?)?", value):
+        raise ValueError("`date:` must be blank, YYYY, YYYY-MM, or YYYY-MM-DD")
+    parts = [int(part) for part in value.split("-")]
+    try:
+        return calendar_date(*(parts + [1] * (3 - len(parts))))
+    except ValueError as exc:
+        raise ValueError(f"invalid calendar `date:` {value}") from exc
 
 
 def excerpt_from_markdown(body_md: str, max_words: int = 24) -> str:
@@ -245,13 +267,11 @@ def xml_escape(value: str) -> str:
 def render_feed(posts: list[EssayPost]) -> str:
     """Build a valid Atom 1.0 feed from the live essays.
 
-    Mirrors build_bird_coo.render_feed. Essay front matter carries only a
-    year (`date: 2026`), so timestamps are pinned to YYYY-01-01 — coarse but
-    honest; the feed exists for discovery/followability, not minute-accuracy.
+    Preserve full publication dates. Year-only dates use January 1, and
+    month-only dates use the first of that month. Timestamps use midnight UTC.
     Posts are emitted newest first (highest `order`)."""
     def timestamp(post: EssayPost) -> str:
-        year = post.year or "2026"
-        return f"{year}-01-01T00:00:00Z"
+        return f"{publication_date(post.date).isoformat()}T00:00:00Z"
 
     entries = []
     for post in posts:
