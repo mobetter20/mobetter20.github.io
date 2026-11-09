@@ -103,6 +103,14 @@ When changing a container's width or padding, inspect the computed width of the 
 
 ## Cross-Site Links
 
+### Analytics and browser checks
+
+`analytics.js` is handwritten source, with navigation and GA4 loading in separate blocks. GA4 is allowed only on the exact production origins `https://ajin.im` and `http://ajin.im` in a non-automated browser with readable opt-out storage. HTTP currently also serves the real site; do not silently exclude those visitors. Local/file previews, other origins and ports, `navigator.webdriver`, and storage failures must send no analytics. `?notrack` persists the browser's `_notrack` flag; `?track` clears only that manual flag and cannot bypass the origin or automation guards. If both parameters appear, `notrack` wins. Do not remove these guards to make a browser check pass.
+
+Before any agent-controlled visit to the live site, set `_notrack=1` in an origin-scoped browser-context init script and block Google Analytics / Google Tag Manager requests at the browser-context level. Install these before the first navigation, including for new tabs. Assert that no tracking request was attempted. Some agent browsers report `navigator.webdriver=false`, so the webdriver guard is a second line of defence, not a substitute for isolating test traffic. For a normal-visitor positive control, use a fresh isolated context with every Google endpoint blocked; never send a real analytics event as a test. Keep navigation checks enabled even when analytics is off.
+
+Run `node --test _scripts/test_analytics.js` when changing the shared loader. CI and the publishing batch check run it automatically. After an analytics change deploys, verify the live script bytes, an unmarked automated-browser negative control, and a network-blocked normal-visitor positive control. See MAINTENANCE.md for the collection boundary and historical-data limits.
+
 - Use root-relative paths (`/is/writing/nest-court/`) not relative (`../nest-court/`)
 - The pre-push hook enforces root-relative paths for structural links
 - **New tabs are global, by design.** `/analytics.js` (loaded on every page) runs a `retarget()` on load that sets `target="_blank"` on *every* `<a href>` except in-page `#anchors` and links that already declare a target. The home cabinet and Bus return explicitly override this where described above. Elsewhere, **links without explicit targets open in a new tab** — internal page-to-page navigation included, not just cross-site/external links. This is intentional: the current page stays open when you click out.

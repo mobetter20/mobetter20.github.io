@@ -23,14 +23,25 @@
   }
 }());
 
-/* 2. GA4 analytics loader (respects the ?notrack opt-out). */
+/* 2. GA4 analytics loader. Production only, excluding known test contexts. */
 (function () {
-  // Self-exclusion: visit any page with ?notrack to permanently opt out on this browser
-  // Visit with ?track to reverse it
+  // Origin and automation gates are not preferences. ?track never overrides them.
+  var origin = window.location.origin;
+  if ((origin !== 'https://ajin.im' && origin !== 'http://ajin.im') || navigator.webdriver) return;
+
+  // Self-exclusion: ?notrack wins if both flags are present. Storage failures are
+  // private-by-default: most importantly, a failed opt-out must not leak this visit.
   var params = new URLSearchParams(window.location.search);
-  if (params.has('notrack')) localStorage.setItem('_notrack', '1');
-  if (params.has('track')) localStorage.removeItem('_notrack');
-  if (localStorage.getItem('_notrack')) return;
+  try {
+    if (params.has('notrack')) {
+      localStorage.setItem('_notrack', '1');
+      return;
+    }
+    if (params.has('track')) localStorage.removeItem('_notrack');
+    if (localStorage.getItem('_notrack')) return;
+  } catch (_) {
+    return;
+  }
 
   var measurementId = 'G-60PV5XGMSX';
 

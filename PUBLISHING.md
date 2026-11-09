@@ -21,6 +21,8 @@ Ajin can attach images and say **“Publish these”**, or **“Add this illustr
 4. Commit only this batch, push and create its PR. Run the existing PR checks. When publication is authorized, merge with the checked head SHA and wait for the latest Pages deployment, including any generated-root commit. Do not treat green tests or a pushed commit as a live release.
 5. Update the review checkout to deployed `origin/master`, run `verify-live` for the changed readers, and inspect the public result. Record the release and checks in the PR. Restore a clean canonical `master`, remove the merged feature branch, and give Ajin the live links.
 
+For every agent browser review, install the origin-scoped `_notrack` init script and block Google Analytics / Google Tag Manager requests at the context level before the first live navigation. Verify zero attempted analytics requests; new tabs must inherit the guard. Local previews and webdriver browsers are also excluded by `analytics.js`. See [MAINTENANCE.md](MAINTENANCE.md#analytics-and-test-traffic) for the positive and negative controls required when changing that loader. The HTTP-only live verifier does not execute tracking code.
+
 This is the routine path, not an exception to approval or Git safety. Changes to the schema, layout, publishing behavior or homepage selection need the usual broader review. Publication authorization persists within the agreed task; do not repeatedly ask for the same approval.
 
 ## Commands
