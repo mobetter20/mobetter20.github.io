@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="running-blue">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ajin.im is running</title>
-<meta name="description" content="Ajin's running log — mileage, pace, and notes, kept on ajin.im.">
+<meta name="description" content="Ajin is running to the Moon, one run at a time.">
 <link rel="icon" type="image/png" href="/img/a1.png">
 <link rel="apple-touch-icon" href="/img/a1.png">
 <link rel="canonical" href="https://ajin.im/is/running/">
 <meta property="og:site_name" content="ajin.im">
 <meta property="og:title" content="ajin.im is running">
-<meta property="og:description" content="Ajin's running log — mileage, pace, and notes, kept on ajin.im.">
+<meta property="og:description" content="Ajin is running to the Moon, one run at a time.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ajin.im/is/running/">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajin.im is running">
-<meta name="twitter:description" content="Ajin's running log — mileage, pace, and notes, kept on ajin.im.">
+<meta name="twitter:description" content="Ajin is running to the Moon, one run at a time.">
 
 <script src="/analytics.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #1a1612;
@@ -112,7 +112,7 @@
   .stat:first-child { border-top: 1px solid var(--rule); }
 
   .stat-value {
-    font-family: 'DM Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 1.45rem;
     font-weight: 300;
     color: var(--text);
@@ -129,7 +129,7 @@
 
   .updated {
     margin-top: 1rem;
-    font-family: 'DM Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.72rem;
     color: var(--text-faint);
     letter-spacing: 0.02em;
@@ -206,6 +206,7 @@
     .trail .runner { font-size: 1rem; }
   }
 </style>
+<link rel="stylesheet" href="/assets/paper/running-options.css?v=1">
 </head>
 <body>
 
@@ -238,7 +239,7 @@
       <span class="endpoint" aria-hidden="true">🌕</span>
     </div>
 
-    <div class="updated">updated daily</div>
+    <div class="updated">Distance {{running_as_of}} · updated daily</div>
   </div>
 
 </main>

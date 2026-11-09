@@ -1,0 +1,75 @@
+/* Writing uses the original newspaper's type, colours, rules, and proportions. */
+html.writing-document { scroll-behavior:auto }
+.unified-writing { padding-bottom:28px }
+.unified-writing [hidden] { display:none!important }
+.unified-writing .edition-grid { display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px;outline:none;padding-top:24px }
+.unified-writing .edition-rail { border-left:1px solid var(--rule);padding-left:24px;margin-left:-14px }
+.unified-writing .edition-story small { font:11px/1.5 var(--f-label);color:var(--dim) }
+.unified-writing .edition-story h2 { margin:6px 0 10px;font:500 30px/1.08 var(--f-head);letter-spacing:-.35px;text-wrap:pretty }
+.unified-writing .edition-story .edition-dek { font:italic 21px/1.25 var(--f-text);text-wrap:pretty }
+.unified-writing .column-copy { margin-top:17px }
+.unified-writing .column-copy p { font:400 18px/1.4 var(--f-text);text-wrap:pretty }
+.unified-writing .column-copy p+p { margin-top:10px }
+.unified-writing .edition-lead { padding-bottom:24px }
+.unified-writing .edition-lead h2 { font-size:54px;line-height:1.01;letter-spacing:-.9px;color:var(--head);text-wrap:balance }
+.unified-writing .edition-lead .edition-dek { font-size:24px }
+.unified-writing .edition-lead .column-copy { columns:2;column-gap:24px }
+.unified-writing .edition-lead .column-copy p { break-inside:avoid }
+.unified-writing .edition-lead .column-copy p+p { margin-top:0 }
+.unified-writing .edition-pair { display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:28px;padding-block:22px;border-block:1px solid var(--rule) }
+.unified-writing .edition-feature h2 { font-size:38px;line-height:1.04;color:var(--head) }
+.unified-writing .edition-letter { border-left:1px solid var(--rule);padding-left:24px;margin-left:-14px }
+.unified-writing .edition-letter h2 { font-size:28px }
+.unified-writing .edition-letter .edition-dek { font-size:19px }
+.unified-writing .edition-dispatch { padding-bottom:22px }
+.unified-writing .edition-dispatch h2 { font-size:40px;line-height:1.07 }
+.unified-writing .edition-cartoon { border-block:1px solid var(--rule);padding:16px 0 22px;scroll-margin-top:20px }
+.unified-writing .edition-cartoon img { display:block;max-width:310px;width:100%;height:auto;margin:4px auto 10px;mix-blend-mode:multiply }
+.unified-writing .edition-cartoon figcaption { font:500 25px/1.16 var(--f-head);text-align:center;text-wrap:balance;letter-spacing:-.2px }
+.unified-writing .edition-sister { padding-top:20px }
+.unified-writing .edition-sister h2 { font:500 32px/1.04 var(--f-head);color:var(--head);margin:9px 0 }
+.unified-writing .edition-sister>p:not(.eyebrow) { font-size:19px;max-width:30ch }
+.unified-writing .edition-bottom { padding-top:22px }
+.unified-writing .edition-brief h2 { font-size:30px }
+.unified-writing .archive-entry { grid-column:1/-1;margin-top:-14px;text-align:right }
+.unified-writing .archive-entry a { display:inline-block;min-height:44px;padding:8px 0;color:var(--head);font:400 21px/1.3 var(--f-text) }
+.unified-writing .writing-index { max-width:720px;margin-inline:auto;padding:18px 0 12px;outline:none }
+.unified-writing:not(.is-enhanced) .writing-index { border-top:3px double var(--rule);margin-top:30px;padding-top:24px }
+.unified-writing .archive-return a { display:inline-flex;align-items:center;min-height:44px;font:12px/1.5 var(--f-label);color:var(--head) }
+.unified-writing .writing-index h2 { font:500 40px/1.1 var(--f-head);letter-spacing:-.4px;color:var(--head);margin:10px 0 22px }
+.unified-writing .writing-index h2.visually-hidden { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0 }
+.unified-writing .writing-list { list-style:none;padding:0;margin:0 }
+.unified-writing .writing-list li { border-bottom:1px solid #1c428620 }
+.unified-writing .writing-list a { display:block;min-height:52px;padding:13px 0;font:400 22px/1.25 var(--f-text);text-wrap:pretty }
+@media(max-width:1000px) {
+  .unified-writing .edition-grid { grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) }
+  .unified-writing .edition-lead h2 { font-size:44px }
+  .unified-writing .edition-lead .column-copy { columns:1 }
+  .unified-writing .edition-lead .column-copy p+p { margin-top:10px }
+  .unified-writing .edition-pair,.unified-writing .edition-bottom { display:block }
+  .unified-writing .edition-letter { border-left:0;padding-left:0;margin-left:0;border-top:1px solid var(--rule);margin-top:22px;padding-top:22px }
+  .unified-writing .edition-dispatch h2 { font-size:36px }
+  .unified-writing .edition-cartoon figcaption { font-size:24px }
+}
+@media(max-width:650px) {
+  .unified-writing .edition-grid { display:flex;flex-direction:column;gap:0;padding-top:18px }
+  .unified-writing .edition-main,.unified-writing .edition-rail { display:contents }
+  .unified-writing .edition-lead { order:1 }
+  .unified-writing .edition-cartoon { order:2 }
+  .unified-writing .edition-pair { order:3;border:0 }
+  .unified-writing .edition-dispatch { order:4 }
+  .unified-writing .edition-bottom { order:5;border-top:1px solid var(--rule);padding-top:20px }
+  .unified-writing .edition-sister { order:6;border-top:1px solid var(--rule);margin-top:22px }
+  .unified-writing .archive-entry { order:0;margin-top:-10px;margin-bottom:14px;text-align:left }
+  .unified-writing .edition-lead h2 { font-size:40px;line-height:1.03;letter-spacing:-.6px }
+  .unified-writing .edition-lead .edition-dek { font-size:22px }
+  .unified-writing .column-copy p { font-size:17px }
+  .unified-writing .edition-feature h2 { font-size:34px }
+  .unified-writing .edition-rail { border-left:0;padding-left:0;margin-left:0 }
+  .unified-writing .edition-dispatch { border-top:1px solid var(--rule);padding-top:20px;margin-top:22px }
+  .unified-writing .edition-dispatch h2 { font-size:34px }
+  .unified-writing .edition-sister { padding-bottom:6px }
+  .unified-writing .writing-index { padding-top:10px }
+  .unified-writing .writing-index h2 { font-size:36px;margin-top:6px;margin-bottom:18px }
+  .unified-writing .writing-list a { padding-block:14px }
+}

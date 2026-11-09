@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
-"""Build ajin.im pages from templates/ + content/stats.md.
+"""Build Home and the stats pages from templates and committed content.
 
-Renders:
-  - index.html              (root sentence page) from templates/root.html
-  - is/running/index.html   (personal stats page) from templates/running.html
+Home reads the comedy catalog and essay registry through paper_site. Running,
+Reading and Learning read content/stats.md. The daily running adapter relies on
+this output set; Writing and Building belong to the explicit build_sections
+publisher, never this daily entry point.
 
 Usage:
-    python3 _scripts/build_root.py          # write both
-    python3 _scripts/build_root.py --check  # print output sizes, don't write
-    python3 _scripts/build_root.py --check-home  # verify generated home
-
-Home is one open tray: worlds, builds, essays, then a running line.
-It additionally reads the essay registry and curated building index.
-The tracked build_writes entry point refreshes home during writing publication.
+    python3 _scripts/build_root.py
+    python3 _scripts/build_root.py --root-only
+    python3 _scripts/build_root.py --check
+    python3 _scripts/build_root.py --check-home
 """
 
 import argparse
@@ -22,6 +20,7 @@ from pathlib import Path
 
 import build_essays
 import home_catalog
+import paper_site
 
 ROOT = Path(__file__).resolve().parent.parent
 ROOT_TEMPLATE_PATH = ROOT / "templates" / "root.html"
@@ -265,7 +264,7 @@ def replacements_for_root() -> dict[str, str]:
     if not learning:
         raise StatsError("learning: section body is empty")
 
-    home = home_catalog.render_home(build_essays.load_posts(), BUILDING_INDEX_PATH)
+    paper_home = paper_site.render_home(build_essays.load_posts(), total_km, since_year, running_as_of)
 
     return {
         "{{running_total_km}}": total_km_fmt,
@@ -278,9 +277,8 @@ def replacements_for_root() -> dict[str, str]:
         "{{reading_year}}": reading_year_str,
         "{{learning}}": learning,
         "{{running_as_of}}": running_as_of,
-        "{{home_worlds}}": home["worlds"],
-        "{{home_building}}": home["building"],
-        "{{home_essays}}": home["essays"],
+        "{{paper_home}}": paper_home,
+        "{{paper_head}}": paper_site.head("home"),
     }
 
 
@@ -297,7 +295,7 @@ def check_home() -> None:
     actual = INDEX_PATH.read_text(encoding="utf-8")
     if actual != expected:
         raise StatsError(
-            "index.html is stale relative to its template, essay registry, or building source; "
+            "index.html is stale relative to its template, essay registry, or content source; "
             "run python3 _scripts/build_root.py"
         )
     for token in ("{{home_worlds}}", "{{home_building}}", "{{home_essays}}", "{{running_as_of}}"):

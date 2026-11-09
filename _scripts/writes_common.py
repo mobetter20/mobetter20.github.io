@@ -1,8 +1,8 @@
-"""Shared rendering for the writes/wrote world.
+"""Shared rendering for legacy writing readers and compatibility routes.
 
-One reading-page template (mono chrome + serif body) and one log-index template
-(monospace), both styled by /writes.css. Imported by build_essays, build_comedy,
-build_writes, and build_wrote so the four surfaces can never drift apart.
+Individual pieces retain durable URLs, but use the same paper palette and
+typography as /is/writing. The former indexes are crawl-safe routes to that
+unified archive.
 """
 
 from __future__ import annotations
@@ -13,7 +13,7 @@ FONTS = (
     '<link rel="preconnect" href="https://fonts.googleapis.com" />\n'
     '    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n'
     '    <link\n'
-    '      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=DM+Mono:wght@300;400;500&display=swap"\n'
+    '      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap"\n'
     '      rel="stylesheet"\n'
     '    />'
 )
@@ -52,15 +52,12 @@ def head(
     <meta name="twitter:title" content="{t}" />
     <meta name="twitter:description" content="{d}" />
     {FONTS}
-    <link rel="stylesheet" href="/writes.css" />
+    <link rel="stylesheet" href="/writes.css?v=paper-r12" />
     <script src="/analytics.js" defer></script>
   </head>"""
 
 
-FOOTER = (
-    '    <footer class="site-foot">&#8617; <a href="/">ajin.im</a> '
-    '&nbsp;&middot;&nbsp; <a href="mailto:hi@ajin.im">hi@ajin.im</a></footer>'
-)
+FOOTER = '    <footer class="site-foot"><a href="mailto:hi@ajin.im">hi@ajin.im</a></footer>'
 
 
 def reading_page(
@@ -86,7 +83,7 @@ def reading_page(
 {head(title, description, canonical, og_type="article", feed_url=feed_url)}
   <body class="read-page">
     <main class="shell">
-      <a class="back" href="{back_href}">{html.escape(back_label)}</a>
+      <a class="back" href="{back_href}" target="_self">{html.escape(back_label)}</a>
       <p class="kick">{html.escape(kicker)}</p>
       <h1>{html.escape(title)}</h1>
 {subtitle_html}{note_block}      <article class="body">
@@ -138,20 +135,23 @@ def log_page(
 """
 
 
-def redirect_stub(target_url: str, *, title: str = "Moved") -> str:
-    """A tiny meta-refresh redirect page (noindex), for an old URL that moved."""
+def redirect_stub(
+    target_url: str, *, title: str = "Moved", canonical: str | None = None
+) -> str:
+    """A tiny, visible noindex compatibility redirect."""
+    canonical_url = canonical or f"https://ajin.im{target_url}"
     return f"""<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex" />
+    <meta name="robots" content="noindex,follow" />
     <title>{html.escape(title)}</title>
     <meta http-equiv="refresh" content="0; url={target_url}" />
-    <link rel="canonical" href="https://ajin.im{target_url}" />
+    <link rel="canonical" href="{canonical_url}" />
   </head>
   <body>
-    <p>Moved to <a href="{target_url}">ajin.im{target_url}</a>.</p>
+    <p>Moved to <a href="{target_url}" target="_self">ajin.im{target_url}</a>.</p>
   </body>
 </html>
 """

@@ -199,8 +199,8 @@ def build_post_page(post: EssayPost) -> str:
         canonical=f"https://ajin.im/writes/{post.slug}/",
         description=post.excerpt or post.title,
         kicker=kicker,
-        back_href="/writes/",
-        back_label="← ajin.im/writes",
+        back_href="/is/writing/#all",
+        back_label="← All writing",
         feed_url="/writes/feed.xml",
     ).replace("</body>", '<script src="/assets/entrances/reader-return.js" defer></script>\n</body>')
 

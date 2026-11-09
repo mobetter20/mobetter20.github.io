@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "projects": [
+    {
+      "title": "Bureau of Interior Conditions",
+      "href": "https://propagandaformyself.xyz",
+      "status": "Fictional world",
+      "description": "Where feelings become filings.",
+      "collection": true,
+      "night": false
+    },
+    {
+      "title": "Seoul Crushing",
+      "href": "https://seoulcrushing.com",
+      "status": "6 pieces →",
+      "description": "Korea, made legible. With bite.",
+      "collection": true,
+      "night": false
+    },
+    {
+      "title": "Instrument Bus",
+      "href": "/is/building/bus/",
+      "status": "9 live →",
+      "description": "Diagnostic instruments for interior conditions.",
+      "collection": true,
+      "night": false
+    },
+    {
+      "title": "omen.ops",
+      "href": "/is/building/omen.ops/",
+      "status": "live",
+      "description": "The Joseon court's omens, rendered as an observability dashboard.",
+      "collection": false,
+      "night": true
+    },
+    {
+      "title": "Kenbaiki",
+      "href": "/is/building/kenbaiki/",
+      "status": "live",
+      "description": "Practice using a Japanese ticket machine, from inserting cash to collecting your order.",
+      "collection": false,
+      "night": false
+    },
+    {
+      "title": "Passport Stamp Archive",
+      "href": "/is/building/stamps/",
+      "status": "live",
+      "description": "Real border stamps, mapped by place and pressed onto the page.",
+      "collection": false,
+      "night": false
+    },
+    {
+      "title": "Metro Match",
+      "href": "/is/building/metro-match/",
+      "status": "live",
+      "description": "18 metro systems as trading cards; pick a stat, beat the cpu.",
+      "collection": false,
+      "night": true
+    },
+    {
+      "title": "LunarOnce",
+      "href": "/is/building/lunaronce/",
+      "status": "live",
+      "description": "Lunar birthdays, converted once into 60 years of solar dates.",
+      "collection": false,
+      "night": true
+    },
+    {
+      "title": "the sky over Seoul",
+      "href": "/is/building/sky-over-seoul/",
+      "status": "live",
+      "description": "130 years of real daily weather over Joseon Seoul.",
+      "collection": false,
+      "night": true
+    }
+  ]
+}

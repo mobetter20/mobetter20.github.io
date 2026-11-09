@@ -1,0 +1,72 @@
+/* Building keeps its own cabinet entrance in this local study. */
+body.machine-c.cabinet-page { padding:0 0 35px;background:var(--paper);color:var(--ink);font:18px/1.35 var(--f-text) }
+.cabinet-page .plate { padding-top:14px }
+.cabinet-page .plate h1 { color:var(--head) }
+.cabinet-page .site-nav.folio { display:flex;color:var(--ink) }
+.cabinet-page .machine { max-width:1176px;margin:28px auto 40px;padding-top:18px }
+.cabinet-caption { display:flex;justify-content:space-between;align-items:baseline;gap:15px;color:#e6effa;padding:10px 6px 20px;font:11px/1.6 var(--mono) }
+.cabinet-caption>span:first-child { color:#fffcec;font-weight:500;text-transform:uppercase;letter-spacing:.07em }
+.cabinet-page .machine-body { display:block }
+.cabinet-page .worlds.cabinet-destinations { grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:0;padding-bottom:0 }
+.cabinet-page .worlds.cabinet-destinations .label { min-height:142px;padding:13px 12px 15px;gap:12px }
+.cabinet-page .worlds.cabinet-destinations .choice-title { font-size:26px;line-height:1.08 }
+.cabinet-page .choice-desc,.cabinet-page .build .choice-desc { font-size:12px;line-height:1.4 }
+.cabinet-page .group-title { font-size:10px;margin:5px 0 12px;line-height:1.4 }
+.cabinet-page .inventory+.inventory { margin-top:23px }
+.cabinet-page .pieces { grid-template-columns:repeat(3,minmax(0,1fr));gap:12px }
+.cabinet-page .build .label { min-height:128px;padding:12px;gap:10px }
+.cabinet-page .build .choice-title { font-size:18px;line-height:1.15 }
+.cabinet-page .label-top,.cabinet-page .press-face { font-size:10px }
+.cabinet-page .press-face { padding-block:9px }
+.cabinet-page .service-panel { margin-top:23px }
+.cabinet-page .port-label { font-size:9px }
+.cabinet-page .port-paper { font-size:11px }
+.cabinet-page .return-key { font-size:10px }
+.cabinet-page .service-mark small { font-size:8px }
+.cabinet-page .choice:hover { text-decoration:none }
+body.machine-c.native-cabinet { padding:30px 0 35px;background:#e8ebec }
+.native-cabinet .machine { max-width:1050px;margin-top:0 }
+.native-cabinet .marquee { margin-bottom:15px;padding-block:12px 21px }
+.native-cabinet .site-heading { font:inherit;padding:0;letter-spacing:normal }
+.native-cabinet .brand { font-size:68px }
+.native-cabinet .marquee-note { font:11px/1.5 var(--mono);letter-spacing:.04em }
+.machine-routes { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:10px;background:#173771;border:1px solid #123365;box-shadow:inset 0 2px 3px #061b4360;border-radius:5px;margin-bottom:10px }
+.route-key { display:flex;gap:12px;align-items:center;padding:12px;border:1px solid #a3afb6;border-bottom:4px solid #8999a3;box-shadow:0 2px 1px #061b4360,inset 0 1px #fff;border-radius:4px;background:linear-gradient(#fff,#e8ecee);color:#33414b;font:12px/1.4 var(--mono) }
+.route-key:hover { text-decoration:none;background:#f4f7fa }
+.route-key[aria-current=page] { background:#e2e7e8;border-bottom-width:2px;padding-top:14px;box-shadow:inset 0 2px 4px #566a7626 }
+.route-lamp { width:7px;height:7px;border-radius:50%;background:#a2abb0;flex:none }
+.route-key[aria-current=page] .route-lamp { background:#fff200;border:1px solid #9d9835;box-shadow:0 0 5px #fff20080 }
+@media(max-width:1240px) { .cabinet-page .machine { margin-inline:32px } }
+@media(max-width:900px) {
+  .cabinet-page .worlds.cabinet-destinations .choice-title { font-size:23px }
+  .cabinet-page .worlds.cabinet-destinations .label { min-height:170px }
+  .cabinet-page .build .label { min-height:155px }
+}
+@media(max-width:650px) {
+  .cabinet-page .plate { padding-top:12px }
+  .cabinet-page .machine { margin:20px 12px 30px;padding:15px 12px 0 }
+  .cabinet-caption { padding:7px 2px 14px;font-size:9px;align-items:center }
+  .cabinet-caption>span:last-child { max-width:158px;text-align:right }
+  .cabinet-page .selection-bay { padding:10px 8px 12px }
+  .cabinet-page .worlds.cabinet-destinations { grid-template-columns:1fr;gap:10px }
+  .cabinet-page .worlds.cabinet-destinations .label { min-height:0;padding:12px;gap:10px }
+  .cabinet-page .worlds.cabinet-destinations .choice-title { font-size:26px }
+  .cabinet-page .pieces { grid-template-columns:1fr;gap:10px }
+  .cabinet-page .build .label { min-height:0;padding:12px;gap:10px }
+  .cabinet-page .build .choice-title { font-size:20px }
+  .cabinet-page .choice-desc,.cabinet-page .build .choice-desc { font-size:12px }
+  .cabinet-page .label-top,.cabinet-page .press-face { font-size:10px }
+  .cabinet-page .group-title { font-size:10px }
+  .cabinet-page .service-panel { gap:12px }
+  .cabinet-page .contact-port { width:100%;max-width:none }
+  .cabinet-page .port-paper { font-size:11px }
+  .cabinet-page .return-key { font-size:11px }
+  body.machine-c.native-cabinet { padding-top:12px }
+  .native-cabinet .machine { margin-top:0 }
+  .native-cabinet .brand { font-size:55px }
+  .native-cabinet .marquee-note { font-size:10px }
+  .machine-routes { gap:6px;padding:7px }
+  .route-key { justify-content:center;gap:4px;padding:10px 4px;font-size:9px;flex-wrap:wrap }
+  .route-key[aria-current=page] { padding-top:12px }
+  .route-lamp { width:5px;height:5px }
+}

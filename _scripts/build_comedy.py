@@ -1,7 +1,11 @@
 from __future__ import annotations
 
 import html
+import argparse
+import json
+import os
 import re
+import tempfile
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -14,6 +18,9 @@ EXPORT_ROOT = Path.home() / "Documents/New project/personal/ajin.im:is:writing/a
 COMEDY_ROOT = REPO_ROOT / "is" / "writing" / "comedy"
 COMEDY_SOURCE_ROOT = COMEDY_ROOT / "_src"
 WROTE_ROOT = REPO_ROOT / "wrote"
+COMEDY_DATA_PATH = REPO_ROOT / "content" / "comedy.json"
+SCHEMA_VERSION = 1
+SAFE_SLUG_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 
 
 @dataclass(frozen=True)
@@ -160,15 +167,47 @@ def sanitize_anchor(match: re.Match[str]) -> str:
     return f'<a href="{href}">'
 
 
+def is_verified_terminal_promo(inner_html: str) -> bool:
+    """Recognise only the four ending forms observed in the saved exports.
+
+    These are publisher boilerplate, not inferred from their position or a
+    `section--last` class.  Keeping this list literal makes future imports
+    conservative: unfamiliar endings remain published until deliberately
+    reviewed.
+    """
+    text = normalize_text(inner_html).casefold()
+    return text.startswith((
+        "wouldn’t you rather be laughing? follow ",
+        "wouldn't you rather be laughing? follow ",
+        "click here to subscribe to muddyum’s newsletter",
+        "click here to subscribe to muddyum's newsletter",
+        "this piece was first published in ",
+        "this piece was originally published in ",
+    ))
+
+
+def strip_verified_promos(body_html: str) -> str:
+    def remove(match: re.Match[str]) -> str:
+        return "" if is_verified_terminal_promo(match.group(2)) else match.group(0)
+
+    # Exports use paragraph and blockquote nodes for these exact tails.
+    return re.sub(r"<(p|blockquote)\b[^>]*>(.*?)</\1>", remove, body_html, flags=re.S | re.I)
+
+
 def clean_body(body_html: str) -> str:
-    body_html = re.sub(r"<section\b[^>]*section--last[^>]*>.*?</section>", "", body_html, flags=re.S | re.I)
+    """Keep a Medium export's article, removing only known export furniture.
+
+    `section--last` is structural, not a footer marker: short posts and the
+    final part of long posts commonly have it.  Removing that section used to
+    erase six complete published posts and the end of the numbered-list post.
+    """
+    body_html = strip_verified_promos(body_html)
     body_html = re.sub(r"<figure\b.*?</figure>", "", body_html, flags=re.S | re.I)
     body_html = re.sub(r"<div\b[^>]*graf--mixtapeEmbed[^>]*>.*?</div>", "", body_html, flags=re.S | re.I)
     body_html = re.sub(r"<h4\b[^>]*>\s*</h4>", "", body_html, flags=re.S | re.I)
     body_html = re.sub(r"<h4\b[^>]*graf--kicker[^>]*>.*?</h4>", "", body_html, flags=re.S | re.I)
     body_html = re.sub(r"<h3\b[^>]*graf--title[^>]*>.*?</h3>", "", body_html, flags=re.S | re.I)
     body_html = re.sub(r"<h4\b[^>]*graf--subtitle[^>]*>.*?</h4>", "", body_html, flags=re.S | re.I)
-    body_html = re.sub(r"<p\b[^>]*>\s*Thanks to .*?</p>", "", body_html, flags=re.S | re.I)
     body_html = re.sub(r"<hr\b[^>]*>", "", body_html, flags=re.I)
     body_html = re.sub(r"</?(?:section|div)\b[^>]*>", "", body_html, flags=re.I)
     body_html = re.sub(r"<p\b[^>]*>", "<p>", body_html, flags=re.I)
@@ -251,8 +290,8 @@ def build_page(post: ComedyPost) -> str:
         canonical=f"https://ajin.im/wrote/{post.slug}/",
         description=post.subtitle or post.title,
         kicker=f"the comedy years · {post.month_label}",
-        back_href="/wrote/",
-        back_label="← ajin.im/wrote",
+        back_href="/is/writing/#all",
+        back_label="← All writing",
         subtitle=post.subtitle,
         note_html=note_html,
     )
@@ -266,45 +305,167 @@ def build_standalone_page(post: StandaloneComedyPost) -> str:
         canonical=f"https://ajin.im/wrote/{post.slug}/",
         description=post.subtitle or post.title,
         kicker="the comedy years",
-        back_href="/wrote/",
-        back_label="← ajin.im/wrote",
+        back_href="/is/writing/#all",
+        back_label="← All writing",
         subtitle=post.subtitle,
     )
 
 
-def load_posts() -> tuple[list[ComedyPost], list[StandaloneComedyPost]]:
-    COMEDY_SOURCE_ROOT.mkdir(parents=True, exist_ok=True)
-
-    medium_posts: list[ComedyPost] = []
-    for source_path in sorted(EXPORT_ROOT.glob("*.html"), reverse=True):
-        post = parse_post(source_path)
-        if is_response_like(post):
-            continue
-        medium_posts.append(post)
-
-    standalone_posts = [parse_standalone_post(path) for path in sorted(COMEDY_SOURCE_ROOT.glob("*.md"))]
-
-    unique_medium_posts: list[ComedyPost] = []
+def _uniquify_slugs(posts: list[ComedyPost]) -> list[ComedyPost]:
+    """Preserve the historic slug policy when importing old Medium exports."""
+    unique_posts: list[ComedyPost] = []
     slug_counts: dict[str, int] = {}
-    for post in medium_posts:
+    for post in posts:
         count = slug_counts.get(post.slug, 0) + 1
         slug_counts[post.slug] = count
         if count > 1:
             post = ComedyPost(
-                source=post.source,
-                title=post.title,
-                subtitle=post.subtitle,
-                date=post.date,
-                canonical=post.canonical,
-                body_html=post.body_html,
+                source=post.source, title=post.title, subtitle=post.subtitle,
+                date=post.date, canonical=post.canonical, body_html=post.body_html,
                 slug=f"{post.slug}-{count}",
             )
-        unique_medium_posts.append(post)
+        unique_posts.append(post)
+    return unique_posts
 
-    return unique_medium_posts, standalone_posts
+
+def import_medium_posts(export_root: Path = EXPORT_ROOT) -> list[ComedyPost]:
+    """Read the private Medium export.  This is an explicit local refresh only."""
+    sources = sorted(export_root.glob("*.html"), reverse=True)
+    if not sources:
+        raise ValueError(f"no Medium export files found at {export_root}; refusing to replace committed comedy data")
+    medium_posts: list[ComedyPost] = []
+    for source_path in sources:
+        post = parse_post(source_path)
+        if is_response_like(post):
+            continue
+        medium_posts.append(post)
+    posts = _uniquify_slugs(medium_posts)
+    validate_medium_posts(posts, export_root)
+    return posts
+
+
+def validate_medium_posts(posts: list[ComedyPost], source: Path) -> None:
+    if not posts:
+        raise ValueError(f"no comedy posts in {source}; refusing to replace committed comedy data")
+    seen: set[str] = set()
+    for post in posts:
+        if not SAFE_SLUG_RE.fullmatch(post.slug):
+            raise ValueError(f"invalid comedy slug in {source}: {post.slug}")
+        if post.slug in seen:
+            raise ValueError(f"duplicate comedy slug in {source}: {post.slug}")
+        seen.add(post.slug)
+        if not normalize_text(clean_body(post.body_html)):
+            raise ValueError(f"empty comedy body after cleaning in {source}: {post.slug}")
+
+
+def write_medium_data(
+    posts: list[ComedyPost], path: Path = COMEDY_DATA_PATH, *, allow_removals: bool = False
+) -> None:
+    validate_medium_posts(posts, path)
+    # A partial local export is far more likely than an intentional archive
+    # deletion. Compare before writing and require an explicit CLI escape hatch.
+    if path.exists():
+        existing = load_medium_data(path)
+        missing = sorted({post.slug for post in existing} - {post.slug for post in posts})
+        if missing and not allow_removals:
+            raise ValueError(
+                f"import would remove {len(missing)} committed comedy posts ({', '.join(missing)}); "
+                "refusing to replace data without --allow-removals"
+            )
+    data = {
+        "schema_version": SCHEMA_VERSION,
+        "posts": [
+            {
+                "slug": post.slug,
+                "title": post.title,
+                "subtitle": post.subtitle,
+                "date": post.date.date().isoformat(),
+                "canonical": post.canonical,
+                "body_html": clean_body(post.body_html),
+            }
+            for post in posts
+        ],
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    encoded = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+    # Write beside the target, then replace atomically: an interrupted refresh
+    # leaves either the old complete catalog or the new complete catalog.
+    descriptor, temporary_name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as temporary:
+            temporary.write(encoded)
+            temporary.flush()
+            os.fsync(temporary.fileno())
+        os.replace(temporary_name, path)
+    except BaseException:
+        Path(temporary_name).unlink(missing_ok=True)
+        raise
+
+
+def load_medium_data(path: Path = COMEDY_DATA_PATH) -> list[ComedyPost]:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError as error:
+        raise ValueError(f"missing committed comedy data: {path}") from error
+    except json.JSONDecodeError as error:
+        raise ValueError(f"invalid comedy JSON at {path}: {error.msg}") from error
+    if data.get("schema_version") != SCHEMA_VERSION or not isinstance(data.get("posts"), list):
+        raise ValueError(f"invalid comedy JSON schema at {path}")
+
+    required = ("slug", "title", "date", "canonical", "body_html")
+    posts: list[ComedyPost] = []
+    seen: set[str] = set()
+    for number, item in enumerate(data["posts"], 1):
+        if (not isinstance(item, dict)
+                or any(not isinstance(item.get(key), str) or not item[key].strip() for key in required)
+                or not isinstance(item.get("subtitle"), str)):
+            raise ValueError(f"invalid comedy post #{number} in {path}: required fields are slug, title, subtitle, date, canonical, body_html")
+        slug = item["slug"]
+        if not SAFE_SLUG_RE.fullmatch(slug):
+            raise ValueError(f"invalid comedy slug in {path}: {slug}")
+        if slug in seen:
+            raise ValueError(f"duplicate comedy slug in {path}: {slug}")
+        seen.add(slug)
+        try:
+            date = datetime.strptime(item["date"], "%Y-%m-%d")
+        except ValueError as error:
+            raise ValueError(f"invalid comedy date for {slug} in {path}: {item['date']}") from error
+        post = ComedyPost(path, item["title"], item["subtitle"], date, item["canonical"], item["body_html"], slug)
+        if not normalize_text(clean_body(post.body_html)):
+            raise ValueError(f"empty comedy body after cleaning in {path}: {slug}")
+        posts.append(post)
+    validate_medium_posts(posts, path)
+    return posts
+
+
+def load_posts() -> tuple[list[ComedyPost], list[StandaloneComedyPost]]:
+    """Load committed public comedy data.  Never depends on private exports."""
+    medium_posts = load_medium_data()
+
+    standalone_posts = [parse_standalone_post(path) for path in sorted(COMEDY_SOURCE_ROOT.glob("*.md"))]
+    medium_slugs = {post.slug for post in medium_posts}
+    for post in standalone_posts:
+        if not SAFE_SLUG_RE.fullmatch(post.slug):
+            raise ValueError(f"invalid standalone comedy slug: {post.slug}")
+        if post.slug in medium_slugs:
+            raise ValueError(f"comedy slug collision between Medium data and standalone source: {post.slug}")
+
+    return medium_posts, standalone_posts
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--import-medium", action="store_true", help="refresh committed comedy.json from the local private Medium export")
+    parser.add_argument("--allow-removals", action="store_true", help="allow an import to remove slugs from committed comedy.json")
+    args = parser.parse_args()
+    if args.allow_removals and not args.import_medium:
+        parser.error("--allow-removals is only valid with --import-medium")
+    if args.import_medium:
+        posts = import_medium_posts()
+        write_medium_data(posts, allow_removals=args.allow_removals)
+        print(f"wrote {COMEDY_DATA_PATH} ({len(posts)} Medium posts)")
+        return
+
     unique_medium_posts, standalone_posts = load_posts()
 
     for post in unique_medium_posts:
