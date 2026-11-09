@@ -10,6 +10,7 @@ import tempfile
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import writes_common
 import image_pieces
@@ -23,6 +24,9 @@ WROTE_ROOT = REPO_ROOT / "wrote"
 COMEDY_DATA_PATH = REPO_ROOT / "content" / "comedy.json"
 SCHEMA_VERSION = 1
 SAFE_SLUG_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
+# Owner-confirmed Medium response, not an article. Use its stable identity so
+# a changed or truncated export title cannot reintroduce it as a post.
+EXCLUDED_MEDIUM_IDS = {"585a1f5d093f"}
 
 
 @dataclass(frozen=True)
@@ -274,6 +278,9 @@ def parse_standalone_post(source_path: Path) -> StandaloneComedyPost:
 
 
 def is_response_like(post: ComedyPost) -> bool:
+    medium_id = urlsplit(post.canonical).path.rstrip("/").rsplit("/", 1)[-1].rsplit("-", 1)[-1]
+    if medium_id in EXCLUDED_MEDIUM_IDS:
+        return True
     plain = normalize_text(post.body_html)
     title = re.sub(r"\s+", " ", post.title).strip(" .!?:;")
     body = re.sub(r"\s+", " ", plain).strip(" .!?:;")

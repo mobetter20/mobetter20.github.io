@@ -105,12 +105,12 @@ class HomeBuildTest(unittest.TestCase):
     def test_unified_archive_tracks_essay_registry(self):
         baseline = build_sections.expected_sections()['is/writing/index.html']
         image_count = len(paper_site.image_pieces.load_catalog()['pieces'])
-        self.assertEqual(baseline.count('<li data-kind='), 51 + image_count + len(build_writes.collect_items()))
+        self.assertEqual(baseline.count('<li data-kind='), 50 + image_count + len(build_writes.collect_items()))
         fixture = SimpleNamespace(slug='new-essay', title='New essay', body_md='Words', date='2026', excerpt='A thought.', order=1)
         with patch.object(build_essays, 'load_posts', return_value=[fixture]):
             added = build_sections.expected_sections()['is/writing/index.html']
             home = build_root.expected_root()
-        self.assertEqual(added.count('<li data-kind='), 52 + image_count)
+        self.assertEqual(added.count('<li data-kind='), 51 + image_count)
         self.assertIn('href="/writes/new-essay/"', added)
         self.assertNotIn('/writes/new-essay/', home)
         self.assertNotIn('/writes/new-essay/', baseline)

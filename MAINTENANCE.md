@@ -113,7 +113,7 @@ Then open `http://127.0.0.1:8745/is/writing/`. Use an available port and stop th
 
 The essay publisher has its own maintenance gate and can publish approved Markdown independently. Read its README before altering it or manually editing its managed sources. Its production `--dry-run` can fetch, rebase and push; it is not a harmless offline test.
 
-Before merging this release, install the reviewed publisher runtime under its existing held/drained maintenance sequence, then run its offline self-test before removing the hold. The source verifier now proves an exact unified-Writing archive link, source and reader. Do not say that runtime migration is complete until the installed copy and drained/reloaded job have been checked.
+When changing publisher verification, install the reviewed runtime under its held/drained maintenance sequence and run its offline self-test before removing the hold. Routine content changes do not require a runtime reinstall. The verifier proves an exact unified-Writing archive link, source and reader; verify the installed copy and reloaded job after a runtime change.
 
 Keep documentation focused: current rules in AGENTS.md, operational instructions and significant changes here, exact diffs in Git. For investigation, use `git log --oneline`, `git show <commit>`, or `git log -- <path>`. Do not create a second exhaustive change log or describe planned work as implemented.
 
@@ -153,3 +153,9 @@ Added Do you cycle? and On privilege as individual readers and the newest entrie
 Added `_scripts/piece.py` and the short publishing recipe to remove repeated conversion, metadata editing and verification setup. Preparation refuses conflicting content, validates source data before replacement, compares decoded pixels and treats identical retries as no-ops. Checks run once per batch; live verification is read-only and cannot mistake a local build for deployment. Tests cover rollback, duplicates, preservation and stale public responses; CI installs the preparation dependency.
 
 Mug Shot of My Desk now has its numbered-mug illustration before the prose. The optional `illustration` metadata is separate from imported text and preserved by slug during Medium refreshes; the reader adds the image, a short AI credit, native enlargement and social-image metadata. The article keeps its 2023-11-30 date, URL, text and archive position. Publication and live evidence are recorded in this change's release PR.
+
+### 2026-11-10: writing selection and mistaken comment
+
+Replaced the agent-selected Wish Depletion and Anger features with Ajin’s choices: Wife Evolves Into a Scarier Pokemon in the feature slot and Step on Me Please in the sidebar. Both former features remain in Browse all. Standalone excerpts now come from their Markdown source, with no invented date or subtitle.
+
+“My husband's been married only once…” was a Medium comment mistakenly imported as an article. The importer checked only exact title/body equality, so its truncated title escaped that check; a content-preservation test then incorrectly treated the comment as an expected article. Removed its one catalog record, generated reader and discovery links. Import now excludes its exact Medium ID, with a regression fixture that keeps a legitimate short article with an ellipsis title. The private export is untouched. This is a targeted correction, not a new heuristic for deleting short writing.
