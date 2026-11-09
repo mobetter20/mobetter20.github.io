@@ -4,11 +4,11 @@ This is the practical guide for adding work and maintaining the site. [AGENTS.md
 
 ## Release status
 
-**As of 2026-11-09:** the newspaper redesign was published through PR #220. The subsequent image-piece work is saved locally on `codex/image-pieces-preview` in the sibling `ajin-image-preview` worktree. It has not been pushed or published. Keep that work local until Ajin explicitly approves publication.
+**Release approved 2026-11-09:** the newspaper redesign was published through PR #220. Ajin has now approved the reviewed cartoon batch for publication, with Austen kept on Home. The image release was developed on `codex/image-pieces-preview` in the sibling `ajin-image-preview` worktree. Approval, a Git push and a successful build are distinct from a verified deployment; follow the live checks under Publishing below.
 
-The preview contains eight image readers: Austen, C’est la vie, Thought + Time ≠ Insight, Going to the Market, Children’s Museum, Just Checking the Weather, When you grow up poor, and A gifted child. “A gifted child” is an assistant-proposed title awaiting Ajin's review. Only Austen is eligible for the homepage. The preview also replaces the generic writing-footer credit with a credit beside the artwork. These are preview behaviors until the image release is deployed.
+This release contains eight image readers: Austen, C’est la vie, Thought + Time ≠ Insight, Going to the Market, Children’s Museum, Just Checking the Weather, When you grow up poor, and A gifted child. The reviewed batch includes the title “A gifted child”. Only Austen is eligible for the homepage. The generic writing-footer credit is replaced with a credit beside the artwork.
 
-The current local review page is <http://127.0.0.1:8744/_review/>. It has page and viewport selectors. It works only while the local preview server is running; this address is not a public deployment or permanent hosting arrangement. Ordinary pages can also be previewed with a loopback-only static server from the worktree.
+The local review page used for this release was <http://127.0.0.1:8744/_review/>, with page and viewport selectors. It works only while its local server is running; this address is not a public deployment or permanent hosting arrangement. Visitors use <https://ajin.im/is/writing/#all>. Ordinary pages can also be previewed with a loopback-only static server from a worktree.
 
 ## Adding pieces: what Ajin needs to do
 
@@ -22,7 +22,7 @@ There is currently no image upload form or automatic image drop folder. The exis
 
 ## Adding an image: maintainer procedure
 
-1. Check the active branch, worktree and Git status. Continue the existing preview worktree while this release is under review. Keep the canonical checkout free for the essay publisher, and investigate unrelated changes before touching them.
+1. Check the active branch, worktree and Git status. Use a feature worktree based on the current default branch; continue an existing one if its work is still under review. Keep the canonical checkout free for the essay publisher, and investigate unrelated changes before touching them.
 2. Inspect the original image. Choose a stable, descriptive lowercase slug with hyphens. Add the web asset under `assets/paper/pieces/<slug>.webp`. The current conversion uses lossless WebP, for example `cwebp -lossless -m 6 "source.png" -o "assets/paper/pieces/new-piece.webp"`. Verify the dimensions and pixel preservation. Do not change the illustration, crop away captions, or stretch it to match other pieces.
 3. Add a record to [content/image-pieces.json](content/image-pieces.json). Use an existing record as a structural example, with a new unique slug. The fields are:
 
@@ -45,7 +45,7 @@ There is currently no image upload form or automatic image drop folder. The exis
 
 Keep the entire image and the native full-size link. Embedded titles and captions do not need a second visible copy outside the image. Each reader still has an accessible page heading.
 
-An external title can be part of the work. “When you grow up poor” supplies the childhood context before the gum joke, so it is visibly displayed above the image using `show_title: true`. The same opt-in treatment is being previewed with the proposed title “A gifted child”. This does not make visible headings the default for other pieces. The title remains in the browser tab, social metadata and Writing list regardless of its visibility on the reader.
+An external title can be part of the work. “When you grow up poor” supplies the childhood context before the gum joke, so it is visibly displayed above the image using `show_title: true`. “A gifted child” uses the same opt-in treatment. This does not make visible headings the default for other pieces. The title remains in the browser tab, social metadata and Writing list regardless of its visibility on the reader.
 
 The shared credit is **“Words and ideas by Ajin. Illustrations generated with AI.”** Its source is `CREDIT` in [_scripts/image_pieces.py](_scripts/image_pieces.py). It belongs beside the artwork on Home, the Writing selection, and image readers. It does not belong in Browse all or in a generic Writing footer.
 
@@ -122,3 +122,7 @@ PR #220 (`bd123db`, followed by generated-root commit `0fed583`) brought Home, W
 - `92b0fdd`: added Children’s Museum and Just Checking the Weather. At this checkpoint, all 33 existing tests passed, 1,083 internal links across 179 pages had no broken links, and the new readers were checked at all three viewport widths. Native full-size links worked; the museum’s small labels need enlargement on a phone. The worktree was clean and the live checkout unchanged.
 - Added this maintenance guide and linked it from AGENTS.md so another chat or agent can find the workflow and release boundary without reconstructing the conversation.
 - Added When you grow up poor and the provisionally titled A gifted child. Optional visible titles now let words outside an image supply the setup, without repeating headings on the six earlier readers or changing the artwork. The existing readers retain their layout; Austen remains pinned. Verified all eight readers at 375, 768 and 1280px, all 34 tests passed, and 1,103 internal links across 181 pages had no broken links. Still a local preview.
+
+### 2026-11-09: image release approved
+
+Ajin approved publishing the reviewed cartoon batch after the previews, including the two external titles. Keep Austen as the homepage lead. The earlier preview-only entries above are historical checkpoints, not a continuing hold on publication. Record the completed build, deployment and live-page checks in the release PR; inspect the actual public pages before reporting the release live.
