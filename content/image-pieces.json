@@ -11,7 +11,7 @@
       "height": 1254,
       "alt": "A four-panel comic: a person sitting on a toilet checks a marked sheet of toilet paper, celebrates a clean length, finds another mark, then tears the paper and drops a piece. The caption reads “C’est la vie.”",
       "caption": "",
-      "featured": true
+      "featured": false
     },
     {
       "slug": "thought-time-insight",
@@ -22,7 +22,7 @@
       "height": 1374,
       "alt": "Thought + Time ≠ Insight. A diagram shows thought plus air becoming development: a brain grows a sprout in an open beaker. Thought minus air becomes brooding: the brain sits in a closed jar with condensation and mould. Fig. 1. Thought under two conditions.",
       "caption": "",
-      "featured": true
+      "featured": false
     },
     {
       "slug": "austen-at-work",

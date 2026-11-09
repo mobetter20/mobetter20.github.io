@@ -28,12 +28,13 @@ class ImageDiscoveryTest(unittest.TestCase):
 
     def test_caption_cannot_escape_embedded_catalog(self):
         catalog = copy.deepcopy(image_pieces.load_catalog())
-        catalog['pieces'][0]['caption'] = '</script><p>Example & more</p>'
+        featured = next(piece for piece in catalog['pieces'] if piece['featured'])
+        featured['caption'] = '</script><p>Example & more</p>'
         with patch.object(image_pieces, 'load_catalog', return_value=catalog):
             home = paper_site.home_image_lead()
         payload = re.search(r'id="home-image-catalog">(.*?)</script>', home, re.S)[1]
         self.assertNotIn('<', payload)
-        self.assertEqual(json.loads(payload)['pieces'][0]['caption'], catalog['pieces'][0]['caption'])
+        self.assertEqual(json.loads(payload)['pieces'][0]['caption'], featured['caption'])
 
 
 if __name__ == '__main__':
