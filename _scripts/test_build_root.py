@@ -120,9 +120,17 @@ class HomeBuildTest(unittest.TestCase):
         self.assertEqual(slugs, expected + [post.slug for post in standalone])
         self.assertNotIn('10-reasons-why-you-shouldn-t-read-this-list', archive)
         self.assertTrue((build_root.ROOT / 'wrote/10-reasons-why-you-shouldn-t-read-this-list/index.html').is_file())
-        self.assertGreater(archive.index('/is/writing/austen-at-work/'), archive.index('step-on-me-please'))
+        self.assertLess(archive.index('/is/writing/austen-at-work/'), archive.index('/wrote/'))
         self.assertLess(archive.index('/is/writing/cest-la-vie/'), archive.index('/wrote/'))
         self.assertLess(archive.index('/is/writing/thought-time-insight/'), archive.index('/wrote/'))
+        catalog = paper_site.image_pieces.load_catalog()
+        austen = next(piece for piece in catalog['pieces'] if piece['slug'] == 'austen-at-work')
+        undated = {**austen, 'slug': 'undated-fixture', 'published_date': '',
+                   'href': '/is/writing/undated-fixture/', 'featured': False}
+        with patch.object(paper_site.image_pieces, 'load_catalog', return_value={
+                **catalog, 'pieces': [*catalog['pieces'], undated]}):
+            fixture_archive = paper_site.render_writing([]).split('<ol id="writing-list"')[1].split('</ol>')[0]
+        self.assertEqual(re.findall(r'href="([^"]+)"', fixture_archive)[-1], undated['href'])
         essays = [dict(slug='older',title='A older',date='2024-02-10'),
                   dict(slug='year-only',title='B year',date='2024'),
                   dict(slug='newer',title='Z newer',date='2024-02-20')]

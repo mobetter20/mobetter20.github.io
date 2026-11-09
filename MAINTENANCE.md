@@ -38,6 +38,7 @@ There is currently no image upload form or automatic image drop folder. The exis
    | `mobile_panels` | Optional integer `2`, only for a deliberately composed 2:1 image containing two equal square panels. See the mobile guidance below. |
 
 4. Keep `fallback_slug` set to `austen-at-work`. New pieces appear in Writing automatically. Sorting is by publication date, newest first; equal-date image entries retain their catalog order. Prepending a new same-day batch keeps that batch first without alphabetizing it. Undated work follows dated work.
+   Before leaving a previously published piece undated, check the asset/source history and its release PR. Verify its actual archive position as well as whether its link exists. Austen first appeared in the published newspaper release (PR #220, 2026-11-09), so its date is known.
 5. Build the generated pages and verify the result using the commands below. The generated image URL is `/is/writing/<slug>/`. Do not hand-edit that reader or the generated Writing page.
 6. Review the new readers and their Writing links. Save the completed work locally while preview-only. Update the change record. Publishing requires the release steps below.
 
@@ -126,3 +127,7 @@ PR #220 (`bd123db`, followed by generated-root commit `0fed583`) brought Home, W
 ### 2026-11-09: image release approved
 
 Ajin approved publishing the reviewed cartoon batch after the previews, including the two external titles. Keep Austen as the homepage lead. The earlier preview-only entries above are historical checkpoints, not a continuing hold on publication. Record the completed build, deployment and live-page checks in the release PR; inspect the actual public pages before reporting the release live.
+
+### 2026-11-09: corrected Austen's archive position
+
+The Austen piece was mistakenly left undated, placing it after all dated prose despite being published that day. Link-presence checks passed but did not catch this discovery problem. The asset/source first appeared in `0722caf` and was published through PR #220 on 2026-11-09. Setting that verified publication date places it after the seven newer cartoons and before the older prose. Future additions should verify archive position and release history before treating a date as unknown; Home's pinned selection and the reader URL stay the same.
