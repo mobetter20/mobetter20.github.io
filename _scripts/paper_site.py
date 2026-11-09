@@ -75,7 +75,8 @@ def comedy_items():
             'paragraphs':[text_only(p) for p in re.findall(r'<p\b[^>]*>(.*?)</p>', post.body_html, re.S)]})
     for post in standalone:
         result.append({'slug':post.slug, 'title':post.title, 'subtitle':post.subtitle,
-            'date':'', 'published_date':'', 'dateline':'', 'paragraphs':[]})
+            'date':'', 'published_date':'', 'dateline':'',
+            'paragraphs':[text_only(p) for p in re.findall(r'<p\b[^>]*>(.*?)</p>', build_comedy.markdown_to_html(post.body_md), re.S)]})
     return result
 
 
@@ -151,11 +152,11 @@ def excerpt(item, start=0, count=1):
 
 def edition_story(item, cls, paragraphs=1, start=0):
     url = f"/wrote/{item['slug']}/"
+    dateline = f"      <small>{item['dateline']}</small>\n" if item['dateline'] else ''
+    dek = f'      <p class="edition-dek">{escape(item["subtitle"])}</p>\n' if item['subtitle'] else ''
     return f'''<article class="edition-story {cls}">
-      <small>{item['dateline']}</small>
-      <h2><a href="{url}" target="_blank" rel="noopener">{escape(item['title'])}</a></h2>
-      <p class="edition-dek">{escape(item['subtitle'])}</p>
-      {excerpt(item, start, paragraphs)}
+{dateline}      <h2><a href="{url}" target="_blank" rel="noopener">{escape(item['title'])}</a></h2>
+{dek}      {excerpt(item, start, paragraphs)}
       <a class="read-link" href="{url}" target="_blank" rel="noopener">Continue reading ↗</a>
     </article>'''
 
@@ -169,9 +170,9 @@ def render_writing(essays):
     comedy = comedy_items()
     by_slug = {item["slug"]:item for item in comedy}
     chocolate = by_slug["scientist-would-not-prove-chocolates-as-a-vital-nutrient"]
-    wish = by_slug["wish-depletion"]
+    step = by_slug["step-on-me-please"]
     pen = by_slug["farewell-to-the-pen-that-just-fell-behind-the-desk"]
-    anger = by_slug["anger-a-new-renewable-energy-source"]
+    pokemon = by_slug["wife-evolves-into-a-scarier-pokemon"]
     gun = by_slug["i-am-chekhov-s-gun-and-i-have-free-will"]
     archive_items = [
         {"title": item['title'], "href": f"/wrote/{item['slug']}/", "kind": "piece", "published_date": item['published_date']}
@@ -195,7 +196,7 @@ def render_writing(essays):
         <div class="edition-main">{essay_feature(essays)}
           {edition_story(chocolate, 'edition-lead', 2)}
           <div class="edition-pair">
-            {edition_story(anger, 'edition-feature', 1)}
+            {edition_story(pokemon, 'edition-feature', 2, start=1)}
             {edition_story(pen, 'edition-letter', 2)}
           </div>
           <div class="edition-bottom">
@@ -203,7 +204,7 @@ def render_writing(essays):
           </div>
         </div>
         <aside class="edition-rail">
-          {edition_story(wish, 'edition-dispatch', 1)}
+          {edition_story(step, 'edition-dispatch', 3)}
           <figure class="edition-cartoon" id="cartoons" tabindex="-1">
             <div class="cartoon-module-heading"><p class="eyebrow">Cartoon</p>
               <a href="/is/writing/cartoons/slides/#cartoon" target="_self">All cartoons <span aria-hidden="true">→</span></a></div>
