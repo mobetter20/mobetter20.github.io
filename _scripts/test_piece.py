@@ -147,14 +147,15 @@ class PieceWorkflowTest(unittest.TestCase):
         for path in ('index.html', 'is/writing/index.html', 'wrote/desk/index.html'):
             target = self.root / path
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_text('<img src="/assets/paper/fallback.png"><link rel="stylesheet" href="/style.css?v=one">')
+            target.write_text('<img src="/assets/paper/fallback.png"><link rel="stylesheet" href="/style.css?v=one"><script src="/slide.js?v=one"></script>')
         (self.root / 'style.css').write_text('body{}')
+        (self.root / 'slide.js').write_text('/* gesture controller */')
         requested = set()
         def reader(route):
             requested.add(route)
             return piece.local_path(route, self.root).read_bytes()
-        self.assertEqual(piece.verify_live(['/wrote/desk/'], root=self.root, reader=reader), 5)
-        self.assertEqual(requested, {'/', '/is/writing/', '/wrote/desk/', '/style.css', '/assets/paper/fallback.png'})
+        self.assertEqual(piece.verify_live(['/wrote/desk/'], root=self.root, reader=reader), 6)
+        self.assertEqual(requested, {'/', '/is/writing/', '/wrote/desk/', '/style.css', '/slide.js', '/assets/paper/fallback.png'})
         with self.assertRaisesRegex(ValueError, 'public bytes differ'):
             piece.verify_live(['/wrote/desk/'], root=self.root, reader=lambda route:b'stale')
         with self.assertRaises(ValueError):

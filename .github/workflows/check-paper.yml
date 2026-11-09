@@ -6,6 +6,7 @@ on:
       - "content/**"
       - "templates/**"
       - "assets/paper/**"
+      - "assets/entrances/reader-return.js"
       - "writes.css"
       - "_scripts/**"
       - "index.html"
@@ -33,6 +34,11 @@ jobs:
         run: python3 -m pip install -r _scripts/publishing-requirements.txt
       - name: Test source content and publishing contracts
         run: python3 -m unittest discover -s _scripts -p 'test_*.py'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test cartoon touch navigation
+        run: node --test _scripts/test_cartoon_swipe.js
       - name: Rebuild without private exports
         run: |
           python3 _scripts/build_sections.py --check

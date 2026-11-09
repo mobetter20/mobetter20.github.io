@@ -15,6 +15,7 @@ Obsidian.
 from __future__ import annotations
 
 import html
+import hashlib
 import re
 from dataclasses import dataclass
 from datetime import date as calendar_date
@@ -215,6 +216,7 @@ def markdown_to_html(body_md: str) -> str:
 def build_post_page(post: EssayPost) -> str:
     body_html = indent_body(markdown_to_html(post.body_md))
     kicker = f"{post.year} · a thought" if post.year else "a thought"
+    return_version = hashlib.sha256((REPO_ROOT / 'assets/entrances/reader-return.js').read_bytes()).hexdigest()[:10]
     return writes_common.reading_page(
         title=post.title,
         body_html=body_html,
@@ -224,7 +226,7 @@ def build_post_page(post: EssayPost) -> str:
         back_href="/is/writing/#all",
         back_label="← All writing",
         feed_url="/writes/feed.xml",
-    ).replace("</body>", '<script src="/assets/entrances/reader-return.js" defer></script>\n</body>')
+    ).replace("</body>", f'<script src="/assets/entrances/reader-return.js?v={return_version}" defer></script>\n</body>')
 
 
 def indent_body(body_html: str) -> str:

@@ -7,6 +7,7 @@ from pathlib import Path
 import argparse
 
 import build_writes
+import cartoon_collection
 import image_pieces
 import paper_site
 
@@ -40,8 +41,10 @@ def expected_sections():
         result[f'is/{page}/index.html'] = output
     for alias in ALIASES:
         result[f'is/writing/{alias}/index.html'] = redirect_page()
-    for piece in image_pieces.load_catalog(root=ROOT)["pieces"]:
+    catalog = image_pieces.load_catalog(root=ROOT)
+    for piece in catalog["pieces"]:
         result[f'is/writing/{piece["slug"]}/index.html'] = image_pieces.render_piece(piece)
+    result.update(cartoon_collection.expected_pages(catalog))
     return result
 
 

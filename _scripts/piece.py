@@ -173,6 +173,7 @@ def check() -> None:
         run([sys.executable, f'_scripts/{script}'])
     report = run([sys.executable, '-m', 'unittest', 'discover', '-s', '_scripts', '-p', 'test_*.py'])
     print(next((line for line in report.splitlines() if line.startswith('Ran ')), 'Tests passed'))
+    run(['node', '--test', '_scripts/test_cartoon_swipe.js'])
     run([sys.executable, '_scripts/build_sections.py', '--check'])
     run([sys.executable, '_scripts/build_root.py', '--check-home'])
     links = run([sys.executable, '_scripts/check_links.py'])
@@ -188,7 +189,7 @@ class Assets(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
-        value = values.get('src') if tag == 'img' else values.get('href') if tag == 'link' and values.get('rel') == 'stylesheet' else None
+        value = values.get('src') if tag in ('img', 'script') else values.get('href') if tag == 'link' and values.get('rel') == 'stylesheet' else None
         if value and value.startswith('/') and not value.startswith('//'):
             self.paths.add(value.split('?', 1)[0])
 

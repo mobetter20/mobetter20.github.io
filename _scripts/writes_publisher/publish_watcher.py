@@ -49,6 +49,7 @@ import sys
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 
 DROP = Path.home() / "Documents/Ajin-Publishing"
@@ -507,6 +508,25 @@ def run_publish(message: str) -> tuple[bool, str]:
     return proc.returncode == 0, "\n".join(tail)
 
 
+class WritingArchiveLinks(HTMLParser):
+    """Only archive entries prove discovery; a featured teaser is insufficient."""
+    def __init__(self):
+        super().__init__()
+        self.in_archive = False
+        self.links = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "ol" and attrs.get("id") == "writing-list":
+            self.in_archive = True
+        elif tag == "a" and self.in_archive:
+            self.links.append(attrs.get("href"))
+
+    def handle_endtag(self, tag):
+        if tag == "ol":
+            self.in_archive = False
+
+
 def verify_published(staged: dict[str, str]) -> str | None:
     """publish.sh exits 0 even when it pushed nothing ("No changes to publish"), so
     the exit code is not evidence. Prove it from git instead."""
@@ -516,10 +536,13 @@ def verify_published(staged: dict[str, str]) -> str | None:
     contained = git("merge-base", "--is-ancestor", "HEAD", f"origin/{BRANCH}", check=False)
     if contained.returncode != 0:
         return "local commit is not on origin — nothing was actually pushed"
-    home = git("show", "HEAD:index.html", check=False)
+    writing = git("show", "HEAD:is/writing/index.html", check=False)
+    archive = WritingArchiveLinks()
+    if writing.returncode == 0:
+        archive.feed(writing.stdout)
     for slug, expected in staged.items():
-        if home.returncode != 0 or f'data-essay-slug="{slug}"' not in home.stdout or f'href="/writes/{slug}/?from=machine"' not in home.stdout:
-            return f"{slug}: homepage control is not in the pushed commit"
+        if archive.links.count(f"/writes/{slug}/") != 1:
+            return f"{slug}: Writing archive entry is not in the pushed commit"
         shown = git("show", f"HEAD:is/writing/essays/_src/{slug}.md", check=False)
         if shown.returncode != 0 or shown.stdout != expected:
             return f"{slug}: source is not in the pushed commit"

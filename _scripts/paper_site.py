@@ -31,16 +31,13 @@ def head(page):
     title = 'ajin.im' if page == 'home' else f'ajin.im is {page}'
     description = {'home':'Writing, cartoons, worlds, and builds by Ajin.', 'writing':'Comedy, cartoons, and other writing by Ajin.', 'building':'Worlds, collections, and individual builds by Ajin.'}[page]
     url = 'https://ajin.im' + ROUTES[page]
-    styles = ['claude-front.css', 'paper.css']
+    styles = ['home.css'] if page == 'home' else ['claude-front.css', 'paper.css']
     if page == 'writing': styles.append('writing.css')
     if page == 'building': styles.append('building.css')
     stylesheet = ''.join(f'<link rel="stylesheet" href="{asset(name)}">' for name in styles)
     if page == 'building':
         stylesheet = '<link rel="stylesheet" href="/assets/entrances/cabinet.css?v=2026-11-08-night">' + stylesheet
-    scripts = f'<script src="{asset("paper.js")}" defer></script>'
-    # The small lead controller loads before the lead markup so the initial
-    # image and its intrinsic size are selected before the page is painted.
-    if page == 'home': scripts += f'<script src="{asset("home-images.js")}"></script>'
+    scripts = f'<script src="{asset("home.js" if page == "home" else "paper.js")}" defer></script>'
     if page == 'writing': scripts += f'<script src="{asset("writing.js")}" defer></script>'
     return f'''<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -54,7 +51,7 @@ def head(page):
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="https://ajin.im/assets/paper/home-preview.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The ajin.im newspaper, with illustrated pieces and writing by Ajin.">
+<meta property="og:image:alt" content="Writing and builds by Ajin, with an illustrated joke and a Japanese ticket machine.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/img/a1.png">
 <link rel="apple-touch-icon" href="/img/a1.png">
@@ -102,19 +99,16 @@ def footer(current):
 
 
 def home_image_lead():
-    catalog = image_pieces.load_catalog()
-    fallback = next(piece for piece in catalog['pieces'] if piece['slug'] == catalog['fallback_slug'])
-    payload = json.dumps({'fallback': fallback, 'pieces': [p for p in catalog['pieces'] if p['featured']]}, ensure_ascii=True)
-    # This data lives in a script element; a future caption cannot close it.
-    payload = payload.replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
-    caption_hidden = '' if fallback['caption'] else ' hidden'
-    return f'''<article class="lead" id="home-image-lead" data-piece="{fallback['slug']}">
-        <a data-piece-link href="{fallback['href']}" target="_self" aria-label="Read {escape(fallback['title'], quote=True)}"><img data-piece-image src="{fallback['image']}" width="{fallback['width']}" height="{fallback['height']}" alt="{escape(fallback['alt'], quote=True)}" fetchpriority="high"></a>
-        <p data-piece-caption{caption_hidden}>{escape(fallback['caption'])}</p>
-        <p class="piece-credit">{image_pieces.CREDIT}</p>
-        <script type="application/json" id="home-image-catalog">{payload}</script>
-        <script>window.paperHomeLead?.init();</script>
-      </article>'''
+    # Editorially pinned until Ajin requests a different lead. Catalogue growth
+    # and featured flags must not silently change the front door.
+    piece = next(piece for piece in image_pieces.load_catalog()['pieces']
+                 if piece['slug'] == 'austen-at-work')
+    return f'''<a class="cartoon" href="/is/writing/austen-at-work/" target="_self">
+        <figure>
+          <img src="{escape(piece['image'])}" width="{piece['width']}" height="{piece['height']}" alt="{escape(piece['alt'], quote=True)}" fetchpriority="high">
+          <figcaption>{escape(piece['caption'])}</figcaption>
+        </figure>
+      </a>'''
 
 
 def essay_controls(posts):
@@ -124,32 +118,33 @@ def essay_controls(posts):
     return f'<section class="new-writing liners" aria-label="Recent writing">{links}</section>'
 
 
-def render_home(posts, total, since, as_of):
-    by_slug = {item["slug"]:item for item in comedy_items()}
-    cake = by_slug["suspicious-cake-erosion-reported"]
-    cave = by_slug["new-cave-owners-complain-there-are-children-s-drawings-everywhere"]
-    mugs = by_slug["mug-shot-of-my-desk"]
-    homunculus = by_slug["homunculus-infection-rising-in-adult-population"]
-    return header("home", total, since, as_of) + f'''<main id="main" class="page home-page">
+def render_home(total, since, as_of):
+    progress = min(100, total / 384400 * 100)
+    return f'''<div class="home">
+  <header><h1><a href="/" target="_self" aria-label="ajin.im home">ajin.im</a></h1></header>
+  <main id="work">
+    <section class="writing" aria-labelledby="writing-heading">
+      <h2 id="writing-heading"><a href="/is/writing/" target="_self"><em>is</em> writing</a></h2>
       {home_image_lead()}
-      <section class="news" aria-label="Selected writing">
-        <article class="big"><small>{cave['dateline']}</small><h2><a href="/wrote/{cave['slug']}/" target="_blank" rel="noopener">{escape(cave['title'])}</a></h2><p>{escape(cave['subtitle'])}</p></article>
-        <div class="side"><article><small>{cake['dateline']}</small><h3><a href="/wrote/{cake['slug']}/" target="_blank" rel="noopener">{escape(cake['title'])}</a></h3><p>{escape(cake['subtitle'])}</p></article>
-          <a class="read-link all-writing" href="{local('writing','home')}#all" target="_self">All writing →</a></div>
-      </section>
-      <aside class="rail">{essay_controls(posts)}
-        <section class="liners" aria-label="Selected comedy pieces">
-          <p><a href="/wrote/{homunculus['slug']}/" target="_blank" rel="noopener">{escape(homunculus['title'])}</a></p>
-          <p><a href="/wrote/{mugs['slug']}/" target="_blank" rel="noopener">{escape(mugs['title'])}</a></p>
-        </section>
-        <div class="inside">
-          <div class="grp sister-reference"><p class="eyebrow">Sister publication</p><h2><a href="/is/writing/bird-coo/" target="_blank" rel="noopener">The Municipal Coo</a></h2><p>The newspaper of the Avian Municipal District.</p><a class="read-link" href="/is/writing/bird-coo/" target="_blank" rel="noopener">Read the paper ↗</a></div>
-          <div class="grp"><h3>Also here</h3><ol>
-            <li><a href="{local('building','home')}" target="_self"><span>Worlds &amp; builds</span><b aria-hidden="true"></b><em>→</em></a></li>
-          </ol></div>
-        </div>
-      </aside>
-    </main>''' + footer("home")
+    </section>
+    <section class="building" aria-labelledby="building-heading">
+      <h2 id="building-heading"><a href="/is/building/" target="_self"><em>is</em> building</a></h2>
+      <a class="machine" href="/is/building/kenbaiki/" target="_blank" rel="noopener" aria-label="Open Kenbaiki, Japanese ticket machine practice, in a new tab">
+        <figure>
+          <img src="{asset("kenbaiki-preview.png")}" width="511" height="946" alt="Kenbaiki’s ivory soba ticket machine, with Japanese menu buttons, a cash display and a ticket slot.">
+          <figcaption><span class="project-name">Kenbaiki</span><span class="project-description">Practise on a Japanese ticket machine.</span></figcaption>
+        </figure>
+      </a>
+    </section>
+  </main>
+  <aside class="running"><a href="/is/running/" target="_self" aria-label="Running to the Moon. {total:,} kilometres since {since} {escape(as_of)}, {progress:.1f} percent of the distance.">
+    <span class="run-title"><em>is</em> running to the Moon</span>
+    <span class="route" style="--progress:{progress:.3f}%" aria-hidden="true"><span class="earth">🌍</span><span class="track"><span class="distance"></span><span class="runner">🏃</span></span><span class="moon">🌕</span></span>
+    <span class="run-data">{total:,} km since {since}</span>
+  </a></aside>
+  <footer><a href="mailto:hi@ajin.im">hi@ajin.im</a></footer>
+</div>'''
+
 
 def excerpt(item, start=0, count=1):
     return '<div class="column-copy">' + ''.join(f'<p>{escape(p)}</p>' for p in item['paragraphs'][start:start+count]) + '</div>'
@@ -210,10 +205,10 @@ def render_writing(essays):
         <aside class="edition-rail">
           {edition_story(wish, 'edition-dispatch', 1)}
           <figure class="edition-cartoon" id="cartoons" tabindex="-1">
-            <p class="eyebrow">Cartoon</p>
+            <div class="cartoon-module-heading"><p class="eyebrow">Cartoon</p>
+              <a href="/is/writing/cartoons/slides/#cartoon" target="_self">All cartoons <span aria-hidden="true">→</span></a></div>
             <a href="{cartoon['href']}" target="_self" aria-label="Read {escape(cartoon['title'], quote=True)}"><img src="{cartoon['image']}" width="{cartoon['width']}" height="{cartoon['height']}" alt="{escape(cartoon['alt'], quote=True)}"></a>
             <figcaption>{escape(cartoon['caption'])}</figcaption>
-            <p class="piece-credit">{image_pieces.CREDIT}</p>
           </figure>
           <aside class="edition-sister">
             <p class="eyebrow">Sister publication</p>

@@ -6,11 +6,11 @@ For ordinary image additions, use the short [publishing recipe](PUBLISHING.md) a
 
 ## Release status
 
-**Release status, 2026-11-09:** the newspaper redesign was published through PR #220, the first eight image readers through PR #221, Austen's publication-date correction through PR #222, and Do you cycle? and On privilege through PR #223. The public readers, assets and Writing list were checked after deployment. Each later release PR records its deployment and live verification. Approval, a Git push and a successful build are distinct from a verified deployment.
+**Deployment evidence:** The release PR records the approved diff, build checks and public-page verification. A local preview, a branch push and a successful build are not proof of a live release. Historical checkpoints below describe the state at that time.
 
-The current image inventory is [content/image-pieces.json](content/image-pieces.json), which generates the public Writing list. Only Austen is eligible for the homepage. Credits sit beside the artwork instead of in a generic writing footer.
+The current image inventory is [content/image-pieces.json](content/image-pieces.json), which generates the public Writing list and cartoon collection. Home statically shows Austen, rather than rotating catalog candidates. Credits sit at the bottom of the overview, slides and readers, not in entrance pages or a generic Writing footer.
 
-The local review page used for this release was <http://127.0.0.1:8744/_review/>, with page and viewport selectors. It works only while its local server is running; this address is not a public deployment or permanent hosting arrangement. Visitors use <https://ajin.im/is/writing/#all>. Ordinary pages can also be previewed with a loopback-only static server from a worktree.
+Preview ordinary pages with a loopback-only static server from a worktree. A localhost preview is temporary; visitors use <https://ajin.im/> and <https://ajin.im/is/writing/#all>.
 
 ## Adding pieces: what Ajin needs to do
 
@@ -52,7 +52,7 @@ Keep the entire image and the native full-size link. Embedded titles and caption
 
 An external title can be part of the work. “When you grow up poor” supplies the childhood context before the gum joke, so it is visibly displayed above the image using `show_title: true`. “A gifted child” uses the same opt-in treatment. This does not make visible headings the default for other pieces. The title remains in the browser tab, social metadata and Writing list regardless of its visibility on the reader.
 
-The shared credit is **“Words and ideas by Ajin. Illustrations generated with AI.”** Its source is `CREDIT` in [_scripts/image_pieces.py](_scripts/image_pieces.py). It belongs beside the artwork on Home, the Writing selection, and image readers. It does not belong in Browse all or in a generic Writing footer.
+The shared credit is **“Words and ideas by Ajin. Illustrations generated with AI.”** Its source is `CREDIT` in [_scripts/image_pieces.py](_scripts/image_pieces.py). It belongs at the bottom of cartoon overview, slides and individual readers. It does not belong on Home, the Writing selection, Browse all or a generic Writing footer.
 
 At 375px, check the actual joke, including small lettering. Going to the Market and Do you cycle? use `mobile_panels: 2` to stack their complete left and right halves on phones while keeping the original strips on larger screens. Do not infer panel boundaries from aspect ratio alone. Children’s Museum remains one scene; its small age labels benefit from enlargement. Just Checking the Weather and On privilege are already arranged vertically.
 
@@ -62,8 +62,9 @@ Download names come from the public asset names, such as `childrens-museum.webp`
 
 | Area | Owning source | Generated output or presentation |
 |---|---|---|
-| Home and its selected writing | `templates/root.html`, `_scripts/paper_site.py`, content catalogs | `_scripts/build_root.py` writes `index.html`; paper assets provide the newspaper presentation. |
+| Home C | `templates/root.html`, `_scripts/paper_site.py`, image catalog and stats | `_scripts/build_root.py` writes `index.html`; Austen is static, Kenbaiki is the actual-machine preview, and Running is the smaller strip below. |
 | Writing selection and Browse all | `templates/writing.html`, `_scripts/paper_site.py`, image/comedy catalogs and essay sources | `_scripts/build_sections.py` writes `is/writing/index.html`. |
+| Cartoon collection and slides | `content/image-pieces.json`, `_scripts/cartoon_collection.py`, `assets/paper/cartoons.css`, `assets/paper/cartoons.js` | `_scripts/build_sections.py` writes overview and native slide routes. |
 | Image readers | `content/image-pieces.json`, `_scripts/image_pieces.py` | `_scripts/build_sections.py` writes `is/writing/<slug>/index.html`; `assets/paper/image-pieces.css` and `writes.css` style it. |
 | Building | `content/building.json`, `templates/building.html`, `_scripts/paper_site.py` | `_scripts/build_sections.py` writes `is/building/index.html`; the cabinet has its own styles. |
 | Running | `templates/running.html`, `_scripts/build_root.py`; running sync supplies `content/stats.md` | Generated `is/running/index.html` and Home mileage. Trace the sync source before changing stats behavior. |
@@ -86,13 +87,14 @@ python3 -m unittest discover -s _scripts -p 'test_*.py'
 python3 _scripts/build_sections.py --check
 python3 _scripts/build_root.py --check-home
 python3 _scripts/check_links.py
+node _scripts/test_cartoon_swipe.js
 git diff --check
 git status --short
 ```
 
 For changes spanning prose or the full site, use the complete build sequence in [AGENTS.md](AGENTS.md). The CI checks in [.github/workflows/check-paper.yml](.github/workflows/check-paper.yml) verify generated files and publishing contracts. Normal builds must work without private exports.
 
-For content-only additions using established layouts, visually check phone and desktop readers. Any new layout or stylesheet requires all three widths: 375, 768 and 1280px. Confirm complete artwork, readable captions or a working enlargement path, correct credit and accessible description, and no broken images or overflow. Follow the native links. The live verifier checks the readers, their images and stylesheets, Home and Writing against deployed source. If changing the homepage lead logic, also check disabled JavaScript, failed-image fallback, matching captions and links, and stability while images load.
+For content-only additions using established layouts, visually check phone and desktop readers. Any new layout or stylesheet requires all three widths: 375, 768 and 1280px. Confirm complete artwork, readable captions or a working enlargement path, correct credit and accessible description, and no broken images or overflow. Follow the native links. For cartoon slides, run the Node gesture regression and confirm native arrows work with JavaScript disabled; swipe is only enhancement. The live verifier checks readers, collection scripts/assets, Home and Writing against deployed source. Home C additionally needs its static Austen fallback, Kenbaiki destination, and stats-derived Running strip checked.
 
 For a simple local preview without the optional review controls:
 
@@ -110,6 +112,8 @@ Then open `http://127.0.0.1:8745/is/writing/`. Use an available port and stop th
 4. Restore the canonical checkout to a clean, synchronized `master` without disturbing concurrent work. Update the release status and change record with the verified result. Keep or remove the preview worktree according to whether it is still needed for review.
 
 The essay publisher has its own maintenance gate and can publish approved Markdown independently. Read its README before altering it or manually editing its managed sources. Its production `--dry-run` can fetch, rebase and push; it is not a harmless offline test.
+
+Before merging this release, install the reviewed publisher runtime under its existing held/drained maintenance sequence, then run its offline self-test before removing the hold. The source verifier now proves an exact unified-Writing archive link, source and reader. Do not say that runtime migration is complete until the installed copy and drained/reloaded job have been checked.
 
 Keep documentation focused: current rules in AGENTS.md, operational instructions and significant changes here, exact diffs in Git. For investigation, use `git log --oneline`, `git show <commit>`, or `git log -- <path>`. Do not create a second exhaustive change log or describe planned work as implemented.
 
@@ -131,6 +135,10 @@ PR #220 (`bd123db`, followed by generated-root commit `0fed583`) brought Home, W
 ### 2026-11-09: image release approved
 
 Ajin approved publishing the reviewed cartoon batch after the previews, including the two external titles. Keep Austen as the homepage lead. The earlier preview-only entries above are historical checkpoints, not a continuing hold on publication. Record the completed build, deployment and live-page checks in the release PR; inspect the actual public pages before reporting the release live.
+
+### 2026-11-09: approved Home C and cartoon collection release
+
+Approved scope: static Austen and caption at Home left, real Kenbaiki machine at right, smaller Running strip below, then email; no essay, comedy or Coo list on Home. The release adds the all-cartoon overview and native slide routes, with touch swipe as an enhancement over native arrows. Verification references are `_scripts/test_cartoon_collection.py`, `_scripts/test_cartoon_swipe.js`, the generated-page checks, sitemap rebuild and post-deploy `piece.py verify-live`. The release PR records the deployment and live checks.
 
 ### 2026-11-09: corrected Austen's archive position
 

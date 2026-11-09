@@ -20,7 +20,7 @@ release folder is not nested or symlinked into the everyday Obsidian vault. This
 3. It writes `is/writing/essays/_src/<slug>.md`, assigning `order = max + 1`.
    Existing essays are never renumbered, so a publish touches exactly one file.
 4. It runs `publish.sh` (all builds, link check, sitemap, commit, rebase, push).
-5. It **proves** the source, generated essay page, and homepage control are all in the pushed commit before telling you anything. Then a banner
+5. It **proves** the source, generated essay page, and that essay's exact link in the unified Writing archive are all in the pushed commit before telling you anything. Home deliberately has no prose cards. Then a banner
    with the live URL.
 
 ## Why it refuses so much
@@ -61,6 +61,10 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.ajin.writes-publishe
 
 The repo copy is the source; the runtime copy is `~/.local/bin`. After editing here:
 re-copy, then `launchctl kickstart -k gui/$(id -u)/com.ajin.writes-publisher`.
+
+When changing publication proof, update the installed runtime to the reviewed
+verifier before releasing the maintenance hold. Verify its content hash against
+the committed source and run the offline checks before resuming the job.
 
 ## Operate
 

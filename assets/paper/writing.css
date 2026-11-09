@@ -73,3 +73,9 @@ html.writing-document { scroll-behavior:auto }
   .unified-writing .writing-index h2 { font-size:36px;margin-top:6px;margin-bottom:18px }
   .unified-writing .writing-list a { padding-block:14px }
 }
+
+/* Collection entrance stays beside the featured cartoon. */
+.cartoon-module-heading { display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:4px }
+.cartoon-module-heading a { display:inline-flex;align-items:center;gap:6px;min-height:44px;font:12px/1.4 var(--f-label);color:var(--head) }
+.cartoon-module-heading .eyebrow { flex-shrink:0 }
+.unified-writing .edition-cartoon:focus { outline:none }
