@@ -16,6 +16,8 @@ import home_catalog
 ROOT = Path(__file__).resolve().parents[1]
 BUILDING_SOURCE = ROOT / 'content/building.json'
 ASSET_ROOT = ROOT / 'assets/paper'
+# Editorial exclusions keep durable reader URLs and source text intact.
+UNLISTED_COMEDY_SLUGS = {'10-reasons-why-you-shouldn-t-read-this-list'}
 CAPTION = "It is a truth universally acknowledged, that a single woman in possession of no fortune, must be in want of a job."
 ALT = "A woman in Regency dress sits at a laptop, with her chin in her hand and an empty purse beside her."
 ROUTES = {'home':'/', 'writing':'/is/writing/', 'building':'/is/building/', 'running':'/is/running/'}
@@ -70,11 +72,11 @@ def comedy_items():
     result = []
     for post in medium:
         result.append({'slug':post.slug, 'title':post.title, 'subtitle':post.subtitle,
-            'date':post.date.strftime('%Y·%m'), 'dateline':post.month_label,
+            'date':post.date.strftime('%Y·%m'), 'published_date':post.date.date().isoformat(), 'dateline':post.month_label,
             'paragraphs':[text_only(p) for p in re.findall(r'<p\b[^>]*>(.*?)</p>', post.body_html, re.S)]})
     for post in standalone:
         result.append({'slug':post.slug, 'title':post.title, 'subtitle':post.subtitle,
-            'date':'', 'dateline':'', 'paragraphs':[]})
+            'date':'', 'published_date':'', 'dateline':'', 'paragraphs':[]})
     return result
 
 
@@ -167,14 +169,17 @@ def render_writing(essays):
     anger = by_slug["anger-a-new-renewable-energy-source"]
     gun = by_slug["i-am-chekhov-s-gun-and-i-have-free-will"]
     archive_items = [
-        {"title": item['title'], "href": f"/wrote/{item['slug']}/", "kind": "piece"}
-        for item in comedy
+        {"title": item['title'], "href": f"/wrote/{item['slug']}/", "kind": "piece", "published_date": item['published_date']}
+        for item in comedy if item['slug'] not in UNLISTED_COMEDY_SLUGS
     ]
-    archive_items.extend({"title":item["title"], "href":f"/writes/{item['slug']}/", "kind":"piece"} for item in essays)
-    archive_items.append({"title": "It is a truth universally acknowledged…", "href": "#cartoons", "kind": "cartoon"})
+    archive_items.extend({"title":item["title"], "href":f"/writes/{item['slug']}/", "kind":"piece", "published_date": item.get('date', '')} for item in essays)
+    archive_items.append({"title": "It is a truth universally acknowledged…", "href": "#cartoons", "kind": "cartoon", "published_date": ''})
+    # Full publication dates, newest first. Partial dates retain only known
+    # precision; undated pieces follow dated work without an invented date.
+    archive_items.sort(key=lambda item: tuple(int(part) for part in item['published_date'].split('-')) if item['published_date'] else (), reverse=True)
     archive_rows = ''.join(
         f'''<li data-kind="{item['kind']}"><a href="{item['href']}"{' target="_blank" rel="noopener"' if item['kind'] == 'piece' else ' aria-label="View cartoon: It is a truth universally acknowledged"'}>{escape(item['title'])}</a></li>'''
-        for item in sorted(archive_items, key=lambda x: x['title'].casefold())
+        for item in archive_items
     )
 
     return header("writing") + f'''<main id="main" class="unified-writing wrap">

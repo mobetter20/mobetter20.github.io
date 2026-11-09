@@ -95,18 +95,37 @@ class HomeBuildTest(unittest.TestCase):
 
     def test_unified_archive_tracks_essay_registry(self):
         baseline = build_sections.expected_sections()['is/writing/index.html']
-        self.assertEqual(baseline.count('<li data-kind='), 53 + len(build_writes.collect_items()))
+        self.assertEqual(baseline.count('<li data-kind='), 52 + len(build_writes.collect_items()))
         fixture = SimpleNamespace(slug='new-essay', title='New essay', body_md='Words', date='2026', excerpt='A thought.', order=1)
         with patch.object(build_root.build_essays, 'load_posts', return_value=[fixture]):
             added = build_sections.expected_sections()['is/writing/index.html']
             home = build_root.expected_root()
-        self.assertEqual(added.count('<li data-kind='), 54)
+        self.assertEqual(added.count('<li data-kind='), 53)
         self.assertIn('href="/writes/new-essay/"', added)
         self.assertIn('data-essay-slug="new-essay"', home)
         self.assertIn('href="/writes/new-essay/?from=machine"', home)
         self.assertNotIn('/writes/new-essay/', baseline)
         self.assertEqual(baseline.count('Browse all writing'),1)
         self.assertLess(baseline.index('Browse all writing'),baseline.index('class="edition-main"'))
+
+    def test_archive_uses_full_publication_dates_and_editorial_exclusions(self):
+        output = paper_site.render_writing([])
+        archive = output.split('<ol id="writing-list"')[1].split('</ol>')[0]
+        slugs = re.findall(r'href="/wrote/([^/]+)/"', archive)
+        medium, standalone = paper_site.build_comedy.load_posts()
+        expected = [post.slug for post in sorted(medium, key=lambda post: post.date, reverse=True)
+                    if post.slug not in paper_site.UNLISTED_COMEDY_SLUGS]
+        self.assertEqual(slugs, expected + [post.slug for post in standalone])
+        self.assertNotIn('10-reasons-why-you-shouldn-t-read-this-list', archive)
+        self.assertTrue((build_root.ROOT / 'wrote/10-reasons-why-you-shouldn-t-read-this-list/index.html').is_file())
+        self.assertGreater(archive.index('href="#cartoons"'), archive.index('step-on-me-please'))
+        essays = [dict(slug='older',title='A older',date='2024-02-10'),
+                  dict(slug='year-only',title='B year',date='2024'),
+                  dict(slug='newer',title='Z newer',date='2024-02-20')]
+        with_essays = paper_site.render_writing(essays).split('<ol id="writing-list"')[1].split('</ol>')[0]
+        self.assertLess(with_essays.index('/writes/newer/'),with_essays.index('/writes/older/'))
+        self.assertLess(with_essays.index('/writes/older/'),with_essays.index('/writes/year-only/'))
+        self.assertLess(with_essays.index('/writes/year-only/'),with_essays.index('/wrote/'))
 
     def test_building_curation_preserves_unlisted_route(self):
         output = paper_site.render_building()
