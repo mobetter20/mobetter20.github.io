@@ -1,0 +1,188 @@
+/* Adaptations only. claude-front.css is the unchanged visual reference. */
+:root { --serif:'EB Garamond',Georgia,serif;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif }
+html { scroll-behavior:smooth;scroll-padding-top:20px }
+img { max-width:100% }
+h2,h3,p,figure { margin:0 }
+a:hover { text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px }
+.plate h1 a:hover { text-decoration:none }
+.paper-page .plate { justify-content:space-between }
+.paper-page .plate h1 { padding-bottom:42px }
+.page-home .plate { justify-content:space-between }
+.page-home .ear:hover { text-decoration:none;background:#1c428608 }
+.page-home .ear:hover strong { text-decoration:underline;text-underline-offset:4px }
+.paper-page .folio { justify-content:space-between }
+.skip-link { position:fixed;left:12px;top:-100px;z-index:100;background:var(--cap);color:var(--ink);padding:12px;font:14px var(--f-label) }
+.skip-link:focus { top:12px }
+.wrap { width:100%;max-width:1240px;margin-inline:auto;padding-inline:32px }
+.eyebrow { font:11px/1.5 var(--f-label);letter-spacing:.04em;text-transform:uppercase;color:var(--dim) }
+.read-link { display:inline-block;margin-top:12px;font:11px/1.5 var(--f-label);color:var(--head) }
+.all-writing { margin-top:22px }
+.sister-reference { margin-bottom:24px }
+.inside .sister-reference h2 { margin:8px 0 10px }
+.sister-reference p:not(.eyebrow) { font:19px/1.3 var(--f-text);max-width:29ch }
+.liners a:hover { text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px }
+.foot { align-items:baseline }
+.dispatches { padding-top:2px }
+.dispatch { padding-bottom:23px }
+.dispatch + .dispatch { padding-top:19px;border-top:1px solid var(--rule) }
+.dispatch small { font:11px var(--f-label);color:var(--dim) }
+.dispatch h2 { margin:6px 0 12px;font:500 40px/1.07 var(--f-head);letter-spacing:-.5px;text-wrap:pretty }
+.dispatch h3 { margin:6px 0 8px;font:500 28px/1.1 var(--f-head);letter-spacing:-.25px }
+.dispatch-deck { font:italic 21px/1.25 var(--f-text) }
+.writing-edition .column-copy { margin-top:16px }
+.writing-edition .column-copy p { font:400 18px/1.42 var(--f-text);color:var(--ink);text-wrap:pretty;margin:0 0 11px;letter-spacing:0 }
+.writing-edition .inside { border-top:1px solid var(--rule) }
+.writing-intro { display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:20px 0 22px }
+.writing-intro>p { font-size:23px }
+.section-jumps { display:flex;gap:18px;flex-wrap:wrap;font:11px/1.5 var(--f-label);color:var(--head) }
+.writing-top { display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px }
+.section-rule { display:flex;justify-content:space-between;gap:16px;align-items:baseline;border-block:1px solid var(--rule);padding:7px 0;margin-bottom:18px }
+.section-rule h2 { font:500 23px/1.1 var(--f-head) }
+.section-rule>span { font:11px/1.5 var(--f-label);color:var(--dim) }
+.cartoon { margin:0 auto;text-align:center }
+.cartoon img { display:block;width:100%;max-width:390px;height:auto;margin-inline:auto;mix-blend-mode:multiply }
+.cartoon figcaption { margin:5px auto 0;max-width:490px;font:500 26px/1.16 var(--f-head);letter-spacing:-.3px;text-wrap:balance }
+.image-credit { display:none }
+.writing-side { border-left:1px solid var(--rule);padding-left:24px;margin-left:-14px }
+.story h2 { margin:8px 0 10px;font:500 34px/1.07 var(--f-head);letter-spacing:-.5px;text-wrap:pretty }
+.dek { font:italic 22px/1.25 var(--f-text);text-wrap:pretty }
+.writing-side .story { padding-bottom:22px }
+.sister-paper { border-top:1px solid var(--rule);padding:16px 0 18px;margin-top:4px }
+.sister-paper h2 { font:500 30px/1 var(--f-head);color:var(--head);margin:9px 0 10px }
+.sister-paper p:not(.eyebrow) { font:19px/1.3 var(--f-text);max-width:29ch }
+.comedy-archive { margin-top:35px;border-top:3px double var(--rule);padding-top:20px;padding-bottom:30px }
+.archive-heading { display:flex;justify-content:space-between;align-items:flex-end;gap:20px }
+.archive-heading h2 { margin-top:5px;font:500 50px/1.02 var(--f-head);letter-spacing:-.9px;color:var(--head) }
+.archive-heading>span { font:11px var(--f-label);padding-bottom:5px;white-space:nowrap }
+.year-jumps { display:flex;gap:24px;margin-top:20px;padding-block:9px;border-block:1px solid var(--rule);font:11px/1.5 var(--f-label) }
+.archive-year { display:grid;grid-template-columns:90px minmax(0,1fr);gap:24px;padding-top:22px }
+.archive-year h3 { font:500 30px/1.2 var(--f-head);color:var(--head) }
+.archive-year ol { padding:0;margin:0;list-style:none }
+.archive-year li { border-bottom:1px solid #1c42862b }
+.archive-year li a { display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:9px 0 }
+.archive-title { font:400 24px/1.15 var(--f-text);text-wrap:pretty }
+.archive-date { flex-shrink:0;font:10px/1.5 var(--f-label);color:var(--dim);white-space:nowrap }
+.archive-date>span { margin-left:7px }
+.running-layout { max-width:1030px;padding-top:26px;padding-bottom:34px }
+.run-heading { display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:20px }
+.run-heading h2 { font:500 42px/1.05 var(--f-head);letter-spacing:-.5px;color:var(--head) }
+.run-heading .eyebrow { order:2 }
+.distance-record { border-block:1px solid var(--rule);padding:21px 0 19px }
+.record-label { font:11px/1.5 var(--f-label);color:var(--dim);text-transform:uppercase;letter-spacing:.04em }
+.distance { display:flex;align-items:baseline;gap:18px;margin:14px 0 5px }
+.distance>span { font:500 clamp(72px,8vw,108px)/1 var(--f-label);letter-spacing:-6px;color:var(--ink) }
+.distance abbr { font:400 23px var(--f-label);text-decoration:none }
+.record-since { margin-top:8px;font-size:22px }
+.distance-context { display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule);padding-block:21px }
+.distance-context>div+div { border-left:1px solid var(--rule);padding-left:28px }
+.distance-context strong { font:500 35px/1.1 var(--f-label);letter-spacing:-1px }
+.distance-context small { font:13px var(--f-label) }
+.distance-context p { margin-top:8px;font-size:20px;color:var(--dim) }
+.journey { margin-top:25px }
+.journey-caption,.journey-labels { display:flex;justify-content:space-between;gap:15px;font:11px/1.6 var(--f-label);color:var(--dim) }
+.journey-line { position:relative;height:1px;background:#1c428650;margin:24px 9px }
+.journey-fill { display:block;height:3px;position:absolute;top:-1px;background:var(--head) }
+.earth-dot,.moon-dot,.position-dot { position:absolute;display:block;top:50%;transform:translate(-50%,-50%);width:15px;height:15px;border:1px solid var(--head);border-radius:50%;background:var(--paper) }
+.earth-dot { left:0;background:var(--head);width:12px;height:12px }
+.moon-dot { left:100% }
+.position-dot { background:var(--cap);border:2px solid var(--head);box-shadow:0 0 0 4px var(--paper) }
+.record-date { margin-top:24px;font:11px/1.6 var(--f-label);color:var(--dim) }
+@media(max-width:1000px) {
+  .writing-edition .dispatches { order:2;display:grid;grid-template-columns:1.25fr 1fr;gap:28px;padding-top:20px;border-bottom:1px solid var(--rule) }
+  .writing-edition .dispatch + .dispatch { border-top:0;padding-top:0;border-left:1px solid var(--rule);padding-left:24px;margin-left:-14px }
+  .dispatch h2 { font-size:36px }
+  .writing-intro { flex-direction:column;gap:10px }
+  .writing-top { display:flex;flex-direction:column;gap:28px }
+  .cartoon img { max-width:450px }
+  .cartoon figcaption { max-width:610px }
+  .writing-side { padding:0;margin:0;border:0;display:grid;grid-template-columns:1.4fr 1fr;gap:0 28px }
+  .writing-side>.section-rule { grid-column:1/-1 }
+  .writing-side .sister-paper { border-top:0;border-left:1px solid var(--rule);padding:0 0 0 24px;margin:0 }
+  .story h2 { font-size:32px }
+}
+/* The source layout expected three briefs. Two briefs occupy one tablet row,
+   so the second brief is separated vertically, without a stray top rule. */
+@media(min-width:651px) and (max-width:1000px) {
+  .liners:has(> p:nth-child(2):last-child) > p:first-child { grid-row:auto }
+  .liners:has(> p:nth-child(2):last-child) > p:last-child { border-top:0 }
+}
+@media(max-width:650px) {
+  .paper-page .plate h1 { font-size:clamp(66px,21vw,136px) }
+  .page-home .ear small { font-size:10px;max-width:none;white-space:nowrap }
+  .page-home .ear strong { font-size:16px }
+  .paper-page .folio { align-items:stretch }
+  .paper-page .folio time { text-align:center }
+  .paper-page .verbs { justify-content:center }
+  .writing-edition .dispatches { display:block;padding-top:16px }
+  .writing-edition .dispatch + .dispatch { border-left:0;border-top:1px solid var(--rule);padding-left:0;padding-top:16px;margin-left:0 }
+  .dispatch { padding-bottom:19px }
+  .dispatch h2 { font-size:30px }
+  .dispatch h3 { font-size:26px }
+  .dispatch-deck { font-size:20px }
+  .writing-edition .column-copy p { font-size:17px }
+  .wrap { padding-inline:16px }
+  .writing-intro { padding:17px 0 20px }
+  .writing-intro>p { font-size:22px }
+  .section-jumps { gap:14px;font-size:10px }
+  .section-rule { margin-bottom:16px }
+  .section-rule h2 { font-size:22px }
+  .cartoon img { max-width:330px }
+  .cartoon figcaption { font-size:24px;line-height:1.18;margin-top:6px }
+  .writing-side { display:block }
+  .writing-side .sister-paper { padding:16px 0 18px;border-left:0;border-top:1px solid var(--rule) }
+  .story h2 { font-size:30px }
+  .dek { font-size:20px }
+  .eyebrow { font-size:10px }
+  .comedy-archive { margin-top:25px;padding-top:18px }
+  .archive-heading { gap:12px;align-items:center }
+  .archive-heading h2 { font-size:38px;max-width:8ch;line-height:1.04;letter-spacing:-.6px }
+  .archive-heading>span { font-size:10px }
+  .archive-year { display:block;padding-top:20px }
+  .archive-year h3 { font-size:28px;margin-bottom:8px }
+  .archive-year li a { display:block;padding:10px 0 }
+  .archive-title { display:block;font-size:23px }
+  .archive-date { display:block;margin-top:5px }
+  .archive-date>span { float:right }
+  .inside .sister-reference { margin-bottom:20px }
+  .foot { gap:8px 15px }
+  .foot>span { flex-basis:100% }
+  .running-layout { padding-top:24px }
+  .run-heading { display:block }
+  .run-heading .eyebrow { margin-bottom:10px }
+  .run-heading h2 { font-size:38px;max-width:10ch;line-height:1.04 }
+  .distance-record { padding:18px 0 }
+  .record-label { font-size:10px }
+  .distance { gap:12px }
+  .distance>span { font-size:clamp(52px,16vw,80px);letter-spacing:-4px }
+  .distance abbr { font-size:17px }
+  .record-since { font-size:20px }
+  .distance-context { grid-template-columns:.8fr 1.2fr;padding-block:18px }
+  .distance-context>div+div { padding-left:16px }
+  .distance-context strong { font-size:25px;letter-spacing:-1px }
+  .distance-context small { font-size:9px }
+  .distance-context p { font-size:17px;max-width:12ch;line-height:1.25 }
+  .journey-caption,.journey-labels,.record-date { font-size:10px }
+}
+@media(max-width:350px) {
+  .page-home .plate { gap:8px }
+  .paper-page .plate h1 { font-size:20vw }
+  .page-home .ear small { font-size:9px }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto } }
+
+/* The image keeps its caption at full size; native dialog supplies focus trapping. */
+#cartoon-dialog { width:min(960px,calc(100vw - 32px));max-height:calc(100dvh - 32px);margin:auto;padding:20px 26px 28px;background:var(--paper);color:var(--ink);border:1px solid var(--rule);overflow:auto }
+#cartoon-dialog::backdrop { background:rgba(16,27,51,.8) }
+#cartoon-dialog [data-close-cartoon] { display:block;margin:0 0 12px auto;min-height:44px;padding:8px 14px;border:1px solid var(--head);background:var(--paper);color:var(--head);font:13px var(--f-label);cursor:pointer }
+#cartoon-dialog img { display:block;width:100%;height:auto;max-height:65dvh;object-fit:contain;mix-blend-mode:multiply }
+#cartoon-dialog figcaption { max-width:720px;margin:18px auto 0;text-align:center;font:400 30px/1.15 var(--f-text);text-wrap:balance }
+.paper-page a:focus-visible,.paper-page button:focus-visible { outline:2px solid var(--head);outline-offset:4px }
+.foot [hidden] { display:none!important }
+.new-writing { margin-bottom:24px }
+.recent-essays { border-bottom:1px solid var(--rule);padding-bottom:24px;margin-bottom:24px }
+.recent-essays .edition-story+.edition-story { margin-top:20px }
+@media(max-width:650px) {
+  #cartoon-dialog { padding:12px 16px 22px }
+  #cartoon-dialog figcaption { font-size:24px }
+  .recent-essays { order:0 }
+}

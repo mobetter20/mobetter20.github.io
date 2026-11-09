@@ -5,16 +5,19 @@ on:
     branches: [master]
     paths:
       - "content/stats.md"
+      - "content/comedy.json"
       - "templates/root.html"
       - "templates/running.html"
       - "_scripts/build_root.py"
+      - "_scripts/paper_site.py"
+      - "_scripts/build_comedy.py"
+      - "assets/paper/**"
       - "_scripts/home_catalog.py"
       - "_scripts/build_essays.py"
       - "_scripts/build_writes.py"
       - "_scripts/test_build_root.py"
       - ".github/workflows/rebuild-root-on-stats.yml"
       - "is/writing/essays/_src/**"
-      - "is/building/index.html"
   workflow_dispatch:
 
 permissions:

@@ -1,16 +1,8 @@
-"""Build /writes/index.html — the living log of thoughts.
+"""Build the /writes/ compatibility route and refresh the unified Writing page.
 
-A present-tense running log of the essays (direct, unmasked writing). Pulls the
-essay list straight from build_essays so the log can never drift from the pieces
-on disk. Bespoke essays (hand-built; their form is part of the art) live at
-/writes/<slug>/ and are listed via BESPOKE_ESSAYS.
-
-Dates are optional: add `date: YYYY-MM-DD` to an essay's front matter and its year
-appears in the log. Until then the log renders dateless (newest first by `order`,
-which is a monotonic publication counter — highest is newest).
-
-The sealed comedy archive is a separate twin at /wrote/ (see build_wrote.py).
-Run order (publish.sh): build_comedy, build_essays, build_writes, build_wrote.
+The essay source directory remains the registry. collect_items also includes
+hand-built essays declared in BESPOKE_ESSAYS. Normal publication updates the
+Writing archive and Home, preserving the publisher's Home proof attributes.
 """
 
 from __future__ import annotations
@@ -58,44 +50,10 @@ def collect_items() -> list[dict]:
 
 
 def render_index() -> str:
-    items = collect_items()  # newest first (highest order)
-    newest_slug = items[0]["slug"] if items else None
-    dek_slugs = {item["slug"] for item in items[:2]}  # top two carry a one-line dek
-
-    def render_line(item: dict) -> str:
-        return writes_common.log_line(
-            f'/writes/{item["slug"]}/',
-            item["title"],
-            new=(item["slug"] == newest_slug),
-            dek=(item["excerpt"] if item["slug"] in dek_slugs else ""),
-        )
-
-    # Group by year (the year lives in a "## YYYY" divider, not on every row —
-    # a per-row year would just repeat itself). Newest year first.
-    by_year: dict[str, list[dict]] = {}
-    undated: list[dict] = []
-    for item in items:
-        year = item["date"][:4] if item["date"] else ""
-        (by_year.setdefault(year, []) if year else undated).append(item)
-
-    inner: list[str] = []
-    for year in sorted(by_year, reverse=True):
-        inner.append(f'        <p class="yr">## {year}</p>')
-        for item in sorted(by_year[year], key=lambda x: x["order"], reverse=True):
-            inner.append(render_line(item))
-    for item in sorted(undated, key=lambda x: x["order"], reverse=True):
-        inner.append(render_line(item))
-
-    body = '      <div class="log nodate">\n' + "\n".join(inner) + "\n      </div>"
-    return writes_common.log_page(
-        title="ajin.im writes",
-        description="A running log of thoughts — essays in the present voice.",
-        canonical="https://ajin.im/writes/",
-        bar_text="ajin.im/writes",
-        bar_href="/",
-        note_html=NOTE_HTML,
-        body_html=body,
-        feed_url="/writes/feed.xml",
+    """Keep the old archive URL useful without maintaining a second archive."""
+    return writes_common.redirect_stub(
+        "/is/writing/#all",
+        title="Writing moved to ajin.im/is/writing",
     )
 
 
@@ -103,6 +61,10 @@ def main() -> None:
     WRITES_ROOT.mkdir(parents=True, exist_ok=True)
     (WRITES_ROOT / "index.html").write_text(render_index(), encoding="utf-8")
     print(f"built {WRITES_ROOT / 'index.html'}")
+    # Local import avoids a renderer cycle while ensuring a newly published
+    # essay is listed in the unified archive.
+    import build_sections
+    build_sections.build()
     import build_root
     build_root.build(root_only=True)
     build_root.check_home()

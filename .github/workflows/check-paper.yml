@@ -1,0 +1,63 @@
+name: Check newspaper content and generated pages
+
+on:
+  pull_request:
+    paths:
+      - "content/**"
+      - "templates/**"
+      - "assets/paper/**"
+      - "writes.css"
+      - "_scripts/**"
+      - "index.html"
+      - "sitemap.xml"
+      - "is/writing/**"
+      - "is/building/index.html"
+      - "is/running/index.html"
+      - "wrote/**"
+      - "writes/**"
+      - ".github/workflows/check-paper.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Test source content and publishing contracts
+        run: python3 -m unittest discover -s _scripts -p 'test_*.py'
+      - name: Rebuild without private exports
+        run: |
+          python3 _scripts/build_comedy.py
+          python3 _scripts/build_essays.py
+          python3 _scripts/build_writes.py
+          python3 _scripts/build_wrote.py
+          python3 _scripts/build_root.py
+          python3 _scripts/build_root.py --check-home
+          python3 _scripts/build_sections.py --check
+          git diff --exit-code -- index.html is/running/index.html is/reading/index.html is/learning/index.html is/building/index.html is/writing/index.html is/writing/comedy/index.html is/writing/desk/index.html is/writing/loose/index.html is/writing/essays/index.html wrote writes
+      - name: Check internal links
+        run: python3 _scripts/check_links.py
+      - name: Check sitemap routes
+        run: |
+          cp sitemap.xml /tmp/committed-sitemap.xml
+          python3 _scripts/build_sitemap.py
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          def routes(path):
+              root = ET.fromstring(Path(path).read_text())
+              # lastmod follows commit dates, which change after a source commit.
+              # Route membership and other metadata must already match the build.
+              for url in root:
+                  for field in list(url):
+                      if field.tag.endswith('}lastmod'):
+                          url.remove(field)
+              return ET.tostring(root)
+          assert routes('/tmp/committed-sitemap.xml') == routes('sitemap.xml'), 'sitemap routes are stale'
+          PY

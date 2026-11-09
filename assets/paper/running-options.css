@@ -1,0 +1,66 @@
+/* Local alternatives. Palette and type are inherited from Claude's blue paper:
+   paper #fffef8; ink #101b33; blue #1c4286; yellow #fff200;
+   EB Garamond + IBM Plex Mono. Journey markup and keyframes remain original. */
+.running-paper {
+  --bg:#fffef8;--text:#101b33;--text-soft:#4c5a75;--text-faint:#1c4286;--rule:rgba(28,66,134,.24);
+  border-top:8px solid #fff200;
+}
+.running-blue {
+  --bg:#1c4286;--text:#fffef8;--text-soft:#dce5f3;--text-faint:#dce5f3;--rule:rgba(255,254,248,.3);
+}
+.running-paper body::before,.running-blue body::before { display:none }
+.running-paper body { min-height:calc(100vh - 8px) }
+.running-paper main { max-width:640px;padding:78px 32px 50px }
+.running-paper .title { font-size:28px;margin-bottom:44px;line-height:1.35 }
+.running-paper .title a { border-color:rgba(28,66,134,.35) }
+.running-paper .stat-value,.running-blue .stat-value,
+.running-paper .updated,.running-blue .updated { font-family:'IBM Plex Mono',monospace;font-weight:400 }
+.running-paper .stat { padding:14px 0;gap:20px }
+.running-paper .stat-value { font-size:25px;min-width:9rem }
+.running-paper .stat-label { font-size:18px }
+.running-paper .trail { padding:34px 0 16px;gap:16px }
+.running-paper .trail .endpoint { font-size:28px }
+.running-paper .trail .runner { font-size:26px }
+.running-paper .trail .track-fill { background:linear-gradient(to right,transparent,#1c4286) }
+.running-paper .updated { font-size:11px;margin-top:18px }
+.running-blue main { max-width:960px;padding:78px 40px 50px }
+.running-blue .title { font-size:42px;line-height:1.25;max-width:20ch;margin-bottom:44px }
+.running-blue .title .verb { color:#fff200 }
+.running-blue .title a { border-color:rgba(255,254,248,.4) }
+.running-blue .stats { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 }
+.running-blue .trail { grid-column:1/-1;grid-row:1;gap:22px;padding:42px 0 54px;margin-bottom:30px;border-bottom:1px solid var(--rule) }
+.running-blue .trail .track { height:2px }
+.running-blue .trail .track-fill { background:#fff200 }
+.running-blue .trail .endpoint { font-size:42px;filter:none }
+.running-blue .trail .runner { font-size:34px }
+.running-blue .stat { display:flex;flex-direction:column;align-items:flex-start;gap:6px;border:0;padding:0 24px;min-width:0 }
+.running-blue .stat:first-child { padding-left:0;border:0 }
+.running-blue .stat+.stat { border-left:1px solid var(--rule) }
+.running-blue .stat-value { min-width:0;font-size:25px;white-space:nowrap }
+.running-blue .stat-label { font-size:18px }
+.running-blue .updated { grid-column:1/-1;font-size:11px;margin-top:32px }
+.running-paper a:focus-visible,.running-blue a:focus-visible { outline:2px solid currentColor;outline-offset:5px }
+@media(max-width:650px) {
+  .running-paper main { padding:46px 24px 36px }
+  .running-paper .title { font-size:25px;margin-bottom:34px }
+  .running-paper .stat { gap:14px;padding:13px 0 }
+  .running-paper .stat-value { min-width:7.6rem;font-size:21px }
+  .running-paper .stat-label { font-size:16px }
+  .running-paper .trail { gap:12px;padding-top:28px }
+  .running-paper .trail .endpoint { font-size:25px }
+  .running-paper .trail .runner { font-size:23px }
+  .running-blue main { padding:46px 24px 36px }
+  .running-blue .title { font-size:34px;margin-bottom:20px }
+  .running-blue .stats { display:flex;flex-direction:column }
+  .running-blue .trail { order:-1;width:100%;gap:15px;padding:32px 0 40px;margin-bottom:10px }
+  .running-blue .trail .endpoint { font-size:32px }
+  .running-blue .trail .runner { font-size:29px }
+  .running-blue .stat,.running-blue .stat:first-child,.running-blue .stat+.stat { flex-direction:row;align-items:baseline;border:0;border-bottom:1px solid var(--rule);padding:14px 0;gap:16px }
+  .running-blue .stat-value { min-width:7.6rem;font-size:21px }
+  .running-blue .stat-label { font-size:16px }
+  .running-blue .updated { margin-top:24px }
+}
+@media(prefers-reduced-motion:reduce) {
+  .running-paper .title,.running-paper .stats,.running-paper .track-fill,.running-paper .runner,
+  .running-blue .title,.running-blue .stats,.running-blue .track-fill,.running-blue .runner { animation:none }
+}

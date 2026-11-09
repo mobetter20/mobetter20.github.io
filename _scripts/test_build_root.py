@@ -1,5 +1,6 @@
 """Source mutation checks for the generated homepage and publisher proof."""
 import importlib.util
+import json
 import re
 import subprocess
 import sys
@@ -12,6 +13,8 @@ from unittest.mock import patch
 import build_root
 import build_writes
 import home_catalog
+import paper_site
+import build_sections
 
 
 class HomeBuildTest(unittest.TestCase):
@@ -29,26 +32,22 @@ class HomeBuildTest(unittest.TestCase):
                 home_catalog.essay_choices(invalid)
 
     def test_building_add_remove_and_malformed(self):
-        source = build_root.BUILDING_INDEX_PATH.read_text()
-        fixture = '<div data-room="day" class="project"><div class="project-head"><span class="project-name"><a href="/fixture/">Fixture</a></span><span class="project-status">live</span></div><p class="project-desc">A fixture project.</p></div>'
+        source = json.loads(paper_site.BUILDING_SOURCE.read_text())
+        fixture = dict(title="Fixture", href="/fixture/", status="live", description="A new project.", collection=False, night=True)
         with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "building.html"
-            path.write_text(source + fixture)
-            added, count = home_catalog.render_building(path)
-            self.assertIn('data-project-url="/fixture/"', added)
-            expected_builds = sum(not c.collection for c in home_catalog.load_building_choices(build_root.BUILDING_INDEX_PATH)) + 1
-            self.assertIn(f"{expected_builds:02d} pieces", count)
-            path.write_text(source + fixture.replace("A fixture project.", "A <span>clear</span> description."))
-            self.assertEqual(home_catalog.load_building_choices(path)[-1].description, "A clear description.")
-            path.write_text(source)
-            self.assertNotIn('data-project-url="/fixture/"', home_catalog.render_building(path)[0])
-            path.write_text(source + fixture.replace('data-room="day"', 'data-room="night"'))
-            self.assertRegex(home_catalog.render_building(path)[0], r'<a href="/fixture/"[^>]*data-room="night"')
-            for bad in ["", source + fixture + fixture, source + fixture.replace('class="project-desc"', 'class="wrong"'), source + fixture[:-6],
-                        source + fixture.replace('data-room="day" ', ''), source + fixture.replace('data-room="day"', 'data-room="dusk"')]:
-                path.write_text(bad)
-                with self.assertRaises(home_catalog.CatalogError):
-                    home_catalog.load_building_choices(path)
+            path = Path(directory) / "building.json"
+            path.write_text(json.dumps(dict(source, projects=source['projects'] + [fixture])))
+            with patch.object(paper_site, "BUILDING_SOURCE", path):
+                added = paper_site.render_building()
+                self.assertIn('href="/fixture/"', added)
+                self.assertIn('data-room="night"', added)
+                path.write_text(json.dumps(source))
+                self.assertNotIn('href="/fixture/"', paper_site.render_building())
+                for bad in [dict(source, projects=[]), dict(source, projects=source['projects'] + [fixture,fixture]),
+                            dict(source, projects=[dict(fixture, description='')]), dict(source, projects=[dict(fixture, night='dark')])]:
+                    path.write_text(json.dumps(bad))
+                    with self.assertRaises(ValueError):
+                        paper_site.render_building()
 
     def test_stats_and_stale_home(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -63,31 +62,68 @@ class HomeBuildTest(unittest.TestCase):
                 with self.assertRaises(build_root.StatsError):
                     build_root.check_home()
 
-    def test_open_tray_birds_first_one_sequence(self):
+    def test_newspaper_navigation_and_mileage(self):
         output = build_root.expected_root()
-        self.assertNotIn("data-section", output)
-        coo = output.index('href="/is/writing/bird-coo/" class="choice world"')
-        self.assertNotIn('class="beat"', output)          # display removed Nov 2026
-        self.assertNotIn("DivorcedBirds", output)
-        self.assertLess(coo, output.index('href="https://propagandaformyself.xyz"'))
-        worlds = output[output.index('id="worlds"'):output.index('id="building"')]
-        self.assertIn('class="choice collection"', worlds)      # collections join Worlds
-        self.assertNotIn('class="choice collection"', output[output.index('id="building"'):])
-        self.assertLess(coo, output.index('href="/wrote/'))
-        self.assertIn(">The comedy years<", output)
-        numbers = [int(n) for n in re.findall(r'<span class="label-top"><span>(\d+)</span>', output)]
-        self.assertEqual(numbers, list(range(1, len(numbers) + 1)))
+        self.assertIn('class="paper-page page-home"', output)
+        self.assertNotIn('is running</a>', output)
+        self.assertEqual(output.count('href="/is/running/"'), 1)
+        self.assertIn('href="/is/writing/bird-coo/"', output)
+        self.assertIn('data-cartoon-view', output)
+        self.assertIn('id="cartoon-dialog"', output)
+        self.assertNotIn('Local mock', output)
+        self.assertNotIn('content="noindex', output)
         running = build_root.parse_kv(build_root.require(build_root.parse_stats(build_root.STATS_PATH), "running"), "running")
         self.assertIn(build_root.as_of_label(running.get("as_of", "")), output)
         self.assertEqual(build_root.as_of_label("2026-07"), "to July 2026")
-        self.assertEqual(build_root.as_of_label(""), "")
         with self.assertRaises(build_root.StatsError):
             build_root.as_of_label("July 2026")
+
+    def test_daily_build_does_not_rewrite_sections(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            sections = root / 'is/writing/index.html'
+            sections.parent.mkdir(parents=True)
+            sections.write_text('untouched section')
+            changes = {name:root / relative for name,relative in [
+                ('INDEX_PATH','index.html'), ('RUNNING_INDEX_PATH','is/running/index.html'),
+                ('READING_INDEX_PATH','is/reading/index.html'), ('LEARNING_INDEX_PATH','is/learning/index.html')]}
+            with patch.multiple(build_root, **changes), patch.object(build_sections,'OUTPUT_ROOT',root):
+                build_root.build()
+            self.assertEqual(sections.read_text(), 'untouched section')
+            self.assertEqual({str(p.relative_to(root)) for p in root.rglob('index.html')},
+                {'index.html','is/running/index.html','is/reading/index.html','is/learning/index.html','is/writing/index.html'})
+
+    def test_unified_archive_tracks_essay_registry(self):
+        baseline = build_sections.expected_sections()['is/writing/index.html']
+        self.assertEqual(baseline.count('<li data-kind='), 53 + len(build_writes.collect_items()))
+        fixture = SimpleNamespace(slug='new-essay', title='New essay', body_md='Words', date='2026', excerpt='A thought.', order=1)
+        with patch.object(build_root.build_essays, 'load_posts', return_value=[fixture]):
+            added = build_sections.expected_sections()['is/writing/index.html']
+            home = build_root.expected_root()
+        self.assertEqual(added.count('<li data-kind='), 54)
+        self.assertIn('href="/writes/new-essay/"', added)
+        self.assertIn('data-essay-slug="new-essay"', home)
+        self.assertIn('href="/writes/new-essay/?from=machine"', home)
+        self.assertNotIn('/writes/new-essay/', baseline)
+        self.assertEqual(baseline.count('Browse all writing'),1)
+        self.assertLess(baseline.index('Browse all writing'),baseline.index('class="edition-main"'))
+
+    def test_building_curation_preserves_unlisted_route(self):
+        output = paper_site.render_building()
+        titles = [c.title for c in paper_site.load_building()]
+        self.assertEqual(len(titles),9)
+        self.assertEqual(titles[:4],['Bureau of Interior Conditions','Seoul Crushing','Instrument Bus','omen.ops'])
+        self.assertLess(output.index('omen.ops/'),output.index('kenbaiki'))
+        self.assertNotIn('/crossings/',output)
+        self.assertTrue((build_root.ROOT / 'is/building/crossings/index.html').is_file())
+        self.assertNotIn('machine-routes',output)
+        footer = output.split('<footer')[1]
+        self.assertNotIn('href="/"',footer)
 
     def test_writing_publisher_refreshes_root(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            with patch.object(build_writes, "WRITES_ROOT", root / "writes"), patch.object(build_root, "INDEX_PATH", root / "index.html"):
+            with patch.object(build_writes, "WRITES_ROOT", root / "writes"), patch.object(build_root, "INDEX_PATH", root / "index.html"), patch.object(build_sections, "OUTPUT_ROOT", root):
                 build_writes.main()
                 build_root.check_home()
 
@@ -96,6 +132,9 @@ class HomeBuildTest(unittest.TestCase):
         self.assertNotIn("{{", output)
         self.assertIn('target="_self"', output)
         self.assertNotIn("localhost", output)
+        preview = re.search(r'property="og:image" content="https://ajin.im([^"]+)"', output)
+        self.assertIsNotNone(preview)
+        self.assertTrue((build_root.ROOT / preview.group(1).lstrip('/')).is_file())
 
     def test_publisher_rejects_missing_home_control(self):
         spec = importlib.util.spec_from_file_location("watcher", Path(__file__).parent / "writes_publisher/publish_watcher.py")
