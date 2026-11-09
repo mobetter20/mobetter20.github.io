@@ -3,6 +3,17 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "we-cant-both-do-tuesday",
+      "title": "We can’t both do Tuesday",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/we-cant-both-do-tuesday.webp",
+      "width": 1448,
+      "height": 1086,
+      "alt": "Two characters stand beside a refrigerator calendar. A green character holding a pen says, “We can’t both do Tuesday.” A purple character holds a mug. The calendar has Groceries on Monday, Dentist on Wednesday, Laundry on Friday, and two entries marked Depression on Tuesday, one highlighted green and the other purple.",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "do-you-cycle",
       "title": "Do you cycle?",
       "published_date": "2026-11-09",
