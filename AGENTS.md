@@ -4,6 +4,10 @@ Static site hosted on GitHub Pages. Ajin's writing, cartoons, worlds and builds.
 
 **North-Star:** A personal newspaper that invites reading, with distinct worlds behind it. Writing and Building are the two browsing categories. Running is a personal thread reached through the Home mileage box. Keep the original newspaper's varied type and readable archive; preserve the cabinet and the running journey's character.
 
+## Maintenance documentation
+
+Read [MAINTENANCE.md](MAINTENANCE.md) when adding pieces, changing publishing behavior, or resuming site work. It contains the owner workflow, source map, verification steps, release status and dated change record. Keep that guide current in the same change as the behavior it describes. Record meaningful fixes and their reasons; Git remains the detailed file-by-file history. Distinguish a local preview, a pushed branch and a verified live release. A successful build or local commit does not mean published. `CLAUDE.md` imports this file, so the same entry point applies across agents.
+
 ## Design System — typographic tiers
 
 Governing rule: **consistent chrome, free content.** The approved newspaper entrances, Building cabinet, Running blue journey and Bus rack are scoped exceptions described under Information architecture. Read those before applying the older envelope. The wrapper is uniform; what's inside is free to vary by tier. When adding or restyling a page, classify it first, then give it that tier's chrome.
