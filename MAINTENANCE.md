@@ -104,6 +104,18 @@ python3 -m http.server 8745 --bind 127.0.0.1
 
 Then open `http://127.0.0.1:8745/is/writing/`. Use an available port and stop the server when that preview is no longer needed.
 
+## Analytics and test traffic
+
+The shared GA4 loader is `analytics.js`, edited directly. It runs only at the exact production origins `https://ajin.im` and `http://ajin.im`; HTTP currently also serves the real site, and `www.ajin.im` redirects to the HTTPS canonical site. Local previews, file URLs, alternate hosts or ports, automated browsers (`navigator.webdriver`), and browsers whose opt-out storage cannot be read or updated are excluded before the Google script loads. The independent link-retargeting block still runs. The canonical BIC site's separate loader is not changed by this rule.
+
+Ajin can exclude each personal browser by opening `https://ajin.im/?notrack` once. The flag applies to that browser and origin, not to every device or an account. Clearing site data or using a new private session can remove it. `?track` reverses the manual flag only; it never enables analytics in a preview or automated browser. If both query parameters appear, `notrack` wins.
+
+Agent browser checks must install an origin-scoped init script that sets `_notrack=1` before navigation, and intercept Google Analytics and Google Tag Manager requests for the whole browser context. Fail the check if any tracking request is attempted. Cover `google-analytics.com`, `googletagmanager.com`, `analytics.google.com` and their subdomains. This also protects new tabs and checks against an older deployed script. Plain HTTP fetches used by `piece.py verify-live` do not execute JavaScript or create GA4 visits.
+
+For an analytics release, run the Node regression in CI, then verify the deployed script bytes. In a fresh isolated browser context, exercise the live site with webdriver enabled and no opt-out flag: no Google request should be attempted. Also run a normal-visitor positive control with webdriver false, empty storage and Google endpoints blocked before navigation: the existing GA4 loader must be attempted exactly once, without sending any event. Exercise opt-out persistence/reversal, denied storage and independent navigation on an intercepted local fixture. Record this evidence in the release PR; routine CI keeps enforcing the loader's eligibility rules.
+
+The GA4 property combines ajin.im, BIC and historical local previews. Restrict interpretation to the intended hostname. Engagement is evidence of activity, not verified readership; short cartoons can have legitimate short visits. Existing data cannot reliably identify every past owner or agent visit. Do not delete old data or exclude countries to make the numbers look cleaner. Any new report must earn its place beyond the existing GA4 reports and Explorations.
+
 ## Publishing and routine maintenance
 
 1. Confirm which concrete preview Ajin approved for publication. Check publication dates and the final diff, run the required builds and visual checks, and commit only the intended work.
@@ -118,6 +130,10 @@ When changing publisher verification, install the reviewed runtime under its hel
 Keep documentation focused: current rules in AGENTS.md, operational instructions and significant changes here, exact diffs in Git. For investigation, use `git log --oneline`, `git show <commit>`, or `git log -- <path>`. Do not create a second exhaustive change log or describe planned work as implemented.
 
 ## Change record
+
+### 2026-11-10: analytics collection safeguards
+
+Local previews inherited the shared production loader, and browser review did not check for analytics requests. The browser-local opt-out alone also missed fresh agent contexts. This polluted audience measurement with testing activity; exact historical attribution is unavailable. The production-origin allowlist, automation guard and fail-closed opt-out handling prevent these paths from loading GA4. Node regressions, CI and mandatory browser network checks now cover both exclusion and the normal-visitor positive control. No existing GA4 data is deleted, and no reader-scoring dashboard or additional tracking events are introduced in this fix.
 
 ### 2026-11-09: published newspaper release
 

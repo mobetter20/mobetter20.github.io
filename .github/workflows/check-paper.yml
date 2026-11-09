@@ -7,6 +7,7 @@ on:
       - "templates/**"
       - "assets/paper/**"
       - "assets/entrances/reader-return.js"
+      - "analytics.js"
       - "writes.css"
       - "_scripts/**"
       - "index.html"
@@ -37,8 +38,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Test cartoon touch navigation
-        run: node --test _scripts/test_cartoon_swipe.js
+      - name: Test client navigation and privacy gates
+        run: node --test _scripts/test_cartoon_swipe.js _scripts/test_analytics.js
       - name: Rebuild without private exports
         run: |
           python3 _scripts/build_sections.py --check
