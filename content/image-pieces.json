@@ -3,6 +3,28 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "childrens-museum",
+      "title": "Children’s Museum",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/childrens-museum.webp",
+      "width": 1536,
+      "height": 1024,
+      "alt": "A gallery labeled “Children’s Museum” displays four people on plinths. An adult rolling up a sleeve is labeled “Child, Age 41”; a young child inspecting a shoe, “Child, Age 6”; a young adult leaning against a wall, “Child, Age 27”; and an older person reading a book, “Child, Age 82”.",
+      "caption": "",
+      "featured": false
+    },
+    {
+      "slug": "just-checking-the-weather",
+      "title": "Just Checking the Weather",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/just-checking-the-weather.webp",
+      "width": 1199,
+      "height": 1312,
+      "alt": "Three panels. A green character steps through a smartphone-shaped doorway toward a weather display, saying “Just checking the weather.” Inside, distractions appear: SHOP, WATCH, and CHAT. Surrounded by shopping, videos, and conversation, the character asks, “What did I come in here for?” The weather display is still in the corner.",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "going-to-the-market",
       "title": "Going to the Market",
       "published_date": "2026-11-09",
