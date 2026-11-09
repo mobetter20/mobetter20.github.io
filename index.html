@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://ajin.im/">
 <meta property="og:image" content="https://ajin.im/assets/paper/home-preview.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The ajin.im newspaper, with an Austen cartoon and writing by Ajin.">
+<meta property="og:image:alt" content="The ajin.im newspaper, with illustrated pieces and writing by Ajin.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/img/a1.png">
 <link rel="apple-touch-icon" href="/img/a1.png">
@@ -21,11 +21,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/paper/claude-front.css?v=8546951b4c"><link rel="stylesheet" href="/assets/paper/paper.css?v=91b7695187"><script src="/assets/paper/paper.js?v=67f6041458" defer></script><script src="/analytics.js" defer></script></head>
+<link rel="stylesheet" href="/assets/paper/claude-front.css?v=8546951b4c"><link rel="stylesheet" href="/assets/paper/paper.css?v=de83c2bda4"><script src="/assets/paper/paper.js?v=dce606de6f" defer></script><script src="/assets/paper/home-images.js?v=25ed5d1280"></script><script src="/analytics.js" defer></script></head>
 <body class="paper-page page-home">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="cap" aria-hidden="true"></div><header class="plate"><h1><a href="/" target="_self" aria-label="ajin.im home">ajin.im</a></h1><a class="ear" href="/is/running/" target="_self" aria-label="Running since 2009: 78,033 kilometres to November 2026. View the journey to the Moon."><small>Running since 2009</small><strong>78,033 km</strong></a></header><nav class="folio site-nav" aria-label="Main navigation"><time data-today></time><span class="verbs"><a href="/is/writing/" target="_self" class="">is writing</a><a href="/is/building/" target="_self" class="">is building</a></span></nav><main id="main" class="page home-page">
-      <article class="lead"><a href="/assets/paper/austen.webp" data-cartoon-view target="_self" aria-label="View full-size cartoon"><img src="/assets/paper/austen.webp" width="1145" height="954" alt="A woman in Regency dress sits at a laptop, with her chin in her hand and an empty purse beside her."></a><p>It is a truth universally acknowledged, that a single woman in possession of no fortune, must be in want of a job.</p></article>
+      <article class="lead" id="home-image-lead" data-piece="austen-at-work">
+        <a data-piece-link href="/is/writing/austen-at-work/" target="_self" aria-label="Read It is a truth universally acknowledged…"><img data-piece-image src="/assets/paper/austen.webp" width="1145" height="954" alt="A woman in Regency dress sits at a laptop, with her chin in her hand and an empty purse beside her." fetchpriority="high"></a>
+        <p data-piece-caption>It is a truth universally acknowledged, that a single woman in possession of no fortune, must be in want of a job.</p>
+        <p class="piece-credit">Words and ideas by Ajin. Illustrations generated with AI.</p>
+        <script type="application/json" id="home-image-catalog">{"fallback": {"slug": "austen-at-work", "title": "It is a truth universally acknowledged\u2026", "published_date": "", "image": "/assets/paper/austen.webp", "width": 1145, "height": 954, "alt": "A woman in Regency dress sits at a laptop, with her chin in her hand and an empty purse beside her.", "caption": "It is a truth universally acknowledged, that a single woman in possession of no fortune, must be in want of a job.", "featured": true, "href": "/is/writing/austen-at-work/"}, "pieces": [{"slug": "cest-la-vie", "title": "C\u2019est la vie", "published_date": "2026-11-09", "image": "/assets/paper/pieces/cest-la-vie.webp", "width": 1254, "height": 1254, "alt": "A four-panel comic: a person sitting on a toilet checks a marked sheet of toilet paper, celebrates a clean length, finds another mark, then tears the paper and drops a piece. The caption reads \u201cC\u2019est la vie.\u201d", "caption": "", "featured": true, "href": "/is/writing/cest-la-vie/"}, {"slug": "thought-time-insight", "title": "Thought + Time \u2260 Insight", "published_date": "2026-11-09", "image": "/assets/paper/pieces/thought-time-insight.webp", "width": 1145, "height": 1374, "alt": "Thought + Time \u2260 Insight. A diagram shows thought plus air becoming development: a brain grows a sprout in an open beaker. Thought minus air becomes brooding: the brain sits in a closed jar with condensation and mould. Fig. 1. Thought under two conditions.", "caption": "", "featured": true, "href": "/is/writing/thought-time-insight/"}, {"slug": "austen-at-work", "title": "It is a truth universally acknowledged\u2026", "published_date": "", "image": "/assets/paper/austen.webp", "width": 1145, "height": 954, "alt": "A woman in Regency dress sits at a laptop, with her chin in her hand and an empty purse beside her.", "caption": "It is a truth universally acknowledged, that a single woman in possession of no fortune, must be in want of a job.", "featured": true, "href": "/is/writing/austen-at-work/"}]}</script>
+        <script>window.paperHomeLead?.init();</script>
+      </article>
       <section class="news" aria-label="Selected writing">
         <article class="big"><small>September 2022</small><h2><a href="/wrote/new-cave-owners-complain-there-are-children-s-drawings-everywhere/" target="_blank" rel="noopener">New Cave Owners Complain There Are Children’s Drawings Everywhere</a></h2><p>Millennials leave their mark on a neglected cave</p></article>
         <div class="side"><article><small>January 2023</small><h3><a href="/wrote/suspicious-cake-erosion-reported/" target="_blank" rel="noopener">Suspicious Cake Erosion Reported</a></h3><p>The protocol of mille-feuille in danger of collapse</p></article>
@@ -43,9 +49,5 @@
           </ol></div>
         </div>
       </aside>
-    </main><footer class="foot"><span class="foot-credit">Words by Ajin. Cartoon illustration made with AI.</span><a href="mailto:hi@ajin.im">hi@ajin.im</a></footer><dialog id="cartoon-dialog" aria-labelledby="cartoon-caption">
-  <button type="button" data-close-cartoon autofocus>Close <span aria-hidden="true">×</span></button>
-  <figure><img src="/assets/paper/austen.webp" width="1145" height="954" alt="A woman in Regency dress sits at a laptop, with her chin in her hand and an empty purse beside her.">
-  <figcaption id="cartoon-caption">It is a truth universally acknowledged, that a single woman in possession of no fortune, must be in want of a job.</figcaption></figure>
-</dialog>
+    </main><footer class="foot"><a href="mailto:hi@ajin.im">hi@ajin.im</a></footer>
 </body></html>

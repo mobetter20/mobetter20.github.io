@@ -68,8 +68,9 @@ class HomeBuildTest(unittest.TestCase):
         self.assertNotIn('is running</a>', output)
         self.assertEqual(output.count('href="/is/running/"'), 1)
         self.assertIn('href="/is/writing/bird-coo/"', output)
-        self.assertIn('data-cartoon-view', output)
-        self.assertIn('id="cartoon-dialog"', output)
+        self.assertIn('id="home-image-catalog"', output)
+        self.assertIn('href="/is/writing/austen-at-work/" target="_self"', output)
+        self.assertNotIn('id="cartoon-dialog"', output)
         self.assertNotIn('Local mock', output)
         self.assertNotIn('content="noindex', output)
         running = build_root.parse_kv(build_root.require(build_root.parse_stats(build_root.STATS_PATH), "running"), "running")
@@ -95,12 +96,13 @@ class HomeBuildTest(unittest.TestCase):
 
     def test_unified_archive_tracks_essay_registry(self):
         baseline = build_sections.expected_sections()['is/writing/index.html']
-        self.assertEqual(baseline.count('<li data-kind='), 52 + len(build_writes.collect_items()))
+        image_count = len(paper_site.image_pieces.load_catalog()['pieces'])
+        self.assertEqual(baseline.count('<li data-kind='), 51 + image_count + len(build_writes.collect_items()))
         fixture = SimpleNamespace(slug='new-essay', title='New essay', body_md='Words', date='2026', excerpt='A thought.', order=1)
         with patch.object(build_root.build_essays, 'load_posts', return_value=[fixture]):
             added = build_sections.expected_sections()['is/writing/index.html']
             home = build_root.expected_root()
-        self.assertEqual(added.count('<li data-kind='), 53)
+        self.assertEqual(added.count('<li data-kind='), 52 + image_count)
         self.assertIn('href="/writes/new-essay/"', added)
         self.assertIn('data-essay-slug="new-essay"', home)
         self.assertIn('href="/writes/new-essay/?from=machine"', home)
@@ -118,7 +120,9 @@ class HomeBuildTest(unittest.TestCase):
         self.assertEqual(slugs, expected + [post.slug for post in standalone])
         self.assertNotIn('10-reasons-why-you-shouldn-t-read-this-list', archive)
         self.assertTrue((build_root.ROOT / 'wrote/10-reasons-why-you-shouldn-t-read-this-list/index.html').is_file())
-        self.assertGreater(archive.index('href="#cartoons"'), archive.index('step-on-me-please'))
+        self.assertGreater(archive.index('/is/writing/austen-at-work/'), archive.index('step-on-me-please'))
+        self.assertLess(archive.index('/is/writing/cest-la-vie/'), archive.index('/wrote/'))
+        self.assertLess(archive.index('/is/writing/thought-time-insight/'), archive.index('/wrote/'))
         essays = [dict(slug='older',title='A older',date='2024-02-10'),
                   dict(slug='year-only',title='B year',date='2024'),
                   dict(slug='newer',title='Z newer',date='2024-02-20')]

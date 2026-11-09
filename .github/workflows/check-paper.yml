@@ -33,14 +33,14 @@ jobs:
         run: python3 -m unittest discover -s _scripts -p 'test_*.py'
       - name: Rebuild without private exports
         run: |
+          python3 _scripts/build_sections.py --check
           python3 _scripts/build_comedy.py
           python3 _scripts/build_essays.py
           python3 _scripts/build_writes.py
           python3 _scripts/build_wrote.py
           python3 _scripts/build_root.py
           python3 _scripts/build_root.py --check-home
-          python3 _scripts/build_sections.py --check
-          git diff --exit-code -- index.html is/running/index.html is/reading/index.html is/learning/index.html is/building/index.html is/writing/index.html is/writing/comedy/index.html is/writing/desk/index.html is/writing/loose/index.html is/writing/essays/index.html wrote writes
+          git diff --exit-code -- index.html is/running/index.html is/reading/index.html is/learning/index.html is/building/index.html is/writing wrote writes
       - name: Check internal links
         run: python3 _scripts/check_links.py
       - name: Check sitemap routes
