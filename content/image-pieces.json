@@ -3,6 +3,30 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "do-you-cycle",
+      "title": "Do you cycle?",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/do-you-cycle.webp",
+      "width": 1774,
+      "height": 887,
+      "alt": "Two panels at a café. An orange character in yoga clothes holds a coffee. Asked “Do you do yoga?”, they reply “No.” A green character in a cycling helmet and kit sits with a coffee and a bicycle beside them. Asked “Do you cycle?”, they reply “Only so I can wear this.”",
+      "caption": "",
+      "featured": false,
+      "mobile_panels": 2
+    },
+    {
+      "slug": "on-privilege",
+      "title": "On privilege",
+      "published_date": "2026-11-09",
+      "image": "/assets/paper/pieces/on-privilege.webp",
+      "width": 1122,
+      "height": 1402,
+      "alt": "Two panels show a green character running in opposite directions in the same wind. Running into the wind, they think “This wind is brutal.” Running with the wind, they think “I’m running really well today.” Leaves, grass and a windsock show the wind blowing in the same direction in both panels.",
+      "caption": "",
+      "featured": false,
+      "show_title": true
+    },
+    {
       "slug": "when-you-grow-up-poor",
       "title": "When you grow up poor",
       "published_date": "2026-11-09",

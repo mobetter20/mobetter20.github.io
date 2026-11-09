@@ -4,9 +4,9 @@ This is the practical guide for adding work and maintaining the site. [AGENTS.md
 
 ## Release status
 
-**Release approved 2026-11-09:** the newspaper redesign was published through PR #220. Ajin has now approved the reviewed cartoon batch for publication, with Austen kept on Home. The image release was developed on `codex/image-pieces-preview` in the sibling `ajin-image-preview` worktree. Approval, a Git push and a successful build are distinct from a verified deployment; follow the live checks under Publishing below.
+**Release status, 2026-11-09:** the newspaper redesign was published through PR #220, the first eight image readers through PR #221, and Austen's publication-date correction through PR #222. The public readers, assets and Writing list were checked after deployment. The current addition contains Do you cycle? and On privilege. Approval, a Git push and a successful build are distinct from a verified deployment; follow the live checks under Publishing below and record each batch's live verification in its release PR.
 
-This release contains eight image readers: Austen, C’est la vie, Thought + Time ≠ Insight, Going to the Market, Children’s Museum, Just Checking the Weather, When you grow up poor, and A gifted child. The reviewed batch includes the title “A gifted child”. Only Austen is eligible for the homepage. The generic writing-footer credit is replaced with a credit beside the artwork.
+The catalog contains ten image readers: Austen, C’est la vie, Thought + Time ≠ Insight, Going to the Market, Children’s Museum, Just Checking the Weather, When you grow up poor, A gifted child, Do you cycle?, and On privilege. Only Austen is eligible for the homepage. The generic writing-footer credit is replaced with a credit beside the artwork.
 
 The local review page used for this release was <http://127.0.0.1:8744/_review/>, with page and viewport selectors. It works only while its local server is running; this address is not a public deployment or permanent hosting arrangement. Visitors use <https://ajin.im/is/writing/#all>. Ordinary pages can also be previewed with a loopback-only static server from a worktree.
 
@@ -50,7 +50,7 @@ An external title can be part of the work. “When you grow up poor” supplies 
 
 The shared credit is **“Words and ideas by Ajin. Illustrations generated with AI.”** Its source is `CREDIT` in [_scripts/image_pieces.py](_scripts/image_pieces.py). It belongs beside the artwork on Home, the Writing selection, and image readers. It does not belong in Browse all or in a generic Writing footer.
 
-At 375px, check the actual joke, including small lettering. Going to the Market uses `mobile_panels: 2` to stack its complete left and right halves on phones while keeping the original strip on larger screens. Do not infer panel boundaries from aspect ratio alone. Children’s Museum remains one scene; its small age labels benefit from enlargement. Just Checking the Weather is already arranged vertically.
+At 375px, check the actual joke, including small lettering. Going to the Market and Do you cycle? use `mobile_panels: 2` to stack their complete left and right halves on phones while keeping the original strips on larger screens. Do not infer panel boundaries from aspect ratio alone. Children’s Museum remains one scene; its small age labels benefit from enlargement. Just Checking the Weather and On privilege are already arranged vertically.
 
 Download names come from the public asset names, such as `childrens-museum.webp`, not the original ChatGPT filename. Page credits and external page titles are not embedded in downloaded images. Austen’s caption is also separate HTML, so saving that image alone omits the caption. A separate share/download export has not been implemented.
 
@@ -131,3 +131,7 @@ Ajin approved publishing the reviewed cartoon batch after the previews, includin
 ### 2026-11-09: corrected Austen's archive position
 
 The Austen piece was mistakenly left undated, placing it after all dated prose despite being published that day. Link-presence checks passed but did not catch this discovery problem. The asset/source first appeared in `0722caf` and was published through PR #220 on 2026-11-09. Setting that verified publication date places it after the seven newer cartoons and before the older prose. Future additions should verify archive position and release history before treating a date as unknown; Home's pinned selection and the reader URL stay the same.
+
+### 2026-11-09: cycling and privilege cartoons
+
+Added Do you cycle? and On privilege as individual readers and the newest entries in Writing. Both use lossless WebP assets with the original pixels preserved. The cycling comic uses the existing two-panel phone layout; On privilege has a visible external title that frames the joke. Neither is added to the homepage selection. This batch uses the existing catalog fields and reader templates; its release PR records the build, layout and live checks.
