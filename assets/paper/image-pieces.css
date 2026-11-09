@@ -4,6 +4,7 @@
 .image-piece .piece-art { margin:26px 0 0 }
 .image-piece .piece-art > a { display:block }
 .image-piece .piece-art img { display:block;width:100%;height:auto }
+.image-piece .piece-panels { display:none }
 .image-piece .piece-art figcaption { max-width:760px;margin:18px auto 0;text-align:center;font:500 30px/1.2 var(--serif);text-wrap:balance }
 .image-piece .piece-credit { margin:20px 0 0;font:11px/1.65 var(--mono);letter-spacing:0;color:var(--soft) }
 .image-piece .piece-full { margin:0 }
@@ -18,4 +19,9 @@
   .image-piece .piece-art { margin-top:22px }
   .image-piece .piece-art figcaption { font-size:24px;line-height:1.2 }
   .image-piece .site-foot { width:calc(100% - 32px) }
+  .image-piece .piece-art .piece-complete { display:none }
+  .image-piece .piece-panels { display:grid;gap:10px }
+  .image-piece .piece-panel { display:block;aspect-ratio:1;overflow:hidden }
+  .image-piece .piece-panel img { width:200%;max-width:none;height:auto;margin:0 }
+  .image-piece .piece-panel:last-child img { transform:translateX(-50%) }
 }

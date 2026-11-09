@@ -47,6 +47,8 @@ The newspaper Home and unified Writing page use EB Garamond, IBM Plex Mono, crea
 
 `_scripts/build_sections.py` owns Writing, Building, individual image readers and the old writing section-index redirects. It reads `content/comedy.json`, `content/building.json`, `content/image-pieces.json`, and the essay registry. `_scripts/image_pieces.py` validates the image catalog and renders readers using the existing paper reader family. `_scripts/build_writes.py` calls it and then refreshes Home during normal publishing. Edit source catalogs, templates and renderers, not generated HTML. Paper assets are in `assets/paper/`; `assets/entrances/cabinet.css` remains shared and is not globally restyled.
 
+For a deliberately composed pair of equal square panels in a 2:1 image, optional `mobile_panels: 2` stacks the full left and right halves on phones. This is presentation only: the original asset and full-size link remain intact. Never infer panel divisions automatically from an image’s shape; verify the seam and caption legibility before using it.
+
 The committed `content/comedy.json` holds the 51 public Medium texts; the standalone Markdown supplies the 52nd piece. Ordinary builds never require private exports. `_scripts/build_comedy.py --import-medium` is an explicit importer. It removes verified promotional nodes, never an entire `section--last`: short articles and substantive final sections use that class. Empty bodies, duplicate slugs and malformed data fail the build.
 
 Validation before publication:

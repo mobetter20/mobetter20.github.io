@@ -76,6 +76,31 @@ class ImagePiecesTest(unittest.TestCase):
         self.assertIn('property="og:image:width" content="7"', page)
         self.assertIn('name="twitter:card" content="summary_large_image"', page)
 
+    def test_mobile_panels_are_explicit_and_reject_ambiguous_layouts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = self.make_catalog(root)
+            data = json.loads(path.read_text())
+            piece = data['pieces'][0]
+            piece.update(width=18, height=9, mobile_panels=2)
+            (root / 'assets/paper/first.png').write_bytes(png(18, 9))
+            path.write_text(json.dumps(data))
+            loaded = image_pieces.load_catalog(path, root)['pieces'][0]
+            page = image_pieces.render_piece(loaded)
+            self.assertIn('class="piece-complete"', page)
+            self.assertEqual(page.count('class="piece-panel" aria-hidden="true"'), 2)
+            self.assertIn('class="piece-panels" role="img" aria-label="A first image"', page)
+            self.assertIn('href="/assets/paper/first.png" target="_self"', page)
+            for bad in (1, 3, True, '2', None):
+                piece['mobile_panels'] = bad
+                path.write_text(json.dumps(data))
+                with self.assertRaisesRegex(ValueError, 'mobile_panels'):
+                    image_pieces.load_catalog(path, root)
+            piece.update(mobile_panels=2, width=7)
+            path.write_text(json.dumps(data))
+            with self.assertRaisesRegex(ValueError, '2:1'):
+                image_pieces.load_catalog(path, root)
+
     def test_future_catalog_piece_is_a_section_output(self):
         catalog = {"schema_version": 1, "fallback_slug": "new-piece", "pieces": [{
             "slug": "new-piece", "title": "New", "published_date": "",

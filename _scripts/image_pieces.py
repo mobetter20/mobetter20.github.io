@@ -101,8 +101,8 @@ def load_catalog(path: Path | None = None, root: Path | None = None) -> dict:
     slugs: set[str] = set()
     required = {"slug", "title", "published_date", "image", "width", "height", "alt", "caption", "featured"}
     for piece in pieces:
-        if not isinstance(piece, dict) or set(piece) != required:
-            _fail("each piece must contain exactly slug, title, published_date, image, width, height, alt, caption, featured")
+        if not isinstance(piece, dict) or not required <= set(piece) or set(piece) - required - {"mobile_panels"}:
+            _fail("each piece needs slug, title, published_date, image, width, height, alt, caption, featured; only mobile_panels is optional")
         slug = piece["slug"]
         if not isinstance(slug, str) or not _SLUG.fullmatch(slug):
             _fail(f"invalid slug {slug!r}")
@@ -129,6 +129,11 @@ def load_catalog(path: Path | None = None, root: Path | None = None) -> dict:
         for key in ("width", "height"):
             if type(piece[key]) is not int or piece[key] <= 0:
                 _fail(f"{slug}: {key} must be a positive integer")
+        if "mobile_panels" in piece:
+            if type(piece["mobile_panels"]) is not int or piece["mobile_panels"] != 2:
+                _fail(f"{slug}: mobile_panels must be the integer 2")
+            if piece["width"] != 2 * piece["height"]:
+                _fail(f"{slug}: mobile_panels requires a 2:1 image with two equal square panels")
         image, image_path = _catalog_image_path(piece["image"], root)
         actual_width, actual_height = image_dimensions(image_path)
         if (piece["width"], piece["height"]) != (actual_width, actual_height):
@@ -167,6 +172,14 @@ def render_piece(piece: dict) -> str:
         '<meta name="twitter:card" content="summary" />',
         '<meta name="twitter:card" content="summary_large_image" />',
     ).replace("  </head>", f"\n{social}\n  </head>")
+    alt = html.escape(piece['alt'], quote=True)
+    complete_class = ' class="piece-complete"' if piece.get('mobile_panels') == 2 else ''
+    art = f'<img{complete_class} src="{image}" width="{piece["width"]}" height="{piece["height"]}" alt="{alt}" />'
+    if piece.get('mobile_panels') == 2:
+        # Present both disjoint halves in reading order on phones. The underlying
+        # asset and native full-size link remain the complete original strip.
+        panel = f'<span class="piece-panel" aria-hidden="true"><img src="{image}" width="{piece["width"]}" height="{piece["height"]}" alt="" /></span>'
+        art += f'\n          <span class="piece-panels" role="img" aria-label="{alt}">{panel}{panel}</span>'
     return f'''<!doctype html>
 {GENERATOR_MARKER}
 <html lang="en">
@@ -177,7 +190,7 @@ def render_piece(piece: dict) -> str:
       <h1 class="piece-title">{title}</h1>
       <figure class="piece-art">
         <a href="{image}" target="_self" aria-label="View {title} full size">
-          <img src="{image}" width="{piece['width']}" height="{piece['height']}" alt="{html.escape(piece['alt'], quote=True)}" />
+          {art}
         </a>
 {caption}      </figure>
       <p class="piece-credit">{CREDIT}</p>
