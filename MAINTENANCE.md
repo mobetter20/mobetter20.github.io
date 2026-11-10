@@ -141,9 +141,9 @@ Keep documentation focused: current rules in AGENTS.md, operational instructions
 
 Removed the growing automatic essay section and replaced Chekhov's Gun with “Dear Seoul,” in the existing brief slot. Chekhov's Gun and Randall Flagg remain in Browse all. Publication now updates the archive without changing the selected edition. Regression checks add a hypothetical newer essay through both the renderer and normal publisher build, verify the selection stays identical, and cover a missing selected source and the valid zero-essay case. Existing newspaper styles and the publisher's archive-link proof are unchanged.
 
-### 2026-11-10: two Writing placements, correction preview
+### 2026-11-10: two Writing placements, approved correction
 
-The previous release misread “one featured essay” as a page-wide limit and removed Randall Flagg from the top slot. Its tests reinforced that mistaken interpretation instead of checking the intended placements. The correction preview restores Randall Flagg above Scientist while keeping Dear Seoul in Chekhov's former lower slot. Explicit top/brief pins and regressions now check both positions, retained archive entries and unchanged selection after a newer publication. This correction is local for review; publication requires approval of the preview.
+The previous release misread “one featured essay” as a page-wide limit and removed Randall Flagg from the top slot. Its tests reinforced that mistaken interpretation instead of checking the intended placements. Ajin approved the correction preview showing Randall Flagg above Scientist and Dear Seoul in Chekhov's former lower slot. Explicit top/brief pins and regressions now check both positions, retained archive entries and unchanged selection after a newer publication. The release PR records deployment and public-page verification.
 
 ### 2026-11-10: analytics collection safeguards
 
