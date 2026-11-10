@@ -19,6 +19,8 @@ BUILDING_SOURCE = ROOT / 'content/building.json'
 ASSET_ROOT = ROOT / 'assets/paper'
 # Editorial exclusions keep durable reader URLs and source text intact.
 UNLISTED_COMEDY_SLUGS = {'10-reasons-why-you-shouldn-t-read-this-list'}
+# Publication updates the archive, never this editorial choice.
+WRITING_FEATURED_ESSAY_SLUG = 'dear-seoul'
 ROUTES = {'home':'/', 'writing':'/is/writing/', 'building':'/is/building/', 'running':'/is/running/'}
 
 
@@ -160,10 +162,13 @@ def edition_story(item, cls, paragraphs=1, start=0):
       <a class="read-link" href="{url}" target="_blank" rel="noopener">Continue reading ↗</a>
     </article>'''
 
-def essay_feature(essays):
-    if not essays: return ''
-    items = ''.join(f'<article class="edition-story"><h2><a href="/writes/{item["slug"]}/" target="_self">{escape(item["title"])}</a></h2><p class="edition-dek">{escape(item.get("excerpt", ""))}</p></article>' for item in essays)
-    return f'<section class="recent-essays" aria-label="Recent writing">{items}</section>'
+def edition_essay(item):
+    url = f"/writes/{item['slug']}/"
+    return f'''<article class="edition-story edition-brief">
+      <h2><a href="{url}" target="_blank" rel="noopener">{escape(item['title'])}</a></h2>
+      <div class="column-copy"><p>{escape(item.get('excerpt', ''))}</p></div>
+      <a class="read-link" href="{url}" target="_blank" rel="noopener">Continue reading ↗</a>
+    </article>'''
 
 
 def render_writing(essays):
@@ -173,7 +178,11 @@ def render_writing(essays):
     step = by_slug["step-on-me-please"]
     pen = by_slug["farewell-to-the-pen-that-just-fell-behind-the-desk"]
     pokemon = by_slug["wife-evolves-into-a-scarier-pokemon"]
-    gun = by_slug["i-am-chekhov-s-gun-and-i-have-free-will"]
+    featured_essay = next((item for item in essays if item['slug'] == WRITING_FEATURED_ESSAY_SLUG), None)
+    if essays and featured_essay is None:
+        raise ValueError(f'Writing selection refers to missing essay: {WRITING_FEATURED_ESSAY_SLUG}')
+    # An entirely retracted essay registry is valid, with no empty brief slot.
+    essay_slot = f'<div class="edition-bottom">{edition_essay(featured_essay)}</div>' if featured_essay else ''
     archive_items = [
         {"title": item['title'], "href": f"/wrote/{item['slug']}/", "kind": "piece", "published_date": item['published_date']}
         for item in comedy if item['slug'] not in UNLISTED_COMEDY_SLUGS
@@ -193,15 +202,13 @@ def render_writing(essays):
     return header("writing") + f'''<main id="main" class="unified-writing wrap">
       <section id="selection" class="edition-grid" aria-label="Writing" tabindex="-1">
         <p class="archive-entry"><a href="#all">Browse all writing <span aria-hidden="true">→</span></a></p>
-        <div class="edition-main">{essay_feature(essays)}
+        <div class="edition-main">
           {edition_story(chocolate, 'edition-lead', 2)}
           <div class="edition-pair">
             {edition_story(pokemon, 'edition-feature', 2, start=1)}
             {edition_story(pen, 'edition-letter', 2)}
           </div>
-          <div class="edition-bottom">
-            {edition_story(gun, 'edition-brief', 1)}
-          </div>
+          {essay_slot}
         </div>
         <aside class="edition-rail">
           {edition_story(step, 'edition-dispatch', 3)}

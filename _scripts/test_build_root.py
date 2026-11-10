@@ -106,16 +106,41 @@ class HomeBuildTest(unittest.TestCase):
         baseline = build_sections.expected_sections()['is/writing/index.html']
         image_count = len(paper_site.image_pieces.load_catalog()['pieces'])
         self.assertEqual(baseline.count('<li data-kind='), 50 + image_count + len(build_writes.collect_items()))
-        fixture = SimpleNamespace(slug='new-essay', title='New essay', body_md='Words', date='2026', excerpt='A thought.', order=1)
-        with patch.object(build_essays, 'load_posts', return_value=[fixture]):
+        original = build_essays.load_posts()
+        fixture = SimpleNamespace(slug='new-essay', title='New essay', body_md='Words', date='2099-01-01', excerpt='A thought.', order=max(post.order for post in original) + 1)
+        with patch.object(build_essays, 'load_posts', return_value=original + [fixture]):
             added = build_sections.expected_sections()['is/writing/index.html']
             home = build_root.expected_root()
-        self.assertEqual(added.count('<li data-kind='), 51 + image_count)
-        self.assertIn('href="/writes/new-essay/"', added)
+        self.assertEqual(added.count('<li data-kind='), baseline.count('<li data-kind=') + 1)
+        selection = baseline.split('<section id="selection"')[1].split('<section id="all"')[0]
+        added_selection = added.split('<section id="selection"')[1].split('<section id="all"')[0]
+        archive = added.split('<ol id="writing-list"')[1].split('</ol>')[0]
+        self.assertEqual(selection, added_selection)
+        self.assertIn('href="/writes/new-essay/"', archive)
+        self.assertLess(archive.index('/writes/new-essay/'), archive.index('/writes/dear-seoul/'))
+        self.assertNotIn('recent-essays', selection)
+        brief = re.search(r'<article class="edition-story edition-brief">(.*?)</article>', selection, re.S).group(1)
+        self.assertIn('href="/writes/dear-seoul/"', brief)
+        self.assertEqual(selection.count('>Dear Seoul,</a>'), 1)
+        self.assertEqual(archive.count('href="/writes/dear-seoul/"'), 1)
+        for slug, route in [('i-am-chekhov-s-gun-and-i-have-free-will', 'wrote'),
+                            ('the-dislike-button-and-the-rise-of-bad-engagement', 'writes')]:
+            self.assertNotIn(f'/{route}/{slug}/', selection)
+            self.assertIn(f'/{route}/{slug}/', archive)
         self.assertNotIn('/writes/new-essay/', home)
         self.assertNotIn('/writes/new-essay/', baseline)
         self.assertEqual(baseline.count('Browse all writing'),1)
         self.assertLess(baseline.index('Browse all writing'),baseline.index('class="edition-main"'))
+
+    def test_missing_selected_essay_never_selects_a_replacement(self):
+        essays = [item for item in build_writes.collect_items()
+                  if item['slug'] != paper_site.WRITING_FEATURED_ESSAY_SLUG]
+        with self.assertRaisesRegex(ValueError, 'Writing selection refers to missing essay: dear-seoul'):
+            paper_site.render_writing(essays)
+        selection = paper_site.render_writing([]).split('<section id="selection"')[1].split('<section id="all"')[0]
+        self.assertNotIn('edition-bottom', selection)
+        self.assertNotIn('/writes/', selection)
+        self.assertIn('wife-evolves-into-a-scarier-pokemon', selection)
 
     def test_archive_uses_full_publication_dates_and_editorial_exclusions(self):
         output = paper_site.render_writing([])
@@ -138,7 +163,7 @@ class HomeBuildTest(unittest.TestCase):
                 **catalog, 'pieces': [*catalog['pieces'], undated]}):
             fixture_archive = paper_site.render_writing([]).split('<ol id="writing-list"')[1].split('</ol>')[0]
         self.assertEqual(re.findall(r'href="([^"]+)"', fixture_archive)[-1], undated['href'])
-        essays = [dict(slug='older',title='A older',date='2024-02-10'),
+        essays = build_writes.collect_items() + [dict(slug='older',title='A older',date='2024-02-10'),
                   dict(slug='year-only',title='B year',date='2024'),
                   dict(slug='newer',title='Z newer',date='2024-02-20')]
         with_essays = paper_site.render_writing(essays).split('<ol id="writing-list"')[1].split('</ol>')[0]
@@ -159,11 +184,17 @@ class HomeBuildTest(unittest.TestCase):
         self.assertNotIn('href="/"',footer)
 
     def test_writing_publisher_refreshes_root(self):
+        essays = build_writes.collect_items()
+        fixture = dict(slug='new-essay', title='New essay', date='2099-01-01', excerpt='A thought.', order=max(item['order'] for item in essays) + 1)
+        baseline = paper_site.render_writing(essays).split('<section id="selection"')[1].split('<section id="all"')[0]
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            with patch.object(build_writes, "WRITES_ROOT", root / "writes"), patch.object(build_root, "INDEX_PATH", root / "index.html"), patch.object(build_sections, "OUTPUT_ROOT", root):
+            with patch.object(build_writes, "WRITES_ROOT", root / "writes"), patch.object(build_root, "INDEX_PATH", root / "index.html"), patch.object(build_sections, "OUTPUT_ROOT", root), patch.object(build_writes, 'collect_items', return_value=[fixture, *essays]):
                 build_writes.main()
                 build_root.check_home()
+            writing = (root / 'is/writing/index.html').read_text()
+            self.assertEqual(writing.split('<section id="selection"')[1].split('<section id="all"')[0], baseline)
+            self.assertIn('href="/writes/new-essay/"', writing.split('<ol id="writing-list"')[1])
 
     def test_native_navigation_and_resolved_template(self):
         output = build_root.expected_root()
