@@ -48,7 +48,7 @@ function harness({ previous = false, next = false } = {}) {
     },
     click(options = {}) {
       const e = event({ ...options, target: options.target || art });
-      stageListeners.get('click')(e);
+      documentListeners.get('click')(e);
       return e;
     },
   };

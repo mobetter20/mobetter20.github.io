@@ -31,6 +31,9 @@ class CartoonCollectionTest(unittest.TestCase):
         self.assertIn('slide-arrow-spacer slide-previous', first)
         self.assertIn('slide-arrow-spacer slide-next', last)
         self.assertEqual(pages['is/writing/cartoons/slides/index.html'], first)
+        for page in pages.values():
+            if 'class="slide-shell wrap"' in page:
+                self.assertIn(f'data-first-slide="/is/writing/cartoons/slides/{pieces[0]["slug"]}/"', page)
 
     def test_no_empty_catalog_and_slide_canonical_metadata(self):
         with self.assertRaisesRegex(ValueError, 'at least one'):
