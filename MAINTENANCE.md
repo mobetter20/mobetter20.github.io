@@ -93,14 +93,14 @@ python3 -m unittest discover -s _scripts -p 'test_*.py'
 python3 _scripts/build_sections.py --check
 python3 _scripts/build_root.py --check-home
 python3 _scripts/check_links.py
-node _scripts/test_cartoon_swipe.js
+node --test _scripts/test_cartoon_swipe.js _scripts/test_cartoon_navigation.js
 git diff --check
 git status --short
 ```
 
 For changes spanning prose or the full site, use the complete build sequence in [AGENTS.md](AGENTS.md). The CI checks in [.github/workflows/check-paper.yml](.github/workflows/check-paper.yml) verify generated files and publishing contracts. Normal builds must work without private exports.
 
-For content-only additions using established layouts, visually check phone and desktop readers. Any new layout or stylesheet requires all three widths: 375, 768 and 1280px. Confirm complete artwork, readable captions or a working enlargement path, correct credit and accessible description, and no broken images or overflow. Follow the native links. For cartoon slides, run the Node gesture regression and confirm native arrows work with JavaScript disabled; swipe is only enhancement. The live verifier checks readers, collection scripts/assets, Home and Writing against deployed source. Home C additionally needs its static Austen fallback, Kenbaiki destination, and stats-derived Running strip checked.
+For content-only additions using established layouts, visually check phone and desktop readers. Any new layout or stylesheet requires all three widths: 375, 768 and 1280px. Confirm complete artwork, readable captions or a working enlargement path, correct credit and accessible description, and no broken images or overflow. Follow the native links. For cartoon slides, run the Node gesture and async-navigation regressions. Check decoded-image swaps, rapid requests, Back/Forward, native enlargement and the no-JavaScript/error fallbacks. `assets/paper/cartoons.js` reuses the generated HTML without executing its scripts. It caches the displayed slide and its immediate neighbours, skips speculation on data-saving/2G connections and cancels obsolete work or departures. The entry alias shares the first slide cache via the generated `data-first-slide` attribute. The existing GA4 history-change measurement handles real slide views; prefetches execute no analytics, and no manual page-view events are added. The live verifier checks readers, collection scripts/assets, Home and Writing against deployed source. Home C additionally needs its static Austen fallback, Kenbaiki destination, and stats-derived Running strip checked.
 
 For a simple local preview without the optional review controls:
 

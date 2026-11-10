@@ -7,7 +7,7 @@ Ajin can attach images and say **“Publish these”**, or **“Add this illustr
 - New cartoons get their own reader and a newest-first Writing entry. Date defaults to today in Asia/Seoul; confirm it if a preview spans days. Future publication dates are rejected.
 - Austen stays on Home. New images are never featured automatically.
 - Home C is fixed: complete Austen art/caption, Kenbaiki machine preview, then the smaller Running strip and email. Do not add prose, comedy, Coo or catalog rotation to Home.
-- Every catalog cartoon is surfaced through Writing, the overview and native slides. Swipe is an optional touch enhancement; native arrows must remain sufficient without JavaScript.
+- Every catalog cartoon is surfaced through Writing, the overview and native slides. The viewer swaps prepared slides in place and warms only neighbouring artwork. Swipe is an optional touch enhancement; native arrows must remain sufficient without JavaScript or when enhanced loading fails.
 - Preserve the complete image in lossless WebP with a clean filename, actual dimensions and pixel verification.
 - Hide the external title unless it adds a setup beyond the image. Never infer panel divisions from aspect ratio.
 - An illustration belongs to its existing article. Keep that article's title, text, publication date, URL and archive position.
@@ -17,7 +17,7 @@ Ajin can attach images and say **“Publish these”**, or **“Add this illustr
 
 1. Check Git status. Reuse the review worktree on a fresh feature branch from current `origin/master`; leave the canonical checkout available for the essay publisher. Inspect the supplied art and choose its title/description and any explicit presentation options.
 2. Run `add` or `illustrate` below for each image. Identical retries do nothing; conflicts stop without overwriting published content. Batch additions before checking.
-3. Run `check` **once per batch**, then `node _scripts/test_cartoon_swipe.js` when cartoon navigation changes. The batch check rebuilds pages and sitemap, runs the test suite, checks generated output and internal links, and prints a short result. Inspect each changed reader on a phone and desktop. Use 375, 768 and 1280px for any new layout or stylesheet change. Confirm the joke is readable and complete; use the native enlargement link for fine detail.
+3. Run `check` **once per batch**, then `node --test _scripts/test_cartoon_swipe.js _scripts/test_cartoon_navigation.js` when cartoon navigation changes. The batch check rebuilds pages and sitemap, runs the test suite, checks generated output and internal links, and prints a short result. Inspect each changed reader on a phone and desktop. Use 375, 768 and 1280px for any new layout or stylesheet change. Confirm the joke is readable and complete; use the native enlargement link for fine detail.
 4. Commit only this batch, push and create its PR. Run the existing PR checks. When publication is authorized, merge with the checked head SHA and wait for the latest Pages deployment, including any generated-root commit. Do not treat green tests or a pushed commit as a live release.
 5. Update the review checkout to deployed `origin/master`, run `verify-live` for the changed readers, and inspect the public result. Record the release and checks in the PR. Restore a clean canonical `master`, remove the merged feature branch, and give Ajin the live links.
 
@@ -41,7 +41,7 @@ python3 _scripts/piece.py illustrate '/path/to/image.png' \
   --slug mug-shot-of-my-desk --alt 'Describe the illustration.'
 
 python3 _scripts/piece.py check
-node _scripts/test_cartoon_swipe.js
+node --test _scripts/test_cartoon_swipe.js _scripts/test_cartoon_navigation.js
 
 # After deployment, using the checkout at the deployed commit:
 python3 _scripts/piece.py verify-live /wrote/mug-shot-of-my-desk/ --wait 120
