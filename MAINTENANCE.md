@@ -54,7 +54,7 @@ The `add` command implements steps 2 through 4 below, including lossless convers
 
 ### Image presentation and credit
 
-Keep the entire image and the native full-size link. Embedded titles and captions do not need a second visible copy outside the image. Each reader still has an accessible page heading.
+Keep the entire image and its native full-size link on the artwork itself, without a separate “View full size” text link. Standalone cartoon readers have one “All cartoons” link above the artwork and “Back to writing” in the footer, matching the collection's navigation hierarchy. Embedded titles and captions do not need a second visible copy outside the image. Each reader still has an accessible page heading.
 
 An external title can be part of the work. “When you grow up poor” supplies the childhood context before the gum joke, so it is visibly displayed above the image using `show_title: true`. “A gifted child” uses the same opt-in treatment. This does not make visible headings the default for other pieces. The title remains in the browser tab, social metadata and Writing list regardless of its visibility on the reader.
 

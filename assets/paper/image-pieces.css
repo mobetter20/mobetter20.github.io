@@ -1,5 +1,8 @@
 /* Image readers inherit the existing paper reader palette and type in writes.css. */
 .image-piece .shell { max-width:900px;padding:28px 28px 20px }
+.image-piece .piece-nav { display:flex;justify-content:flex-end }
+.image-piece .piece-nav .back,
+.image-piece .site-foot .back { display:inline-flex;align-items:center;min-height:44px;color:var(--blue) }
 .image-piece:not(.piece-with-title) .piece-title { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0 }
 .image-piece.piece-with-title .piece-title { margin:26px 0 14px;font:500 28px/1.2 var(--serif);letter-spacing:0;color:var(--ink) }
 .image-piece.piece-with-title .piece-art { margin-top:0 }
@@ -9,8 +12,6 @@
 .image-piece .piece-panels { display:none }
 .image-piece .piece-art figcaption { max-width:760px;margin:18px auto 0;text-align:center;font:500 30px/1.2 var(--serif);text-wrap:balance }
 .image-piece .piece-credit { margin:20px 0 0;font:11px/1.65 var(--mono);letter-spacing:0;color:var(--soft) }
-.image-piece .piece-full { margin:0 }
-.image-piece .piece-full a { display:inline-block;min-height:44px;padding:14px 0 8px;font:11px/1.5 var(--mono);color:var(--blue);text-underline-offset:3px }
 .image-piece .site-foot { width:calc(100% - 56px);max-width:844px;margin-top:0;padding:18px 0 30px }
 .image-piece a:focus-visible { outline:2px solid var(--blue);outline-offset:5px }
 @media(min-width:651px) and (min-height:650px) {
