@@ -31,8 +31,6 @@ I understand that your tastes have changed. I even share some of them. But latel
 
 And I miss the children. I know you say you want more of them. You've been talking about it for years. The last apartment I saw advertised as ideal for newlyweds barely had enough floor space for a drying rack. I don't know where you expect the baby to go.
 
-I haven't completely given up on us.
-
 There are still days when I remember why I wanted to be with you. I love being able to walk into a museum on a Tuesday morning, find a tiny bookshop down an unpromising alley, or spend an entire afternoon wandering around without needing a car. You still surprise me, even after all these years.
 
 But I've begun to understand that whatever I earn, whatever I save, there will always be someone who can offer you more. I've spent years behaving as though our long history together might count for something.
