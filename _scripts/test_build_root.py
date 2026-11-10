@@ -118,26 +118,34 @@ class HomeBuildTest(unittest.TestCase):
         self.assertEqual(selection, added_selection)
         self.assertIn('href="/writes/new-essay/"', archive)
         self.assertLess(archive.index('/writes/new-essay/'), archive.index('/writes/dear-seoul/'))
-        self.assertNotIn('recent-essays', selection)
+        top = re.search(r'<section class="recent-essays".*?</section>', selection, re.S).group(0)
+        self.assertEqual(top.count('<article '), 1)
+        self.assertIn('href="/writes/the-dislike-button-and-the-rise-of-bad-engagement/" target="_blank" rel="noopener"', top)
+        self.assertNotIn('/writes/dear-seoul/', top)
+        self.assertLess(selection.index('class="recent-essays"'), selection.index('class="edition-story edition-lead"'))
         brief = re.search(r'<article class="edition-story edition-brief">(.*?)</article>', selection, re.S).group(1)
         self.assertIn('href="/writes/dear-seoul/"', brief)
+        self.assertLess(selection.index('class="edition-pair"'), selection.index('class="edition-bottom"'))
         self.assertEqual(selection.count('>Dear Seoul,</a>'), 1)
+        self.assertEqual(selection.count('>A good time to be Randall Flagg.</a>'), 1)
         self.assertEqual(archive.count('href="/writes/dear-seoul/"'), 1)
-        for slug, route in [('i-am-chekhov-s-gun-and-i-have-free-will', 'wrote'),
-                            ('the-dislike-button-and-the-rise-of-bad-engagement', 'writes')]:
-            self.assertNotIn(f'/{route}/{slug}/', selection)
-            self.assertIn(f'/{route}/{slug}/', archive)
+        self.assertEqual(archive.count('href="/writes/the-dislike-button-and-the-rise-of-bad-engagement/"'), 1)
+        self.assertNotIn('/wrote/i-am-chekhov-s-gun-and-i-have-free-will/', selection)
+        self.assertEqual(archive.count('href="/wrote/i-am-chekhov-s-gun-and-i-have-free-will/"'), 1)
         self.assertNotIn('/writes/new-essay/', home)
         self.assertNotIn('/writes/new-essay/', baseline)
         self.assertEqual(baseline.count('Browse all writing'),1)
         self.assertLess(baseline.index('Browse all writing'),baseline.index('class="edition-main"'))
 
     def test_missing_selected_essay_never_selects_a_replacement(self):
-        essays = [item for item in build_writes.collect_items()
-                  if item['slug'] != paper_site.WRITING_FEATURED_ESSAY_SLUG]
-        with self.assertRaisesRegex(ValueError, 'Writing selection refers to missing essay: dear-seoul'):
-            paper_site.render_writing(essays)
+        for slot, slug in [('top', paper_site.WRITING_TOP_ESSAY_SLUG),
+                           ('brief', paper_site.WRITING_BRIEF_ESSAY_SLUG)]:
+            with self.subTest(slot=slot):
+                essays = [item for item in build_writes.collect_items() if item['slug'] != slug]
+                with self.assertRaisesRegex(ValueError, f'Writing {slot} selection refers to missing essay: {slug}'):
+                    paper_site.render_writing(essays)
         selection = paper_site.render_writing([]).split('<section id="selection"')[1].split('<section id="all"')[0]
+        self.assertNotIn('recent-essays', selection)
         self.assertNotIn('edition-bottom', selection)
         self.assertNotIn('/writes/', selection)
         self.assertIn('wife-evolves-into-a-scarier-pokemon', selection)
