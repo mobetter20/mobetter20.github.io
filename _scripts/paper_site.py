@@ -19,8 +19,9 @@ BUILDING_SOURCE = ROOT / 'content/building.json'
 ASSET_ROOT = ROOT / 'assets/paper'
 # Editorial exclusions keep durable reader URLs and source text intact.
 UNLISTED_COMEDY_SLUGS = {'10-reasons-why-you-shouldn-t-read-this-list'}
-# Publication updates the archive, never this editorial choice.
-WRITING_FEATURED_ESSAY_SLUG = 'dear-seoul'
+# These are separate editorial placements, not a page-wide essay limit.
+WRITING_TOP_ESSAY_SLUG = 'the-dislike-button-and-the-rise-of-bad-engagement'
+WRITING_BRIEF_ESSAY_SLUG = 'dear-seoul'
 ROUTES = {'home':'/', 'writing':'/is/writing/', 'building':'/is/building/', 'running':'/is/running/'}
 
 
@@ -171,6 +172,16 @@ def edition_essay(item):
     </article>'''
 
 
+def top_essay_feature(item):
+    url = f"/writes/{item['slug']}/"
+    return f'''<section class="recent-essays" aria-label="Featured essay">
+      <article class="edition-story">
+        <h2><a href="{url}" target="_blank" rel="noopener">{escape(item['title'])}</a></h2>
+        <p class="edition-dek">{escape(item.get('excerpt', ''))}</p>
+      </article>
+    </section>'''
+
+
 def render_writing(essays):
     comedy = comedy_items()
     by_slug = {item["slug"]:item for item in comedy}
@@ -178,11 +189,15 @@ def render_writing(essays):
     step = by_slug["step-on-me-please"]
     pen = by_slug["farewell-to-the-pen-that-just-fell-behind-the-desk"]
     pokemon = by_slug["wife-evolves-into-a-scarier-pokemon"]
-    featured_essay = next((item for item in essays if item['slug'] == WRITING_FEATURED_ESSAY_SLUG), None)
-    if essays and featured_essay is None:
-        raise ValueError(f'Writing selection refers to missing essay: {WRITING_FEATURED_ESSAY_SLUG}')
-    # An entirely retracted essay registry is valid, with no empty brief slot.
-    essay_slot = f'<div class="edition-bottom">{edition_essay(featured_essay)}</div>' if featured_essay else ''
+    essays_by_slug = {item['slug']: item for item in essays}
+    for slot, slug in [('top', WRITING_TOP_ESSAY_SLUG), ('brief', WRITING_BRIEF_ESSAY_SLUG)]:
+        if essays and slug not in essays_by_slug:
+            raise ValueError(f'Writing {slot} selection refers to missing essay: {slug}')
+    top_essay = essays_by_slug.get(WRITING_TOP_ESSAY_SLUG)
+    brief_essay = essays_by_slug.get(WRITING_BRIEF_ESSAY_SLUG)
+    # An entirely retracted essay registry is valid, with neither empty slot.
+    top_slot = top_essay_feature(top_essay) if top_essay else ''
+    essay_slot = f'<div class="edition-bottom">{edition_essay(brief_essay)}</div>' if brief_essay else ''
     archive_items = [
         {"title": item['title'], "href": f"/wrote/{item['slug']}/", "kind": "piece", "published_date": item['published_date']}
         for item in comedy if item['slug'] not in UNLISTED_COMEDY_SLUGS
@@ -203,6 +218,7 @@ def render_writing(essays):
       <section id="selection" class="edition-grid" aria-label="Writing" tabindex="-1">
         <p class="archive-entry"><a href="#all">Browse all writing <span aria-hidden="true">→</span></a></p>
         <div class="edition-main">
+          {top_slot}
           {edition_story(chocolate, 'edition-lead', 2)}
           <div class="edition-pair">
             {edition_story(pokemon, 'edition-feature', 2, start=1)}

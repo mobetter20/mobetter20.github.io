@@ -26,7 +26,7 @@ The agent uses `_scripts/piece.py` to prepare images, check a batch and verify d
 
 Publishing and featuring are separate. New essays get a reader, a feed entry and a newest-first entry in Browse all. They do not replace or add to the newspaper selection. To change that selection, ask for the specific swap, for example: “Feature Dear Seoul instead of Chekhov's Gun.”
 
-“Dear Seoul,” is currently the one selected essay, in the existing brief slot. The explicit choice is `WRITING_FEATURED_ESSAY_SLUG` in `_scripts/paper_site.py`; the surrounding comedy choices stay hand-picked too. Change that slug to select another published essay, then rebuild and verify Writing. Its source excerpt supplies the introduction. A missing selection in a nonempty essay registry fails the build; retracting all essays omits the slot. There is no automatic latest-essay fallback. Other published work remains in Browse all, and Home keeps its own fixed selection.
+The top essay slot above Scientist is “A good time to be Randall Flagg.” (`WRITING_TOP_ESSAY_SLUG` in `_scripts/paper_site.py`). The separate lower brief slot is “Dear Seoul,”, replacing Chekhov's Gun (`WRITING_BRIEF_ESSAY_SLUG`). These are independent placements, not a page-wide limit of one essay. To change one, identify the position and its replacement; keep the other choice. Source excerpts supply the introductions. A missing selection in a nonempty essay registry fails with the slot name; retracting all essays omits both. There is no automatic latest-essay fallback. Other published work remains in Browse all, and Home keeps its own fixed selection.
 
 ## Adding an image: maintainer procedure
 
@@ -140,6 +140,10 @@ Keep documentation focused: current rules in AGENTS.md, operational instructions
 ### 2026-11-10: hand-picked Writing edition
 
 Removed the growing automatic essay section and replaced Chekhov's Gun with “Dear Seoul,” in the existing brief slot. Chekhov's Gun and Randall Flagg remain in Browse all. Publication now updates the archive without changing the selected edition. Regression checks add a hypothetical newer essay through both the renderer and normal publisher build, verify the selection stays identical, and cover a missing selected source and the valid zero-essay case. Existing newspaper styles and the publisher's archive-link proof are unchanged.
+
+### 2026-11-10: two Writing placements, correction preview
+
+The previous release misread “one featured essay” as a page-wide limit and removed Randall Flagg from the top slot. Its tests reinforced that mistaken interpretation instead of checking the intended placements. The correction preview restores Randall Flagg above Scientist while keeping Dear Seoul in Chekhov's former lower slot. Explicit top/brief pins and regressions now check both positions, retained archive entries and unchanged selection after a newer publication. This correction is local for review; publication requires approval of the preview.
 
 ### 2026-11-10: analytics collection safeguards
 
