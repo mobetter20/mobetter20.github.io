@@ -22,6 +22,12 @@ The agent handles the web assets, filenames, accessible descriptions, reader pag
 
 The agent uses `_scripts/piece.py` to prepare images, check a batch and verify deployed pages. It does not require an AI API or a running service. There is no upload form or automatic image drop folder. The existing approved-release folder publisher handles Markdown essays; its instructions are in [_scripts/writes_publisher/README.md](_scripts/writes_publisher/README.md). Do not put images there and assume they will publish.
 
+### Choosing what appears on Writing
+
+Publishing and featuring are separate. New essays get a reader, a feed entry and a newest-first entry in Browse all. They do not replace or add to the newspaper selection. To change that selection, ask for the specific swap, for example: “Feature Dear Seoul instead of Chekhov's Gun.”
+
+“Dear Seoul,” is currently the one selected essay, in the existing brief slot. The explicit choice is `WRITING_FEATURED_ESSAY_SLUG` in `_scripts/paper_site.py`; the surrounding comedy choices stay hand-picked too. Change that slug to select another published essay, then rebuild and verify Writing. Its source excerpt supplies the introduction. A missing selection in a nonempty essay registry fails the build; retracting all essays omits the slot. There is no automatic latest-essay fallback. Other published work remains in Browse all, and Home keeps its own fixed selection.
+
 ## Adding an image: maintainer procedure
 
 The `add` command implements steps 2 through 4 below, including lossless conversion and pixel checks. `illustrate` attaches artwork to an existing comedy article without adding another Writing entry. `check` implements the build and mechanical checks once for the whole batch. The commands and short release sequence are in [PUBLISHING.md](PUBLISHING.md).
@@ -130,6 +136,10 @@ When changing publisher verification, install the reviewed runtime under its hel
 Keep documentation focused: current rules in AGENTS.md, operational instructions and significant changes here, exact diffs in Git. For investigation, use `git log --oneline`, `git show <commit>`, or `git log -- <path>`. Do not create a second exhaustive change log or describe planned work as implemented.
 
 ## Change record
+
+### 2026-11-10: hand-picked Writing edition
+
+Removed the growing automatic essay section and replaced Chekhov's Gun with “Dear Seoul,” in the existing brief slot. Chekhov's Gun and Randall Flagg remain in Browse all. Publication now updates the archive without changing the selected edition. Regression checks add a hypothetical newer essay through both the renderer and normal publisher build, verify the selection stays identical, and cover a missing selected source and the valid zero-essay case. Existing newspaper styles and the publisher's archive-link proof are unchanged.
 
 ### 2026-11-10: analytics collection safeguards
 

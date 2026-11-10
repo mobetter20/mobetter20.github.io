@@ -2,7 +2,8 @@
 
 The essay source directory remains the registry. collect_items also includes
 hand-built essays declared in BESPOKE_ESSAYS. Normal publication updates the
-Writing archive and Home, preserving the publisher's Home proof attributes.
+Writing archive and refreshes Home without changing either page's hand-picked
+selection. The publisher verifies the exact archive link, source and reader.
 """
 
 from __future__ import annotations
