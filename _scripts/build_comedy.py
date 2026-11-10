@@ -295,7 +295,7 @@ def build_page(post: ComedyPost) -> str:
         alt = html.escape(art['alt'], quote=True)
         body_html = f'''        <figure class="prose-illustration">
           <a href="{src}" target="_self" aria-label="View illustration full size"><img src="{src}" width="{art['width']}" height="{art['height']}" alt="{alt}" /></a>
-          <figcaption>Illustration generated with AI. <a href="{src}" target="_self">View full size</a></figcaption>
+          <figcaption>Illustration generated with AI.</figcaption>
         </figure>
 {body_html}'''
     note_html = (

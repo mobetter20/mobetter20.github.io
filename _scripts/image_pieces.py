@@ -195,7 +195,7 @@ def render_piece(piece: dict) -> str:
 {document_head}
   <body {body_attributes}>
     <main class="shell">
-      <a class="back" href="/is/writing/#all" target="_self">← All writing</a>
+      <nav class="piece-nav" aria-label="Cartoon navigation"><a class="back" href="/is/writing/cartoons/#{piece['slug']}" target="_self">All cartoons</a></nav>
       <h1 class="piece-title">{title}</h1>
       <figure class="piece-art">
         <a href="{image}" target="_self" aria-label="View {title} full size">
@@ -203,9 +203,8 @@ def render_piece(piece: dict) -> str:
         </a>
 {caption}      </figure>
       <p class="piece-credit">{CREDIT}</p>
-      <p class="piece-full"><a href="{image}" target="_self">View full size</a></p>
     </main>
-{writes_common.FOOTER}
+    <footer class="site-foot"><a class="back" href="/is/writing/#all" target="_self">← Back to writing</a></footer>
   </body>
 </html>
 '''
