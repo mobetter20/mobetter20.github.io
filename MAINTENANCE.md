@@ -64,6 +64,14 @@ At 375px, check the actual joke, including small lettering. Going to the Market 
 
 Download names come from the public asset names, such as `childrens-museum.webp`, not the original ChatGPT filename. Page credits and external page titles are not embedded in downloaded images. Austen’s caption is also separate HTML, so saving that image alone omits the caption. A separate share/download export has not been implemented.
 
+### Sharing a piece
+
+Prose readers, individual cartoon readers and slides have one footer action. It opens the device's share menu when supported; otherwise it reads **Copy link**. Every action uses the piece's title and canonical `https://ajin.im/` reader URL, including after a slide change or Back/Forward navigation. Preview hosts, slide URLs and tracking parameters are never shared. The indexes and entrance pages have no share control.
+
+Cancelling the native menu does nothing. Clipboard success shows “Copied” only after the write succeeds; if copying is blocked, a selected, readonly link appears for manual copying. Without JavaScript, the control stays hidden and normal browser sharing remains available. This adds no tracking, byline, artwork signature or image export. Sharing a page link does not embed captions or credits in downloaded artwork.
+
+The shared renderer in `_scripts/writes_common.py` supplies the escaped payload and versioned assets. `assets/paper/share.js` handles clicks and initializes replacement slide content; `assets/paper/share.css` styles only reader actions. Keep the Node sharing regressions in both `piece.py check` and the paper CI workflow. When checking in a browser, stub native sharing and clipboard writes so tests neither send messages nor replace the user's clipboard.
+
 ## Where to make changes
 
 | Area | Owning source | Generated output or presentation |
@@ -75,6 +83,7 @@ Download names come from the public asset names, such as `childrens-museum.webp`
 | Building | `content/building.json`, `templates/building.html`, `_scripts/paper_site.py` | `_scripts/build_sections.py` writes `is/building/index.html`; the cabinet has its own styles. |
 | Running | `templates/running.html`, `_scripts/build_root.py`; running sync supplies `content/stats.md` | Generated `is/running/index.html` and Home mileage. Trace the sync source before changing stats behavior. |
 | Prose readers | `content/comedy.json`, standalone comedy Markdown, `is/writing/essays/_src/`; `_scripts/writes_common.py` | `_scripts/build_comedy.py` and `_scripts/build_essays.py`; shared `writes.css`. See AGENTS.md before importing or changing sources. |
+| Reader sharing | `_scripts/writes_common.py`, `assets/paper/share.js`, `assets/paper/share.css` | Prose/image renderers and `_scripts/cartoon_collection.py` emit one canonical piece link per reader. |
 | Sitemap | `_scripts/build_sitemap.py` | `sitemap.xml`; commit dates supply `lastmod`. |
 
 The `/wrote/` and `/writes/` indexes redirect to the unified Writing list. Their individual prose reader URLs and `/writes/feed.xml` remain supported. Moving those URLs is a separate change because the essay publisher and existing links depend on them.

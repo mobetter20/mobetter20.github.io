@@ -7,7 +7,11 @@ unified archive.
 
 from __future__ import annotations
 
+import hashlib
 import html
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
 
 FONTS = (
     '<link rel="preconnect" href="https://fonts.googleapis.com" />\n'
@@ -19,8 +23,29 @@ FONTS = (
 )
 
 
+def share_assets() -> str:
+    """Version the small, local reader enhancement independently of page styles."""
+    def asset(name: str) -> str:
+        path = f"assets/paper/{name}"
+        version = hashlib.sha256((ROOT / path).read_bytes()).hexdigest()[:10]
+        return f"/{path}?v={version}"
+
+    return (f'<link rel="stylesheet" href="{asset("share.css")}" />\n'
+            f'    <script src="{asset("share.js")}" defer></script>')
+
+
+def share_control(title: str, canonical: str) -> str:
+    """Keep the payload on the piece itself, including after a slide swap."""
+    return (f'<div class="piece-share" hidden><button class="share-button" type="button" '
+            f'data-share-title="{html.escape(title, quote=True)}" '
+            f'data-share-url="{html.escape(canonical, quote=True)}" hidden>Share</button>'
+            '<span class="share-status" role="status" aria-live="polite" '
+            'aria-atomic="true"></span></div>')
+
+
 def head(
-    title: str, description: str, canonical: str, *, og_type: str = "website", feed_url: str = ""
+    title: str, description: str, canonical: str, *, og_type: str = "website", feed_url: str = "",
+    sharing: bool = False,
 ) -> str:
     """The shared <head> block. `title` and `description` are escaped here.
 
@@ -54,6 +79,7 @@ def head(
     {FONTS}
     <link rel="stylesheet" href="/writes.css?v=paper-r12" />
     <script src="/analytics.js" defer></script>
+    {share_assets() if sharing else ""}
   </head>"""
 
 
@@ -80,7 +106,7 @@ def reading_page(
     note_block = f"      {note_html}\n" if note_html else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
-{head(title, description, canonical, og_type="article", feed_url=feed_url)}
+{head(title, description, canonical, og_type="article", feed_url=feed_url, sharing=True)}
   <body class="read-page">
     <main class="shell">
       <a class="back" href="{back_href}" target="_self">{html.escape(back_label)}</a>
@@ -90,7 +116,7 @@ def reading_page(
 {body_html}
       </article>
     </main>
-{FOOTER}
+    <footer class="site-foot piece-actions"><a href="mailto:hi@ajin.im">hi@ajin.im</a>{share_control(title, canonical)}</footer>
   </body>
 </html>
 """

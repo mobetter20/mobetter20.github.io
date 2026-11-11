@@ -170,7 +170,7 @@ def render_piece(piece: dict) -> str:
     <meta property="og:image:alt" content="{html.escape(piece['alt'], quote=True)}" />
     <link rel="stylesheet" href="/assets/paper/image-pieces.css?v={style_version}" />'''
     document_head = writes_common.head(
-        piece["title"], piece["alt"], canonical, og_type="article"
+        piece["title"], piece["alt"], canonical, og_type="article", sharing=True
     ).replace(
         '<meta name="twitter:card" content="summary" />',
         '<meta name="twitter:card" content="summary_large_image" />',
@@ -204,7 +204,7 @@ def render_piece(piece: dict) -> str:
 {caption}      </figure>
       <p class="piece-credit">{CREDIT}</p>
     </main>
-    <footer class="site-foot"><a class="back" href="/is/writing/#all" target="_self">← Back to writing</a></footer>
+    <footer class="site-foot piece-actions"><a class="back" href="/is/writing/#all" target="_self">← Back to writing</a>{writes_common.share_control(piece["title"], canonical)}</footer>
   </body>
 </html>
 '''

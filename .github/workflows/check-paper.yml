@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: "22"
       - name: Test client navigation and privacy gates
-        run: node --test _scripts/test_cartoon_swipe.js _scripts/test_cartoon_navigation.js _scripts/test_analytics.js
+        run: node --test _scripts/test_cartoon_swipe.js _scripts/test_cartoon_navigation.js _scripts/test_analytics.js _scripts/test_share.js
       - name: Rebuild without private exports
         run: |
           python3 _scripts/build_sections.py --check
