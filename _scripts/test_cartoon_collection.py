@@ -1,4 +1,5 @@
 import copy
+from html import escape
 import re
 import unittest
 
@@ -45,6 +46,19 @@ class CartoonCollectionTest(unittest.TestCase):
         self.assertIn(f'<meta property="og:image:width" content="{piece["width"]}">', page)
         self.assertIn(f'<meta property="og:image:height" content="{piece["height"]}">', page)
         self.assertNotIn('noindex', page)
+
+    def test_every_slide_shares_its_canonical_piece_not_the_collection(self):
+        pieces = cartoon_collection.ordered(image_pieces.load_catalog())
+        for index, piece in enumerate(pieces):
+            page = cartoon_collection.slide_page(pieces, index)
+            self.assertEqual(page.count('data-share-url='), 1)
+            self.assertIn(f'data-share-url="https://ajin.im{piece["href"]}"', page)
+            self.assertIn(f'data-share-title="{escape(piece["title"], quote=True)}"', page)
+            self.assertIn('class="piece-share" hidden', page)
+            self.assertLess(page.index('/share.js?'), page.index('/cartoons.js?'))
+        overview = cartoon_collection.overview_page(pieces)
+        self.assertNotIn('data-share-url=', overview)
+        self.assertNotIn('/share.js?', overview)
 
     def test_phone_panels_keep_the_native_enlargement_link(self):
         piece = next(p for p in image_pieces.load_catalog()['pieces'] if p.get('mobile_panels') == 2)

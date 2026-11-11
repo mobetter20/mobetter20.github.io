@@ -1,0 +1,53 @@
+/* Reader actions inherit the existing paper typography and colours. */
+.piece-share[hidden], .share-button[hidden] { display: none; }
+.read-page .site-foot.piece-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.piece-actions > a { display: inline-flex; align-items: center; min-height: 44px; }
+.slide-bottom .slide-share-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+}
+.piece-share { position: relative; max-width: 100%; }
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--blue, var(--head));
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+.share-button:hover { text-decoration: underline; text-underline-offset: 4px; }
+.share-button:focus-visible, .share-url:focus-visible {
+  outline: 2px solid var(--blue, var(--head));
+  outline-offset: 4px;
+}
+.share-button:disabled { cursor: progress; }
+.share-status:not(:empty) { display: block; font: inherit; }
+.share-url {
+  display: block;
+  width: 280px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}

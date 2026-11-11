@@ -173,7 +173,7 @@ def check() -> None:
         run([sys.executable, f'_scripts/{script}'])
     report = run([sys.executable, '-m', 'unittest', 'discover', '-s', '_scripts', '-p', 'test_*.py'])
     print(next((line for line in report.splitlines() if line.startswith('Ran ')), 'Tests passed'))
-    run(['node', '--test', '_scripts/test_cartoon_swipe.js', '_scripts/test_cartoon_navigation.js', '_scripts/test_analytics.js'])
+    run(['node', '--test', '_scripts/test_cartoon_swipe.js', '_scripts/test_cartoon_navigation.js', '_scripts/test_analytics.js', '_scripts/test_share.js'])
     run([sys.executable, '_scripts/build_sections.py', '--check'])
     run([sys.executable, '_scripts/build_root.py', '--check-home'])
     links = run([sys.executable, '_scripts/check_links.py'])

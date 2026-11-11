@@ -29,6 +29,17 @@ class WritingRouteTest(unittest.TestCase):
         self.assertIn('href="/is/writing/#all" target="_self"', page)
         self.assertIn('rel="alternate" type="application/atom+xml"', page)
         self.assertIn('href="https://ajin.im/writes/a-piece/"', page)
+        self.assertIn('class="site-foot piece-actions"', page)
+        self.assertEqual(page.count('data-share-url="https://ajin.im/writes/a-piece/"'), 1)
+        self.assertIn('data-share-title="A piece"', page)
+        self.assertIn('class="piece-share" hidden', page)
+        self.assertIn('hidden>Share</button>', page)
+        self.assertIn('/assets/paper/share.js?v=', page)
+
+    def test_share_payload_escapes_title_and_canonical_attributes(self):
+        control = writes_common.share_control('A "piece" <&>', 'https://ajin.im/writes/piece/')
+        self.assertIn('data-share-title="A &quot;piece&quot; &lt;&amp;&gt;"', control)
+        self.assertIn('data-share-url="https://ajin.im/writes/piece/"', control)
 
     def test_reader_styles_are_the_paper_palette_and_single_column(self):
         css = (Path(__file__).resolve().parents[1] / "writes.css").read_text()
@@ -45,6 +56,8 @@ class WritingRouteTest(unittest.TestCase):
             self.assertIn('href="https://ajin.im/is/writing/#all"', page)
             self.assertIn('href="/is/writing/#all" target="_self"', page)
             self.assertNotIn('class="log"', page)
+            self.assertNotIn('share.js', page)
+            self.assertNotIn('data-share-url=', page)
 
     def test_essay_reader_and_feed_contract_survive_unification(self):
         post = build_essays.EssayPost(
