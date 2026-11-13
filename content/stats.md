@@ -3,7 +3,7 @@
 ## running
 # total_km = baseline_km + cumulative run km synced since (Strava until July 2026, Garmin since; see ../../../strava_activity/sync_runs.py).
 # baseline_km is the locked pre-Strava total; do not change without intent.
-total_km: 78100
+total_km: 78103
 baseline_km: 75000
 since_year: 2009
 # as_of = month of the last good run sync (YYYY-MM). The run sync (strava_activity/adapters/site.py) sets it; the home run-line reads it.
