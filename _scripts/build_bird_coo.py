@@ -1561,7 +1561,7 @@ def issue_page_html(
             + "\n".join(f"<p>{text(line)}</p>" for line in issue.display_ad.contact_lines)
             + "\n</div>"
         )
-    mast_subtitle = "Online Edition · with Ask Cordelia" if issue.advice_column else "Online Edition · Published Tuesdays"
+    mast_subtitle = "Online Edition · with Ask Cordelia" if issue.advice_column else "Online Edition"
     nav_cordelia = '\n<a href="#cordelia">Ask Cordelia</a>' if issue.advice_column else ""
     advice_section = f"\n\n{render_advice_block(issue.advice_column)}" if issue.advice_column else ""
 
@@ -1592,7 +1592,7 @@ def issue_page_html(
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="/img/a3.png">
 <link rel="apple-touch-icon" href="/img/a3.png">
-<title>{text(SITE_TITLE)} — {text(issue.archive_label)}</title>
+<title>{text(SITE_TITLE)} · Issue {text(issue.issue_number)}</title>
 <meta name="description" content="{meta_description}">
 <link rel="canonical" href="{social_url}">
 <meta property="og:site_name" content="ajin.im">
@@ -1619,7 +1619,7 @@ def issue_page_html(
 <div class="mast-district">{text(SITE_DISTRICT)}</div>
 <h1 class="mast-title">{text(SITE_TITLE)}</h1>
 <div class="mast-meta">
-<span>{text(issue.date_label)}</span>
+<span>Issue {text(issue.issue_number)}</span>
 <span>{text(mast_subtitle)}</span>
 <span>Est. unrecorded</span>
 </div>
@@ -1704,7 +1704,7 @@ def issue_page_html(
 
 <footer class="site-footer">
 <p>{text(FOOTER_COPY)}</p>
-<p>{footer_link_html(archive_href, "Past Issues")}</p>
+<p>{footer_link_html(archive_href, "Editions")}</p>
 <p class="district-links"><a href="/is/writing/nest-court/" target="_blank">Nest Court</a> · <a href="/is/writing/secondnest/" target="_blank">SecondNest</a> · <a href="/is/writing/avian-district/" target="_blank">Avian Municipal District</a> · <a href="/is/writing/perch-chat/" target="_blank">The Perch</a> · <a href="/is/writing/karen-hawk/" target="_blank">Karen Hawk</a></p>
 </footer>
 
@@ -1726,14 +1726,13 @@ def archive_page_html(
     if published_issues:
         items = []
         for issue in reversed(published_issues):
-            current_badge = " · Current" if issue == current_issue else ""
+            current_badge = " · Front page" if issue == current_issue else ""
             current_class = " current" if issue == current_issue else ""
             items.append(
                 f"""<article class="archive-item{current_class}">
 <a href="./{issue.slug}.html">
 <div class="archive-meta">
 <span>Issue {text(issue.issue_number)}{text(current_badge)}</span>
-<span>{text(issue.archive_label)}</span>
 </div>
 <h2 class="archive-title">{text(issue.lead_headline)}</h2>
 <p class="archive-summary">{text(issue.lead_dateline)}</p>
@@ -1751,18 +1750,18 @@ def archive_page_html(
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="/img/a3.png">
 <link rel="apple-touch-icon" href="/img/a3.png">
-<title>{text(SITE_TITLE)} Archive</title>
-<meta name="description" content="Past issues of The Municipal Coo">
+<title>{text(SITE_TITLE)} · Editions</title>
+<meta name="description" content="All editions of The Municipal Coo">
 <link rel="canonical" href="{html.escape(canonical_href, quote=True)}">
 <meta property="og:site_name" content="ajin.im">
-<meta property="og:title" content="{html.escape(SITE_TITLE + ' Archive', quote=True)}">
-<meta property="og:description" content="Past issues of The Municipal Coo">
+<meta property="og:title" content="{html.escape(SITE_TITLE + ' · Editions', quote=True)}">
+<meta property="og:description" content="All editions of The Municipal Coo">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{html.escape(canonical_href, quote=True)}">
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="{html.escape(SITE_TITLE + ' Archive', quote=True)}">
-<meta name="twitter:description" content="Past issues of The Municipal Coo">
+<meta name="twitter:title" content="{html.escape(SITE_TITLE + ' · Editions', quote=True)}">
+<meta name="twitter:description" content="All editions of The Municipal Coo">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1776,23 +1775,23 @@ def archive_page_html(
 <header class="masthead">
 <div class="mast-district">{text(SITE_DISTRICT)}</div>
 <h1 class="mast-title">{text(SITE_TITLE)}</h1>
-<div class="mast-subtitle">Archive of published issues</div>
+<div class="mast-subtitle">Issue Archive</div>
 <div class="mast-meta">
-<span>{text(current_issue.date_label)}</span>
-<span>Issue Archive</span>
-<span>Published editions</span>
+<span>All editions</span>
+<span>Online Edition</span>
+<span>Est. unrecorded</span>
 </div>
 </header>
 
 <div class="archive-shell">
-<p class="archive-intro">Past and current issues of The Municipal Coo are listed below in reverse chronological order. Future editions are withheld until publication.</p>
+<p class="archive-intro">Every edition of The Municipal Coo is available below.</p>
 <section class="archive-list">
 {archive_items}
 </section>
 </div>
 
 <footer class="site-footer">
-<p>{footer_link_html('../index.html', 'Return to current issue')}</p>
+<p>{footer_link_html('../index.html', 'Return to the front page')}</p>
 </footer>
 </div>
 
