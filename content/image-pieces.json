@@ -3,6 +3,17 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "november-in-my-soul",
+      "title": "November in my soul",
+      "published_date": "2026-11-14",
+      "image": "/assets/paper/pieces/november-in-my-soul.webp",
+      "width": 1024,
+      "height": 1536,
+      "alt": "Six panels headed “Every year.” A green character sees November 1 on a phone, frowns in a mirror, and joins a gloomy queue at the subway. Seeing a shop marked “Closing down,” they think, “Good idea.” Passing two cheerful people taking a selfie, they think, “Knock it off.” Finally they say, “Oh. November.” Beneath the panels: “…a damp, drizzly November in my soul…”",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "we-cant-both-do-tuesday",
       "title": "We can’t both do Tuesday",
       "published_date": "2026-11-09",
