@@ -12,7 +12,7 @@ class CartoonCollectionTest(unittest.TestCase):
     def test_catalog_addition_enters_overview_and_sequence(self):
         catalog = copy.deepcopy(image_pieces.load_catalog())
         extra = {**catalog['pieces'][0], 'slug':'collection-fixture', 'title':'Collection fixture',
-                 'href':'/is/writing/collection-fixture/', 'published_date':'2026-12-01', 'featured':False}
+                 'href':'/is/writing/collection-fixture/', 'published_date':'9999-12-31', 'featured':False}
         catalog['pieces'].append(extra)
         pages = cartoon_collection.expected_pages(catalog)
         overview = pages['is/writing/cartoons/index.html']
@@ -20,8 +20,8 @@ class CartoonCollectionTest(unittest.TestCase):
         self.assertIn('/is/writing/cartoons/slides/collection-fixture/#cartoon', overview)
         self.assertIn('is/writing/cartoons/slides/collection-fixture/index.html', pages)
         self.assertEqual(overview.count('loading="eager"'), 2)
-        self.assertEqual(overview.count('loading="lazy"'), 10)
-        self.assertIn('1 / 12', pages['is/writing/cartoons/slides/collection-fixture/index.html'])
+        self.assertEqual(overview.count('loading="lazy"'), len(catalog['pieces']) - 2)
+        self.assertIn(f"1 / {len(catalog['pieces'])}", pages['is/writing/cartoons/slides/collection-fixture/index.html'])
 
     def test_sequence_bounds_and_entry_alias(self):
         catalog = image_pieces.load_catalog()
