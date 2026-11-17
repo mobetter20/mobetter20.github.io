@@ -1,0 +1,2674 @@
+{
+  "avibase-09A0F2EB": {
+    "name": "African Crake",
+    "scientificName": "Crecopsis egregia",
+    "kind": "description",
+    "text": "This crake lives in grasslands across much of sub-Saharan Africa. Seasonal rains draw it to places where the grass has grown tall enough for nesting.",
+    "sources": [
+      {
+        "title": "BirdLife South Africa: African Crake",
+        "url": "https://www.birdlife.org.za/red-data-book/red-list/african-crake/"
+      },
+      {
+        "title": "Wikipedia: African crake",
+        "url": "https://en.wikipedia.org/wiki/African_crake"
+      }
+    ]
+  },
+  "avibase-66931B3F": {
+    "name": "African Cuckoo",
+    "scientificName": "Cuculus gularis",
+    "kind": "description",
+    "text": "Its migrations stay within Africa, often following the rains. Listen for the male’s paired, deep “coo” notes, with the second sometimes more emphatic.",
+    "sources": [
+      {
+        "title": "Peacock (2014): Identifying Common and African Cuckoos",
+        "url": "https://www.tanzaniabirds.net/African_birds/Cuckoo_common/cuckoo_ID.pdf"
+      },
+      {
+        "title": "Atlas of Southern African Birds: African Cuckoo",
+        "url": "https://sabap2.birdmap.africa/docs/sabap1/375.pdf"
+      },
+      {
+        "title": "Wikipedia: African cuckoo",
+        "url": "https://en.wikipedia.org/wiki/African_cuckoo"
+      }
+    ]
+  },
+  "avibase-40A2405D": {
+    "name": "African Thrush",
+    "scientificName": "Turdus pelios",
+    "kind": "description",
+    "text": "A resident of wooded Africa, from Senegal eastwards and south into Angola and Zambia. Its orange-yellow bill stands out against a grey-brown head and back.",
+    "sources": [
+      {
+        "title": "Adang 2018: Breeding biology of the African Thrush",
+        "url": "https://ijabr.futminna.edu.ng/images/IJABR/11_Some_aspects_of_the_breeding_biology._Galley_proof.pdf"
+      },
+      {
+        "title": "Wikipedia: African thrush",
+        "url": "https://en.wikipedia.org/wiki/African_thrush"
+      }
+    ]
+  },
+  "avibase-CDA2E56B": {
+    "name": "American Pipit",
+    "scientificName": "Anthus rubescens",
+    "kind": "description",
+    "text": "A North American pipit with a buff breast and fine streaks. It spends much of its time on the ground, where its grey-brown back can be easy to overlook.",
+    "sources": [
+      {
+        "title": "Cornell Lab: American Pipit identification",
+        "url": "https://www.allaboutbirds.org/guide/American_Pipit/id"
+      },
+      {
+        "title": "Wikipedia: American pipit",
+        "url": "https://en.wikipedia.org/wiki/American_pipit"
+      }
+    ]
+  },
+  "avibase-32E65FB3": {
+    "name": "Ashy Bulbul",
+    "scientificName": "Hemixos flavala",
+    "kind": "description",
+    "text": "Grey feathers cover the back and breast, giving this bulbul its ashy appearance. A white throat and a bright yellow patch on the wing interrupt the grey.",
+    "sources": [
+      {
+        "title": "Wikipedia: Ashy bulbul",
+        "url": "https://en.wikipedia.org/wiki/Ashy_bulbul"
+      },
+      {
+        "title": "Wild Mentor: Ashy Bulbul",
+        "url": "https://www.wildmentor.de/index.php/species-details/eabad872-58c6-4f4a-a831-736a11d766ca"
+      }
+    ]
+  },
+  "avibase-8D1CF2FF": {
+    "name": "Ashy Woodpecker",
+    "scientificName": "Mulleripicus fulvus",
+    "kind": "description",
+    "text": "The back and wings are grey-brown to dark slate, with a pale buff underside. Males add a red face; females have a grey head instead.",
+    "sources": [
+      {
+        "title": "Wikipedia: Ashy woodpecker",
+        "url": "https://en.wikipedia.org/wiki/Ashy_woodpecker"
+      },
+      {
+        "title": "Oiseaux-Birds: Ashy Woodpecker, text by Nicole Bouglouan and photographs by Roger Ahlman",
+        "url": "https://www.oiseaux-birds.com/card-ashy-woodpecker.html"
+      }
+    ]
+  },
+  "avibase-E0ED3A27": {
+    "name": "Banded Barbet",
+    "scientificName": "Lybius undatus",
+    "kind": "description",
+    "text": "Look for the bands across its underside and rump. This stocky barbet lives in Ethiopia and Eritrea, using its heavy bill to eat fruit and excavate nest holes.",
+    "sources": [
+      {
+        "title": "Wikipedia: Banded barbet",
+        "url": "https://en.wikipedia.org/wiki/Banded_barbet"
+      },
+      {
+        "title": "Tim Melling: Banded Barbet",
+        "url": "https://www.flickr.com/photos/timmelling/51058030591"
+      }
+    ]
+  },
+  "avibase-303D5356": {
+    "name": "Banded Kingfisher",
+    "scientificName": "Lacedo pulchella",
+    "kind": "description",
+    "text": "Both sexes have bands, but in different colours. The male’s back is striped black and blue; the female’s head and back are patterned black and reddish brown.",
+    "sources": [
+      {
+        "title": "Wikipedia: Banded kingfisher",
+        "url": "https://en.wikipedia.org/wiki/Banded_kingfisher"
+      },
+      {
+        "title": "MyBIS: Birds of Malaysia (2016), page 50, photographs by Muhammad Al Zahri",
+        "url": "https://mybis.gov.my/one/free_mybis_ebook/Burung-burung%20Malaysia%20_%20Malaysia%20Biodiversity%20Information%20System%20%28MyBIS%29%20%282016%29.pdf"
+      }
+    ]
+  },
+  "avibase-05CFB3D1": {
+    "name": "Banded Woodpecker",
+    "scientificName": "Chrysophlegma miniaceum",
+    "kind": "description",
+    "text": "Dark bars cross its pale belly, with more barring on the reddish breast. Above, the bird is mostly rusty brown, topped by a shaggy yellowish nape.",
+    "sources": [
+      {
+        "title": "Singapore National Parks: Banded Woodpecker",
+        "url": "https://biodiversitysg.nparks.gov.sg/our-biodiversity/birds/woodpeckers-barbets/banded-woodpecker/"
+      },
+      {
+        "title": "Wikipedia: Banded woodpecker",
+        "url": "https://en.wikipedia.org/wiki/Banded_woodpecker"
+      }
+    ]
+  },
+  "avibase-6BBBDB1A": {
+    "name": "Banded Wren",
+    "scientificName": "Thryophilus pleurostictus",
+    "kind": "description",
+    "text": "Black bars mark the wings, tail, lower belly and sides. The back is chestnut brown, while a bold white stripe runs above each eye.",
+    "sources": [
+      {
+        "title": "Alexander Skutch 1940: Social and sleeping habits of Central American wrens",
+        "url": "https://sora.unm.edu/sites/default/files/journals/auk/v057n03/p0293-p0312.pdf"
+      },
+      {
+        "title": "Wikipedia: Banded wren",
+        "url": "https://en.wikipedia.org/wiki/Banded_wren"
+      }
+    ]
+  },
+  "avibase-C39D115A": {
+    "name": "Barred Hawk",
+    "scientificName": "Morphnarchus princeps",
+    "kind": "description",
+    "text": "Fine dark bars cross the pale belly and underwings, below a dark chest. Seen from above, this hawk looks mostly dark, with a white band on the tail.",
+    "sources": [
+      {
+        "title": "Wikipedia: Barred hawk",
+        "url": "https://en.wikipedia.org/wiki/Barred_hawk"
+      },
+      {
+        "title": "Peru Aves: Barred Hawk",
+        "url": "https://www.peruaves.org/accipitridae/barred-hawk-morphnarchus-princeps/"
+      }
+    ]
+  },
+  "avibase-148F0B01": {
+    "name": "Black Crake",
+    "scientificName": "Zapornia flavirostra",
+    "kind": "description",
+    "text": "The adult is mostly black, with a yellow bill, red eyes and red legs. Young birds are browner, so the name fits the adult more closely.",
+    "sources": [
+      {
+        "title": "Newman’s Birds of Southern Africa: Black Crake",
+        "url": "https://newmansbirds.com/birds/black-crake/"
+      },
+      {
+        "title": "Wikipedia: Black crake",
+        "url": "https://en.wikipedia.org/wiki/Black_crake"
+      }
+    ]
+  },
+  "avibase-EDB84334": {
+    "name": "Black Cuckoo",
+    "scientificName": "Cuculus clamosus",
+    "kind": "description",
+    "text": "Mostly black, sometimes with faint barring underneath. The male’s repeated three-note call rises at the end and is often remembered as “I’m so sick”.",
+    "sources": [
+      {
+        "title": "Newman’s Birds of Southern Africa: Black Cuckoo",
+        "url": "https://newmansbirds.com/birds/black-cuckoo/"
+      },
+      {
+        "title": "Wikipedia: Black cuckoo",
+        "url": "https://en.wikipedia.org/wiki/Black_cuckoo"
+      }
+    ]
+  },
+  "avibase-A41CD4E7": {
+    "name": "Black Harrier",
+    "scientificName": "Circus maurus",
+    "kind": "description",
+    "text": "A perched adult can look almost entirely black. Flight reveals a white rump and pale flight feathers; young birds have buff underparts and a streaked chest.",
+    "sources": [
+      {
+        "title": "BirdLife South Africa: Black Harrier",
+        "url": "https://www.birdlife.org.za/red-data-book/red-list/black-harrier/"
+      },
+      {
+        "title": "Wikipedia: Black harrier",
+        "url": "https://en.wikipedia.org/wiki/Black_harrier"
+      }
+    ]
+  },
+  "avibase-74853F89": {
+    "name": "Black Heron",
+    "scientificName": "Egretta ardesiaca",
+    "kind": "description",
+    "text": "Black feathers, a black bill and yellow feet make this heron distinctive. When fishing, it spreads its wings into a dark canopy over the water.",
+    "sources": [
+      {
+        "title": "BirdLife South Africa: Black Heron",
+        "url": "https://www.birdlife.org.za/red-data-book/red-list/black-heron/"
+      },
+      {
+        "title": "Wikipedia: Black heron",
+        "url": "https://en.wikipedia.org/wiki/Black_heron"
+      }
+    ]
+  },
+  "avibase-811FC719": {
+    "name": "Black Lark",
+    "scientificName": "Melanocorypha yeltoniensis",
+    "kind": "description",
+    "text": "The breeding male is almost all black, with a pale bill. The female looks quite different: she is mottled grey above and much paler below.",
+    "sources": [
+      {
+        "title": "Birds of Kazakhstan: Black Lark",
+        "url": "https://kz.birding.day/v2taxon.php?l=en&s=380"
+      },
+      {
+        "title": "Wikipedia: Black lark",
+        "url": "https://en.wikipedia.org/wiki/Black_lark"
+      }
+    ]
+  },
+  "avibase-ADD8E888": {
+    "name": "Black Monarch",
+    "scientificName": "Symposiachrus axillaris",
+    "kind": "description",
+    "text": "“Monarch” is the bird family here. This forest bird lives in New Guinea’s highlands and is also called the Black Monarch Flycatcher.",
+    "sources": [
+      {
+        "title": "Incubation behaviour and parental care of a nestling in the Black Monarch",
+        "url": "https://www.researchgate.net/publication/282177551_Incubation_behaviour_and_parental_care_of_a_nestling_in_the_Black_Monarch_Symposiarchus_axillaris"
+      },
+      {
+        "title": "Wikipedia: Black monarch",
+        "url": "https://en.wikipedia.org/wiki/Black_monarch"
+      }
+    ]
+  },
+  "avibase-0C95D04B": {
+    "name": "Black Thrush",
+    "scientificName": "Turdus infuscatus",
+    "kind": "description",
+    "text": "Adult males are black, with a bright yellow bill and eye-ring. Females are olive-brown, and young birds are brown with spots on their underparts.",
+    "sources": [
+      {
+        "title": "Wikipedia: Black thrush",
+        "url": "https://en.wikipedia.org/wiki/Black_thrush"
+      },
+      {
+        "title": "Smithsonian Institution: specimen description of Planesticus infuscatus",
+        "url": "https://repository.si.edu/server/api/core/bitstreams/e168b93a-0b6f-4fcd-ac8e-6ddea2883cab/content"
+      }
+    ]
+  },
+  "avibase-1C98EA2F": {
+    "name": "Black Wheatear",
+    "scientificName": "Oenanthe leucura",
+    "kind": "description",
+    "text": "The male is black except for a white rump and largely white tail. The female has the same pattern, but her dark feathers are brown.",
+    "sources": [
+      {
+        "title": "Wikipedia: Black wheatear",
+        "url": "https://en.wikipedia.org/wiki/Black_wheatear"
+      },
+      {
+        "title": "Madrid: Catalogue of species at Casa de Campo (2015)",
+        "url": "https://diario.madrid.es/cieacasadecampo/wp-content/uploads/sites/61/2022/03/CATALOGO_ESPECIES_2015.pdf"
+      },
+      {
+        "title": "Birding Aragón: Collalba negra",
+        "url": "https://birdingaragon.com/collalba-negra/"
+      }
+    ]
+  },
+  "avibase-C72EC8C8": {
+    "name": "Black-headed Bulbul",
+    "scientificName": "Microtarsus melanocephalos",
+    "kind": "description",
+    "text": "A glossy blue-black head sits above an olive-yellow body. Some birds have grey bodies instead, but the dark head and lack of a crest remain useful clues.",
+    "sources": [
+      {
+        "title": "Bird Society of Singapore: Black-headed Bulbul",
+        "url": "https://singaporebirds.com/species/black-headed-bulbul"
+      },
+      {
+        "title": "Wikipedia: Black-headed bulbul",
+        "url": "https://en.wikipedia.org/wiki/Black-headed_bulbul"
+      }
+    ]
+  },
+  "avibase-19D053B3": {
+    "name": "Black-headed Weaver",
+    "scientificName": "Ploceus melanocephalus",
+    "kind": "description",
+    "text": "The black head belongs to the breeding male, framed by a yellow collar. Females and males outside the breeding season lack that dark head pattern.",
+    "sources": [
+      {
+        "title": "Dieter Oschadleus: Yellow-backed Weaver (Black-headed Weaver)",
+        "url": "https://birds4africa.org/weaver-research/weavers/3922a/"
+      },
+      {
+        "title": "Wikipedia: Black-headed weaver",
+        "url": "https://en.wikipedia.org/wiki/Black-headed_weaver"
+      }
+    ]
+  },
+  "avibase-12CA8603": {
+    "name": "Black-headed Woodpecker",
+    "scientificName": "Picus erythropygius",
+    "kind": "description",
+    "text": "Black on the face contrasts with a yellow throat and green wings. The male has a red crown; the female’s crown is entirely black.",
+    "sources": [
+      {
+        "title": "Wikipedia: Black-headed woodpecker",
+        "url": "https://en.wikipedia.org/wiki/Black-headed_woodpecker"
+      },
+      {
+        "title": "Craig Robson: Field Guide to the Birds of Thailand, publisher preview",
+        "url": "https://api.pageplace.de/preview/DT0400.9781472981400_A39416046/preview-9781472981400_A39416046.pdf"
+      }
+    ]
+  },
+  "avibase-DEEC38A7": {
+    "name": "Blue-winged Parrot",
+    "scientificName": "Neophema chrysostoma",
+    "kind": "description",
+    "text": "Deep blue covers much of the male’s wing, against an olive-green body and yellow belly. Females are duller and have a smaller area of blue.",
+    "sources": [
+      {
+        "title": "BirdLife Australia: Blue-winged Parrot",
+        "url": "https://birdlife.org.au/bird-profiles/blue-winged-parrot/"
+      },
+      {
+        "title": "Wikipedia: Blue-winged parrot",
+        "url": "https://en.wikipedia.org/wiki/Blue-winged_parrot"
+      }
+    ]
+  },
+  "avibase-AA127B89": {
+    "name": "Blue-winged Pitta",
+    "scientificName": "Pitta moluccensis",
+    "kind": "description",
+    "text": "Bright blue wings sit between a green back and reddish undertail. This short-tailed pitta also has a black head, a pale eyebrow and a white throat.",
+    "sources": [
+      {
+        "title": "Wikipedia: Blue-winged pitta",
+        "url": "https://en.wikipedia.org/wiki/Blue-winged_pitta"
+      },
+      {
+        "title": "Bird Society of Singapore: Blue-winged Pitta",
+        "url": "https://singaporebirds.com/species/blue-winged-pitta"
+      }
+    ]
+  },
+  "avibase-457C01A2": {
+    "name": "Brown Crake",
+    "scientificName": "Zapornia akool",
+    "kind": "description",
+    "text": "Olive-brown upperparts and brown flanks surround a greyer face and breast. It lives in vegetated wetlands, including reedbeds and irrigation channels. Males and females look alike.",
+    "sources": [
+      {
+        "title": "Wikipedia: Brown crake",
+        "url": "https://en.wikipedia.org/wiki/Brown_crake"
+      },
+      {
+        "title": "Journal on New Biological Reports: Brown Crake observations",
+        "url": "https://www.researchtrend.net/jnbr/pdf/Sighting%20Records%20of%20Brown%20Crake%20Amauromls%20akool%20and%20its%20Territorial%20Call%20Characteristics%20from%20Central%20Aravalli%20Foothills.pdf"
+      }
+    ]
+  },
+  "avibase-4D5D2BC3": {
+    "name": "Brown Skua",
+    "scientificName": "Stercorarius antarcticus",
+    "kind": "description",
+    "text": "In New Zealand it is often called the Subantarctic Skua, a dark-brown bird with broad wings and white flashes that show in flight.",
+    "sources": [
+      {
+        "title": "Wikipedia: Brown skua",
+        "url": "https://en.wikipedia.org/wiki/Brown_skua"
+      },
+      {
+        "title": "New Zealand Birds Online: Subantarctic Skua",
+        "url": "https://www.nzbirdsonline.org.nz/species/subantarctic-skua"
+      },
+      {
+        "title": "Department of Conservation: Birds of the Chatham Islands",
+        "url": "https://www.nzbirdsonline.org.nz/assets/95597/1691912954-catant_ci.pdf"
+      }
+    ]
+  },
+  "avibase-93CA037F": {
+    "name": "Caspian Gull",
+    "scientificName": "Larus cachinnans",
+    "kind": "description",
+    "text": "It breeds around the Black and Caspian Seas and east across Central Asia. Its long, slender bill and sloping forehead give it a distinctive profile.",
+    "sources": [
+      {
+        "title": "British Trust for Ornithology: Caspian Gull",
+        "url": "https://weblive.bto.org/learn/about-birds/birdfacts/caspian-gull"
+      },
+      {
+        "title": "Wikipedia: Caspian gull",
+        "url": "https://en.wikipedia.org/wiki/Caspian_gull"
+      }
+    ]
+  },
+  "avibase-264D0351": {
+    "name": "Caspian Plover",
+    "scientificName": "Anarhynchus asiaticus",
+    "kind": "description",
+    "text": "Its breeding grounds include open country north and east of the Caspian Sea. After breeding, this long-legged plover travels south to eastern and southern Africa.",
+    "sources": [
+      {
+        "title": "BirdLife International: Caspian Plover",
+        "url": "https://datazone.birdlife.org/species/factsheet/caspian-plover-charadrius-asiaticus"
+      },
+      {
+        "title": "Wikipedia: Caspian plover",
+        "url": "https://en.wikipedia.org/wiki/Caspian_plover"
+      }
+    ]
+  },
+  "avibase-BC06BC0D": {
+    "name": "Caspian Tern",
+    "scientificName": "Hydroprogne caspia",
+    "kind": "description",
+    "text": "Named for the Caspian Sea, yet found around much of the world. It is the largest tern, with a heavy orange-red bill and a black cap.",
+    "sources": [
+      {
+        "title": "HANZAB: Caspian Tern, via New Zealand Birds Online",
+        "url": "https://www.nzbirdsonline.org.nz/assets/95597/1691913858-264_caspian-20tern.pdf"
+      },
+      {
+        "title": "Wikipedia: Caspian tern",
+        "url": "https://en.wikipedia.org/wiki/Caspian_tern"
+      }
+    ]
+  },
+  "avibase-5BAE0043": {
+    "name": "Chestnut Bulbul",
+    "scientificName": "Hemixos castanonotus",
+    "kind": "description",
+    "text": "Also called the Chestnut-backed Bulbul. This bird lives mainly in the humid forest canopy in southern China and northern Vietnam.",
+    "sources": [
+      {
+        "title": "Hong Kong Bird Watching Society: Chestnut Bulbul",
+        "url": "https://avifauna.hkbws.org.hk/species/0290/035500"
+      },
+      {
+        "title": "Wikipedia: Chestnut bulbul",
+        "url": "https://en.wikipedia.org/wiki/Chestnut_bulbul"
+      }
+    ]
+  },
+  "avibase-01BFAE61": {
+    "name": "Chestnut Weaver",
+    "scientificName": "Ploceus rubiginosus",
+    "kind": "description",
+    "text": "The breeding male has a rich chestnut body and a black head. Females and non-breeding males are browner, with a buff or chestnut band across the breast.",
+    "sources": [
+      {
+        "title": "Dieter Oschadleus: Chestnut Weaver",
+        "url": "https://birds4africa.org/weaver-research/weavers/796a/"
+      }
+    ]
+  },
+  "avibase-9DD65284": {
+    "name": "Chestnut Woodpecker",
+    "scientificName": "Celeus elegans",
+    "kind": "description",
+    "text": "Deep chestnut colours cover much of its head and body. Males have a bright red cheek stripe; females lack the red, while crest colour varies between populations.",
+    "sources": [
+      {
+        "title": "Wikipedia: Chestnut woodpecker",
+        "url": "https://en.wikipedia.org/wiki/Chestnut_woodpecker"
+      },
+      {
+        "title": "Peru Aves: Chestnut Woodpecker",
+        "url": "https://www.peruaves.org/picidae/chestnut-woodpecker-celeus-elegans/"
+      }
+    ]
+  },
+  "avibase-D3B8C7BE": {
+    "name": "Collared Babbler",
+    "scientificName": "Gampsorhynchus torquatus",
+    "kind": "description",
+    "text": "Its collar can be faint or absent. Where clear, it appears as a dark patch on each side of the breast, against buff underparts.",
+    "sources": [
+      {
+        "title": "Wikipedia: Collared babbler",
+        "url": "https://en.wikipedia.org/wiki/Collared_babbler"
+      },
+      {
+        "title": "N. J. Collar: revision of Asian babblers",
+        "url": "https://static1.squarespace.com/static/5c1a9e03f407b482a158da87/t/5c20023b032be437e941322b/1545601596598/Collar-Babbler.pdf"
+      }
+    ]
+  },
+  "avibase-0B2F8058": {
+    "name": "Collared Flycatcher",
+    "scientificName": "Ficedula albicollis",
+    "kind": "description",
+    "text": "The breeding male wears a white collar between his black head and back. Outside the breeding season, his plumage becomes browner, and females are brown too.",
+    "sources": [
+      {
+        "title": "British Birds: Photographic studies of Collared Flycatcher",
+        "url": "https://britishbirds.co.uk/journal/article/photographic-studies-some-less-familiar-birds-lix-collared-flycatcher"
+      },
+      {
+        "title": "Wikipedia: Collared flycatcher",
+        "url": "https://en.wikipedia.org/wiki/Collared_flycatcher"
+      }
+    ]
+  },
+  "avibase-F7B5C386": {
+    "name": "Collared Grosbeak",
+    "scientificName": "Mycerobas affinis",
+    "kind": "description",
+    "text": "The male has an orange-tinged yellow collar between his black head and bright yellow body. Females are olive-green above and yellowish below, without his black face.",
+    "sources": [
+      {
+        "title": "Wikipedia: Collared grosbeak",
+        "url": "https://en.wikipedia.org/wiki/Collared_grosbeak"
+      },
+      {
+        "title": "Knowler (1993): Collared Grosbeak Mycerobas affinis, a new species for Thailand, Forktail 8:152–153",
+        "url": "https://static1.squarespace.com/static/5c1a9e03f407b482a158da87/t/5c1fa7f92b6a282c991d0eaa/1545578490144/Mann-NorthernShrike.pdf"
+      }
+    ]
+  },
+  "avibase-5DA28D37": {
+    "name": "Collared Kingfisher",
+    "scientificName": "Todiramphus chloris",
+    "kind": "description",
+    "text": "A white collar separates the head from the blue-green back. Females tend to look greener than males, and young birds have darker, scaly markings on the neck.",
+    "sources": [
+      {
+        "title": "Singapore National Parks: Collared Kingfisher",
+        "url": "https://www.nparks.gov.sg/florafaunaweb/fauna/3/4/34"
+      },
+      {
+        "title": "Wikipedia: Collared kingfisher",
+        "url": "https://en.wikipedia.org/wiki/Collared_kingfisher"
+      }
+    ]
+  },
+  "avibase-EABE979B": {
+    "name": "Collared Myna",
+    "scientificName": "Acridotheres albocinctus",
+    "kind": "description",
+    "text": "A broad white collar crosses the sides and back of this myna’s neck. The head is black, with a small crest above the bill.",
+    "sources": [
+      {
+        "title": "Wikipedia: Collared myna",
+        "url": "https://en.wikipedia.org/wiki/Collared_myna"
+      },
+      {
+        "title": "Banmaw University Research Journal: bird survey",
+        "url": "https://www.bmwuni.edu.mm/wp-content/uploads/2020/06/Vol-11-Zool-1.pdf"
+      },
+      {
+        "title": "BirdForum: Collared Myna",
+        "url": "https://www.birdforum.net/opus/Collared_Myna"
+      }
+    ]
+  },
+  "avibase-D0AA9105": {
+    "name": "Collared Nightjar",
+    "scientificName": "Gactornis enarratus",
+    "kind": "description",
+    "text": "Its scientific genus, Gactornis, starts with G, A, C and T: the letters used for DNA’s four bases. “Ornis” adds the Greek word for bird.",
+    "sources": [
+      {
+        "title": "Han, Robbins and Braun (2010): A multi-gene estimate of phylogeny in the nightjars and nighthawks",
+        "url": "https://repository.si.edu/server/api/core/bitstreams/b8479c83-922d-4588-9ff6-a1d9ca3d2d68/content"
+      },
+      {
+        "title": "Wikipedia: Collared nightjar",
+        "url": "https://en.wikipedia.org/wiki/Collared_nightjar"
+      },
+      {
+        "title": "Martens and Bahr: new bird taxa for 2010",
+        "url": "https://www.zobodat.at/pdf/Vogelwarte_50_2012_0177-0196.pdf"
+      }
+    ]
+  },
+  "avibase-03D0649C": {
+    "name": "Collared Plover",
+    "scientificName": "Anarhynchus collaris",
+    "kind": "description",
+    "text": "The adult’s collar is a narrow black band across the breast. In young birds the band is often incomplete, so the full pattern develops with age.",
+    "sources": [
+      {
+        "title": "Wikipedia: Collared plover",
+        "url": "https://en.wikipedia.org/wiki/Collared_plover"
+      },
+      {
+        "title": "Peru Aves: Collared Plover",
+        "url": "https://www.peruaves.org/charadriidae/collared-plover-charadrius-collaris/"
+      }
+    ]
+  },
+  "avibase-1611F295": {
+    "name": "Collared Sunbird",
+    "scientificName": "Hedydipna collaris",
+    "kind": "description",
+    "text": "The male’s yellow belly is topped by a narrow purple breast band. His head and back are glossy green; the female lacks the band.",
+    "sources": [
+      {
+        "title": "Wikipedia: Collared sunbird",
+        "url": "https://en.wikipedia.org/wiki/Collared_sunbird"
+      },
+      {
+        "title": "Kloof Conservancy: Collared Sunbird, Highway Mail (2022)",
+        "url": "https://www.citizen.co.za/highway-mail/news-headlines/local-news/2022/11/27/collared-sunbird/"
+      }
+    ]
+  },
+  "avibase-310AEDC8": {
+    "name": "Common Babbler",
+    "scientificName": "Argya caudata",
+    "kind": "description",
+    "text": "Its long tail is a useful clue: the Common Babbler is a slim, streaky bird of dry scrub, found mainly in India.",
+    "sources": [
+      {
+        "title": "Bird Count India: The Jungle Babbler and its Six Sisters",
+        "url": "https://birdcount.in/turdoides-babblers/"
+      },
+      {
+        "title": "Wikipedia: Common babbler",
+        "url": "https://en.wikipedia.org/wiki/Common_babbler"
+      }
+    ]
+  },
+  "avibase-00DA9D91": {
+    "name": "Common Gull",
+    "scientificName": "Larus canus",
+    "kind": "description",
+    "text": "Despite its name, the Common Gull is uncommon in much of inland Britain. It can gather in large numbers on the coast.",
+    "sources": [
+      {
+        "title": "RSPB",
+        "url": "https://www.rspb.org.uk/birds-and-wildlife/common-gull"
+      }
+    ]
+  },
+  "avibase-9505E03D": {
+    "name": "Common Kingfisher",
+    "scientificName": "Alcedo atthis",
+    "kind": "description",
+    "text": "Also called the Eurasian or River Kingfisher. It has a blue-green back and rusty-orange underside, and occurs across much of Eurasia and North Africa.",
+    "sources": [
+      {
+        "title": "Singapore National Parks: What Is That Blue Bird",
+        "url": "https://www.nparks.gov.sg/publications-resources/articles/what-is-that-blue-bird"
+      },
+      {
+        "title": "Wikipedia: Common kingfisher",
+        "url": "https://en.wikipedia.org/wiki/Common_kingfisher"
+      }
+    ]
+  },
+  "avibase-407E2CA8": {
+    "name": "Common Merganser",
+    "scientificName": "Mergus merganser",
+    "kind": "description",
+    "text": "Common Merganser and Goosander are two names for the same fish-eating duck. The first is usual in North America, the second in Eurasia.",
+    "sources": [
+      {
+        "title": "Cornell Lab: Common Merganser identification",
+        "url": "https://www.allaboutbirds.org/guide/Common_merganser/id"
+      },
+      {
+        "title": "Wikipedia: Common merganser",
+        "url": "https://en.wikipedia.org/wiki/Common_merganser"
+      }
+    ]
+  },
+  "avibase-4E6EF3F9": {
+    "name": "Common Swift",
+    "scientificName": "Apus apus",
+    "kind": "description",
+    "text": "Its scientific name, Apus apus, comes from an ancient word meaning “without feet”. Swifts do have feet, but their very short legs are mostly used for clinging.",
+    "sources": [
+      {
+        "title": "BirdLife International: The Common Swift",
+        "url": "https://www.birdlife.org/news/2024/08/23/migratory-bird-of-the-month-the-common-swift/"
+      },
+      {
+        "title": "Wikipedia: Common swift",
+        "url": "https://en.wikipedia.org/wiki/Common_swift"
+      }
+    ]
+  },
+  "avibase-4D2FF6F1": {
+    "name": "Common Tern",
+    "scientificName": "Sterna hirundo",
+    "kind": "description",
+    "text": "Its long tail has earned it the nickname “sea-swallow”. Silvery-grey above and white below, it hovers over water before diving for fish.",
+    "sources": [
+      {
+        "title": "Royal Society for the Protection of Birds: Common Tern",
+        "url": "https://www.rspb.org.uk/birds-and-wildlife/common-tern"
+      },
+      {
+        "title": "Wikipedia: Common tern",
+        "url": "https://en.wikipedia.org/wiki/Common_tern"
+      }
+    ]
+  },
+  "avibase-546FA5F2": {
+    "name": "Crested Barbet",
+    "scientificName": "Trachyphonus vaillantii",
+    "kind": "description",
+    "text": "A small black crest rises from a head speckled red and yellow. Its bright belly, spotted wings and broad black neck band add to the patchwork.",
+    "sources": [
+      {
+        "title": "Newman’s Birds of Southern Africa: Crested Barbet",
+        "url": "https://newmansbirds.com/crested-barbet/"
+      },
+      {
+        "title": "Wikipedia: Crested barbet",
+        "url": "https://en.wikipedia.org/wiki/Crested_barbet"
+      }
+    ]
+  },
+  "avibase-079F846A": {
+    "name": "Crested Duck",
+    "scientificName": "Lophonetta specularioides",
+    "kind": "description",
+    "text": "Both sexes have a small crest at the back of the head. It is often held so low that it can be hard to see.",
+    "sources": [
+      {
+        "title": "John Avise, University of California Irvine: Crested Duck",
+        "url": "https://avise-birds.bio.uci.edu/anseriformes/anatidae/lophonetta_specularioides/index.html"
+      },
+      {
+        "title": "Wikipedia: Crested duck",
+        "url": "https://en.wikipedia.org/wiki/Crested_duck"
+      }
+    ]
+  },
+  "avibase-3E328C3C": {
+    "name": "Crested Ibis",
+    "scientificName": "Nipponia nippon",
+    "kind": "description",
+    "text": "Long feathers form a dense crest at the back of the head. The bare face is red, while the plumage can show white, pink and seasonal grey.",
+    "sources": [
+      {
+        "title": "University of Michigan Animal Diversity Web: Nipponia nippon",
+        "url": "https://animaldiversity.org/accounts/Nipponia_nippon/"
+      },
+      {
+        "title": "Wikipedia: Crested ibis",
+        "url": "https://en.wikipedia.org/wiki/Crested_ibis"
+      }
+    ]
+  },
+  "avibase-BE8DC16C": {
+    "name": "Crested Kingfisher",
+    "scientificName": "Megaceryle lugubris",
+    "kind": "description",
+    "text": "The crest is a large, shaggy spray of black-and-white feathers. This is a big kingfisher, with a heavy bill and fine barring across its back and wings.",
+    "sources": [
+      {
+        "title": "Koshimizu Town: Crested Kingfisher",
+        "url": "https://www.town.koshimizu.hokkaido.jp/flower_bird/en/bird-detail.php?no=101"
+      },
+      {
+        "title": "Wikipedia: Crested kingfisher",
+        "url": "https://en.wikipedia.org/wiki/Crested_kingfisher"
+      }
+    ]
+  },
+  "avibase-65BCBB64": {
+    "name": "Crested Myna",
+    "scientificName": "Acridotheres cristatellus",
+    "kind": "description",
+    "text": "Its crest is a tuft on the forehead, just above the bill, rather than a spike at the back. The female’s tuft is slightly less developed.",
+    "sources": [
+      {
+        "title": "Hong Kong Bird Watching Society: Crested Myna",
+        "url": "https://avifauna.hkbws.org.hk/species/0380/045000"
+      },
+      {
+        "title": "Wikipedia: Crested myna",
+        "url": "https://en.wikipedia.org/wiki/Crested_myna"
+      }
+    ]
+  },
+  "avibase-245D312A": {
+    "name": "Crested Pigeon",
+    "scientificName": "Ocyphaps lophotes",
+    "kind": "description",
+    "text": "A slender black spike stands on top of the head. This Australian pigeon also has metallic wing patches and makes a whistling sound with its wings when startled.",
+    "sources": [
+      {
+        "title": "Australian Museum: Crested Pigeon",
+        "url": "https://australian.museum/learn/animals/birds/crested-pigeon/"
+      },
+      {
+        "title": "Wikipedia: Crested pigeon",
+        "url": "https://en.wikipedia.org/wiki/Crested_pigeon"
+      }
+    ]
+  },
+  "avibase-A977348D": {
+    "name": "Desert Lark",
+    "scientificName": "Ammomanes deserti",
+    "kind": "description",
+    "text": "This lark favours broken, stony desert ground. Its plumage varies with the landscape, from sandy birds in pale country to much darker birds on basalt.",
+    "sources": [
+      {
+        "title": "Ornithological Society of the Middle East: Region List, Part C",
+        "url": "https://osme.org/wp-content/uploads/2025/03/ORL-10.2-Part-C-Passerines.pdf"
+      },
+      {
+        "title": "Wikipedia: Desert lark",
+        "url": "https://en.wikipedia.org/wiki/Desert_lark"
+      }
+    ]
+  },
+  "avibase-F6F87349": {
+    "name": "Desert Owl",
+    "scientificName": "Strix hadorami",
+    "kind": "description",
+    "text": "The “hadorami” in its scientific name honours Israeli ornithologist Hadoram Shirihai, who noticed differences between this bird and the closely related Omani Owl.",
+    "sources": [
+      {
+        "title": "Perlman, Blair and Sheldon: Taxonomic advances and mysteries in the OSME Region",
+        "url": "https://osme.org/wp-content/uploads/2023/07/Taxonomic-advances-and-mysteries-in-the-OSME-Region.pdf"
+      },
+      {
+        "title": "Wikipedia: Desert owl",
+        "url": "https://en.wikipedia.org/wiki/Desert_owl"
+      }
+    ]
+  },
+  "avibase-078BC0ED": {
+    "name": "Desert Wheatear",
+    "scientificName": "Oenanthe deserti",
+    "kind": "description",
+    "text": "“Wheatear” comes from an old form of “white arse”, referring to these birds’ pale rumps. This species lives in deserts and semi-deserts across North Africa and Asia.",
+    "sources": [
+      {
+        "title": "Wikipedia: Desert wheatear",
+        "url": "https://en.wikipedia.org/wiki/Desert_wheatear"
+      },
+      {
+        "title": "BTO: Wheatear names",
+        "url": "https://www.bto.org/learn/about-birds/birdfacts/wheatear"
+      }
+    ]
+  },
+  "avibase-775C66B9": {
+    "name": "Dusky Babbler",
+    "scientificName": "Turdoides tenebrosa",
+    "kind": "description",
+    "text": "Its scientific name, tenebrosa, also carries the sense of dark or gloomy. This babbler lives in moist scrub in parts of central and eastern Africa.",
+    "sources": [
+      {
+        "title": "World Bird Names: tenebrosa",
+        "url": "https://www.worldbirdnames.com/bird/dusky-babbler/24243.html"
+      },
+      {
+        "title": "Wikipedia: Dusky Babbler",
+        "url": "https://en.wikipedia.org/wiki/Dusky_babbler"
+      }
+    ]
+  },
+  "avibase-F0258298": {
+    "name": "Dusky Hummingbird",
+    "scientificName": "Phaeoptila sordida",
+    "kind": "description",
+    "text": "Grey underparts give this hummingbird a subdued look. Bronze-green feathers above and a red bill add colour.",
+    "sources": [
+      {
+        "title": "CONABIO: Aves, account for Cynanthus sordidus",
+        "url": "https://www.conabio.gob.mx/institucion/proyectos/resultados/HQ008_Anexo_2.pdf"
+      },
+      {
+        "title": "Wikipedia: Dusky Hummingbird",
+        "url": "https://en.wikipedia.org/wiki/Dusky_hummingbird"
+      }
+    ]
+  },
+  "avibase-F1F444EE": {
+    "name": "Dusky Munia",
+    "scientificName": "Lonchura fuscans",
+    "kind": "description",
+    "text": "Dark brown to brown-black all over, with darker feather tips that can look like scales. The upper bill is black and the lower bill blue-grey.",
+    "sources": [
+      {
+        "title": "Waxbill Finch Society: Dusky Mannikin",
+        "url": "https://www.waxbillfinchsociety.org.uk/species_profiles.html"
+      },
+      {
+        "title": "Wikipedia: Dusky Munia",
+        "url": "https://en.wikipedia.org/wiki/Dusky_munia"
+      }
+    ]
+  },
+  "avibase-67D59645": {
+    "name": "Dusky Nightjar",
+    "scientificName": "Antrostomus saturatus",
+    "kind": "description",
+    "text": "Dark brown plumage is scattered with buff, tawny and cinnamon markings. Females can look paler and more reddish than males.",
+    "sources": [
+      {
+        "title": "Oiseaux.net: Engoulevent montagnard (Dusky Nightjar)",
+        "url": "https://www.oiseaux.net/oiseaux/engoulevent.montagnard.html"
+      },
+      {
+        "title": "Wikipedia: Dusky Nightjar",
+        "url": "https://en.wikipedia.org/wiki/Dusky_nightjar"
+      }
+    ]
+  },
+  "avibase-1A87E3A9": {
+    "name": "Dusky Parrot",
+    "scientificName": "Pionus fuscus",
+    "kind": "description",
+    "text": "Dark brown feathers have paler edges. A blue tail and red feathers beneath it add colour to this otherwise dusky parrot.",
+    "sources": [
+      {
+        "title": "World Parrot Trust: Dusky Parrot",
+        "url": "https://parrots.org/encyclopedia/dusky-parrot/"
+      },
+      {
+        "title": "Wikipedia: Dusky Parrot",
+        "url": "https://en.wikipedia.org/wiki/Dusky_parrot"
+      }
+    ]
+  },
+  "avibase-A057002F": {
+    "name": "Dusky Pigeon",
+    "scientificName": "Patagioenas goodsoni",
+    "kind": "description",
+    "text": "Grey on the head merges into darker brown across the back and wings. The colours are subdued, with little contrast.",
+    "sources": [
+      {
+        "title": "Photograph by Michael Woodruff",
+        "url": "https://commons.wikimedia.org/wiki/File:Patagioenas_goodsoni_-NW_Ecuador-6.jpg"
+      },
+      {
+        "title": "Wikipedia: Dusky Pigeon",
+        "url": "https://en.wikipedia.org/wiki/Dusky_pigeon"
+      }
+    ]
+  },
+  "avibase-5C54F8C9": {
+    "name": "Dusky Tit",
+    "scientificName": "Melaniparus funereus",
+    "kind": "description",
+    "text": "The male is black and the female ashy-black, without bright wing patches. Deep red eyes supply a small flash of colour.",
+    "sources": [
+      {
+        "title": "Nicole Bouglouan: Tits, Chickadees and Titmice",
+        "url": "https://www.oiseaux-birds.com/page-family-paridae.html"
+      },
+      {
+        "title": "Wikipedia: Dusky Tit",
+        "url": "https://en.wikipedia.org/wiki/Dusky_tit"
+      }
+    ]
+  },
+  "avibase-96819591": {
+    "name": "Dusky Warbler",
+    "scientificName": "Phylloscopus fuscatus",
+    "kind": "description",
+    "text": "Brown plumage makes a quiet backdrop to a bold pale eyebrow. Its sharp face pattern and orange-toned legs help birders pick it out.",
+    "sources": [
+      {
+        "title": "BirdGuides: Radde’s and Dusky Warblers photo ID guide",
+        "url": "https://www.birdguides.com/articles/identification/raddes-and-dusky-warblers-and-siberian-chiffchaff-photo-id-guide/"
+      },
+      {
+        "title": "Wikipedia: Dusky Warbler",
+        "url": "https://en.wikipedia.org/wiki/Dusky_warbler"
+      }
+    ]
+  },
+  "avibase-9E8F1FEB": {
+    "name": "Elegant Parrot",
+    "scientificName": "Neophema elegans",
+    "kind": "description",
+    "text": "A deep blue band crosses the forehead of this yellow-and-olive parrot. Females are generally duller, and young birds have little or none of the blue band.",
+    "sources": [
+      {
+        "title": "World Parrot Trust: Elegant Parrot",
+        "url": "https://parrots.org/encyclopedia/elegant-parrot/"
+      },
+      {
+        "title": "Wikipedia: Elegant Parrot",
+        "url": "https://en.wikipedia.org/wiki/Elegant_parrot"
+      }
+    ]
+  },
+  "avibase-1267C963": {
+    "name": "Elegant Pitta",
+    "scientificName": "Pitta elegans",
+    "kind": "description",
+    "text": "This name covers several island forms. Their throat markings range from an extensive black patch to a narrow black line beneath the bill.",
+    "sources": [
+      {
+        "title": "Yue et al. 2020: Species limits in the Elegant Pitta complex",
+        "url": "https://d-nb.info/122327019X/34"
+      },
+      {
+        "title": "Wikipedia: Elegant Pitta",
+        "url": "https://en.wikipedia.org/wiki/Elegant_pitta"
+      }
+    ]
+  },
+  "avibase-E7057C1D": {
+    "name": "Elegant Sunbird",
+    "scientificName": "Aethopyga duyvenbodei",
+    "kind": "description",
+    "text": "The male combines a blue-green crown with a purplish-red neck collar and yellow underparts. The female is olive above and yellow below.",
+    "sources": [
+      {
+        "title": "BirdLife International 2010 factsheet (archived excerpt)",
+        "url": "https://www.vulkaner.no/n/asia/elegant.html"
+      },
+      {
+        "title": "Wikipedia: Elegant Sunbird",
+        "url": "https://en.wikipedia.org/wiki/Elegant_sunbird"
+      }
+    ]
+  },
+  "avibase-EF7D309C": {
+    "name": "Elegant Tit",
+    "scientificName": "Periparus elegans",
+    "kind": "description",
+    "text": "Yellow cheeks and underparts stand out against a black head. Pale spots and wing markings break up its dark back.",
+    "sources": [
+      {
+        "title": "Photograph by Gideon Ferrer",
+        "url": "https://commons.wikimedia.org/wiki/File:Elegant_Tit2.jpg"
+      },
+      {
+        "title": "Wikipedia: Elegant Tit",
+        "url": "https://en.wikipedia.org/wiki/Elegant_tit"
+      }
+    ]
+  },
+  "avibase-D6F5D224": {
+    "name": "Fairy Flycatcher",
+    "scientificName": "Stenostira scita",
+    "kind": "description",
+    "text": "Only about 11 cm long, this little bird has a black eye mask, white eyebrow and a pink wash below. The “flycatcher” part describes its darting trips from a perch to catch insects.",
+    "sources": [
+      {
+        "title": "SANBI: Fairy Flycatcher",
+        "url": "https://www.sanbi.org/animal-of-the-week/fairy-flycatcher/"
+      },
+      {
+        "title": "Wikipedia: Fairy Flycatcher",
+        "url": "https://en.wikipedia.org/wiki/Fairy_flycatcher"
+      }
+    ]
+  },
+  "avibase-0ECBA406": {
+    "name": "Fairy Pitta",
+    "scientificName": "Pitta nympha",
+    "kind": "description",
+    "text": "Green upperparts, blue wing patches and a warm brown crown make a striking combination. A black eye mask sits between a pale eyebrow and white throat.",
+    "sources": [
+      {
+        "title": "Hong Kong Bird Watching Society: Fairy Pitta",
+        "url": "https://avifauna.hkbws.org.hk/species/0220/030500"
+      },
+      {
+        "title": "Wikipedia: Fairy Pitta",
+        "url": "https://en.wikipedia.org/wiki/Fairy_pitta"
+      }
+    ]
+  },
+  "avibase-C2AD2E83": {
+    "name": "Forest Buzzard",
+    "scientificName": "Buteo trizonatus",
+    "kind": "description",
+    "text": "Indigenous forests are central to its habitat, although it also uses nearby pine and eucalyptus plantations. It often hunts by dropping from a perch onto prey.",
+    "sources": [
+      {
+        "title": "BirdLife South Africa",
+        "url": "https://www.birdlife.org.za/red-data-book/red-list/forest-buzzard/"
+      }
+    ]
+  },
+  "avibase-31B7FC11": {
+    "name": "Forest Kingfisher",
+    "scientificName": "Todiramphus macleayii",
+    "kind": "description",
+    "text": "This blue-and-white kingfisher needs forest or woodland for breeding. Much of its hunting happens on land, where it catches insects, small lizards and other prey.",
+    "sources": [
+      {
+        "title": "Australian Museum: Forest Kingfisher",
+        "url": "https://australian.museum/learn/animals/birds/forest-kingfisher-todiramphus-macleayii/"
+      },
+      {
+        "title": "Wikipedia: Forest Kingfisher",
+        "url": "https://en.wikipedia.org/wiki/Forest_kingfisher"
+      }
+    ]
+  },
+  "avibase-D2B2A4AF": {
+    "name": "Forest Thrush",
+    "scientificName": "Turdus lherminieri",
+    "kind": "description",
+    "text": "A shy bird of Caribbean forests, with a yellow bill, yellow legs and yellow skin around the eye. Its brown-edged belly feathers give it a scaled appearance.",
+    "sources": [
+      {
+        "title": "BirdsCaribbean: Forest Thrush",
+        "url": "https://www.birdscaribbean.org/2020/06/from-the-nest-day-44/"
+      },
+      {
+        "title": "Wikipedia: Forest Thrush",
+        "url": "https://en.wikipedia.org/wiki/Forest_thrush"
+      }
+    ]
+  },
+  "avibase-8E872FAA": {
+    "name": "Forest Wagtail",
+    "scientificName": "Dendronanthus indicus",
+    "kind": "description",
+    "text": "Both words fit: it favours shaded woodland paths and moves its tail from side to side. That sideways swing is an unusual wagtail habit.",
+    "sources": [
+      {
+        "title": "Bird Count India",
+        "url": "https://birdcount.in/migration-map/forwag1/"
+      }
+    ]
+  },
+  "avibase-F51C1C4A": {
+    "name": "Giant Kingfisher",
+    "scientificName": "Megaceryle maxima",
+    "kind": "description",
+    "text": "At roughly 44 cm long, it is Africa’s largest kingfisher. Chestnut colour sits on the male’s upper breast, but lower down on the female’s breast and belly.",
+    "sources": [
+      {
+        "title": "Phil Hockey: Africa’s Kingfishers, University of Cape Town archive",
+        "url": "https://science.uct.ac.za/media/198549"
+      },
+      {
+        "title": "Wikipedia: Giant Kingfisher",
+        "url": "https://en.wikipedia.org/wiki/Giant_kingfisher"
+      }
+    ]
+  },
+  "avibase-9569D117": {
+    "name": "Giant Weaver",
+    "scientificName": "Ploceus grandis",
+    "kind": "description",
+    "text": "The male carries an exceptionally large bill, the largest among weavers. Its scientific name, grandis, means large or great. This species is native to São Tomé.",
+    "sources": [
+      {
+        "title": "Birds4Africa: Giant Weaver",
+        "url": "https://birds4africa.org/weaver-research/weavers/1149a/"
+      }
+    ]
+  },
+  "avibase-ECCBDBAF": {
+    "name": "Giant Wren",
+    "scientificName": "Campylorhynchus chiapensis",
+    "kind": "description",
+    "text": "At 20–22 cm long, this is a substantial wren. A white eyebrow and belly contrast with its black crown and rich chestnut back.",
+    "sources": [
+      {
+        "title": "Cruz-Vázquez and Velázquez-Velázquez: Giant Wren in Oaxaca, Huitzil 21(1)",
+        "url": "https://www.scielo.org.mx/pdf/huitzil/v21n1/1870-7459-huitzil-21-01-e544.pdf"
+      },
+      {
+        "title": "Wikipedia: Giant Wren",
+        "url": "https://en.wikipedia.org/wiki/Giant_wren"
+      }
+    ]
+  },
+  "avibase-3D4BA49D": {
+    "name": "Golden Babbler",
+    "scientificName": "Cyanoderma chrysaeum",
+    "kind": "description",
+    "text": "The golden-yellow crown and nape are traced with fine black streaks. Olive wings and yellow underparts complete the colour scheme.",
+    "sources": [
+      {
+        "title": "E. C. Stuart Baker: The Fauna of British India, Golden-headed Babbler",
+        "url": "https://en.wikisource.org/wiki/The_Fauna_of_British_India,_including_Ceylon_and_Burma/Birds/Order_Passeres/Family_Timaliid%C3%A6/Subfamily_Timaliin%C3%A6/Genus_Stachyris"
+      },
+      {
+        "title": "Wikipedia: Golden Babbler",
+        "url": "https://en.wikipedia.org/wiki/Golden_babbler"
+      }
+    ]
+  },
+  "avibase-98C0C634": {
+    "name": "Golden Bowerbird",
+    "scientificName": "Prionodura newtoniana",
+    "kind": "description",
+    "text": "Males take years to acquire their gold. The first yellow feathers appear around the fifth year, with full adult plumage following the next complete moult.",
+    "sources": [
+      {
+        "title": "Australian Bird Study Association: Golden Bowerbird",
+        "url": "https://absa.asn.au/wp-content/uploads/2015/12/Golden-Bowerbird-1.pdf"
+      },
+      {
+        "title": "Wikipedia: Golden Bowerbird",
+        "url": "https://en.wikipedia.org/wiki/Golden_bowerbird"
+      }
+    ]
+  },
+  "avibase-B653A80B": {
+    "name": "Golden Grosbeak",
+    "scientificName": "Pheucticus chrysogaster",
+    "kind": "description",
+    "text": "The male is bright yellow, set off by black-and-white wings and tail. Females are duller yellow, with grey upperparts and grey speckles on the head and neck.",
+    "sources": [
+      {
+        "title": "Peru Aves: Golden Grosbeak",
+        "url": "https://www.peruaves.org/cardinalidae/golden-bellied-grosbeak-pheucticus-chrysogaster/"
+      },
+      {
+        "title": "Wikipedia: Golden Grosbeak",
+        "url": "https://en.wikipedia.org/wiki/Golden_grosbeak"
+      }
+    ]
+  },
+  "avibase-6778547A": {
+    "name": "Golden Monarch",
+    "scientificName": "Carterornis chrysomela",
+    "kind": "description",
+    "text": "The male pairs bright golden yellow with black. Females wear a quieter olive-yellow plumage.",
+    "sources": [
+      {
+        "title": "Van Balen, Kilmaskossu and Puradyatmika: Birds of Mimika",
+        "url": "https://ptfi.co.id/site/uploads/images/6327d098712c3-a-guide-to-the-birds-of-mimika-region-papua-indonesia.pdf"
+      },
+      {
+        "title": "Wikipedia: Golden Monarch",
+        "url": "https://en.wikipedia.org/wiki/Golden_monarch"
+      }
+    ]
+  },
+  "avibase-589694DD": {
+    "name": "Golden Nightjar",
+    "scientificName": "Caprimulgus eximius",
+    "kind": "description",
+    "text": "Golden-buff feathers set this nightjar apart, though the colour is easier to see in good light. In flight, white wing patches contrast with strongly barred feathers.",
+    "sources": [
+      {
+        "title": "Dutch Birding: Golden Nightjar in Western Sahara, May 2015",
+        "url": "https://www.dutchbirding.nl/journal/ref/DB_38:65.pdf"
+      },
+      {
+        "title": "Wikipedia: Golden Nightjar",
+        "url": "https://en.wikipedia.org/wiki/Golden_nightjar"
+      }
+    ]
+  },
+  "avibase-21BA7041": {
+    "name": "Golden Swallow",
+    "scientificName": "Tachycineta euchrysea",
+    "kind": "description",
+    "text": "Gosse’s 1847 description of the Jamaican bird praised its golden-green gloss. The Hispaniolan bird in this photograph shines blue-green.",
+    "sources": [
+      {
+        "title": "Philip Henry Gosse: The Birds of Jamaica (1847), Golden Swallow",
+        "url": "https://www.gutenberg.org/cache/epub/73391/pg73391-images.html"
+      },
+      {
+        "title": "Photograph: adult Hispaniolan Golden Swallow",
+        "url": "https://commons.wikimedia.org/wiki/File:Adult_Hispaniolan_Golden_Swallow_perched_on_artificial_nest-box.jpg"
+      },
+      {
+        "title": "Wikipedia: Golden Swallow",
+        "url": "https://en.wikipedia.org/wiki/Golden_swallow"
+      }
+    ]
+  },
+  "avibase-49D9148A": {
+    "name": "Great Egret",
+    "scientificName": "Ardea alba",
+    "kind": "description",
+    "text": "Much larger than a Little Egret, this bird is roughly the size of a Grey Heron. You may also see it called the Great White Egret.",
+    "sources": [
+      {
+        "title": "RSPB",
+        "url": "https://www.rspb.org.uk/birds-and-wildlife/great-white-egret"
+      }
+    ]
+  },
+  "avibase-EA53492B": {
+    "name": "Great Grebe",
+    "scientificName": "Podiceps major",
+    "kind": "description",
+    "text": "South America’s largest grebe dives for food in lakes and coastal waters. In one Argentine lagoon, researchers found it eating more crabs than fish.",
+    "sources": [
+      {
+        "title": "Josens, Bó and Favero (2010): Foraging ecology of the Great Grebe",
+        "url": "https://www.ardeola.org/uploads/articles/docs/1457.pdf"
+      },
+      {
+        "title": "Wikipedia: Great Grebe",
+        "url": "https://en.wikipedia.org/wiki/Great_grebe"
+      }
+    ]
+  },
+  "avibase-BB041C6E": {
+    "name": "Great Skua",
+    "scientificName": "Stercorarius skua",
+    "kind": "description",
+    "text": "A large, powerful seabird, dark brown with striking white flashes in its wings. It often chases other seabirds until they give up their catch.",
+    "sources": [
+      {
+        "title": "BTO BirdFacts: Great Skua",
+        "url": "https://www.bto.org/learn/about-birds/birdfacts/great-skua"
+      },
+      {
+        "title": "Wikipedia: Great Skua",
+        "url": "https://en.wikipedia.org/wiki/Great_skua"
+      }
+    ]
+  },
+  "avibase-23C068E4": {
+    "name": "Great Thrush",
+    "scientificName": "Turdus fuscater",
+    "kind": "description",
+    "text": "At 28–33 cm long, this is a large thrush. Orange feet and bill brighten its dark grey-brown plumage; adult males also have a vivid orange eye-ring.",
+    "sources": [
+      {
+        "title": "Banco de la República / Universidad ICESI: Turdus fuscater",
+        "url": "https://babel.banrepcultural.org/digital/collection/p17054coll21/id/456/"
+      },
+      {
+        "title": "Wikipedia: Great Thrush",
+        "url": "https://en.wikipedia.org/wiki/Great_thrush"
+      }
+    ]
+  },
+  "avibase-08DD4E80": {
+    "name": "Green Ibis",
+    "scientificName": "Mesembrinibis cayennensis",
+    "kind": "description",
+    "text": "Its dark feathers have a green sheen. The long curved bill and legs are greenish too, so the name is easier to understand in good light.",
+    "sources": [
+      {
+        "title": "Peru Aves: Green Ibis",
+        "url": "https://www.peruaves.org/threskiornithidae/green-ibis-mesembrinibis-cayennensis/"
+      },
+      {
+        "title": "Wikipedia: Green Ibis",
+        "url": "https://en.wikipedia.org/wiki/Green_ibis"
+      }
+    ]
+  },
+  "avibase-ED7D6741": {
+    "name": "Green Kingfisher",
+    "scientificName": "Chloroceryle americana",
+    "kind": "description",
+    "text": "Green above, with a white collar and belly. The male has a chestnut breast band; the female’s band is greenish.",
+    "sources": [
+      {
+        "title": "Texas Parks and Wildlife: Learn About Texas Birds",
+        "url": "https://tpwd.texas.gov/publications/pwdpubs/media/pwd_bk_p4000_0038.pdf"
+      },
+      {
+        "title": "Wikipedia: Green Kingfisher",
+        "url": "https://en.wikipedia.org/wiki/Green_kingfisher"
+      }
+    ]
+  },
+  "avibase-804CCA3A": {
+    "name": "Grey Gull",
+    "scientificName": "Leucophaeus modestus",
+    "kind": "description",
+    "text": "Grey covers most of this gull, including its head outside the breeding season. The head turns white when it is breeding, while the body stays grey.",
+    "sources": [
+      {
+        "title": "Museo de Historia Natural de Concepción: Gaviota Garuma",
+        "url": "https://www.mhnconcepcion.gob.cl/cartelera/gaviota-garuma"
+      },
+      {
+        "title": "Wikipedia: Grey Gull",
+        "url": "https://en.wikipedia.org/wiki/Grey_gull"
+      }
+    ]
+  },
+  "avibase-943AA4FB": {
+    "name": "Grey Hawk",
+    "scientificName": "Buteo plagiatus",
+    "kind": "description",
+    "text": "Adults are grey, finely barred below, with bold black-and-white tail bands. Young birds look quite different: brown above and streaked underneath.",
+    "sources": [
+      {
+        "title": "Audubon Field Guide: Gray Hawk",
+        "url": "https://www.audubon.org/field-guide/bird/gray-hawk"
+      },
+      {
+        "title": "Wikipedia: Grey Hawk",
+        "url": "https://en.wikipedia.org/wiki/Gray_hawk"
+      }
+    ]
+  },
+  "avibase-7A2734EB": {
+    "name": "Grey Nightjar",
+    "scientificName": "Caprimulgus jotaka",
+    "kind": "description",
+    "text": "Its grey plumage is broken up by black, silver, white and buff markings. That intricate pattern helps the resting bird blend into its surroundings.",
+    "sources": [
+      {
+        "title": "Hong Kong Bird Watching Society: Grey Nightjar",
+        "url": "https://avifauna.hkbws.org.hk/species/0030/003900"
+      },
+      {
+        "title": "Wikipedia: Grey Nightjar",
+        "url": "https://en.wikipedia.org/wiki/Grey_nightjar"
+      }
+    ]
+  },
+  "avibase-27903EF7": {
+    "name": "Grey Plover",
+    "scientificName": "Pluvialis squatarola",
+    "kind": "description",
+    "text": "Its winter plumage is brownish-grey. In breeding plumage, silver-and-black markings above contrast with a black face and belly.",
+    "sources": [
+      {
+        "title": "RSPB: Grey Plover",
+        "url": "https://www.rspb.org.uk/birds-and-wildlife/grey-plover"
+      },
+      {
+        "title": "Wikipedia: Grey Plover",
+        "url": "https://en.wikipedia.org/wiki/Grey_plover"
+      }
+    ]
+  },
+  "avibase-C1CBA33A": {
+    "name": "Grey Sunbird",
+    "scientificName": "Cyanomitra veroxii",
+    "kind": "description",
+    "text": "An unusually subdued sunbird. Even the male can resemble a female of more colourful species, although small red tufts at the sides of its chest give him away.",
+    "sources": [
+      {
+        "title": "Atlas of Southern African Birds",
+        "url": "https://www.birdmap.africa/docs/sabap1/789.pdf"
+      }
+    ]
+  },
+  "avibase-AE073221": {
+    "name": "Grey Wagtail",
+    "scientificName": "Motacilla cinerea",
+    "kind": "description",
+    "text": "The grey is on its back. Under the long tail is a bright patch of lemon yellow, a useful mark when the bird is bobbing beside a stream.",
+    "sources": [
+      {
+        "title": "RSPB: Grey Wagtail",
+        "url": "https://www.rspb.org.uk/birds-and-wildlife/grey-wagtail"
+      },
+      {
+        "title": "Wikipedia: Grey Wagtail",
+        "url": "https://en.wikipedia.org/wiki/Grey_wagtail"
+      }
+    ]
+  },
+  "avibase-BC75EA9A": {
+    "name": "Grey Waxbill",
+    "scientificName": "Glaucestrilda perreini",
+    "kind": "description",
+    "text": "Mostly soft grey, with a narrow dark eye stripe and a bright crimson rump. Its bill is blue-grey, despite the waxbill family’s association with red, wax-like bills.",
+    "sources": [
+      {
+        "title": "Kloof Conservancy",
+        "url": "https://www.citizen.co.za/highway-mail/news-headlines/local-news/2026/01/11/chirping-with-kloof-conservancy-grey-waxbill/"
+      }
+    ]
+  },
+  "avibase-F04B5608": {
+    "name": "Grey Wren",
+    "scientificName": "Cantorchilus griseus",
+    "kind": "description",
+    "text": "Grey covers the head, back and underparts. Dark bars across the tail add a little pattern.",
+    "sources": [
+      {
+        "title": "Photograph by Cullen Hanks",
+        "url": "https://commons.wikimedia.org/wiki/File:Cantorchilus_griseus_108727526_(cropped).jpg"
+      },
+      {
+        "title": "Wikipedia: Grey Wren",
+        "url": "https://en.wikipedia.org/wiki/Grey_wren"
+      }
+    ]
+  },
+  "avibase-50C8A5CF": {
+    "name": "Ground Parrot",
+    "scientificName": "Pezoporus wallicus",
+    "kind": "description",
+    "text": "It feeds on the ground among thick heathland and sedges. Green feathers marked with black and yellow help it disappear into the low vegetation.",
+    "sources": [
+      {
+        "title": "World Parrot Trust: Ground Parrot",
+        "url": "https://parrots.org/encyclopedia/ground-parrot/"
+      },
+      {
+        "title": "Wikipedia: Ground Parrot",
+        "url": "https://en.wikipedia.org/wiki/Ground_parrot"
+      }
+    ]
+  },
+  "avibase-BDA1AC35": {
+    "name": "Ground Tit",
+    "scientificName": "Pseudopodoces humilis",
+    "kind": "description",
+    "text": "Once called a ground jay, this bird turned out to belong with the tits. Genetic studies helped reveal the relationship, despite its very different shape and life on the Tibetan Plateau.",
+    "sources": [
+      {
+        "title": "James et al. (2003): Pseudopodoces humilis is a tit, not a corvid",
+        "url": "https://repository.si.edu/bitstream/handle/10088/1758/VZ_321.Pseudopodoces.pdf"
+      },
+      {
+        "title": "Gill et al., 2005: Phylogeny of Titmice",
+        "url": "https://academic.oup.com/auk/article/122/1/121/5562449?login=false"
+      },
+      {
+        "title": "Wikipedia: Ground Tit",
+        "url": "https://en.wikipedia.org/wiki/Ground_tit"
+      }
+    ]
+  },
+  "avibase-D1B9D410": {
+    "name": "Ground Woodpecker",
+    "scientificName": "Geocolaptes olivaceus",
+    "kind": "description",
+    "text": "This woodpecker works the ground on rocky, open slopes. It digs into ant nests and probes them with a long, sticky tongue.",
+    "sources": [
+      {
+        "title": "BirdLife South Africa: Ground Woodpecker",
+        "url": "https://www.birdlife.org.za/red-data-book/red-list/ground-woodpecker/"
+      },
+      {
+        "title": "Wikipedia: Ground Woodpecker",
+        "url": "https://en.wikipedia.org/wiki/Ground_woodpecker"
+      }
+    ]
+  },
+  "avibase-BF20B94D": {
+    "name": "Hill Pigeon",
+    "scientificName": "Columba rupestris",
+    "kind": "description",
+    "text": "At home on high rocky slopes, this pigeon breeds above 3,000 metres in the Himalayas. A broad white band crosses its dark tail.",
+    "sources": [
+      {
+        "title": "Zoological Survey of India: Fauna of Pin Valley National Park",
+        "url": "https://faunaofindia.nic.in/PDFVolumes/cas/034/index.pdf"
+      },
+      {
+        "title": "Wikipedia: Hill Pigeon",
+        "url": "https://en.wikipedia.org/wiki/Hill_pigeon"
+      }
+    ]
+  },
+  "avibase-8FCDB881": {
+    "name": "Hill Swallow",
+    "scientificName": "Hirundo domicola",
+    "kind": "description",
+    "text": "A swallow of upland India and Sri Lanka, often seen over the hills. Its range includes India’s Western Ghats and Sri Lanka’s high country.",
+    "sources": [
+      {
+        "title": "Ceylon Bird Club: Hill Swallow",
+        "url": "https://www.images.ceylonbirdclub.org/sri-lanka-birds-search-230"
+      },
+      {
+        "title": "Institute of Biology Sri Lanka: Phylogenetic affinities of Hill Swallow",
+        "url": "https://iobsl.org/wp-content/uploads/2020/10/IOB-Proceedings-2020.pdf"
+      },
+      {
+        "title": "Wikipedia: Hill Swallow",
+        "url": "https://en.wikipedia.org/wiki/Hill_swallow"
+      }
+    ]
+  },
+  "avibase-FF41B79F": {
+    "name": "Lesser Cuckoo",
+    "scientificName": "Cuculus poliocephalus",
+    "kind": "description",
+    "text": "In Japan it is called hototogisu, a familiar bird in haiku. The poetry magazine Hototogisu, first published in 1897, takes its name from this cuckoo.",
+    "sources": [
+      {
+        "title": "National Diet Library, Japan Search: Lesser Cuckoo (Hototogisu)",
+        "url": "https://jpsearch.go.jp/en/gallery/ndl-dAgqloqvgAk"
+      },
+      {
+        "title": "Wikipedia: Lesser Cuckoo",
+        "url": "https://en.wikipedia.org/wiki/Lesser_cuckoo"
+      }
+    ]
+  },
+  "avibase-60EA3FA9": {
+    "name": "Little Cormorant",
+    "scientificName": "Microcarbo niger",
+    "kind": "description",
+    "text": "About 51–56 cm long, this is a small cormorant with a short neck and a compact, hook-tipped bill. Breeding birds have fine pale streaks on the crown.",
+    "sources": [
+      {
+        "title": "Journal of Field Ornithology: Nest partitioning in a mixed-species waterbird colony",
+        "url": "https://journal.afonet.org/vol97/iss4/art2/"
+      },
+      {
+        "title": "Iqbal et al. 2013: Little Cormorant breeding in Sumatra, Kukila 17",
+        "url": "https://www.academia.edu/8443892/Iqbal_M_Adhaputra_C_Kamsi_M_and_Hikmatullah_D_2013_First_Confirmed_Breeding_Records_of_Little_Cormorant_Phalacrocorax_niger_in_Sumatra_Kukila_17_1_22_25"
+      },
+      {
+        "title": "Wikipedia: Little Cormorant",
+        "url": "https://en.wikipedia.org/wiki/Little_cormorant"
+      }
+    ]
+  },
+  "avibase-F2858F9F": {
+    "name": "Little Egret",
+    "scientificName": "Egretta garzetta",
+    "kind": "description",
+    "text": "Small by egret standards, but still 55–65 cm long. It is a different species from the much larger Great Egret.",
+    "sources": [
+      {
+        "title": "Audubon",
+        "url": "https://www.audubon.org/field-guide/bird/little-egret"
+      },
+      {
+        "title": "RSPB",
+        "url": "https://www.rspb.org.uk/birds-and-wildlife/great-white-egret"
+      }
+    ]
+  },
+  "avibase-215FEA89": {
+    "name": "Little Grebe",
+    "scientificName": "Tachybaptus ruficollis",
+    "kind": "description",
+    "text": "This small grebe has a rounded, fluffy rear. In the breeding season its cheeks and throat turn chestnut, adding colour to its brown plumage.",
+    "sources": [
+      {
+        "title": "The Wildlife Trusts: Little Grebe",
+        "url": "https://www.wildlifetrusts.org/wildlife-explorer/birds/grebes-and-divers/little-grebe"
+      },
+      {
+        "title": "Wikipedia: Little Grebe",
+        "url": "https://en.wikipedia.org/wiki/Little_grebe"
+      }
+    ]
+  },
+  "avibase-F89FD6E3": {
+    "name": "Little Gull",
+    "scientificName": "Hydrocoloeus minutus",
+    "kind": "description",
+    "text": "The smallest gull in the world. An adult is about 28 cm long.",
+    "sources": [
+      {
+        "title": "Audubon",
+        "url": "https://www.audubon.org/field-guide/bird/little-gull"
+      }
+    ]
+  },
+  "avibase-9A7B268C": {
+    "name": "Little Owl",
+    "scientificName": "Athene noctua",
+    "kind": "description",
+    "text": "A full-grown Little Owl is only 21–23 cm long. “Little” describes the species, not a young owl.",
+    "sources": [
+      {
+        "title": "The Wildlife Trusts",
+        "url": "https://www.wildlifetrusts.org/wildlife-explorer/birds/birds-prey/little-owl"
+      }
+    ]
+  },
+  "avibase-4D28A0CD": {
+    "name": "Little Swift",
+    "scientificName": "Apus affinis",
+    "kind": "description",
+    "text": "This small swift has conspicuous white patches on the throat and rump. Those two pale marks stand out against its otherwise dark plumage.",
+    "sources": [
+      {
+        "title": "BTO BirdFacts: Little Swift",
+        "url": "https://www.bto.org/learn/about-birds/birdfacts/little-swift"
+      },
+      {
+        "title": "Wikipedia: Little Swift",
+        "url": "https://en.wikipedia.org/wiki/Little_swift"
+      }
+    ]
+  },
+  "avibase-17310BF0": {
+    "name": "Little Tern",
+    "scientificName": "Sternula albifrons",
+    "kind": "description",
+    "text": "The UK’s smallest tern has a yellow bill tipped with black. During courtship, the male carries a fish as the pair climbs and glides through the air.",
+    "sources": [
+      {
+        "title": "RSPB: Little Tern",
+        "url": "https://www.rspb.org.uk/birds-and-wildlife/little-tern"
+      },
+      {
+        "title": "Wikipedia: Little Tern",
+        "url": "https://en.wikipedia.org/wiki/Little_tern"
+      }
+    ]
+  },
+  "avibase-7149F93D": {
+    "name": "Malachite Kingfisher",
+    "scientificName": "Corythornis cristatus",
+    "kind": "description",
+    "text": "A pale blue crown barred with black sits above orange cheeks and rusty underparts. Adults have a red bill; young birds start with a dark one.",
+    "sources": [
+      {
+        "title": "Phil Hockey: Africa’s Kingfishers, University of Cape Town archive",
+        "url": "https://science.uct.ac.za/media/198549"
+      },
+      {
+        "title": "Wikipedia: Malachite Kingfisher",
+        "url": "https://en.wikipedia.org/wiki/Malachite_kingfisher"
+      }
+    ]
+  },
+  "avibase-26F27894": {
+    "name": "Malachite Sunbird",
+    "scientificName": "Nectarinia famosa",
+    "kind": "description",
+    "text": "The breeding male gleams metallic green and trails long central tail feathers. Females are olive-grey above and paler below, without his long tail.",
+    "sources": [
+      {
+        "title": "Biodiversity and Development Institute: Malachite Sunbird",
+        "url": "https://thebdi.org/2024/02/07/malachite-sunbird-nectarina-famosa/"
+      },
+      {
+        "title": "Wikipedia: Malachite Sunbird",
+        "url": "https://en.wikipedia.org/wiki/Malachite_sunbird"
+      }
+    ]
+  },
+  "avibase-84F096F7": {
+    "name": "Mangrove Cuckoo",
+    "scientificName": "Coccyzus minor",
+    "kind": "description",
+    "text": "Mangroves are a familiar home, though it also lives in other woods, even dry forest. A dark eye mask and warm buff belly help distinguish this long-tailed cuckoo.",
+    "sources": [
+      {
+        "title": "Audubon Field Guide: Mangrove Cuckoo",
+        "url": "https://www.audubon.org/field-guide/bird/mangrove-cuckoo"
+      },
+      {
+        "title": "Wikipedia: Mangrove Cuckoo",
+        "url": "https://en.wikipedia.org/wiki/Mangrove_cuckoo"
+      }
+    ]
+  },
+  "avibase-837E6B04": {
+    "name": "Mangrove Hummingbird",
+    "scientificName": "Chrysuronia boucardi",
+    "kind": "description",
+    "text": "This hummingbird lives only on Costa Rica’s Pacific coast. Its mangrove home is a narrow meeting place between coastal forest and the sea.",
+    "sources": [
+      {
+        "title": "American Bird Conservancy: Tropical Forests",
+        "url": "https://abcbirds.org/news/tropical-forests/"
+      },
+      {
+        "title": "Wikipedia: Mangrove Hummingbird",
+        "url": "https://en.wikipedia.org/wiki/Mangrove_hummingbird"
+      }
+    ]
+  },
+  "avibase-6C439FF4": {
+    "name": "Mangrove Warbler",
+    "scientificName": "Setophaga petechia",
+    "kind": "description",
+    "text": "Mangroves are a good place to look for this yellow warbler. Some males have a chestnut cap, others a whole chestnut head; the migratory American Yellow Warbler is a separate species.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Mangrove_warbler"
+      },
+      {
+        "title": "American Birding Association, Michael Retter (2025)",
+        "url": "https://www.aba.org/the-2025-e-bird-clements-taxonomy-update/"
+      }
+    ]
+  },
+  "avibase-5BFEFD9A": {
+    "name": "Mountain Buzzard",
+    "scientificName": "Buteo oreophilus",
+    "kind": "description",
+    "text": "Mountain forests in East Africa are home to this buzzard. Its brown back and blotched pale underside suit the familiar buzzard pattern; the mountain part of its name is a useful habitat clue.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Mountain_buzzard"
+      },
+      {
+        "title": "The Peregrine Fund",
+        "url": "https://peregrinefund.org/explore-raptors-species/hawks/mountain-buzzard"
+      }
+    ]
+  },
+  "avibase-A61FDDF3": {
+    "name": "Mountain Kingfisher",
+    "scientificName": "Syma megarhyncha",
+    "kind": "description",
+    "text": "Mountain Kingfishers live in New Guinea at higher elevations than their similar relative, the Yellow-billed Kingfisher. The mountain part of the name is a useful distinction between these two birds.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Mountain_kingfisher"
+      },
+      {
+        "title": "Birds Queensland, Greg Anderson",
+        "url": "https://birdsqueensland.org.au/bird/yellow-billed-kingfisher/"
+      }
+    ]
+  },
+  "avibase-1FFFEF4E": {
+    "name": "Mountain Plover",
+    "scientificName": "Anarhynchus montanus",
+    "kind": "description",
+    "text": "The name is misleading: this plover breeds on open, dry plains. Short grass and bare ground suit it better than mountain slopes or the wet shores associated with many other plovers.",
+    "sources": [
+      {
+        "title": "Colorado Parks and Wildlife",
+        "url": "https://cpw.state.co.us/species/mountain-plover"
+      }
+    ]
+  },
+  "avibase-C752BDF3": {
+    "name": "Mountain Robin",
+    "scientificName": "Petroica bivittata",
+    "kind": "description",
+    "text": "This robin lives in New Guinea’s mountain forests. Researchers recorded it at about 3,000 metres on the Huon Peninsula, a fitting setting for a bird with mountain in its name.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Mountain_robin"
+      },
+      {
+        "title": "Freeman and colleagues, Bulletin of the British Ornithologists’ Club (2013)",
+        "url": "https://boc-online.org/bulletins/downloads/BBOC1331-PDFa.pdf"
+      }
+    ]
+  },
+  "avibase-8E286BF9": {
+    "name": "Mountain Thrush",
+    "scientificName": "Turdus plebejus",
+    "kind": "description",
+    "text": "This brown thrush lives in mountain forests from Mexico to Panama. Older accounts called the same species Mountain Robin; the scientific name, Turdus plebejus, keeps the two English names connected.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Mountain_thrush"
+      },
+      {
+        "title": "American Ornithological Society, Check-list species account",
+        "url": "https://americanornithology.org/wp-content/uploads/2019/07/AOSChecklistPass-Mimidae.pdf"
+      }
+    ]
+  },
+  "avibase-747B3A52": {
+    "name": "Mountain Wagtail",
+    "scientificName": "Motacilla clara",
+    "kind": "description",
+    "text": "Rocky streams, including those in African mountains, suit this wagtail. A grey back and black-and-white wings frame an especially long tail, while a narrow dark band crosses the pale breast.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Mountain_wagtail"
+      },
+      {
+        "title": "Oiseaux.net, Mountain Wagtail species account",
+        "url": "https://www.oiseaux.net/en/oiseaux/mountain.wagtail.html"
+      }
+    ]
+  },
+  "avibase-7DB7D6CE": {
+    "name": "Moustached Babbler",
+    "scientificName": "Malacopteron magnirostre",
+    "kind": "description",
+    "text": "The moustache is a fine grey stripe beside the bill. Brown feathers cover the back and wings, while the pale underside makes that small facial marking easier to pick out.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Moustached_babbler"
+      },
+      {
+        "title": "Photograph by Sabine's Sunbird",
+        "url": "https://commons.wikimedia.org/wiki/File:Malacopteron_magnirostre.JPG"
+      }
+    ]
+  },
+  "avibase-0A563359": {
+    "name": "Moustached Barbet",
+    "scientificName": "Psilopogon incognitus",
+    "kind": "description",
+    "text": "Look for a narrow dark stripe beside the bill: that is the moustache. Green covers most of this barbet, with blue on the face adding another colour to inspect.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Moustached_barbet"
+      },
+      {
+        "title": "Photograph by Francesco Veronesi from Italy",
+        "url": "https://commons.wikimedia.org/wiki/File:Moustached_Barbet_-_Thailand_S4E5744_(16222727037).jpg"
+      }
+    ]
+  },
+  "avibase-803B79B9": {
+    "name": "Moustached Kingfisher",
+    "scientificName": "Actenoides bougainvillei",
+    "kind": "description",
+    "text": "A blue-purple stripe runs across the orange face like a moustache. Blue wings repeat that colour, while the large red bill adds another bright feature to the bird in the photograph.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Moustached_kingfisher"
+      },
+      {
+        "title": "Photograph by Barry Reed",
+        "url": "https://commons.wikimedia.org/wiki/File:Moustached_Kingfisher_(Actenoides_bougainvillei)_in_Bougainviille.png"
+      }
+    ]
+  },
+  "avibase-5D5C6D51": {
+    "name": "Moustached Wren",
+    "scientificName": "Pheugopedius genibarbis",
+    "kind": "description",
+    "text": "White facial stripes give this wren a moustached look. A dark line borders the pale moustache below, while another pale stripe runs above the eye; the back is warm brown.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Moustached_wren"
+      },
+      {
+        "title": "Photograph by Hector Bottai",
+        "url": "https://commons.wikimedia.org/wiki/File:Pheugopedius_genibarbis_Moustached_Wren;_Esta%C3%A7%C3%A3o_Veracel,_Porto_Seguro,_Bahia,_Brazil.jpg"
+      }
+    ]
+  },
+  "avibase-A091D50A": {
+    "name": "Northern Harrier",
+    "scientificName": "Circus hudsonius",
+    "kind": "description",
+    "text": "Its northern breeding range includes Alaska, Canada and the northern United States. Many travel south for winter, so “northern” does not mean they stay in the far north all year.",
+    "sources": [
+      {
+        "title": "University of Minnesota Raptor Center",
+        "url": "https://raptor.umn.edu/about-raptors/raptors-north-america/northern-harrier"
+      }
+    ]
+  },
+  "avibase-DF526047": {
+    "name": "Northern Wheatear",
+    "scientificName": "Oenanthe oenanthe",
+    "kind": "description",
+    "text": "“Wheatear” has nothing to do with wheat. It comes from an older name referring to the bird’s white rump, which flashes above a black-and-white tail when it flies.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Northern_wheatear"
+      },
+      {
+        "title": "Woodland Trust, Wheatear species account",
+        "url": "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/animals/birds/wheatear/"
+      }
+    ]
+  },
+  "avibase-02E004AD": {
+    "name": "Olive Woodpecker",
+    "scientificName": "Dendropicos griseocephalus",
+    "kind": "description",
+    "text": "Olive-green and bronze tones cover the back and folded wings. The grey head and bright red rump interrupt the green, so olive describes much of this woodpecker rather than every feather.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Olive_woodpecker"
+      },
+      {
+        "title": "Photograph by Nigel Voaden from UK",
+        "url": "https://commons.wikimedia.org/wiki/File:Olive_Woodpecker,_Sakania,_DRC_(12404103034),_crop.jpg"
+      }
+    ]
+  },
+  "avibase-8897A0C5": {
+    "name": "Ornate Flycatcher",
+    "scientificName": "Myiotriccus ornatus",
+    "kind": "description",
+    "text": "White marks beside the bill and a bright yellow belly make this flycatcher look decorated. A partly hidden yellow crown patch adds another detail that may escape a quick glance.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Ornate_flycatcher"
+      },
+      {
+        "title": "Peru Aves, Ornate Flycatcher field account",
+        "url": "https://www.peruaves.org/tyrannidae/ornate-flycatcher-myiotriccus-ornatus/"
+      }
+    ]
+  },
+  "avibase-86D1B826": {
+    "name": "Ornate Pitta",
+    "scientificName": "Pitta concinna",
+    "kind": "description",
+    "text": "A green back and blue wing patch contrast with a dark hood. Black and red on the belly add to this pitta’s ornate pattern.",
+    "sources": [
+      {
+        "title": "Yue et al. (2020): Species limits in the Elegant Pitta complex",
+        "url": "https://d-nb.info/122327019X/34"
+      },
+      {
+        "title": "Avicultural Magazine, volume 108",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/65/The_Avicultural_magazine_%28IA_aviculturalma10842000asco%29.pdf"
+      },
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Ornate_pitta"
+      }
+    ]
+  },
+  "avibase-8885A375": {
+    "name": "Ornate Sunbird",
+    "scientificName": "Cinnyris ornatus",
+    "kind": "description",
+    "text": "The male combines a glossy blue throat with a yellow underside. Females lack that shiny throat. Older books may place this bird within the Olive-backed Sunbird, before that group was divided into several species.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Ornate_sunbird"
+      },
+      {
+        "title": "Singapore National Parks Board",
+        "url": "https://biodiversitysg.nparks.gov.sg/our-biodiversity/birds/sunbirds/ornate-sunbird/"
+      }
+    ]
+  },
+  "avibase-1EA96AE1": {
+    "name": "Pied Harrier",
+    "scientificName": "Circus melanoleucos",
+    "kind": "description",
+    "text": "“Pied” fits the adult male’s contrasting black and white plumage. Females are browner, so the bold pattern in the species name does not describe every individual equally well.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pied_harrier"
+      },
+      {
+        "title": "Kim-Chye Lim, Malaysian Bird Report (June 2024)",
+        "url": "https://malaysianbird.report/wp-content/uploads/13-Harrier-Identification-Malaysian-Bird-Report-June-2024.pdf"
+      }
+    ]
+  },
+  "avibase-2D0ED462": {
+    "name": "Pied Heron",
+    "scientificName": "Egretta picata",
+    "kind": "description",
+    "text": "A white neck and throat stand against a dark slate-coloured body and head. Young birds lack the dark cap and crest, so they can look surprisingly different from the pied adults.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pied_heron"
+      },
+      {
+        "title": "IUCN Heron Specialist Group",
+        "url": "https://heronconservation.org/herons-of-the-world/list/pied-heron/"
+      }
+    ]
+  },
+  "avibase-1AE95762": {
+    "name": "Pied Monarch",
+    "scientificName": "Arses kaupi",
+    "kind": "description",
+    "text": "The bird in the photograph wears a white collar between a black head and dark chest band. A white belly continues the pied pattern, with a blue ring around the eye.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pied_monarch"
+      },
+      {
+        "title": "Photograph by Tim",
+        "url": "https://commons.wikimedia.org/wiki/File:Arses_kaupi_-Australia-8.jpg"
+      }
+    ]
+  },
+  "avibase-FC943B05": {
+    "name": "Pied Plover",
+    "scientificName": "Hoploxypterus cayanus",
+    "kind": "description",
+    "text": "Black-and-white markings around the head and breast suit the word pied. Warm brown wings, red legs and a red ring around the eye make the rest of the bird less monochrome.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pied_plover"
+      },
+      {
+        "title": "Photograph by Andreas Trepte",
+        "url": "https://commons.wikimedia.org/wiki/File:BK3U7978.jpg"
+      }
+    ]
+  },
+  "avibase-AC0C3921": {
+    "name": "Pied Thrush",
+    "scientificName": "Geokichla wardii",
+    "kind": "description",
+    "text": "In this photograph, black and white patches cover the head, breast and wings, with dark spots scattered over the pale belly. The yellow bill is a bright exception to the pied pattern.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pied_thrush"
+      },
+      {
+        "title": "Photograph by Ritesh Nayak",
+        "url": "https://commons.wikimedia.org/wiki/File:Geokichla_wardii_-Nandi_Hills,_Karnataka,_India_-male-8_(cropped).jpg"
+      }
+    ]
+  },
+  "avibase-2FB34D83": {
+    "name": "Pied Wheatear",
+    "scientificName": "Oenanthe pleschanka",
+    "kind": "description",
+    "text": "A pale crown and belly contrast with the dark face and throat in this photograph. That bold arrangement of light and dark feathers makes the word pied easy to understand.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pied_wheatear"
+      },
+      {
+        "title": "Photograph by Ron Knight from Seaford, East Sussex, United Kingdom",
+        "url": "https://commons.wikimedia.org/wiki/File:Pied_Wheatear_(Oenanthe_pleschanka)_(8079431820).jpg"
+      }
+    ]
+  },
+  "avibase-7C3959D6": {
+    "name": "Plain Nightjar",
+    "scientificName": "Caprimulgus inornatus",
+    "kind": "description",
+    "text": "Plain at a glance, but finely patterned up close: grey and brown feathers carry dark mottling and narrow pale lines. There is more detail here than the name might suggest.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Plain_nightjar"
+      },
+      {
+        "title": "Photograph by Jan Ebr & Ivana Ebrová",
+        "url": "https://commons.wikimedia.org/wiki/File:Caprimulgus_inornatus_-_Jan_Ebr_and_Ivana_Ebrov%C3%A1_-_177267110.jpeg"
+      }
+    ]
+  },
+  "avibase-C4BD9E16": {
+    "name": "Plain Pigeon",
+    "scientificName": "Patagioenas inornata",
+    "kind": "description",
+    "text": "Plain is relative: its head and breast carry a wine-red wash, with blue-grey on the rump and pale edges on the folded wings. The colours reward a closer look.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Plain_pigeon"
+      },
+      {
+        "title": "Oiseaux-Birds, Nicole Bouglouan",
+        "url": "https://www.oiseaux-birds.com/card-plain-pigeon.html"
+      }
+    ]
+  },
+  "avibase-2FFB2DBC": {
+    "name": "Plain Sunbird",
+    "scientificName": "Anthreptes simplex",
+    "kind": "description",
+    "text": "Muted olive and grey tones make this sunbird plainer than many relatives. The male still has a small metallic blue-green band on the forehead, a detail easy to miss.",
+    "sources": [
+      {
+        "title": "Malaysian Bird Report, March 2025",
+        "url": "https://malaysianbird.report/wp-content/uploads/6-Plumage-Changes-Male-Sunbirds-Malaysian-Bird-Report-March-2025.pdf"
+      }
+    ]
+  },
+  "avibase-59A5A24E": {
+    "name": "Plain Swift",
+    "scientificName": "Apus unicolor",
+    "kind": "description",
+    "text": "Dark brown feathers make a nearly unbroken silhouette. The photograph shows long, pointed wings, with little bright colour or bold pattern to interrupt its plain appearance.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Plain_swift"
+      },
+      {
+        "title": "Photograph by Hobbyfotowiki",
+        "url": "https://commons.wikimedia.org/wiki/File:Einfarbsegler.jpg"
+      }
+    ]
+  },
+  "avibase-A874F334": {
+    "name": "River Tern",
+    "scientificName": "Sterna aurantia",
+    "kind": "description",
+    "text": "Rivers are a good clue to this tern’s habits. It favours freshwater and often nests on sandy islands or riverbanks, though researchers have also recorded colonies in brackish lakes.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/River_tern"
+      },
+      {
+        "title": "Sathiyaselvam and Balachandran, Indian Birds (2007)",
+        "url": "https://indianbirds.in/pdfs/IB_Main_3.2_2007.pdf"
+      }
+    ]
+  },
+  "avibase-DF1E2A1D": {
+    "name": "Ruddy Duck",
+    "scientificName": "Oxyura jamaicensis",
+    "kind": "description",
+    "text": "The breeding male earns the reddish description with a chestnut body, set off by a bright blue bill. White cheeks and a dark cap complete the face in this photograph.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Ruddy_duck"
+      },
+      {
+        "title": "Audubon, Kenn Kaufman field guide",
+        "url": "https://www.audubon.org/field-guide/bird/ruddy-duck"
+      }
+    ]
+  },
+  "avibase-6647508A": {
+    "name": "Ruddy Kingfisher",
+    "scientificName": "Halcyon coromanda",
+    "kind": "description",
+    "text": "Rust-red feathers, a red bill and red legs make ruddy a useful description. On the back, the colour takes on a purple cast that contrasts with the warmer head and underside.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Ruddy_kingfisher"
+      },
+      {
+        "title": "Photograph by JJ Harrison",
+        "url": "https://commons.wikimedia.org/wiki/File:Ruddy_Kingfisher_0A2A7077.jpg"
+      }
+    ]
+  },
+  "avibase-F4F72BD9": {
+    "name": "Ruddy Pigeon",
+    "scientificName": "Patagioenas subvinacea",
+    "kind": "description",
+    "text": "Warm reddish-brown feathers cover the back and wings, with a wine-coloured wash over the breast. The understated pattern leaves those ruddy colours as the main feature to look for.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Ruddy_pigeon"
+      },
+      {
+        "title": "Photograph by Michael Woodruff",
+        "url": "https://commons.wikimedia.org/wiki/File:Patagioenas_subvinacea_-NW_Ecuador-8.jpg"
+      }
+    ]
+  },
+  "avibase-082099D1": {
+    "name": "Scarlet Robin",
+    "scientificName": "Petroica boodang",
+    "kind": "description",
+    "text": "The adult male wears a vivid scarlet breast beneath a black head. Females have a much softer reddish wash, so the colour in the name is strongest in the male.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Scarlet_robin"
+      },
+      {
+        "title": "NSW Government, Scarlet Robin profile",
+        "url": "https://threatenedspecies.bionet.nsw.gov.au/profile?id=20133"
+      }
+    ]
+  },
+  "avibase-42101632": {
+    "name": "Scarlet Tanager",
+    "scientificName": "Piranga olivacea",
+    "kind": "description",
+    "text": "Scarlet describes the breeding male: a red body with black wings and tail. Females are yellow-olive, and males become greener outside the breeding season while keeping their dark wings.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Scarlet_tanager"
+      },
+      {
+        "title": "Audubon, Kenn Kaufman field guide",
+        "url": "https://www.audubon.org/field-guide/bird/scarlet-tanager"
+      }
+    ]
+  },
+  "avibase-A28D8D38": {
+    "name": "Snowy Albatross",
+    "scientificName": "Diomedea exulans",
+    "kind": "description",
+    "text": "Also known as the Wandering Albatross. Juveniles are mostly chocolate-brown, with white faces and underwings. They become whiter as they age.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Snowy_albatross"
+      },
+      {
+        "title": "New Zealand Birds Online, Susan Waugh",
+        "url": "https://www.nzbirdsonline.org.nz/species/wandering-albatross"
+      }
+    ]
+  },
+  "avibase-AA7901D8": {
+    "name": "Snowy Egret",
+    "scientificName": "Egretta thula",
+    "kind": "description",
+    "text": "White feathers give this small egret its snowy appearance. Its black bill and legs end in bright yellow feet, a useful detail when several white herons share the same wetland.",
+    "sources": [
+      {
+        "title": "Cornell Lab of Ornithology",
+        "url": "https://www.allaboutbirds.org/guide/snowy_egret/id"
+      }
+    ]
+  },
+  "avibase-5B23B360": {
+    "name": "Snowy Owl",
+    "scientificName": "Bubo scandiacus",
+    "kind": "description",
+    "text": "White plumage suits the Arctic setting, but many Snowy Owls have dark brown markings. Adult males tend to become whiter; females and young birds usually carry more pattern.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Snowy_owl"
+      },
+      {
+        "title": "Audubon, Kenn Kaufman field guide",
+        "url": "https://www.audubon.org/field-guide/bird/snowy-owl"
+      }
+    ]
+  },
+  "avibase-4976BF1D": {
+    "name": "Sooty Albatross",
+    "scientificName": "Phoebetria fusca",
+    "kind": "description",
+    "text": "Dark brown feathers give this albatross its sooty look. A narrow white crescent above and behind the eye and a yellow-orange line along the bill interrupt the dark colouring.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Sooty_albatross"
+      },
+      {
+        "title": "New Zealand Birds Online",
+        "url": "https://www.nzbirdsonline.org.nz/species/sooty-albatross"
+      }
+    ]
+  },
+  "avibase-14D82446": {
+    "name": "Sooty Babbler",
+    "scientificName": "Stachyris herberti",
+    "kind": "description",
+    "text": "Sooty-brown feathers have a subtle purple-bronze sheen, with a paler throat breaking up the darkness. Researchers rediscovered this limestone-forest bird in Vietnam in 1994 after decades without a recorded sighting.",
+    "sources": [
+      {
+        "title": "Bird Conservation International, Eames and colleagues (1995)",
+        "url": "https://doi.org/10.1017/S0959270900002987"
+      }
+    ]
+  },
+  "avibase-67D43542": {
+    "name": "Sooty Gull",
+    "scientificName": "Ichthyaetus hemprichii",
+    "kind": "description",
+    "text": "In breeding plumage, the dark brown head and grey-brown back suit the name “sooty”. A white half-collar breaks up the dark feathers.",
+    "sources": [
+      {
+        "title": "Mediterranean Waterbirds Network",
+        "url": "https://medwaterbirds.net/page.php?id=11"
+      }
+    ]
+  },
+  "avibase-C9B6F34C": {
+    "name": "Sooty Owl",
+    "scientificName": "Tyto tenebricosa",
+    "kind": "description",
+    "text": "Dark grey feathers give this owl a soot-dusted look. Fine white spots speckle the plumage.",
+    "sources": [
+      {
+        "title": "NSW Government",
+        "url": "https://threatenedspecies.bionet.nsw.gov.au/profile?id=10821"
+      }
+    ]
+  },
+  "avibase-9054A7CA": {
+    "name": "Sooty Swift",
+    "scientificName": "Cypseloides fumigatus",
+    "kind": "description",
+    "text": "Brown plumage gives this swift its sooty look. A paler forehead breaks up the darkness, without the frosted appearance of the similar Great Dusky Swift.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Sooty_swift"
+      },
+      {
+        "title": "Pearman and colleagues, Ornitología Neotropical (2010)",
+        "url": "https://nachoareta.wordpress.com/wp-content/uploads/2011/06/pearman-et-al-2010-cypseloides-fumigatus-on.pdf"
+      }
+    ]
+  },
+  "avibase-3E7F825D": {
+    "name": "Sooty Tern",
+    "scientificName": "Onychoprion fuscatus",
+    "kind": "description",
+    "text": "Sooty above, pale below: this ocean-going tern has dark upperparts but a white belly and forehead. Young birds are darker underneath, with white spots across the back.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Sooty_tern"
+      },
+      {
+        "title": "Audubon, Kenn Kaufman field guide",
+        "url": "https://www.audubon.org/field-guide/bird/sooty-tern"
+      }
+    ]
+  },
+  "avibase-C43110B3": {
+    "name": "Sooty Thrush",
+    "scientificName": "Turdus nigrescens",
+    "kind": "description",
+    "text": "Dark brown feathers cover most of this thrush. The orange bill and legs stand out against the sooty body, and a pale eye adds a small, sharp point of contrast.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Sooty_thrush"
+      },
+      {
+        "title": "Photograph by Jerry Oldenettel",
+        "url": "https://commons.wikimedia.org/wiki/File:Sooty_Robin.jpg"
+      }
+    ]
+  },
+  "avibase-0A1A1F0F": {
+    "name": "Speckled Hummingbird",
+    "scientificName": "Adelomyia melanogenys",
+    "kind": "description",
+    "text": "Small dark specks cover the pale underside. A dark cheek patch and pale stripe above it add more pattern, while green and bronze tones appear on the back and wings.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Speckled_hummingbird"
+      },
+      {
+        "title": "Photograph by Charles J. Sharp",
+        "url": "https://commons.wikimedia.org/wiki/File:Speckled_hummingbird_(Adelomyia_melanogenys_melanogenys)_Cundinamarca.jpg"
+      }
+    ]
+  },
+  "avibase-A6EA9F02": {
+    "name": "Speckled Pigeon",
+    "scientificName": "Columba guinea",
+    "kind": "description",
+    "text": "White spots scatter across reddish-brown wings, making the speckled part of the name easy to see. A red patch around the eye supplies a much brighter block of colour.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Speckled_pigeon"
+      },
+      {
+        "title": "Photograph by peterichman from York, Yorkshire",
+        "url": "https://commons.wikimedia.org/wiki/File:Specked_Pigeon_...Gambia_(32709456610).jpg"
+      }
+    ]
+  },
+  "avibase-A68B1787": {
+    "name": "Speckled Warbler",
+    "scientificName": "Pyrrholaemus sagittatus",
+    "kind": "description",
+    "text": "Buff streaks cross a dark crown, while the pale underside is heavily marked with black. Several kinds of fine pattern share the space suggested by the name speckled.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Speckled_warbler"
+      },
+      {
+        "title": "NSW Government, Speckled Warbler profile",
+        "url": "https://threatenedspecies.bionet.nsw.gov.au/profile?id=10722"
+      }
+    ]
+  },
+  "avibase-92F622EE": {
+    "name": "Vermilion Tanager",
+    "scientificName": "Calochaetes coccineus",
+    "kind": "description",
+    "text": "Vermilion is a vivid red, and this bird has plenty of it. A black throat and dark wings interrupt the bright red head and body shown in the photograph.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Vermilion_tanager"
+      },
+      {
+        "title": "Photograph by Nick Athanas",
+        "url": "https://commons.wikimedia.org/wiki/File:Calochaetes_coccineus_-_Vermilion_Tanager_(cropped).jpg"
+      }
+    ]
+  },
+  "avibase-0ADA5F17": {
+    "name": "Western Tanager",
+    "scientificName": "Piranga ludoviciana",
+    "kind": "description",
+    "text": "Western fits its breeding range in western North America. A breeding male has a red face and yellow body, with black wings crossed by pale bars.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Western_tanager"
+      },
+      {
+        "title": "Audubon, Kenn Kaufman field guide",
+        "url": "https://www.audubon.org/field-guide/bird/western-tanager"
+      }
+    ]
+  },
+  "avibase-E35448DE": {
+    "name": "White Hawk",
+    "scientificName": "Pseudastur albicollis",
+    "kind": "description",
+    "text": "The white head and body are the first things to notice. Dark feathers remain on the wings, making the name a good first impression rather than a promise of an entirely white bird.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/White_hawk"
+      },
+      {
+        "title": "Photograph by White_Hawk_1_2496239182.jpg : dominic sherony",
+        "url": "https://commons.wikimedia.org/wiki/File:White_Hawk_1_2496239182_cropped.jpg"
+      }
+    ]
+  },
+  "avibase-400E032C": {
+    "name": "White Wagtail",
+    "scientificName": "Motacilla alba",
+    "kind": "description",
+    "text": "White is only part of the pattern. In this photograph, pale cheeks and belly sit beside a black throat, a grey back and black-and-white wings.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/White_wagtail"
+      },
+      {
+        "title": "Photograph by Jac. Janssen from BAARLO LB, NL",
+        "url": "https://commons.wikimedia.org/wiki/File:20180415_015_Winterswijk_Witte_kwikstaart_(40785272624).jpg"
+      }
+    ]
+  },
+  "avibase-5CA0BA87": {
+    "name": "White Woodpecker",
+    "scientificName": "Melanerpes candidus",
+    "kind": "description",
+    "text": "A white face and underside contrast with black wings. Look around the eye for a yellow ring, a small splash of colour on an otherwise mostly black-and-white woodpecker.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/White_woodpecker"
+      },
+      {
+        "title": "Photograph by Dr. Lenaldo Vigo",
+        "url": "https://commons.wikimedia.org/wiki/File:Melanerpes_candidus_in_Sergipe_-_Brazil.jpg"
+      }
+    ]
+  },
+  "avibase-5BC4E0EF": {
+    "name": "Willow Flycatcher",
+    "scientificName": "Empidonax traillii",
+    "kind": "description",
+    "text": "Willows and other waterside shrubs are typical breeding habitat for this small flycatcher. It catches insects in the air or picks them from leaves, so both halves of the name offer useful clues.",
+    "sources": [
+      {
+        "title": "Cornell Lab of Ornithology",
+        "url": "https://www.allaboutbirds.org/guide/Willow_Flycatcher/lifehistory"
+      }
+    ]
+  },
+  "avibase-F963401E": {
+    "name": "Willow Tit",
+    "scientificName": "Poecile montanus",
+    "kind": "description",
+    "text": "Damp, young woodland suits this tit in Britain, including places with willows. It digs its own nest hole in soft, decaying wood, so the trees provide more than a perch.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Willow_tit"
+      },
+      {
+        "title": "British Trust for Ornithology, BirdFacts",
+        "url": "https://www.bto.org/learn/about-birds/birdfacts/willow-tit"
+      }
+    ]
+  },
+  "avibase-27B2749A": {
+    "name": "Wood Duck",
+    "scientificName": "Aix sponsa",
+    "kind": "description",
+    "text": "Woodland ponds and swamps suit this duck, which usually nests in a tree cavity. The young leave the elevated nest by jumping down, often the morning after they hatch.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Wood_duck"
+      },
+      {
+        "title": "Audubon, Kenn Kaufman field guide",
+        "url": "https://www.audubon.org/field-guide/bird/wood-duck"
+      }
+    ]
+  },
+  "avibase-C21A0347": {
+    "name": "Wood Pipit",
+    "scientificName": "Anthus nyassae",
+    "kind": "description",
+    "text": "Miombo woodland and other grassy woodland suit this African pipit. It searches the undergrowth for insects and other small invertebrates, giving the wood in its name a useful habitat connection.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Wood_pipit"
+      },
+      {
+        "title": "Biodiversity Explorer, Roberts Birds of Southern Africa account",
+        "url": "https://www.biodiversityexplorer.info/birds/motacillidae/anthus_nyassae.htm"
+      }
+    ]
+  },
+  "avibase-F600592A": {
+    "name": "Yellow Grosbeak",
+    "scientificName": "Pheucticus chrysopeplus",
+    "kind": "description",
+    "text": "A yellow head and body contrast with black-and-white wings in this photograph. The large, deep bill is just as striking as the yellow plumage when you look at the bird’s face.",
+    "sources": [
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Yellow_grosbeak"
+      },
+      {
+        "title": "Photograph by Arjan Haverkamp",
+        "url": "https://commons.wikimedia.org/wiki/File:Pheucticus_chrysopeplus_-Burgers_Zoo,_Arnhem,_Netherlands-8a.jpg"
+      }
+    ]
+  }
+}

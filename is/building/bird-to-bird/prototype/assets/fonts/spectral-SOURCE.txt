@@ -1,0 +1,4 @@
+Spectral by Production Type
+Source: https://github.com/google/fonts/tree/main/ofl/spectral
+Downloaded 2026-11-17 from the official Google Fonts repository.
+Unmodified font files. License: SIL Open Font License 1.1, included in spectral-OFL.txt.

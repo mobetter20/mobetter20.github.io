@@ -14,6 +14,7 @@ on:
       - "sitemap.xml"
       - "is/writing/**"
       - "is/building/index.html"
+      - "is/building/bird-to-bird/**"
       - "is/running/index.html"
       - "wrote/**"
       - "writes/**"
@@ -52,6 +53,8 @@ jobs:
           git diff --exit-code -- index.html is/running/index.html is/reading/index.html is/learning/index.html is/building/index.html is/writing wrote writes
       - name: Check internal links
         run: python3 _scripts/check_links.py
+      - name: Verify the audited Bird to Bird release
+        run: python3 _scripts/check_bird_to_bird.py
       - name: Check sitemap routes
         run: |
           cp sitemap.xml /tmp/committed-sitemap.xml
