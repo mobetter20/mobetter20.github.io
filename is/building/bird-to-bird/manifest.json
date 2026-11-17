@@ -1,0 +1,3935 @@
+{
+  "schemaVersion": 1,
+  "generator": "bird-to-bird-local-release-v1",
+  "entry": "daily/index.html",
+  "sourceVersion": "2026",
+  "calendar": {
+    "firstDate": "2026-11-17",
+    "lastDate": "2026-12-16",
+    "puzzles": 30,
+    "birds": 169
+  },
+  "sourceLockSha256": "925f4e45a4ae6edeff637c50fd6dbf7bc251c19174708ca82ef3d259d0722571",
+  "manifestIntegrity": "Payload files are hashed below. The manifest does not hash itself; its SHA-256 is returned by the build and verification command.",
+  "files": [
+    {
+      "path": "assets/fonts/OFL-Space-Grotesk.txt",
+      "bytes": 4401,
+      "sha256": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943",
+      "role": "font-license",
+      "license": "SIL OFL 1.1",
+      "consumers": [
+        "credits.html"
+      ]
+    },
+    {
+      "path": "assets/fonts/space-grotesk-500-latin.woff2",
+      "bytes": 13372,
+      "sha256": "cedfe94cfb039ab89a4a655dce1dfe9a3ef5afa020dcee403e72d988cdadec99",
+      "role": "font",
+      "license": "SIL OFL 1.1",
+      "consumers": [
+        "prototype/styles.css"
+      ]
+    },
+    {
+      "path": "credits.html",
+      "bytes": 111928,
+      "sha256": "0869605a06ca26a1bf6d554215080cbe2683eaee32623f97fa504c531eaecf2a",
+      "role": "attribution",
+      "license": "attribution-records",
+      "consumers": [
+        "index.html"
+      ]
+    },
+    {
+      "path": "daily/app.js",
+      "bytes": 24691,
+      "sha256": "452351df63eaed5a80abc8a461c93af85afde8e8cda83499a1fa2dfa4e0a0cfe",
+      "role": "game-code",
+      "license": "project-authored",
+      "consumers": [
+        "daily/boot.js"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-00DA9D91-thumb.jpg",
+      "bytes": 12633,
+      "sha256": "7ec346f2111d292c806ab1a07a30d525fca776c5d74b4073d713f19ba67f5c9d",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-01BFAE61-thumb.jpg",
+      "bytes": 22670,
+      "sha256": "ac1e546136c4c265c5d2ac4d9c9ea584ce79946255474ba7f9a351fbc0d61622",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-01BFAE61.jpg",
+      "bytes": 206692,
+      "sha256": "f3c0fa8598eb5a55381e60ef448d29c76258701c8e20fa5310e4b2c7fbc93956",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-02E004AD-thumb.jpg",
+      "bytes": 31570,
+      "sha256": "f70e06a2fed568a778e74bae799d4cc6a2e5f21df141a0a14aa4d95f2ba12a5f",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-02E004AD.jpg",
+      "bytes": 279577,
+      "sha256": "03e71db7286a7b07ec13728e64ca1bee65ac8dd2548f639f2d281d002bc3a24f",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-03D0649C-thumb.jpg",
+      "bytes": 11172,
+      "sha256": "dbb681da1d1e7b0c41fc8ed6d518f58cd4fca68d7e27265ef75d2ac5c928cdfb",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-03D0649C.jpg",
+      "bytes": 98538,
+      "sha256": "da10e7146f90c747887ab37daaf9897367f5d6febd48d2062875002b4a075e43",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-05CFB3D1-thumb.jpg",
+      "bytes": 32378,
+      "sha256": "431e125e260780281dcfbcad1566c28de581a0534bf3d68ed7eb9ed9d6395adc",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-05CFB3D1.jpg",
+      "bytes": 310920,
+      "sha256": "ef232b0c3fa462971726515905da50be6c09500f4118bf279325ecda0cabfbd8",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-078BC0ED-thumb.jpg",
+      "bytes": 12390,
+      "sha256": "0427b33459611ae016debef715429ec3caf3daa5648d817a1d5646ec86ff2949",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-078BC0ED.jpg",
+      "bytes": 149209,
+      "sha256": "1cd53166e83e2c5057fc8aeac935dc7cb2263eea2bd80c934a76fcfa63baf747",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-079F846A-thumb.jpg",
+      "bytes": 19803,
+      "sha256": "54f3eda3f32dca6a87da7ffc143891477fcd6e75a41a1f762790d2eabce95b14",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-079F846A.jpg",
+      "bytes": 194019,
+      "sha256": "3fad5dd67d89c5415de4ed523ed1d76b613c3092a7a6ee593b025d3b88dec164",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-082099D1-thumb.jpg",
+      "bytes": 11629,
+      "sha256": "491339c81eae856fc9ee1c3772b727ff7c2822a9543b5091d1f5a0a6d3c2b041",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-082099D1.jpg",
+      "bytes": 92986,
+      "sha256": "8325529a4999690b0946b7b309188b18d82139aaccd39f8aece7d00b03155803",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-08DD4E80-thumb.jpg",
+      "bytes": 13868,
+      "sha256": "b9c42c67deaed11f3e85faaaa2a1eba2d7e7f5e1b68f700e8a51f2c39efac640",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-08DD4E80.jpg",
+      "bytes": 123073,
+      "sha256": "ac110257948b1d5fe61e4295fa10b3d7f1d890b19513d3a7b0d417af5085f6cd",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-09A0F2EB-thumb.jpg",
+      "bytes": 31767,
+      "sha256": "c0890a29797d2af6bf6561912f94b02f1dca76b177822210f6d321b88db20717",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-09A0F2EB.jpg",
+      "bytes": 327529,
+      "sha256": "21e4463501ddba67e2f5bee28de5c2af639f0fd72f09561050dd5502e6d41e17",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0A1A1F0F-thumb.jpg",
+      "bytes": 15049,
+      "sha256": "4ab8ab7433cec33f1f7f08c2c8935d420877895a155b4c570786efe6c1156c9b",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0A1A1F0F.jpg",
+      "bytes": 103811,
+      "sha256": "4b245037c585a60000645738371f79a935604a8f5f92292bd149420cf1d17d1f",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0A563359-thumb.jpg",
+      "bytes": 25212,
+      "sha256": "429291a1232b7c55448ef8357d70f89250a9afc73cd6c04836e360f37881ad4b",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0A563359.jpg",
+      "bytes": 215996,
+      "sha256": "9981125fa838397226ddf8258f4990398c07fb8c89a8c205daae4a1ee85a722b",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0ADA5F17-thumb.jpg",
+      "bytes": 32229,
+      "sha256": "a1ff3b4ea74a402198f92cb54c9c9087eea51e12efe193ac9cf413a0bfc03c6b",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0ADA5F17.jpg",
+      "bytes": 444847,
+      "sha256": "60aa1a4fae16e29c7aeb334d4f8735018315a00272f9a8c6c303f6d383e5277a",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0B2F8058-thumb.jpg",
+      "bytes": 10511,
+      "sha256": "938b9b3153b46c15dff2483214e227da3143757f5c9541894ee57dfe7d971e7c",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0B2F8058.jpg",
+      "bytes": 101246,
+      "sha256": "4d8145b46b79e44ca4d4ba7d0c91f26f160549363ec3751c6bab9fe79c3f0651",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0C95D04B-thumb.jpg",
+      "bytes": 11975,
+      "sha256": "e1bdb40eb66e3b4cc4e5e69e1c1224896acc6367076c1974bdd1d8fb08215bad",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0C95D04B.jpg",
+      "bytes": 87617,
+      "sha256": "cd497fe59a3caf8d98437e679c80dd6ad7c4107c8c6858e9d9480624e2b5c073",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0ECBA406-thumb.jpg",
+      "bytes": 23675,
+      "sha256": "f63ead6bac72dd8b4914d0cc82528b03e27ae86bae093bdaaf939f60779c4f14",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-0ECBA406.jpg",
+      "bytes": 156701,
+      "sha256": "e5992c53f6b1f007b568a643bbd8c182bba1d30c2fbba73573e14022db92b33e",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1267C963-thumb.jpg",
+      "bytes": 16014,
+      "sha256": "32c188b12b9fc7ca5e94665095ea08518e40148303e73711de4aaac2f0813257",
+      "role": "bird-thumbnail",
+      "license": "CC0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1267C963.jpg",
+      "bytes": 138448,
+      "sha256": "5269fc7f7e617de8d884fc5eca8fa39d71b66767afe38099f281242a895b55d6",
+      "role": "bird-photo",
+      "license": "CC0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-12CA8603-thumb.jpg",
+      "bytes": 44427,
+      "sha256": "d2cc723a657c29ae8715cb3dbb2e868b965057fce1695019eb0ea6599e9f5dea",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-12CA8603.jpg",
+      "bytes": 922393,
+      "sha256": "e8e8a9794d8c97a7bbbe9008d60486089ef60f0a0ed20d958316429ba63f4722",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-148F0B01-thumb.jpg",
+      "bytes": 35720,
+      "sha256": "31f99629b94e91f092f78cf46332414ef3a776c69b0bd4c6513b7604db9e80ec",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-148F0B01.jpg",
+      "bytes": 352379,
+      "sha256": "591c7306ca4d1524d11668d0b69ba0f36c15f0355c4a7178524355a2bc51c41e",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-14D82446-thumb.jpeg",
+      "bytes": 14529,
+      "sha256": "81fda08ca8269161ee320b8c27f44f2a0b16a61538a1add39c852e04080db7a8",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-14D82446.jpg",
+      "bytes": 116692,
+      "sha256": "3589c00477c7c0a92097fbda76cfe5a93b36dbfca78f427a12f829a019ba9180",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1611F295-thumb.jpg",
+      "bytes": 10720,
+      "sha256": "92030a4a2781c2613574bc543473720bd45da29710108128783a1515328253d6",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1611F295.jpg",
+      "bytes": 88272,
+      "sha256": "6c9f4909a1ac0769d8f4486b15cfd81ce8b2d56a28fb26dc45f4c1fbaec7d3d5",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-17310BF0-thumb.jpg",
+      "bytes": 16040,
+      "sha256": "1fde7ecb8713df857d271b8cdd784f5b3ac5cf26e27265f88bb1d3ed0c0b68e6",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-17310BF0.jpg",
+      "bytes": 129580,
+      "sha256": "ad77baf61753205adbdcf763d010ae36de2528a06922c45db330659c93948e23",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-19D053B3-thumb.jpg",
+      "bytes": 9106,
+      "sha256": "e0fdeba46cc6a213b8ad99970b1aaa6871dec88275869e7b6d0c7844f52808a0",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-19D053B3.jpg",
+      "bytes": 120361,
+      "sha256": "9dbc4a8fa6f9491a6d80396e90662b50a351621ae4403e210b269ba01d2f209d",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1A87E3A9-thumb.jpg",
+      "bytes": 21939,
+      "sha256": "29d69573caa079573dfa0f92546b51ea88fc57466ccd117a91a7f817cad6f51e",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.5",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1A87E3A9.jpg",
+      "bytes": 133439,
+      "sha256": "a2f7aa314bba80e9ff3bb027da8a665be98028bd92cffa8cfb204188a41f37b7",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.5",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1AE95762-thumb.jpg",
+      "bytes": 16321,
+      "sha256": "8ca2b44277c673245995358ec221d284ade005d3e05bba42aa4478381288c54e",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1AE95762.jpg",
+      "bytes": 290770,
+      "sha256": "8abc5949f0a657086895d65a9da9bbd26026cbfdb4c97c17492fa7228a35a9db",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1C98EA2F-thumb.jpg",
+      "bytes": 6866,
+      "sha256": "6113fdf830148b0b375138f5555765a350dfa2b4179e3f5c891c7a915db2e756",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1C98EA2F.jpg",
+      "bytes": 59058,
+      "sha256": "75e7447d3fd47642338e668a628e7182bf821d7f281a0c80b9b1d910addbb204",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1EA96AE1-thumb.jpg",
+      "bytes": 12229,
+      "sha256": "73fc76b2579184f48cd8484886c243410e4fe8a6f8c2b95e74fe0012181bda03",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1EA96AE1.jpg",
+      "bytes": 136401,
+      "sha256": "ee8311b21f4efcae191dc8f19bf7dc872b3a0d9b10bd4d281e3776d51eedd5cb",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1FFFEF4E-thumb.jpg",
+      "bytes": 15047,
+      "sha256": "aec43120acac81516ec9835613c7daaf9b12c8115b9c8be215b608d5587f2f68",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-1FFFEF4E.jpg",
+      "bytes": 114757,
+      "sha256": "b8f95328e4a627d753f530dd93516c1d2e6e5def6607ffa6f5f9d2955912d9c2",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-215FEA89-thumb.jpg",
+      "bytes": 9931,
+      "sha256": "274c7cd6e595d37418dd7c57411753d643620bd4215b9726608347aca79495b4",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.5",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-215FEA89.jpg",
+      "bytes": 105384,
+      "sha256": "9963c83ffaaebec9660256eca5a5dd7a68cb31ea978dee785d839fbd97537bb2",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.5",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-21BA7041-thumb.jpg",
+      "bytes": 15503,
+      "sha256": "f0a3d0e1599647773ed1d0ec4a086f0697e663c1f8b4fa4ee991946e38004121",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-21BA7041.jpg",
+      "bytes": 70545,
+      "sha256": "878edc513865ddb2ef0ed5a69b3a67e71d312fa66b4d1b6a3abd7f787084804e",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-23C068E4-thumb.jpg",
+      "bytes": 21839,
+      "sha256": "736ef11466f040c843e870288716282f1b7f3009babbfda0e3293e05eca480fe",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-23C068E4.jpg",
+      "bytes": 192862,
+      "sha256": "8f32bab54cdf7252b64d75896779d89302a902562af33d4c001f8c5c2146e5b3",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-245D312A-thumb.jpg",
+      "bytes": 7864,
+      "sha256": "20356fde2568b53cb075ed81409775dc897f8f5606464f7c288c2f4a65786030",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-245D312A.jpg",
+      "bytes": 59789,
+      "sha256": "ccd1f65294783547e48d0440589e7b72b3e654a42d8093483afd0d57aadfad0d",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-264D0351-thumb.jpg",
+      "bytes": 16438,
+      "sha256": "483e75b7717477dadde25150af8e9a467e609a86adbeb40bf5ad199c29c8d637",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-264D0351.jpg",
+      "bytes": 151336,
+      "sha256": "2eaf72bbfcfc2016f411af4849fb052a86e5f14c71f320a3598f119db32bf138",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-26F27894-thumb.jpg",
+      "bytes": 15985,
+      "sha256": "4223a967ebc25a6b49c1078954ca542ea23f8a053f5b97fa7bc5ce0a0fddb8d7",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-26F27894.jpg",
+      "bytes": 139719,
+      "sha256": "824d7bc48d10499a82a6e37db48ce98f599bebf3ac94ffcd4179f91dcea554a6",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-27903EF7-thumb.png",
+      "bytes": 62571,
+      "sha256": "a69d870399fb8c42a773200ac07d314c80ebe2384ae0c92a5b265f46b60ddc99",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-27903EF7.png",
+      "bytes": 762937,
+      "sha256": "5b2ca07860a22072e334c0ffe10b51aecc574bf0b91ec9af99875d786d5e3f1f",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-27B2749A-thumb.png",
+      "bytes": 213266,
+      "sha256": "c00dc2c592fa69bf5b185e8338942e1973be8bb105ee0ddf4356163588b2a8fc",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-27B2749A.png",
+      "bytes": 2912203,
+      "sha256": "b93a45029e6e1b80a0e72ddca4c5b144f37323bb9582cb150cb1c14059485d03",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-2D0ED462-thumb.jpg",
+      "bytes": 20043,
+      "sha256": "2ce7aa8f17854c5b91562d16880193c5086552da4d88643c5f6c8f4cb9e5360c",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-2D0ED462.jpg",
+      "bytes": 184769,
+      "sha256": "d7b3b304af37ed4296f0113547e0f1f2ead818c2f9dfde1274d1cb2d4468d7a6",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-2FB34D83-thumb.jpg",
+      "bytes": 14960,
+      "sha256": "cf7bb23c91a8094e37f49a49e1125abab60951fa9915420d8c2701a6747db221",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-2FB34D83.jpg",
+      "bytes": 338856,
+      "sha256": "69de14f543bca34b7ec74bd5cefbeda659b3957a8bcc56a027b3be3961cfa3e4",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-2FFB2DBC-thumb.jpg",
+      "bytes": 12661,
+      "sha256": "335b5af0d1f5f8460eebc163b406b7a4b1159c50726251d0948c2d1732b22d0e",
+      "role": "bird-thumbnail",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-2FFB2DBC.jpg",
+      "bytes": 161258,
+      "sha256": "212379f001870770ed4bbc06af2efc383d3b9a1e8d2f1c273531105c951a9d89",
+      "role": "bird-photo",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-303D5356-thumb.jpg",
+      "bytes": 12481,
+      "sha256": "c0244b581f7826e41bece9c01263d9fd8119d91e4c686fa39e0da02a9bcda9e3",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-303D5356.jpg",
+      "bytes": 99618,
+      "sha256": "9c55d091112ca8b365e91f7a9d17b6367c05be89c8d37b429986f194af6180f3",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-310AEDC8-thumb.jpg",
+      "bytes": 10495,
+      "sha256": "23ca81cf9323c873a5697d0029b6f236f5349f3e124f81ea7138c20c63dfc8e5",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-310AEDC8.jpg",
+      "bytes": 201354,
+      "sha256": "4b2530f61fa117abeede0efd1741653107b14d39d61703a65ea3c19baee63e86",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-31B7FC11-thumb.jpg",
+      "bytes": 10789,
+      "sha256": "dd1c8f9b9e1f3c3b373a9ab4a2548b9fda8a1e7674a785e499148834ca4d129d",
+      "role": "bird-thumbnail",
+      "license": "CC BY 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-31B7FC11.jpg",
+      "bytes": 92828,
+      "sha256": "d2f8daa660890bcf22652a0431ce363c9b1e77997e2da752e5a9cbceea4dac74",
+      "role": "bird-photo",
+      "license": "CC BY 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-32E65FB3-thumb.jpg",
+      "bytes": 12894,
+      "sha256": "eb9c5981463b188556a8cd9d147215a618b9662257dbb5d6e8c55665b9ffdddd",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-32E65FB3.jpg",
+      "bytes": 101807,
+      "sha256": "c1298110df9a01de15ef030e06981e3c0129813c2119fd73dbe9e0d2a4bd8aea",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-3D4BA49D-thumb.jpg",
+      "bytes": 11220,
+      "sha256": "5108f2aaa147e023656be7f710e1361ffeb38960a38454d4f38fd2147baddab6",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-3D4BA49D.jpg",
+      "bytes": 105392,
+      "sha256": "9c43229a8fd66475ae1fae07a977e20ec447a33d3fb563bc53f05b2fc9926bd2",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-3E328C3C-thumb.jpg",
+      "bytes": 25288,
+      "sha256": "c36651af20e073ba375d9d2cd2a8a9ca5c010cd09170bec4af54ab82f6f9ed03",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-3E328C3C.jpg",
+      "bytes": 271548,
+      "sha256": "817cc96bd91990b9be693da2ee1dcd33bb9b8073ac29d001f5c55dc0f9ffdfc8",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-3E7F825D-thumb.jpg",
+      "bytes": 10480,
+      "sha256": "f2ff2c6182de9e3adf042d9055af614aff62b47ac0b9fb2652054ae049002b40",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-3E7F825D.jpg",
+      "bytes": 81162,
+      "sha256": "b8acbf8e7c198a8f78bfbfefef046a81e9902b7cd19473d26f8a2724ec458f95",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-400E032C-thumb.jpg",
+      "bytes": 12984,
+      "sha256": "66b090db1d145d685e54bea14d90896c4a38dc1401a96bd2866aaefb8867a417",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-400E032C.jpg",
+      "bytes": 110238,
+      "sha256": "0b9babdd34e18199b4c894ab0753ccc238196456e5128c22091bbe2485190172",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-407E2CA8-thumb.jpg",
+      "bytes": 12529,
+      "sha256": "d3a97f5c94a5c1a50f21d26a6dbf8c99c6f4da986261ed37d1ae93a3bb629161",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-407E2CA8.jpg",
+      "bytes": 97084,
+      "sha256": "0aad52c88030b2db067e52175ae3ea6f4b4e28240911fd2ea043089471ff0ac3",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-40A2405D-thumb.jpg",
+      "bytes": 16890,
+      "sha256": "724b71265096a71ea28a180805d40ff3553a41048629957e5bb6027554812541",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-40A2405D.jpg",
+      "bytes": 144126,
+      "sha256": "e2dab1777ad4450b10e6eada7058c25e00098b091d30325acd366267823fab4b",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-42101632-thumb.jpg",
+      "bytes": 24700,
+      "sha256": "de6161761c07f22f348ec47499d3820063e55003faa4c0b92d7177fe3d111f09",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-42101632.jpg",
+      "bytes": 163889,
+      "sha256": "7a89b24522af5a3dcc67e82db3bc4bfd1d42df979ec655b73c61fc8a94463328",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-457C01A2-thumb.jpg",
+      "bytes": 13438,
+      "sha256": "e68c720436fae55fbbf164d2db2a5654b86a9ffb6b4973cf12b8719e11b9f437",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-457C01A2.jpg",
+      "bytes": 108285,
+      "sha256": "30de12cc1f794d272c93306e5c8c9659144d38c7a5f7093a48b553460ebb8e3c",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-4976BF1D-thumb.jpg",
+      "bytes": 18522,
+      "sha256": "e2cdec5a2bb4b0414ed11b32cda24776b24b26b05eade44816c002d21791ae5b",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-4976BF1D.jpg",
+      "bytes": 158671,
+      "sha256": "b805bd511c9ccd8348940e6b3aaa9e9a8ae723eb4ef58c2fb263f3a538f4eff4",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-49D9148A-thumb.jpg",
+      "bytes": 5952,
+      "sha256": "c2a5bf5ebbb3d456dd1312f77bd477d3ddadc4af23912904afe8bef6f62568c0",
+      "role": "bird-thumbnail",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-4D28A0CD-thumb.jpg",
+      "bytes": 18011,
+      "sha256": "350cd5052a4297876d1de39b8ac2a3b179a44c18342914ccd634b49cf3b156a7",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-4D28A0CD.jpg",
+      "bytes": 74520,
+      "sha256": "656f263fa73650b4df524b78315337fb53d6c8ee8affde8e9329d4d36b1a7f1b",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-4D2FF6F1-thumb.jpg",
+      "bytes": 16778,
+      "sha256": "b5f1129b5aafb3953e55b823788cc981b000bb4481180bf35bb89e44ddcd0cd7",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-4D2FF6F1.jpg",
+      "bytes": 163881,
+      "sha256": "a2c2c4150d8f448bcb0259a6a7c5048dc55833326a458ff7bb083f49630391b2",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-4D5D2BC3-thumb.jpg",
+      "bytes": 20308,
+      "sha256": "f455fd4efce0fd50f4d19878a606d950c0304c3a3c6b6958550c459006920b48",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-4D5D2BC3.jpg",
+      "bytes": 166471,
+      "sha256": "19377cca6c3f49ca7b9ce61ce888472f9852c12a18fc45855bb89ed2cc84f677",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-4E6EF3F9-thumb.jpg",
+      "bytes": 9487,
+      "sha256": "d8df82bc1ad1ca1e216137d5c252167f7d798fc1189ae5433c359baea5000f26",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-4E6EF3F9.jpg",
+      "bytes": 95489,
+      "sha256": "1e4752667196e6168c96401c37541c99f82f64cdbb7d3adea7f4459b5476b344",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-50C8A5CF-thumb.jpg",
+      "bytes": 22417,
+      "sha256": "32c38ea3a8e695714cc0602860f2c99ddcd57e4a20404a70a21c610d14517832",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-50C8A5CF.jpg",
+      "bytes": 181118,
+      "sha256": "f663e4621dea4c6bccbffb79fdc7afbf99eb28ebb87f9ffb6ab3a56f7c1a7f12",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-546FA5F2-thumb.jpg",
+      "bytes": 26642,
+      "sha256": "7db37e26f33faee3aad20bf3b468642af42d48d88eece4a60c055031fa5edee1",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-546FA5F2.jpg",
+      "bytes": 256047,
+      "sha256": "4aacce48babe1d04028bec04b9179c04923984dd73db8b124e38d9b870872a7b",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-589694DD-thumb.jpg",
+      "bytes": 22149,
+      "sha256": "f6f75d86f9d06015520d4dd7fd88fa639ce17f970cbfa38854b6b4558ac5c801",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-589694DD.jpg",
+      "bytes": 251454,
+      "sha256": "6c7b81d21a6b01575f1ed710a54ed663356492dbdc7be379f86022611c972da1",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-59A5A24E-thumb.jpg",
+      "bytes": 4439,
+      "sha256": "39ca194f9736287dbe6d606996bd3d25050bbe2e5cd6c81bc18d75894632713f",
+      "role": "bird-thumbnail",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-59A5A24E.jpg",
+      "bytes": 91307,
+      "sha256": "4fda5c5b560ccd24b0879e1ca32772ca80766da0e921f83907ee0b683d54abe4",
+      "role": "bird-photo",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5B23B360-thumb.jpg",
+      "bytes": 18954,
+      "sha256": "38249c8f5392aaa5d40f5d435c76e78e3705308b316c40f23f1f9fd82600a5f7",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5B23B360.jpg",
+      "bytes": 164869,
+      "sha256": "0c05ddae5b377cdabff557a89ec02c1ef4a328de3dd6fa5e7e39c3c63dc0e902",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5BAE0043-thumb.jpg",
+      "bytes": 19545,
+      "sha256": "8145c9da656e02dd52c7247c5877b626abacdd2ab3d6be8c3ac0d46c61c9c303",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5BAE0043.jpg",
+      "bytes": 134062,
+      "sha256": "cea968f584004d4dac44bfcf114b14ae21baf112c378d1f33810c38cc8e273ce",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5BC4E0EF-thumb.jpg",
+      "bytes": 17806,
+      "sha256": "21d769c506d7bf350a94e8413a5eece28bd6ea8b0eeac6169896a9a0fb57b844",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5BC4E0EF.jpg",
+      "bytes": 189965,
+      "sha256": "64efe6c50cf2c976573983c6a29503fa189c9008eb5d9e975a4fda6425513d3b",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5BFEFD9A-thumb.jpg",
+      "bytes": 17632,
+      "sha256": "d2363b7057d9f20e76f4023084d9302d63c1f130f96d60d5c38004fc687be266",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5BFEFD9A.jpg",
+      "bytes": 156565,
+      "sha256": "8318e4d6bee216ae6ebf9f7589c414d7e5e5b8fe3962e1ca47e489f99d0740f6",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5C54F8C9-thumb.jpg",
+      "bytes": 10832,
+      "sha256": "f2d469d33acca7938e0540b0a78ccec821c22dfacbd0403d252f6c586900779c",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5C54F8C9.jpg",
+      "bytes": 432889,
+      "sha256": "67c700172f91bbafac8e92733444d01ba2c46014f2218ece21d559e5255d49b7",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5CA0BA87-thumb.jpg",
+      "bytes": 14537,
+      "sha256": "4e24951cdecba7595465e2a038ef2c8d0a003f061227bfa916501dcbff95d9dd",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5CA0BA87.jpg",
+      "bytes": 209258,
+      "sha256": "f930b68e69428f136c1b4dd5b25e89fab889772f3cb86570fe9baa24a2920c16",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5D5C6D51-thumb.jpg",
+      "bytes": 12900,
+      "sha256": "e015c9ee068e47b7c01e2cefb075f160a52ea10f01c5bce8483eb6dc41e201a1",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5D5C6D51.jpg",
+      "bytes": 133998,
+      "sha256": "138a2f53abc17aa6f23cb4deb002da5eda5e71df2eea84a678d984fc786d1b07",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5DA28D37-thumb.jpg",
+      "bytes": 14300,
+      "sha256": "9077d8acd19b996e7a3ca693e60d554bc441726600d4bcae273ee069a3637305",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-5DA28D37.jpg",
+      "bytes": 117669,
+      "sha256": "afc956563e3cbdd87d6a21e7028d4f49c3c44b6e68475a6465695279fa819b03",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-60EA3FA9-thumb.jpg",
+      "bytes": 13301,
+      "sha256": "50da6da5530e664b991b8c05abcd543e9ad78310eb4532c9d598566a72870dd4",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-60EA3FA9.jpg",
+      "bytes": 98028,
+      "sha256": "16111b914ebff21e4f359d5665c95f9a838a1a7fb3185f05fa7fe4ad1587beac",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-65BCBB64-thumb.jpg",
+      "bytes": 16704,
+      "sha256": "1e289647f1a7139bc8762f204b2c809bbb038514baa7874c160bd29f1182a060",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-65BCBB64.jpg",
+      "bytes": 138798,
+      "sha256": "fff83797fcd703d67a8885d5253114e717aea040ba2db62adbbc35bc8c0ed8fc",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-6647508A-thumb.jpg",
+      "bytes": 13828,
+      "sha256": "67bb5e54f38940a7f3ad8334e14271a93f72e9b6727be4a63906c9ec2a4c2a99",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-6647508A.jpg",
+      "bytes": 90576,
+      "sha256": "7239288491e7bc391efd7f5c1e95f9db74d449324eb7d7dfd05e0311e9251eae",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-66931B3F-thumb.jpg",
+      "bytes": 14664,
+      "sha256": "92de227a352a16da654c99740ea1330f6d1c3a6bd2c99f90688c9ac6bfe11619",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-66931B3F.jpg",
+      "bytes": 91681,
+      "sha256": "bc99635946db9936256a432420bce9d2faf23c7ec4bbf3d8fcd2aced97baac1d",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-6778547A-thumb.jpg",
+      "bytes": 25723,
+      "sha256": "22fe35d5804997d1d8f42ad4c4002b9eafc4ed0ec4d16f6e369a22cafcbb5740",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-6778547A.jpg",
+      "bytes": 169082,
+      "sha256": "b250abf972c1493b0716924b970f31498e4c237969e36850f470c6b9aa182ef0",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-67D43542-thumb.jpg",
+      "bytes": 4244,
+      "sha256": "49a8bad4fdd05a67a9779d03586fa4ec63afbe02dec442c1554ea50671b60b71",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-67D59645-thumb.jpg",
+      "bytes": 11854,
+      "sha256": "91af5c52cb686c4b54b5a655b7f67a3f48a0f784311f9c1b81a7b6377792af7b",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-67D59645.jpg",
+      "bytes": 96414,
+      "sha256": "5cfcc4fb10097030eca9b4c285e3323850ffcc5d1c17839bca1b2d4f064dfe8d",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-6BBBDB1A-thumb.jpg",
+      "bytes": 15770,
+      "sha256": "86c73f0d3148e3f670a6966302464c9ae89fe21495126be12f172a9a8e469ee9",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-6BBBDB1A.jpg",
+      "bytes": 276256,
+      "sha256": "5824aa6455ddc757abdc25aa3bb3432605d3f23dc1535b7f5f2d3aea5295c496",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-6C439FF4-thumb.jpg",
+      "bytes": 17221,
+      "sha256": "a9bc162fb595971e221d52fc2b220a4595afa65c1929d1a08fc119c731c7b290",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-6C439FF4.jpg",
+      "bytes": 140837,
+      "sha256": "adb5abf0f99b474846b8d2126cc6747e103487af2c41e3dae4b62f07f2c28e9f",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-7149F93D-thumb.jpg",
+      "bytes": 12333,
+      "sha256": "dc6642df279988d8ba77a5e198635d0d9e8b95234d6b97b3ef6ffa01e1c4aeff",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-7149F93D.jpg",
+      "bytes": 140994,
+      "sha256": "173bb74d7a239fe3ffb3c6467d6d0a07521390fcbf028e3e39b5b74afffc05a8",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-747B3A52-thumb.jpg",
+      "bytes": 20065,
+      "sha256": "36db3a85f0018126f295d9213a44f2cd7771a2859d28b1533300d58c210fb50c",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-747B3A52.jpg",
+      "bytes": 126149,
+      "sha256": "dc2759c084615f12be216724a9139fa7464e50db64a4ccea92c394bb890fef30",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-74853F89-thumb.jpg",
+      "bytes": 24073,
+      "sha256": "21221fda343ca03a3688669aca905ab6f5c7966b5a5f3df63f120ad679afc056",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-74853F89.jpg",
+      "bytes": 145815,
+      "sha256": "374aeaab904950fbc0147c3c4ca77e7812e40946b65c0e3c7693e0fb47b4f210",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-775C66B9-thumb.jpeg",
+      "bytes": 29768,
+      "sha256": "dbcd714d6afadebcd4224b8ed172eb669ef92c6b916001fc4dde63012b076070",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-775C66B9.jpg",
+      "bytes": 328747,
+      "sha256": "3a5a09cba00242276eed0e8ecf9fa01fd424b5527b2e739e6b8be55c08c8b6aa",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-7A2734EB-thumb.jpg",
+      "bytes": 17648,
+      "sha256": "94cd3d98a1331183bb254956c68367f625260377501c8974d1563af7f461f348",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-7A2734EB.jpg",
+      "bytes": 156269,
+      "sha256": "ccc8121ffea77396f5db19d3edc9406da2e2c7a6ddea5611803a7e476f6590bd",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-7C3959D6-thumb.jpeg",
+      "bytes": 13773,
+      "sha256": "3835eb5d57875357072ca78b5353ac0fe3b61d80836eb0d03ecbe23360687250",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-7C3959D6.jpg",
+      "bytes": 175823,
+      "sha256": "6a9807bf6db8e1ef7e625ba70e9977043fa2d847d167b550cb6bcad581fa618a",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-7DB7D6CE-thumb.jpg",
+      "bytes": 14107,
+      "sha256": "c7844519d73190624869c1620793d37bc3ae6be1de5e060bfb8d80e4f7ebdf64",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-7DB7D6CE.jpg",
+      "bytes": 112086,
+      "sha256": "03658a9bc5fc982b0cc4318c128b2482c8f183638cbf1094cab6c11a1e995f1a",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-803B79B9-thumb.png",
+      "bytes": 100311,
+      "sha256": "b2457cca1bb93c1de67901d9bb4e6287b94b053e81a7e90fc36a6375ae9ab876",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-803B79B9.png",
+      "bytes": 1142033,
+      "sha256": "bc4e65fe3946d54590689293462b973cc5a7e128641d22df7ade03155994556f",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-804CCA3A-thumb.jpg",
+      "bytes": 12620,
+      "sha256": "d80a84cc22c27d0a729b8ebd55c625ed5c85ffd342d377b9524c1ee53789c197",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-804CCA3A.jpg",
+      "bytes": 114970,
+      "sha256": "1c8e29a0c4bd3465350261741b18d3512162703b0eb2de6b80b4173512e9e3c4",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-811FC719-thumb.jpg",
+      "bytes": 15548,
+      "sha256": "bed25368f9165d69eb5ffb71a7bba8844ee2a6034675e3e69c672abc0125cccc",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-811FC719.jpg",
+      "bytes": 178904,
+      "sha256": "34ef976fe5c77a65e634c4e7d55477ca5689bcc26606d53aee3aa109f21ad683",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-837E6B04-thumb.jpg",
+      "bytes": 6190,
+      "sha256": "bdc2ba910240d75f8dacd9a44c421e12e63628afc38c4cbb76b5873b176239d5",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-837E6B04.jpg",
+      "bytes": 63083,
+      "sha256": "131dfd00c36104d1be865f46ec696680855161434b49cac408ac65d0d5267ab2",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-84F096F7-thumb.jpg",
+      "bytes": 18750,
+      "sha256": "e0fbca1a3c7d46ca49b74e6149d54dc0270de5275585ad72445c544500db3784",
+      "role": "bird-thumbnail",
+      "license": "CC BY 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-84F096F7.jpg",
+      "bytes": 176432,
+      "sha256": "68ac24a208b96da1a708079d13de1393a9b91b9e2188ba87efefe3657671230f",
+      "role": "bird-photo",
+      "license": "CC BY 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-86D1B826-thumb.jpg",
+      "bytes": 17884,
+      "sha256": "e1a890ddab7dbbebbabbf72e480c722d7591f2505e1cd6935a06f13e24fd38c5",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-86D1B826.jpg",
+      "bytes": 144887,
+      "sha256": "b60a6071e9d231046714f759780067f9866923f2e6a5812597511ddaf171ad11",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8885A375-thumb.jpg",
+      "bytes": 10636,
+      "sha256": "bd3bdc59174aa55b4f9755348d951256cc98b09375df5f971cda5383c1bda6b1",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8885A375.jpg",
+      "bytes": 85863,
+      "sha256": "b08969126169af4f78326bd2a89cabc117dff89372b107e100b0a18366dfe512",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8897A0C5-thumb.jpg",
+      "bytes": 18834,
+      "sha256": "8016fc3cc0f01eb91fe3036c22293b8084036ac5a47bdf49e1aae8a7aaceb1ad",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8897A0C5.jpg",
+      "bytes": 286774,
+      "sha256": "37d6f493f19f6e2dbc01db684a0e186be0271016c5eddf23d8d139642659d6af",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8D1CF2FF-thumb.jpg",
+      "bytes": 25203,
+      "sha256": "18a70837965583207c76f434f91aac51c169f01d9b3e9e73827fe0005508a289",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8D1CF2FF.jpg",
+      "bytes": 121145,
+      "sha256": "571bc22d857afd5b6603935b2aa5749e8802d6038bc1ca89e6cb14809bdc14b0",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8E286BF9-thumb.jpg",
+      "bytes": 18302,
+      "sha256": "09dc9a3d9bbd817a9122b79eec3f297efd21a98cc175b8f1d3af3d2999096fe7",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8E286BF9.jpg",
+      "bytes": 175965,
+      "sha256": "8308bb5d4c0918da8568cb9534799d9ce13e5554ddcf5516a2d6cba17e3716f7",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8E872FAA-thumb.jpg",
+      "bytes": 14605,
+      "sha256": "3ace2421ee07e25f179a479684668349b784e188e414864ed731f9b9f30f5b35",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8E872FAA.jpg",
+      "bytes": 138762,
+      "sha256": "b0b190889741206cf3b5ee03bd234a415187edcb5a7506c6f25eb7f2d7438e9d",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8FCDB881-thumb.jpg",
+      "bytes": 14527,
+      "sha256": "e20740d54f07946397395d70c351d862fb4d4c574c56d3cc5077fe85d66e3d4a",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-8FCDB881.jpg",
+      "bytes": 118375,
+      "sha256": "09b3c951ec42f4aa96a21a1bc266a699cdd8c34074f7b343d2f8032c67784258",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9054A7CA-thumb.jpg",
+      "bytes": 14614,
+      "sha256": "aa7dc71e9d656e21bfd658bfacc538cfd336e489b529f1dd4f714d3baee2e0c2",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9054A7CA.jpg",
+      "bytes": 113429,
+      "sha256": "89823233b64a54b8298110558e20865def8a40a59fc0c0ffc91fdebf61133d97",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-92F622EE-thumb.jpg",
+      "bytes": 21058,
+      "sha256": "82495e77e0726333a2345f48adc4765915f17ccb280cec353a38c36fe52deac3",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-92F622EE.jpg",
+      "bytes": 203386,
+      "sha256": "3ae24ecbfd4a7cd53a7a1a85769cc382e37440f620644bb5da085b13cf8cf9b8",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-93CA037F-thumb.jpg",
+      "bytes": 28032,
+      "sha256": "150033d1786f718280fe7f752f6341a3e79976596e53d34037d2bb274b985c6c",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-93CA037F.jpg",
+      "bytes": 237260,
+      "sha256": "8a2c835b058a3b468815a1285d25b61036333436672346053a26d0af91248b05",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-943AA4FB-thumb.jpg",
+      "bytes": 12986,
+      "sha256": "2d0f4fa0beaba21e53030f0f4cd8ba5afaa6ba69b2fe56b559d4bcbf3b076fdf",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-943AA4FB.jpg",
+      "bytes": 134224,
+      "sha256": "e9041745d3da3afdf9c3492d0b0c9dee02019394e0ac77c9a275f0781fadf164",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9505E03D-thumb.jpg",
+      "bytes": 16341,
+      "sha256": "11a44b58e236723a20e85b236032f67a06f22958e26d1153dfcf41dae6f19235",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9505E03D.jpg",
+      "bytes": 199489,
+      "sha256": "f19c5c82cdb0e7288bf50a5f46ea05bcb119f83f6c36f00f981ca49f46bb6fb4",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9569D117-thumb.jpg",
+      "bytes": 16066,
+      "sha256": "88f2689cbefcfdc18a8ffdb147782fd96826bfe9fc5ac41cc8ccc3ab421f458d",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9569D117.jpg",
+      "bytes": 137254,
+      "sha256": "cdb1f55ade279fce4d6d56413eb6bd905959d0e441673ea35fc2173fc8bdfa14",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-96819591-thumb.jpg",
+      "bytes": 12464,
+      "sha256": "4bc439271c629cad99d081f0be8b893a3e85450fce711f8dfca007cd752f095e",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-96819591.jpg",
+      "bytes": 120885,
+      "sha256": "cda81ef7a9e3885b31662de4523c9bf2211eebc56d0fbc7597dc5d8b7d1915fc",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-98C0C634-thumb.jpg",
+      "bytes": 23998,
+      "sha256": "405d0e9694c4582bcc3a261d8bb11e08d6f3f070972961deceb216c1c80c080f",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-98C0C634.jpg",
+      "bytes": 294706,
+      "sha256": "28729365b27298d0d06a54e82ee6eb06a86cb0c9a05243813c4c87d76c877223",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9A7B268C-thumb.jpg",
+      "bytes": 17008,
+      "sha256": "b259e377dd82331dca7cf52f8b73e519dd070bee2985f9c0322acab8432739cf",
+      "role": "bird-thumbnail",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9DD65284-thumb.jpg",
+      "bytes": 20147,
+      "sha256": "d77fc62454f5041ab97e1ac0fe9beb25df3b70d12e28719f44b3099faa47d59d",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9DD65284.jpg",
+      "bytes": 185350,
+      "sha256": "51afb270ad8cd97a4d209c91c67dbe3b94a6082f44cd8dd6e6afab478015a993",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9E8F1FEB-thumb.jpg",
+      "bytes": 12024,
+      "sha256": "5d4455529bec336dcf083b0e8c8c2bb666217c9c88d3c7c5ab672b8cfedee5a5",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-9E8F1FEB.jpg",
+      "bytes": 111507,
+      "sha256": "2b081df25e9d31124ee2e18b913919539c9178bd0ac713a0e4926b83a2573076",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A057002F-thumb.jpg",
+      "bytes": 20730,
+      "sha256": "a49e97ade175f72b1f58b0eeb73134b943b3b355ace64bf3c369530dbd502cf7",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A057002F.jpg",
+      "bytes": 42669,
+      "sha256": "631198cd6dfd6f7e0dac52a43a0b25ad7ccfaf91b618a896978bbcfd40276053",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A091D50A-thumb.jpg",
+      "bytes": 25451,
+      "sha256": "8da9999a680a8d25f980d9d8069f182c04da3d39e2033710a333a9492c50b918",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A091D50A.jpg",
+      "bytes": 290294,
+      "sha256": "61e7c716814a18c3a196f408def67515d8255a44f064085152bcd88df6fa65a9",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A28D8D38-thumb.jpg",
+      "bytes": 13094,
+      "sha256": "f04661f7213a080e2da2421a3a18acffd14608ff5c75751509e6c014416a707a",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A28D8D38.jpg",
+      "bytes": 109315,
+      "sha256": "5832f12db0415fda020cd771969e81cc50dff69e95e3a04d5085e5d1a758edce",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A41CD4E7-thumb.jpg",
+      "bytes": 14889,
+      "sha256": "ae1890d443f4257e7ecb2b79d799cdb76e858cb868379437521900fb857a36af",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A41CD4E7.jpg",
+      "bytes": 141272,
+      "sha256": "47eebd1e2f3e52e5b8960da34dd964d727ca07f351fcea1ba263fbcd6a42b9b6",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A61FDDF3-thumb.jpg",
+      "bytes": 23445,
+      "sha256": "3335adc2fdbe017ee88e4a011d5b0cb2ffbca05ecd914400fda4258bf9b457f1",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A61FDDF3.jpg",
+      "bytes": 506361,
+      "sha256": "0137f92dd640abee19186eee39882409c899c1d96edcfb6f2fee873b50428beb",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A68B1787-thumb.jpg",
+      "bytes": 11575,
+      "sha256": "aab6994e5a8f713b56e17ca45263ea9045f2707a2f4b08601d9ae9f02202c935",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A68B1787.jpg",
+      "bytes": 108493,
+      "sha256": "3b4735d2808609ec2813c6f3d780271fcaee30e85107e04da180f09f8c2280b0",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A6EA9F02-thumb.jpg",
+      "bytes": 21392,
+      "sha256": "64474b61d93ac77a847ce0d6116b3f9b1634a01382c8ad2123fc138ae2222833",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A6EA9F02.jpg",
+      "bytes": 193176,
+      "sha256": "13c71ebcf5c59348b47209bda3e63ea6a7a32ec12f33220601dba8222125a6d9",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A874F334-thumb.jpg",
+      "bytes": 12921,
+      "sha256": "d3b447888efee250bc5d2ececa54bfc9ffb34eb7d914ca7046c6c5138d7f72a8",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A874F334.jpg",
+      "bytes": 111650,
+      "sha256": "5befd2b4240ea82deb13011a4d460689680b530b17a1cbc56756ad7f17011d74",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A977348D-thumb.jpg",
+      "bytes": 16867,
+      "sha256": "6fc29d1b4de6e3a2ad7fec943a21039e7905c3df57ba112faa70796818489d23",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-A977348D.jpg",
+      "bytes": 146912,
+      "sha256": "ca9083573efdb5cd703a79f0b22e35ac32ba4641344b0c4784bc69db86323244",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-AA127B89-thumb.jpg",
+      "bytes": 9862,
+      "sha256": "a476d5a5761f59f247ecc2626a0f7db823a93339cdebad2b1b6606cc73a673eb",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-AA127B89.jpg",
+      "bytes": 95793,
+      "sha256": "19eca6f17eff1ff873c046c79e0005b812c944ede224a0862639492744e2ab23",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-AA7901D8-thumb.jpg",
+      "bytes": 14964,
+      "sha256": "86c2b0667e41077b1544fffd551fdab84505a8bf791a93bd6a32a8146320e639",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-AA7901D8.jpg",
+      "bytes": 131284,
+      "sha256": "d9f11a23dc34a13d0ff7bb960bccd353c17cb255bdcb470bc2e0b30c514ef5c1",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-AC0C3921-thumb.jpg",
+      "bytes": 24330,
+      "sha256": "52d2884d807e473386f485e0ab219f1a9965c21f0370c43a6a4dba3fc7a95118",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-AC0C3921.jpg",
+      "bytes": 538019,
+      "sha256": "8e5071f01f4eb70f9f39c3761090258dfabdbacc2a631e6d3d7f299809ee0479",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-ADD8E888-thumb.jpeg",
+      "bytes": 13676,
+      "sha256": "a7549ad4ebd9557abb96ae1ced0a57fa4880be305b9ab5fde6c02a1baed3b49f",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-ADD8E888.jpg",
+      "bytes": 105847,
+      "sha256": "b648fa131e991aef232a97b152e6dc7782fef3f94d912e02c287f908d5416a1c",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-AE073221-thumb.jpg",
+      "bytes": 14605,
+      "sha256": "1e80938747b9d54608e009c721c881231c577ad4c77facc791a0b0836c5c05d9",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-AE073221.jpg",
+      "bytes": 138342,
+      "sha256": "d6f79096e790bb012f1feea5ad04413fef9e36b689628f0f792751daa663a779",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-B653A80B-thumb.jpg",
+      "bytes": 28170,
+      "sha256": "622759151f3541fc640d43392d13a8fdedfde2078321fa3eefa80940f4fc14cf",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-B653A80B.jpg",
+      "bytes": 130085,
+      "sha256": "5aaa871fc269e8f9e0d01448de07c70ff5d702ebec67aa06597a21ff47703b49",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BB041C6E-thumb.jpg",
+      "bytes": 10848,
+      "sha256": "b3cc91f7e6a76afce27fbde2bf3338ba7b5760ccbfbb8d22cba08ad7aeace261",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BB041C6E.jpg",
+      "bytes": 82248,
+      "sha256": "0d56d31afae4425b33fef9f26af07da20e43ff1fb9bfc25fd83fd72e6edcc4d1",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BC06BC0D-thumb.jpg",
+      "bytes": 9107,
+      "sha256": "bce9cfbdbe5946bdc9e1144da9982bd100b667fa3b26b35eaab8eafd93ed541a",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BC06BC0D.jpg",
+      "bytes": 99270,
+      "sha256": "8200e2b111fa3704a3a63a28c39688d28a0baf69a3f528c19a8cd58c3182ad84",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BC75EA9A-thumb.jpg",
+      "bytes": 12726,
+      "sha256": "3d8044eda272919c49d42ff560317bf6c62d5f95edebe41f70deefcb6c71629a",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BC75EA9A.jpg",
+      "bytes": 108542,
+      "sha256": "5a66eb72cfed7f349111ecf7855f491ad3ce8fce87c10f654654aa602f500094",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BDA1AC35-thumb.jpg",
+      "bytes": 13489,
+      "sha256": "a12c1fed05026124752b7871b5abd9f54e72ba8d9898fc36a287f4708d8bbbbf",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BDA1AC35.jpg",
+      "bytes": 92972,
+      "sha256": "855f2d901969f2ead091f0f5c0f8a23cf083071fe69d30eb42dcdb8d112097e4",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BE8DC16C-thumb.jpg",
+      "bytes": 12280,
+      "sha256": "46163fc95ce37526bd261a3d81490b9ca8c97bbf34bb236c308124cfb6ed164b",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BE8DC16C.jpg",
+      "bytes": 88112,
+      "sha256": "0f82940342b1c48d74c9e4dadee0e4601a7c576533fd761f5906126382303e11",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BF20B94D-thumb.jpg",
+      "bytes": 15035,
+      "sha256": "c41402554e028836a8837915f0b96d3124b8620019e3aa69b65de5bf374cddd5",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-BF20B94D.jpg",
+      "bytes": 128540,
+      "sha256": "6b164a991a5f9f2e6b60094a0baf8b2fba020e3d73aa2df9dfba946b152a5c4e",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C1CBA33A-thumb.jpg",
+      "bytes": 19174,
+      "sha256": "405f35212f5999ec6ff36adc33e3d82ff7d81b784141d8cb9f65c29c7d4b6741",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C1CBA33A.jpg",
+      "bytes": 36271,
+      "sha256": "95b8a7c04b0ea23c08da38e643e157058ac0f41b272419813df01a0649804581",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C21A0347-thumb.jpg",
+      "bytes": 11948,
+      "sha256": "2e05ccac62f29105686e9423239e14450c1c446921147fafd634dfa790a2b05e",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C21A0347.jpg",
+      "bytes": 27619,
+      "sha256": "6175261489ed686a2ceb8b2a048643f85fd708684c31f57e3e7531eb6dafb0f8",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C2AD2E83-thumb.jpg",
+      "bytes": 25537,
+      "sha256": "a9eb24186e232a1c3ed0908fec04f8696008dc7fe2e829475ee8fef4a1f83485",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C2AD2E83.jpg",
+      "bytes": 178458,
+      "sha256": "1678226ca4866263052b718d7d805e41ab70ffb17b28a55962e76ba6686c1576",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C39D115A-thumb.jpg",
+      "bytes": 21537,
+      "sha256": "b2f87875b0f663419274c10c506d9aeabc4067e8d710399c3c3ce526aa076b22",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C39D115A.jpg",
+      "bytes": 182960,
+      "sha256": "0301f8c2b0d8d3593e4c60e0f95db7eea6f16a880d34b772ced6fb59dccddd6c",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C43110B3-thumb.jpg",
+      "bytes": 19959,
+      "sha256": "9cdf897f1650b8d7a619186dd70a53eb295193307deedde5327e87ada82452a3",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C43110B3.jpg",
+      "bytes": 341772,
+      "sha256": "e658e34660fd30e51ecb72d6d274a4998baf1a4c370293019244020cec7c01dc",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C4BD9E16-thumb.jpg",
+      "bytes": 48690,
+      "sha256": "01e7d462abf8132c8fb62e4480ac1e745479682899cfe18669c67a4757b024ab",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C4BD9E16.jpg",
+      "bytes": 172859,
+      "sha256": "3f34345734311d187f652948bbd17b3bdb3e833de5f78abafd7fbc8695e19b59",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C72EC8C8-thumb.jpg",
+      "bytes": 18545,
+      "sha256": "27ed935ef081272981a1a82ff3da4ede16eee269a340e51a1dc3c60c004c0a28",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C72EC8C8.jpg",
+      "bytes": 262633,
+      "sha256": "19cff02d70c5930a664582e0816502b0ee0389148c26fafba7fd979b086c7806",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C752BDF3-thumb.png",
+      "bytes": 45553,
+      "sha256": "f44d6f8d0da3c269a4a6c52cc928bb6cfedc2426aa7c9e4db79e7b133f828399",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C752BDF3.png",
+      "bytes": 450102,
+      "sha256": "c894b84cbd33cbead23c96d264398981c8d285f7d1ed1bfa6d29c3f6dd45d8c4",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-C9B6F34C-thumb.jpg",
+      "bytes": 12095,
+      "sha256": "3d30021e321ae3db251409101c6ec77cb55eb4160c539c2dc418b39ab778ee27",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-CDA2E56B-thumb.jpg",
+      "bytes": 11490,
+      "sha256": "6c3ab93687dd8b1307f536b7e1f90eb8fc8a28c0b4e5567e761dbe9bcfd4adee",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-CDA2E56B.jpg",
+      "bytes": 160835,
+      "sha256": "a67a1e1d46fae658752b828d4e86b368a563369ccab2c783a486e0126a8d6ee1",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-D0AA9105-thumb.jpg",
+      "bytes": 25509,
+      "sha256": "29b116bdb2ee3b47e10d4fc276099c921a2b64ce30661c4f5d1cc96ff19a4eb1",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-D0AA9105.jpg",
+      "bytes": 228712,
+      "sha256": "255b0bb4068159104027d856096e09f6e7dd37d3eafc83ad464ad9a78ef1acfc",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-D1B9D410-thumb.jpg",
+      "bytes": 13258,
+      "sha256": "6d67a4966e569a76e4a8d29178644d8965b31d4aacc89919e9a799b4acc1e1f6",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-D1B9D410.jpg",
+      "bytes": 153033,
+      "sha256": "2558db44053eb293da3f948356cf94830a43dd7fef2ecd44eb76f9551d3f65ce",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-D2B2A4AF-thumb.png",
+      "bytes": 142245,
+      "sha256": "d5e925b48898669df4bb45277a5d662ea0a63cf17fa124ad70d9000352f00e76",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-D2B2A4AF.png",
+      "bytes": 1683037,
+      "sha256": "19db6f646367edd5cc17b32f7447c117a098f323a804cec1fbccbfe961cc4f2b",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-D3B8C7BE-thumb.jpg",
+      "bytes": 14423,
+      "sha256": "14560c167741d3df0396a258b609d4eecba4cabd014570bcd98b14820e7d06c3",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-D3B8C7BE.jpg",
+      "bytes": 107667,
+      "sha256": "a77bb1ee1c91239b848bd2f8064d12a4268d9362643ad692086db623073bc376",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-D6F5D224-thumb.jpg",
+      "bytes": 14908,
+      "sha256": "c856947c77e52aecfcfb86fb3229314413ec698bb30dee1272e827dd89c8c181",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-D6F5D224.jpg",
+      "bytes": 175393,
+      "sha256": "707cda33f3f9a939134b2b1b5a952da5f4f22db0c1b4cf56a2249e27f5ab5c29",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-DEEC38A7-thumb.jpg",
+      "bytes": 12806,
+      "sha256": "9f0aea551a3799abb32e99554c1a054ba8bc0a1fa769c5595bc492820e4301ea",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-DEEC38A7.jpg",
+      "bytes": 135333,
+      "sha256": "67b4c1ba58d67c0a239bc2f5907951919cfe748aa6ac97e7b444ca46134f2be6",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-DF1E2A1D-thumb.jpg",
+      "bytes": 16056,
+      "sha256": "323639be6aae4e268802b25a7ab65bf2a360bb250dee5bd1b446b1c9581ee72c",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-DF1E2A1D.jpg",
+      "bytes": 151571,
+      "sha256": "ea5ea0963b52d6963fd1b8b22ebdd5893fda07312589f1bd46fc510d4b5d3c5b",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-DF526047-thumb.jpg",
+      "bytes": 17562,
+      "sha256": "6ecf5b611c7c547abdfc43304de95f525d3adbcc93b9fac0235199f2cbf9e746",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.5",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-DF526047.jpg",
+      "bytes": 240393,
+      "sha256": "8fff274043a8f4e0102f01fb17375f2bf314245ef04fbf8c15e362deb508d287",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.5",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-E0ED3A27-thumb.jpg",
+      "bytes": 13256,
+      "sha256": "fb5bacbcfda9e17aac7df47eaa7438aac484daa10cbc0bacd851304cd6c59283",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-E0ED3A27.jpg",
+      "bytes": 124305,
+      "sha256": "faefaa2fe660eeb7ed6ef82922c0285b4984e19233d8f208815ed511c25d09b9",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-E35448DE-thumb.jpg",
+      "bytes": 19849,
+      "sha256": "9359d632ef5df9a808ad1d26a69feb17bd994b4cff3476300e3e44e34d4b5896",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-E35448DE.jpg",
+      "bytes": 523668,
+      "sha256": "762521be0819b5e3dbcd29739aa0dd4d99db4876cc8dc357195cdd176f7fb98c",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-E7057C1D-thumb.jpg",
+      "bytes": 10414,
+      "sha256": "385639d64b65ad25d14a1961267d9dc73fe15d32632f06dde58426c4023f7297",
+      "role": "bird-thumbnail",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-E7057C1D.jpg",
+      "bytes": 324152,
+      "sha256": "e7bece419edba192f59400dd035954ec0167a41db12159b9a987f760412c00f7",
+      "role": "bird-photo",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-EA53492B-thumb.jpg",
+      "bytes": 16945,
+      "sha256": "042474783d013de73554b2a43b930db83e4cbed3e861242b7e1adb0e736ee005",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-EA53492B.jpg",
+      "bytes": 162312,
+      "sha256": "c69252724b2dcdd140c3dfbd7230bbb152c093f4208bb4a76eaa6f87607d3b81",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-EABE979B-thumb.jpeg",
+      "bytes": 17629,
+      "sha256": "190a98cd4c2c317fea6ccaecc8a00891309c2de638d77b4795027b4dcae9cd1c",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-EABE979B.jpg",
+      "bytes": 363788,
+      "sha256": "b65713ba7554684911831e007e9af03f3339567ab0cf7c052338d4bb010bdce7",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-ECCBDBAF-thumb.jpg",
+      "bytes": 19872,
+      "sha256": "87593796d4e673eaca7df8eae4d1de15fb3b0f1bbf132d5d0b736d59e64d5a8c",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-ECCBDBAF.jpg",
+      "bytes": 176029,
+      "sha256": "c0d1a9af62e32d8286da5a002e54f26eb0bb9b2a927175dbe5b1ccee97eb8ec3",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-ED7D6741-thumb.jpg",
+      "bytes": 13614,
+      "sha256": "6c2b6ae7f815b173bb3cb93a96bce938d97aafee9efba21f29623ea35aa54397",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-ED7D6741.jpg",
+      "bytes": 125769,
+      "sha256": "d932e227c8aed96a3b9d7fe3331421c64b906c8dbf7ca5fba384163b230a2e4b",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-EDB84334-thumb.jpg",
+      "bytes": 28570,
+      "sha256": "9864bd7edaba598206181d484c71d40a00ae811f3a2c1d299355591074c5d561",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-EDB84334.jpg",
+      "bytes": 258147,
+      "sha256": "03bc4ce0a74b25d565d2d4454b839be23584e28588128c0bcc37929a6d1db667",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-EF7D309C-thumb.jpg",
+      "bytes": 12503,
+      "sha256": "7fcfd7db880e94d3160f0ebac71270345fe3296d99ee846b3fe7e4c55e5742d2",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-EF7D309C.jpg",
+      "bytes": 108200,
+      "sha256": "94d305ba725be933716073eb1cb25aca5653b864215245d23096849e2eb47a2b",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F0258298-thumb.jpg",
+      "bytes": 9290,
+      "sha256": "21f7a65ee6687b21e1efa6038b86ae5e132405c3d95eb9367f8e113a4e62cd77",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F0258298.jpg",
+      "bytes": 80255,
+      "sha256": "5c7ab6e24711ce07dff3a1653527332c2f174e75b7c6d84db709c4396ce15d99",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F04B5608-thumb.jpg",
+      "bytes": 14871,
+      "sha256": "7519da2c23a130e307c070dcaa29b0c88cb9f31bef314d9c8349550ad2da9e3c",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F04B5608.jpg",
+      "bytes": 139139,
+      "sha256": "621fb9ed082f01615ce4aedb57f499ebf9b95e7778e3a4489d5ae9e31c73388c",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F1F444EE-thumb.jpg",
+      "bytes": 18725,
+      "sha256": "58303b53c2ad1aa8810f7cfc129faa3896ea16fb43bd6148d3196f99ef82ae38",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F1F444EE.jpg",
+      "bytes": 133853,
+      "sha256": "463fabf222cefb290173c288fddea4adedb89cf48c317645c03570dae011d483",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F2858F9F-thumb.jpg",
+      "bytes": 13476,
+      "sha256": "eca51209df127eb6c59a3eb37378f8a5415432fe7fd6810bc24058bbfbe29609",
+      "role": "bird-thumbnail",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F4F72BD9-thumb.jpg",
+      "bytes": 25397,
+      "sha256": "96d56f04a5c96e548649d93f5b1aaf9b070d4b31f5484bc95d1c3380112f252c",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F4F72BD9.jpg",
+      "bytes": 167208,
+      "sha256": "b19626571f372e1c825ee7ace35132cc5ab685d0306109b5c3864ba0bccdd293",
+      "role": "bird-photo",
+      "license": "CC BY-SA 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F51C1C4A-thumb.jpg",
+      "bytes": 16727,
+      "sha256": "f33be825370d6f37fbb5d9f643812cef5cbbe260ca71a5f9879be16c72e6cfcf",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F51C1C4A.jpg",
+      "bytes": 144198,
+      "sha256": "8c412303d219fd9c45d9c3f827a3582671451f578c0b34a6988573d6965c663b",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F600592A-thumb.jpg",
+      "bytes": 9465,
+      "sha256": "3c142f9c76ffb47c4afb776ea97aa7cdb22e3a55d53edabc7e3a875a86815ee5",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F600592A.jpg",
+      "bytes": 62254,
+      "sha256": "651db098da08c3630131d9e9a19e762a11ec6ad9b678d10bf411edd736336e8d",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F6F87349-thumb.jpg",
+      "bytes": 18948,
+      "sha256": "40e806bed4608eb507b373660f760d422fa3e14edec0432ff2342fce71f65de9",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.5",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F6F87349.jpg",
+      "bytes": 145035,
+      "sha256": "41fcd8210e3c95af184ab89d08e398d109b7ad1efcfcae0378415b2455473c75",
+      "role": "bird-photo",
+      "license": "CC BY 2.5",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F7B5C386-thumb.jpg",
+      "bytes": 10712,
+      "sha256": "267f94a96d52b754f76b257ffa9ebbed66a166c03f41de9887149edd5e1602be",
+      "role": "bird-thumbnail",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F7B5C386.jpg",
+      "bytes": 177943,
+      "sha256": "a1bef6700699325f7bc9788b5a05eeee6fef3e9f38b8a70189d67e764228c57b",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F89FD6E3-thumb.jpg",
+      "bytes": 7107,
+      "sha256": "ee6b44e1e665c7a0322bf4d29d94241856684afa6468ae6ba0ecb347817e6d7b",
+      "role": "bird-thumbnail",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F963401E-thumb.jpg",
+      "bytes": 11737,
+      "sha256": "71ccc93272dabc4abf70a49e12f0d1ae10abf6b306f01f2030fd80399b30d1e6",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-F963401E.jpg",
+      "bytes": 141437,
+      "sha256": "5d77ee6c70de173e8f08928d9ad93ed669fe753d8c5d654a77119d201bfe7176",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-FC943B05-thumb.jpg",
+      "bytes": 10906,
+      "sha256": "f316f95579f4f97e9e83836ba2c754559949f5f1988cca93b2de90c0e0a1da92",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-FC943B05.jpg",
+      "bytes": 87646,
+      "sha256": "9ff63615013d362d3d730f8a89997560987a6ed946c2f4e9491858bdde1e8b3a",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-FF41B79F-thumb.jpg",
+      "bytes": 14045,
+      "sha256": "a174afadbd0d9e53f84a067c53000218488a12281073c1591616fd859b4317c9",
+      "role": "bird-thumbnail",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/assets/birds/avibase-FF41B79F.jpg",
+      "bytes": 130422,
+      "sha256": "51ef5aa3775c041029eea8b8da659d15e39bb09f9a286bcbc86ed17f7a3c8727",
+      "role": "bird-photo",
+      "license": "CC BY-SA 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "daily/boot.js",
+      "bytes": 1036,
+      "sha256": "0d7f74fdb3592ffa87e8cae7bfa61ca4dbf19a3cd8d5ce9bbc8f82e9e2585f1c",
+      "role": "game-code",
+      "license": "project-authored",
+      "consumers": [
+        "daily/index.html"
+      ]
+    },
+    {
+      "path": "daily/content.json",
+      "bytes": 10713,
+      "sha256": "12f61226a0d59cea7e79d3b2b079ddb42ad94e81fc348afb9a5c07f88aee79c9",
+      "role": "puzzle-calendar",
+      "license": "project-authored",
+      "consumers": [
+        "daily/app.js"
+      ]
+    },
+    {
+      "path": "daily/index.html",
+      "bytes": 7470,
+      "sha256": "34caafd66511add9bdf9cf6dcfa1ab9f2edc219275f5a3006583782355e553ee",
+      "role": "game-entry",
+      "license": "project-authored",
+      "consumers": [
+        "credits.html",
+        "index.html"
+      ]
+    },
+    {
+      "path": "daily/media.json",
+      "bytes": 151904,
+      "sha256": "f1338325cefa7ac40af9f8b6200caf010a3c7e65a4b9cfc6da72ad21f493405a",
+      "role": "photo-metadata",
+      "license": "attribution-records",
+      "consumers": [
+        "daily/app.js"
+      ]
+    },
+    {
+      "path": "daily/notes.json",
+      "bytes": 102253,
+      "sha256": "954f418ac1ddef005e81047778decf8b9efa3322da7cc305c316942eaae36bda",
+      "role": "bird-notes",
+      "license": "project-authored",
+      "consumers": [
+        "daily/app.js"
+      ]
+    },
+    {
+      "path": "daily/state.js",
+      "bytes": 10146,
+      "sha256": "6309679f185726d9ed165103ac12ca97a3cbe8f8f3fcfb20d5e8895487317fad",
+      "role": "game-code",
+      "license": "project-authored",
+      "consumers": [
+        "daily/app.js"
+      ]
+    },
+    {
+      "path": "daily/styles.css",
+      "bytes": 1797,
+      "sha256": "1bfbca07009fecbc313d2134cb8d425fe08aae54b852ee2ff55ad67110a00e89",
+      "role": "game-style",
+      "license": "project-authored",
+      "consumers": [
+        "daily/index.html"
+      ]
+    },
+    {
+      "path": "index.html",
+      "bytes": 411,
+      "sha256": "bdcadb391f5ca50cc8d513bb0da2dd393a2b4e07574f42263c97f95e3ace3934",
+      "role": "entry-redirect",
+      "license": "project-authored",
+      "consumers": [
+        "(entry point)"
+      ]
+    },
+    {
+      "path": "prototype/assets/fonts/spectral-italic.ttf",
+      "bytes": 270468,
+      "sha256": "7ec97244259db4008c4b1224c7914e5371c797c0044af9d85c2d761ba0e5f787",
+      "role": "font",
+      "license": "SIL OFL 1.1",
+      "consumers": [
+        "prototype/styles.css"
+      ]
+    },
+    {
+      "path": "prototype/assets/fonts/spectral-medium.ttf",
+      "bytes": 272920,
+      "sha256": "f385bc588599c879112272711d4acecc126674009d747a27284f59e93a240e83",
+      "role": "font",
+      "license": "SIL OFL 1.1",
+      "consumers": [
+        "prototype/styles.css"
+      ]
+    },
+    {
+      "path": "prototype/assets/fonts/spectral-OFL.txt",
+      "bytes": 4392,
+      "sha256": "a2eae777808a06c2903ea58c3453b1342a03dfd08f70ff03415fed3c45b8c3a7",
+      "role": "font-license",
+      "license": "SIL OFL 1.1",
+      "consumers": [
+        "credits.html"
+      ]
+    },
+    {
+      "path": "prototype/assets/fonts/spectral-regular.ttf",
+      "bytes": 261088,
+      "sha256": "c89021dc20720c8d0dcf40b0b2f6e00c13665fa8041717f581396f51b8c78f5d",
+      "role": "font",
+      "license": "SIL OFL 1.1",
+      "consumers": [
+        "prototype/styles.css"
+      ]
+    },
+    {
+      "path": "prototype/assets/fonts/spectral-SOURCE.txt",
+      "bytes": 245,
+      "sha256": "dd82d92cba948d39a436230e4a86ce724568ba79561978f3b5d27d5bc5122738",
+      "role": "font-provenance",
+      "license": "project-authored",
+      "consumers": [
+        "credits.html"
+      ]
+    },
+    {
+      "path": "prototype/styles.css",
+      "bytes": 15062,
+      "sha256": "ebc5245af1cae2ef17bd7ddd0914de69301a0d0ef4a0ee955fa004890c552ffe",
+      "role": "game-style",
+      "license": "project-authored",
+      "consumers": [
+        "daily/styles.css"
+      ]
+    },
+    {
+      "path": "route/assets/name-notes/common-gull.jpg",
+      "bytes": 90596,
+      "sha256": "3d4d4148e15307c66353eb0d8d95dc8bb8f69a55bd4f8f6ed3b83e363c6fcf30",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "route/assets/name-notes/great-egret.jpg",
+      "bytes": 42184,
+      "sha256": "c79c8c570632eb84978476058d5a8b2e1545a91e19fcceaed455a06ad597b5c0",
+      "role": "bird-photo",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "route/assets/name-notes/little-egret.jpg",
+      "bytes": 122074,
+      "sha256": "c82c52b81d61e6290823637ee39ba748ff8e487eece67662b60cf986097b57a4",
+      "role": "bird-photo",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "route/assets/name-notes/little-gull.jpg",
+      "bytes": 66299,
+      "sha256": "38bf5584c906eb814a34bb23de8c575dba118be9e142f969dd8658776975a009",
+      "role": "bird-photo",
+      "license": "CC BY 2.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "route/assets/name-notes/little-owl.jpg",
+      "bytes": 197038,
+      "sha256": "8b46b82cdcb0afbe795eb142cf08a7fc695a86191b525620f23f3bbee551a7a0",
+      "role": "bird-photo",
+      "license": "CC0 1.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "route/assets/name-notes/sooty-gull.jpg",
+      "bytes": 40418,
+      "sha256": "8c80fe1639fed94089722dff36d6297ba916963127a2bb3047273ac7c3107835",
+      "role": "bird-photo",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "route/assets/name-notes/sooty-owl.jpg",
+      "bytes": 108035,
+      "sha256": "84ed1a279591f7954f53981c95585e75b6b232d347838763080305a2bdd6bc14",
+      "role": "bird-photo",
+      "license": "CC BY-SA 3.0",
+      "consumers": [
+        "credits.html",
+        "daily/media.json"
+      ]
+    },
+    {
+      "path": "route/engine.js",
+      "bytes": 8815,
+      "sha256": "573a4ad61e4bb87bc60ff3967df428bff25f06f85364632453434546df3dd9db",
+      "role": "game-code",
+      "license": "project-authored",
+      "consumers": [
+        "daily/state.js"
+      ]
+    },
+    {
+      "path": "route/world-lexicon.js",
+      "bytes": 599572,
+      "sha256": "1c6f91f3be6e34daf8ec34b7d1b0e3ba965b8db4668c3e1abbc14e074f081815",
+      "role": "bird-vocabulary",
+      "license": "CC BY 4.0",
+      "consumers": [
+        "daily/app.js"
+      ]
+    }
+  ]
+}
