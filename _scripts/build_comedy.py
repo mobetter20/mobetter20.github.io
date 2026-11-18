@@ -24,9 +24,12 @@ WROTE_ROOT = REPO_ROOT / "wrote"
 COMEDY_DATA_PATH = REPO_ROOT / "content" / "comedy.json"
 SCHEMA_VERSION = 1
 SAFE_SLUG_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
-# Owner-confirmed Medium response, not an article. Use its stable identity so
-# a changed or truncated export title cannot reintroduce it as a post.
-EXCLUDED_MEDIUM_IDS = {"585a1f5d093f"}
+# Owner-confirmed exclusions. Stable identities prevent a changed export title
+# from reintroducing a response or a withdrawn article.
+EXCLUDED_MEDIUM_IDS = {
+    "585a1f5d093f",  # Medium response, not an article.
+    "2c7498833be2",  # Celebrating Men in Marriage, withdrawn by Ajin.
+}
 
 
 @dataclass(frozen=True)

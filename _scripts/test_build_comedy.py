@@ -11,7 +11,7 @@ import build_comedy
 class ComedyDataTest(unittest.TestCase):
     def test_committed_data_matches_existing_readers_and_standalone(self):
         medium, standalone = build_comedy.load_posts()
-        self.assertEqual(len(medium), 50)
+        self.assertEqual(len(medium), 49)
         self.assertEqual(len(standalone), 1)
         expected = {post.slug for post in medium + standalone}
         readers = {
@@ -23,7 +23,7 @@ class ComedyDataTest(unittest.TestCase):
     def test_default_load_does_not_touch_private_exports(self):
         with patch.object(build_comedy, "EXPORT_ROOT", Path("/definitely-not-present")):
             medium, standalone = build_comedy.load_posts()
-        self.assertEqual((len(medium), len(standalone)), (50, 1))
+        self.assertEqual((len(medium), len(standalone)), (49, 1))
 
     def test_known_last_sections_and_numbered_list_are_retained(self):
         medium, _ = build_comedy.load_posts()
@@ -31,7 +31,7 @@ class ComedyDataTest(unittest.TestCase):
         self.assertIn("So farewell to the fork", by_slug["farewell-to-the-fork"].body_html)
         self.assertEqual(by_slug["10-reasons-why-you-shouldn-t-read-this-list"].body_html.count("<li>"), 10)
 
-    def test_import_excludes_confirmed_comment_without_dropping_short_articles(self):
+    def test_import_excludes_comment_and_withdrawn_article_but_keeps_short_articles(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             for name, title, canonical, body in [
@@ -40,6 +40,9 @@ class ComedyDataTest(unittest.TestCase):
                  'My husband’s been married only once. So proud. And so pissed off.'),
                 ('article', 'Wait for it…', 'https://medium.com/@imajin/wait-for-it-123456abcdef',
                  'Wait for it. Then leave.'),
+                ('withdrawn', 'A changed marriage title',
+                 'https://medium.com/@imajin/a-changed-title-2c7498833be2',
+                 'An article that the owner has withdrawn from the site.'),
             ]:
                 (root / f'{name}.html').write_text(
                     f'<title>{title}</title><time>May 8, 2023</time>'
@@ -48,6 +51,7 @@ class ComedyDataTest(unittest.TestCase):
             imported = build_comedy.import_medium_posts(root)
             self.assertEqual([post.title for post in imported], ['Wait for it…'])
         self.assertFalse(any('585a1f5d093f' in post.canonical for post in build_comedy.load_medium_data()))
+        self.assertFalse(any('2c7498833be2' in post.canonical for post in build_comedy.load_medium_data()))
 
     def test_clean_body_removes_known_promo_but_not_last_or_single_section(self):
         article = ('<section class="section section--body section--first section--last"><p>single retained</p>'
