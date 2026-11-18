@@ -105,7 +105,8 @@ class HomeBuildTest(unittest.TestCase):
     def test_unified_archive_tracks_essay_registry(self):
         baseline = build_sections.expected_sections()['is/writing/index.html']
         image_count = len(paper_site.image_pieces.load_catalog()['pieces'])
-        self.assertEqual(baseline.count('<li data-kind='), 50 + image_count + len(build_writes.collect_items()))
+        comedy_count = len(paper_site.comedy_items()) - len(paper_site.UNLISTED_COMEDY_SLUGS)
+        self.assertEqual(baseline.count('<li data-kind='), comedy_count + image_count + len(build_writes.collect_items()))
         original = build_essays.load_posts()
         fixture = SimpleNamespace(slug='new-essay', title='New essay', body_md='Words', date='2099-01-01', excerpt='A thought.', order=max(post.order for post in original) + 1)
         with patch.object(build_essays, 'load_posts', return_value=original + [fixture]):
@@ -163,6 +164,8 @@ class HomeBuildTest(unittest.TestCase):
         self.assertEqual(slugs, expected + [post.slug for post in standalone])
         self.assertNotIn('10-reasons-why-you-shouldn-t-read-this-list', archive)
         self.assertTrue((build_root.ROOT / 'wrote/10-reasons-why-you-shouldn-t-read-this-list/index.html').is_file())
+        self.assertNotIn('celebrating-men-in-marriage', archive)
+        self.assertTrue((build_root.ROOT / 'wrote/celebrating-men-in-marriage/index.html').is_file())
         self.assertLess(archive.index('/is/writing/austen-at-work/'), archive.index('/wrote/'))
         self.assertLess(archive.index('/is/writing/cest-la-vie/'), archive.index('/wrote/'))
         self.assertLess(archive.index('/is/writing/thought-time-insight/'), archive.index('/wrote/'))
