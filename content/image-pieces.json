@@ -3,6 +3,18 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "other",
+      "title": "Other?",
+      "published_date": "2026-11-19",
+      "image": "/assets/paper/pieces/other.webp",
+      "width": 1024,
+      "height": 1536,
+      "alt": "Three panels. A green character browses on a phone. A close-up shows reading glasses and sandals under the recommendation “Other old people bought these.” The character lowers the phone and stares ahead.",
+      "caption": "",
+      "featured": false,
+      "show_title": true
+    },
+    {
       "slug": "november-in-my-soul",
       "title": "November in my soul",
       "published_date": "2026-11-14",
