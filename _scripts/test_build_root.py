@@ -165,7 +165,7 @@ class HomeBuildTest(unittest.TestCase):
         self.assertNotIn('10-reasons-why-you-shouldn-t-read-this-list', archive)
         self.assertTrue((build_root.ROOT / 'wrote/10-reasons-why-you-shouldn-t-read-this-list/index.html').is_file())
         self.assertNotIn('celebrating-men-in-marriage', archive)
-        self.assertTrue((build_root.ROOT / 'wrote/celebrating-men-in-marriage/index.html').is_file())
+        self.assertFalse((build_root.ROOT / 'wrote/celebrating-men-in-marriage/index.html').exists())
         self.assertLess(archive.index('/is/writing/austen-at-work/'), archive.index('/wrote/'))
         self.assertLess(archive.index('/is/writing/cest-la-vie/'), archive.index('/wrote/'))
         self.assertLess(archive.index('/is/writing/thought-time-insight/'), archive.index('/wrote/'))

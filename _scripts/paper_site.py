@@ -20,7 +20,6 @@ ASSET_ROOT = ROOT / 'assets/paper'
 # Editorial exclusions keep durable reader URLs and source text intact.
 UNLISTED_COMEDY_SLUGS = {
     '10-reasons-why-you-shouldn-t-read-this-list',
-    'celebrating-men-in-marriage',
 }
 # These are separate editorial placements, not a page-wide essay limit.
 WRITING_TOP_ESSAY_SLUG = 'an-open-letter-to-jensen-huang-from-his-leather-jacket'
