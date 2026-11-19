@@ -1,7 +1,7 @@
 // Keep the initial page usable when a module or core data request fails.
 const game=document.querySelector('#game');
 try{
-  await import('./app.js?v=daily-6');
+  await import('./app.js?v=daily-7');
   document.querySelector('#loading-screen').hidden=true;
   for(const id of ['help-button','menu-button','archive-button'])document.getElementById(id).disabled=false;
 }catch(error){

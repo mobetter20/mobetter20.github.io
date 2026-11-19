@@ -1,9 +1,9 @@
-import {createDailySession,nextMidnightDelay} from './state.js?v=daily-6';
+import {createDailySession,nextMidnightDelay} from './state.js?v=daily-7';
 import {SOURCE,LEXICON} from '../route/world-lexicon.js';
 
 async function loadData(){
     return await Promise.all(['content.json','notes.json','media.json'].map(async file=>{
-      const response=await fetch(new URL(`${file}?v=daily-6`,import.meta.url));
+      const response=await fetch(new URL(`${file}?v=daily-7`,import.meta.url));
       if(!response.ok)throw new Error(`Could not load ${file}`);
       const value=await response.json();
       if(!value||typeof value!=='object'||Array.isArray(value))throw new Error(`Invalid ${file}`);
@@ -67,7 +67,7 @@ function currentView(){return session.activeDate?engine.view():null;}
 function puzzleIndex(date=session.activeDate){return calendar.findIndex(entry=>entry.date===date);}
 function puzzleLabel(date){return isPlaytest?`Puzzle ${puzzleIndex(date)+1}`:dateLabel(date);}
 function puzzleUrl(date,playtest=isPlaytest){
-  const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('v','daily-6');
+  const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('v','daily-7');
   if(playtest){url.searchParams.set('mode','playtest');url.searchParams.set('puzzle',(calendar.find(entry=>entry.date===date)||calendar[0]).puzzleId);}
   else if(date)url.searchParams.set('date',date);
   return url;
@@ -156,11 +156,12 @@ function renderBirdDetail(view){
     button.setAttribute('aria-expanded',String(Boolean(note)&&Number(button.dataset.pathIndex)===ui.note.pathIndex));
   }
   els['bird-detail'].hidden=!note;
-  if(!note){renderPhoto(null);els['bird-sources'].replaceChildren();return;}
+  if(!note){renderPhoto(null);els['bird-source-details'].open=false;els['bird-sources'].replaceChildren();return;}
   text(els['bird-title'],note.name);text(els['bird-latin'],note.scientificName);text(els['bird-copy'],note.text);
   renderPhoto(id);
   // Leave focused source anchors in place when other controls change.
   if(els['bird-sources'].dataset.birdId!==id||!els['bird-sources'].childElementCount){
+    els['bird-source-details'].open=false;
     els['bird-sources'].dataset.birdId=id;
     els['bird-sources'].replaceChildren(...note.sources.map(s=>link(s.title,s.url)));
   }
@@ -414,12 +415,15 @@ function handleBirdOpen(button){
   const view=engine.view(),birdId=button.dataset.birdId,pathIndex=Number(button.dataset.pathIndex);
   if(!session.activeDate||!view.won||view.path[pathIndex]?.id!==birdId||!hasBirdDetail(birdId))return;
   if(ui.note?.pathIndex===pathIndex){handleBirdClose();return;}
-  ui.note={birdId,pathIndex,trigger:button};renderBirdDetail(view);
+  ui.note={birdId,pathIndex,trigger:button,scrollX:window.scrollX,scrollY:window.scrollY};renderBirdDetail(view);
   els['bird-title'].focus({preventScroll:true});els['bird-detail'].scrollIntoView({block:'start',behavior:'instant'});
 }
 function handleBirdClose(){
-  const trigger=ui.note?.trigger;ui.note=null;renderBirdDetail(engine.view());
-  if(trigger?.isConnected){trigger.focus({preventScroll:true});trigger.scrollIntoView({block:'nearest',behavior:'instant'});}
+  const openedDetail=ui.note;if(!openedDetail)return;
+  ui.note=null;renderBirdDetail(engine.view());
+  if(openedDetail.trigger?.isConnected)openedDetail.trigger.focus({preventScroll:true});
+  // Restore the view that opened the article, including the result actions.
+  window.scrollTo({left:openedDetail.scrollX,top:openedDetail.scrollY,behavior:'instant'});
 }
 function handleRetry(){
   closeMenu();
@@ -432,6 +436,7 @@ function handleWordCommit(part){
   if(!session.activeDate)return;
   // A stale draft from an older client must never make the first same-word tap a no-op.
   const discarded=engine.clearDraft();
+  const changedIndex=engine.view().replacements.find(choice=>choice.part===part)?.index;
   if(!engine.setReplacement(part)){
     if(discarded){persist();renderScreen();}
     return;
@@ -444,10 +449,7 @@ function handleWordCommit(part){
     els['next-puzzle-button'].focus({preventScroll:true});announce(`${view.perfect?'Perfect!':'You made it.'} ${moveText(view.moves)}.`);
   }else{
     firstTile()?.focus({preventScroll:true});announce(`${view.current.name}. ${moveText(view.moves)}.`);
-    if(!reducedMotion.matches){
-      els['perch-bird'].classList.remove('is-hopping');
-      requestAnimationFrame(()=>els['perch-bird'].classList.add('is-hopping'));
-    }
+    if(!reducedMotion.matches&&changedIndex!==undefined)els['current-name'].children[changedIndex]?.classList.add('is-changed');
   }
 }
 function handleRouteClick(event){
