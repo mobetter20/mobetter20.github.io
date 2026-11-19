@@ -1,9 +1,9 @@
-import {createDailySession,nextMidnightDelay} from './state.js?v=daily-8';
+import {createDailySession,nextMidnightDelay} from './state.js?v=daily-9';
 import {SOURCE,LEXICON} from '../route/world-lexicon.js';
 
 async function loadData(){
     return await Promise.all(['content.json','notes.json','media.json'].map(async file=>{
-      const response=await fetch(new URL(`${file}?v=daily-8`,import.meta.url));
+      const response=await fetch(new URL(`${file}?v=daily-9`,import.meta.url));
       if(!response.ok)throw new Error(`Could not load ${file}`);
       const value=await response.json();
       if(!value||typeof value!=='object'||Array.isArray(value))throw new Error(`Invalid ${file}`);
@@ -67,7 +67,7 @@ function currentView(){return session.activeDate?engine.view():null;}
 function puzzleIndex(date=session.activeDate){return calendar.findIndex(entry=>entry.date===date);}
 function puzzleLabel(date){return isPlaytest?`Puzzle ${puzzleIndex(date)+1}`:dateLabel(date);}
 function puzzleUrl(date,playtest=isPlaytest){
-  const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('v','daily-8');
+  const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('v','daily-9');
   if(playtest){url.searchParams.set('mode','playtest');url.searchParams.set('puzzle',(calendar.find(entry=>entry.date===date)||calendar[0]).puzzleId);}
   else if(date)url.searchParams.set('date',date);
   return url;
@@ -168,6 +168,8 @@ function renderBirdDetail(view){
 }
 function renderResult(view){
   els.result.hidden=!view.won;
+  els.result.classList.toggle('is-perfect',view.won&&view.perfect);
+  if(!view.won||ui.screen!=='puzzle')els['result-bird'].classList.remove('is-celebrating');
   if(!view.won){
     ui.solutionShown=false;ui.note=null;pathSignature='';
     els['finished-path'].replaceChildren();els['thumbnail-credit-list'].replaceChildren();
@@ -176,7 +178,8 @@ function renderResult(view){
   }
   text(els['result-title'],view.perfect?'Perfect!':'You made it.');
   text(els['result-count'],moveText(view.moves));
-  text(els['result-description'],view.perfect?'That’s a shortest route.':`A shortest route takes ${moveText(view.shortest)}.`);
+  const betterBest=view.bestMoves!==null&&view.bestMoves<view.moves;
+  text(els['result-description'],view.perfect?'That’s a shortest route.':betterBest?`Shortest: ${view.shortest} · Your best: ${view.bestMoves}`:`A shortest route takes ${moveText(view.shortest)}.`);
   text(els['retry-main'],view.perfect?'Play again':'Try a shorter route');
   text(els['next-puzzle-button'],isPlaytest?(puzzleIndex()<calendar.length-1?'Next puzzle':'Choose a puzzle'):'Play more puzzles');
   els['next-puzzle-button'].className='primary';
@@ -217,6 +220,8 @@ function renderBoard(view){
     els['word-box'].replaceChildren(...columns);
   }
   text(els['goal-name'],view.target.name);text(els.moves,moveText(view.moves));
+  els['goal-reach'].hidden=view.won;els['goal-complete'].hidden=!view.won;
+  els.goal.classList.toggle('is-complete',view.won);
   els.best.hidden=view.bestMoves===null;text(els.best,view.bestMoves===null?'':`Best: ${moveText(view.bestMoves)}`);
   els.play.hidden=view.won;els.history.hidden=view.won;
   const available=new Set(view.replacements.map(r=>r.part));
@@ -339,7 +344,7 @@ function renderScreen(){
   }
   if(archive)renderArchive();showStorageStatus();return view;
 }
-function clearTransient(){ui.screen='puzzle';ui.helpOpen=false;ui.menuOpen=false;ui.solutionShown=false;ui.note=null;els.history.open=false;els['thumbnail-credits'].open=false;}
+function clearTransient(){ui.screen='puzzle';ui.helpOpen=false;ui.menuOpen=false;ui.solutionShown=false;ui.note=null;els.history.open=false;els['thumbnail-credits'].open=false;els['result-bird'].classList.remove('is-celebrating');}
 function focusCurrent(){if(session.activeDate)focusPuzzleHeading();else{els['empty-heading'].focus({preventScroll:true});scrollTop();}}
 function writeLocation(date,replace=false){
   const url=puzzleUrl(date);
@@ -447,9 +452,10 @@ function handleWordCommit(part){
   persist();const view=renderScreen();
   if(view.won){
     els['next-puzzle-button'].focus({preventScroll:true});
-    const resultBounds=els['result-title'].getBoundingClientRect();
-    if(resultBounds.top<0||resultBounds.bottom>window.innerHeight)els['result-title'].scrollIntoView({block:'start',behavior:'instant'});
+    const resultBounds=els['result-heading'].getBoundingClientRect();
+    if(resultBounds.top<0||resultBounds.bottom>window.innerHeight)els['result-heading'].scrollIntoView({block:'start',behavior:'instant'});
     announce(`${view.perfect?'Perfect!':'You made it.'} ${moveText(view.moves)}.`);
+    if(view.perfect&&!reducedMotion.matches)els['result-bird'].classList.add('is-celebrating');
   }else{
     firstTile()?.focus({preventScroll:true});announce(`${view.current.name}. ${moveText(view.moves)}.`);
     if(!reducedMotion.matches&&changedIndex!==undefined)els['current-name'].children[changedIndex]?.classList.add('is-changed');
@@ -473,6 +479,8 @@ function handleRouteClick(event){
 }
 root.addEventListener('click',handleRouteClick);
 root.addEventListener('keydown',handleRootKeydown);
+els['result-bird'].addEventListener('animationend',()=>els['result-bird'].classList.remove('is-celebrating'));
+reducedMotion.addEventListener('change',()=>{if(reducedMotion.matches)els['result-bird'].classList.remove('is-celebrating');});
 document.addEventListener('pointerdown',handleDocumentPointerDown);
 window.addEventListener('resize',handleResize);
 document.fonts.ready.then(updateNameLayout);

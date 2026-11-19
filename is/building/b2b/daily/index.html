@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'">
   <meta name="description" content="Connect bird names in as few moves as you can.">
   <title>Bird to Bird</title><link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=daily-8">
-  <script type="module" src="boot.js?v=daily-8"></script>
+  <link rel="stylesheet" href="styles.css?v=daily-9">
+  <script type="module" src="boot.js?v=daily-9"></script>
 </head>
 <body class="natural perch">
 <main id="game" class="game" aria-label="Bird to Bird" aria-busy="true">
@@ -33,7 +33,7 @@
     <p>Every finish counts. A shortest route earns <strong>Perfect!</strong></p>
   </section>
   <section id="puzzle-screen" aria-label="Current puzzle" hidden>
-    <p class="goal"><span>Reach</span> <strong id="goal-name"></strong></p>
+    <p id="goal" class="goal"><span id="goal-state"><span id="goal-reach">Reach</span><span id="goal-complete" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg><span class="sr-only">Completed</span></span></span> <strong id="goal-name"></strong></p>
     <section id="play" class="play" aria-label="Build your route">
       <div class="current-meta"><span>Current bird</span><span id="moves">0 moves</span></div>
       <div class="name-board">
@@ -44,7 +44,7 @@
     </section>
     <details id="history" class="history"><summary id="history-label">Your route</summary><small id="best" hidden></small><ol id="history-path" class="route-list"></ol></details>
     <section id="result" class="result" aria-labelledby="result-title" hidden>
-      <div class="result-heading"><h2 id="result-title" class="result-title" tabindex="-1"></h2><span id="result-count" class="result-count"></span></div>
+      <div id="result-heading" class="result-heading"><svg id="result-bird" class="result-bird" viewBox="0 0 52 45" aria-hidden="true" focusable="false"><path class="bird-feet" d="M21 32v9m9-9v9"/><path class="bird-body" d="M3 26c13 0 14-19 25-21 13-3 20 9 14 20-6 12-22 14-34 7-4-2-6-4-5-6Z"/><path class="bird-beak" d="m43 11 9 4-9 3Z"/><circle class="bird-eye" cx="35" cy="13" r="2"/></svg><h2 id="result-title" class="result-title" tabindex="-1"></h2><span id="result-count" class="result-count"></span></div>
       <p id="result-description" class="result-description"></p>
       <p id="next-daily-copy" class="result-description" hidden></p>
       <div class="result-actions"><button type="button" id="next-puzzle-button" class="link-button" data-action="next-puzzle">Play more puzzles</button><button type="button" id="retry-main" class="primary" data-action="retry">Try a shorter route</button><button type="button" id="solution-button" class="link-button" data-action="solution" aria-expanded="false" aria-controls="solution">Show shortest route</button></div>
