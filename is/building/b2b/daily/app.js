@@ -1,9 +1,9 @@
-import {createDailySession,nextMidnightDelay} from './state.js?v=daily-7';
+import {createDailySession,nextMidnightDelay} from './state.js?v=daily-8';
 import {SOURCE,LEXICON} from '../route/world-lexicon.js';
 
 async function loadData(){
     return await Promise.all(['content.json','notes.json','media.json'].map(async file=>{
-      const response=await fetch(new URL(`${file}?v=daily-7`,import.meta.url));
+      const response=await fetch(new URL(`${file}?v=daily-8`,import.meta.url));
       if(!response.ok)throw new Error(`Could not load ${file}`);
       const value=await response.json();
       if(!value||typeof value!=='object'||Array.isArray(value))throw new Error(`Invalid ${file}`);
@@ -67,7 +67,7 @@ function currentView(){return session.activeDate?engine.view():null;}
 function puzzleIndex(date=session.activeDate){return calendar.findIndex(entry=>entry.date===date);}
 function puzzleLabel(date){return isPlaytest?`Puzzle ${puzzleIndex(date)+1}`:dateLabel(date);}
 function puzzleUrl(date,playtest=isPlaytest){
-  const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('v','daily-7');
+  const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('v','daily-8');
   if(playtest){url.searchParams.set('mode','playtest');url.searchParams.set('puzzle',(calendar.find(entry=>entry.date===date)||calendar[0]).puzzleId);}
   else if(date)url.searchParams.set('date',date);
   return url;
@@ -446,7 +446,10 @@ function handleWordCommit(part){
   }
   persist();const view=renderScreen();
   if(view.won){
-    els['next-puzzle-button'].focus({preventScroll:true});announce(`${view.perfect?'Perfect!':'You made it.'} ${moveText(view.moves)}.`);
+    els['next-puzzle-button'].focus({preventScroll:true});
+    const resultBounds=els['result-title'].getBoundingClientRect();
+    if(resultBounds.top<0||resultBounds.bottom>window.innerHeight)els['result-title'].scrollIntoView({block:'start',behavior:'instant'});
+    announce(`${view.perfect?'Perfect!':'You made it.'} ${moveText(view.moves)}.`);
   }else{
     firstTile()?.focus({preventScroll:true});announce(`${view.current.name}. ${moveText(view.moves)}.`);
     if(!reducedMotion.matches&&changedIndex!==undefined)els['current-name'].children[changedIndex]?.classList.add('is-changed');
