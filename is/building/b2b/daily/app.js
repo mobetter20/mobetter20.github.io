@@ -1,9 +1,9 @@
-import {createDailySession,nextMidnightDelay} from './state.js?v=daily-4';
+import {createDailySession,nextMidnightDelay} from './state.js?v=daily-5';
 import {SOURCE,LEXICON} from '../route/world-lexicon.js';
 
 async function loadData(){
     return await Promise.all(['content.json','notes.json','media.json'].map(async file=>{
-      const response=await fetch(new URL(`${file}?v=daily-4`,import.meta.url));
+      const response=await fetch(new URL(`${file}?v=daily-5`,import.meta.url));
       if(!response.ok)throw new Error(`Could not load ${file}`);
       const value=await response.json();
       if(!value||typeof value!=='object'||Array.isArray(value))throw new Error(`Invalid ${file}`);
@@ -17,9 +17,10 @@ const isPlaytest=modes.length===1&&modes[0]==='playtest';
 const session=createDailySession({schedule:content.schedule,rounds:content.rounds,lexicon:LEXICON,sourceVersion:content.sourceVersion,mode:isPlaytest?'playtest':'daily'});
 const calendar=[...content.schedule].sort((a,b)=>a.date.localeCompare(b.date));
 const engine=session.engine;
-const ui={screen:'puzzle',helpOpen:false,solutionShown:false,note:null,rolloverNotice:false};
+const ui={screen:'puzzle',helpOpen:false,menuOpen:false,solutionShown:false,note:null,rolloverNotice:false};
 const els=Object.fromEntries([...root.querySelectorAll('[id]')].map(el=>[el.id,el]));
 const buttons={cancel:root.querySelector('[data-action="cancel"]'),go:root.querySelector('[data-action="go"]')};
+const nameBoard=root.querySelector('.name-board');
 const tiles=new Map();
 const mediaBase=new URL('./',import.meta.url);
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
@@ -62,7 +63,7 @@ function currentView(){return session.activeDate?engine.view():null;}
 function puzzleIndex(date=session.activeDate){return calendar.findIndex(entry=>entry.date===date);}
 function puzzleLabel(date){return isPlaytest?`Puzzle ${puzzleIndex(date)+1}`:dateLabel(date);}
 function puzzleUrl(date,playtest=isPlaytest){
-  const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('v','daily-4');
+  const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('v','daily-5');
   if(playtest){url.searchParams.set('mode','playtest');url.searchParams.set('puzzle',(calendar.find(entry=>entry.date===date)||calendar[0]).puzzleId);}
   else if(date)url.searchParams.set('date',date);
   return url;
@@ -185,31 +186,85 @@ function renderResult(view){
 function renderBoard(view){
   if(boardId!==view.round.id){
     boardId=view.round.id;tiles.clear();
-    for(const part of view.round.parts){
+    const words=new Set(view.round.parts),firstWords=new Set();
+    // Match the two name halves using every bird in this board, including detours.
+    for(const bird of LEXICON){
+      if(bird.parts.length===2&&bird.parts.every(part=>words.has(part)))firstWords.add(bird.parts[0]);
+    }
+    const columns=[0,1].map(index=>{
+      const column=document.createElement('div');column.className='tile-column';column.dataset.position=String(index);
+      column.setAttribute('role','group');column.setAttribute('aria-label',index===0?'First word':'Second word');return column;
+    });
+    for(const part of [...view.round.parts].sort()){
       const button=document.createElement('button');button.type='button';button.className='tile';button.dataset.part=part;
       button.textContent=part.charAt(0)+part.slice(1).toLowerCase();button.setAttribute('aria-pressed','false');tiles.set(part,button);
+      columns[firstWords.has(part)?0:1].append(button);
     }
-    els['word-box'].replaceChildren(...tiles.values());
+    els['word-box'].replaceChildren(...columns);
   }
-  text(els['start-name'],view.start.name);text(els['goal-name'],view.target.name);text(els['current-name'],view.current.name);
-  text(els.moves,moveText(view.moves));els.best.hidden=view.bestMoves===null;text(els.best,view.bestMoves===null?'':`Best: ${view.bestMoves}`);
-  els.play.hidden=view.won;els.history.hidden=view.won;els['restart-row'].hidden=view.won;
+  text(els['goal-name'],view.target.name);text(els['current-name'],view.current.name);
+  els.best.hidden=view.bestMoves===null;text(els.best,view.bestMoves===null?'':`Best: ${moveText(view.bestMoves)}`);
+  els.play.hidden=view.won;els.history.hidden=view.won;
   const available=new Set(view.replacements.map(r=>r.part));
   const pending=view.completeBird?.parts.find((p,i)=>p!==view.current.parts[i]);
   for(const [part,tile]of tiles){tile.disabled=view.won||!available.has(part);tile.setAttribute('aria-pressed',String(part===pending));}
   buttons.cancel.disabled=!view.completeBird;buttons.go.disabled=!view.completeBird;
   els['restart-button'].disabled=view.moves===0&&!view.draft.length;
+  els['preview-caption'].setAttribute('aria-hidden',String(!view.completeBird));
   const signature=`${view.round.id}|${view.current.id}|${view.completeBird?.id||''}`;
   if(signature!==previewSignature){
     previewSignature=signature;
-    els['next-name'].classList.toggle('empty',!view.completeBird);
-    if(view.completeBird)els['next-name'].replaceChildren(nameNodes(view.completeBird,view.current));
-    else text(els['next-name'],'Choose a word.');
+    const bird=view.completeBird||view.current,fragment=document.createDocumentFragment();
+    let cursor=0;
+    for(const [index,part]of bird.parts.entries()){
+      const start=bird.name.toUpperCase().indexOf(part,cursor),piece=document.createElement('span');
+      piece.className='name-part';
+      piece.classList.toggle('long-name',part.length>=10);
+      piece.textContent=bird.name.slice(start,start+part.length);
+      piece.classList.toggle('changed',Boolean(view.completeBird)&&part!==view.current.parts[index]);
+      fragment.append(piece);cursor=start+part.length;
+    }
+    els['next-name'].replaceChildren(fragment);
+    els['next-name'].setAttribute('aria-label',`${view.completeBird?'Preview':'Current bird'}: ${bird.name}`);
   }
-  text(els['history-label'],view.moves?`Your route · ${moveText(view.moves)}`:'Your route');
+  text(els['history-label'],moveText(view.moves));
+  els['history-label'].setAttribute('aria-label',`Your route: ${moveText(view.moves)}`);
   const history=`${view.round.id}|${view.path.map(b=>b.id).join('|')}`;
   if(history!==historySignature){historySignature=history;els['history-path'].replaceChildren(...makePath(view.path));}
   renderResult(view);
+  updateNameLayout();
+  requestAnimationFrame(updateNameLayout);
+}
+function updateNameLayout(){
+  const [first,second]=els['next-name'].children;
+  nameBoard.classList.toggle('is-stacked',Boolean(first&&second&&second.offsetTop>first.offsetTop));
+}
+function handleResize(){renderMenu();updateNameLayout();}
+function renderMenu(){
+  els['game-menu'].hidden=!ui.menuOpen;
+  els['menu-button'].setAttribute('aria-expanded',String(ui.menuOpen));
+  if(ui.menuOpen){
+    const header=root.querySelector('.masthead');
+    els['game-menu'].style.top=`${header.offsetTop+header.offsetHeight+12}px`;
+  }
+}
+function closeMenu({restoreFocus=false}={}){
+  if(!ui.menuOpen)return;
+  ui.menuOpen=false;renderMenu();
+  if(restoreFocus)els['menu-button'].focus({preventScroll:true});
+}
+function handleMenuToggle(){
+  ui.menuOpen=!ui.menuOpen;ui.helpOpen=false;renderHelp();renderMenu();
+}
+function handleDocumentPointerDown(event){
+  if(!ui.menuOpen||els['game-menu'].contains(event.target)||els['menu-button'].contains(event.target))return;
+  closeMenu({restoreFocus:els['game-menu'].contains(document.activeElement)});
+}
+function handleRootKeydown(event){
+  if(event.key!=='Escape')return;
+  if(ui.menuOpen){event.preventDefault();closeMenu({restoreFocus:true});}
+  else if(ui.helpOpen){event.preventDefault();handleHelpClose();}
+  else if(ui.note){event.preventDefault();handleBirdClose();}
 }
 function renderHelp(){
   els['how-to'].hidden=!ui.helpOpen||ui.screen==='archive';
@@ -245,11 +300,13 @@ function renderArchive(){
 function renderDateAndNotice(){
   const active=session.activeDate;
   if(isPlaytest){
-    text(els['round-label'],`Beta · ${puzzleLabel(active)} of ${calendar.length}`);
-    text(els['today-button'],'Daily puzzle');els['today-button'].hidden=false;els['daily-notice'].hidden=true;return;
+    text(els['round-label'],`${puzzleLabel(active)} of ${calendar.length}`);
+    text(els['today-button'],'Daily');els['today-button'].hidden=false;els['today-button'].disabled=false;els['today-button'].removeAttribute('aria-current');els['daily-notice'].hidden=true;return;
   }
   text(els['round-label'],active?`${active===session.todayDate?'Today · ':''}${dateLabel(active)}`:dateLabel(session.todayDate));
-  els['today-button'].hidden=!active||active===session.todayDate;
+  els['today-button'].hidden=false;text(els['today-button'],'Daily');
+  els['today-button'].disabled=active===session.todayDate&&ui.screen==='puzzle';
+  if(active===session.todayDate)els['today-button'].setAttribute('aria-current','page');else els['today-button'].removeAttribute('aria-current');
   const available=content.schedule.some(entry=>entry.date===session.todayDate);
   els['daily-notice'].hidden=!ui.rolloverNotice||active===session.todayDate;
   text(els['daily-notice-copy'],available?'Today’s puzzle is ready.':'The date has changed. Your route is still here.');
@@ -258,24 +315,25 @@ function renderDateAndNotice(){
 function renderScreen(){
   const view=currentView(),archive=ui.screen==='archive';
   els['puzzle-screen'].hidden=archive||!view;els['archive-screen'].hidden=!archive;els['empty-screen'].hidden=archive||Boolean(view);
-  text(els['archive-button'],archive?'Back':isPlaytest?'Puzzles':'Archive');
+  text(els['archive-button'],'Puzzles');
   els['archive-button'].setAttribute('aria-expanded',String(archive));
-  renderDateAndNotice();renderHelp();
+  renderDateAndNotice();renderHelp();renderMenu();
   if(view)renderBoard(view);
   else{
-    ui.note=null;clearPhoto();
+    ui.note=null;clearPhoto();els['restart-button'].disabled=true;
     text(els['empty-heading'],session.calendarStatus()==='before-start'?'The first puzzle is coming.':'No puzzle for today');
     text(els['empty-copy'],session.calendarStatus()==='before-start'?`The first puzzle is on ${dateLabel(session.firstDate)}.`:'There isn’t a puzzle for this date. You can still play earlier puzzles in the archive.');
   }
   if(archive)renderArchive();showStorageStatus();return view;
 }
-function clearTransient(){ui.screen='puzzle';ui.helpOpen=false;ui.solutionShown=false;ui.note=null;els.history.open=false;els['thumbnail-credits'].open=false;}
+function clearTransient(){ui.screen='puzzle';ui.helpOpen=false;ui.menuOpen=false;ui.solutionShown=false;ui.note=null;els.history.open=false;els['thumbnail-credits'].open=false;}
 function focusCurrent(){if(session.activeDate)focusPuzzleHeading();else{els['empty-heading'].focus({preventScroll:true});scrollTop();}}
 function writeLocation(date,replace=false){
   const url=puzzleUrl(date);
   history[replace?'replaceState':'pushState']({date},'',url);
 }
 function handleArchiveToggle(){
+  closeMenu();
   ui.screen=ui.screen==='archive'?'puzzle':'archive';ui.helpOpen=false;ui.note=null;renderScreen();
   if(ui.screen==='archive'){els['archive-heading'].focus({preventScroll:true});scrollTop();}else focusCurrent();
 }
@@ -285,6 +343,7 @@ function handleArchiveSelect(date){
   announce(`${puzzleLabel(date)}. ${engine.view().start.name} to ${engine.view().target.name}.`);
 }
 function handleNextPuzzle(){
+  closeMenu();
   const next=calendar[puzzleIndex()+1];
   if(!isPlaytest){location.assign(puzzleUrl((next||calendar[0]).date,true));return;}
   if(!next){handleArchiveToggle();return;}
@@ -293,6 +352,7 @@ function handleNextPuzzle(){
   announce(`${puzzleLabel(next.date)}. ${engine.view().start.name} to ${engine.view().target.name}.`);
 }
 function handleToday(){
+  closeMenu();
   if(isPlaytest){location.assign(puzzleUrl(null,false));return;}
   session.refreshToday();session.openToday();clearTransient();ui.rolloverNotice=false;writeLocation(null);renderScreen();focusCurrent();
 }
@@ -328,9 +388,11 @@ function handleRollover(){
   scheduleMidnight();
 }
 function handleHelpToggle(){
+  closeMenu();
   if(ui.screen==='archive'){ui.screen='puzzle';renderScreen();}
   ui.helpOpen=!ui.helpOpen;renderHelp();
 }
+function handleHelpClose(){ui.helpOpen=false;renderHelp();els['help-button'].focus({preventScroll:true});}
 function handleSolutionToggle(){
   const view=currentView();if(!view?.won||view.perfect)return;
   ui.solutionShown=!ui.solutionShown;renderResult(view);
@@ -348,7 +410,9 @@ function handleBirdClose(){
   if(trigger?.isConnected){trigger.focus({preventScroll:true});trigger.scrollIntoView({block:'nearest',behavior:'instant'});}
 }
 function handleRetry(){
+  closeMenu();
   if(!session.activeDate||!engine.restartRound())return;
+  ui.screen='puzzle';ui.helpOpen=false;
   ui.note=null;ui.solutionShown=false;els.history.open=false;els['thumbnail-credits'].open=false;
   persist();renderScreen();firstTile()?.focus({preventScroll:true});scrollTop();announce('New attempt. Your best route is kept.');
 }
@@ -358,6 +422,8 @@ function handleRouteClick(event){
   if(button.id==='today-button'){handleToday();return;}
   if(button.id==='new-today-button'){handlePlayNewToday();return;}
   if(button.id==='help-button'){handleHelpToggle();return;}
+  if(button.id==='help-close'){handleHelpClose();return;}
+  if(button.id==='menu-button'){handleMenuToggle();return;}
   if(button.dataset.date){handleArchiveSelect(button.dataset.date);return;}
   if(button.dataset.birdId){handleBirdOpen(button);return;}
   if(button.dataset.action==='retry'){handleRetry();return;}
@@ -379,12 +445,21 @@ function handleRouteClick(event){
     els['next-puzzle-button'].focus({preventScroll:true});announce(`${view.perfect?'Perfect!':'You made it.'} ${moveText(view.moves)}.`);
   }else{
     firstTile()?.focus({preventScroll:true});announce(button.dataset.action==='cancel'?'Preview cleared.':`${view.current.name}. ${moveText(view.moves)}.`);
+    if(button.dataset.action==='go'&&!reducedMotion.matches){
+      els['perch-bird'].classList.remove('is-hopping');
+      requestAnimationFrame(()=>els['perch-bird'].classList.add('is-hopping'));
+    }
   }
 }
 root.addEventListener('click',handleRouteClick);
-root.addEventListener('keydown',event=>{if(event.key==='Escape'&&ui.note){event.preventDefault();handleBirdClose();}});
+root.addEventListener('keydown',handleRootKeydown);
+document.addEventListener('pointerdown',handleDocumentPointerDown);
+window.addEventListener('resize',handleResize);
+document.fonts.ready.then(updateNameLayout);
 selectFromLocation(true);
 renderScreen();
+const nameLayoutObserver=typeof ResizeObserver==='function'?new ResizeObserver(updateNameLayout):null;
+nameLayoutObserver?.observe(els['next-name']);
 scheduleMidnight();
 window.addEventListener('popstate',handlePopState);
 window.addEventListener('focus',handleRollover);

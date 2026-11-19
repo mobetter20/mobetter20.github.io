@@ -7,18 +7,25 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'">
   <meta name="description" content="Connect bird names in as few moves as you can.">
   <title>Bird to Bird</title><link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=daily-4">
-  <script type="module" src="boot.js?v=daily-4"></script>
+  <link rel="stylesheet" href="styles.css?v=daily-5">
+  <script type="module" src="boot.js?v=daily-5"></script>
 </head>
-<body class="natural">
+<body class="natural perch">
 <main id="game" class="game" aria-label="Bird to Bird" aria-busy="true">
-  <header class="masthead"><h1 class="brand" id="game-heading" tabindex="-1">Bird to Bird</h1><button type="button" id="help-button" class="link-button" aria-expanded="false" aria-controls="how-to" disabled>How to play</button></header>
-  <div class="datebar"><span id="round-label"></span><nav class="date-actions" aria-label="Puzzles"><button type="button" id="today-button" class="link-button" hidden disabled>Today</button><button type="button" id="archive-button" class="link-button" aria-expanded="false" aria-controls="archive-screen" disabled>Archive</button></nav></div>
+  <header class="masthead">
+    <h1 class="brand" id="game-heading" tabindex="-1">Bird to Bird<svg class="brand-swish" viewBox="0 0 220 15" aria-hidden="true" focusable="false"><path d="M5 8C68-9 145 23 215 6"/></svg></h1>
+    <div class="header-actions"><button type="button" id="help-button" class="icon-button" aria-label="How to play" aria-expanded="false" aria-controls="how-to" disabled><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M9.2 8.5a3 3 0 0 1 5.8 1c0 2-3 2.1-3 4.1"/><circle class="icon-dot" cx="12" cy="16.6" r=".8"/></svg></button><button type="button" id="menu-button" class="icon-button" aria-label="Menu" aria-expanded="false" aria-controls="game-menu" disabled><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle class="icon-dot" cx="4" cy="12" r="1.5"/><circle class="icon-dot" cx="12" cy="12" r="1.5"/><circle class="icon-dot" cx="20" cy="12" r="1.5"/></svg></button></div>
+  </header>
+  <section id="game-menu" class="game-menu" aria-label="Game menu" hidden>
+    <p id="round-label" class="menu-context"></p>
+    <nav class="menu-actions" aria-label="Puzzles"><button type="button" id="today-button" class="link-button" disabled>Daily</button><button type="button" id="archive-button" class="link-button" aria-expanded="false" aria-controls="archive-screen" disabled>Puzzles</button><button type="button" id="restart-button" class="link-button" data-action="retry" disabled>Restart</button></nav>
+    <details id="about" class="about"><summary>About Bird to Bird</summary><div class="about-copy"><p>Names follow AviList’s official English list. Hyphenated words stay together; regional names may differ.</p><p id="attribution"></p><p id="mode-description">Progress stays in this browser. Starting again keeps your best route.</p><p><a href="../credits.html">Sources and credits</a></p><p><a href="https://ajin.im/" target="_self">made by ajin.im</a></p></div></details>
+  </section>
   <section id="loading-screen" class="empty-state" aria-label="Loading puzzle"><p role="status">Loading puzzle…</p><a class="link-button" href="">Reload</a></section>
   <div id="daily-notice" class="daily-notice" hidden><p id="daily-notice-copy" role="status"></p><button type="button" id="new-today-button" class="link-button">Play today</button></div>
   <section id="empty-screen" class="empty-state" aria-labelledby="empty-heading" hidden><h2 id="empty-heading" tabindex="-1">No puzzle for today</h2><p id="empty-copy"></p><button type="button" class="link-button" data-action="archive">Open archive</button></section>
   <section id="how-to" class="help" aria-labelledby="help-heading" hidden>
-    <h2 id="help-heading">Find a route between two birds.</h2>
+    <div class="help-heading"><h2 id="help-heading">How to play</h2><button type="button" id="help-close" class="link-button">Close</button></div>
     <p>Change one word to make another bird name.</p>
     <p class="help-example"><mark class="changed">Common</mark> Gull → <mark class="changed">Little</mark> Gull</p>
     <ol><li>Choose an available word to preview the next bird.</li><li>Press <strong>Go</strong> to make the move. Previewing costs nothing.</li><li>Reach the goal bird in as few moves as you can.</li></ol>
@@ -26,15 +33,17 @@
     <p>Every finish counts. A shortest route earns <strong>Perfect!</strong></p>
   </section>
   <section id="puzzle-screen" aria-label="Current puzzle" hidden>
-    <p class="objective">Connect the bird names in as few moves as you can.</p>
-    <div class="route-pair"><div class="endpoint"><span class="eyebrow">Start</span><p id="start-name" class="endpoint-name"></p></div><span class="pair-arrow" aria-hidden="true">→</span><div class="endpoint"><span class="eyebrow">Goal</span><p id="goal-name" class="endpoint-name"></p></div></div>
+    <p class="goal"><span>Reach</span> <strong id="goal-name"></strong></p>
     <section id="play" class="play" aria-label="Build your route">
-      <div class="current"><div><span class="eyebrow">Current bird</span><h2 id="current-name" class="current-name"></h2></div><div class="score"><span id="moves"></span><small id="best" hidden></small></div></div>
+      <div id="preview-caption" class="preview-caption" aria-hidden="true"><span id="current-name"></span><span>Preview</span></div>
+      <div class="name-board">
+        <svg id="perch-bird" class="perch-bird" viewBox="0 0 52 45" aria-hidden="true" focusable="false"><path class="bird-feet" d="M21 32v9m9-9v9"/><path class="bird-body" d="M3 26c13 0 14-19 25-21 13-3 20 9 14 20-6 12-22 14-34 7-4-2-6-4-5-6Z"/><path class="bird-beak" d="m43 11 9 4-9 3Z"/><circle class="bird-eye" cx="35" cy="13" r="2"/></svg>
+        <h2 id="next-name" class="perch-name"></h2>
+      </div>
       <div id="word-box" class="tile-grid" role="group" aria-label="Reusable words"></div>
-      <div class="preview"><div><span class="eyebrow">Next bird</span><p id="next-name" class="preview-name empty">Choose a word.</p></div><div class="preview-actions"><button type="button" class="link-button" data-action="cancel" disabled>Cancel</button><button type="button" class="primary" data-action="go" disabled>Go</button></div></div>
+      <div class="preview-actions"><button type="button" class="link-button" data-action="cancel" disabled>Cancel</button><button type="button" class="primary" data-action="go" disabled>Go</button><span class="action-balance" aria-hidden="true"></span></div>
     </section>
-    <details id="history" class="history"><summary id="history-label">Your route</summary><ol id="history-path" class="route-list"></ol></details>
-    <div id="restart-row" class="utility-row"><button type="button" id="restart-button" class="link-button" data-action="retry" disabled>Start again</button></div>
+    <details id="history" class="history"><summary id="history-label">0 moves</summary><small id="best" hidden></small><ol id="history-path" class="route-list"></ol></details>
     <section id="result" class="result" aria-labelledby="result-title" hidden>
       <div class="result-heading"><h2 id="result-title" class="result-title" tabindex="-1"></h2><span id="result-count" class="result-count"></span></div>
       <p id="result-description" class="result-description"></p>
@@ -52,14 +61,11 @@
     </section>
   </section>
   <section id="archive-screen" aria-labelledby="archive-heading" hidden>
-    <div class="archive-head"><h2 id="archive-heading" class="library-heading" tabindex="-1">Archive</h2></div>
+    <div class="archive-head"><h2 id="archive-heading" class="library-heading" tabindex="-1">Puzzles</h2><button type="button" id="archive-back" class="link-button" data-action="archive">Back to puzzle</button></div>
     <p id="archive-description" class="archive-description">Play a past puzzle, or improve your best.</p>
     <p id="archive-empty" class="archive-empty" hidden>Past puzzles will appear here.</p><div id="archive-list"></div>
   </section>
-  <footer class="game-footer">
-    <details id="about" class="about"><summary>About Bird to Bird</summary><div class="about-copy"><p>Names follow AviList’s official English list. Hyphenated words stay together; regional names may differ.</p><p id="attribution"></p><p id="mode-description">Progress stays in this browser. Starting again keeps your best route.</p><p><a href="https://ajin.im/" target="_self">made by ajin.im</a></p></div></details>
-    <p id="storage-notice" class="storage-notice" role="status" hidden>Progress cannot be saved in this browser. You can keep playing in this tab.</p>
-  </footer>
+  <p id="storage-notice" class="storage-notice" role="status" hidden>Progress cannot be saved in this browser. You can keep playing in this tab.</p>
   <p id="status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
   <noscript><p>This game needs JavaScript enabled.</p></noscript>
 </main>

@@ -23,6 +23,8 @@ FIXED_FILES = frozenset({
     "prototype/assets/fonts/spectral-SOURCE.txt",
     "assets/fonts/space-grotesk-500-latin.woff2",
     "assets/fonts/OFL-Space-Grotesk.txt",
+    "assets/fonts/fraunces-500.ttf",
+    "assets/fonts/OFL-Fraunces.txt",
 })
 REUSED_PHOTOS = frozenset(
     f"route/assets/name-notes/{name}.jpg" for name in (
