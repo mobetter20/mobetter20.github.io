@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'">
   <meta name="description" content="Connect bird names in as few moves as you can.">
   <title>Bird to Bird</title><link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=daily-6">
-  <script type="module" src="boot.js?v=daily-6"></script>
+  <link rel="stylesheet" href="styles.css?v=daily-7">
+  <script type="module" src="boot.js?v=daily-7"></script>
 </head>
 <body class="natural perch">
 <main id="game" class="game" aria-label="Bird to Bird" aria-busy="true">
@@ -55,7 +55,7 @@
       <article id="bird-detail" class="bird-article" aria-labelledby="bird-title" hidden>
         <div class="bird-topline"><div><h3 id="bird-title" class="bird-title" tabindex="-1"></h3><p id="bird-latin" class="bird-latin"></p></div><button type="button" id="bird-close" class="link-button" data-action="close-bird">Close</button></div>
         <figure class="bird-figure"><div id="bird-image-frame" class="bird-image-frame"><p id="bird-image-status" class="bird-image-status" role="status"></p></div><figcaption id="bird-photo-credit" class="photo-credit"></figcaption></figure>
-        <p id="bird-copy" class="name-copy"></p><div id="bird-sources" class="source-links"></div>
+        <p id="bird-copy" class="name-copy"></p><details id="bird-source-details" class="bird-sources"><summary>Sources</summary><div id="bird-sources" class="source-links"></div></details>
       </article>
     </section>
   </section>
