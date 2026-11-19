@@ -9,7 +9,7 @@ Ajin can attach images and say **“Publish these”**, or **“Add this illustr
 - Home C is fixed: complete Austen art/caption, Kenbaiki machine preview, then the smaller Running strip and email. Do not add prose, comedy, Coo or catalog rotation to Home.
 - Every catalog cartoon is surfaced through Writing, the overview and native slides. The viewer swaps prepared slides in place and warms only neighbouring artwork. Swipe is an optional touch enhancement; native arrows must remain sufficient without JavaScript or when enhanced loading fails.
 - Preserve the complete image in lossless WebP with a clean filename, actual dimensions and pixel verification.
-- Hide the external title unless it adds a setup beyond the image. Never infer panel divisions from aspect ratio.
+- Hide external titles on readers, slides and the cartoon overview by default, even when a title adds context. Use `--show-title` only when Ajin explicitly requests a visible heading. Supplying a title alone does not opt in. Keep titles in Writing, URLs, sharing metadata and accessible headings; preserve separate captions. Never infer panel divisions from aspect ratio.
 - An illustration belongs to its existing article. Keep that article's title, text, publication date, URL and archive position.
 - Existing credits and reader styles apply. Routine additions do not require new design options or a review of the whole site.
 
@@ -34,8 +34,9 @@ python3 _scripts/piece.py add '/path/to/image.png' \
   --title 'A title' --alt 'Describe the scene and its relevant words.'
 
 # Optional, only after inspecting the artwork:
-# --slug stable-url --show-title --mobile-panels 2 --caption 'Separate caption'
+# --slug stable-url --mobile-panels 2 --caption 'Separate caption'
 # --date 2026-11-09
+# --show-title only when Ajin explicitly asks to show the title above the art
 
 python3 _scripts/piece.py illustrate '/path/to/image.png' \
   --slug mug-shot-of-my-desk --alt 'Describe the illustration.'

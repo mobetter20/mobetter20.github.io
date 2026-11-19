@@ -243,7 +243,7 @@ def parser() -> argparse.ArgumentParser:
             command.add_argument('--title', required=True)
             command.add_argument('--date', help='defaults to today in Asia/Seoul')
             command.add_argument('--caption', default='')
-            command.add_argument('--show-title', action='store_true')
+            command.add_argument('--show-title', action='store_true', help='show the external title only when Ajin explicitly requests it')
             command.add_argument('--mobile-panels', type=int, choices=[2])
     commands.add_parser('check', help='rebuild and validate once for the entire batch')
     live = commands.add_parser('verify-live', help='read-only public page and asset checks')

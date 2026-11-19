@@ -47,6 +47,33 @@ class CartoonCollectionTest(unittest.TestCase):
         self.assertIn(f'<meta property="og:image:height" content="{piece["height"]}">', page)
         self.assertNotIn('noindex', page)
 
+    def test_title_visibility_is_consistent_without_losing_piece_identity(self):
+        original = image_pieces.load_catalog()['pieces'][0]
+        for setting in (None, False, True):
+            with self.subTest(show_title=setting):
+                piece = {**original, 'title': 'A "title" <with context>',
+                         'caption': 'A caption that belongs to the work.'}
+                piece.pop('show_title', None)
+                if setting is not None:
+                    piece['show_title'] = setting
+                title = escape(piece['title'])
+                reader = image_pieces.render_piece(piece)
+                overview = cartoon_collection.overview_page([piece])
+                slide = cartoon_collection.slide_page([piece], 0)
+                self.assertEqual('image-piece piece-with-title' in reader, setting is True)
+                overview_class = 'preview-title' + ('' if setting else ' visually-hidden')
+                slide_attributes = '' if setting else ' class="visually-hidden"'
+                self.assertIn(f'<h3 class="{overview_class}">{title}</h3>', overview)
+                self.assertIn(f'<h1 id="slide-title"{slide_attributes}>{title}</h1>', slide)
+                self.assertIn('aria-labelledby="slide-title"', slide)
+                for page in (reader, slide):
+                    self.assertIn(f'data-share-title="{title}"', page)
+                    self.assertIn(f'data-share-url="https://ajin.im{piece["href"]}"', page)
+                    self.assertIn(f'<meta property="og:title" content="{title}', page)
+                for page in (reader, overview, slide):
+                    self.assertIn(piece['caption'], page)
+                    self.assertIn(piece['image'], page)
+
     def test_every_slide_shares_its_canonical_piece_not_the_collection(self):
         pieces = cartoon_collection.ordered(image_pieces.load_catalog())
         for index, piece in enumerate(pieces):
