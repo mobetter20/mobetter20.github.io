@@ -9,7 +9,7 @@ import sys
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-RELEASE_DIR = REPO_ROOT / "is/building/bird-to-bird"
+RELEASE_DIR = REPO_ROOT / "is/building/b2b"
 PIN_FILE = REPO_ROOT / "_scripts/bird-to-bird/expected-manifest.sha256"
 FIXED_FILES = frozenset({
     "index.html", "credits.html",

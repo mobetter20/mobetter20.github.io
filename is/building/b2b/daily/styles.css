@@ -1,0 +1,25 @@
+/* Daily views inherit the approved Natural history game design. */
+@import url('../prototype/styles.css?v=daily-1');
+.date-actions { display:flex; align-items:center; gap:16px; }
+.datebar > span { min-width:0; }
+.daily-notice { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0; border-bottom:1px solid var(--line); font-size:12px; }
+.daily-notice .link-button { color:var(--accent); flex-shrink:0; }
+.empty-state { padding:30px 0; }
+.empty-state h2 { font:400 30px/1.2 Spectral,serif; }
+.empty-state p { margin-top:15px; font:400 18px/1.6 Spectral,serif; }
+.empty-state .link-button { margin-top:15px; color:var(--accent); }
+.archive-month { margin-top:24px; }
+.puzzle-title time, .puzzle-title .puzzle-number { display:block; font:400 21px/1.25 Spectral,serif; }
+.puzzle-title .archive-birds { display:block; margin-top:5px; font:400 14px/1.4 Spectral,serif; color:var(--muted); }
+.archive-empty { margin:24px 0; font:400 18px/1.6 Spectral,serif; color:var(--muted); }
+/* Let enlarged text and user spacing expand controls instead of clipping. */
+.masthead, .datebar, .date-actions, .preview, .result-heading, .route-heading, .puzzle-list button { flex-wrap:wrap; }
+.masthead .link-button { white-space:normal; flex-shrink:0; }
+.date-actions { max-width:100%; flex-shrink:0; }
+.date-actions .link-button { flex-shrink:0; }
+.tile { height:auto; min-height:44px; }
+.preview > :first-child, .puzzle-title { min-width:min(100%,8em); }
+.bird-latin, .source-links a, .photo-credit { overflow-wrap:anywhere; }
+.source-links a, .photo-credit a { max-width:100%; }
+.empty-state a.link-button { display:inline-flex; align-items:center; }
+@media (max-width:350px) { .date-actions { gap:12px; } .puzzle-title time, .puzzle-title .puzzle-number { font-size:19px; } }

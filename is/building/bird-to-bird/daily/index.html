@@ -1,66 +1,11 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <meta name="robots" content="noindex">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'">
-  <meta name="description" content="Connect bird names in as few moves as you can.">
-  <title>Bird to Bird</title><link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=daily-4">
-  <script type="module" src="boot.js?v=daily-4"></script>
-</head>
-<body class="natural">
-<main id="game" class="game" aria-label="Bird to Bird" aria-busy="true">
-  <header class="masthead"><h1 class="brand" id="game-heading" tabindex="-1">Bird to Bird</h1><button type="button" id="help-button" class="link-button" aria-expanded="false" aria-controls="how-to" disabled>How to play</button></header>
-  <div class="datebar"><span id="round-label"></span><nav class="date-actions" aria-label="Puzzles"><button type="button" id="today-button" class="link-button" hidden disabled>Today</button><button type="button" id="archive-button" class="link-button" aria-expanded="false" aria-controls="archive-screen" disabled>Archive</button></nav></div>
-  <section id="loading-screen" class="empty-state" aria-label="Loading puzzle"><p role="status">Loading puzzle…</p><a class="link-button" href="">Reload</a></section>
-  <div id="daily-notice" class="daily-notice" hidden><p id="daily-notice-copy" role="status"></p><button type="button" id="new-today-button" class="link-button">Play today</button></div>
-  <section id="empty-screen" class="empty-state" aria-labelledby="empty-heading" hidden><h2 id="empty-heading" tabindex="-1">No puzzle for today</h2><p id="empty-copy"></p><button type="button" class="link-button" data-action="archive">Open archive</button></section>
-  <section id="how-to" class="help" aria-labelledby="help-heading" hidden>
-    <h2 id="help-heading">Find a route between two birds.</h2>
-    <p>Change one word to make another bird name.</p>
-    <p class="help-example"><mark class="changed">Common</mark> Gull → <mark class="changed">Little</mark> Gull</p>
-    <ol><li>Choose an available word to preview the next bird.</li><li>Press <strong>Go</strong> to make the move. Previewing costs nothing.</li><li>Reach the goal bird in as few moves as you can.</li></ol>
-    <p>Grey words cannot make a bird at this step. You can reuse words; going back counts as a move.</p>
-    <p>Every finish counts. A shortest route earns <strong>Perfect!</strong></p>
-  </section>
-  <section id="puzzle-screen" aria-label="Current puzzle" hidden>
-    <p class="objective">Connect the bird names in as few moves as you can.</p>
-    <div class="route-pair"><div class="endpoint"><span class="eyebrow">Start</span><p id="start-name" class="endpoint-name"></p></div><span class="pair-arrow" aria-hidden="true">→</span><div class="endpoint"><span class="eyebrow">Goal</span><p id="goal-name" class="endpoint-name"></p></div></div>
-    <section id="play" class="play" aria-label="Build your route">
-      <div class="current"><div><span class="eyebrow">Current bird</span><h2 id="current-name" class="current-name"></h2></div><div class="score"><span id="moves"></span><small id="best" hidden></small></div></div>
-      <div id="word-box" class="tile-grid" role="group" aria-label="Reusable words"></div>
-      <div class="preview"><div><span class="eyebrow">Next bird</span><p id="next-name" class="preview-name empty">Choose a word.</p></div><div class="preview-actions"><button type="button" class="link-button" data-action="cancel" disabled>Cancel</button><button type="button" class="primary" data-action="go" disabled>Go</button></div></div>
-    </section>
-    <details id="history" class="history"><summary id="history-label">Your route</summary><ol id="history-path" class="route-list"></ol></details>
-    <div id="restart-row" class="utility-row"><button type="button" id="restart-button" class="link-button" data-action="retry" disabled>Start again</button></div>
-    <section id="result" class="result" aria-labelledby="result-title" hidden>
-      <div class="result-heading"><h2 id="result-title" class="result-title" tabindex="-1"></h2><span id="result-count" class="result-count"></span></div>
-      <p id="result-description" class="result-description"></p>
-      <p id="next-daily-copy" class="result-description" hidden></p>
-      <div class="result-actions"><button type="button" id="next-puzzle-button" class="link-button" data-action="next-puzzle">Play more puzzles</button><button type="button" id="retry-main" class="primary" data-action="retry">Try a shorter route</button><button type="button" id="solution-button" class="link-button" data-action="solution" aria-expanded="false" aria-controls="solution">Show shortest route</button></div>
-      <section id="solution" class="solution" aria-labelledby="solution-heading" hidden><h3 id="solution-heading">One shortest route</h3><p id="solution-path"></p></section>
-      <div class="route-heading"><h3>Your route</h3><span id="bird-cue">Tap a bird for details</span></div>
-      <ol id="finished-path" class="route-list"></ol>
-      <details id="thumbnail-credits" class="thumbnail-credits" hidden><summary>Photo credits</summary><div id="thumbnail-credit-list" class="photo-credit"></div></details>
-      <article id="bird-detail" class="bird-article" aria-labelledby="bird-title" hidden>
-        <div class="bird-topline"><div><h3 id="bird-title" class="bird-title" tabindex="-1"></h3><p id="bird-latin" class="bird-latin"></p></div><button type="button" id="bird-close" class="link-button" data-action="close-bird">Close</button></div>
-        <figure class="bird-figure"><div id="bird-image-frame" class="bird-image-frame"><p id="bird-image-status" class="bird-image-status" role="status"></p></div><figcaption id="bird-photo-credit" class="photo-credit"></figcaption></figure>
-        <p id="bird-copy" class="name-copy"></p><div id="bird-sources" class="source-links"></div>
-      </article>
-    </section>
-  </section>
-  <section id="archive-screen" aria-labelledby="archive-heading" hidden>
-    <div class="archive-head"><h2 id="archive-heading" class="library-heading" tabindex="-1">Archive</h2></div>
-    <p id="archive-description" class="archive-description">Play a past puzzle, or improve your best.</p>
-    <p id="archive-empty" class="archive-empty" hidden>Past puzzles will appear here.</p><div id="archive-list"></div>
-  </section>
-  <footer class="game-footer">
-    <details id="about" class="about"><summary>About Bird to Bird</summary><div class="about-copy"><p>Names follow AviList’s official English list. Hyphenated words stay together; regional names may differ.</p><p id="attribution"></p><p id="mode-description">Progress stays in this browser. Starting again keeps your best route.</p><p><a href="https://ajin.im/" target="_self">made by ajin.im</a></p></div></details>
-    <p id="storage-notice" class="storage-notice" role="status" hidden>Progress cannot be saved in this browser. You can keep playing in this tab.</p>
-  </footer>
-  <p id="status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
-  <noscript><p>This game needs JavaScript enabled.</p></noscript>
-</main>
-</body></html>
+<!-- Authored URL compatibility page. The current generated game lives at /is/building/b2b/. -->
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'">
+<link rel="canonical" href="https://ajin.im/is/building/b2b/daily/">
+<title>Bird to Bird</title>
+<script src="/is/building/bird-to-bird/redirect.js" defer></script>
+<noscript><meta http-equiv="refresh" content="0;url=/is/building/b2b/daily/"></noscript>
+</head><body><p><a id="new-url" href="/is/building/b2b/daily/" target="_self">Continue to Bird to Bird</a></p></body></html>
