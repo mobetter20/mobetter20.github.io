@@ -65,8 +65,8 @@
     },
     {
       "path": "daily/app.js",
-      "bytes": 28447,
-      "sha256": "c7714ade27b90960759d8efa2169484fc456cdac431bf60aa3fda4ca2e73ef68",
+      "bytes": 28612,
+      "sha256": "a07f96c55effd22cb172aea3495c5e65705fc73a6a8aff991ee83fefb9c9b1a7",
       "role": "game-code",
       "license": "project-authored",
       "consumers": [
@@ -3717,7 +3717,7 @@
     {
       "path": "daily/boot.js",
       "bytes": 1035,
-      "sha256": "eb2f2fa8a651fa9a9eef20fcdc55a918d5f2f68b1745839ded7be5ff35cad014",
+      "sha256": "584afb7f6dd956136937ceed5d94c0f73029ac436556de32ae55d3ccc6da6363",
       "role": "game-code",
       "license": "project-authored",
       "consumers": [
@@ -3736,8 +3736,8 @@
     },
     {
       "path": "daily/index.html",
-      "bytes": 8441,
-      "sha256": "f56d023764ecbe607f664113240a5cdb4bf2bd2086b35014d037254a03a62bcf",
+      "bytes": 8024,
+      "sha256": "70e1a46bc6e48833c51aa96aa6116d6b1d700ce1888a4ea242fc720ffee81788",
       "role": "game-entry",
       "license": "project-authored",
       "consumers": [
@@ -3777,8 +3777,8 @@
     },
     {
       "path": "daily/styles.css",
-      "bytes": 11789,
-      "sha256": "57bd60ca697ca12276bd5736b57692d539112ae2ed0d8b210b64ca907c8ab212",
+      "bytes": 11673,
+      "sha256": "61b9aba7d55dc3589c0c3c8c4ebb23529508e7ad2c6c769add7c14bd333e3ad0",
       "role": "game-style",
       "license": "project-authored",
       "consumers": [
