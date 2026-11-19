@@ -1,0 +1,597 @@
+{
+  "version": 1,
+  "sourceVersion": "2026",
+  "schedule": [
+    {
+      "date": "2026-11-17",
+      "puzzleId": "bird-001"
+    },
+    {
+      "date": "2026-11-18",
+      "puzzleId": "bird-002"
+    },
+    {
+      "date": "2026-11-19",
+      "puzzleId": "bird-003"
+    },
+    {
+      "date": "2026-11-20",
+      "puzzleId": "bird-004"
+    },
+    {
+      "date": "2026-11-21",
+      "puzzleId": "bird-005"
+    },
+    {
+      "date": "2026-11-22",
+      "puzzleId": "bird-006"
+    },
+    {
+      "date": "2026-11-23",
+      "puzzleId": "bird-007"
+    },
+    {
+      "date": "2026-11-24",
+      "puzzleId": "bird-008"
+    },
+    {
+      "date": "2026-11-25",
+      "puzzleId": "bird-009"
+    },
+    {
+      "date": "2026-11-26",
+      "puzzleId": "bird-010"
+    },
+    {
+      "date": "2026-11-27",
+      "puzzleId": "bird-011"
+    },
+    {
+      "date": "2026-11-28",
+      "puzzleId": "bird-012"
+    },
+    {
+      "date": "2026-11-29",
+      "puzzleId": "bird-013"
+    },
+    {
+      "date": "2026-11-30",
+      "puzzleId": "bird-014"
+    },
+    {
+      "date": "2026-12-01",
+      "puzzleId": "bird-015"
+    },
+    {
+      "date": "2026-12-02",
+      "puzzleId": "bird-016"
+    },
+    {
+      "date": "2026-12-03",
+      "puzzleId": "bird-017"
+    },
+    {
+      "date": "2026-12-04",
+      "puzzleId": "bird-018"
+    },
+    {
+      "date": "2026-12-05",
+      "puzzleId": "bird-019"
+    },
+    {
+      "date": "2026-12-06",
+      "puzzleId": "bird-020"
+    },
+    {
+      "date": "2026-12-07",
+      "puzzleId": "bird-021"
+    },
+    {
+      "date": "2026-12-08",
+      "puzzleId": "bird-022"
+    },
+    {
+      "date": "2026-12-09",
+      "puzzleId": "bird-023"
+    },
+    {
+      "date": "2026-12-10",
+      "puzzleId": "bird-024"
+    },
+    {
+      "date": "2026-12-11",
+      "puzzleId": "bird-025"
+    },
+    {
+      "date": "2026-12-12",
+      "puzzleId": "bird-026"
+    },
+    {
+      "date": "2026-12-13",
+      "puzzleId": "bird-027"
+    },
+    {
+      "date": "2026-12-14",
+      "puzzleId": "bird-028"
+    },
+    {
+      "date": "2026-12-15",
+      "puzzleId": "bird-029"
+    },
+    {
+      "date": "2026-12-16",
+      "puzzleId": "bird-030"
+    }
+  ],
+  "rounds": [
+    {
+      "id": "bird-001",
+      "from": "avibase-00DA9D91",
+      "to": "avibase-49D9148A",
+      "parts": [
+        "COMMON",
+        "EGRET",
+        "GREAT",
+        "GULL",
+        "LITTLE",
+        "OWL",
+        "SOOTY"
+      ]
+    },
+    {
+      "id": "bird-002",
+      "from": "avibase-407E2CA8",
+      "to": "avibase-D0AA9105",
+      "parts": [
+        "CASPIAN",
+        "COLLARED",
+        "COMMON",
+        "GREY",
+        "GULL",
+        "MERGANSER",
+        "NIGHTJAR",
+        "PLOVER",
+        "TERN"
+      ]
+    },
+    {
+      "id": "bird-003",
+      "from": "avibase-E35448DE",
+      "to": "avibase-8897A0C5",
+      "parts": [
+        "COLLARED",
+        "FLYCATCHER",
+        "GREY",
+        "HAWK",
+        "NIGHTJAR",
+        "ORNATE",
+        "SUNBIRD",
+        "WAGTAIL",
+        "WHITE"
+      ]
+    },
+    {
+      "id": "bird-004",
+      "from": "avibase-93CA037F",
+      "to": "avibase-F4F72BD9",
+      "parts": [
+        "CASPIAN",
+        "GREY",
+        "GULL",
+        "NIGHTJAR",
+        "PIGEON",
+        "PLAIN",
+        "PLOVER",
+        "RUDDY",
+        "SUNBIRD"
+      ]
+    },
+    {
+      "id": "bird-005",
+      "from": "avibase-65BCBB64",
+      "to": "avibase-86D1B826",
+      "parts": [
+        "COLLARED",
+        "CRESTED",
+        "FLYCATCHER",
+        "KINGFISHER",
+        "MALACHITE",
+        "MYNA",
+        "ORNATE",
+        "PITTA",
+        "SUNBIRD"
+      ]
+    },
+    {
+      "id": "bird-006",
+      "from": "avibase-C39D115A",
+      "to": "avibase-1FFFEF4E",
+      "parts": [
+        "BARRED",
+        "GREY",
+        "HAWK",
+        "MOUNTAIN",
+        "PLOVER",
+        "WAGTAIL",
+        "WHITE"
+      ]
+    },
+    {
+      "id": "bird-007",
+      "from": "avibase-08DD4E80",
+      "to": "avibase-8FCDB881",
+      "parts": [
+        "CRESTED",
+        "DUCK",
+        "GREEN",
+        "HILL",
+        "IBIS",
+        "KINGFISHER",
+        "PIGEON",
+        "RUDDY",
+        "SWALLOW"
+      ]
+    },
+    {
+      "id": "bird-008",
+      "from": "avibase-A874F334",
+      "to": "avibase-2FFB2DBC",
+      "parts": [
+        "CASPIAN",
+        "GULL",
+        "LITTLE",
+        "PLAIN",
+        "RIVER",
+        "SOOTY",
+        "SUNBIRD",
+        "SWIFT",
+        "TERN"
+      ]
+    },
+    {
+      "id": "bird-009",
+      "from": "avibase-0A563359",
+      "to": "avibase-CDA2E56B",
+      "parts": [
+        "AMERICAN",
+        "BARBET",
+        "CRESTED",
+        "DUCK",
+        "KINGFISHER",
+        "MOUSTACHED",
+        "PIPIT",
+        "RUDDY",
+        "WOOD"
+      ]
+    },
+    {
+      "id": "bird-010",
+      "from": "avibase-4976BF1D",
+      "to": "avibase-EA53492B",
+      "parts": [
+        "ALBATROSS",
+        "EGRET",
+        "GREAT",
+        "GREBE",
+        "LITTLE",
+        "OWL",
+        "SNOWY",
+        "SOOTY",
+        "SWIFT"
+      ]
+    },
+    {
+      "id": "bird-011",
+      "from": "avibase-4D28A0CD",
+      "to": "avibase-7DB7D6CE",
+      "parts": [
+        "BABBLER",
+        "COMMON",
+        "LITTLE",
+        "MOUSTACHED",
+        "SOOTY",
+        "SWIFT",
+        "TERN"
+      ]
+    },
+    {
+      "id": "bird-012",
+      "from": "avibase-60EA3FA9",
+      "to": "avibase-40A2405D",
+      "parts": [
+        "AFRICAN",
+        "ALBATROSS",
+        "CORMORANT",
+        "EGRET",
+        "LITTLE",
+        "OWL",
+        "SNOWY",
+        "SOOTY",
+        "THRUSH"
+      ]
+    },
+    {
+      "id": "bird-013",
+      "from": "avibase-E0ED3A27",
+      "to": "avibase-21BA7041",
+      "parts": [
+        "BABBLER",
+        "BANDED",
+        "BARBET",
+        "COMMON",
+        "GOLDEN",
+        "KINGFISHER",
+        "MOUSTACHED",
+        "SWALLOW",
+        "WREN"
+      ]
+    },
+    {
+      "id": "bird-014",
+      "from": "avibase-32E65FB3",
+      "to": "avibase-6647508A",
+      "parts": [
+        "ASHY",
+        "BLACK-HEADED",
+        "BULBUL",
+        "CHESTNUT",
+        "GIANT",
+        "KINGFISHER",
+        "RUDDY",
+        "WEAVER",
+        "WOODPECKER"
+      ]
+    },
+    {
+      "id": "bird-015",
+      "from": "avibase-546FA5F2",
+      "to": "avibase-BC75EA9A",
+      "parts": [
+        "BANDED",
+        "BARBET",
+        "CRESTED",
+        "GIANT",
+        "GREY",
+        "KINGFISHER",
+        "MOUSTACHED",
+        "WAXBILL",
+        "WREN"
+      ]
+    },
+    {
+      "id": "bird-016",
+      "from": "avibase-A41CD4E7",
+      "to": "avibase-8E872FAA",
+      "parts": [
+        "BLACK",
+        "FOREST",
+        "HARRIER",
+        "HERON",
+        "PIED",
+        "THRUSH",
+        "WAGTAIL"
+      ]
+    },
+    {
+      "id": "bird-017",
+      "from": "avibase-F600592A",
+      "to": "avibase-59A5A24E",
+      "parts": [
+        "BABBLER",
+        "COLLARED",
+        "DUSKY",
+        "GOLDEN",
+        "GROSBEAK",
+        "NIGHTJAR",
+        "PLAIN",
+        "SWIFT",
+        "YELLOW"
+      ]
+    },
+    {
+      "id": "bird-018",
+      "from": "avibase-245D312A",
+      "to": "avibase-84F096F7",
+      "parts": [
+        "CRESTED",
+        "CUCKOO",
+        "DUSKY",
+        "HUMMINGBIRD",
+        "MANGROVE",
+        "MUNIA",
+        "PIGEON",
+        "SPECKLED",
+        "WARBLER"
+      ]
+    },
+    {
+      "id": "bird-019",
+      "from": "avibase-9E8F1FEB",
+      "to": "avibase-0A563359",
+      "parts": [
+        "BANDED",
+        "BARBET",
+        "ELEGANT",
+        "GROUND",
+        "MOUSTACHED",
+        "PARROT",
+        "TIT",
+        "WOODPECKER",
+        "WREN"
+      ]
+    },
+    {
+      "id": "bird-020",
+      "from": "avibase-FF41B79F",
+      "to": "avibase-4D5D2BC3",
+      "parts": [
+        "AFRICAN",
+        "BLACK",
+        "BROWN",
+        "CRAKE",
+        "CUCKOO",
+        "GREAT",
+        "LESSER",
+        "SKUA",
+        "THRUSH"
+      ]
+    },
+    {
+      "id": "bird-021",
+      "from": "avibase-BDA1AC35",
+      "to": "avibase-8885A375",
+      "parts": [
+        "BLUE-WINGED",
+        "ELEGANT",
+        "GROUND",
+        "ORNATE",
+        "PARROT",
+        "PITTA",
+        "SUNBIRD",
+        "TIT"
+      ]
+    },
+    {
+      "id": "bird-022",
+      "from": "avibase-D3B8C7BE",
+      "to": "avibase-A6EA9F02",
+      "parts": [
+        "BABBLER",
+        "COLLARED",
+        "GREY",
+        "NIGHTJAR",
+        "PIGEON",
+        "PLAIN",
+        "SPECKLED",
+        "SUNBIRD"
+      ]
+    },
+    {
+      "id": "bird-023",
+      "from": "avibase-AE073221",
+      "to": "avibase-1C98EA2F",
+      "parts": [
+        "BLACK",
+        "GREY",
+        "MOUNTAIN",
+        "PIED",
+        "PLOVER",
+        "THRUSH",
+        "WAGTAIL",
+        "WAXBILL",
+        "WHEATEAR"
+      ]
+    },
+    {
+      "id": "bird-024",
+      "from": "avibase-A28D8D38",
+      "to": "avibase-ADD8E888",
+      "parts": [
+        "ALBATROSS",
+        "BLACK",
+        "DESERT",
+        "LARK",
+        "MONARCH",
+        "OWL",
+        "SNOWY",
+        "SOOTY",
+        "WHEATEAR"
+      ]
+    },
+    {
+      "id": "bird-025",
+      "from": "avibase-310AEDC8",
+      "to": "avibase-1FFFEF4E",
+      "parts": [
+        "BABBLER",
+        "CASPIAN",
+        "COMMON",
+        "GREY",
+        "GULL",
+        "LITTLE",
+        "MOUNTAIN",
+        "PLOVER",
+        "TERN"
+      ]
+    },
+    {
+      "id": "bird-026",
+      "from": "avibase-A091D50A",
+      "to": "avibase-F6F87349",
+      "parts": [
+        "BLACK",
+        "DESERT",
+        "HARRIER",
+        "LARK",
+        "NORTHERN",
+        "OWL",
+        "PIED",
+        "WHEATEAR"
+      ]
+    },
+    {
+      "id": "bird-027",
+      "from": "avibase-C2AD2E83",
+      "to": "avibase-02E004AD",
+      "parts": [
+        "BANDED",
+        "BUZZARD",
+        "FOREST",
+        "KINGFISHER",
+        "MOUNTAIN",
+        "OLIVE",
+        "WAGTAIL",
+        "WHITE",
+        "WOODPECKER"
+      ]
+    },
+    {
+      "id": "bird-028",
+      "from": "avibase-078BC0ED",
+      "to": "avibase-98C0C634",
+      "parts": [
+        "BLACK",
+        "BOWERBIRD",
+        "DESERT",
+        "GOLDEN",
+        "HERON",
+        "LARK",
+        "MONARCH",
+        "PIED",
+        "WHEATEAR"
+      ]
+    },
+    {
+      "id": "bird-029",
+      "from": "avibase-92F622EE",
+      "to": "avibase-31B7FC11",
+      "parts": [
+        "FOREST",
+        "KINGFISHER",
+        "MOUNTAIN",
+        "ROBIN",
+        "SCARLET",
+        "TANAGER",
+        "THRUSH",
+        "VERMILION",
+        "WESTERN"
+      ]
+    },
+    {
+      "id": "bird-030",
+      "from": "avibase-1A87E3A9",
+      "to": "avibase-D6F5D224",
+      "parts": [
+        "DUSKY",
+        "ELEGANT",
+        "FAIRY",
+        "FLYCATCHER",
+        "GROUND",
+        "PARROT",
+        "PITTA",
+        "TIT",
+        "WILLOW"
+      ]
+    }
+  ]
+}
