@@ -44,7 +44,7 @@ The `add` command implements steps 2 through 4 below, including lossless convers
    | `alt` | Describe the relevant scene and include the words needed to understand the joke. |
    | `caption` | Separate caption text, or an empty string when the caption is already in the artwork. |
    | `featured` | Set new pieces to `false`. Austen stays on Home until Ajin asks to change it. |
-   | `show_title` | Optional boolean, default `false`. Set to `true` when an external title adds meaning or sets up the joke; it becomes a visible heading above the artwork. |
+   | `show_title` | Optional boolean, default `false`. Set to `true` only when Ajin explicitly requests a visible external title on readers, slides and the overview. A supplied title or useful context is not permission to show it. |
    | `mobile_panels` | Optional integer `2`, only for a deliberately composed 2:1 image containing two equal square panels. See the mobile guidance below. |
 
 4. Keep `fallback_slug` set to `austen-at-work`. New pieces appear in Writing automatically. Sorting is by publication date, newest first; equal-date image entries retain their catalog order. Prepending a new same-day batch keeps that batch first without alphabetizing it. Undated work follows dated work.
@@ -56,7 +56,7 @@ The `add` command implements steps 2 through 4 below, including lossless convers
 
 Keep the entire image and its native full-size link on the artwork itself, without a separate “View full size” text link. Standalone cartoon readers have one “All cartoons” link above the artwork and “Back to writing” in the footer, matching the collection's navigation hierarchy. Embedded titles and captions do not need a second visible copy outside the image. Each reader still has an accessible page heading.
 
-An external title can be part of the work. “When you grow up poor” supplies the childhood context before the gum joke, so it is visibly displayed above the image using `show_title: true`. “A gifted child” uses the same opt-in treatment. This does not make visible headings the default for other pieces. The title remains in the browser tab, social metadata and Writing list regardless of its visibility on the reader.
+Hide external titles on individual readers, slides and the overview by default, including “When you grow up poor”. Ajin will include necessary setup or context in the image. Only an explicit request to display a particular title permits `show_title: true`; naming the piece does not. Its title stays in the browser tab, social/sharing metadata, Writing list and accessible heading, and its URL stays unchanged. Preserve existing separate captions, including Austen’s joke.
 
 The shared credit is **“Words and ideas by Ajin. Illustrations generated with AI.”** Its source is `CREDIT` in [_scripts/image_pieces.py](_scripts/image_pieces.py). It belongs at the bottom of cartoon overview, slides and individual readers. It does not belong on Home, the Writing selection, Browse all or a generic Writing footer.
 
@@ -145,6 +145,10 @@ When changing publisher verification, install the reviewed runtime under its hel
 Keep documentation focused: current rules in AGENTS.md, operational instructions and significant changes here, exact diffs in Git. For investigation, use `git log --oneline`, `git show <commit>`, or `git log -- <path>`. Do not create a second exhaustive change log or describe planned work as implemented.
 
 ## Change record
+
+### 2026-11-19: cartoon titles hidden by default
+
+Removed the four existing visible-title overrides and applied the same default to individual readers, slides and the overview. Visible external headings now require Ajin’s explicit request. Titles, URLs, accessible names and sharing details remain intact, as do the original artwork and separate captions. The release PR records responsive, navigation and live checks.
 
 ### 2026-11-10: hand-picked Writing edition
 
