@@ -13,6 +13,26 @@
   "manifestIntegrity": "Payload files are hashed below. The manifest does not hash itself; its SHA-256 is returned by the build and verification command.",
   "files": [
     {
+      "path": "assets/fonts/fraunces-500.ttf",
+      "bytes": 71596,
+      "sha256": "0c2fad18ed36cc400041f1e281ee79954a329b345caffc38dfaa3bb8bcef57de",
+      "role": "font",
+      "license": "SIL OFL 1.1",
+      "consumers": [
+        "daily/styles.css"
+      ]
+    },
+    {
+      "path": "assets/fonts/OFL-Fraunces.txt",
+      "bytes": 4391,
+      "sha256": "bdf4c22802eaf804f998195871c6b8938aac2ac14b2d78a8bd66a6f1eced833b",
+      "role": "font-license",
+      "license": "SIL OFL 1.1",
+      "consumers": [
+        "credits.html"
+      ]
+    },
+    {
       "path": "assets/fonts/OFL-Space-Grotesk.txt",
       "bytes": 4401,
       "sha256": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943",
@@ -34,18 +54,19 @@
     },
     {
       "path": "credits.html",
-      "bytes": 111928,
-      "sha256": "0869605a06ca26a1bf6d554215080cbe2683eaee32623f97fa504c531eaecf2a",
+      "bytes": 112041,
+      "sha256": "14f1380276e586fc64a6daa886d2734c7dd8db58efed03bc802ecb57e6c31b6a",
       "role": "attribution",
       "license": "attribution-records",
       "consumers": [
+        "daily/index.html",
         "index.html"
       ]
     },
     {
       "path": "daily/app.js",
-      "bytes": 24691,
-      "sha256": "452351df63eaed5a80abc8a461c93af85afde8e8cda83499a1fa2dfa4e0a0cfe",
+      "bytes": 28447,
+      "sha256": "c7714ade27b90960759d8efa2169484fc456cdac431bf60aa3fda4ca2e73ef68",
       "role": "game-code",
       "license": "project-authored",
       "consumers": [
@@ -3695,8 +3716,8 @@
     },
     {
       "path": "daily/boot.js",
-      "bytes": 1036,
-      "sha256": "0d7f74fdb3592ffa87e8cae7bfa61ca4dbf19a3cd8d5ce9bbc8f82e9e2585f1c",
+      "bytes": 1035,
+      "sha256": "eb2f2fa8a651fa9a9eef20fcdc55a918d5f2f68b1745839ded7be5ff35cad014",
       "role": "game-code",
       "license": "project-authored",
       "consumers": [
@@ -3715,8 +3736,8 @@
     },
     {
       "path": "daily/index.html",
-      "bytes": 7470,
-      "sha256": "34caafd66511add9bdf9cf6dcfa1ab9f2edc219275f5a3006583782355e553ee",
+      "bytes": 8441,
+      "sha256": "f56d023764ecbe607f664113240a5cdb4bf2bd2086b35014d037254a03a62bcf",
       "role": "game-entry",
       "license": "project-authored",
       "consumers": [
@@ -3756,8 +3777,8 @@
     },
     {
       "path": "daily/styles.css",
-      "bytes": 1797,
-      "sha256": "1bfbca07009fecbc313d2134cb8d425fe08aae54b852ee2ff55ad67110a00e89",
+      "bytes": 11789,
+      "sha256": "57bd60ca697ca12276bd5736b57692d539112ae2ed0d8b210b64ca907c8ab212",
       "role": "game-style",
       "license": "project-authored",
       "consumers": [
