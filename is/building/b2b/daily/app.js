@@ -1,9 +1,9 @@
-import {createDailySession,nextMidnightDelay} from './state.js?v=daily-5';
+import {createDailySession,nextMidnightDelay} from './state.js?v=daily-6';
 import {SOURCE,LEXICON} from '../route/world-lexicon.js';
 
 async function loadData(){
     return await Promise.all(['content.json','notes.json','media.json'].map(async file=>{
-      const response=await fetch(new URL(`${file}?v=daily-5`,import.meta.url));
+      const response=await fetch(new URL(`${file}?v=daily-6`,import.meta.url));
       if(!response.ok)throw new Error(`Could not load ${file}`);
       const value=await response.json();
       if(!value||typeof value!=='object'||Array.isArray(value))throw new Error(`Invalid ${file}`);
@@ -19,12 +19,11 @@ const calendar=[...content.schedule].sort((a,b)=>a.date.localeCompare(b.date));
 const engine=session.engine;
 const ui={screen:'puzzle',helpOpen:false,menuOpen:false,solutionShown:false,note:null,rolloverNotice:false};
 const els=Object.fromEntries([...root.querySelectorAll('[id]')].map(el=>[el.id,el]));
-const buttons={cancel:root.querySelector('[data-action="cancel"]'),go:root.querySelector('[data-action="go"]')};
 const nameBoard=root.querySelector('.name-board');
 const tiles=new Map();
 const mediaBase=new URL('./',import.meta.url);
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
-let boardId=null,pathSignature='',previewSignature='',historySignature='',mediaBirdId=null,currentPhoto=null;
+let boardId=null,pathSignature='',currentSignature='',historySignature='',mediaBirdId=null,currentPhoto=null;
 
 function text(el,value){if(el.textContent!==value)el.textContent=value;}
 function moveText(n){return `${n} ${n===1?'move':'moves'}`;}
@@ -57,19 +56,24 @@ function nameNodes(bird,previous=null){
 }
 function showStorageStatus(){els['storage-notice'].hidden=!session.storageUnavailable;}
 function persist(){session.persist();showStorageStatus();}
+function discardLegacyDraft(){
+  // Only the active date may have just been refreshed from another tab. Clearing
+  // other dates here could overwrite newer routes that this tab has not loaded.
+  if(session.activeDate&&engine.clearDraft())persist();
+}
 function announce(message){text(els.status,message);}
 function dateLabel(date,options={day:'numeric',month:'long',year:'numeric'}){return new Intl.DateTimeFormat('en-GB',options).format(new Date(`${date}T12:00:00`));}
 function currentView(){return session.activeDate?engine.view():null;}
 function puzzleIndex(date=session.activeDate){return calendar.findIndex(entry=>entry.date===date);}
 function puzzleLabel(date){return isPlaytest?`Puzzle ${puzzleIndex(date)+1}`:dateLabel(date);}
 function puzzleUrl(date,playtest=isPlaytest){
-  const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('v','daily-5');
+  const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('v','daily-6');
   if(playtest){url.searchParams.set('mode','playtest');url.searchParams.set('puzzle',(calendar.find(entry=>entry.date===date)||calendar[0]).puzzleId);}
   else if(date)url.searchParams.set('date',date);
   return url;
 }
 function scrollTop(){window.scrollTo({top:0,behavior:'instant'});}
-function firstTile(){return [...tiles.values()].find(tile=>!tile.disabled);}
+function firstTile(){return els['word-box'].querySelector('.tile:not(:disabled)');}
 function focusPuzzleHeading(){els['game-heading'].focus({preventScroll:true});scrollTop();}
 
 function makePath(path,withDetails=false){
@@ -104,15 +108,24 @@ function makePath(path,withDetails=false){
 function renderThumbnailCredits(path){
   const unique=[...new Map(path.filter(b=>hasBirdDetail(b.id)).map(b=>[b.id,b])).values()];
   els['thumbnail-credits'].hidden=!unique.length;
-  els['thumbnail-credit-list'].replaceChildren();
-  if(!unique.length)return;
-  const intro=document.createElement('p');intro.textContent='Source previews are unchanged. Smaller previews are cropped for the route; larger photos keep the source framing.';els['thumbnail-credit-list'].append(intro);
-  for(const bird of unique){
-    const media=NAME_NOTE_IMAGES[bird.id],p=document.createElement('p');
-    p.append(`${bird.name}: `,link(media.title||bird.name,media.sourcePage),` by ${media.creator} · `,link(media.license,media.licenseUrl));
-    if(media.licenseNotice)p.append(' ',link(media.licenseNotice,media.licenseNoticeSource));
-    els['thumbnail-credit-list'].append(p);
-  }
+  const rows=unique.map(bird=>{
+    const media=NAME_NOTE_IMAGES[bird.id],row=document.createElement('li');
+    row.className='credit-row';row.dataset.birdId=bird.id;
+    const heading=document.createElement('h3');heading.textContent=bird.name;
+    const creator=document.createElement('p');creator.className='credit-creator';creator.textContent=media.creator;
+    const actions=document.createElement('div');actions.className='credit-actions';
+    const details=document.createElement('details');details.className='credit-details';
+    const summary=document.createElement('summary');summary.textContent='Details';
+    const title=document.createElement('p');title.textContent=media.title||bird.name;
+    const changes=document.createElement('p');changes.textContent=media.changes;
+    details.append(summary,title,changes);
+    if(media.licenseNotice){
+      const notice=document.createElement('p');notice.append(media.licenseNotice,' ',link('License history',media.licenseNoticeSource));details.append(notice);
+    }
+    actions.append(link('Source photo',media.sourcePage),link(media.license,media.licenseUrl),details);
+    row.append(heading,creator,actions);return row;
+  });
+  els['thumbnail-credit-list'].replaceChildren(...rows);
 }
 function clearPhoto(){
   currentPhoto?.removeAttribute('src');currentPhoto=null;mediaBirdId=null;
@@ -197,38 +210,32 @@ function renderBoard(view){
     });
     for(const part of [...view.round.parts].sort()){
       const button=document.createElement('button');button.type='button';button.className='tile';button.dataset.part=part;
-      button.textContent=part.charAt(0)+part.slice(1).toLowerCase();button.setAttribute('aria-pressed','false');tiles.set(part,button);
+      button.textContent=part.charAt(0)+part.slice(1).toLowerCase();tiles.set(part,button);
       columns[firstWords.has(part)?0:1].append(button);
     }
     els['word-box'].replaceChildren(...columns);
   }
-  text(els['goal-name'],view.target.name);text(els['current-name'],view.current.name);
+  text(els['goal-name'],view.target.name);text(els.moves,moveText(view.moves));
   els.best.hidden=view.bestMoves===null;text(els.best,view.bestMoves===null?'':`Best: ${moveText(view.bestMoves)}`);
   els.play.hidden=view.won;els.history.hidden=view.won;
   const available=new Set(view.replacements.map(r=>r.part));
-  const pending=view.completeBird?.parts.find((p,i)=>p!==view.current.parts[i]);
-  for(const [part,tile]of tiles){tile.disabled=view.won||!available.has(part);tile.setAttribute('aria-pressed',String(part===pending));}
-  buttons.cancel.disabled=!view.completeBird;buttons.go.disabled=!view.completeBird;
-  els['restart-button'].disabled=view.moves===0&&!view.draft.length;
-  els['preview-caption'].setAttribute('aria-hidden',String(!view.completeBird));
-  const signature=`${view.round.id}|${view.current.id}|${view.completeBird?.id||''}`;
-  if(signature!==previewSignature){
-    previewSignature=signature;
-    const bird=view.completeBird||view.current,fragment=document.createDocumentFragment();
+  for(const [part,tile]of tiles)tile.disabled=view.won||!available.has(part);
+  els['restart-button'].disabled=view.moves===0;
+  const signature=`${view.round.id}|${view.current.id}`;
+  if(signature!==currentSignature){
+    currentSignature=signature;
+    const bird=view.current,fragment=document.createDocumentFragment();
     let cursor=0;
-    for(const [index,part]of bird.parts.entries()){
+    for(const part of bird.parts){
       const start=bird.name.toUpperCase().indexOf(part,cursor),piece=document.createElement('span');
-      piece.className='name-part';
-      piece.classList.toggle('long-name',part.length>=10);
+      piece.className='name-part';piece.classList.toggle('long-name',part.length>=10);
       piece.textContent=bird.name.slice(start,start+part.length);
-      piece.classList.toggle('changed',Boolean(view.completeBird)&&part!==view.current.parts[index]);
       fragment.append(piece);cursor=start+part.length;
     }
-    els['next-name'].replaceChildren(fragment);
-    els['next-name'].setAttribute('aria-label',`${view.completeBird?'Preview':'Current bird'}: ${bird.name}`);
+    els['current-name'].replaceChildren(fragment);
+    els['current-name'].setAttribute('aria-label',`Current bird: ${bird.name}`);
   }
-  text(els['history-label'],moveText(view.moves));
-  els['history-label'].setAttribute('aria-label',`Your route: ${moveText(view.moves)}`);
+  text(els['history-label'],'Your route');
   const history=`${view.round.id}|${view.path.map(b=>b.id).join('|')}`;
   if(history!==historySignature){historySignature=history;els['history-path'].replaceChildren(...makePath(view.path));}
   renderResult(view);
@@ -236,7 +243,7 @@ function renderBoard(view){
   requestAnimationFrame(updateNameLayout);
 }
 function updateNameLayout(){
-  const [first,second]=els['next-name'].children;
+  const [first,second]=els['current-name'].children;
   nameBoard.classList.toggle('is-stacked',Boolean(first&&second&&second.offsetTop>first.offsetTop));
 }
 function handleResize(){renderMenu();updateNameLayout();}
@@ -261,6 +268,9 @@ function handleDocumentPointerDown(event){
   closeMenu({restoreFocus:els['game-menu'].contains(document.activeElement)});
 }
 function handleRootKeydown(event){
+  // Enter can commit a word and move focus to another word or Next puzzle.
+  // A held key must not activate that newly focused button repeatedly.
+  if(event.repeat&&(event.key==='Enter'||event.key===' ')&&event.target.closest('button')){event.preventDefault();return;}
   if(event.key!=='Escape')return;
   if(ui.menuOpen){event.preventDefault();closeMenu({restoreFocus:true});}
   else if(ui.helpOpen){event.preventDefault();handleHelpClose();}
@@ -291,8 +301,9 @@ function renderArchive(){
     else{date.dateTime=puzzle.date;date.textContent=dateLabel(puzzle.date,{weekday:'short',day:'numeric',month:'short'});}
     const birds=document.createElement('span');birds.className='archive-birds';birds.textContent=`${puzzle.from} → ${puzzle.to}`;title.append(date,birds);
     const status=document.createElement('span');status.className='puzzle-status';
-    status.textContent=puzzle.status==='in-progress'?`In progress · ${moveText(puzzle.moves)}`:puzzle.bestMoves!==null?`${puzzle.perfect?'Perfect':'Best'} · ${moveText(puzzle.bestMoves)}`:'Not started';
-    if(puzzle.status==='in-progress'&&puzzle.bestMoves!==null){const best=document.createElement('small');best.textContent=`Best · ${moveText(puzzle.bestMoves)}`;status.append(' ',best);}
+    const inProgress=puzzle.status==='in-progress'&&puzzle.moves>0;
+    status.textContent=inProgress?`In progress · ${moveText(puzzle.moves)}`:puzzle.bestMoves!==null?`${puzzle.perfect?'Perfect':'Best'} · ${moveText(puzzle.bestMoves)}`:'Not started';
+    if(inProgress&&puzzle.bestMoves!==null){const best=document.createElement('small');best.textContent=`Best · ${moveText(puzzle.bestMoves)}`;status.append(' ',best);}
     button.append(title,status);row.append(button);list.append(row);
   }
   els['archive-list'].replaceChildren(fragment);
@@ -313,6 +324,7 @@ function renderDateAndNotice(){
   text(els['new-today-button'],available?'Play today':'Today');
 }
 function renderScreen(){
+  discardLegacyDraft();
   const view=currentView(),archive=ui.screen==='archive';
   els['puzzle-screen'].hidden=archive||!view;els['archive-screen'].hidden=!archive;els['empty-screen'].hidden=archive||Boolean(view);
   text(els['archive-button'],'Puzzles');
@@ -416,6 +428,28 @@ function handleRetry(){
   ui.note=null;ui.solutionShown=false;els.history.open=false;els['thumbnail-credits'].open=false;
   persist();renderScreen();firstTile()?.focus({preventScroll:true});scrollTop();announce('New attempt. Your best route is kept.');
 }
+function handleWordCommit(part){
+  if(!session.activeDate)return;
+  // A stale draft from an older client must never make the first same-word tap a no-op.
+  const discarded=engine.clearDraft();
+  if(!engine.setReplacement(part)){
+    if(discarded){persist();renderScreen();}
+    return;
+  }
+  if(!engine.commitBird()){
+    engine.clearDraft();persist();renderScreen();return;
+  }
+  persist();const view=renderScreen();
+  if(view.won){
+    els['next-puzzle-button'].focus({preventScroll:true});announce(`${view.perfect?'Perfect!':'You made it.'} ${moveText(view.moves)}.`);
+  }else{
+    firstTile()?.focus({preventScroll:true});announce(`${view.current.name}. ${moveText(view.moves)}.`);
+    if(!reducedMotion.matches){
+      els['perch-bird'].classList.remove('is-hopping');
+      requestAnimationFrame(()=>els['perch-bird'].classList.add('is-hopping'));
+    }
+  }
+}
 function handleRouteClick(event){
   const button=event.target.closest('button');if(!button||!root.contains(button)||button.disabled)return;
   if(button.id==='archive-button'||button.dataset.action==='archive'){handleArchiveToggle();return;}
@@ -430,26 +464,7 @@ function handleRouteClick(event){
   if(button.dataset.action==='next-puzzle'){handleNextPuzzle();return;}
   if(button.dataset.action==='solution'){handleSolutionToggle();return;}
   if(button.dataset.action==='close-bird'){handleBirdClose();return;}
-  if(!session.activeDate)return;
-  let accepted=false;
-  if(button.dataset.part)accepted=engine.setReplacement(button.dataset.part);
-  else if(button.dataset.action==='cancel')accepted=engine.clearDraft();
-  else if(button.dataset.action==='go')accepted=engine.commitBird();
-  if(!accepted)return;
-  persist();const view=renderScreen();
-  if(button.dataset.part){
-    button.focus({preventScroll:true});
-    if(!reducedMotion.matches)els['next-name'].querySelector('.changed')?.classList.add('is-settling');
-    announce(`Next bird: ${view.completeBird.name}. Press Go to make the move.`);
-  }else if(view.won){
-    els['next-puzzle-button'].focus({preventScroll:true});announce(`${view.perfect?'Perfect!':'You made it.'} ${moveText(view.moves)}.`);
-  }else{
-    firstTile()?.focus({preventScroll:true});announce(button.dataset.action==='cancel'?'Preview cleared.':`${view.current.name}. ${moveText(view.moves)}.`);
-    if(button.dataset.action==='go'&&!reducedMotion.matches){
-      els['perch-bird'].classList.remove('is-hopping');
-      requestAnimationFrame(()=>els['perch-bird'].classList.add('is-hopping'));
-    }
-  }
+  if(button.dataset.part)handleWordCommit(button.dataset.part);
 }
 root.addEventListener('click',handleRouteClick);
 root.addEventListener('keydown',handleRootKeydown);
@@ -459,7 +474,7 @@ document.fonts.ready.then(updateNameLayout);
 selectFromLocation(true);
 renderScreen();
 const nameLayoutObserver=typeof ResizeObserver==='function'?new ResizeObserver(updateNameLayout):null;
-nameLayoutObserver?.observe(els['next-name']);
+nameLayoutObserver?.observe(els['current-name']);
 scheduleMidnight();
 window.addEventListener('popstate',handlePopState);
 window.addEventListener('focus',handleRollover);

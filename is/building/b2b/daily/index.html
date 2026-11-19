@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'">
   <meta name="description" content="Connect bird names in as few moves as you can.">
   <title>Bird to Bird</title><link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=daily-5">
-  <script type="module" src="boot.js?v=daily-5"></script>
+  <link rel="stylesheet" href="styles.css?v=daily-6">
+  <script type="module" src="boot.js?v=daily-6"></script>
 </head>
 <body class="natural perch">
 <main id="game" class="game" aria-label="Bird to Bird" aria-busy="true">
@@ -26,24 +26,23 @@
   <section id="empty-screen" class="empty-state" aria-labelledby="empty-heading" hidden><h2 id="empty-heading" tabindex="-1">No puzzle for today</h2><p id="empty-copy"></p><button type="button" class="link-button" data-action="archive">Open archive</button></section>
   <section id="how-to" class="help" aria-labelledby="help-heading" hidden>
     <div class="help-heading"><h2 id="help-heading">How to play</h2><button type="button" id="help-close" class="link-button">Close</button></div>
-    <p>Change one word to make another bird name.</p>
+    <p>Tap an available word to change your bird. Each tap makes one move.</p>
     <p class="help-example"><mark class="changed">Common</mark> Gull → <mark class="changed">Little</mark> Gull</p>
-    <ol><li>Choose an available word to preview the next bird.</li><li>Press <strong>Go</strong> to make the move. Previewing costs nothing.</li><li>Reach the goal bird in as few moves as you can.</li></ol>
+    <p>Reach the goal bird in as few moves as you can.</p>
     <p>Grey words cannot make a bird at this step. You can reuse words; going back counts as a move.</p>
     <p>Every finish counts. A shortest route earns <strong>Perfect!</strong></p>
   </section>
   <section id="puzzle-screen" aria-label="Current puzzle" hidden>
     <p class="goal"><span>Reach</span> <strong id="goal-name"></strong></p>
     <section id="play" class="play" aria-label="Build your route">
-      <div id="preview-caption" class="preview-caption" aria-hidden="true"><span id="current-name"></span><span>Preview</span></div>
+      <div class="current-meta"><span>Current bird</span><span id="moves">0 moves</span></div>
       <div class="name-board">
         <svg id="perch-bird" class="perch-bird" viewBox="0 0 52 45" aria-hidden="true" focusable="false"><path class="bird-feet" d="M21 32v9m9-9v9"/><path class="bird-body" d="M3 26c13 0 14-19 25-21 13-3 20 9 14 20-6 12-22 14-34 7-4-2-6-4-5-6Z"/><path class="bird-beak" d="m43 11 9 4-9 3Z"/><circle class="bird-eye" cx="35" cy="13" r="2"/></svg>
-        <h2 id="next-name" class="perch-name"></h2>
+        <h2 id="current-name" class="perch-name"></h2>
       </div>
       <div id="word-box" class="tile-grid" role="group" aria-label="Reusable words"></div>
-      <div class="preview-actions"><button type="button" class="link-button" data-action="cancel" disabled>Cancel</button><button type="button" class="primary" data-action="go" disabled>Go</button><span class="action-balance" aria-hidden="true"></span></div>
     </section>
-    <details id="history" class="history"><summary id="history-label">0 moves</summary><small id="best" hidden></small><ol id="history-path" class="route-list"></ol></details>
+    <details id="history" class="history"><summary id="history-label">Your route</summary><small id="best" hidden></small><ol id="history-path" class="route-list"></ol></details>
     <section id="result" class="result" aria-labelledby="result-title" hidden>
       <div class="result-heading"><h2 id="result-title" class="result-title" tabindex="-1"></h2><span id="result-count" class="result-count"></span></div>
       <p id="result-description" class="result-description"></p>
@@ -52,7 +51,7 @@
       <section id="solution" class="solution" aria-labelledby="solution-heading" hidden><h3 id="solution-heading">One shortest route</h3><p id="solution-path"></p></section>
       <div class="route-heading"><h3>Your route</h3><span id="bird-cue">Tap a bird for details</span></div>
       <ol id="finished-path" class="route-list"></ol>
-      <details id="thumbnail-credits" class="thumbnail-credits" hidden><summary>Photo credits</summary><div id="thumbnail-credit-list" class="photo-credit"></div></details>
+      <details id="thumbnail-credits" class="thumbnail-credits" hidden><summary>Photo credits</summary><ul id="thumbnail-credit-list" class="credit-list"></ul></details>
       <article id="bird-detail" class="bird-article" aria-labelledby="bird-title" hidden>
         <div class="bird-topline"><div><h3 id="bird-title" class="bird-title" tabindex="-1"></h3><p id="bird-latin" class="bird-latin"></p></div><button type="button" id="bird-close" class="link-button" data-action="close-bird">Close</button></div>
         <figure class="bird-figure"><div id="bird-image-frame" class="bird-image-frame"><p id="bird-image-status" class="bird-image-status" role="status"></p></div><figcaption id="bird-photo-credit" class="photo-credit"></figcaption></figure>
