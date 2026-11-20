@@ -3,6 +3,17 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "the-perfect-amount-of-tea",
+      "title": "The perfect amount of tea",
+      "published_date": "2026-11-20",
+      "image": "/assets/paper/pieces/the-perfect-amount-of-tea.webp",
+      "width": 1024,
+      "height": 1280,
+      "alt": "Two panels. A teapot fills a blue mug right to the brim. A green character carries the mug, spilling tea onto the floor. The caption reads: “The perfect amount of tea is more than I can carry.”",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "other",
       "title": "Other?",
       "published_date": "2026-11-19",
