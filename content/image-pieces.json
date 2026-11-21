@@ -3,6 +3,17 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "i-hurt-new-york",
+      "title": "I Hurt New York",
+      "published_date": "2026-11-21",
+      "image": "/assets/paper/pieces/i-hurt-new-york.webp",
+      "width": 1536,
+      "height": 1024,
+      "alt": "Two white T-shirts on hangers. The left reads “I [red heart] NY” with a $20 price tag. The right replaces the heart with a red house and has a $1,000,000 price tag.",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "the-perfect-amount-of-tea",
       "title": "The perfect amount of tea",
       "published_date": "2026-11-20",
