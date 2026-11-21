@@ -11,7 +11,7 @@ import build_comedy
 class ComedyDataTest(unittest.TestCase):
     def test_committed_data_matches_existing_readers_and_standalone(self):
         medium, standalone = build_comedy.load_posts()
-        self.assertEqual(len(medium), 49)
+        self.assertEqual(len(medium), 33)
         self.assertEqual(len(standalone), 1)
         expected = {post.slug for post in medium + standalone}
         readers = {
@@ -23,13 +23,13 @@ class ComedyDataTest(unittest.TestCase):
     def test_default_load_does_not_touch_private_exports(self):
         with patch.object(build_comedy, "EXPORT_ROOT", Path("/definitely-not-present")):
             medium, standalone = build_comedy.load_posts()
-        self.assertEqual((len(medium), len(standalone)), (49, 1))
+        self.assertEqual((len(medium), len(standalone)), (33, 1))
 
     def test_known_last_sections_and_numbered_list_are_retained(self):
         medium, _ = build_comedy.load_posts()
         by_slug = {post.slug: post for post in medium}
         self.assertIn("So farewell to the fork", by_slug["farewell-to-the-fork"].body_html)
-        self.assertEqual(by_slug["10-reasons-why-you-shouldn-t-read-this-list"].body_html.count("<li>"), 10)
+        self.assertEqual(by_slug["my-life-in-1st-person-pov"].body_html.count("<li>"), 10)
 
     def test_import_excludes_comment_and_withdrawn_article_but_keeps_short_articles(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -130,10 +130,32 @@ class ComedyDataTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "slug collision"):
                     build_comedy.load_posts()
 
-    def test_homunculus_regained_source_ending_is_present(self):
-        medium, _ = build_comedy.load_posts()
-        post = next(post for post in medium if post.slug == "homunculus-infection-rising-in-adult-population")
-        self.assertIn("Infinite thanks to Andrew Rodwin", build_comedy.normalize_text(post.body_html))
+    def test_substantive_last_section_survives_import(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "test.html").write_text(
+                '<title>Example story</title><time>May 8, 2023</time>'
+                '<a href="https://medium.com/@imajin/example-123456abcdef" class="p-canonical">Canonical link</a>'
+                '<section data-field="body" class="e-content"><p>Main story.</p>'
+                '<section class="section section--last"><div class="graf--mixtapeEmbed">Unrelated promo</div>'
+                '<p>Keep this concluding scene.</p></section></section><footer></footer>')
+            post, = build_comedy.import_medium_posts(root)
+            self.assertIn("Keep this concluding scene.", build_comedy.normalize_text(post.body_html))
+            self.assertNotIn("Unrelated promo", build_comedy.clean_body(post.body_html))
+
+    def test_every_excluded_id_stays_excluded_with_changed_title(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for i, medium_id in enumerate(sorted(build_comedy.EXCLUDED_MEDIUM_IDS)):
+                (root / f'excluded-{i}.html').write_text(
+                    f'<title>Changed title {i}</title><time>May 8, 2023</time>'
+                    f'<a href="https://medium.com/@imajin/changed-title-{medium_id}" class="p-canonical">Canonical link</a>'
+                    '<section data-field="body" class="e-content"><p>Some previously published prose.</p></section><footer></footer>')
+            (root / 'retained.html').write_text(
+                '<title>Retained</title><time>May 8, 2023</time>'
+                '<a href="https://medium.com/@imajin/retained-123456abcdef" class="p-canonical">Canonical link</a>'
+                '<section data-field="body" class="e-content"><p>A useful story.</p></section><footer></footer>')
+            self.assertEqual([post.title for post in build_comedy.import_medium_posts(root)], ['Retained'])
 
 
 if __name__ == "__main__":

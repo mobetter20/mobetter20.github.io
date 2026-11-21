@@ -17,10 +17,6 @@ import image_pieces
 ROOT = Path(__file__).resolve().parents[1]
 BUILDING_SOURCE = ROOT / 'content/building.json'
 ASSET_ROOT = ROOT / 'assets/paper'
-# Editorial exclusions keep durable reader URLs and source text intact.
-UNLISTED_COMEDY_SLUGS = {
-    '10-reasons-why-you-shouldn-t-read-this-list',
-}
 # These are separate editorial placements, not a page-wide essay limit.
 WRITING_TOP_ESSAY_SLUG = 'an-open-letter-to-jensen-huang-from-his-leather-jacket'
 WRITING_BRIEF_ESSAY_SLUG = 'the-dislike-button-and-the-rise-of-bad-engagement'
@@ -202,7 +198,7 @@ def render_writing(essays):
     essay_slot = f'<div class="edition-bottom">{edition_essay(brief_essay)}</div>' if brief_essay else ''
     archive_items = [
         {"title": item['title'], "href": f"/wrote/{item['slug']}/", "kind": "piece", "published_date": item['published_date']}
-        for item in comedy if item['slug'] not in UNLISTED_COMEDY_SLUGS
+        for item in comedy
     ]
     archive_items.extend({"title":item["title"], "href":f"/writes/{item['slug']}/", "kind":"piece", "published_date": item.get('date', '')} for item in essays)
     catalog = image_pieces.load_catalog()
