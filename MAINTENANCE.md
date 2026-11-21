@@ -146,6 +146,16 @@ Keep documentation focused: current rules in AGENTS.md, operational instructions
 
 ## Change record
 
+### 2026-11-21: on-demand cartoon publisher
+
+The native Publish Cartoon app collects a finished image, title and accessible description, then invokes `_scripts/cartoon_publisher.py`. Each upload has a content-derived job identity and isolated Git worktree under `~/.local/share/cartoon-publisher/`. An OS file lock prevents concurrent app launches; the persistent lock file is not evidence of a running process. Cancellation before Publish does not run the publisher.
+
+The runner reuses `piece.py` for lossless preparation and checks, rejects unrelated changes, and opens or resumes its own PR. It saves the Seoul publication date before preparation, so a retry after midnight keeps the same release. It requires a successful newspaper validation check at the exact head SHA. If master advances, it merges that base into its own branch, reapplies only its image record, regenerates and checks again. Recoverable conflicts are limited to the catalog, known generated cartoon outputs, and this upload's own artwork and reader. An identical concurrent publication is reused; different pixels or metadata stop. The essay watcher and canonical working files are untouched.
+
+Success requires a successful Pages deployment descending from the merge, generated-output agreement at that deployed commit, and matching public pages/assets. The state records the PR, source/deployed SHAs and verification result. Interrupted or failed releases remain saved; rerun the same image/title/description to resume. The runner restores only its known unfinished outputs before rebuilding from the saved upload, refuses unexpected edits, and clears a preparation lock only after its PID is confirmed dead. Merged releases are only verified again, never recreated. For an error, inspect that job's `state.json` and `publisher.log` before cleanup. Do not reset the canonical checkout, force-push, or discard a pending job. Public retraction stays deliberate and manual.
+
+The launcher is installed in `~/Applications/Publish Cartoon.app` using the command in PUBLISHING.md. It points to the canonical script and needs the existing Python/Pillow, Git and authenticated GitHub CLI. No paid API, background schedule or analytics requests are involved. Git and the release PR carry the implementation and verification history.
+
 ### 2026-11-19: cartoon titles hidden by default
 
 Removed the four existing visible-title overrides and applied the same default to individual readers, slides and the overview. Visible external headings now require Ajin’s explicit request. Titles, URLs, accessible names and sharing details remain intact, as do the original artwork and separate captions. The release PR records responsive, navigation and live checks.
