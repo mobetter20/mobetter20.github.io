@@ -105,7 +105,7 @@ class HomeBuildTest(unittest.TestCase):
     def test_unified_archive_tracks_essay_registry(self):
         baseline = build_sections.expected_sections()['is/writing/index.html']
         image_count = len(paper_site.image_pieces.load_catalog()['pieces'])
-        comedy_count = len(paper_site.comedy_items()) - len(paper_site.UNLISTED_COMEDY_SLUGS)
+        comedy_count = len(paper_site.comedy_items())
         self.assertEqual(baseline.count('<li data-kind='), comedy_count + image_count + len(build_writes.collect_items()))
         original = build_essays.load_posts()
         fixture = SimpleNamespace(slug='new-essay', title='New essay', body_md='Words', date='2099-01-01', excerpt='A thought.', order=max(post.order for post in original) + 1)
@@ -159,11 +159,10 @@ class HomeBuildTest(unittest.TestCase):
         archive = output.split('<ol id="writing-list"')[1].split('</ol>')[0]
         slugs = re.findall(r'href="/wrote/([^/]+)/"', archive)
         medium, standalone = paper_site.build_comedy.load_posts()
-        expected = [post.slug for post in sorted(medium, key=lambda post: post.date, reverse=True)
-                    if post.slug not in paper_site.UNLISTED_COMEDY_SLUGS]
+        expected = [post.slug for post in sorted(medium, key=lambda post: post.date, reverse=True)]
         self.assertEqual(slugs, expected + [post.slug for post in standalone])
         self.assertNotIn('10-reasons-why-you-shouldn-t-read-this-list', archive)
-        self.assertTrue((build_root.ROOT / 'wrote/10-reasons-why-you-shouldn-t-read-this-list/index.html').is_file())
+        self.assertFalse((build_root.ROOT / 'wrote/10-reasons-why-you-shouldn-t-read-this-list/index.html').exists())
         self.assertNotIn('celebrating-men-in-marriage', archive)
         self.assertFalse((build_root.ROOT / 'wrote/celebrating-men-in-marriage/index.html').exists())
         self.assertLess(archive.index('/is/writing/austen-at-work/'), archive.index('/wrote/'))

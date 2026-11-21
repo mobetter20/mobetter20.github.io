@@ -164,7 +164,7 @@ Local previews inherited the shared production loader, and browser review did no
 
 ### 2026-11-09: published newspaper release
 
-PR #220 (`bd123db`, followed by generated-root commit `0fed583`) brought Home, Writing, Building and Running into the approved structure. Writing uses a readable newest-first list; “10 Reasons Why You Shouldn’t Read This List” is unlisted while its reader remains available. Building contains BIC, omits Crossings, and puts omen.ops before Kenbaiki. Running remains accessible through Home’s mileage box rather than a masthead category. Individual prose URLs remain intact.
+PR #220 (`bd123db`, followed by generated-root commit `0fed583`) brought Home, Writing, Building and Running into the approved structure. Writing uses a readable newest-first list; At the time, “10 Reasons Why You Shouldn’t Read This List” became unlisted with its reader still available; the later owner-approved withdrawal also retired its reader. Building contains BIC, omits Crossings, and puts omen.ops before Kenbaiki. Running remains accessible through Home’s mileage box rather than a masthead category. Individual prose URLs remain intact.
 
 ### 2026-11-09: image-piece preview, not published
 
@@ -199,6 +199,6 @@ Mug Shot of My Desk now has its numbered-mug illustration before the prose. The 
 
 ### 2026-11-10: writing selection and mistaken comment
 
-Replaced the agent-selected Wish Depletion and Anger features with Ajin’s choices: Wife Evolves Into a Scarier Pokemon in the feature slot and Step on Me Please in the sidebar. Both former features remain in Browse all. Standalone excerpts now come from their Markdown source, with no invented date or subtitle.
+Replaced the agent-selected Wish Depletion and Anger features with Ajin’s choices: Wife Evolves Into a Scarier Pokemon in the feature slot and Step on Me Please in the sidebar. Both former features remained in Browse all until the later owner-approved withdrawal. Standalone excerpts now come from their Markdown source, with no invented date or subtitle.
 
 “My husband's been married only once…” was a Medium comment mistakenly imported as an article. The importer checked only exact title/body equality, so its truncated title escaped that check; a content-preservation test then incorrectly treated the comment as an expected article. Removed its one catalog record, generated reader and discovery links. Import now excludes its exact Medium ID, with a regression fixture that keeps a legitimate short article with an ellipsis title. The private export is untouched. This is a targeted correction, not a new heuristic for deleting short writing.

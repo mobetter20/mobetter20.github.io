@@ -29,6 +29,23 @@ SAFE_SLUG_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 EXCLUDED_MEDIUM_IDS = {
     "585a1f5d093f",  # Medium response, not an article.
     "2c7498833be2",  # Celebrating Men in Marriage, withdrawn by Ajin.
+    # Owner-approved November 2026 site withdrawal; do not revive renamed exports.
+    "5a5db0e98947",
+    "a643f119424",
+    "cb8dc4f5fe6d",
+    "e5d1a10d30d2",
+    "603facb39355",
+    "78beec58fece",
+    "cfb6dddb8d73",
+    "ae0aac84f2ec",
+    "a76ea25ddea4",
+    "c529edec98d4",
+    "9c4b8ae0145e",
+    "850b1425edfe",
+    "6b861cb2e079",
+    "5e8f2ea55a0c",
+    "2243ba912323",
+    "f4bede08e942",
 }
 
 
