@@ -3,6 +3,17 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "intelligence-had-a-good-run",
+      "title": "Intelligence Had a Good Run",
+      "published_date": "2026-11-21",
+      "image": "/assets/paper/pieces/intelligence-had-a-good-run.webp",
+      "width": 1536,
+      "height": 1024,
+      "alt": "Workers at computer screens look up at a Human Capital Index dashboard: Physical Strength down 32%, Intelligence down 61%, Smells Nice up 840%. The caption reads, “Intelligence had a good run.”",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "i-hurt-new-york",
       "title": "I Hurt New York",
       "published_date": "2026-11-21",
