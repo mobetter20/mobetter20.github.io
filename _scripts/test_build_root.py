@@ -223,9 +223,12 @@ class HomeBuildTest(unittest.TestCase):
         watcher = importlib.util.module_from_spec(spec)
         sys.modules[spec.name] = watcher
         spec.loader.exec_module(watcher)
+        remote_revision = "a" * 40
         def git(*args, **kwargs):
             value = "source" if args[:1] == ("show",) else ""
-            if args == ("show", "HEAD:is/writing/index.html"):
+            if args == ("rev-parse", "origin/master"):
+                value = remote_revision
+            if args == ("show", f"{remote_revision}:is/writing/index.html"):
                 value = self.writing
             return subprocess.CompletedProcess(args, 1 if args == self.failure else 0, value, "")
         with patch.object(watcher, "git", git):
@@ -236,10 +239,10 @@ class HomeBuildTest(unittest.TestCase):
             self.writing = teaser + '<ol id="writing-list"><li>' + teaser + '</li></ol>'
             self.assertIsNone(watcher.verify_published({"fixture": "source"}))
             self.assertIn('source is not', watcher.verify_published({"fixture": "edited source"}))
-            self.failure = ('cat-file', '-e', 'HEAD:writes/fixture/index.html')
-            self.assertIn('page was not generated', watcher.verify_published({"fixture": "source"}))
-            self.failure = ('merge-base', '--is-ancestor', 'HEAD', 'origin/master')
-            self.assertIn('not on origin', watcher.verify_published({"fixture": "source"}))
+            self.failure = ('cat-file', '-e', f'{remote_revision}:writes/fixture/index.html')
+            self.assertIn('reader is not', watcher.verify_published({"fixture": "source"}))
+            self.failure = ('merge-base', '--is-ancestor', 'HEAD', remote_revision)
+            self.assertIn('not contained in origin/master', watcher.verify_published({"fixture": "source"}))
 
 
 if __name__ == "__main__":

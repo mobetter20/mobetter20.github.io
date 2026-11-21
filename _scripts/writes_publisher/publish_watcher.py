@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-"""Publish essays from an Obsidian drop folder to https://ajin.im/writes.
+"""Push approved Markdown releases for publication at https://ajin.im/writes.
 
 Contract (also stated for the owner in the drop folder's own `_README.md`):
 
     ~/Documents/Ajin-Publishing/<anything>.md   top level only, never recursive
     front matter needs `title:` and exactly `publish: true`
-    optional: `date:` (year), `slug:`, `excerpt:`
+    optional: `date:` (YYYY-MM-DD, YYYY-MM or YYYY), `slug:`, `excerpt:`
 
 A file without `publish: true` is ignored. Only approved release exports belong
 in this external folder; private manuscripts remain in the everyday Obsidian
 vault. The opt-in flag remains required for every release.
 
 This pushes to a PUBLIC site with no human in the loop, so it refuses far more
-readily than it publishes. Every refusal notifies once (not every tick) and leaves
-state untouched so the next tick retries.
+readily than it publishes. Distinct refusals notify once and remain available
+for recovery on later ticks. A push is not proof of a live Pages deployment.
 
 Guards, and the failure each one exists to stop:
   * two-tick stability   — "added publish: true, then went to lunch mid-sentence"
@@ -32,7 +32,7 @@ Operate:
     ~/.local/share/writes-publisher/maintenance pauses every CLI mode while present
     A marker-check error also blocks all work (exit 75); absence alone permits work.
     publish_watcher.py --selftest    pure logic, offline
-    publish_watcher.py --status      what it thinks is published / pending
+    publish_watcher.py --status      pushed records / pending / OS lock activity
     publish_watcher.py --dry-run     scans + guards; can fetch/rebase/push stranded commits
     publish_watcher.py               one real tick (what launchd runs)
 """
@@ -40,6 +40,7 @@ Operate:
 from __future__ import annotations
 
 import argparse
+import fcntl
 import hashlib
 import json
 import os
@@ -66,7 +67,7 @@ MAINTENANCE_PATH = STATE_DIR / "maintenance"
 
 DEBOUNCE_SECONDS = 180          # file must have been still this long
 STABILITY_SECONDS = 300         # ...and unchanged across ticks this far apart
-LOCK_STALE_SECONDS = 900
+_lock_handle = None
 LOG_MAX_BYTES = 1_000_000
 PUBLISH_TIMEOUT = 900
 
@@ -226,35 +227,56 @@ def clear_error(state: dict, key: str) -> None:
 # ------------------------------------------------------------------- lockfile
 
 def acquire_lock() -> bool:
+    global _lock_handle
+    if _lock_handle is not None:
+        return False
     STATE_DIR.mkdir(parents=True, exist_ok=True)
-    if LOCK_PATH.exists():
-        try:
-            held = json.loads(LOCK_PATH.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            held = {}
-        pid, at = held.get("pid"), held.get("at", 0)
-        alive = False
-        if isinstance(pid, int):
-            try:
-                os.kill(pid, 0)
-                alive = True
-            except OSError:
-                alive = False
-        if alive and (time.time() - at) < LOCK_STALE_SECONDS:
-            log(f"another run holds the lock (pid {pid}) — skipping tick")
-            return False
-        log(f"stealing stale lock (pid {pid}, age {int(time.time() - at)}s)")
-    LOCK_PATH.write_text(
-        json.dumps({"pid": os.getpid(), "at": time.time()}), encoding="utf-8"
-    )
+    handle = LOCK_PATH.open('a+', encoding='utf-8')
+    try:
+        fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        handle.close()
+        log('LOCK_HELD: another run holds the publishing lock; skipping tick')
+        return False
+    except OSError:
+        handle.close()
+        raise
+    try:
+        handle.seek(0)
+        handle.truncate()
+        json.dump({'pid': os.getpid(), 'at': time.time()}, handle)
+        handle.flush()
+    except BaseException:
+        handle.close()
+        raise
+    _lock_handle = handle
     return True
 
 
 def release_lock() -> None:
+    global _lock_handle
+    if _lock_handle is not None:
+        fcntl.flock(_lock_handle, fcntl.LOCK_UN)
+        _lock_handle.close()
+        _lock_handle = None
+    # Keep this inode stable. Unlinking a lock lets two processes lock two
+    # different files at the same pathname. Its JSON is diagnostic metadata.
+
+
+def lock_activity() -> str:
+    """Probe the OS lock without creating a file or changing its metadata."""
     try:
-        LOCK_PATH.unlink(missing_ok=True)
+        with LOCK_PATH.open('r', encoding='utf-8') as handle:
+            try:
+                fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError:
+                return 'active'
+            fcntl.flock(handle, fcntl.LOCK_UN)
+            return 'idle'
+    except FileNotFoundError:
+        return 'idle'
     except OSError:
-        pass
+        return 'unknown'
 
 
 # ------------------------------------------------------------------ candidates
@@ -330,17 +352,35 @@ def scan_drop(state: dict) -> list[Candidate]:
                         "words and hyphens.")
             continue
 
-        clear_error(state, f"file:{name}")
         out.append(Candidate(path, slug, title, fm.get("date", ""),
                              fm.get("excerpt", ""), body))
     return out
 
 
+def exclude_slug_collisions(state: dict, candidates: list[Candidate]) -> list[Candidate]:
+    """Reject the whole collision before any candidate can be adopted or staged."""
+    grouped: dict[str, list[Candidate]] = {}
+    for candidate in candidates:
+        grouped.setdefault(candidate.slug, []).append(candidate)
+    collisions = {slug: group for slug, group in grouped.items() if len(group) > 1}
+    for key in list(state['errors']):
+        if key.startswith('collision:') and key.removeprefix('collision:') not in collisions:
+            clear_error(state, key)
+    for slug, group in collisions.items():
+        names = sorted(candidate.path.name for candidate in group)
+        for name in names:
+            state['pending'].pop(name, None)
+        notify_once(state, 'collision:' + slug, 'ajin.im: conflicting release files',
+                    ', '.join(names) + f' all claim /writes/{slug}/. None will publish. '
+                    'Keep one release export or give different pieces different slugs.')
+    return [candidate for candidate in candidates if candidate.slug not in collisions]
+
+
 def reconcile(state: dict, candidates: list[Candidate]) -> None:
     """Self-heal a lost/partial state file.
 
-    If _src/<slug>.md already holds exactly what this drop file would produce, it
-    IS ours — adopt it rather than refusing as a collision forever."""
+    Matching local source alone is insufficient: it may never have been pushed.
+    Reuse the same source/reader/archive proof required for a normal release."""
     for cand in candidates:
         if cand.slug in state["published"]:
             continue
@@ -353,6 +393,10 @@ def reconcile(state: dict, candidates: list[Candidate]) -> None:
             continue
         order = _order_of(existing)
         if order is not None and existing == cand.src_text(order):
+            problem = verify_published({cand.slug: existing})
+            if problem:
+                log(f'{cand.slug}: existing release not adopted as pushed: {problem}')
+                continue
             state["published"][cand.slug] = {
                 "source": cand.path.name,
                 "content_hash": cand.content_hash,
@@ -371,7 +415,6 @@ def _order_of(src_text: str) -> int | None:
 def ready_to_publish(state: dict, candidates: list[Candidate]) -> list[Candidate]:
     """Debounce + two-tick stability + change detection + safety refusals."""
     ready: list[Candidate] = []
-    seen_slugs: dict[str, Candidate] = {}
     pending = state["pending"]
     live_names = {c.path.name for c in candidates}
     for stale in [k for k in pending if k not in live_names]:
@@ -380,16 +423,10 @@ def ready_to_publish(state: dict, candidates: list[Candidate]) -> list[Candidate
     for cand in candidates:
         name, key = cand.path.name, f"file:{cand.path.name}"
 
-        if cand.slug in seen_slugs:
-            notify_once(state, key, "ajin.im — not published",
-                        f"{name} and {seen_slugs[cand.slug].path.name} both claim the "
-                        f"URL /writes/{cand.slug}/. Give one a different `slug:`.")
-            continue
-        seen_slugs[cand.slug] = cand
-
         record = state["published"].get(cand.slug)
         if record and record.get("content_hash") == cand.content_hash:
             pending.pop(name, None)
+            clear_error(state, key)
             continue
 
         if record and record.get("source") not in (None, name):
@@ -403,9 +440,9 @@ def ready_to_publish(state: dict, candidates: list[Candidate]) -> list[Candidate
             current = src_file.read_text(encoding="utf-8")
             if not record:
                 notify_once(state, key, "ajin.im — not published",
-                            f"{name} would overwrite the existing essay "
-                            f"/writes/{cand.slug}/ that this tool did not publish. "
-                            "Choose a different `slug:`.")
+                            f"{name} would overwrite existing source for "
+                            f"/writes/{cand.slug}/ without confirmed publisher ownership. "
+                            "Review the existing source and publisher log before retrying.")
                 continue
             if record.get("src_hash") and sha(current) != record["src_hash"]:
                 notify_once(state, key, "ajin.im — not published",
@@ -413,6 +450,7 @@ def ready_to_publish(state: dict, candidates: list[Candidate]) -> list[Candidate
                             "Publishing would discard those edits. Resolve by hand.")
                 continue
 
+        clear_error(state, key)
         try:
             age = time.time() - cand.path.stat().st_mtime
         except OSError:
@@ -529,26 +567,31 @@ class WritingArchiveLinks(HTMLParser):
 
 def verify_published(staged: dict[str, str]) -> str | None:
     """publish.sh exits 0 even when it pushed nothing ("No changes to publish"), so
-    the exit code is not evidence. Prove it from git instead."""
+    the exit code is not evidence. Check the fetched remote tip, since a newer
+    remote commit may have changed or withdrawn a locally matching release."""
     fetched = git("fetch", "origin", BRANCH, check=False)
     if fetched.returncode != 0:
         return f"could not verify: git fetch failed: {fetched.stderr.strip()[:160]}"
-    contained = git("merge-base", "--is-ancestor", "HEAD", f"origin/{BRANCH}", check=False)
+    remote = git("rev-parse", f"origin/{BRANCH}", check=False)
+    if remote.returncode != 0:
+        return f"could not resolve the fetched origin/{BRANCH} commit"
+    revision = remote.stdout.strip()
+    contained = git("merge-base", "--is-ancestor", "HEAD", revision, check=False)
     if contained.returncode != 0:
-        return "local commit is not on origin — nothing was actually pushed"
-    writing = git("show", "HEAD:is/writing/index.html", check=False)
+        return f"local HEAD is not contained in origin/{BRANCH}"
+    writing = git("show", f"{revision}:is/writing/index.html", check=False)
     archive = WritingArchiveLinks()
     if writing.returncode == 0:
         archive.feed(writing.stdout)
     for slug, expected in staged.items():
         if archive.links.count(f"/writes/{slug}/") != 1:
-            return f"{slug}: Writing archive entry is not in the pushed commit"
-        shown = git("show", f"HEAD:is/writing/essays/_src/{slug}.md", check=False)
+            return f"{slug}: Writing archive entry is not in the fetched remote commit"
+        shown = git("show", f"{revision}:is/writing/essays/_src/{slug}.md", check=False)
         if shown.returncode != 0 or shown.stdout != expected:
-            return f"{slug}: source is not in the pushed commit"
-        page = git("cat-file", "-e", f"HEAD:writes/{slug}/index.html", check=False)
+            return f"{slug}: source is not in the fetched remote commit"
+        page = git("cat-file", "-e", f"{revision}:writes/{slug}/index.html", check=False)
         if page.returncode != 0:
-            return f"{slug}: page was not generated into the pushed commit"
+            return f"{slug}: reader is not in the fetched remote commit"
     return None
 
 
@@ -619,7 +662,7 @@ def tick(dry_run: bool = False) -> int:
     state = load_state()
     state["last_run"] = now_iso()
 
-    candidates = scan_drop(state)
+    candidates = exclude_slug_collisions(state, scan_drop(state))
     reconcile(state, candidates)
     ready = ready_to_publish(state, candidates)
 
@@ -654,8 +697,9 @@ def tick(dry_run: bool = False) -> int:
 
     if not ok or problem:
         revert_staged([c.slug for c in ready])
-        notify_once(state, "publish", "ajin.im — publish FAILED",
-                    f"{titles}: {problem or detail}. Will retry; nothing is live.")
+        notify_once(state, "publish", "ajin.im: publication outcome unconfirmed",
+                    f"{titles}: {problem or detail}. Will reconcile next tick. "
+                    "A commit may already have been pushed; check deployment before retrying manually.")
         log(f"FAILED: {problem or detail}")
         save_state(state)
         return 1
@@ -674,8 +718,9 @@ def tick(dry_run: bool = False) -> int:
         state["pending"].pop(cand.path.name, None)
         urls.append(url)
     save_state(state)
-    notify("ajin.im — published", f"{titles}\n" + "\n".join(urls))
-    log("published: " + " ".join(urls))
+    notify("ajin.im: pushed; deployment pending", f"{titles}\n" + "\n".join(urls) +
+           "\nGitHub Pages still needs to deploy. This publisher has not checked the live pages.")
+    log("pushed; live deployment not verified: " + " ".join(urls))
     return 0
 
 
@@ -686,9 +731,10 @@ def cmd_status() -> int:
     print(f"drop folder : {DROP}")
     print(f"site repo   : {SITE}")
     print(f"state       : {STATE_PATH}")
+    print(f"worker lock : {lock_activity()}")
     print(f"last run    : {state.get('last_run') or 'never'}")
     published = state.get("published", {})
-    print(f"\npublished ({len(published)}):")
+    print(f"\npushed records ({len(published)}); live deployment not checked:")
     for slug, rec in sorted(published.items()):
         print(f"  {slug:52s} {rec.get('published_at', '?')}")
     pending = state.get("pending", {})
@@ -700,7 +746,7 @@ def cmd_status() -> int:
     errors = state.get("errors", {})
     if errors:
         print(f"\noutstanding refusals ({len(errors)}): {', '.join(sorted(errors))}")
-        print("  (run --dry-run to see the reason)")
+        print(f"  Read the existing log for details: {LOG_PATH}")
     return 0
 
 
@@ -770,7 +816,7 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--dry-run", action="store_true",
                     help="scan with live Git guards; can fetch/rebase/push stranded commits")
-    ap.add_argument("--status", action="store_true", help="print what it thinks is live")
+    ap.add_argument("--status", action="store_true", help="read pushed records, pending releases and lock status")
     ap.add_argument("--selftest", action="store_true", help="pure logic checks, offline")
     args = ap.parse_args()
 
