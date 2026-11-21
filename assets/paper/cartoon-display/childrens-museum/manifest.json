@@ -1,0 +1,10 @@
+{
+  "recipe": "webp-screen-v1-q88-lanczos",
+  "source_sha256": "a06404225895ae530d8acdd6ffaef51e31f73593b0bf7d91ebe76e7c7b34ad44",
+  "variants": {
+    "480": "fc0306d88ae0ec8c0a7970d60a2e1a9688758b7f9d06006d905383dee669df63",
+    "640": "20837086681938b8b032a66606b15dfeb4fbbab4e4db25c736921e5d82c4ead2",
+    "960": "19b7da4cb8b6dd6c22daf61233e9a630bd6325421d3d3764a7dec153c0fb42f7",
+    "1280": "72b4ce7f730212e5fbd40d86ed63a0f3df443d82a0b2b70b4c6107e82aa34e16"
+  }
+}

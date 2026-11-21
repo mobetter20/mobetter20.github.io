@@ -25,7 +25,7 @@ excerpt: A complete introductory sentence.
 Your writing starts here.
 ```
 
-Use the actual publication date. `title` and `publish: true` are required; `slug`, `date` and `excerpt` are optional, but keeping an explicit `slug` avoids changing the URL if you later retitle the piece. This is simple `key: value` metadata: do not add YAML quotes around values. The publisher assigns the internal ordering number.
+Use the actual publication date. The date is metadata, not a scheduled release; putting the file in the folder can publish it even if the date is in the future. `title` and `publish: true` are required; `slug`, `date` and `excerpt` are optional, but keeping an explicit `slug` avoids changing the URL if you later retitle the piece. This is simple `key: value` metadata: do not add YAML quotes around values. The publisher assigns the internal ordering number.
 
 Leave the Mac awake and connected. After the file stops changing, the watcher waits for stability, usually 5 to 10 minutes, then builds and pushes. **Its notice confirms a Git push, not a live page.** GitHub Pages deploys afterward. Visit the given URL to read the result; if it remains missing, see the troubleshooting table below. The cartoon app separately waits for and verifies its live result.
 
@@ -43,7 +43,7 @@ Maintainer installation, after the source is committed on canonical `master`:
 python3 _scripts/cartoon_publisher.py --install-app "$HOME/Applications"
 ```
 
-The app launcher points to that checkout's script, so ordinary source updates take effect without rebuilding the launcher. The same operation is available as `python3 _scripts/cartoon_publisher.py --image '/path/to/image.png' --title 'A title' --alt 'Scene and words.'`. Do not use the launcher for previews: clicking Publish authorizes the public release. Cancelling before Publish makes no publishing changes.
+The app launcher points to that checkout's script, so ordinary source updates take effect without rebuilding the launcher. The app derives its URL from the title. A title with no usable Latin characters needs a separate URL slug, which the image preparation command or an agent can supply. The same operation for ordinary titles is available as `python3 _scripts/cartoon_publisher.py --image '/path/to/image.png' --title 'A title' --alt 'Scene and words.'`. Do not use the launcher for previews: clicking Publish authorizes the public release. Cancelling before Publish makes no publishing changes.
 
 ## What gets featured
 
@@ -75,7 +75,7 @@ Neither workflow uses AI or needs Codex tokens when run directly. An agent remai
 
 ## Publishing with an agent
 
-Ajin can attach images and say **“Publish these”**, or **“Add this illustration to [article]”**. Preferred titles are optional. “Preview first” keeps the work local. The agent still supplies an accurate accessible description and checks the artwork; the commands do the bookkeeping. No AI API or background uploader is involved.
+Ajin can attach images and say **“Publish these”**, or **“Add this illustration to [article]”**. Preferred titles are optional. “Preview first” keeps the work local. The agent still supplies an accurate accessible description and checks the artwork; the commands do the bookkeeping. No AI API or background uploader is involved. Publishing to the site is separate from social posting; the workflow does not cross-post.
 
 ## Fixed defaults for images
 
@@ -83,7 +83,7 @@ Ajin can attach images and say **“Publish these”**, or **“Add this illustr
 - Austen stays on Home. New images are never featured automatically.
 - Home C is fixed: complete Austen art/caption, Kenbaiki machine preview, then the smaller Running strip and email. Do not add prose, comedy, Coo or catalog rotation to Home.
 - Every catalog cartoon is surfaced through Writing, the overview and native slides. The viewer swaps prepared slides in place and warms only neighbouring artwork. Swipe is an optional touch enhancement; native arrows must remain sufficient without JavaScript or when enhanced loading fails.
-- Preserve the complete image in lossless WebP with a clean filename, actual dimensions and pixel verification.
+- Preserve the complete image in lossless WebP with a clean filename, actual dimensions and pixel verification. The same batch check generates smaller screen copies automatically. Opening the art full size still uses the lossless original. Publish the intended artwork as supplied; the workflow does not add a byline to an unsigned image.
 - Hide external titles on readers, slides and the cartoon overview by default, even when a title adds context. Use `--show-title` only when Ajin explicitly requests a visible heading. Supplying a title alone does not opt in. Keep titles in Writing, URLs, sharing metadata and accessible headings; preserve separate captions. Never infer panel divisions from aspect ratio.
 - An illustration belongs to its existing article. Keep that article's title, text, publication date, URL and archive position.
 - Existing credits and reader styles apply. Routine additions do not require new design options or a review of the whole site.
@@ -123,7 +123,7 @@ node --test _scripts/test_cartoon_swipe.js _scripts/test_cartoon_navigation.js
 python3 _scripts/piece.py verify-live /wrote/mug-shot-of-my-desk/ --wait 120
 ```
 
-`add` and `illustrate` prepare assets and source data only. `check` regenerates local outputs. None commits, pushes, merges or deploys. `verify-live` only reads public pages: it compares reader, image, stylesheet, collection scripts/assets, Home and Writing bytes with the checkout using normal URLs. Include changed overview and slide routes in the command for a cartoon release. A stale response or mismatch fails; optional `--wait` bounds CDN-propagation retries. Browser review remains necessary for actual legibility.
+`add` and `illustrate` prepare assets and source data only. `check` regenerates local outputs. None commits, pushes, merges or deploys. `verify-live` only reads public pages: it compares reader, original and responsive image candidates, stylesheet, collection scripts/assets, Home and Writing bytes with the checkout using normal URLs. Include changed overview and slide routes in the command for a cartoon release. A stale response or mismatch fails; optional `--wait` bounds CDN-propagation retries. Browser review remains necessary for actual legibility.
 
 If preparation reports a lock, check the PID in `content/.piece.lock`. Wait for an active preparation; remove a stale lock only after confirming its process ended. An identical complete asset left by an interrupted run is reused on retry, without overwriting it. A conflicting title, image or existing illustration requires a deliberate replacement, not another add command.
 

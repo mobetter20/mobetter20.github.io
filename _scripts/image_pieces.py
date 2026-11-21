@@ -10,6 +10,7 @@ from pathlib import Path
 import re
 
 import writes_common
+import cartoon_displays
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -176,12 +177,11 @@ def render_piece(piece: dict) -> str:
         '<meta name="twitter:card" content="summary_large_image" />',
     ).replace("  </head>", f"\n{social}\n  </head>")
     alt = html.escape(piece['alt'], quote=True)
-    complete_class = ' class="piece-complete"' if piece.get('mobile_panels') == 2 else ''
-    art = f'<img{complete_class} src="{image}" width="{piece["width"]}" height="{piece["height"]}" alt="{alt}" />'
+    complete_class = 'piece-complete' if piece.get('mobile_panels') == 2 else ''
+    art = cartoon_displays.img(piece, "reader", css_class=complete_class, high=True)
     if piece.get('mobile_panels') == 2:
-        # Present both disjoint halves in reading order on phones. The underlying
-        # asset and native full-size link remain the complete original strip.
-        panel = f'<span class="piece-panel" aria-hidden="true"><img src="{image}" width="{piece["width"]}" height="{piece["height"]}" alt="" /></span>'
+        # The halves use the same display asset and responsive choice.
+        panel = '<span class="piece-panel" aria-hidden="true">' + cartoon_displays.img(piece, "reader", alt="") + '</span>'
         art += f'\n          <span class="piece-panels" role="img" aria-label="{alt}">{panel}{panel}</span>'
     body_attributes = 'class="read-page image-piece"'
     if piece.get('show_title', False):

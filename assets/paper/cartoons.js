@@ -30,36 +30,69 @@
     function capture(doc) {
       const main = doc.querySelector('main.slide-shell');
       if (!main?.querySelector('.slide-image') || !main.querySelector('#slide-title')) throw new Error('Invalid slide');
-      return { main: main.cloneNode(true), title: doc.title,
-        head: Array.from(doc.head.querySelectorAll(metadata), node => node.cloneNode(true)), images: [] };
+      return { main, title: doc.querySelector('title')?.textContent || document.title,
+        head: Array.from(doc.querySelectorAll(metadata), node => node.cloneNode(true)), images: [] };
     }
-    function decodeImage(src, entry) {
+    function parseSlide(markup) {
+      // Template contents are inert: parsing fetched markup must not start
+      // loading <img src> or choose against a different document viewport.
+      const template = document.createElement('template');
+      template.innerHTML = markup;
+      return capture(template.content);
+    }
+    function decodeImage(spec, entry) {
       return new Promise((resolve, reject) => {
         const img = new Image();
         entry.images.push(img); // Retain the decoded image while this slide is cached.
-        function abort() { img.removeAttribute('src'); reject(new Error('Image load cancelled')); }
+        function abort() {
+          img.removeAttribute('srcset');
+          img.removeAttribute('src');
+          reject(new Error('Image load cancelled'));
+        }
         if (entry.controller.signal.aborted) return abort();
         entry.controller.signal.addEventListener('abort', abort, { once: true });
         img.decoding = 'async';
-        img.src = src;
+        img.fetchPriority = entry.priority;
+        // Let the same real browser select based on its viewport and DPR.
+        // Set sizes and srcset before fallback src; otherwise we fetch both.
+        if (spec.sizes) img.sizes = spec.sizes;
+        if (spec.srcset) img.srcset = spec.srcset;
+        img.src = spec.src;
         img.decode().then(resolve, reject).finally(() => entry.controller.signal.removeEventListener('abort', abort));
       });
     }
-    function loadSlide(url, initial) {
+    function loadSlide(url, initial, priority = 'high') {
       const id = key(url);
-      if (cache.has(id)) return cache.get(id).ready;
-      const entry = { controller: new AbortController(), images: [], loaded: false };
+      if (cache.has(id)) {
+        const cached = cache.get(id);
+        if (priority === 'high') {
+          cached.priority = 'high';
+          for (const image of cached.images) image.fetchPriority = 'high';
+        }
+        return cached.ready;
+      }
+      const entry = { controller: new AbortController(), images: [], loaded: false, priority };
       cache.set(id, entry);
       const timeout = setTimeout(() => entry.controller.abort(), 8000);
       entry.ready = (async () => {
         let data = initial;
-        if (!data) {
-          const response = await fetch(id, { signal: entry.controller.signal, credentials: 'same-origin' });
+        if (data) {
+          // Decode only the already-mounted image(s); do not issue a second request.
+          const visible = Array.from(data.main.querySelectorAll('img')).filter(img => img.getClientRects().length);
+          await Promise.all(visible.map(img => img.decode()));
+        } else {
+          const response = await fetch(id, { signal: entry.controller.signal, credentials: 'same-origin', priority: entry.priority });
           if (!response.ok || key(new URL(response.url)) !== id) throw new Error('Slide unavailable');
-          data = capture(new DOMParser().parseFromString(await response.text(), 'text/html'));
+          data = parseSlide(await response.text());
+          const sources = new Map();
+          for (const img of data.main.querySelectorAll('img')) {
+            const spec = { src: new URL(img.getAttribute('src'), url).href,
+              srcset: img.getAttribute('srcset'), sizes: img.getAttribute('sizes') };
+            // Split-panel replicas use the same source and sizes so one decode is sufficient.
+            sources.set(JSON.stringify(spec), spec);
+          }
+          await Promise.all(Array.from(sources.values(), spec => decodeImage(spec, entry)));
         }
-        const sources = new Set(Array.from(data.main.querySelectorAll('img'), img => new URL(img.getAttribute('src'), url).href));
-        await Promise.all(Array.from(sources, src => decodeImage(src, entry)));
         data.images = entry.images;
         entry.loaded = true;
         return data;
@@ -81,7 +114,7 @@
       for (const [id, entry] of cache) if (!keep.has(id)) discard(id, entry);
       const connection = navigator.connection;
       if (connection?.saveData || /^(slow-)?2g$/.test(connection?.effectiveType || '')) return;
-      for (const url of neighbours) loadSlide(url).catch(() => {}); // Speculation never navigates or executes scripts.
+      for (const url of neighbours) loadSlide(url, null, 'low').catch(() => {}); // Speculation never navigates or executes scripts.
     }
     function focusAfterChange(selector) {
       if (!selector) return;
@@ -107,6 +140,7 @@
         const data = await loadSlide(url);
         if (turn !== navigation) return;
         const next = data.main.cloneNode(true);
+        next.removeAttribute('aria-busy');
         shell.replaceWith(next);
         shell = next;
         stage = shell.querySelector('.slide-stage');

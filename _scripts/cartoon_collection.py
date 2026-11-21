@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 
 import image_pieces
+import cartoon_displays
 import paper_site
 import writes_common
 
@@ -58,20 +59,11 @@ def arrow(piece: dict | None, direction: str) -> str:
       href="{SLIDES_ROUTE}{piece['slug']}/#cartoon" target="_self" aria-label="{escape(label, quote=True)}"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><polyline points="{points}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'''
 
 
-def image(piece: dict, css_class: str = "", *, lazy: bool = False) -> str:
-    classes = f' class="{css_class}"' if css_class else ""
-    loading = 'lazy' if lazy else 'eager'
-    return f'<img{classes} src="{escape(piece["image"], quote=True)}" alt="{escape(piece["alt"], quote=True)}" width="{piece["width"]}" height="{piece["height"]}" decoding="async" loading="{loading}">'
-
-
 def mobile_panels(piece: dict) -> str:
     if piece.get("mobile_panels") != 2:
         return ""
-    src = escape(piece["image"], quote=True)
-    return f'''<span class="slide-panels" aria-hidden="true">
-      <span><img src="{src}" alt="" width="{piece['width']}" height="{piece['height']}"></span>
-      <span><img src="{src}" alt="" width="{piece['width']}" height="{piece['height']}"></span>
-    </span>'''
+    art = cartoon_displays.img(piece, "slide", alt="", high=True)
+    return f'<span class="slide-panels" aria-hidden="true"><span>{art}</span><span>{art}</span></span>'
 
 
 def overview_page(pieces: list[dict]) -> str:
@@ -81,7 +73,7 @@ def overview_page(pieces: list[dict]) -> str:
         art_class = "austen-art" if piece["slug"] == "austen-at-work" else ""
         title_class = "preview-title" + ("" if piece.get("show_title", False) else " visually-hidden")
         entries.append(f'''<li id="{piece['slug']}"><a class="cartoon-preview" href="{SLIDES_ROUTE}{piece['slug']}/#cartoon" target="_self" aria-label="Open {escape(piece['title'], quote=True)}">
-          <h3 class="{title_class}">{escape(piece['title'])}</h3><figure>{image(piece, art_class, lazy=index >= 2)}{caption}</figure></a></li>''')
+          <h3 class="{title_class}">{escape(piece['title'])}</h3><figure>{cartoon_displays.img(piece, "gallery", css_class=art_class, lazy=index >= 1, high=index == 0)}{caption}</figure></a></li>''')
     head = collection_head("Cartoons · ajin.im", OVERVIEW_ROUTE)
     return f'''<!doctype html><html lang="en" data-paper="blue"><head>{head}</head><body class="paper-page page-cartoons">
 <a class="skip-link" href="#main">Skip to content</a>{paper_site.header('writing')}
@@ -101,7 +93,7 @@ def slide_page(pieces: list[dict], index: int) -> str:
     title_attributes = '' if piece.get("show_title", False) else ' class="visually-hidden"'
     return f'''<!doctype html><html lang="en" data-paper="blue" class="slide-document"><head>{head}</head><body class="paper-page page-slides">
 <a class="skip-link" href="#cartoon">Skip to cartoon</a>{paper_site.header('writing')}
-<main class="slide-shell wrap" id="cartoon" aria-labelledby="slide-title" data-first-slide="{SLIDES_ROUTE}{pieces[0]['slug']}/"><div class="slide-context"><h1 id="slide-title"{title_attributes}>{escape(piece['title'])}</h1><a href="{OVERVIEW_ROUTE}#{piece['slug']}" target="_self">All cartoons</a></div><article aria-labelledby="slide-title"><figure class="slide-art"><div class="slide-stage" style="--slide-ratio:{piece['width'] / piece['height']}">{arrow(previous, 'previous')}<a class="slide-image-link" href="{escape(piece['image'], quote=True)}" target="_blank" rel="noopener" aria-label="Open full-size image: {escape(piece['alt'], quote=True)}">{image(piece, image_class)}{mobile_panels(piece)}</a>{arrow(following, 'next')}</div>{caption}</figure><nav class="slide-pagination" aria-label="Cartoon sequence">{arrow(previous, 'previous')}<span class="slide-position" aria-label="Cartoon {index + 1} of {len(pieces)}">{index + 1} / {len(pieces)}</span>{arrow(following, 'next')}</nav><div class="slide-bottom"><p>{escape(image_pieces.CREDIT)}</p><div class="slide-share-actions"><a class="collection-back" href="/is/writing/#cartoons" target="_self">← Back to writing</a>{writes_common.share_control(piece["title"], "https://ajin.im" + piece["href"])}</div></div></article></main></body></html>'''
+<main class="slide-shell wrap" id="cartoon" aria-labelledby="slide-title" data-first-slide="{SLIDES_ROUTE}{pieces[0]['slug']}/"><div class="slide-context"><h1 id="slide-title"{title_attributes}>{escape(piece['title'])}</h1><a href="{OVERVIEW_ROUTE}#{piece['slug']}" target="_self">All cartoons</a></div><article aria-labelledby="slide-title"><figure class="slide-art"><div class="slide-stage" style="--slide-ratio:{piece['width'] / piece['height']}">{arrow(previous, 'previous')}<a class="slide-image-link" href="{escape(piece['image'], quote=True)}" target="_blank" rel="noopener" aria-label="Open full-size image: {escape(piece['alt'], quote=True)}">{cartoon_displays.img(piece, "slide", css_class=image_class, high=True)}{mobile_panels(piece)}</a>{arrow(following, 'next')}</div>{caption}</figure><nav class="slide-pagination" aria-label="Cartoon sequence">{arrow(previous, 'previous')}<span class="slide-position" aria-label="Cartoon {index + 1} of {len(pieces)}">{index + 1} / {len(pieces)}</span>{arrow(following, 'next')}</nav><div class="slide-bottom"><p>{escape(image_pieces.CREDIT)}</p><div class="slide-share-actions"><a class="collection-back" href="/is/writing/#cartoons" target="_self">← Back to writing</a>{writes_common.share_control(piece["title"], "https://ajin.im" + piece["href"])}</div></div></article></main></body></html>'''
 
 
 def expected_pages(catalog: dict | None = None) -> dict[str, str]:

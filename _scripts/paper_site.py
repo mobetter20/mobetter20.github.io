@@ -13,6 +13,7 @@ from types import SimpleNamespace
 import build_comedy
 import home_catalog
 import image_pieces
+import cartoon_displays
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILDING_SOURCE = ROOT / 'content/building.json'
@@ -180,7 +181,7 @@ def top_essay_feature(item):
     </section>'''
 
 
-def render_writing(essays):
+def render_writing(essays, catalog=None):
     comedy = comedy_items()
     by_slug = {item["slug"]:item for item in comedy}
     chocolate = by_slug["scientist-would-not-prove-chocolates-as-a-vital-nutrient"]
@@ -201,7 +202,7 @@ def render_writing(essays):
         for item in comedy
     ]
     archive_items.extend({"title":item["title"], "href":f"/writes/{item['slug']}/", "kind":"piece", "published_date": item.get('date', '')} for item in essays)
-    catalog = image_pieces.load_catalog()
+    catalog = catalog if catalog is not None else cartoon_displays.for_render(image_pieces.load_catalog(), ROOT)
     cartoon = next(piece for piece in catalog['pieces'] if piece['slug'] == catalog['fallback_slug'])
     archive_items.extend({"title": piece['title'], "href": piece['href'], "kind": "image", "published_date": piece['published_date']} for piece in catalog['pieces'])
     # Full publication dates, newest first. Partial dates retain only known
@@ -229,7 +230,7 @@ def render_writing(essays):
           <figure class="edition-cartoon" id="cartoons" tabindex="-1">
             <div class="cartoon-module-heading"><p class="eyebrow">Cartoon</p>
               <a href="/is/writing/cartoons/slides/#cartoon" target="_self">All cartoons <span aria-hidden="true">→</span></a></div>
-            <a href="{cartoon['href']}" target="_self" aria-label="Read {escape(cartoon['title'], quote=True)}"><img src="{cartoon['image']}" width="{cartoon['width']}" height="{cartoon['height']}" alt="{escape(cartoon['alt'], quote=True)}"></a>
+            <a href="{cartoon['href']}" target="_self" aria-label="Read {escape(cartoon['title'], quote=True)}">{cartoon_displays.img(cartoon, "writing", lazy=True)}</a>
             <figcaption>{escape(cartoon['caption'])}</figcaption>
           </figure>
           <aside class="edition-sister">

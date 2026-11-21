@@ -19,8 +19,8 @@ class CartoonCollectionTest(unittest.TestCase):
         self.assertIn('collection-fixture', overview)
         self.assertIn('/is/writing/cartoons/slides/collection-fixture/#cartoon', overview)
         self.assertIn('is/writing/cartoons/slides/collection-fixture/index.html', pages)
-        self.assertEqual(overview.count('loading="eager"'), 2)
-        self.assertEqual(overview.count('loading="lazy"'), len(catalog['pieces']) - 2)
+        self.assertEqual(overview.count('loading="eager"'), 1)
+        self.assertEqual(overview.count('loading="lazy"'), len(catalog['pieces']) - 1)
         self.assertIn(f"1 / {len(catalog['pieces'])}", pages['is/writing/cartoons/slides/collection-fixture/index.html'])
 
     def test_sequence_bounds_and_entry_alias(self):

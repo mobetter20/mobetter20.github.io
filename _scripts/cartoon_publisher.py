@@ -20,6 +20,7 @@ import time
 from zoneinfo import ZoneInfo
 
 import build_comedy
+import cartoon_displays
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = 'mobetter20/mobetter20.github.io'
@@ -91,7 +92,10 @@ def validate_changes(base_catalog, catalog, old_writing, writing, paths, slug, t
     entry = f'<li data-kind="image"><a href="/is/writing/{slug}/" target="_self">{escape(title)}</a></li>'
     if writing.count(entry) != 1 or writing.replace(entry, '', 1) != old_writing:
         raise PublishError('The Writing selection changed beyond the new archive entry.')
-    unexpected = set(paths) - cartoon_paths(catalog, slug)
+    allowed = cartoon_paths(catalog, slug)
+    if "width" in record:
+        allowed.update(cartoon_displays.asset_paths(record))
+    unexpected = set(paths) - allowed
     if unexpected:
         raise PublishError('Unexpected file changes: ' + ', '.join(sorted(unexpected)))
 
@@ -198,7 +202,8 @@ class Publisher:
         def dirty_paths():
             tracked = set(filter(None, self.git('diff', '--name-only', '-z', 'HEAD', work=True).stdout.split('\0')))
             untracked = set(filter(None, self.git('ls-files', '--others', '--exclude-standard', '-z', work=True).stdout.split('\0')))
-            unexpected = (tracked | untracked) - allowed - scratch
+            unexpected = {p for p in (tracked | untracked) - allowed - scratch
+                          if not cartoon_displays.belongs_to_slug(p, self.slug)}
             if unexpected:
                 raise PublishError('Unexpected saved checkout changes were preserved: ' + ', '.join(sorted(unexpected)))
             return tracked, untracked
@@ -268,7 +273,7 @@ class Publisher:
             raise PublishError('The saved release could not be refreshed: ' + merge.stderr.strip()[-400:])
         catalog = json.loads(self.git('show', base + ':content/image-pieces.json').stdout)
         regenerated = cartoon_paths(catalog, self.slug)
-        if set(conflicts) - regenerated:
+        if any(p not in regenerated and not cartoon_displays.belongs_to_slug(p, self.slug) for p in conflicts):
             self.git('merge', '--abort', work=True)
             raise PublishError('Another release conflicts with this cartoon. Nothing was merged online.')
         for path in conflicts:
@@ -326,7 +331,8 @@ class Publisher:
                         if original.size != saved.size or original.convert('RGBA').tobytes() != saved.convert('RGBA').tobytes():
                             raise PublishError('The deployed artwork differs from this upload.')
                     proof = self.helper('verify-live', self.route, '/is/writing/cartoons/',
-                                        '/is/writing/cartoons/slides/', f'/is/writing/cartoons/slides/{self.slug}/', timeout=180)
+                                        '/is/writing/cartoons/slides/', f'/is/writing/cartoons/slides/{self.slug}/',
+                                        '--cartoon-slug', self.slug, timeout=180)
                     self.save('live-verified', deployed_sha=deployed, proof=proof.strip())
                     return
                 except PublishError as exc:

@@ -8,6 +8,7 @@ import argparse
 
 import build_writes
 import cartoon_collection
+import cartoon_displays
 import image_pieces
 import paper_site
 
@@ -28,9 +29,10 @@ def redirect_page():
 '''
 
 
-def expected_sections():
+def expected_sections(*, require_displays=False):
+    catalog = cartoon_displays.for_render(image_pieces.load_catalog(root=ROOT), ROOT, require=require_displays)
     result = {}
-    for page, body in [('writing', paper_site.render_writing(build_writes.collect_items())),
+    for page, body in [('writing', paper_site.render_writing(build_writes.collect_items(), catalog)),
                        ('building', paper_site.render_building())]:
         template = (ROOT / 'templates' / f'{page}.html').read_text()
         output = template.replace('{{paper_head}}', paper_site.head(page)).replace('{{paper_body}}', body)
@@ -41,7 +43,6 @@ def expected_sections():
         result[f'is/{page}/index.html'] = output
     for alias in ALIASES:
         result[f'is/writing/{alias}/index.html'] = redirect_page()
-    catalog = image_pieces.load_catalog(root=ROOT)
     for piece in catalog["pieces"]:
         result[f'is/writing/{piece["slug"]}/index.html'] = image_pieces.render_piece(piece)
     result.update(cartoon_collection.expected_pages(catalog))
@@ -49,7 +50,7 @@ def expected_sections():
 
 
 def build(check=False):
-    for relative, output in expected_sections().items():
+    for relative, output in expected_sections(require_displays=True).items():
         path = OUTPUT_ROOT / relative
         if check:
             if not path.is_file() or path.read_text() != output:
