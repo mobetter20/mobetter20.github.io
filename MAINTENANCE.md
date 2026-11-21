@@ -1,8 +1,8 @@
 # Maintaining ajin.im
 
-This is the practical guide for adding work and maintaining the site. [AGENTS.md](AGENTS.md) holds the design decisions and project rules. Git records the exact changes. Update this guide alongside changes to the workflow, and add a brief dated entry for meaningful fixes or releases.
+This is the maintainer's source map, verification and recovery guide. [PUBLISHING.md](PUBLISHING.md) is the owner-facing starting point for additions, edits, curation and withdrawals. [AGENTS.md](AGENTS.md) holds the design decisions and project rules. Git and release PRs record exact changes and evidence. Update the relevant guide when behavior changes.
 
-For ordinary image additions, use the short [publishing recipe](PUBLISHING.md) and `_scripts/piece.py`. The detailed source map below is for maintenance, not a checklist to reread for every cartoon.
+The writing release-folder contract is tracked at [_scripts/writes_publisher/RELEASE-README.md](_scripts/writes_publisher/RELEASE-README.md) and installed as `~/Documents/Ajin-Publishing/_README.md`. Keep those copies identical. It links to PUBLISHING.md for curation rather than repeating a second list of selected articles. The watcher README owns operator-specific installation and recovery instructions.
 
 ## Release status
 
@@ -14,17 +14,13 @@ Preview ordinary pages with a loopback-only static server from a worktree. A loc
 
 ## Adding pieces: what Ajin needs to do
 
-Send the images to Codex or Claude, singly or in a batch. Supply preferred titles or separate captions if there are any. Otherwise the agent can propose descriptive titles from the work.
+Use **Publish Cartoon.app** for a finished cartoon, or the approved Markdown release folder for prose. [PUBLISHING.md](PUBLISHING.md) gives the short steps, examples, editing rules and troubleshooting. Neither requires an agent session. Images do not publish by being put in the Markdown release folder.
 
-Example: “Publish these in Writing.” For a local review instead, say “Preview first.” Austen stays on Home by default.
-
-The agent handles the web assets, filenames, accessible descriptions, reader pages, Writing list, and visual checks. Ajin does not need to edit JSON or run build commands. Publication is a separate instruction when the work is still a preview.
-
-The agent uses `_scripts/piece.py` to prepare images, check a batch and verify deployed pages. It does not require an AI API or a running service. There is no upload form or automatic image drop folder. The existing approved-release folder publisher handles Markdown essays; its instructions are in [_scripts/writes_publisher/README.md](_scripts/writes_publisher/README.md). Do not put images there and assume they will publish.
+An agent can still handle a batch, add an illustration to existing prose, or prepare a local preview. “Publish these in Writing” authorizes release; “Preview first” keeps it local. Use the existing helper and fixed defaults, and retain Austen on Home.
 
 ### Choosing what appears on Writing
 
-Publishing and featuring are separate. New essays get a reader, a feed entry and a newest-first entry in Browse all. They do not replace or add to the newspaper selection. To change that selection, ask for the specific swap, for example: “Feature Dear Seoul instead of Chekhov's Gun.”
+Publishing and featuring are separate. New essays get a reader, a feed entry and a newest-first entry in Browse all. They do not replace or add to the newspaper selection. A request naming the replacement and its slot is sufficient; the agent maps it to the owning source.
 
 The top essay slot above Scientist is “An Open Letter to Jensen Huang From His Leather Jacket” (`WRITING_TOP_ESSAY_SLUG` in `_scripts/paper_site.py`). The separate lower brief slot is “A good time to be Randall Flagg.”, replacing Dear Seoul (`WRITING_BRIEF_ESSAY_SLUG`). Dear Seoul remains in Browse all. These are independent placements, not a page-wide limit of one essay. To change one, identify the position and its replacement; keep the other choice. Source excerpts supply the introductions. A missing selection in a nonempty essay registry fails with the slot name; retracting all essays omits both. There is no automatic latest-essay fallback. Other published work remains in Browse all, and Home keeps its own fixed selection.
 
@@ -50,7 +46,7 @@ The `add` command implements steps 2 through 4 below, including lossless convers
 4. Keep `fallback_slug` set to `austen-at-work`. New pieces appear in Writing automatically. Sorting is by publication date, newest first; equal-date image entries retain their catalog order. Prepending a new same-day batch keeps that batch first without alphabetizing it. Undated work follows dated work.
    Before leaving a previously published piece undated, check the asset/source history and its release PR. Verify its actual archive position as well as whether its link exists. Austen first appeared in the published newspaper release (PR #220, 2026-11-09), so its date is known.
 5. Build the generated pages and verify the result using the commands below. The generated image URL is `/is/writing/<slug>/`. Do not hand-edit that reader or the generated Writing page.
-6. Review the new readers and their Writing links. Save the completed work locally while preview-only. Update the change record. Publishing requires the release steps below.
+6. Review the new readers and their Writing links. Save the completed work locally while preview-only. Record routine content changes and verification in the release PR; update this guide only when behavior changes. Publishing requires the release steps below.
 
 ### Image presentation and credit
 
@@ -60,7 +56,7 @@ Hide external titles on individual readers, slides and the overview by default, 
 
 The shared credit is **“Words and ideas by Ajin. Illustrations generated with AI.”** Its source is `CREDIT` in [_scripts/image_pieces.py](_scripts/image_pieces.py). It belongs at the bottom of cartoon overview, slides and individual readers. It does not belong on Home, the Writing selection, Browse all or a generic Writing footer.
 
-At 375px, check the actual joke, including small lettering. Going to the Market and Do you cycle? use `mobile_panels: 2` to stack their complete left and right halves on phones while keeping the original strips on larger screens. Do not infer panel boundaries from aspect ratio alone. Children’s Museum remains one scene; its small age labels benefit from enlargement. Just Checking the Weather and On privilege are already arranged vertically.
+At 375px, check the actual joke, including small lettering. Do you cycle? uses `mobile_panels: 2` to stack its complete left and right halves on phones while keeping the original strip on larger screens. Going to the Market now uses the supplied vertical replacement and has no panel override. Do not infer panel boundaries from aspect ratio alone. Children’s Museum remains one scene; its small age labels benefit from enlargement. Just Checking the Weather and On privilege are already arranged vertically.
 
 Download names come from the public asset names, such as `childrens-museum.webp`, not the original ChatGPT filename. Page credits and external page titles are not embedded in downloaded images. Austen’s caption is also separate HTML, so saving that image alone omits the caption. A separate share/download export has not been implemented.
 
@@ -84,9 +80,14 @@ The shared renderer in `_scripts/writes_common.py` supplies the escaped payload 
 | Running | `templates/running.html`, `_scripts/build_root.py`; running sync supplies `content/stats.md` | Generated `is/running/index.html` and Home mileage. Trace the sync source before changing stats behavior. |
 | Prose readers | `content/comedy.json`, standalone comedy Markdown, `is/writing/essays/_src/`; `_scripts/writes_common.py` | `_scripts/build_comedy.py` and `_scripts/build_essays.py`; shared `writes.css`. See AGENTS.md before importing or changing sources. |
 | Reader sharing | `_scripts/writes_common.py`, `assets/paper/share.js`, `assets/paper/share.css` | Prose/image renderers and `_scripts/cartoon_collection.py` emit one canonical piece link per reader. |
+| Cartoon publisher | `_scripts/cartoon_publisher.py`, `_scripts/cartoon-publisher.applescript` | Installed `~/Applications/Publish Cartoon.app` calls the canonical script; its own worktrees and logs live under `~/.local/share/cartoon-publisher/`. |
+| Automatic prose publisher | `_scripts/writes_publisher/publish_watcher.py`, its plist and release-folder README | Installed runtime `~/.local/bin/writes_publish_watcher.py`, LaunchAgent `com.ajin.writes-publisher`, state/logs under `~/.local/share/writes-publisher/`. Source edits require a held runtime update. |
+| Municipal Coo | `_scripts/build_bird_coo.py`, its issue sources and bird-universe registry | Generated newspaper pages and the marked excerpt in avian-district. See AGENTS.md; do not edit generated issues. |
 | Sitemap | `_scripts/build_sitemap.py` | `sitemap.xml`; commit dates supply `lastmod`. |
 
 The `/wrote/` and `/writes/` indexes redirect to the unified Writing list. Their individual prose reader URLs and `/writes/feed.xml` remain supported. Moving those URLs is a separate change because the essay publisher and existing links depend on them.
+
+The running writer is `strava_activity/adapters/site.py` in the sibling private repository. It stages only `content/stats.md`, `index.html` and `is/running/index.html`. The GitHub root workflow may subsequently update the sitemap. Keep these writers separate from Writing. Other Building projects retain their own source repositories and visual identities; consult `~/projects.md` before editing a published copy.
 
 Do not treat removal from a catalog as deletion of a public page. The image build creates and updates readers but does not remove old reader directories. Before renaming or retiring an existing URL, trace links and publishing consumers, decide the intended redirect or retained page, and verify the result. Do not delete generated files speculatively.
 
@@ -140,11 +141,28 @@ The GA4 property combines ajin.im, BIC and historical local previews. Restrict i
 
 The essay publisher has its own maintenance gate and can publish approved Markdown independently. Read its README before altering it or manually editing its managed sources. Its production `--dry-run` can fetch, rebase and push; it is not a harmless offline test.
 
+| Path | Owner action and source | Outputs and proof | Recovery / boundary |
+|---|---|---|---|
+| Cartoons | Select image, title and alt in the app; catalog owns metadata | Reader, Writing archive, collection/slides, sitemap; checked PR, successful Pages SHA and matching public bytes | Identical retry resumes; different existing content refuses. No Home/curation changes or canonical working-file writes. |
+| Prose releases | Approved top-level Markdown with `publish: true`; managed essay source | Reader, archive and Atom feed; source/reader/archive proven at fetched remote tip | Status means pushed, not live-verified. Same-file edits keep URL; collisions/hand edits refuse. Canonical checkout must stay free of manual work. |
+| Legacy comedy and curation | Explicit source edit or named slot swap | Regenerated readers/selection; PR checks and public verification | Preserve withdrawals and other pins. Medium import is explicit, never part of routine builds. |
+| Shared deployment and analytics | Reviewed generator, template or loader change | Deterministic builds, link checks, Pages deployment and selected live bytes | Bot-generated root commits can follow a merge. Local/agent traffic stays excluded; no test GA events or extra analytics dashboard. |
+
+`publish.sh` is the older prose watcher's push path. It stages the whole canonical tree, so it is not a general preview-release command. Preflight protects the starting tree; operationally, agents must use review worktrees and hold/drain the watcher before touching its managed canonical sources. The cartoon app uses its own checkout. The two tools deliberately have different completion signals, documented above, rather than pretending a Git push is deployment proof.
+
 When changing publisher verification, install the reviewed runtime under its held/drained maintenance sequence and run its offline self-test before removing the hold. Routine content changes do not require a runtime reinstall. The verifier proves an exact unified-Writing archive link, source and reader; verify the installed copy and reloaded job after a runtime change.
 
-Keep documentation focused: current rules in AGENTS.md, operational instructions and significant changes here, exact diffs in Git. For investigation, use `git log --oneline`, `git show <commit>`, or `git log -- <path>`. Do not create a second exhaustive change log or describe planned work as implemented.
+Keep documentation focused: owner instructions in PUBLISHING.md, current rules in AGENTS.md, source ownership and significant changes here, exact diffs in Git. For investigation, use `git log --oneline`, `git show <commit>`, or `git log -- <path>`. Do not create a second exhaustive change log or describe planned work as implemented.
 
 ## Change record
+
+### 2026-11-21: publishing and documentation audit
+
+Audited the cartoon app, installed prose watcher, source/generator ownership, manual curation, deployment and analytics boundaries. Corrected stale curation in the release-folder instructions, the agent-only image workflow and Market's old panel description. PUBLISHING.md now covers adding, editing, featuring and withdrawing both prose and cartoons. The release-folder README has a tracked source, so its local copy can be checked rather than drifting independently.
+
+The prose watcher had a check-then-write lock that could admit concurrent runs or steal a slow live run after 900 seconds, and duplicate-slug handling could still publish or adopt the first file. A persistent OS lock now covers the full tick; all members of a collision are excluded before reconciliation and must restart stability after resolution. Lost-state recovery now requires matching source, archive and reader at the fetched remote tip, so an old local copy cannot resurrect a withdrawn release's ownership record. Repeated ownership refusals produce one notification until the problem changes. Notifications/status now describe a pushed release and explicitly leave deployment unverified. The internal state schema, cadence and publishing route are unchanged. Regression, installed-runtime and post-install scheduled-tick evidence belongs in the release PR.
+
+The cartoon publisher's compiled launcher/backend and live retry were checked in PR #251. Visual native-dialog testing remained unavailable because the Mac control tool failed. That limitation is not evidence of a publishing failure, but it must not be relabeled as completed UI verification.
 
 ### 2026-11-21: on-demand cartoon publisher
 

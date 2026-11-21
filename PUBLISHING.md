@@ -1,6 +1,37 @@
-# Routine image publishing
+# Publishing and managing ajin.im
 
-## Publish without Codex
+Start here for routine additions and edits. [MAINTENANCE.md](MAINTENANCE.md) maps the source files, checks and recovery procedures; [AGENTS.md](AGENTS.md) records the site's design and editorial rules. Exact changes and release evidence live in Git and release PRs.
+
+| What you want to do | Simplest route | What changes |
+|---|---|---|
+| Publish an essay or comedy prose | Put an approved Markdown release in `~/Documents/Ajin-Publishing/` | Its reader, Browse all and the prose feed |
+| Publish a cartoon | Open `~/Applications/Publish Cartoon.app` | Its reader, Browse all and the cartoon collection/slides |
+| Change the Writing selection | Name the piece and the slot to replace | Only the requested curated placement |
+| Edit or withdraw existing work | Use the source/retraction guidance below | The existing piece; keep its URL for normal edits |
+
+## Publish writing without an agent
+
+Keep drafts in your private writing folder. Save only the approved release as a top-level `.md` file in `~/Documents/Ajin-Publishing/`, with this opening block followed by the text:
+
+```markdown
+---
+title: Your piece title
+publish: true
+date: 2026-11-21
+slug: your-piece-title
+excerpt: A complete introductory sentence.
+---
+
+Your writing starts here.
+```
+
+Use the actual publication date. `title` and `publish: true` are required; `slug`, `date` and `excerpt` are optional, but keeping an explicit `slug` avoids changing the URL if you later retitle the piece. This is simple `key: value` metadata: do not add YAML quotes around values. The publisher assigns the internal ordering number.
+
+Leave the Mac awake and connected. After the file stops changing, the watcher waits for stability, usually 5 to 10 minutes, then builds and pushes. **Its notice confirms a Git push, not a live page.** GitHub Pages deploys afterward. Visit the given URL to read the result; if it remains missing, see the troubleshooting table below. The cartoon app separately waits for and verifies its live result.
+
+The writing folder does not upload local attachments. Use ordinary Markdown links to public URLs; `[[wikilinks]]` are rejected. Ask the agent when adding an illustration to prose. Both essays and comedy prose can use this release path; older Medium imports and the existing standalone comedy source remain in their current locations.
+
+## Publish cartoons without an agent
 
 Open **Publish Cartoon** in your Mac's Applications folder. Choose the finished image, confirm its title, write a short description of the scene and its words for screen readers, then click **Publish**. The title remains hidden above the artwork. Leave the app running until it gives you the checked live URL. It uses no AI and has no background watcher.
 
@@ -14,11 +45,39 @@ python3 _scripts/cartoon_publisher.py --install-app "$HOME/Applications"
 
 The app launcher points to that checkout's script, so ordinary source updates take effect without rebuilding the launcher. The same operation is available as `python3 _scripts/cartoon_publisher.py --image '/path/to/image.png' --title 'A title' --alt 'Scene and words.'`. Do not use the launcher for previews: clicking Publish authorizes the public release. Cancelling before Publish makes no publishing changes.
 
+## What gets featured
+
+Adding work updates Browse all, ordered by publication date, newest first. It never expands or changes the hand-picked Writing selection or Home.
+
+Writing has two independent essay slots: the top slot above Scientist currently shows **An Open Letter to Jensen Huang From His Leather Jacket**; the lower brief shows **A good time to be Randall Flagg.** The selected comedy features include **Wife Evolves Into a Scarier Pokemon** and **Step on Me Please**. Home separately keeps Austen, Kenbaiki and the smaller Running strip.
+
+A plain request such as “Replace the top essay with Dear Seoul; keep Randall Flagg below” is enough. No code instructions are needed. [The source map](MAINTENANCE.md#where-to-make-changes) identifies the exact controls for another session.
+
+## Editing and removing work
+
+- **Writing published from the release folder:** edit the same release file, keeping its `slug` and publication date. It republishes after the stability wait. Editing only a private draft does not update the site. If no explicit `slug` is present, add the current URL slug before changing its title.
+- **Older writing or a hand-edited site source:** ask for the exact correction. The agent identifies its owning source; the automatic publisher deliberately refuses to overwrite independent edits.
+- **Cartoon changes:** request the replacement image, title or description for the existing piece. The app is for new cartoons and identical retries; it refuses to overwrite different published content under the same title.
+- **Removal:** say whether to remove only the listing or also retire the direct URL. Deleting a local release file or setting `publish: false` does not remove an existing public page. Retraction includes stopping its automatic source from republishing it and checking links, feed and sitemap. Never delete only generated HTML.
+
+## If publishing gets stuck
+
+| Symptom | Meaning and next step |
+|---|---|
+| Cartoon app reports an interruption | Retry the same image, title and description. The saved release is reused. |
+| Cartoon title already exists with different content | Request an edit to that piece; do not make a duplicate URL to work around the refusal. |
+| Writing reports conflicting release files | Keep one release export per URL. Every file in that collision is held until it is resolved. |
+| Writing has no notice after about 15 minutes | Check the Mac is awake, the file is top-level and has `publish: true`; ask the agent to inspect read-only status and existing logs. |
+| Writing was pushed but the URL is missing or stale | Check the latest GitHub Pages deployment and public page. The push notice alone does not prove deployment. |
+| Writing reports a hand edit or repository changes | Ask the agent to reconcile the source safely. Do not delete publisher state or force a retry. |
+
+Neither workflow uses AI or needs Codex tokens when run directly. An agent remains useful for editorial decisions, illustrations, retractions and unusual failures.
+
 ## Publishing with an agent
 
 Ajin can attach images and say **“Publish these”**, or **“Add this illustration to [article]”**. Preferred titles are optional. “Preview first” keeps the work local. The agent still supplies an accurate accessible description and checks the artwork; the commands do the bookkeeping. No AI API or background uploader is involved.
 
-## Fixed defaults
+## Fixed defaults for images
 
 - New cartoons get their own reader and a newest-first Writing entry. Date defaults to today in Asia/Seoul; confirm it if a preview spans days. Future publication dates are rejected.
 - Austen stays on Home. New images are never featured automatically.
