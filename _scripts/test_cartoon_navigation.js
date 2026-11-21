@@ -78,7 +78,13 @@ function harness({ initial = 'b', entryAlias = false, readyState = 'complete', c
       super({ 'data-first-slide': `${BASE}a/#cartoon` });
       this.slug = slug;
       this.title = new Element({ id: 'slide-title' }, `Cartoon ${slug}`);
-      this.image = new Element({ src: `/assets/${slug}.webp` });
+      this.image = new Element({
+        src: `/assets/${slug}.webp`,
+        srcset: `/assets/${slug}-640.webp 640w, /assets/${slug}-960.webp 960w`,
+        sizes: '(max-width: 650px) 350px, 800px',
+      });
+      this.image.gate = deferred();
+      this.image.decode = () => this.image.gate.promise;
       this.position = new Element({ 'aria-label': `Cartoon ${SLUGS.indexOf(slug) + 1} of ${SLUGS.length}` });
       this.arrows = {};
       for (const area of ['stage', 'pagination']) {
@@ -109,13 +115,17 @@ function harness({ initial = 'b', entryAlias = false, readyState = 'complete', c
   }
   function parsedDocument(slug) {
     const shell = SLUGS.includes(slug) ? new Shell(slug) : null;
-    return { title: `Cartoon ${slug} · Cartoons · ajin.im`, head: new Head(slug), querySelector: selector => selector === 'main.slide-shell' ? shell : null };
+    return {
+      querySelector: selector => selector === 'main.slide-shell' ? shell : selector === 'title' ? { textContent: `Cartoon ${slug} · Cartoons · ajin.im` } : null,
+      querySelectorAll: () => new Head(slug).nodes,
+    };
   }
   h.shell = new Shell(initial);
   const document = {
     title: `Cartoon ${initial} · Cartoons · ajin.im`, head: new Head(initial), readyState,
-    querySelector: selector => selector === '.slide-stage' ? h.shell.stage : selector === 'main.slide-shell' ? h.shell : null,
-    createElement: () => new Element(),
+    querySelector: selector => selector === '.slide-stage' ? h.shell.stage : selector === 'main.slide-shell' ? h.shell : selector === 'title' ? { textContent: document.title } : null,
+    querySelectorAll: () => document.head.nodes,
+    createElement: tag => tag === 'template' ? { set innerHTML(markup) { this.content = parsedDocument(markup); } } : new Element(),
     addEventListener: (name, handler, options) => listen(documentListeners, name, handler, options),
   };
   const location = {
@@ -140,7 +150,6 @@ function harness({ initial = 'b', entryAlias = false, readyState = 'complete', c
   } };
   vm.runInNewContext(SCRIPT, {
     document, location, history, fetch, Image, URL, AbortController,
-    DOMParser: class { parseFromString(text) { return parsedDocument(text); } },
     navigator: { connection },
     window: { addEventListener: (name, handler, options) => listen(windowListeners, name, handler, options) },
     setTimeout: (fn, delay) => { const id = ++timerId; h.timers.set(id, { fn, delay }); return id; },
@@ -163,7 +172,7 @@ function harness({ initial = 'b', entryAlias = false, readyState = 'complete', c
     pendingImages.forEach(image => { image.settled = true; if (fail) image.gate.reject(new Error('Decode failed')); else image.gate.resolve(); });
   };
   h.finish = async slug => { h.respond(slug); await flush(); h.decode(slug); await flush(); };
-  h.ready = async () => { h.decode(initial); await flush(); };
+  h.ready = async () => { h.shell.image.gate.resolve(); await flush(); };
   h.click = (direction = 'next', options = {}) => {
     const target = options.target || h.shell.arrows[`stage-${direction}`];
     assert.ok(target, `Missing ${direction} arrow`);
@@ -193,10 +202,15 @@ function harness({ initial = 'b', entryAlias = false, readyState = 'complete', c
 test('destination decode gates the swap and updates title, URL and metadata together', async () => {
   const h = harness({ initial: 'a' });
   assert.equal(h.requests.length, 0, 'warming must wait for the visible artwork');
+  assert.equal(h.images.length, 0, 'do not re-request the initial image');
   await h.ready();
   h.respond('b');
   await flush();
+  assert.match(h.images[0].srcset, /b-960.webp/);
+  assert.equal(h.images[0].sizes, '(max-width: 650px) 350px, 800px');
+  assert.equal(h.images[0].fetchPriority, 'low');
   const click = h.click();
+  assert.equal(h.images[0].fetchPriority, 'high');
   assert.equal(click.defaultPrevented, true);
   assert.equal(h.shell.slug, 'a');
   assert.equal(h.shell.getAttribute('aria-busy'), 'true');
@@ -250,7 +264,7 @@ test('the entry alias and first slide URL share the same cached artwork on Back 
   assert.equal(h.shell.slug, 'a');
   assert.equal(h.location.href, route('a'));
   assert.equal(h.requests.filter(request => new URL(request.href).pathname === BASE || request.href.endsWith('/a/')).length, 0);
-  assert.equal(h.images.filter(image => image.src === imageURL('a')).length, 1, 'the first image must not be decoded into a second cache entry');
+  assert.equal(h.images.filter(image => image.src === imageURL('a')).length, 0, 'reuse the already-mounted first image');
   assert.deepEqual(h.assigned, []);
   assert.deepEqual(h.replaced, []);
 });

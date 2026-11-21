@@ -155,9 +155,9 @@ class PieceWorkflowTest(unittest.TestCase):
         requested = set()
         def reader(route):
             requested.add(route)
-            return piece.local_path(route, self.root).read_bytes()
+            return piece.local_path(route.split('?', 1)[0], self.root).read_bytes()
         self.assertEqual(piece.verify_live(['/wrote/desk/'], root=self.root, reader=reader), 6)
-        self.assertEqual(requested, {'/', '/is/writing/', '/wrote/desk/', '/style.css', '/slide.js', '/assets/paper/fallback.png'})
+        self.assertEqual(requested, {'/', '/is/writing/', '/wrote/desk/', '/style.css?v=one', '/slide.js?v=one', '/assets/paper/fallback.png'})
         with self.assertRaisesRegex(ValueError, 'public bytes differ'):
             piece.verify_live(['/wrote/desk/'], root=self.root, reader=lambda route:b'stale')
         with self.assertRaises(ValueError):

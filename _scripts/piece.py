@@ -22,6 +22,7 @@ from urllib.request import urlopen
 from zoneinfo import ZoneInfo
 
 import build_comedy
+import cartoon_displays
 import image_pieces
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -168,6 +169,7 @@ def run(command: list[str]) -> str:
 
 def check() -> None:
     """One full batch check, with quiet successful builders and useful failures."""
+    cartoon_displays.generate(image_pieces.load_catalog(), ROOT)
     for script in ('build_comedy.py', 'build_essays.py', 'build_writes.py',
                    'build_wrote.py', 'build_root.py', 'build_sitemap.py'):
         run([sys.executable, f'_scripts/{script}'])
@@ -190,8 +192,13 @@ class Assets(HTMLParser):
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
         value = values.get('src') if tag in ('img', 'script') else values.get('href') if tag == 'link' and values.get('rel') == 'stylesheet' else None
-        if value and value.startswith('/') and not value.startswith('//'):
-            self.paths.add(value.split('?', 1)[0])
+        urls = [value] if value else []
+        if tag in ('img', 'source'):
+            urls.extend(part.strip().split()[0] for part in values.get('srcset', '').split(',') if part.strip())
+        href = values.get('href', '')
+        if tag == 'a' and href.startswith('/assets/') and href.split('?', 1)[0].endswith(('.webp', '.png')):
+            urls.append(href)  # Keep the exact public tap-to-enlarge original checked.
+        self.paths.update(url for url in urls if url.startswith('/') and not url.startswith('//'))
 
 
 def local_path(route: str, root: Path) -> Path:
@@ -212,15 +219,19 @@ def fetch(route: str) -> bytes:
         return response.read()
 
 
-def verify_live(routes: list[str], *, root: Path = ROOT, reader=fetch) -> int:
+def verify_live(routes: list[str], *, root: Path = ROOT, reader=fetch, cartoon_slug=None) -> int:
     paths = set(routes) | {'/', '/is/writing/'}
     for route in list(paths):
         if not route.endswith('/'):
             raise ValueError('supply reader routes ending in /')
         parser = Assets()
         parser.feed(local_path(route, root).read_text())
-        paths.update(parser.paths)
-    expected = {route: local_path(route, root).read_bytes() for route in paths}
+        paths.update(url for url in parser.paths if
+                     not cartoon_slug or not url.startswith(f'/{cartoon_displays.BASE}/') or
+                     url.startswith(f'/{cartoon_displays.BASE}/{cartoon_slug}/'))
+    if cartoon_slug and not any(path.startswith(f'/{cartoon_displays.BASE}/{cartoon_slug}/') for path in paths):
+        raise ValueError(f'no live responsive artwork to check for {cartoon_slug}')
+    expected = {route: local_path(route.split('?', 1)[0], root).read_bytes() for route in paths}
 
     def compare(route):
         if hashlib.sha256(reader(route)).digest() != hashlib.sha256(expected[route]).digest():
@@ -248,6 +259,7 @@ def parser() -> argparse.ArgumentParser:
     commands.add_parser('check', help='rebuild and validate once for the entire batch')
     live = commands.add_parser('verify-live', help='read-only public page and asset checks')
     live.add_argument('routes', nargs='+')
+    live.add_argument('--cartoon-slug', type=str, help='check display variants for only this newly released cartoon')
     live.add_argument('--wait', type=int, default=0, metavar='SECONDS', help='bounded wait for CDN propagation')
     return result
 
@@ -268,7 +280,7 @@ def main() -> None:
             deadline = time.monotonic() + args.wait
             while True:
                 try:
-                    count = verify_live(args.routes)
+                    count = verify_live(args.routes, cartoon_slug=args.cartoon_slug)
                     print(f'LIVE: {count} public pages/assets match this checkout; Home and Writing included.')
                     break
                 except (OSError, ValueError):
