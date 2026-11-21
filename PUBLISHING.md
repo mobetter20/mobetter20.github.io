@@ -1,5 +1,21 @@
 # Routine image publishing
 
+## Publish without Codex
+
+Open **Publish Cartoon** in your Mac's Applications folder. Choose the finished image, confirm its title, write a short description of the scene and its words for screen readers, then click **Publish**. The title remains hidden above the artwork. Leave the app running until it gives you the checked live URL. It uses no AI and has no background watcher.
+
+The app runs the existing image preparation, checks and GitHub release in its own worktree. It never edits the essay publisher or the canonical checkout. It waits for a successful deployment and checks public pages and artwork before saying the cartoon is live. If interrupted, repeat the same image, title and description to resume; an identical already-published cartoon is verified without another post. A different image or description under an existing title requires an explicit edit, not another upload.
+
+Maintainer installation, after the source is committed on canonical `master`:
+
+```sh
+python3 _scripts/cartoon_publisher.py --install-app "$HOME/Applications"
+```
+
+The app launcher points to that checkout's script, so ordinary source updates take effect without rebuilding the launcher. The same operation is available as `python3 _scripts/cartoon_publisher.py --image '/path/to/image.png' --title 'A title' --alt 'Scene and words.'`. Do not use the launcher for previews: clicking Publish authorizes the public release. Cancelling before Publish makes no publishing changes.
+
+## Publishing with an agent
+
 Ajin can attach images and say **“Publish these”**, or **“Add this illustration to [article]”**. Preferred titles are optional. “Preview first” keeps the work local. The agent still supplies an accurate accessible description and checks the artwork; the commands do the bookkeeping. No AI API or background uploader is involved.
 
 ## Fixed defaults

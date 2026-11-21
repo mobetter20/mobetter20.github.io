@@ -8,6 +8,8 @@ Static site hosted on GitHub Pages. Ajin's writing, cartoons, worlds and builds.
 
 For routine image additions, start with [PUBLISHING.md](PUBLISHING.md) and `_scripts/piece.py`; use the fixed defaults and one batch check instead of reconstructing the workflow from chat history. Read [MAINTENANCE.md](MAINTENANCE.md) for source ownership, unusual changes or publishing behavior. Keep the guides current when behavior changes; routine content batches belong in the catalog and release PR, without rewriting a running inventory in the guide. Git records exact changes. Distinguish a local preview, a pushed branch and a verified live release. A successful build or local commit does not mean published. `CLAUDE.md` imports this file, so the same entry point applies across agents.
 
+The on-demand **Publish Cartoon** Mac app uses `_scripts/cartoon_publisher.py` around the same helper. It owns a separate worktree and release PR, preserves canonical and essay-publisher state, and confirms the deployed bytes before reporting success. State and resumable logs live under `~/.local/share/cartoon-publisher/`. See PUBLISHING.md for use and MAINTENANCE.md for recovery. There is no new watcher or AI service.
+
 ## Design System — typographic tiers
 
 Governing rule: **consistent chrome, free content.** The approved newspaper entrances, Building cabinet, Running blue journey and Bus rack are scoped exceptions described under Information architecture. Read those before applying the older envelope. The wrapper is uniform; what's inside is free to vary by tier. When adding or restyling a page, classify it first, then give it that tier's chrome.
