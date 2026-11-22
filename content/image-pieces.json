@@ -3,6 +3,17 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "winter-flowers",
+      "title": "Winter Flowers",
+      "published_date": "2026-11-22",
+      "image": "/assets/paper/pieces/winter-flowers.webp",
+      "width": 1254,
+      "height": 1254,
+      "alt": "Seven brightly colored birds perch like blossoms among bare winter branches. Caption: Winter flowers.",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "intelligence-had-a-good-run",
       "title": "Intelligence Had a Good Run",
       "published_date": "2026-11-21",
