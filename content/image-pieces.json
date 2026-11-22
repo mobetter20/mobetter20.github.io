@@ -3,6 +3,17 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "a-buying-opportunity",
+      "title": "A Buying Opportunity",
+      "published_date": "2026-11-22",
+      "image": "/assets/paper/pieces/a-buying-opportunity.webp",
+      "width": 1254,
+      "height": 1254,
+      "alt": "A smiling figure on the sidewalk tells an unimpressed, bleeding figure in the street, “Buy when there’s blood in the streets.”",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "winter-flowers",
       "title": "Winter Flowers",
       "published_date": "2026-11-22",
