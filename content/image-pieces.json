@@ -3,6 +3,17 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "naturally-careful",
+      "title": "Naturally Careful",
+      "published_date": "2026-11-22",
+      "image": "/assets/paper/pieces/naturally-careful.webp",
+      "width": 1128,
+      "height": 1394,
+      "alt": "Three panels show hands tightening a water bottle cap beside a tote, taking a tissue out of a trouser pocket before doing laundry, and setting a glass on a coaster beside a water ring. Caption: “I used to think grown-ups were naturally careful.”",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "a-buying-opportunity",
       "title": "A Buying Opportunity",
       "published_date": "2026-11-22",
