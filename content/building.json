@@ -26,6 +26,14 @@
       "night": false
     },
     {
+      "title": "Bird to Bird",
+      "href": "/is/building/b2b/",
+      "status": "30 puzzles",
+      "description": "Find the shortest route between bird names, changing one word at a time.",
+      "collection": false,
+      "night": false
+    },
+    {
       "title": "omen.ops",
       "href": "/is/building/omen.ops/",
       "status": "live",

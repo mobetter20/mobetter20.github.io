@@ -187,8 +187,8 @@ class HomeBuildTest(unittest.TestCase):
     def test_building_curation_preserves_unlisted_route(self):
         output = paper_site.render_building()
         titles = [c.title for c in paper_site.load_building()]
-        self.assertEqual(len(titles),9)
-        self.assertEqual(titles[:4],['Bureau of Interior Conditions','Seoul Crushing','Instrument Bus','omen.ops'])
+        self.assertEqual(len(titles),10)
+        self.assertEqual(titles[:5],['Bureau of Interior Conditions','Seoul Crushing','Instrument Bus','Bird to Bird','omen.ops'])
         self.assertLess(output.index('omen.ops/'),output.index('kenbaiki'))
         self.assertNotIn('/crossings/',output)
         self.assertTrue((build_root.ROOT / 'is/building/crossings/index.html').is_file())
