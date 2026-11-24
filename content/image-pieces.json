@@ -3,6 +3,28 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "the-open-house",
+      "title": "The Open House",
+      "published_date": "2026-11-24",
+      "image": "/assets/paper/pieces/the-open-house.webp",
+      "width": 1536,
+      "height": 1024,
+      "alt": "A person lifts the hinged roof of a birdhouse, revealing two birds inside. One asks, “Can he do that after we move in?”",
+      "caption": "",
+      "featured": false
+    },
+    {
+      "slug": "an-attentive-landlord",
+      "title": "An Attentive Landlord",
+      "published_date": "2026-11-24",
+      "image": "/assets/paper/pieces/an-attentive-landlord.webp",
+      "width": 1536,
+      "height": 1024,
+      "alt": "Two birds perch on a birdhouse while a seated man watches them through binoculars, a notebook on his lap. One says, “I don’t know if I want to be someone’s hobby.”",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "naturally-careful",
       "title": "Naturally Careful",
       "published_date": "2026-11-22",
