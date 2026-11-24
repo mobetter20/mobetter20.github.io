@@ -3,6 +3,28 @@
   "fallback_slug": "austen-at-work",
   "pieces": [
     {
+      "slug": "the-other-bird",
+      "title": "The Other Bird",
+      "published_date": "2026-11-24",
+      "image": "/assets/paper/pieces/the-other-bird.webp",
+      "width": 1536,
+      "height": 1024,
+      "alt": "Birders aim their lenses at a crested bird. The bird without a crest beside it says, “I’m beginning to take this personally.”",
+      "caption": "",
+      "featured": false
+    },
+    {
+      "slug": "negative-id",
+      "title": "Negative ID",
+      "published_date": "2026-11-24",
+      "image": "/assets/paper/pieces/negative-id.webp",
+      "width": 1536,
+      "height": 1024,
+      "alt": "A birder packs a camera lens while two birds perch overhead. One says, “He was quite excited until he identified me.”",
+      "caption": "",
+      "featured": false
+    },
+    {
       "slug": "the-open-house",
       "title": "The Open House",
       "published_date": "2026-11-24",
